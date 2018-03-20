@@ -9,6 +9,7 @@ $ export CHEATPATH=$CHEATPATH:/path/to/this/repo/pages
 $ cheat syscalls
 $ cheat registers
 $ cheat errno
+$ cheat EPERM
 $ cheat ADD
 $ cheat instructions
 ```
