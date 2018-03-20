@@ -1,6 +1,6 @@
 # x86_64-linux cheatsheats
 
-Plain files for syscalls, registers, x86_64 instructions
+Plain files for syscalls, errnos, registers, x86_64 instructions
 
 For use with [cheat](https://github.com/chrisallenlane/cheat):
 
