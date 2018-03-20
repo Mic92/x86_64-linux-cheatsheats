@@ -6,5 +6,6 @@ stdenv.mkDerivation {
     ruby.devEnv
     libxml2
     pandoc
+    python3
   ];
 }
