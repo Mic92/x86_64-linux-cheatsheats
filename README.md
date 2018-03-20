@@ -8,6 +8,7 @@ For use with [cheat](https://github.com/chrisallenlane/cheat):
 $ export CHEATPATH=$CHEATPATH:/path/to/this/repo/pages
 $ cheat syscalls
 $ cheat registers
+$ cheat errno
 $ cheat ADD
 $ cheat instructions
 ```
