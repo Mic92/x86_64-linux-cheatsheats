@@ -1,0 +1,170 @@
+-   Index
+-   December 2017
+
+
+
+SBB — INTEGER SUBTRACTION WITH BORROW
+
+
+  Opcode               Instruction          Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  -------------------- -------------------- ------- ------------- ----------------- ---------------------------------------------------------------------
+  1C _ib_              SBB AL, _imm8_       I       Valid         Valid             Subtract with borrow _imm8_ from AL.
+  1D _iw_              SBB AX, _imm16_      I       Valid         Valid             Subtract with borrow _imm16_ from AX.
+  1D _id_              SBB EAX, _imm32_     I       Valid         Valid             Subtract with borrow _imm32_ from EAX.
+  REX.W + 1D _id_      SBB RAX, _imm32_     I       Valid         N.E.              Subtract with borrow sign-extended _imm.32 to 64-bits_ from RAX.
+  80 /3 _ib_           SBB _r/m8, imm8_     MI      Valid         Valid             Subtract with borrow _imm8_ from _r/m8._
+  REX + 80 /3 _ib_     SBB _r/m8*, imm8_    MI      Valid         N.E.              Subtract with borrow _imm8_ from _r/m8._
+  81 /3 _iw_           SBB _r/m16, imm16_   MI      Valid         Valid             Subtract with borrow _imm16_ from _r/m16._
+  81 /3 _id_           SBB _r/m32, imm32_   MI      Valid         Valid             Subtract with borrow _imm32_ from _r/m32._
+  REX.W + 81 /3 _id_   SBB _r/m64, imm32_   MI      Valid         N.E.              Subtract with borrow sign-extended _imm32 to 64-bits_ from _r/m64._
+  83 /3 _ib_           SBB _r/m16, imm8_    MI      Valid         Valid             Subtract with borrow sign-extended _imm8_ from _r/m16._
+  83 /3 _ib_           SBB _r/m32, imm8_    MI      Valid         Valid             Subtract with borrow sign-extended _imm8_ from _r/m32._
+  REX.W + 83 /3 _ib_   SBB _r/m64, imm8_    MI      Valid         N.E.              Subtract with borrow sign-extended _imm8_ from _r/m64._
+  18 /_r_              SBB _r/m8, r8_       MR      Valid         Valid             Subtract with borrow _r8_ from _r/m8._
+  REX + 18 /_r_        SBB _r/m8*, r8_      MR      Valid         N.E.              Subtract with borrow _r8_ from _r/m8._
+  19 /_r_              SBB _r/m16, r16_     MR      Valid         Valid             Subtract with borrow _r16_ from _r/m16._
+  19 /_r_              SBB _r/m32, r32_     MR      Valid         Valid             Subtract with borrow _r32_ from _r/m32._
+  REX.W + 19 /_r_      SBB _r/m64, r64_     MR      Valid         N.E.              Subtract with borrow _r64_ from _r/m64._
+  1A /_r_              SBB _r8, r/m8_       RM      Valid         Valid             Subtract with borrow _r/m8_ from _r8._
+  REX + 1A /_r_        SBB _r8*, r/m8*_     RM      Valid         N.E.              Subtract with borrow _r/m8_ from _r8._
+  1B /_r_              SBB _r16, r/m16_     RM      Valid         Valid             Subtract with borrow _r/m16_ from _r16._
+  1B /_r_              SBB _r32, r/m32_     RM      Valid         Valid             Subtract with borrow _r/m32_ from _r32._
+  REX.W + 1B /_r_      SBB _r64, r/m64_     RM      Valid         N.E.              Subtract with borrow _r/m64_ from _r64._
+
+  *
+  In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
+
+
+Instruction Operand Encoding¶
+
+  ------- --------------- --------------- ----------- -----------
+  Op/En   Operand 1       Operand 2       Operand 3   Operand 4
+  I       AL/AX/EAX/RAX   imm8/16/32      NA          NA
+  MI      ModRM:r/m (w)   imm8/16/32      NA          NA
+  MR      ModRM:r/m (w)   ModRM:reg (r)   NA          NA
+  RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
+  ------- --------------- --------------- ----------- -----------
+
+
+Description¶
+
+Adds the source operand (second operand) and the carry (CF) flag, and
+subtracts the result from the destination operand (first operand). The
+result of the subtraction is stored in the destination operand. The
+destination operand can be a register or a memory location; the source
+operand can be an immediate, a register, or a memory location. (However,
+two memory operands cannot be used in one instruction.) The state of the
+CF flag represents a borrow from a previous subtraction.
+
+When an immediate value is used as an operand, it is sign-extended to
+the length of the destination operand format.
+
+The SBB instruction does not distinguish between signed or unsigned
+operands. Instead, the processor evaluates the result for both data
+types and sets the OF and CF flags to indicate a borrow in the signed or
+unsigned result, respectively. The SF flag indicates the sign of the
+signed result.
+
+The SBB instruction is usually executed as part of a multibyte or
+multiword subtraction in which a SUB instruction is followed by a SBB
+instruction.
+
+This instruction can be used with a LOCK prefix to allow the instruction
+to be executed atomically.
+
+In 64-bit mode, the instruction’s default operation size is 32 bits.
+Using a REX prefix in the form of REX.R permits access to additional
+registers (R8-R15). Using a REX prefix in the form of REX.W promotes
+operation to 64 bits. See the summary chart at the beginning of this
+section for encoding data and limits.
+
+
+Operation¶
+
+    DEST ← (DEST – (SRC + CF));
+
+
+Intel C/C++ Compiler Intrinsic Equivalent¶
+
+    SBB: extern unsigned char _subborrow_u8(unsigned char c_in, unsigned char src1, unsigned char src2, unsigned char *diff_out);
+
+    SBB: extern unsigned char _subborrow_u16(unsigned char c_in, unsigned short src1, unsigned short src2, unsigned short *diff_out);
+
+    SBB: extern unsigned char _subborrow_u32(unsigned char c_in, unsigned int src1, unsigned char int, unsigned int *diff_out);
+
+    SBB: extern unsigned char _subborrow_u64(unsigned char c_in, unsigned __int64 src1, unsigned __int64 src2, unsigned __int64 *diff_out);
+
+
+Flags Affected¶
+
+The OF, SF, ZF, AF, PF, and CF flags are set according to the result.
+
+
+Protected Mode Exceptions¶
+
+#GP(0)
+
+If the destination is located in a non-writable segment.
+
+If a memory operand effective address is outside the CS, DS, ES, FS, or
+GS segment limit.
+
+If the DS, ES, FS, or GS register contains a NULL segment selector.
+
+#SS(0)
+
+If a memory operand effective address is outside the SS segment limit.
+
+#PF(fault-code)
+
+If a page fault occurs.
+
+#AC(0)
+
+If alignment checking is enabled and an unaligned memory reference is
+made while the current privilege level is 3.
+
+#UD
+
+If the LOCK prefix is used but the destination is not a memory operand.
+
+
+Real-Address Mode Exceptions¶
+
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If the LOCK prefix is used but the destination is not a memory operand.
+  ----- -------------------------------------------------------------------------------------------
+
+
+Virtual-8086 Mode Exceptions¶
+
+  ----------------- -------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- -------------------------------------------------------------------------------------------
+
+
+Compatibility Mode Exceptions¶
+
+Same exceptions as in protected mode.
+
+
+64-Bit Mode Exceptions¶
+
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

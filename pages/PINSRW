@@ -1,0 +1,141 @@
+-   Index
+-   December 2017
+
+
+
+PINSRW — INSERT WORD
+
+
+  Opcode/Instruction                                                  Op/ En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- -------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
+  NP 0F C4 /_r_ ib¹ PINSRW _mm_, _r32/m16, imm8_                      A        V/V                      SSE                  Insert the low word from _r32_ or from _m16_ into _mm_ at the word position specified by _imm8._
+  66 0F C4 /_r_ ib PINSRW _xmm, r32/m16, imm8_                        A        V/V                      SSE2                 Move the low word of _r32_ or from _m16_ into _xmm_ at the word position specified by _imm8_.
+  VEX.NDS.128.66.0F.W0 C4 /r ib VPINSRW _xmm1, xmm2, r32/m16, imm8_   B        V²/V                     AVX                  Insert a word integer value from _r32/m16_ and rest from _xmm2_ into _xmm1_ at the word offset in _imm8_.
+  EVEX.NDS.128.66.0F.WIG C4 /r ib VPINSRW xmm1, xmm2, r32/m16, imm8   C        V/V                      AVX512BW             Insert a word integer value from r32/m16 and rest from xmm2 into xmm1 at the word offset in imm8.
+
+  1. See note in Section 2.4, “AVX and SSE Instruction Exception
+  Specification” in the _Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
+  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A_.
+
+  2. In 64-bit mode, VEX.W1 is ignored for VPINSRW (similar to legacy
+  REX.W=1 prefix in PINSRW).
+
+
+Instruction Operand Encoding¶
+
+  ------- --------------- --------------- --------------- --------------- -----------
+  Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
+  A       NA              ModRM:reg (w)   ModRM:r/m (r)   imm8            NA
+  B       NA              ModRM:reg (w)   VEX.vvvv (r)    ModRM:r/m (r)   imm8
+  C       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   Imm8
+  ------- --------------- --------------- --------------- --------------- -----------
+
+
+Description¶
+
+Copies a word from the source operand (second operand) and inserts it in
+the destination operand (first operand) at the location specified with
+the count operand (third operand). (The other words in the destination
+register are left untouched.) The source operand can be a
+general-purpose register or a 16-bit memory location. (When the source
+operand is a general-purpose register, the low word of the register is
+copied.) The destination operand can be an MMX technology register or an
+XMM register. The count operand is an 8-bit immediate. When specifying a
+word location in an MMX technology register, the 2 least-significant
+bits of the count operand specify the location; for an XMM register, the
+3 least-significant bits specify the location.
+
+In 64-bit mode and not encoded with VEX/EVEX, using a REX prefix in the
+form of REX.R permits this instruction to access additional registers
+(XMM8-XMM15, R8-15).
+
+128-bit Legacy SSE version: Bits (MAXVL-1:128) of the corresponding YMM
+destination register remain unchanged.
+
+VEX.128 encoded version: Bits (MAXVL-1:128) of the destination YMM
+register are zeroed. VEX.L must be 0, otherwise the instruction will
+#UD.
+
+EVEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
+are zeroed. EVEX.L’L must be 0, otherwise the instruction will #UD.
+
+
+Operation¶
+
+PINSRW (with 64-bit source operand)¶
+
+    SEL ← COUNT AND 3H;
+        CASE (Determine word position) OF
+            SEL←0:
+                MASK ← 000000000000FFFFH;
+            SEL←1:
+                MASK ← 00000000FFFF0000H;
+            SEL←2:
+                MASK ← 0000FFFF00000000H;
+            SEL←3:
+                MASK ← FFFF000000000000H;
+    DEST ← (DEST AND NOT MASK) OR (((SRC << (SEL ∗ 16)) AND MASK);
+
+PINSRW (with 128-bit source operand)¶
+
+    SEL ← COUNT AND 7H;
+        CASE (Determine word position) OF
+            SEL←0:
+                MASK ← 0000000000000000000000000000FFFFH;
+            SEL←1:
+                MASK ← 000000000000000000000000FFFF0000H;
+            SEL←2:
+                MASK ← 00000000000000000000FFFF00000000H;
+            SEL←3:
+                MASK ← 0000000000000000FFFF000000000000H;
+            SEL←4:
+                MASK ← 000000000000FFFF0000000000000000H;
+            SEL←5:
+                MASK ← 00000000FFFF00000000000000000000H;
+            SEL←6:
+                MASK ← 0000FFFF000000000000000000000000H;
+            SEL←7:
+                MASK ← FFFF0000000000000000000000000000H;
+    DEST ← (DEST AND NOT MASK) OR (((SRC << (SEL ∗ 16)) AND MASK);
+
+VPINSRW (VEX/EVEX encoded version)¶
+
+    SEL ← imm8[2:0]
+    DEST[127:0]←write_w_element(SEL, SRC2, SRC1)
+    DEST[MAXVL-1:128] ← 0
+
+
+Intel C/C++ Compiler Intrinsic Equivalent¶
+
+    PINSRW: __m64 _mm_insert_pi16 (__m64 a, int d, int n)
+
+    PINSRW: __m128i _mm_insert_epi16 ( __m128i a, int b, int imm)
+
+
+Flags Affected¶
+
+None.
+
+
+Numeric Exceptions¶
+
+None.
+
+
+Other Exceptions¶
+
+EVEX-encoded instruction, see Exceptions Type 5;
+
+EVEX-encoded instruction, see Exceptions Type E9NF.
+
+  ----- -------------------------------
+  #UD   If VEX.L = 1 or EVEX.L’L > 0.
+  ----- -------------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

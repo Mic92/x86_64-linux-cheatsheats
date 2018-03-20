@@ -1,0 +1,225 @@
+-   Index
+-   December 2017
+
+
+
+VGETMANTPD — EXTRACT FLOAT64 VECTOR OF NORMALIZED MANTISSAS FROM FLOAT64 VECTOR
+
+
+  Opcode/Instruction                                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------------------ ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W1 26 /r ib VGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
+  EVEX.256.66.0F3A.W1 26 /r ib VGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
+  EVEX.512.66.0F3A.W1 26 /r ib VGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
+
+
+Instruction Operand Encoding¶
+
+  ------- ------------ --------------- --------------- ----------- -----------
+  Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
+  A       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
+  ------- ------------ --------------- --------------- ----------- -----------
+
+Description¶
+
+Convert double-precision floating values in the source operand (the
+second operand) to DP FP values with the mantissa normalization and sign
+control specified by the imm8 byte, see Figure 5-15. The converted
+results are written to the destination operand (the first operand) using
+writemask k1. The normalized mantissa is specified by interv (imm8[1:0])
+and the sign control (sc) is specified by bits 3:2 of the immediate
+byte.
+
+The destination operand is a ZMM/YMM/XMM register updated under the
+writemask. The source operand can be a ZMM/YMM/XMM register, a
+512/256/128-bit memory location, or a 512/256/128-bit vector broadcasted
+from a 64-bit memory location.
+
+0 imm8 Must Be Zero Sign Control (SC) Normaiization Interval Imm8[1:0] =
+00b : Interval is [ 1, 2) Imm8[3:2] = 00b : sign(SRC) Imm8[1:0] = 01b :
+Interval is [1/2, 2) Imm8[3:2] = 01b : 0 Imm8[1:0] = 10b : Interval is [
+1/2, 1) Imm8[3] = 1b : qNan_Indefinite if sign(SRC) != 0, regardless of
+imm8[2]. Imm8[1:0] = 11b : Interval is [3/4, 3/2)
+
+Figure 5-15. Imm8 Controls for VGETMANTPD/SD/PS/SS
+
+For each input DP FP value x, The conversion operation is:
+
+_GetMant_(_x_) = _±_2_^(k)|x.significand|_
+
+where:
+
+1 _<_= _|x.significand| <_ 2
+
+Unbiased exponent k depends on the interval range defined by interv and
+whether the exponent of the source is even or odd. The sign of the final
+result is determined by sc and the source sign.
+
+If interv != 0 then k = -1, otherwise K = 0. The encoded value of
+imm8[1:0] and sign control are shown in
+
+Figure 5-15.
+
+Each converted DP FP result is encoded according to the sign control,
+the unbiased exponent k (adding bias) and a mantissa normalized to the
+range specified by interv.
+
+The GetMant() function follows Table 5-16 when dealing with
+floating-point special numbers.
+
+This instruction is writemasked, so only those elements with the
+corresponding bit set in vector mask register k1 are computed and stored
+into the destination. Elements in zmm1 with the corresponding bit clear
+in k1 retain their previous values.
+
+Note: EVEX.vvvv is reserved and must be 1111b; otherwise instructions
+will #UD.
+
+  Input      Result                                                                    Exceptions / Comments
+  ---------- ------------------------------------------------------------------------- ------------------------------------------
+  NaN        QNaN(SRC)                                                                 Ignore _interv_ If (SRC = SNaN) then #IE
+  +∞         1.0                                                                       Ignore _interv_
+  +0         1.0                                                                       Ignore _interv_
+  -0         IF (SC[0]) THEN +1.0 ELSE -1.0                                            Ignore _interv_
+  -∞         IF (SC[1]) THEN {QNaN_Indefinite} ELSE { IF (SC[0]) THEN +1.0 ELSE -1.0   Ignore _interv_ If (SC[1]) then #IE
+  negative   SC[1] ? QNaN_Indefinite : Getmant(SRC)                                    If (SC[1]) then #IE
+
+Table 5-16. GetMant() Special Float Values Behavior
+
+Operation¶
+
+    GetNormalizeMantissaDP(SRC[63:0], SignCtrl[1:0], Interv[1:0])
+    {
+        // Extracting the SRC sign, exponent and mantissa fields
+        Dst.sign←SignCtrl[0] ? 0 : Src[63]; // Get sign bit
+        Dst.exp←SRC[62:52]; ; Get original exponent value
+        Dst.fraction←SRC[51:0];; Get original fraction value
+        ZeroOperand←(Dst.exp = 0) AND (Dst.fraction = 0);
+        DenormOperand←(Dst.exp = 0h) AND (Dst.fraction != 0);
+        InfiniteOperand←(Dst.exp = 07FFh) AND (Dst.fraction = 0);
+        NaNOperand←(Dst.exp = 07FFh) AND (Dst.fraction != 0);
+        // Check for NAN operand
+        IF (NaNOperand)
+        { IF (SRC = SNaN) {Set #IE;}
+            Return QNAN(SRC);
+        }
+        // Check for Zero and Infinite operands
+        IF ((ZeroOperand) OR (InfiniteOperand)
+        { Dst.exp←03FFh;
+                            // Override exponent with BIAS
+            Return ((Dst.sign<<63) | (Dst.exp<<52) | (Dst.fraction));
+        }
+        // Check for negative operand (including -0.0)
+        IF ((Src[63] = 1) AND SignCtrl[1])
+        { Set #IE;
+            Return QNaN_Indefinite;
+        }
+        // Checking for denormal operands
+        IF (DenormOperand)
+        { IF (MXCSR.DAZ=1) Dst.fraction←0;// Zero out fraction
+            ELSE
+            {
+                // Jbit is the hidden integral bit. Zero in case of denormal operand.
+                Src.Jbit←0;
+                        // Zero Src Jbit
+                Dst.exp←03FFh;
+                        // Override exponent with BIAS
+                WHILE (Src.Jbit = 0) {
+                        // normalize mantissa
+                    Src.Jbit←Dst.fraction[51]; // Get the fraction MSB
+                    Dst.fraction←(Dst.fraction << 1);
+                                    // Start normalizing the mantissa
+                    Dst.exp--; // Adjust the exponent
+                }
+                SET #DE; // Set DE bit
+            }
+        }
+        // Checking for exponent response
+        Unbiased.exp←Dst.exp – 03FFh;
+                            // subtract the bias from exponent
+        IsOddExp←Unbiased.exp[0];
+                            // recognized unbiased ODD exponent
+        SignalingBit ← Dst.fraction[51];
+        CASE (interv[1:0])
+            00: Dst.exp←03FFh;
+                                // This is the bias
+            01: Dst.exp←(IsOddExp) ? 03FEh : 03FFh;
+                                    // either bias-1, or bias
+            10: Dst.exp←03FEh;
+                                // bias-1
+            11: Dst.exp←(SignalingBit) ? 03FEh : 03FFh;
+                                    // either bias-1, or bias
+        ESAC
+        // At this point Dst.exp has the correct result. Form the final destination
+        DEST[63:0]←(Dst.sign << 63) OR (Dst.exp << 52) OR (Dst.fraction);
+        Return (DEST);
+    }
+
+VGETMANTPD (EVEX encoded versions)¶
+
+    (KL, VL) = (2, 128), (4, 256), (8, 512)
+    SignCtrl[1:0] ← IMM8[3:2];
+    Interv[1:0] ← IMM8[1:0];
+    FOR j←0 TO KL-1
+        i←j * 64
+        IF k1[j] OR *no writemask*
+            THEN
+                IF (EVEX.b = 1) AND (SRC *is memory*)
+                    THEN
+                        DEST[i+63:i]← GetNormalizedMantissaDP(SRC[63:0], SignCtrl, Interv)
+                    ELSE
+                        DEST[i+63:i]← GetNormalizedMantissaDP(SRC[i+63:i], SignCtrl, Interv)
+                FI;
+            ELSE
+                IF *merging-masking* ; merging-masking
+                    THEN *DEST[i+63:i] remains unchanged*
+                    ELSE
+                            ; zeroing-masking
+                        DEST[i+63:i] ← 0
+                FI
+        FI;
+    ENDFOR
+    DEST[MAXVL-1:VL] ← 0
+
+Intel C/C++ Compiler Intrinsic Equivalent¶
+
+    VGETMANTPD __m512d _mm512_getmant_pd( __m512d a, enum intv, enum sgn);
+
+    VGETMANTPD __m512d _mm512_mask_getmant_pd(__m512d s, __mmask8 k, __m512d a, enum intv, enum sgn);
+
+    VGETMANTPD __m512d _mm512_maskz_getmant_pd( __mmask8 k, __m512d a, enum intv, enum sgn);
+
+    VGETMANTPD __m512d _mm512_getmant_round_pd( __m512d a, enum intv, enum sgn, int r);
+
+    VGETMANTPD __m512d _mm512_mask_getmant_round_pd(__m512d s, __mmask8 k, __m512d a, enum intv, enum sgn, int r);
+
+    VGETMANTPD __m512d _mm512_maskz_getmant_round_pd( __mmask8 k, __m512d a, enum intv, enum sgn, int r);
+
+    VGETMANTPD __m256d _mm256_getmant_pd( __m256d a, enum intv, enum sgn);
+
+    VGETMANTPD __m256d _mm256_mask_getmant_pd(__m256d s, __mmask8 k, __m256d a, enum intv, enum sgn);
+
+    VGETMANTPD __m256d _mm256_maskz_getmant_pd( __mmask8 k, __m256d a, enum intv, enum sgn);
+
+    VGETMANTPD __m128d _mm_getmant_pd( __m128d a, enum intv, enum sgn);
+
+    VGETMANTPD __m128d _mm_mask_getmant_pd(__m128d s, __mmask8 k, __m128d a, enum intv, enum sgn);
+
+    VGETMANTPD __m128d _mm_maskz_getmant_pd( __mmask8 k, __m128d a, enum intv, enum sgn);
+
+SIMD Floating-Point Exceptions¶
+
+Denormal, Invalid
+
+Other Exceptions¶
+
+See Exceptions Type E2.
+
+  ----- ------------------------
+  #UD   If EVEX.vvvv != 1111B.
+  ----- ------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

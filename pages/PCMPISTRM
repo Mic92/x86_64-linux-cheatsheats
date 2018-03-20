@@ -1,0 +1,109 @@
+-   Index
+-   December 2017
+
+
+
+PCMPISTRM — PACKED COMPARE IMPLICIT LENGTH STRINGS, RETURN MASK
+
+
+  Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 62 _/r imm8_ PCMPISTRM _xmm1, xmm2/m128, imm8_           RM      V/V                      SSE4_2               Perform a packed comparison of string data with implicit lengths, generating a mask, and storing the result in _XMM0._
+  VEX.128.66.0F3A.WIG 62 /r ib VPCMPISTRM _xmm1, xmm2/m128, imm8_   RM      V/V                      AVX                  Perform a packed comparison of string data with implicit lengths, generating a Mask, and storing the result in _XMM0_.
+
+
+Instruction Operand Encoding¶
+
+  ------- --------------- --------------- ----------- -----------
+  Op/En   Operand 1       Operand 2       Operand 3   Operand 4
+  RM      ModRM:reg (r)   ModRM:r/m (r)   imm8        NA
+  ------- --------------- --------------- ----------- -----------
+
+
+Description¶
+
+The instruction compares data from two strings based on the encoded
+value in the imm8 byte (see Section 4.1, “Imm8 Control Byte Operation
+for PCMPESTRI / PCMPESTRM / PCMPISTRI / PCMPISTRM”) generating a mask
+stored to XMM0.
+
+Each string is represented by a single value. The value is an xmm (or
+possibly m128 for the second operand) which contains the data elements
+of the string (byte or word data). Each input byte/word is augmented
+with a valid/invalid tag. A byte/word is considered valid only if it has
+a lower index than the least significant null byte/word. (The least
+significant null byte/word is also considered invalid.)
+
+The comparison and aggregation operation are performed according to the
+encoded value of Imm8 bit fields (see Section 4.1). As defined by
+imm8[6], IntRes2 is then either stored to the least significant bits of
+XMM0 (zero extended to 128 bits) or expanded into a byte/word-mask and
+then stored to XMM0.
+
+Note that the Arithmetic Flags are written in a non-standard manner in
+order to supply the most relevant information:
+
+CFlag – Reset if IntRes2 is equal to zero, set otherwise
+
+ZFlag – Set if any byte/word of xmm2/mem128 is null, reset otherwise
+
+SFlag – Set if any byte/word of xmm1 is null, reset otherwise
+
+OFlag – IntRes2[0]
+
+AFlag – Reset
+
+PFlag – Reset
+
+Note: In VEX.128 encoded versions, bits (MAXVL-1:128) of XMM0 are
+zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must be 0,
+otherwise the instruction will #UD.
+
+
+Effective Operand Size¶
+
+  Operating mode/size   Operand1   Operand 2   Result
+  --------------------- ---------- ----------- --------
+  16 bit                xmm        xmm/m128    XMM0
+  32 bit                xmm        xmm/m128    XMM0
+  64 bit                xmm        xmm/m128    XMM0
+
+
+Intel C/C++ Compiler Intrinsic Equivalent For Returning Mask¶
+
+__m128i _mm_cmpistrm (__m128i a, __m128i b, const int mode);
+
+
+Intel C/C++ Compiler Intrinsics For Reading EFlag Results¶
+
+int _mm_cmpistra (__m128i a, __m128i b, const int mode);
+
+int _mm_cmpistrc (__m128i a, __m128i b, const int mode);
+
+int _mm_cmpistro (__m128i a, __m128i b, const int mode);
+
+int _mm_cmpistrs (__m128i a, __m128i b, const int mode);
+
+int _mm_cmpistrz (__m128i a, __m128i b, const int mode);
+
+
+SIMD Floating-Point Exceptions¶
+
+None.
+
+
+Other Exceptions¶
+
+See Exceptions Type 4; additionally, this instruction does not cause #GP
+if the memory operand is not aligned to 16 Byte boundary, and
+
+#UD
+
+If VEX.L = 1.
+
+If VEX.vvvv ≠ 1111B.
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

@@ -1,0 +1,107 @@
+-   Index
+-   December 2017
+
+
+
+MOVHPS — MOVE HIGH PACKED SINGLE-PRECISION FLOATING-POINT VALUES
+
+
+  Opcode/Instruction                                 Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------- --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------
+  NP 0F 16 /r MOVHPS xmm1, m64                       A         V/V                      SSE                  Move two packed single-precision floating-point values from m64 to high quadword of xmm1.
+  VEX.NDS.128.0F.WIG 16 /r VMOVHPS xmm2, xmm1, m64   B         V/V                      AVX                  Merge two packed single-precision floating-point values from m64 and the low quadword of xmm1.
+  EVEX.NDS.128.0F.W0 16 /r VMOVHPS xmm2, xmm1, m64   D         V/V                      AVX512F              Merge two packed single-precision floating-point values from m64 and the low quadword of xmm1.
+  NP 0F 17 /r MOVHPS m64, xmm1                       C         V/V                      SSE                  Move two packed single-precision floating-point values from high quadword of xmm1 to m64.
+  VEX.128.0F.WIG 17 /r VMOVHPS m64, xmm1             C         V/V                      AVX                  Move two packed single-precision floating-point values from high quadword of xmm1 to m64.
+  EVEX.128.0F.W0 17 /r VMOVHPS m64, xmm1             E         V/V                      AVX512F              Move two packed single-precision floating-point values from high quadword of xmm1 to m64.
+
+
+Instruction Operand Encoding¶
+
+  ------- ------------ ------------------ --------------- --------------- -----------
+  Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
+  A       NA           ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
+  B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
+  C       NA           ModRM:r/m (w)      ModRM:reg (r)   NA              NA
+  D       Tuple2       ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
+  E       Tuple2       ModRM:r/m (w)      ModRM:reg (r)   NA              NA
+  ------- ------------ ------------------ --------------- --------------- -----------
+
+Description¶
+
+This instruction cannot be used for register to register or memory to
+memory moves.
+
+128-BIT LEGACY SSE LOAD:
+
+Moves two packed single-precision floating-point values from the source
+64-bit memory operand and stores them in the high 64-bits of the
+destination XMM register. The lower 64bits of the XMM register are
+preserved. Bits (MAXVL-1:128) of the corresponding destination register
+are preserved.
+
+VEX.128 & EVEX ENCODED LOAD:
+
+Loads two single-precision floating-point values from the source 64-bit
+memory operand (the third operand) and stores it in the upper 64-bits of
+the destination XMM register (first operand). The low 64-bits from the
+first source operand (the second operand) are copied to the lower
+64-bits of the destination. Bits (MAXVL-1:128) of the corresponding
+destination register are zeroed.
+
+128-BIT STORE:
+
+Stores two packed single-precision floating-point values from the high
+64-bits of the XMM register source (second operand) to the 64-bit memory
+location (first operand).
+
+Note: VMOVHPS (store) (VEX.NDS.128.0F 17 /r) is legal and has the same
+behavior as the existing 0F 17 store. For VMOVHPS (store) VEX.vvvv and
+EVEX.vvvv are reserved and must be 1111b otherwise instruction will #UD.
+
+If VMOVHPS is encoded with VEX.L or EVEX.L’L= 1, an attempt to execute
+the instruction encoded with VEX.L or EVEX.L’L= 1 will cause an #UD
+exception.
+
+Operation¶
+
+MOVHPS (128-bit Legacy SSE load)¶
+
+    DEST[63:0] (Unmodified)
+    DEST[127:64] ← SRC[63:0]
+    DEST[MAXVL-1:128] (Unmodified)
+
+VMOVHPS (VEX.128 and EVEX encoded load)¶
+
+    DEST[63:0] ← SRC1[63:0]
+    DEST[127:64] ← SRC2[63:0]
+    DEST[MAXVL-1:128] ← 0
+
+VMOVHPS (store)¶
+
+    DEST[63:0] ← SRC[127:64]
+
+Intel C/C++ Compiler Intrinsic Equivalent¶
+
+    MOVHPS __m128 _mm_loadh_pi ( __m128 a, __m64 *p)
+
+    MOVHPS void _mm_storeh_pi (__m64 *p, __m128 a)
+
+SIMD Floating-Point Exceptions¶
+
+None
+
+Other Exceptions¶
+
+Non-EVEX-encoded instruction, see Exceptions Type 5; additionally
+
+  ----- ---------------
+  #UD   If VEX.L = 1.
+  ----- ---------------
+
+EVEX-encoded instruction, see Exceptions Type E9NF.
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

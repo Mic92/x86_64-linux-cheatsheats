@@ -1,0 +1,147 @@
+-   Index
+-   December 2017
+
+
+
+AND — LOGICAL AND
+
+
+  Opcode               Instruction                Op/En   64-bit Mode   Compat/Leg Mode   Description
+  -------------------- -------------------------- ------- ------------- ----------------- -----------------------------------------------
+  24 _ib_              AND AL, _imm8_             I       Valid         Valid             AL AND _imm8._
+  25 _iw_              AND AX, _imm16_            I       Valid         Valid             AX AND i_mm16._
+  25 _id_              AND EAX, _imm32_           I       Valid         Valid             EAX AND _imm32._
+  REX.W + 25 _id_      AND RAX, _imm32_           I       Valid         N.E.              RAX AND _imm32 sign-extended to 64-bits._
+  80 /4 _ib_           AND _r/m8, imm8_           MI      Valid         Valid             _r/m8_ AND _imm8._
+  REX + 80 /4 _ib_     AND _r/m8_^(*)_, imm8_     MI      Valid         N.E.              _r/m8_ AND _imm8._
+  81 /4 _iw_           AND _r/m16, imm16_         MI      Valid         Valid             _r/m16_ AND _imm16._
+  81 /4 _id_           AND _r/m32, imm32_         MI      Valid         Valid             _r/m32_ AND _imm32._
+  REX.W + 81 /4 _id_   AND _r/m64, imm32_         MI      Valid         N.E.              _r/m64_ AND _imm32 sign extended to 64-bits._
+  83 /4 _ib_           AND _r/m16, imm8_          MI      Valid         Valid             _r/m16_ AND _imm8 (sign-extended)._
+  83 /4 _ib_           AND _r/m32, imm8_          MI      Valid         Valid             _r/m32_ AND _imm8 (sign-extended)._
+  REX.W + 83 /4 _ib_   AND _r/m64, imm8_          MI      Valid         N.E.              _r/m64_ AND _imm8 (sign-extended)._
+  20 _/r_              AND _r/m8, r8_             MR      Valid         Valid             _r/m8_ AND _r8._
+  REX + 20 _/r_        AND _r/m8_^(*)_, r8_^(*)   MR      Valid         N.E.              _r/m64_ AND _r8 (sign-extended)._
+  21 /_r_              AND _r/m16, r16_           MR      Valid         Valid             _r/m16_ AND _r16._
+  21 /_r_              AND _r/m32, r32_           MR      Valid         Valid             _r/m32_ AND _r32._
+  REX.W + 21 /_r_      AND _r/m64, r64_           MR      Valid         N.E.              _r/m64_ AND _r32._
+  22 /_r_              AND _r8, r/m8_             RM      Valid         Valid             _r8_ AND _r/m8._
+  REX + 22 /_r_        AND _r8_^(*)_, r/m8_^(*)   RM      Valid         N.E.              _r/m64_ AND _r8 (sign-extended)._
+  23 /_r_              AND _r16, r/m16_           RM      Valid         Valid             _r16_ AND _r/m16._
+  23 /_r_              AND _r32, r/m32_           RM      Valid         Valid             _r32_ AND _r/m32._
+  REX.W + 23 /_r_      AND _r64, r/m64_           RM      Valid         N.E.              _r64_ AND _r/m64._
+
+  *In 64-bit mode, r/m8 can not be encoded to access the following byte
+  registers if a REX prefix is used: AH, BH, CH, DH.
+
+
+Instruction Operand Encoding¶
+
+  ------- ------------------ --------------- ----------- -----------
+  Op/En   Operand 1          Operand 2       Operand 3   Operand 4
+  RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
+  MR      ModRM:r/m (r, w)   ModRM:reg (r)   NA          NA
+  MI      ModRM:r/m (r, w)   imm8/16/32      NA          NA
+  I       AL/AX/EAX/RAX      imm8/16/32      NA          NA
+  ------- ------------------ --------------- ----------- -----------
+
+
+Description¶
+
+Performs a bitwise AND operation on the destination (first) and source
+(second) operands and stores the result in the destination operand
+location. The source operand can be an immediate, a register, or a
+memory location; the destination operand can be a register or a memory
+location. (However, two memory operands cannot be used in one
+instruction.) Each bit of the result is set to 1 if both corresponding
+bits of the first and second operands are 1; otherwise, it is set to 0.
+
+This instruction can be used with a LOCK prefix to allow the it to be
+executed atomically.
+
+In 64-bit mode, the instruction’s default operation size is 32 bits.
+Using a REX prefix in the form of REX.R permits access to additional
+registers (R8-R15). Using a REX prefix in the form of REX.W promotes
+operation to 64 bits. See the summary chart at the beginning of this
+section for encoding data and limits.
+
+
+Operation¶
+
+    DEST ← DEST AND SRC;
+
+
+Flags Affected¶
+
+The OF and CF flags are cleared; the SF, ZF, and PF flags are set
+according to the result. The state of the AF flag is undefined.
+
+
+Protected Mode Exceptions¶
+
+#GP(0)
+
+If the destination operand points to a non-writable segment.
+
+If a memory operand effective address is outside the CS, DS, ES, FS, or
+GS segment limit.
+
+If the DS, ES, FS, or GS register contains a NULL segment selector.
+
+#SS(0)
+
+If a memory operand effective address is outside the SS segment limit.
+
+#PF(fault-code)
+
+If a page fault occurs.
+
+#AC(0)
+
+If alignment checking is enabled and an unaligned memory reference is
+made while the current privilege level is 3.
+
+#UD
+
+If the LOCK prefix is used but the destination is not a memory operand.
+
+
+Real-Address Mode Exceptions¶
+
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If the LOCK prefix is used but the destination is not a memory operand.
+  ----- -------------------------------------------------------------------------------------------
+
+
+Virtual-8086 Mode Exceptions¶
+
+  ----------------- -------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- -------------------------------------------------------------------------------------------
+
+
+Compatibility Mode Exceptions¶
+
+Same exceptions as in protected mode.
+
+
+64-Bit Mode Exceptions¶
+
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

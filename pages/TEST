@@ -1,0 +1,138 @@
+-   Index
+-   December 2017
+
+
+
+TEST — LOGICAL COMPARE
+
+
+  Opcode               Instruction           Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  -------------------- --------------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------
+  A8 _ib_              TEST AL, i_mm8_       I       Valid         Valid             AND _imm8_ with AL; set SF, ZF, PF according to result.
+  A9 _iw_              TEST AX, i_mm16_      I       Valid         Valid             AND _imm16_ with AX; set SF, ZF, PF according to result.
+  A9 _id_              TEST EAX, i_mm32_     I       Valid         Valid             AND _imm32_ with EAX; set SF, ZF, PF according to result.
+  REX.W + A9 _id_      TEST RAX, i_mm32_     I       Valid         N.E.              AND _imm32_ sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.
+  F6 /0 _ib_           TEST _r/m8, imm8_     MI      Valid         Valid             AND _imm8_ with _r/m8_; set SF, ZF, PF according to result.
+  REX + F6 /0 _ib_     TEST _r/m8*, imm8_    MI      Valid         N.E.              AND _imm8_ with _r/m8_; set SF, ZF, PF according to result.
+  F7 /0 _iw_           TEST _r/m16, imm16_   MI      Valid         Valid             AND _imm16_ with _r/m16_; set SF, ZF, PF according to result.
+  F7 /0 _id_           TEST _r/m32, imm32_   MI      Valid         Valid             AND _imm32_ with _r/m32_; set SF, ZF, PF according to result.
+  REX.W + F7 /0 _id_   TEST _r/m64, imm32_   MI      Valid         N.E.              AND _imm32_ sign-extended to 64-bits with _r/m64_; set SF, ZF, PF according to result.
+  84 /_r_              TEST _r/m8, r8_       MR      Valid         Valid             AND _r8_ with _r/m8_; set SF, ZF, PF according to result.
+  REX + 84 /_r_        TEST _r/m8*, r8*_     MR      Valid         N.E.              AND _r8_ with _r/m8_; set SF, ZF, PF according to result.
+  85 /_r_              TEST _r/m16, r16_     MR      Valid         Valid             AND _r16_ with _r/m16_; set SF, ZF, PF according to result.
+  85 /_r_              TEST _r/m32, r32_     MR      Valid         Valid             AND _r32_ with _r/m32_; set SF, ZF, PF according to result.
+  REX.W + 85 /_r_      TEST _r/m64, r64_     MR      Valid         N.E.              AND _r64_ with _r/m64_; set SF, ZF, PF according to result.
+
+  *
+  In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
+
+
+Instruction Operand Encoding¶
+
+  ------- --------------- --------------- ----------- -----------
+  Op/En   Operand 1       Operand 2       Operand 3   Operand 4
+  I       AL/AX/EAX/RAX   imm8/16/32      NA          NA
+  MI      ModRM:r/m (r)   imm8/16/32      NA          NA
+  MR      ModRM:r/m (r)   ModRM:reg (r)   NA          NA
+  ------- --------------- --------------- ----------- -----------
+
+
+Description¶
+
+Computes the bit-wise logical AND of first operand (source 1 operand)
+and the second operand (source 2 operand) and sets the SF, ZF, and PF
+status flags according to the result. The result is then discarded.
+
+In 64-bit mode, using a REX prefix in the form of REX.R permits access
+to additional registers (R8-R15). Using a REX prefix in the form of
+REX.W promotes operation to 64 bits. See the summary chart at the
+beginning of this section for encoding data and limits.
+
+
+Operation¶
+
+    TEMP ← SRC1 AND SRC2;
+    SF ← MSB(TEMP);
+    IF TEMP = 0
+        THEN ZF ← 1;
+        ELSE ZF ← 0;
+    FI:
+    PF ← BitwiseXNOR(TEMP[0:7]);
+    CF ← 0;
+    OF ← 0;
+    (* AF is undefined *)
+
+
+Flags Affected¶
+
+The OF and CF flags are set to 0. The SF, ZF, and PF flags are set
+according to the result (see the “Operation” section above). The state
+of the AF flag is undefined.
+
+
+Protected Mode Exceptions¶
+
+#GP(0)
+
+If a memory operand effective address is outside the CS, DS, ES, FS, or
+GS segment limit.
+
+If the DS, ES, FS, or GS register contains a NULL segment selector.
+
+#SS(0)
+
+If a memory operand effective address is outside the SS segment limit.
+
+#PF(fault-code)
+
+If a page fault occurs.
+
+#AC(0)
+
+If alignment checking is enabled and an unaligned memory reference is
+made while the current privilege level is 3.
+
+#UD
+
+If the LOCK prefix is used.
+
+
+Real-Address Mode Exceptions¶
+
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If the LOCK prefix is used.
+  ----- -------------------------------------------------------------------------------------------
+
+
+Virtual-8086 Mode Exceptions¶
+
+  ----------------- -------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  #UD               If the LOCK prefix is used.
+  ----------------- -------------------------------------------------------------------------------------------
+
+
+Compatibility Mode Exceptions¶
+
+Same exceptions as in protected mode.
+
+
+64-Bit Mode Exceptions¶
+
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

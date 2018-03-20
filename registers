@@ -1,0 +1,65 @@
+The 64-bit versions of the 'original' x86 registers are named:
+
+    rax - register a extended
+    rbx - register b extended
+    rcx - register c extended
+    rdx - register d extended
+    rbp - register base pointer (start of stack)
+    rsp - register stack pointer (current location in stack, growing downwards)
+    rsi - register source index (source for data copies)
+    rdi - register destination index (destination for data copies)
+    rip - instruction pointer
+
+
+The registers added for 64-bit mode are named:
+
+    r8 - register 8
+    r9 - register 9
+    r10 - register 10
+    r11 - register 11
+    r12 - register 12
+    r13 - register 13
+    r14 - register 14
+    r15 - register 15
+
+These may be accessed as:
+
+    64-bit registers using the 'r' prefix: rax, r15
+    32-bit registers using the 'e' prefix (original registers: e_x) or 'd' suffix (added registers: r__d): eax, r15d
+    16-bit registers using no prefix (original registers: _x) or a 'w' suffix (added registers: r__w): ax, r15w
+    8-bit registers using 'h' ("high byte" of 16 bits) suffix (original registers - bits 8-15: _h): ah, bh
+    8-bit registers using 'l' ("low byte" of 16 bits) suffix (original registers - bits 0-7: _l) or 'b' suffix (added registers: r__b): al, bl, r15b
+
+Usage during syscall/function call:
+
+    First six arguments are in rdi, rsi, rdx, rcx, r8d, r9d; remaining arguments are on the stack.
+    For syscalls, the syscall number is in rax.
+    Return value is in rax.
+    The called routine is expected to preserve rsp,rbp, rbx, r12, r13, r14, and r15 but may trample any other registers.
+
+
+arch/ABI      arg1  arg2  arg3  arg4  arg5  arg6  #syscall retval
+─────────────────────────────────────────────────────────────────
+x86-64        rdi   rsi   rdx   r10   r8    r9    rax      rax      
+
+
+add %r10,%r11    // add r10 and r11, put result in r11
+cmp %r10,%r11    // compare register r10 with register r11.  The comparison sets flags in the processor status register which affect conditional jumps.
+cmp $99,%r11     // compare the number 99 with register r11.  The comparison sets flags in the processor status register which affect conditional jumps.
+div %r10         // divide rax by the given register (r10), places quotient into rax and remainder into rdx (rdx must be zero before this instruction)
+inc %r10         // increment r10
+jmp label        // jump to label
+je  label        // jump to label if equal
+jne label        // jump to label if not equal
+jl  label        // jump to label if less
+jg  label        // jump to label if greater
+mov %r10,%r11    // move data from r10 to r11
+mov $99,%r10     // put the immediate value 99 into r10
+mov %r10,(%r11)  // move data from r10 to address pointed to by r11
+mov (%r10),%r11  // move data from address pointed to by r10 to r10
+mul %r10         // multiplies rax by r10, places result in rax and overflow in rdx
+push %r10        // push r10 onto the stack
+pop %r10         // pop r10 off the stack
+syscall          // invoke a syscall (in 32-bit mode, use "int $0x80" instead)
+
+https://en.wikipedia.org/wiki/FLAGS_register

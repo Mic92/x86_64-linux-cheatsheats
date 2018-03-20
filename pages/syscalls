@@ -1,0 +1,942 @@
+0	read	sys_read	fs/read_write.c
+		rdi: unsigned int fd rsi: char __user * buf rdx: size_t count
+
+1	write	sys_write	fs/read_write.c
+		rdi: unsigned int fd rsi: const char __user * buf rdx: size_t count
+
+2	open	sys_open	fs/open.c
+		rdi: const char __user * filename rsi: int flags rdx: umode_t mode
+
+3	close	sys_close	fs/open.c
+		rdi: unsigned int fd
+
+4	stat	sys_newstat	fs/stat.c
+		rdi: const char __user * filename rsi: struct stat __user * statbuf
+
+5	fstat	sys_newfstat	fs/stat.c
+		rdi: unsigned int fd rsi: struct stat __user * statbuf
+
+6	lstat	sys_newlstat	fs/stat.c
+		rdi: const char __user * filename rsi: struct stat __user * statbuf
+
+7	poll	sys_poll	fs/select.c
+		rdi: struct pollfd __user * ufds rsi: unsigned int nfds rdx: int timeout_msecs
+
+8	lseek	sys_lseek	fs/read_write.c
+		rdi: unsigned int fd rsi: off_t offset rdx: unsigned int whence
+
+9	mmap	sys_mmap	arch/x86/kernel/sys_x86_64.c
+		rdi: unsigned long addr rsi: unsigned long len rdx: unsigned long prot r10: unsigned long flags r8: unsigned long fd r9: unsigned long off
+
+10	mprotect	sys_mprotect	mm/mprotect.c
+		rdi: unsigned long start rsi: size_t len rdx: unsigned long prot
+
+11	munmap	sys_munmap	mm/mmap.c
+		rdi: unsigned long addr rsi: size_t len
+
+12	brk	sys_brk	mm/mmap.c
+		rdi: unsigned long brk
+
+13	rt_sigaction	sys_rt_sigaction	kernel/signal.c
+		rdi: int sig rsi: const struct sigaction __user * act rdx: struct sigaction __user * oact r10: size_t sigsetsize
+
+14	rt_sigprocmask	sys_rt_sigprocmask	kernel/signal.c
+		rdi: int how rsi: sigset_t __user * nset rdx: sigset_t __user * oset r10: size_t sigsetsize
+
+15	rt_sigreturn	stub_rt_sigreturn	arch/x86/kernel/signal.c
+		rdi: unsigned int fd rsi: unsigned int cmd rdx: unsigned long arg
+
+16	ioctl	sys_ioctl	fs/ioctl.c
+		rdi: unsigned int fd rsi: char __user * buf rdx: size_t count r10: loff_t pos
+
+17	pread64	sys_pread64	fs/read_write.c
+		rdi: unsigned int fd rsi: const char __user * buf rdx: size_t count r10: loff_t pos
+
+18	pwrite64	sys_pwrite64	fs/read_write.c
+		rdi: unsigned long fd rsi: const struct iovec __user * vec rdx: unsigned long vlen
+
+19	readv	sys_readv	fs/read_write.c
+		rdi: unsigned long fd rsi: const struct iovec __user * vec rdx: unsigned long vlen
+
+20	writev	sys_writev	fs/read_write.c
+		rdi: const char __user * filename rsi: int mode
+
+21	access	sys_access	fs/open.c
+		rdi: int __user * fildes
+
+22	pipe	sys_pipe	fs/pipe.c
+		rdi: int n rsi: fd_set __user * inp rdx: fd_set __user * outp r10: fd_set __user * exp r8: struct timeval __user * tvp
+
+23	select	sys_select	fs/select.c
+		rdi: unsigned long brk
+
+24	sched_yield	sys_sched_yield	kernel/sched/core.c
+		rdi: unsigned long start rsi: size_t len rdx: int flags
+
+25	mremap	sys_mremap	mm/mmap.c
+		rdi: unsigned long start rsi: size_t len rdx: unsigned char __user * vec
+
+26	msync	sys_msync	mm/msync.c
+		rdi: unsigned long start rsi: size_t len_in rdx: int behavior
+
+27	mincore	sys_mincore	mm/mincore.c
+		rdi: key_t key rsi: size_t size rdx: int shmflg
+
+28	madvise	sys_madvise	mm/madvise.c
+		rdi: int shmid rsi: char __user * shmaddr rdx: int shmflg
+
+29	shmget	sys_shmget	ipc/shm.c
+		rdi: int shmid rsi: int cmd rdx: struct shmid_ds __user * buf
+
+30	shmat	sys_shmat	ipc/shm.c
+		rdi: unsigned int fildes
+
+31	shmctl	sys_shmctl	ipc/shm.c
+		rdi: unsigned int oldfd rsi: unsigned int newfd
+
+32	dup	sys_dup	fs/file.c
+		rdi: struct timespec __user * rqtp rsi: struct timespec __user * rmtp
+
+33	dup2	sys_dup2	fs/file.c
+		rdi: int which rsi: struct itimerval __user * value
+
+34	pause	sys_pause	kernel/signal.c
+		rdi: unsigned int seconds
+
+35	nanosleep	sys_nanosleep	kernel/hrtimer.c
+		rdi: int which rsi: struct itimerval __user * value rdx: struct itimerval __user * ovalue
+
+36	getitimer	sys_getitimer	kernel/itimer.c
+		rdi: int out_fd rsi: int in_fd rdx: loff_t __user * offset r10: size_t count
+
+37	alarm	sys_alarm	kernel/timer.c
+		rdi: int family rsi: int type rdx: int protocol
+
+38	setitimer	sys_setitimer	kernel/itimer.c
+		rdi: int fd rsi: struct sockaddr __user * uservaddr rdx: int addrlen
+
+39	getpid	sys_getpid	kernel/sys.c
+		rdi: int fd rsi: struct sockaddr __user * upeer_sockaddr rdx: int __user * upeer_addrlen
+
+40	sendfile	sys_sendfile64	fs/read_write.c
+		rdi: int fd rsi: void __user * buff rdx: size_t len r10: unsigned int flags r8: struct sockaddr __user * addr r9: int addr_len
+
+41	socket	sys_socket	net/socket.c
+		rdi: int fd rsi: void __user * ubuf rdx: size_t size r10: unsigned int flags r8: struct sockaddr __user * addr r9: int __user * addr_len
+
+42	connect	sys_connect	net/socket.c
+		rdi: int fd rsi: struct msghdr __user * msg rdx: unsigned int flags
+
+43	accept	sys_accept	net/socket.c
+		rdi: int fd rsi: struct msghdr __user * msg rdx: unsigned int flags
+
+44	sendto	sys_sendto	net/socket.c
+		rdi: int fd rsi: int how
+
+45	recvfrom	sys_recvfrom	net/socket.c
+		rdi: int fd rsi: struct sockaddr __user * umyaddr rdx: int addrlen
+
+46	sendmsg	sys_sendmsg	net/socket.c
+		rdi: int fd rsi: int backlog
+
+47	recvmsg	sys_recvmsg	net/socket.c
+		rdi: int fd rsi: struct sockaddr __user * usockaddr rdx: int __user * usockaddr_len
+
+48	shutdown	sys_shutdown	net/socket.c
+		rdi: int fd rsi: struct sockaddr __user * usockaddr rdx: int __user * usockaddr_len
+
+49	bind	sys_bind	net/socket.c
+		rdi: int family rsi: int type rdx: int protocol r10: int __user * usockvec
+
+50	listen	sys_listen	net/socket.c
+		rdi: int fd rsi: int level rdx: int optname r10: char __user * optval r8: int optlen
+
+51	getsockname	sys_getsockname	net/socket.c
+		rdi: int fd rsi: int level rdx: int optname r10: char __user * optval r8: int __user * optlen
+
+52	getpeername	sys_getpeername	net/socket.c
+		rdi: unsigned long clone_flags rsi: unsigned long newsp rdx: int __user * parent_tidptr r10: int __user * child_tidptr r8: int tls_val
+
+53	socketpair	sys_socketpair	net/socket.c
+		rdi: const char __user * filename rsi: const char __user *const __user * argv rdx: const char __user *const __user * envp
+
+54	setsockopt	sys_setsockopt	net/socket.c
+		rdi: int error_code
+
+55	getsockopt	sys_getsockopt	net/socket.c
+		rdi: pid_t upid rsi: int __user * stat_addr rdx: int options r10: struct rusage __user * ru
+
+56	clone	stub_clone	kernel/fork.c
+		rdi: pid_t pid rsi: int sig
+
+57	fork	stub_fork	kernel/fork.c
+		rdi: struct new_utsname __user * name
+
+58	vfork	stub_vfork	kernel/fork.c
+		rdi: key_t key rsi: int nsems rdx: int semflg
+
+59	execve	stub_execve	fs/exec.c
+		rdi: int semid rsi: struct sembuf __user * tsops rdx: unsigned nsops
+
+60	exit	sys_exit	kernel/exit.c
+		rdi: int semid rsi: int semnum rdx: int cmd r10: unsigned long arg
+
+61	wait4	sys_wait4	kernel/exit.c
+		rdi: char __user * shmaddr
+
+62	kill	sys_kill	kernel/signal.c
+		rdi: key_t key rsi: int msgflg
+
+63	uname	sys_newuname	kernel/sys.c
+		rdi: int msqid rsi: struct msgbuf __user * msgp rdx: size_t msgsz r10: int msgflg
+
+64	semget	sys_semget	ipc/sem.c
+		rdi: int msqid rsi: struct msgbuf __user * msgp rdx: size_t msgsz r10: long msgtyp r8: int msgflg
+
+65	semop	sys_semop	ipc/sem.c
+		rdi: int msqid rsi: int cmd rdx: struct msqid_ds __user * buf
+
+66	semctl	sys_semctl	ipc/sem.c
+		rdi: unsigned int fd rsi: unsigned int cmd rdx: unsigned long arg
+
+67	shmdt	sys_shmdt	ipc/shm.c
+		rdi: unsigned int fd rsi: unsigned int cmd
+
+68	msgget	sys_msgget	ipc/msg.c
+		rdi: unsigned int fd
+
+69	msgsnd	sys_msgsnd	ipc/msg.c
+		rdi: unsigned int fd
+
+70	msgrcv	sys_msgrcv	ipc/msg.c
+		rdi: const char __user * path rsi: long length
+
+71	msgctl	sys_msgctl	ipc/msg.c
+		rdi: unsigned int fd rsi: unsigned long length
+
+72	fcntl	sys_fcntl	fs/fcntl.c
+		rdi: unsigned int fd rsi: struct linux_dirent __user * dirent rdx: unsigned int count
+
+73	flock	sys_flock	fs/locks.c
+		rdi: char __user * buf rsi: unsigned long size
+
+74	fsync	sys_fsync	fs/sync.c
+		rdi: const char __user * filename
+
+75	fdatasync	sys_fdatasync	fs/sync.c
+		rdi: unsigned int fd
+
+76	truncate	sys_truncate	fs/open.c
+		rdi: const char __user * oldname rsi: const char __user * newname
+
+77	ftruncate	sys_ftruncate	fs/open.c
+		rdi: const char __user * pathname rsi: umode_t mode
+
+78	getdents	sys_getdents	fs/readdir.c
+		rdi: const char __user * pathname
+
+79	getcwd	sys_getcwd	fs/dcache.c
+		rdi: const char __user * pathname rsi: umode_t mode
+
+80	chdir	sys_chdir	fs/open.c
+		rdi: const char __user * oldname rsi: const char __user * newname
+
+81	fchdir	sys_fchdir	fs/open.c
+		rdi: const char __user * pathname
+
+82	rename	sys_rename	fs/namei.c
+		rdi: const char __user * oldname rsi: const char __user * newname
+
+83	mkdir	sys_mkdir	fs/namei.c
+		rdi: const char __user * path rsi: char __user * buf rdx: int bufsiz
+
+84	rmdir	sys_rmdir	fs/namei.c
+		rdi: const char __user * filename rsi: umode_t mode
+
+85	creat	sys_creat	fs/open.c
+		rdi: unsigned int fd rsi: umode_t mode
+
+86	link	sys_link	fs/namei.c
+		rdi: const char __user * filename rsi: uid_t user rdx: gid_t group
+
+87	unlink	sys_unlink	fs/namei.c
+		rdi: unsigned int fd rsi: uid_t user rdx: gid_t group
+
+88	symlink	sys_symlink	fs/namei.c
+		rdi: const char __user * filename rsi: uid_t user rdx: gid_t group
+
+89	readlink	sys_readlink	fs/stat.c
+		rdi: int mask
+
+90	chmod	sys_chmod	fs/open.c
+		rdi: struct timeval __user * tv rsi: struct timezone __user * tz
+
+91	fchmod	sys_fchmod	fs/open.c
+		rdi: unsigned int resource rsi: struct rlimit __user * rlim
+
+92	chown	sys_chown	fs/open.c
+		rdi: int who rsi: struct rusage __user * ru
+
+93	fchown	sys_fchown	fs/open.c
+		rdi: struct sysinfo __user * info
+
+94	lchown	sys_lchown	fs/open.c
+		rdi: struct tms __user * tbuf
+
+95	umask	sys_umask	kernel/sys.c
+		rdi: long request rsi: long pid rdx: unsigned long addr r10: unsigned long data
+
+96	gettimeofday	sys_gettimeofday	kernel/time.c
+		rdi: int type rsi: char __user * buf rdx: int len
+
+97	getrlimit	sys_getrlimit	kernel/sys.c
+		rdi: uid_t uid
+
+98	getrusage	sys_getrusage	kernel/sys.c
+		rdi: gid_t gid
+
+99	sysinfo	sys_sysinfo	kernel/sys.c
+		rdi: pid_t pid rsi: pid_t pgid
+
+100	times	sys_times	kernel/sys.c
+		rdi: uid_t ruid rsi: uid_t euid
+
+101	ptrace	sys_ptrace	kernel/ptrace.c
+		rdi: gid_t rgid rsi: gid_t egid
+
+102	getuid	sys_getuid	kernel/sys.c
+		rdi: int gidsetsize rsi: gid_t __user * grouplist
+
+103	syslog	sys_syslog	kernel/printk/printk.c
+		rdi: int gidsetsize rsi: gid_t __user * grouplist
+
+104	getgid	sys_getgid	kernel/sys.c
+		rdi: uid_t ruid rsi: uid_t euid rdx: uid_t suid
+
+105	setuid	sys_setuid	kernel/sys.c
+		rdi: uid_t __user * ruidp rsi: uid_t __user * euidp rdx: uid_t __user * suidp
+
+106	setgid	sys_setgid	kernel/sys.c
+		rdi: gid_t rgid rsi: gid_t egid rdx: gid_t sgid
+
+107	geteuid	sys_geteuid	kernel/sys.c
+		rdi: gid_t __user * rgidp rsi: gid_t __user * egidp rdx: gid_t __user * sgidp
+
+108	getegid	sys_getegid	kernel/sys.c
+		rdi: pid_t pid
+
+109	setpgid	sys_setpgid	kernel/sys.c
+		rdi: uid_t uid
+
+110	getppid	sys_getppid	kernel/sys.c
+		rdi: gid_t gid
+
+111	getpgrp	sys_getpgrp	kernel/sys.c
+		rdi: pid_t pid
+
+112	setsid	sys_setsid	kernel/sys.c
+		rdi: cap_user_header_t header rsi: cap_user_data_t dataptr
+
+113	setreuid	sys_setreuid	kernel/sys.c
+		rdi: cap_user_header_t header rsi: const cap_user_data_t data
+
+114	setregid	sys_setregid	kernel/sys.c
+		rdi: sigset_t __user * uset rsi: size_t sigsetsize
+
+115	getgroups	sys_getgroups	kernel/groups.c
+		rdi: const sigset_t __user * uthese rsi: siginfo_t __user * uinfo rdx: const struct timespec __user * uts r10: size_t sigsetsize
+
+116	setgroups	sys_setgroups	kernel/groups.c
+		rdi: pid_t pid rsi: int sig rdx: siginfo_t __user * uinfo
+
+117	setresuid	sys_setresuid	kernel/sys.c
+		rdi: sigset_t __user * unewset rsi: size_t sigsetsize
+
+118	getresuid	sys_getresuid	kernel/sys.c
+		rdi: const stack_t __user * uss rsi: stack_t __user * uoss
+
+119	setresgid	sys_setresgid	kernel/sys.c
+		rdi: char __user * filename rsi: struct utimbuf __user * times
+
+120	getresgid	sys_getresgid	kernel/sys.c
+		rdi: const char __user * filename rsi: umode_t mode rdx: unsigned dev
+
+121	getpgid	sys_getpgid	kernel/sys.c
+		rdi: const char __user * library
+
+122	setfsuid	sys_setfsuid	kernel/sys.c
+		rdi: unsigned int personality
+
+123	setfsgid	sys_setfsgid	kernel/sys.c
+		rdi: unsigned dev rsi: struct ustat __user * ubuf
+
+124	getsid	sys_getsid	kernel/sys.c
+		rdi: const char __user * pathname rsi: struct statfs __user * buf
+
+125	capget	sys_capget	kernel/capability.c
+		rdi: unsigned int fd rsi: struct statfs __user * buf
+
+126	capset	sys_capset	kernel/capability.c
+		rdi: int option rsi: unsigned long arg1 rdx: unsigned long arg2
+
+127	rt_sigpending	sys_rt_sigpending	kernel/signal.c
+		rdi: int which rsi: int who
+
+128	rt_sigtimedwait	sys_rt_sigtimedwait	kernel/signal.c
+		rdi: int which rsi: int who rdx: int niceval
+
+129	rt_sigqueueinfo	sys_rt_sigqueueinfo	kernel/signal.c
+		rdi: pid_t pid rsi: struct sched_param __user * param
+
+130	rt_sigsuspend	sys_rt_sigsuspend	kernel/signal.c
+		rdi: pid_t pid rsi: struct sched_param __user * param
+
+131	sigaltstack	sys_sigaltstack	kernel/signal.c
+		rdi: pid_t pid rsi: int policy rdx: struct sched_param __user * param
+
+132	utime	sys_utime	fs/utimes.c
+		rdi: pid_t pid
+
+133	mknod	sys_mknod	fs/namei.c
+		rdi: int policy
+
+134	uselib		fs/exec.c
+		rdi: int policy
+
+135	personality	sys_personality	kernel/exec_domain.c
+		rdi: pid_t pid rsi: struct timespec __user * interval
+
+136	ustat	sys_ustat	fs/statfs.c
+		rdi: unsigned long start rsi: size_t len
+
+137	statfs	sys_statfs	fs/statfs.c
+		rdi: unsigned long start rsi: size_t len
+
+138	fstatfs	sys_fstatfs	fs/statfs.c
+		rdi: int flags
+
+139	sysfs	sys_sysfs	fs/filesystems.c
+		rdi: int func rsi: void * ptr rdx: unsigned long bytecount
+
+140	getpriority	sys_getpriority	kernel/sys.c
+		rdi: const char __user * new_root rsi: const char __user * put_old
+
+141	setpriority	sys_setpriority	kernel/sys.c
+		rdi: struct __sysctl_args __user * args
+
+142	sched_setparam	sys_sched_setparam	kernel/sched/core.c
+		rdi: int option rsi: unsigned long arg2 rdx: unsigned long arg3 r10: unsigned long arg4 r8: unsigned long arg5
+
+143	sched_getparam	sys_sched_getparam	kernel/sched/core.c
+		rdi: struct task_struct * task rsi: int code rdx: unsigned long __user * addr
+
+144	sched_setscheduler	sys_sched_setscheduler	kernel/sched/core.c
+		rdi: struct timex __user * txc_p
+
+145	sched_getscheduler	sys_sched_getscheduler	kernel/sched/core.c
+		rdi: unsigned int resource rsi: struct rlimit __user * rlim
+
+146	sched_get_priority_max	sys_sched_get_priority_max	kernel/sched/core.c
+		rdi: const char __user * filename
+
+147	sched_get_priority_min	sys_sched_get_priority_min	kernel/sched/core.c
+		rdi: const char __user * name
+
+148	sched_rr_get_interval	sys_sched_rr_get_interval	kernel/sched/core.c
+		rdi: struct timeval __user * tv rsi: struct timezone __user * tz
+
+149	mlock	sys_mlock	mm/mlock.c
+		rdi: char __user * dev_name rsi: char __user * dir_name rdx: char __user * type r10: unsigned long flags r8: void __user * data
+
+150	munlock	sys_munlock	mm/mlock.c
+		rdi: char __user * name rsi: int flags
+
+151	mlockall	sys_mlockall	mm/mlock.c
+		rdi: const char __user * specialfile rsi: int swap_flags
+
+152	munlockall	sys_munlockall	mm/mlock.c
+		rdi: const char __user * specialfile
+
+153	vhangup	sys_vhangup	fs/open.c
+		rdi: int magic1 rsi: int magic2 rdx: unsigned int cmd r10: void __user * arg
+
+154	modify_ldt	sys_modify_ldt	arch/x86/um/ldt.c
+		rdi: char __user * name rsi: int len
+
+155	pivot_root	sys_pivot_root	fs/namespace.c
+		rdi: char __user * name rsi: int len
+
+156	_sysctl	sys_sysctl	kernel/sysctl_binary.c
+		rdi: unsigned int level
+
+157	prctl	sys_prctl	kernel/sys.c
+		rdi: unsigned long from rsi: unsigned long num rdx: int turn_on
+
+158	arch_prctl	sys_arch_prctl	arch/x86/um/syscalls_64.c
+		rdi: void __user * umod rsi: unsigned long len rdx: const char __user * uargs
+
+159	adjtimex	sys_adjtimex	kernel/time.c
+		rdi: const char __user * name_user rsi: unsigned int flags
+
+160	setrlimit	sys_setrlimit	kernel/sys.c
+		rdi: unsigned int cmd rsi: const char __user * special rdx: qid_t id r10: void __user * addr
+
+161	chroot	sys_chroot	fs/open.c
+		rdi: int fd rsi: loff_t offset rdx: size_t count
+
+162	sync	sys_sync	fs/sync.c
+		rdi: const char __user * pathname rsi: const char __user * name rdx: const void __user * value r10: size_t size r8: int flags
+
+163	acct	sys_acct	kernel/acct.c
+		rdi: const char __user * pathname rsi: const char __user * name rdx: const void __user * value r10: size_t size r8: int flags
+
+164	settimeofday	sys_settimeofday	kernel/time.c
+		rdi: int fd rsi: const char __user * name rdx: const void __user * value r10: size_t size r8: int flags
+
+165	mount	sys_mount	fs/namespace.c
+		rdi: const char __user * pathname rsi: const char __user * name rdx: void __user * value r10: size_t size
+
+166	umount2	sys_umount	fs/namespace.c
+		rdi: const char __user * pathname rsi: const char __user * name rdx: void __user * value r10: size_t size
+
+167	swapon	sys_swapon	mm/swapfile.c
+		rdi: int fd rsi: const char __user * name rdx: void __user * value r10: size_t size
+
+168	swapoff	sys_swapoff	mm/swapfile.c
+		rdi: const char __user * pathname rsi: char __user * list rdx: size_t size
+
+169	reboot	sys_reboot	kernel/reboot.c
+		rdi: const char __user * pathname rsi: char __user * list rdx: size_t size
+
+170	sethostname	sys_sethostname	kernel/sys.c
+		rdi: int fd rsi: char __user * list rdx: size_t size
+
+171	setdomainname	sys_setdomainname	kernel/sys.c
+		rdi: const char __user * pathname rsi: const char __user * name
+
+172	iopl	stub_iopl	arch/x86/kernel/ioport.c
+		rdi: const char __user * pathname rsi: const char __user * name
+
+173	ioperm	sys_ioperm	arch/x86/kernel/ioport.c
+		rdi: int fd rsi: const char __user * name
+
+174	create_module		NOT IMPLEMENTED
+		rdi: pid_t pid rsi: int sig
+
+175	init_module	sys_init_module	kernel/module.c
+		rdi: time_t __user * tloc
+
+176	delete_module	sys_delete_module	kernel/module.c
+		rdi: u32 __user * uaddr rsi: int op rdx: u32 val r10: struct timespec __user * utime r8: u32 __user * uaddr2 r9: u32 val3
+
+177	get_kernel_syms		NOT IMPLEMENTED
+		rdi: pid_t pid rsi: unsigned int len rdx: unsigned long __user * user_mask_ptr
+
+178	query_module		NOT IMPLEMENTED
+		rdi: pid_t pid rsi: unsigned int len rdx: unsigned long __user * user_mask_ptr
+
+179	quotactl	sys_quotactl	fs/quota/quota.c
+		rdi: struct user_desc __user * u_info
+
+180	nfsservctl		NOT IMPLEMENTED
+		rdi: unsigned nr_events rsi: aio_context_t __user * ctxp
+
+181	getpmsg		NOT IMPLEMENTED
+		rdi: aio_context_t ctx
+
+182	putpmsg		NOT IMPLEMENTED
+		rdi: aio_context_t ctx_id rsi: long min_nr rdx: long nr r10: struct io_event __user * events r8: struct timespec __user * timeout
+
+183	afs_syscall		NOT IMPLEMENTED
+		rdi: aio_context_t ctx_id rsi: long nr rdx: struct iocb __user * __user * iocbpp
+
+184	tuxcall		NOT IMPLEMENTED
+		rdi: aio_context_t ctx_id rsi: struct iocb __user * iocb rdx: struct io_event __user * result
+
+185	security		NOT IMPLEMENTED
+		rdi: struct user_desc __user * u_info
+
+186	gettid	sys_gettid	kernel/sys.c
+		rdi: u64 cookie64 rsi: char __user * buf rdx: size_t len
+
+187	readahead	sys_readahead	mm/readahead.c
+		rdi: int size
+
+188	setxattr	sys_setxattr	fs/xattr.c
+		rdi: unsigned long start rsi: unsigned long size rdx: unsigned long prot r10: unsigned long pgoff r8: unsigned long flags
+
+189	lsetxattr	sys_lsetxattr	fs/xattr.c
+		rdi: unsigned int fd rsi: struct linux_dirent64 __user * dirent rdx: unsigned int count
+
+190	fsetxattr	sys_fsetxattr	fs/xattr.c
+		rdi: int __user * tidptr
+
+191	getxattr	sys_getxattr	fs/xattr.c
+		rdi: int semid rsi: struct sembuf __user * tsops rdx: unsigned nsops r10: const struct timespec __user * timeout
+
+192	lgetxattr	sys_lgetxattr	fs/xattr.c
+		rdi: int fd rsi: loff_t offset rdx: size_t len r10: int advice
+
+193	fgetxattr	sys_fgetxattr	fs/xattr.c
+		rdi: const clockid_t which_clock rsi: struct sigevent __user * timer_event_spec rdx: timer_t __user * created_timer_id
+
+194	listxattr	sys_listxattr	fs/xattr.c
+		rdi: timer_t timer_id rsi: int flags rdx: const struct itimerspec __user * new_setting r10: struct itimerspec __user * old_setting
+
+195	llistxattr	sys_llistxattr	fs/xattr.c
+		rdi: timer_t timer_id rsi: struct itimerspec __user * setting
+
+196	flistxattr	sys_flistxattr	fs/xattr.c
+		rdi: timer_t timer_id
+
+197	removexattr	sys_removexattr	fs/xattr.c
+		rdi: timer_t timer_id
+
+198	lremovexattr	sys_lremovexattr	fs/xattr.c
+		rdi: const clockid_t which_clock rsi: const struct timespec __user * tp
+
+199	fremovexattr	sys_fremovexattr	fs/xattr.c
+		rdi: const clockid_t which_clock rsi: struct timespec __user * tp
+
+200	tkill	sys_tkill	kernel/signal.c
+		rdi: const clockid_t which_clock rsi: struct timespec __user * tp
+
+201	time	sys_time	kernel/time.c
+		rdi: const clockid_t which_clock rsi: int flags rdx: const struct timespec __user * rqtp r10: struct timespec __user * rmtp
+
+202	futex	sys_futex	kernel/futex.c
+		rdi: int error_code
+
+203	sched_setaffinity	sys_sched_setaffinity	kernel/sched/core.c
+		rdi: int epfd rsi: struct epoll_event __user * events rdx: int maxevents r10: int timeout
+
+204	sched_getaffinity	sys_sched_getaffinity	kernel/sched/core.c
+		rdi: int epfd rsi: int op rdx: int fd r10: struct epoll_event __user * event
+
+205	set_thread_area		arch/x86/kernel/tls.c
+		rdi: pid_t tgid rsi: pid_t pid rdx: int sig
+
+206	io_setup	sys_io_setup	fs/aio.c
+		rdi: char __user * filename rsi: struct timeval __user * utimes
+
+207	io_destroy	sys_io_destroy	fs/aio.c
+		rdi: unsigned long start rsi: unsigned long len rdx: unsigned long mode r10: unsigned long __user * nmask r8: unsigned long maxnode r9: unsigned flags
+
+208	io_getevents	sys_io_getevents	fs/aio.c
+		rdi: int mode rsi: unsigned long __user * nmask rdx: unsigned long maxnode
+
+209	io_submit	sys_io_submit	fs/aio.c
+		rdi: int __user * policy rsi: unsigned long __user * nmask rdx: unsigned long maxnode r10: unsigned long addr r8: unsigned long flags
+
+210	io_cancel	sys_io_cancel	fs/aio.c
+		rdi: const char __user * u_name rsi: int oflag rdx: umode_t mode r10: struct mq_attr __user * u_attr
+
+211	get_thread_area		arch/x86/kernel/tls.c
+		rdi: const char __user * u_name
+
+212	lookup_dcookie	sys_lookup_dcookie	fs/dcookies.c
+		rdi: mqd_t mqdes rsi: const char __user * u_msg_ptr rdx: size_t msg_len r10: unsigned int msg_prio r8: const struct timespec __user * u_abs_timeout
+
+213	epoll_create	sys_epoll_create	fs/eventpoll.c
+		rdi: mqd_t mqdes rsi: char __user * u_msg_ptr rdx: size_t msg_len r10: unsigned int __user * u_msg_prio r8: const struct timespec __user * u_abs_timeout
+
+214	epoll_ctl_old		NOT IMPLEMENTED
+		rdi: mqd_t mqdes rsi: const struct sigevent __user * u_notification
+
+215	epoll_wait_old		NOT IMPLEMENTED
+		rdi: mqd_t mqdes rsi: const struct mq_attr __user * u_mqstat rdx: struct mq_attr __user * u_omqstat
+
+216	remap_file_pages	sys_remap_file_pages	mm/fremap.c
+		rdi: unsigned long entry rsi: unsigned long nr_segments rdx: struct kexec_segment __user * segments r10: unsigned long flags
+
+217	getdents64	sys_getdents64	fs/readdir.c
+		rdi: int which rsi: pid_t upid rdx: struct siginfo __user * infop r10: int options r8: struct rusage __user * ru
+
+218	set_tid_address	sys_set_tid_address	kernel/fork.c
+		rdi: const char __user * _type rsi: const char __user * _description rdx: const void __user * _payload r10: size_t plen r8: key_serial_t ringid
+
+219	restart_syscall	sys_restart_syscall	kernel/signal.c
+		rdi: const char __user * _type rsi: const char __user * _description rdx: const char __user * _callout_info r10: key_serial_t destringid
+
+220	semtimedop	sys_semtimedop	ipc/sem.c
+		rdi: int option rsi: unsigned long arg2 rdx: unsigned long arg3 r10: unsigned long arg4 r8: unsigned long arg5
+
+221	fadvise64	sys_fadvise64	mm/fadvise.c
+		rdi: int which rsi: int who rdx: int ioprio
+
+222	timer_create	sys_timer_create	kernel/posix-timers.c
+		rdi: int which rsi: int who
+
+223	timer_settime	sys_timer_settime	kernel/posix-timers.c
+		rdi: int fd rsi: const char __user * pathname rdx: u32 mask
+
+224	timer_gettime	sys_timer_gettime	kernel/posix-timers.c
+		rdi: int fd rsi: __s32 wd
+
+225	timer_getoverrun	sys_timer_getoverrun	kernel/posix-timers.c
+		rdi: pid_t pid rsi: unsigned long maxnode rdx: const unsigned long __user * old_nodes r10: const unsigned long __user * new_nodes
+
+226	timer_delete	sys_timer_delete	kernel/posix-timers.c
+		rdi: int dfd rsi: const char __user * filename rdx: int flags r10: umode_t mode
+
+227	clock_settime	sys_clock_settime	kernel/posix-timers.c
+		rdi: int dfd rsi: const char __user * pathname rdx: umode_t mode
+
+228	clock_gettime	sys_clock_gettime	kernel/posix-timers.c
+		rdi: int dfd rsi: const char __user * filename rdx: umode_t mode r10: unsigned dev
+
+229	clock_getres	sys_clock_getres	kernel/posix-timers.c
+		rdi: int dfd rsi: const char __user * filename rdx: uid_t user r10: gid_t group r8: int flag
+
+230	clock_nanosleep	sys_clock_nanosleep	kernel/posix-timers.c
+		rdi: int dfd rsi: const char __user * filename rdx: struct timeval __user * utimes
+
+231	exit_group	sys_exit_group	kernel/exit.c
+		rdi: int dfd rsi: const char __user * filename rdx: struct stat __user * statbuf r10: int flag
+
+232	epoll_wait	sys_epoll_wait	fs/eventpoll.c
+		rdi: int dfd rsi: const char __user * pathname rdx: int flag
+
+233	epoll_ctl	sys_epoll_ctl	fs/eventpoll.c
+		rdi: int olddfd rsi: const char __user * oldname rdx: int newdfd r10: const char __user * newname
+
+234	tgkill	sys_tgkill	kernel/signal.c
+		rdi: int olddfd rsi: const char __user * oldname rdx: int newdfd r10: const char __user * newname r8: int flags
+
+235	utimes	sys_utimes	fs/utimes.c
+		rdi: const char __user * oldname rsi: int newdfd rdx: const char __user * newname
+
+236	vserver		NOT IMPLEMENTED
+		rdi: int dfd rsi: const char __user * pathname rdx: char __user * buf r10: int bufsiz
+
+237	mbind	sys_mbind	mm/mempolicy.c
+		rdi: int dfd rsi: const char __user * filename rdx: umode_t mode
+
+238	set_mempolicy	sys_set_mempolicy	mm/mempolicy.c
+		rdi: int dfd rsi: const char __user * filename rdx: int mode
+
+239	get_mempolicy	sys_get_mempolicy	mm/mempolicy.c
+		rdi: int n rsi: fd_set __user * inp rdx: fd_set __user * outp r10: fd_set __user * exp r8: struct timespec __user * tsp r9: void __user * sig
+
+240	mq_open	sys_mq_open	ipc/mqueue.c
+		rdi: struct pollfd __user * ufds rsi: unsigned int nfds rdx: struct timespec __user * tsp r10: const sigset_t __user * sigmask r8: size_t sigsetsize
+
+241	mq_unlink	sys_mq_unlink	ipc/mqueue.c
+		rdi: unsigned long unshare_flags
+
+242	mq_timedsend	sys_mq_timedsend	ipc/mqueue.c
+		rdi: struct robust_list_head __user * head rsi: size_t len
+
+243	mq_timedreceive	sys_mq_timedreceive	ipc/mqueue.c
+		rdi: int pid rsi: struct robust_list_head __user * __user * head_ptr rdx: size_t __user * len_ptr
+
+244	mq_notify	sys_mq_notify	ipc/mqueue.c
+		rdi: int fd_in rsi: loff_t __user * off_in rdx: int fd_out r10: loff_t __user * off_out r8: size_t len r9: unsigned int flags
+
+245	mq_getsetattr	sys_mq_getsetattr	ipc/mqueue.c
+		rdi: int fdin rsi: int fdout rdx: size_t len r10: unsigned int flags
+
+246	kexec_load	sys_kexec_load	kernel/kexec.c
+		rdi: int fd rsi: loff_t offset rdx: loff_t nbytes r10: unsigned int flags
+
+247	waitid	sys_waitid	kernel/exit.c
+		rdi: int fd rsi: const struct iovec __user * iov rdx: unsigned long nr_segs r10: unsigned int flags
+
+248	add_key	sys_add_key	security/keys/keyctl.c
+		rdi: pid_t pid rsi: unsigned long nr_pages rdx: const void __user * __user * pages r10: const int __user * nodes r8: int __user * status r9: int flags
+
+249	request_key	sys_request_key	security/keys/keyctl.c
+		rdi: int dfd rsi: const char __user * filename rdx: struct timespec __user * utimes r10: int flags
+
+250	keyctl	sys_keyctl	security/keys/keyctl.c
+		rdi: int epfd rsi: struct epoll_event __user * events rdx: int maxevents r10: int timeout r8: const sigset_t __user * sigmask r9: size_t sigsetsize
+
+251	ioprio_set	sys_ioprio_set	fs/ioprio.c
+		rdi: int ufd rsi: sigset_t __user * user_mask rdx: size_t sizemask
+
+252	ioprio_get	sys_ioprio_get	fs/ioprio.c
+		rdi: int clockid rsi: int flags
+
+253	inotify_init	sys_inotify_init	fs/notify/inotify/inotify_user.c
+		rdi: unsigned int count
+
+254	inotify_add_watch	sys_inotify_add_watch	fs/notify/inotify/inotify_user.c
+		rdi: int fd rsi: int mode rdx: loff_t offset r10: loff_t len
+
+255	inotify_rm_watch	sys_inotify_rm_watch	fs/notify/inotify/inotify_user.c
+		rdi: int ufd rsi: int flags rdx: const struct itimerspec __user * utmr r10: struct itimerspec __user * otmr
+
+256	migrate_pages	sys_migrate_pages	mm/mempolicy.c
+		rdi: int ufd rsi: struct itimerspec __user * otmr
+
+257	openat	sys_openat	fs/open.c
+		rdi: int fd rsi: struct sockaddr __user * upeer_sockaddr rdx: int __user * upeer_addrlen r10: int flags
+
+258	mkdirat	sys_mkdirat	fs/namei.c
+		rdi: int ufd rsi: sigset_t __user * user_mask rdx: size_t sizemask r10: int flags
+
+259	mknodat	sys_mknodat	fs/namei.c
+		rdi: unsigned int count rsi: int flags
+
+260	fchownat	sys_fchownat	fs/open.c
+		rdi: int flags
+
+261	futimesat	sys_futimesat	fs/utimes.c
+		rdi: unsigned int oldfd rsi: unsigned int newfd rdx: int flags
+
+262	newfstatat	sys_newfstatat	fs/stat.c
+		rdi: int __user * fildes rsi: int flags
+
+263	unlinkat	sys_unlinkat	fs/namei.c
+		rdi: int flags
+
+264	renameat	sys_renameat	fs/namei.c
+		rdi: unsigned long fd rsi: const struct iovec __user * vec rdx: unsigned long vlen r10: unsigned long pos_l r8: unsigned long pos_h
+
+265	linkat	sys_linkat	fs/namei.c
+		rdi: unsigned long fd rsi: const struct iovec __user * vec rdx: unsigned long vlen r10: unsigned long pos_l r8: unsigned long pos_h
+
+266	symlinkat	sys_symlinkat	fs/namei.c
+		rdi: pid_t tgid rsi: pid_t pid rdx: int sig r10: siginfo_t __user * uinfo
+
+267	readlinkat	sys_readlinkat	fs/stat.c
+		rdi: struct perf_event_attr __user * attr_uptr rsi: pid_t pid rdx: int cpu r10: int group_fd r8: unsigned long flags
+
+268	fchmodat	sys_fchmodat	fs/open.c
+		rdi: int fd rsi: struct mmsghdr __user * mmsg rdx: unsigned int vlen r10: unsigned int flags r8: struct timespec __user * timeout
+
+269	faccessat	sys_faccessat	fs/open.c
+		rdi: unsigned int flags rsi: unsigned int event_f_flags
+
+270	pselect6	sys_pselect6	fs/select.c
+		rdi: int fanotify_fd rsi: unsigned int flags rdx: __u64 mask r10: int dfd r8: const char  __user * pathname
+
+271	ppoll	sys_ppoll	fs/select.c
+		rdi: pid_t pid rsi: unsigned int resource rdx: const struct rlimit64 __user * new_rlim r10: struct rlimit64 __user * old_rlim
+
+272	unshare	sys_unshare	kernel/fork.c
+		rdi: int dfd rsi: const char __user * name rdx: struct file_handle __user * handle r10: int __user * mnt_id r8: int flag
+
+273	set_robust_list	sys_set_robust_list	kernel/futex.c
+		rdi: int mountdirfd rsi: struct file_handle __user * handle rdx: int flags
+
+274	get_robust_list	sys_get_robust_list	kernel/futex.c
+		rdi: const clockid_t which_clock rsi: struct timex __user * utx
+
+275	splice	sys_splice	fs/splice.c
+		rdi: int fd
+
+276	tee	sys_tee	fs/splice.c
+		rdi: int fd rsi: struct mmsghdr __user * mmsg rdx: unsigned int vlen r10: unsigned int flags
+
+277	sync_file_range	sys_sync_file_range	fs/sync.c
+		rdi: int fd rsi: int nstype
+
+278	vmsplice	sys_vmsplice	fs/splice.c
+		rdi: unsigned __user * cpup rsi: unsigned __user * nodep rdx: struct getcpu_cache __user * unused
+
+279	move_pages	sys_move_pages	mm/migrate.c
+		rdi: pid_t pid rsi: const struct iovec __user * lvec rdx: unsigned long liovcnt r10: const struct iovec __user * rvec r8: unsigned long riovcnt r9: unsigned long flags
+
+280	utimensat	sys_utimensat	fs/utimes.c
+		rdi: pid_t pid rsi: const struct iovec __user * lvec rdx: unsigned long liovcnt r10: const struct iovec __user * rvec r8: unsigned long riovcnt r9: unsigned long flags
+
+281	epoll_pwait	sys_epoll_pwait	fs/eventpoll.c
+		rdi: pid_t pid1 rsi: pid_t pid2 rdx: int type r10: unsigned long idx1 r8: unsigned long idx2
+
+282	signalfd	sys_signalfd	fs/signalfd.c
+		rdi: int fd rsi: const char __user * uargs rdx: int flags
+
+283	timerfd_create	sys_timerfd_create	fs/timerfd.c
+		
+
+284	eventfd	sys_eventfd	fs/eventfd.c
+		
+
+285	fallocate	sys_fallocate	fs/open.c
+		
+
+286	timerfd_settime	sys_timerfd_settime	fs/timerfd.c
+		
+
+287	timerfd_gettime	sys_timerfd_gettime	fs/timerfd.c
+		
+
+288	accept4	sys_accept4	net/socket.c
+		
+
+289	signalfd4	sys_signalfd4	fs/signalfd.c
+		
+
+290	eventfd2	sys_eventfd2	fs/eventfd.c
+		
+
+291	epoll_create1	sys_epoll_create1	fs/eventpoll.c
+		
+
+292	dup3	sys_dup3	fs/file.c
+		
+
+293	pipe2	sys_pipe2	fs/pipe.c
+		
+
+294	inotify_init1	sys_inotify_init1	fs/notify/inotify/inotify_user.c
+		
+
+295	preadv	sys_preadv	fs/read_write.c
+		
+
+296	pwritev	sys_pwritev	fs/read_write.c
+		
+
+297	rt_tgsigqueueinfo	sys_rt_tgsigqueueinfo	kernel/signal.c
+		
+
+298	perf_event_open	sys_perf_event_open	kernel/events/core.c
+		
+
+299	recvmmsg	sys_recvmmsg	net/socket.c
+		
+
+300	fanotify_init	sys_fanotify_init	fs/notify/fanotify/fanotify_user.c
+		
+
+301	fanotify_mark	sys_fanotify_mark	fs/notify/fanotify/fanotify_user.c
+		
+
+302	prlimit64	sys_prlimit64	kernel/sys.c
+		
+
+303	name_to_handle_at	sys_name_to_handle_at	fs/fhandle.c
+		
+
+304	open_by_handle_at	sys_open_by_handle_at	fs/fhandle.c
+		
+
+305	clock_adjtime	sys_clock_adjtime	kernel/posix-timers.c
+		
+
+306	syncfs	sys_syncfs	fs/sync.c
+		
+
+307	sendmmsg	sys_sendmmsg	net/socket.c
+		
+
+308	setns	sys_setns	kernel/nsproxy.c
+		
+
+309	getcpu	sys_getcpu	kernel/sys.c
+		
+
+310	process_vm_readv	sys_process_vm_readv	mm/process_vm_access.c
+		
+
+311	process_vm_writev	sys_process_vm_writev	mm/process_vm_access.c
+		
+
+312	kcmp	sys_kcmp	kernel/kcmp.c
+		
+
+313	finit_module	sys_finit_module	kernel/module.c
+		
+

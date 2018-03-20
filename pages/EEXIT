@@ -1,0 +1,240 @@
+-   Index
+-   December 2017
+
+
+
+EEXIT — EXITS AN ENCLAVE
+
+
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  OPCODE/OP/EN 64/32 CPUID DESCRIPTION INSTRUCTION BIT MODE FEATURE SUPPORT FLAG EAX = 04H IR V/V SGX1 This leaf function is used to exit an enclave. ENCLU[EEXIT]
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Instruction Operand Encoding¶
+
+  ------- ------------ ----------------------------------------- ---------------------------------
+  Op/En   EAX          RBX                                       RCX
+  IR      EEXIT (In)   Target address outside the enclave (In)   Address of the current AEP (In)
+  ------- ------------ ----------------------------------------- ---------------------------------
+
+Description¶
+
+The ENCLU[EEXIT] instruction exits the currently executing enclave and
+branches to the location specified in RBX. RCX receives the current AEP.
+If RBX is not within the CS (32-bit mode) or is not canonical (64-bit
+mode) a #GP(0) results.
+
+
+EEXIT Memory Parameter Semantics¶
+
+  -------------------------------------
+  Target Address
+  Non-Enclave read and execute access
+  -------------------------------------
+
+If RBX specifies an address that is inside the enclave, the instruction
+will complete normally. The fetch of the next instruction will occur in
+non-enclave mode, but will attempt to fetch from inside the enclave.
+This has the effect of abort page semantics on the next destination.
+
+If secrets are contained in any registers, it is responsibility of
+enclave software to clear those registers.
+
+If XCR0 was modified on enclave entry, it is restored to the value it
+had at the time of the most recent EENTER or ERESUME.
+
+If the enclave is opt-out, RFLAGS.TF is loaded from the value previously
+saved on EENTER.
+
+Code and data breakpoints are unsuppressed.
+
+Performance monitoring counters are unsuppressed.
+
+Concurrency Restrictions¶
+
+Leaf
+
+Parameter
+
+Base Concurrency Restrictions
+
+Access
+
+On Conflict
+
+SGX_CONFLICT VM Exit Qualification
+
+EEXIT
+
+Concurrent
+
+Table 40-62. Base Concurrency Restrictions of EEXIT
+
+Leaf
+
+Parameter
+
+Additional Concurrency Restrictions
+
+vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
+
+vs. EADD, EEXTEND, EINIT
+
+vs. ETRACK, ETRACKC
+
+Access
+
+On Conflict
+
+Access
+
+On Conflict
+
+Access
+
+On Conflict
+
+EEXIT
+
+Concurrent
+
+Concurrent
+
+Concurrent
+
+Table 40-63. Additional Concurrency Restrictions of EEXIT
+
+Operation¶
+
+
+Temp Variables in EEXIT Operational Flow¶
+
+  Name      Type                Size (Bits)   Description
+  --------- ------------------- ------------- -----------------------------------------------
+  TMP_RIP   Effective Address   32/64         Saved copy of CRIP for use when creating LBR.
+
+TMP_MODE64←((IA32_EFER.LMA = 1) && (CS.L = 1));
+
+IF (TMP_MODE64 = 1)
+
+THEN
+
+IF (RBX is not canonical) THEN #GP(0); FI;
+
+ELSE
+
+IF (RBX > CS limit) THEN #GP(0); FI;
+
+FI;
+
+TMP_RIP ← CRIP;
+
+RIP ← RBX;
+
+(* Return current AEP in RCX *)
+
+RCX ← CR_TCS_PA.AEP;
+
+(* Do the FS/GS swap *)
+
+FS.selector ← CR_SAVE_FS.selector;
+
+FS.base ← CR_SAVE_FS.base;
+
+FS.limit ← CR_SAVE_FS.limit;
+
+FS.access_rights ← CR_SAVE_FS.access_rights;
+
+GS.selector ← CR_SAVE_GS.selector;
+
+GS.base ← CR_SAVE_GS.base;
+
+GS.limit ← CR_SAVE_GS.limit;
+
+GS.access_rights ← CR_SAVE_GS.access_rights;
+
+(* Restore XCR0 if needed *)
+
+IF (CR4.OSXSAVE = 1)
+
+XCR0 ← CR_SAVE__XCR0;
+
+FI;
+
+Unsuppress_all_code_breakpoints_that_are_outside_ELRANGE;
+
+IF (CR_DBGOPTIN = 0)
+
+THEN
+
+UnSuppress_all_code_breakpoints_that_overlap_with_ELRANGE;
+
+Restore suppressed breakpoint matches;
+
+RFLAGS.TF ← CR_SAVE_TF;
+
+UnSuppress_montior_trap_flag;
+
+UnSuppress_LBR_Generation;
+
+UnSuppress_performance monitoring_activity;
+
+Restore performance monitoring counter AnyThread demotion to MyThread in
+enclave back to AnyThread
+
+FI;
+
+IF RFLAGS.TF = 1
+
+THEN Pend Single-Step #DB at the end of EEXIT;
+
+FI;
+
+IF the “monitor trap flag” VM-execution control is set
+
+THEN pend a MTF VM exit at the end of EEXIT;
+
+FI;
+
+CR_ENCLAVE_MODE ← 0;
+
+CR_TCS_PA.STATE ← INACTIVE;
+
+(* Assure consistent translations *)
+
+Flush_linear_context;
+
+Flags Affected¶
+
+RFLAGS.TF is restored from the value previously saved in EENTER or
+ERESUME.
+
+Protected Mode Exceptions¶
+
+#GP(0)
+
+If executed outside an enclave.
+
+If RBX is outside the CS segment.
+
+#PF(error
+
+code) If a page fault occurs in accessing memory.
+
+64-Bit Mode Exceptions¶
+
+#GP(0)
+
+If executed outside an enclave.
+
+If RBX is not canonical.
+
+#PF(error
+
+code) If a page fault occurs in accessing memory operands.
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

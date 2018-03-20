@@ -1,0 +1,145 @@
+-   Index
+-   December 2017
+
+
+
+CMP — COMPARE TWO OPERANDS
+
+
+  Opcode               Instruction                Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  -------------------- -------------------------- ------- ------------- ----------------- --------------------------------------------------------
+  3C _ib_              CMP AL, _imm8_             I       Valid         Valid             Compare _imm8_ with AL.
+  3D _iw_              CMP AX, _imm16_            I       Valid         Valid             Compare _imm16_ with AX.
+  3D _id_              CMP EAX, _imm32_           I       Valid         Valid             Compare _imm32_ with EAX.
+  REX.W + 3D _id_      CMP RAX, _imm32_           I       Valid         N.E.              Compare _imm32 sign-extended to 64-bits_ with RAX.
+  80 /7 _ib_           CMP _r/m8, imm8_           MI      Valid         Valid             Compare _imm8_ with _r/m8._
+  REX + 80 /7 _ib_     CMP _r/m8_^(*)_, imm8_     MI      Valid         N.E.              Compare _imm8_ with _r/m8._
+  81 /7 _iw_           CMP _r/m16, imm16_         MI      Valid         Valid             Compare _imm16_ with _r/m16._
+  81 /7 _id_           CMP _r/m32, imm32_         MI      Valid         Valid             Compare _imm32_ with _r/m32._
+  REX.W + 81 /7 _id_   CMP _r/m64, imm32_         MI      Valid         N.E.              Compare _imm32 sign-extended to 64-bits_ with _r/m64._
+  83 /7 _ib_           CMP _r/m16, imm8_          MI      Valid         Valid             Compare _imm8_ with _r/m16._
+  83 /7 _ib_           CMP _r/m32, imm8_          MI      Valid         Valid             Compare _imm8_ with _r/m32._
+  REX.W + 83 /7 _ib_   CMP _r/m64, imm8_          MI      Valid         N.E.              Compare _imm8_ with _r/m64._
+  38 /_r_              CMP _r/m8, r8_             MR      Valid         Valid             Compare _r8_ with _r/m8._
+  REX + 38 /_r_        CMP _r/m8_^(*)_, r8_^(*)   MR      Valid         N.E.              Compare _r8_ with _r/m8._
+  39 /_r_              CMP _r/m16, r16_           MR      Valid         Valid             Compare _r16_ with _r/m16._
+  39 /_r_              CMP _r/m32, r32_           MR      Valid         Valid             Compare _r32_ with _r/m32._
+  REX.W + 39 /_r_      CMP _r/m64,r64_            MR      Valid         N.E.              Compare _r64_ with _r/m64._
+  3A /_r_              CMP _r8, r/m8_             RM      Valid         Valid             Compare _r/m8_ with _r8._
+  REX + 3A /_r_        CMP _r8_^(*)_, r/m8_^(*)   RM      Valid         N.E.              Compare _r/m8 with r8._
+  3B /_r_              CMP _r16, r/m16_           RM      Valid         Valid             Compare _r/m16_ with _r16._
+  3B /_r_              CMP _r32, r/m32_           RM      Valid         Valid             Compare _r/m32_ with _r32._
+  REX.W + 3B /_r_      CMP _r64, r/m64_           RM      Valid         N.E.              Compare _r/m64_ with _r64._
+
+  *
+  In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
+
+
+Instruction Operand Encoding¶
+
+  ------- ------------------- --------------- ----------- -----------
+  Op/En   Operand 1           Operand 2       Operand 3   Operand 4
+  RM      ModRM:reg (r)       ModRM:r/m (r)   NA          NA
+  MR      ModRM:r/m (r)       ModRM:reg (r)   NA          NA
+  MI      ModRM:r/m (r)       imm8/16/32      NA          NA
+  I       AL/AX/EAX/RAX (r)   imm8/16/32      NA          NA
+  ------- ------------------- --------------- ----------- -----------
+
+
+Description¶
+
+Compares the first source operand with the second source operand and
+sets the status flags in the EFLAGS register according to the results.
+The comparison is performed by subtracting the second operand from the
+first operand and then setting the status flags in the same manner as
+the SUB instruction. When an immediate value is used as an operand, it
+is sign-extended to the length of the first operand.
+
+The condition codes used by the J_cc_, CMOV_cc_, and SET_cc_
+instructions are based on the results of a CMP instruction. Appendix B,
+“EFLAGS Condition Codes,” in the _Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 1_, shows the relationship of the
+status flags and the condition codes.
+
+In 64-bit mode, the instruction’s default operation size is 32 bits. Use
+of the REX.R prefix permits access to additional registers (R8-R15). Use
+of the REX.W prefix promotes operation to 64 bits. See the summary chart
+at the beginning of this section for encoding data and limits.
+
+
+Operation¶
+
+    temp ← SRC1 − SignExtend(SRC2);
+    ModifyStatusFlags; (* Modify status flags in the same manner as the SUB instruction*)
+
+
+Flags Affected¶
+
+The CF, OF, SF, ZF, AF, and PF flags are set according to the result.
+
+
+Protected Mode Exceptions¶
+
+#GP(0)
+
+If a memory operand effective address is outside the CS, DS, ES, FS, or
+GS segment limit.
+
+If the DS, ES, FS, or GS register contains a NULL segment selector.
+
+#SS(0)
+
+If a memory operand effective address is outside the SS segment limit.
+
+#PF(fault-code)
+
+If a page fault occurs.
+
+#AC(0)
+
+If alignment checking is enabled and an unaligned memory reference is
+made while the current privilege level is 3.
+
+#UD
+
+If the LOCK prefix is used.
+
+
+Real-Address Mode Exceptions¶
+
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  ----- -------------------------------------------------------------------------------------------
+
+
+Virtual-8086 Mode Exceptions¶
+
+  ----------------- -------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  #UD               If the LOCK prefix is used.
+  ----------------- -------------------------------------------------------------------------------------------
+
+
+Compatibility Mode Exceptions¶
+
+Same exceptions as in protected mode.
+
+
+64-Bit Mode Exceptions¶
+
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

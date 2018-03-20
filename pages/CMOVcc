@@ -1,0 +1,233 @@
+-   Index
+-   December 2017
+
+
+
+CMOVCC — CONDITIONAL MOVE
+
+
+  Opcode               Instruction            Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  -------------------- ---------------------- ------- ------------- ----------------- ---------------------------------------------
+  0F 47 _/r_           CMOVA _r16, r/m16_     RM      Valid         Valid             Move if above (CF=0 and ZF=0).
+  0F 47 _/r_           CMOVA _r32, r/m32_     RM      Valid         Valid             Move if above (CF=0 and ZF=0).
+  REX.W + 0F 47 _/r_   CMOVA _r64, r/m64_     RM      Valid         N.E.              Move if above (CF=0 and ZF=0).
+  0F 43 _/r_           CMOVAE _r16, r/m16_    RM      Valid         Valid             Move if above or equal (CF=0).
+  0F 43 _/r_           CMOVAE _r32, r/m32_    RM      Valid         Valid             Move if above or equal (CF=0).
+  REX.W + 0F 43 _/r_   CMOVAE _r64, r/m64_    RM      Valid         N.E.              Move if above or equal (CF=0).
+  0F 42 _/r_           CMOVB _r16, r/m16_     RM      Valid         Valid             Move if below (CF=1).
+  0F 42 _/r_           CMOVB _r32, r/m32_     RM      Valid         Valid             Move if below (CF=1).
+  REX.W + 0F 42 _/r_   CMOVB _r64, r/m64_     RM      Valid         N.E.              Move if below (CF=1).
+  0F 46 _/r_           CMOVBE _r16, r/m16_    RM      Valid         Valid             Move if below or equal (CF=1 or ZF=1).
+  0F 46 _/r_           CMOVBE _r32, r/m32_    RM      Valid         Valid             Move if below or equal (CF=1 or ZF=1).
+  REX.W + 0F 46 _/r_   CMOVBE _r64, r/m64_    RM      Valid         N.E.              Move if below or equal (CF=1 or ZF=1).
+  0F 42 _/r_           CMOVC _r16, r/m16_     RM      Valid         Valid             Move if carry (CF=1).
+  0F 42 _/r_           CMOVC _r32, r/m32_     RM      Valid         Valid             Move if carry (CF=1).
+  REX.W + 0F 42 _/r_   CMOVC _r64, r/m64_     RM      Valid         N.E.              Move if carry (CF=1).
+  0F 44 _/r_           CMOVE _r16, r/m16_     RM      Valid         Valid             Move if equal (ZF=1).
+  0F 44 _/r_           CMOVE _r32, r/m32_     RM      Valid         Valid             Move if equal (ZF=1).
+  REX.W + 0F 44 _/r_   CMOVE _r64, r/m64_     RM      Valid         N.E.              Move if equal (ZF=1).
+  0F 4F _/r_           CMOVG _r16, r/m16_     RM      Valid         Valid             Move if greater (ZF=0 and SF=OF).
+  0F 4F _/r_           CMOVG _r32, r/m32_     RM      Valid         Valid             Move if greater (ZF=0 and SF=OF).
+  REX.W + 0F 4F _/r_   CMOVG _r64, r/m64_     RM      V/N.E.        NA                Move if greater (ZF=0 and SF=OF).
+  0F 4D _/r_           CMOVGE _r16, r/m16_    RM      Valid         Valid             Move if greater or equal (SF=OF).
+  0F 4D _/r_           CMOVGE _r32, r/m32_    RM      Valid         Valid             Move if greater or equal (SF=OF).
+  REX.W + 0F 4D _/r_   CMOVGE _r64, r/m64_    RM      Valid         N.E.              Move if greater or equal (SF=OF).
+  0F 4C _/r_           CMOVL _r16, r/m16_     RM      Valid         Valid             Move if less (SF≠ OF).
+  0F 4C _/r_           CMOVL _r32, r/m32_     RM      Valid         Valid             Move if less (SF≠ OF).
+  REX.W + 0F 4C _/r_   CMOVL _r64, r/m64_     RM      Valid         N.E.              Move if less (SF≠ OF).
+  0F 4E _/r_           CMOVLE _r16, r/m16_    RM      Valid         Valid             Move if less or equal (ZF=1 or SF≠ OF).
+  0F 4E _/r_           CMOVLE _r32, r/m32_    RM      Valid         Valid             Move if less or equal (ZF=1 or SF≠ OF).
+  REX.W + 0F 4E _/r_   CMOVLE _r64, r/m64_    RM      Valid         N.E.              Move if less or equal (ZF=1 or SF≠ OF).
+  0F 46 _/r_           CMOVNA _r16, r/m16_    RM      Valid         Valid             Move if not above (CF=1 or ZF=1).
+  0F 46 _/r_           CMOVNA _r32, r/m32_    RM      Valid         Valid             Move if not above (CF=1 or ZF=1).
+  REX.W + 0F 46 _/r_   CMOVNA _r64, r/m64_    RM      Valid         N.E.              Move if not above (CF=1 or ZF=1).
+  0F 42 _/r_           CMOVNAE _r16, r/m16_   RM      Valid         Valid             Move if not above or equal (CF=1).
+  0F 42 _/r_           CMOVNAE _r32, r/m32_   RM      Valid         Valid             Move if not above or equal (CF=1).
+  REX.W + 0F 42 _/r_   CMOVNAE _r64, r/m64_   RM      Valid         N.E.              Move if not above or equal (CF=1).
+  0F 43 _/r_           CMOVNB _r16, r/m16_    RM      Valid         Valid             Move if not below (CF=0).
+  0F 43 _/r_           CMOVNB _r32, r/m32_    RM      Valid         Valid             Move if not below (CF=0).
+  REX.W + 0F 43 _/r_   CMOVNB _r64, r/m64_    RM      Valid         N.E.              Move if not below (CF=0).
+  0F 47 _/r_           CMOVNBE _r16, r/m16_   RM      Valid         Valid             Move if not below or equal (CF=0 and ZF=0).
+  0F 47 _/r_           CMOVNBE _r32, r/m32_   RM      Valid         Valid             Move if not below or equal (CF=0 and ZF=0).
+  REX.W + 0F 47 _/r_   CMOVNBE _r64, r/m64_   RM      Valid         N.E.              Move if not below or equal (CF=0 and ZF=0).
+  0F 43 _/r_           CMOVNC _r16, r/m16_    RM      Valid         Valid             Move if not carry (CF=0).
+  0F 43 _/r_           CMOVNC _r32, r/m32_    RM      Valid         Valid             Move if not carry (CF=0).
+  REX.W + 0F 43 _/r_   CMOVNC _r64, r/m64_    RM      Valid         N.E.              Move if not carry (CF=0).
+  0F 45 _/r_           CMOVNE _r16, r/m16_    RM      Valid         Valid             Move if not equal (ZF=0).
+  0F 45 _/r_           CMOVNE _r32, r/m32_    RM      Valid         Valid             Move if not equal (ZF=0).
+  REX.W + 0F 45 _/r_   CMOVNE _r64, r/m64_    RM      Valid         N.E.              Move if not equal (ZF=0).
+  0F 4E _/r_           CMOVNG _r16, r/m16_    RM      Valid         Valid             Move if not greater (ZF=1 or SF≠ OF).
+  0F 4E _/r_           CMOVNG _r32, r/m32_    RM      Valid         Valid             Move if not greater (ZF=1 or SF≠ OF).
+  REX.W + 0F 4E _/r_   CMOVNG _r64, r/m64_    RM      Valid         N.E.              Move if not greater (ZF=1 or SF≠ OF).
+  0F 4C _/r_           CMOVNGE _r16, r/m16_   RM      Valid         Valid             Move if not greater or equal (SF≠ OF).
+  0F 4C _/r_           CMOVNGE _r32, r/m32_   RM      Valid         Valid             Move if not greater or equal (SF≠ OF).
+  REX.W + 0F 4C _/r_   CMOVNGE _r64, r/m64_   RM      Valid         N.E.              Move if not greater or equal (SF≠ OF).
+  0F 4D _/r_           CMOVNL _r16, r/m16_    RM      Valid         Valid             Move if not less (SF=OF).
+  0F 4D _/r_           CMOVNL _r32, r/m32_    RM      Valid         Valid             Move if not less (SF=OF).
+  REX.W + 0F 4D _/r_   CMOVNL _r64, r/m64_    RM      Valid         N.E.              Move if not less (SF=OF).
+  0F 4F _/r_           CMOVNLE _r16, r/m16_   RM      Valid         Valid             Move if not less or equal (ZF=0 and SF=OF).
+  0F 4F _/r_           CMOVNLE _r32, r/m32_   RM      Valid         Valid             Move if not less or equal (ZF=0 and SF=OF).
+  REX.W + 0F 4F _/r_   CMOVNLE _r64, r/m64_   RM      Valid         N.E.              Move if not less or equal (ZF=0 and SF=OF).
+  0F 41 _/r_           CMOVNO _r16, r/m16_    RM      Valid         Valid             Move if not overflow (OF=0).
+  0F 41 _/r_           CMOVNO _r32, r/m32_    RM      Valid         Valid             Move if not overflow (OF=0).
+  REX.W + 0F 41 _/r_   CMOVNO _r64, r/m64_    RM      Valid         N.E.              Move if not overflow (OF=0).
+  0F 4B _/r_           CMOVNP _r16, r/m16_    RM      Valid         Valid             Move if not parity (PF=0).
+  0F 4B _/r_           CMOVNP _r32, r/m32_    RM      Valid         Valid             Move if not parity (PF=0).
+  REX.W + 0F 4B _/r_   CMOVNP _r64, r/m64_    RM      Valid         N.E.              Move if not parity (PF=0).
+  0F 49 _/r_           CMOVNS _r16, r/m16_    RM      Valid         Valid             Move if not sign (SF=0).
+  0F 49 _/r_           CMOVNS _r32, r/m32_    RM      Valid         Valid             Move if not sign (SF=0).
+  REX.W + 0F 49 _/r_   CMOVNS _r64, r/m64_    RM      Valid         N.E.              Move if not sign (SF=0).
+  0F 45 _/r_           CMOVNZ _r16, r/m16_    RM      Valid         Valid             Move if not zero (ZF=0).
+  0F 45 _/r_           CMOVNZ _r32, r/m32_    RM      Valid         Valid             Move if not zero (ZF=0).
+  REX.W + 0F 45 _/r_   CMOVNZ _r64, r/m64_    RM      Valid         N.E.              Move if not zero (ZF=0).
+  0F 40 _/r_           CMOVO _r16, r/m16_     RM      Valid         Valid             Move if overflow (OF=1).
+  0F 40 _/r_           CMOVO _r32, r/m32_     RM      Valid         Valid             Move if overflow (OF=1).
+  REX.W + 0F 40 _/r_   CMOVO _r64, r/m64_     RM      Valid         N.E.              Move if overflow (OF=1).
+  0F 4A _/r_           CMOVP _r16, r/m16_     RM      Valid         Valid             Move if parity (PF=1).
+  0F 4A _/r_           CMOVP _r32, r/m32_     RM      Valid         Valid             Move if parity (PF=1).
+  REX.W + 0F 4A _/r_   CMOVP _r64, r/m64_     RM      Valid         N.E.              Move if parity (PF=1).
+  0F 4A _/r_           CMOVPE _r16, r/m16_    RM      Valid         Valid             Move if parity even (PF=1).
+  0F 4A _/r_           CMOVPE _r32, r/m32_    RM      Valid         Valid             Move if parity even (PF=1).
+  REX.W + 0F 4A _/r_   CMOVPE _r64, r/m64_    RM      Valid         N.E.              Move if parity even (PF=1).
+  0F 4B _/r_           CMOVPO _r16, r/m16_    RM      Valid         Valid             Move if parity odd (PF=0).
+  0F 4B _/r_           CMOVPO _r32, r/m32_    RM      Valid         Valid             Move if parity odd (PF=0).
+  REX.W + 0F 4B _/r_   CMOVPO _r64, r/m64_    RM      Valid         N.E.              Move if parity odd (PF=0).
+  0F 48 _/r_           CMOVS _r16, r/m16_     RM      Valid         Valid             Move if sign (SF=1).
+  0F 48 _/r_           CMOVS _r32, r/m32_     RM      Valid         Valid             Move if sign (SF=1).
+  REX.W + 0F 48 _/r_   CMOVS _r64, r/m64_     RM      Valid         N.E.              Move if sign (SF=1).
+  0F 44 _/r_           CMOVZ _r16, r/m16_     RM      Valid         Valid             Move if zero (ZF=1).
+  0F 44 _/r_           CMOVZ _r32, r/m32_     RM      Valid         Valid             Move if zero (ZF=1).
+  REX.W + 0F 44 _/r_   CMOVZ _r64, r/m64_     RM      Valid         N.E.              Move if zero (ZF=1).
+
+
+Instruction Operand Encoding¶
+
+  ------- ------------------ --------------- ----------- -----------
+  Op/En   Operand 1          Operand 2       Operand 3   Operand 4
+  RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
+  ------- ------------------ --------------- ----------- -----------
+
+
+Description¶
+
+The CMOV_cc_ instructions check the state of one or more of the status
+flags in the EFLAGS register (CF, OF, PF, SF, and ZF) and perform a move
+operation if the flags are in a specified state (or condition). A
+condition code (_cc_) is associated with each instruction to indicate
+the condition being tested for. If the condition is not satisfied, a
+move is not performed and execution continues with the instruction
+following the CMOV_cc_ instruction.
+
+These instructions can move 16-bit, 32-bit or 64-bit values from memory
+to a general-purpose register or from one general-purpose register to
+another. Conditional moves of 8-bit register operands are not supported.
+
+The condition for each CMOV_cc_ mnemonic is given in the description
+column of the above table. The terms “less” and “greater” are used for
+comparisons of signed integers and the terms “above” and “below” are
+used for unsigned integers.
+
+Because a particular state of the status flags can sometimes be
+interpreted in two ways, two mnemonics are defined for some opcodes. For
+example, the CMOVA (conditional move if above) instruction and the
+CMOVNBE (conditional move if not below or equal) instruction are
+alternate mnemonics for the opcode 0F 47H.
+
+The CMOV_cc_ instructions were introduced in P6 family processors;
+however, these instructions may not be supported by all IA-32
+processors. Software can determine if the CMOV_cc_ instructions are
+supported by checking the processor’s feature information with the CPUID
+instruction (see “CPUID—CPU Identification” in this chapter).
+
+In 64-bit mode, the instruction’s default operation size is 32 bits. Use
+of the REX.R prefix permits access to additional registers (R8-R15). Use
+of the REX.W prefix promotes operation to 64 bits. See the summary chart
+at the beginning of this section for encoding data and limits.
+
+
+Operation¶
+
+    temp ← SRC
+    IF condition TRUE
+        THEN
+            DEST ← temp;
+        FI;
+    ELSE
+        IF (OperandSize = 32 and IA-32e mode active)
+            THEN
+                DEST[63:32] ← 0;
+        FI;
+    FI;
+
+
+Flags Affected¶
+
+None.
+
+
+Protected Mode Exceptions¶
+
+#GP(0)
+
+If a memory operand effective address is outside the CS, DS, ES, FS, or
+GS segment limit.
+
+If the DS, ES, FS, or GS register contains a NULL segment selector.
+
+#SS(0)
+
+If a memory operand effective address is outside the SS segment limit.
+
+#PF(fault-code)
+
+If a page fault occurs.
+
+#AC(0)
+
+If alignment checking is enabled and an unaligned memory reference is
+made while the current privilege level is 3.
+
+#UD
+
+If the LOCK prefix is used.
+
+
+Real-Address Mode Exceptions¶
+
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If the LOCK prefix is used.
+  ----- -------------------------------------------------------------------------------------------
+
+
+Virtual-8086 Mode Exceptions¶
+
+  ----------------- -------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  #UD               If the LOCK prefix is used.
+  ----------------- -------------------------------------------------------------------------------------------
+
+
+Compatibility Mode Exceptions¶
+
+Same exceptions as in protected mode.
+
+
+64-Bit Mode Exceptions¶
+
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

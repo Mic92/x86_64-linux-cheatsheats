@@ -1,0 +1,201 @@
+-   Index
+-   December 2017
+
+
+
+MOVD/MOVQ — MOVE DOUBLEWORD/MOVE QUADWORD
+
+
+  Opcode/Instruction                             Op/ En   64/32-bit Mode   CPUID Feature Flag   Description
+  ---------------------------------------------- -------- ---------------- -------------------- --------------------------------------------------
+  NP 0F 6E /_r_ MOVD _mm, r/m32_                 A        V/V              MMX                  Move doubleword from _r/m32_ to _mm_.
+  NP REX.W + 0F 6E /_r_ MOVQ _mm, r/m64_         A        V/N.E.           MMX                  Move quadword from _r/m64_ to _mm_.
+  NP 0F 7E /_r_ MOVD _r/m32, mm_                 B        V/V              MMX                  Move doubleword from _mm_ to _r/m32_.
+  NP REX.W + 0F 7E /_r_ MOVQ _r/m64, mm_         B        V/N.E.           MMX                  Move quadword from _mm_ to _r/m64_.
+  66 0F 6E /_r_ MOVD _xmm_, _r/m32_              A        V/V              SSE2                 Move doubleword from _r/m32_ to _xmm_.
+  66 REX.W 0F 6E /_r_ MOVQ _xmm_, _r/m64_        A        V/N.E.           SSE2                 Move quadword from _r/m64_ to _xmm_.
+  66 0F 7E /_r_ MOVD _r/m32_, _xmm_              B        V/V              SSE2                 Move doubleword from _xmm_ register to _r/m32_.
+  66 REX.W 0F 7E /_r_ MOVQ _r/m64_, _xmm_        B        V/N.E.           SSE2                 Move quadword from _xmm_ register to _r/m64_.
+  VEX.128.66.0F.W0 6E / VMOVD _xmm1, r32/m32_    A        V/V              AVX                  Move doubleword from _r/m32_ to _xmm1_.
+  VEX.128.66.0F.W1 6E /r VMOVQ _xmm1, r64/m64_   A        V/N.E¹.          AVX                  Move quadword from _r/m64_ to _xmm1_.
+  VEX.128.66.0F.W0 7E /r VMOVD _r32/m32, xmm1_   B        V/V              AVX                  Move doubleword from _xmm1_ register to _r/m32_.
+  VEX.128.66.0F.W1 7E /r VMOVQ _r64/m64, xmm1_   B        V/N.E¹.          AVX                  Move quadword from _xmm1_ register to _r/m64_.
+  EVEX.128.66.0F.W0 6E /r VMOVD xmm1, r32/m32    C        V/V              AVX512F              Move doubleword from r/m32 to xmm1.
+  EVEX.128.66.0F.W1 6E /r VMOVQ xmm1, r64/m64    C        V/N.E.¹          AVX512F              Move quadword from r/m64 to xmm1.
+  EVEX.128.66.0F.W0 7E /r VMOVD r32/m32, xmm1    D        V/V              AVX512F              Move doubleword from xmm1 register to r/m32.
+  EVEX.128.66.0F.W1 7E /r VMOVQ r64/m64, xmm1    D        V/N.E.¹          AVX512F              Move quadword from xmm1 register to r/m64.
+
+  1. For this specific instruction, VEX.W/EVEX.W in non-64 bit is
+  ignored; the instructions behaves as if the W0 version is used.
+
+
+Instruction Operand Encoding¶
+
+  ------- --------------- --------------- --------------- ----------- -----------
+  Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
+  A       NA              ModRM:reg (w)   ModRM:r/m (r)   NA          NA
+  B       NA              ModRM:r/m (w)   ModRM:reg (r)   NA          NA
+  C       Tuple1 Scalar   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
+  D       Tuple1 Scalar   ModRM:r/m (w)   ModRM:reg (r)   NA          NA
+  ------- --------------- --------------- --------------- ----------- -----------
+
+
+Description¶
+
+Copies a doubleword from the source operand (second operand) to the
+destination operand (first operand). The source and destination operands
+can be general-purpose registers, MMX technology registers, XMM
+registers, or 32-bit memory locations. This instruction can be used to
+move a doubleword to and from the low doubleword of an MMX technology
+register and a general-purpose register or a 32-bit memory location, or
+to and from the low doubleword of an XMM register and a general-purpose
+register or a 32-bit memory location. The instruction cannot be used to
+transfer data between MMX technology registers, between XMM registers,
+between general-purpose registers, or between memory locations.
+
+When the destination operand is an MMX technology register, the source
+operand is written to the low doubleword of the register, and the
+register is zero-extended to 64 bits. When the destination operand is an
+XMM register, the source operand is written to the low doubleword of the
+register, and the register is zero-extended to 128 bits.
+
+In 64-bit mode, the instruction’s default operation size is 32 bits. Use
+of the REX.R prefix permits access to additional registers (R8-R15). Use
+of the REX.W prefix promotes operation to 64 bits. See the summary chart
+at the beginning of this section for encoding data and limits.
+
+MOVD/Q with XMM destination:¶
+
+Moves a dword/qword integer from the source operand and stores it in the
+low 32/64-bits of the destination XMM register. The upper bits of the
+destination are zeroed. The source operand can be a 32/64-bit register
+or 32/64-bit memory location.
+
+128-bit Legacy SSE version: Bits (MAXVL-1:128) of the corresponding YMM
+destination register remain unchanged. Qword operation requires the use
+of REX.W=1.
+
+VEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
+are zeroed. Qword operation requires the use of VEX.W=1.
+
+EVEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
+are zeroed. Qword operation requires the use of EVEX.W=1.
+
+MOVD/Q with 32/64 reg/mem destination:¶
+
+Stores the low dword/qword of the source XMM register to 32/64-bit
+memory location or general-purpose register. Qword operation requires
+the use of REX.W=1, VEX.W=1, or EVEX.W=1.
+
+Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
+instructions will #UD.
+
+If VMOVD or VMOVQ is encoded with VEX.L= 1, an attempt to execute the
+instruction encoded with VEX.L= 1 will cause an #UD exception.
+
+
+Operation¶
+
+MOVD (when destination operand is MMX technology register)¶
+
+    DEST[31:0] ← SRC;
+    DEST[63:32] ← 00000000H;
+
+MOVD (when destination operand is XMM register)¶
+
+    DEST[31:0] ← SRC;
+    DEST[127:32] ← 000000000000000000000000H;
+    DEST[MAXVL-1:128] (Unmodified)
+
+MOVD (when source operand is MMX technology or XMM register)¶
+
+    DEST ← SRC[31:0];
+
+VMOVD (VEX-encoded version when destination is an XMM register)¶
+
+    DEST[31:0] ← SRC[31:0]
+    DEST[MAXVL-1:32] ← 0
+
+MOVQ (when destination operand is XMM register)¶
+
+    DEST[63:0] ← SRC[63:0];
+    DEST[127:64] ← 0000000000000000H;
+    DEST[MAXVL-1:128] (Unmodified)
+
+MOVQ (when destination operand is r/m64)¶
+
+    DEST[63:0] ← SRC[63:0];
+
+MOVQ (when source operand is XMM register or r/m64)¶
+
+    DEST ← SRC[63:0];
+
+VMOVQ (VEX-encoded version when destination is an XMM register)¶
+
+    DEST[63:0] ← SRC[63:0]
+    DEST[MAXVL-1:64] ← 0
+
+VMOVD (EVEX-encoded version when destination is an XMM register)¶
+
+    DEST[31:0] ← SRC[31:0]
+    DEST[MAXVL-1:32] ← 0
+
+VMOVQ (EVEX-encoded version when destination is an XMM register)¶
+
+    DEST[63:0] ← SRC[63:0]
+    DEST[MAXVL-1:64] ← 0
+
+
+Intel C/C++ Compiler Intrinsic Equivalent¶
+
+    MOVD: __m64 _mm_cvtsi32_si64 (int i )
+
+    MOVD: int _mm_cvtsi64_si32 ( __m64m )
+
+    MOVD: __m128i _mm_cvtsi32_si128 (int a)
+
+    MOVD: int _mm_cvtsi128_si32 ( __m128i a)
+
+    MOVQ: __int64 _mm_cvtsi128_si64(__m128i);
+
+    MOVQ: __m128i _mm_cvtsi64_si128(__int64);
+
+    VMOVD __m128i _mm_cvtsi32_si128( int);
+
+    VMOVD int _mm_cvtsi128_si32( __m128i );
+
+    VMOVQ __m128i _mm_cvtsi64_si128 (__int64);
+
+    VMOVQ __int64 _mm_cvtsi128_si64(__m128i );
+
+    VMOVQ __m128i _mm_loadl_epi64( __m128i * s);
+
+    VMOVQ void _mm_storel_epi64( __m128i * d, __m128i s);
+
+
+Flags Affected¶
+
+None
+
+
+SIMD Floating-Point Exceptions¶
+
+None
+
+
+Other Exceptions¶
+
+Non-EVEX-encoded instruction, see Exceptions Type 5.
+
+EVEX-encoded instruction, see Exceptions Type E9NF.
+
+#UD
+
+If VEX.L = 1.
+
+If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.
