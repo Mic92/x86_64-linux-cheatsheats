@@ -1,0 +1,3 @@
+Value  Action Comment
+12,31,12 Core Bad system call (SVr4);
+              see also seccomp(2)

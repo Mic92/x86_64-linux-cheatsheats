@@ -1,0 +1,3 @@
+Value  Action Comment
+24,24,30 Core CPU time limit exceeded (4.2BSD);
+              see setrlimit(2)

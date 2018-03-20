@@ -1,0 +1,3 @@
+Value  Action Comment
+25,25,31 Core File size limit exceeded (4.2BSD);
+              see setrlimit(2)
