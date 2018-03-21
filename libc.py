@@ -5,7 +5,6 @@ import subprocess
 import sys
 import tempfile
 import shlex
-import rlcompleter, readline
 import cmd
 
 C_HEADER = """
