@@ -27,12 +27,13 @@ Type help or ? to list commands.
 0xffffffffffffffff
 > print PROT_WRITE|PROT_READ
 3
+# defaults to print command
+> &errno
+0x7f3cb86b3fe0
 > type MAP_FAILED
 void*
 > type memcmp
 int (void const*, void const*, unsigned long)
-> addr &errno
-0x7f3cb86b3fe0
 > size "struct timeval"
 16
 > offset "struct timeval" "tv_usec"

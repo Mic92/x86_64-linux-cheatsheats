@@ -147,7 +147,7 @@ type_name()
 
 def usage():
     print(
-        "USAGE: %s repl|size|print|all|symbols|offset" % sys.argv[0],
+        "USAGE: %s repl|size|print|all|symbols|offset|members" % sys.argv[0],
         file=sys.stderr)
     return 0
 
@@ -236,21 +236,6 @@ class Shell(cmd.Cmd):
         execute(f)
 
     do_s = do_size
-
-    def do_addr(self, _):
-        """
-        print pointer value
-        """
-        if len(self.args) < 1:
-            print("USAGE: %s addr expr" % sys.argv[0], file=sys.stderr)
-            return 1
-        f = tempfile.NamedTemporaryFile(mode="w+")
-        f.write(CXX_HEADER + "int main() { printf(\"%%p\\n\", %s); }" %
-                (self.args[0]))
-        f.flush()
-        execute(f)
-
-    do_a = do_addr
 
     def do_type(self, _):
         """
