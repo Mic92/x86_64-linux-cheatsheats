@@ -8,4 +8,5 @@ stdenv.mkDerivation {
     pandoc
     python3
   ];
+  hardeningDisable=["all"];
 }

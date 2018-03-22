@@ -18,6 +18,8 @@ $ cheat SIGHUP
 
 ## Introspect libc
 
+(only glibc at the moment)
+
 ```
 python3 libc.py repl
 Type help or ? to list commands.
@@ -36,4 +38,9 @@ int (void const*, void const*, unsigned long)
 > offset "struct timeval" "tv_usec"
 8
 > quit
+> members "struct timeval"
+type = struct timeval {
+    __time_t tv_sec;
+    __suseconds_t tv_usec;
+}
 ```

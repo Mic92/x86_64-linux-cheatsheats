@@ -6,11 +6,13 @@ import sys
 import tempfile
 import shlex
 import cmd
+from collections import defaultdict
 
 C_HEADER = """
 #define _GNU_SOURCE 
 
 extern "C" {
+#include <elf.h>
 #include <asm/mman.h>
 #include <ctype.h>
 #include <dirent.h>
@@ -144,7 +146,9 @@ type_name()
 
 
 def usage():
-    print("USAGE: %s repl|size|print|all|symbols|offset" % sys.argv[0], file=sys.stderr)
+    print(
+        "USAGE: %s repl|size|print|all|symbols|offset" % sys.argv[0],
+        file=sys.stderr)
     return 0
 
 
@@ -153,7 +157,7 @@ def execute(f):
         exe = tempfile.NamedTemporaryFile(delete=True)
         exe.close()
         subprocess.check_call(
-            ["c++", "-w", "-o", exe.name, "-x", "c++", f.name])
+            ["c++", "-std=c++11", "-w", "-o", exe.name, "-x", "c++", f.name])
         subprocess.check_call([exe.name])
     except subprocess.CalledProcessError:
         pass
@@ -168,122 +172,166 @@ def main(args):
     if len(args) < 2 or args[1] == "-h" or args[1] == "--help":
         usage()
         return 1
-    Shell().onecmd(" ".join(sys.argv[1:]))
+    s = Shell()
+    s.args = sys.argv[2:]
+    s.onecmd(sys.argv[1])
 
 
 def parse(arg):
-    'Convert a series of zero or more numbers to an argument tuple'
     return tuple(shlex.split(arg))
+
+
+def gdb(arg, command):
+    f = tempfile.NamedTemporaryFile(mode="w+")
+    f.write(C_HEADER + """int main() {
+            %s a;
+            printf("%%p", &a);
+    }""" % arg)
+    f.flush()
+    subprocess.check_call(
+        ["c++", "-std=c++11", "-g", "-o", "/tmp/main", "-w", "-x", "c++", f.name])
+    subprocess.check_call(["gdb", "--nh", "-batch", "-ex", command, "/tmp/main"])
 
 
 class Shell(cmd.Cmd):
     intro = 'Type help or ? to list commands.\n'
     prompt = '> '
 
-    def do_print(self, arg):
+    def precmd(self, line):
+        self.args = parse(line)
+        if len(self.args) > 1:
+            self.args = self.args[1:]
+        return line
+
+    def do_print(self, _):
         """
         print expression
         """
-        args = parse(arg)
-        if len(args) < 1:
+        if len(self.args) < 1:
             print("USAGE: %s print expr" % sys.argv[0], file=sys.stderr)
             return 1
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(
             CXX_HEADER +
             "int main(int argc, char** argv) { std::cout << (%s) << std::endl; }"
-            % args[0])
+            % self.args[0])
         f.flush()
         execute(f)
 
     do_p = do_print
     default = do_print
 
-    def do_size(self, arg):
+    def do_size(self, _):
         """
         print sizeof(expression)
         """
-        args = parse(arg)
-        if len(args) < 1:
+        if len(self.args) < 1:
             print("USAGE: %s print-size expr" % sys.argv[0], file=sys.stderr)
             return 1
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(CXX_HEADER +
                 "int main() { std::cout << sizeof(%s) << std::endl; }" %
-                (args[0]))
+                (self.args[0]))
         f.flush()
         execute(f)
 
     do_s = do_size
 
-    def do_addr(self, arg):
+    def do_addr(self, _):
         """
         print pointer value
         """
-        args = parse(arg)
-        if len(args) < 1:
+        if len(self.args) < 1:
             print("USAGE: %s addr expr" % sys.argv[0], file=sys.stderr)
             return 1
         f = tempfile.NamedTemporaryFile(mode="w+")
-        f.write(CXX_HEADER + "int main() { printf(\"%%p\\n\", %s); }" % (args[0]))
+        f.write(CXX_HEADER + "int main() { printf(\"%%p\\n\", %s); }" %
+                (self.args[0]))
         f.flush()
         execute(f)
 
     do_a = do_addr
 
-    def do_type(self, arg):
+    def do_type(self, _):
         """
         print type of expression
         """
-        args = parse(arg)
-        if len(args) < 1:
+        if len(self.args) < 1:
             print("USAGE: %s type" % sys.argv[0], file=sys.stderr)
             return 1
         f = tempfile.NamedTemporaryFile(mode="w+")
-        f.write(CXX_HEADER + "int main() { std::cout << type_name<decltype(%s)>() << std::endl; }" % (args[0]))
+        f.write(
+            CXX_HEADER +
+            "int main() { std::cout << type_name<decltype(%s)>() << std::endl; }"
+            % (self.args[0]))
         f.flush()
         execute(f)
 
     do_t = do_type
 
-    def do_offset(self, arg):
+    def do_offset(self, _):
         """
         print offsetof(struct, member)
         """
-        args = parse(arg)
-        if len(args) < 2:
+        if len(self.args) < 2:
             print(
                 "USAGE: %s offset struct member" % sys.argv[0],
                 file=sys.stderr)
             return 1
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(CXX_HEADER +
-                "int main() { std::cout << offsetof(%s, %s) << std::endl; }" %
-                (args[0], args[1]))
+                "int main() { std::cout << \"0x\" << std::hex << offsetof(%s, %s) << std::endl; }" %
+                (self.args[0], self.args[1]))
         f.flush()
         execute(f)
 
     do_o = do_offset
 
-    def do_symbols(self, arg):
+    def do_symbols(self, _):
+        """
+        Print symbols
+        """
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(C_HEADER + "int main() {}")
         f.flush()
         subprocess.check_call(["cpp", f.name])
 
-    def do_all(self, arg):
+    def do_all(self, _):
+        """
+        Print libc header with all macros/definitions
+        """
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(C_HEADER + "int main() {}")
         f.flush()
-        subprocess.check_call(["cpp", "-fdirectives-only", f.name])
+        if subprocess.check_output(["cpp", "--version"]).startswith(b"clang"):
+            subprocess.check_call(["cpp", "-frewrite-includes", f.name])
+        else:
+            subprocess.check_call(["cpp", "-fdirectives-only", f.name])
 
-    def do_exit(self, arg):
+    def do_members(self, _):
+        """
+        Print type information using gdb. For structs print members
+        """
+        gdb(self.args[0], "ptype %s" % self.args[0])
+
+    def do_gdboffset(self, _):
+        """
+        Print offset calculated by gdb
+        """
+        if len(self.args) < 2:
+            print(
+                "USAGE: %s offset struct member" % sys.argv[0],
+                file=sys.stderr)
+            return 1
+        gdb(self.args[0], f"print &(({self.args[0]} *) 0)->{self.args[1]}")
+ 
+    def do_exit(self, _):
         """
         Exit
         """
         return True
 
-    def do_quit(self, arg):
+    def do_quit(self, _):
         """
         Exit
         """
