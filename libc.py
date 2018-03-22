@@ -213,7 +213,7 @@ class Shell(cmd.Cmd):
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(
             CXX_HEADER +
-            "int main(int argc, char** argv) { std::cout << (%s) << std::endl; }"
+            "int main(int argc, char** argv) { std::cout << \"0x\" << std::hex << (%s) << std::endl; }"
             % self.args[0])
         f.flush()
         execute(f)
@@ -230,7 +230,7 @@ class Shell(cmd.Cmd):
             return 1
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(CXX_HEADER +
-                "int main() { std::cout << sizeof(%s) << std::endl; }" %
+                "int main() { std::cout << \"0x\" << std::hex << sizeof(%s) << std::endl; }" %
                 (self.args[0]))
         f.flush()
         execute(f)
