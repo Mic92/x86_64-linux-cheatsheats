@@ -37,10 +37,10 @@ int (void const*, void const*, unsigned long)
 16
 > offset "struct timeval" "tv_usec"
 8
-> quit
 > members "struct timeval"
 struct timeval {
     __time_t tv_sec;
     __suseconds_t tv_usec;
 }
+> quit
 ```
