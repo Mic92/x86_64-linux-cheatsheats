@@ -213,7 +213,7 @@ class Shell(cmd.Cmd):
         f = tempfile.NamedTemporaryFile(mode="w+")
         f.write(
             CXX_HEADER +
-            "int main(int argc, char** argv) { std::cout << \"0x\" << std::hex << (%s) << std::endl; }"
+            "int main(int argc, char** argv) { std::cout << (%s) << std::endl; }"
             % self.args[0])
         f.flush()
         execute(f)
