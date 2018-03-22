@@ -190,7 +190,7 @@ def gdb(arg, command):
     f.flush()
     subprocess.check_call(
         ["c++", "-std=c++11", "-g", "-o", "/tmp/main", "-w", "-x", "c++", f.name])
-    subprocess.check_call(["gdb", "--nh", "-batch", "-ex", command, "/tmp/main"])
+    return subprocess.check_output(["gdb", "--nh", "-batch", "-ex", command, "/tmp/main"]).decode("utf-8")
 
 
 class Shell(cmd.Cmd):
@@ -312,7 +312,8 @@ class Shell(cmd.Cmd):
         """
         Print type information using gdb. For structs print members
         """
-        gdb(self.args[0], "ptype %s" % self.args[0])
+        out = gdb(self.args[0], "ptype %s" % self.args[0])
+        print(out.replace("type = ", ""))
 
     def do_gdboffset(self, _):
         """
@@ -323,7 +324,7 @@ class Shell(cmd.Cmd):
                 "USAGE: %s offset struct member" % sys.argv[0],
                 file=sys.stderr)
             return 1
-        gdb(self.args[0], f"print &(({self.args[0]} *) 0)->{self.args[1]}")
+        print(gdb(self.args[0], f"print &(({self.args[0]} *) 0)->{self.args[1]}"))
  
     def do_exit(self, _):
         """
