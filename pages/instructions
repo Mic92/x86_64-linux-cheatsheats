@@ -960,10 +960,10 @@ EEXTEND         Extend Uninitialized Enclave Measurement by 256 Bytes
 EGETKEY         Retrieves a Cryptographic Key
 EINCVIRTCHILD   Increment VIRTCHILDCNT in SECS
 EINIT           Initialize an Enclave for Execution
-ELBUC           Load an EPC Page and Marked its State
-ELDB            Load an EPC Page and Marked its State
-ELDBC           Load an EPC Page and Marked its State
-ELDU            Load an EPC Page and Marked its State
+ELBUC           Load an EPC Page and Mark its State
+ELDB            Load an EPC Page and Mark its State
+ELDBC           Load an EPC Page and Mark its State
+ELDU            Load an EPC Page and Mark its State
 EMODPE          Extend an EPC Page Permissions
 EMODPR          Restrict the Permissions of an EPC Page
 EMODT           Change the Type of an EPC Page
@@ -996,6 +996,10 @@ VMXOFF          Leave VMX Operation
 VMXON           Enter VMX Operation
 
 PREFETCHWT1     Prefetch Vector Data Into Caches with Intent to Write and T1 Hint
+V4FMADDPS       Packed Single-Precision Floating-Point Fused Multiply-Add (4-iterations)
+V4FMADDSS       Scalar Single-Precision Floating-Point Fused Multiply-Add (4-iterations)
+V4FNMADDPS      Packed Single-Precision Floating-Point Fused Multiply-Add (4-iterations)
+V4FNMADDSS      Scalar Single-Precision Floating-Point Fused Multiply-Add (4-iterations)
 VEXP2PD         Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error
 VEXP2PS         Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error
 VGATHERPF0DPD   Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T0 Hint
@@ -1006,6 +1010,8 @@ VGATHERPF1DPD   Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Sign
 VGATHERPF1DPS   Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
 VGATHERPF1QPD   Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
 VGATHERPF1QPS   Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
+VP4DPWSSD       Dot Product of Signed Words with Dword Accumulation (4-iterations)
+VP4DPWSSDS      Dot Product of Signed Words with Dword Accumulation and Saturation (4-iterations)
 VRCP28PD        Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error
 VRCP28PS        Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error
 VRCP28SD        Approximation to the Reciprocal of Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error
