@@ -45,3 +45,13 @@ struct timeval {
 }
 > quit
 ```
+
+## Introspect the linux kernel (limited)
+
+(only offset implemented so far)
+
+```
+python3 libc.py repl
+> offset "struct task_struct" "state"
+$1 = 16
+```
