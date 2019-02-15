@@ -14,6 +14,7 @@ $ cheat instructions
 $ cheat ADD
 $ cheat signals
 $ cheat SIGHUP
+$ cheat printf
 ```
 
 ## Introspect libc

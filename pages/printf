@@ -1,0 +1,18 @@
+(simplified for x86_64, not portable; but ok for debugging)
+
+uint8_t,uint16_t,uint32_t,size_t   %u
+int8_t,int16_t,int32_t,ssize_t     %d
+uint64_t                         %llu
+int64_t                          %lld
+size_t                            %zu
+ssize_t                           %zd
+float                        %f, %.6f
+double                            %lf
+void*                              %p
+intptr_t                         %llx
+char*, char[]                      %s
+
+copy'n'paste snippet
+
+#include <stdio.h>
+fprintf(stderr, "%s() at %s:%d\n", __func__, __FILE__, __LINE__);
