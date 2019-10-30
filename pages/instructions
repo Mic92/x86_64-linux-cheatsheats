@@ -221,8 +221,9 @@ INSB            Input from Port to String
 INSD            Input from Port to String
 INSERTPS        Insert Scalar Single-Precision Floating-Point Value
 INSW            Input from Port to String
-INT 3           Call to Interrupt Procedure
 INT n           Call to Interrupt Procedure
+INT1            Call to Interrupt Procedure
+INT3            Call to Interrupt Procedure
 INTO            Call to Interrupt Procedure
 INVD            Invalidate Internal Caches
 INVLPG          Invalidate TLB Entries
