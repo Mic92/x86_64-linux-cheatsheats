@@ -3,13 +3,22 @@ with import <nixpkgs> {};
 let
   # Replace this with your kernel version!
   kernel = linux;
+
+  gems = bundlerEnv {
+    name = "x86-cheatsheets";
+    inherit ruby;
+    gemdir = ./.;
+  };
 in stdenv.mkDerivation {
   name = "env";
   buildInputs = [
     bashInteractive
-    ruby.devEnv
+    # when updating bundle
+    #ruby.devEnv
+    ruby
+    gems
     libxml2
-    #pandoc
+    pandoc
     python3
   ];
 
