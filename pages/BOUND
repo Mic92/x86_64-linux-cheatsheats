@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 BOUND — CHECK ARRAY INDEX AGAINST BOUNDS
 
 
-  Opcode    Instruction           Op/En   64-bit Mode   Compat/Leg Mode   Description
-  --------- --------------------- ------- ------------- ----------------- ----------------------------------------------------------------------
-  62 /_r_   BOUND _r16, m16&16_   RM      Invalid       Valid             Check if _r16_ (array index) is within bounds specified by _m16&16._
-  62 /_r_   BOUND _r32, m32&32_   RM      Invalid       Valid             Check if _r32_ (array index) is within bounds specified by _m32&32._
+  Opcode   Instruction           Op/En   64-bit Mode   Compat/Leg Mode   Description
+  -------- --------------------- ------- ------------- ----------------- ----------------------------------------------------------------------
+  62 /r    BOUND _r16, m16&16_   RM      Invalid       Valid             Check if _r16_ (array index) is within bounds specified by _m16&16._
+  62 /r    BOUND _r32, m32&32_   RM      Invalid       Valid             Check if _r32_ (array index) is within bounds specified by _m32&32._
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 BOUND determines if the first operand (array index) is within the bounds
 of an array specified the second operand (bounds operand). The array
@@ -47,7 +47,7 @@ This instruction executes as described in compatibility mode and legacy
 mode. It is not valid in 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     IF 64bit Mode
         THEN
@@ -61,12 +61,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #BR
 
@@ -99,7 +99,7 @@ If alignment checking is enabled and an unaligned memory reference is
 made while the current privilege level is 3.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #BR
 
@@ -121,7 +121,7 @@ GS segment limit.
 If a memory operand effective address is outside the SS segment limit.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #BR
 
@@ -152,12 +152,12 @@ If alignment checking is enabled and an unaligned memory reference is
 made.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- --------------------
   #UD   If in 64-bit mode.

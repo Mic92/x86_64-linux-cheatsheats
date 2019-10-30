@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -19,14 +19,14 @@ VPMOVDB/VPMOVSDB/VPMOVUSDB — DOWN CONVERT DWORD TO BYTE
   EVEX.512.F3.0F38.W0 11 /_r_ VPMOVUSDB _xmm1/m128 {k1}{z}, zmm2_   A         V/V                      AVX512F              Converts 16 packed unsigned double-word integers from _zmm2_ into 16 packed unsigned byte integers in _xmm1/m128_ using unsigned saturation under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type    Operand 1       Operand 2       Operand 3   Operand 4
   A       Quarter Mem   ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 VPMOVDB down converts 32-bit integer elements in the source operand (the
 second operand) into packed bytes using truncation. VPMOVSDB converts
@@ -44,9 +44,9 @@ destination operand are updated according to the writemask. Bits
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPMOVDB instruction (EVEX encoded versions) when dest is a register¶
+VPMOVDB instruction (EVEX encoded versions) when dest is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -65,7 +65,7 @@ VPMOVDB instruction (EVEX encoded versions) when dest is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/4] ← 0;
 
-VPMOVDB instruction (EVEX encoded versions) when dest is memory¶
+VPMOVDB instruction (EVEX encoded versions) when dest is memory ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -77,7 +77,7 @@ VPMOVDB instruction (EVEX encoded versions) when dest is memory¶
         FI;
     ENDFOR
 
-VPMOVSDB instruction (EVEX encoded versions) when dest is a register¶
+VPMOVSDB instruction (EVEX encoded versions) when dest is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -96,7 +96,7 @@ VPMOVSDB instruction (EVEX encoded versions) when dest is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/4] ← 0;
 
-VPMOVSDB instruction (EVEX encoded versions) when dest is memory¶
+VPMOVSDB instruction (EVEX encoded versions) when dest is memory ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -108,7 +108,7 @@ VPMOVSDB instruction (EVEX encoded versions) when dest is memory¶
         FI;
     ENDFOR
 
-VPMOVUSDB instruction (EVEX encoded versions) when dest is a register¶
+VPMOVUSDB instruction (EVEX encoded versions) when dest is a register ¶
 
         (KL, VL) = (4, 128), (8, 256), (16, 512)
         FOR j←0 TO KL-1
@@ -137,7 +137,7 @@ VPMOVUSDB instruction (EVEX encoded versions) when dest is a register¶
             FI;
         ENDFOR
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMOVDB __m128i _mm512_cvtepi32_epi8( __m512i a);
 
@@ -211,11 +211,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     VPMOVDB void _mm_mask_cvtepi32_storeu_epi8(void * , __mmask8 k, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E6.
 

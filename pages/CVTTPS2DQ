@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,7 +16,7 @@ CVTTPS2DQ — CONVERT WITH TRUNCATION PACKED SINGLE-PRECISION FLOATING-POINT VAL
   EVEX.512.F3.0F.W0 5B /r VCVTTPS2DQ zmm1 {k1}{z}, zmm2/m512/m32bcst {sae}   B       V/V                      AVX512F              Convert sixteen packed single-precision floating-point values from zmm2/m512/m32bcst to sixteen packed signed doubleword values in zmm1 using truncation subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   ------- ------------ --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts four, eight or sixteen packed single-precision floating-point
 values in the source operand to four, eight or sixteen signed doubleword
@@ -61,9 +61,9 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-VCVTTPS2DQ (EVEX encoded versions) when src operand is a register¶
+VCVTTPS2DQ (EVEX encoded versions) when src operand is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -81,7 +81,7 @@ VCVTTPS2DQ (EVEX encoded versions) when src operand is a register¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTTPS2DQ (EVEX encoded versions) when src operand is a memory source¶
+VCVTTPS2DQ (EVEX encoded versions) when src operand is a memory source ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO 15
@@ -106,7 +106,7 @@ VCVTTPS2DQ (EVEX encoded versions) when src operand is a memory source¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTTPS2DQ (VEX.256 encoded version)¶
+VCVTTPS2DQ (VEX.256 encoded version) ¶
 
     DEST[31:0] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[31:0])
     DEST[63:32] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[63:32])
@@ -117,7 +117,7 @@ VCVTTPS2DQ (VEX.256 encoded version)¶
     DEST[223:192] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[223:192])
     DEST[255:224] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[255:224])
 
-VCVTTPS2DQ (VEX.128 encoded version)¶
+VCVTTPS2DQ (VEX.128 encoded version) ¶
 
     DEST[31:0] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[31:0])
     DEST[63:32] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[63:32])
@@ -125,7 +125,7 @@ VCVTTPS2DQ (VEX.128 encoded version)¶
     DEST[127:96] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[127:96])
     DEST[MAXVL-1:128] ←0
 
-CVTTPS2DQ (128-bit Legacy SSE version)¶
+CVTTPS2DQ (128-bit Legacy SSE version) ¶
 
     DEST[31:0] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[31:0])
     DEST[63:32] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[63:32])
@@ -134,7 +134,7 @@ CVTTPS2DQ (128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTTPS2DQ __m512i _mm512_cvttps_epi32( __m512 a);
 
@@ -161,12 +161,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     CVTTPS2DQ __m128i _mm_cvttps_epi32 (__m128 a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 2; additionally
 

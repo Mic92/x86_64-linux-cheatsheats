@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VGETMANTPS — EXTRACT FLOAT32 VECTOR OF NORMALIZED MANTISSAS FROM FLOAT32 VECTO
   EVEX.512.66.0F3A.W0 26 /r ib VGETMANTPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}, imm8   A       V/V                      AVX512F              Get normalized mantissa from float32 vector zmm2/m512/m32bcst and store the result in zmm1, using imm8 for sign control and mantissa interval normalization, under writemask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Convert single-precision floating values in the source operand (the
 second operand) to SP FP values with the mantissa normalization and sign
@@ -67,7 +67,7 @@ in k1 retain their previous values.
 Note: EVEX.vvvv is reserved and must be 1111b, VEX.L must be 0;
 otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
     GetNormalizeMantissaSP(SRC[31:0] , SignCtrl[1:0], Interv[1:0])
     {
@@ -136,7 +136,7 @@ Operation¶
         Return (DEST);
     }
 
-VGETMANTPS (EVEX encoded versions)¶
+VGETMANTPS (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     SignCtrl[1:0] ← IMM8[3:2];
@@ -161,7 +161,7 @@ VGETMANTPS (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETMANTPS __m512 _mm512_getmant_ps( __m512 a, enum intv, enum sgn);
 
@@ -187,11 +187,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETMANTPS __m128 _mm_maskz_getmant_ps( __mmask8 k, __m128 a, enum intv, enum sgn);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Denormal, Invalid
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

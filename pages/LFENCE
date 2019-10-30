@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ LFENCE — LOAD FENCE
   NP 0F AE E8   LFENCE        ZO      Valid         Valid             Serializes load operations.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a serializing operation on all load-from-memory instructions
 that were issued prior the LFENCE instruction. Specifically, LFENCE does
@@ -30,7 +30,7 @@ LFENCE receives data from memory prior to completion of the LFENCE. (An
 LFENCE that follows an instruction that stores to memory might complete
 BEFORE the data being stored have become globally visible.) Instructions
 following an LFENCE may be fetched from memory before the LFENCE, but
-they will not execute until the LFENCE completes.
+they will not execute (even speculatively) until the LFENCE completes.
 
 Weakly ordered memory types can be used to achieve higher processor
 performance through such techniques as out-of-order issue and
@@ -57,17 +57,17 @@ ModR/M byte. Thus, LFENCE is encoded by any opcode of the form 0F AE Ex,
 where x is in the range 8-F.
 
 
-Operation¶
+Operation ¶
 
     Wait_On_Following_Instructions_Until(preceding_instructions_complete);
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_lfence(void)
 
 
-Exceptions (All Modes of Operation)¶
+Exceptions (All Modes of Operation) ¶
 
 #UD If CPUID.01H:EDX.SSE2[bit 26] = 0.
 

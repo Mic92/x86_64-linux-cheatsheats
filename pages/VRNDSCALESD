@@ -1,30 +1,30 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VRNDSCALESD — ROUND SCALAR FLOAT64 VALUE TO INCLUDE A GIVEN NUMBER OF FRACTION BITS
 
 
-  Opcode/Instruction                                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F3A.W1 0B /r ib VRNDSCALESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512F              Rounds scalar double-precision floating-point value in xmm3/m64 to a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register.
+  Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F3A.W1 0B /r ib VRNDSCALESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512F              Rounds scalar double-precision floating-point value in xmm3/m64 to a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   Imm8
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Rounds a double-precision floating-point value in the low quadword (see
-Figure 5-29) element the second source operand (the third operand) by
+Figure 5-29) element of the second source operand (the third operand) by
 the rounding mode specified in the immediate operand and places the
 result in the corresponding element of the destination operand (the
-third operand) according to the writemask. The quadword element at bits
+first operand) according to the writemask. The quadword element at bits
 127:64 of the destination is copied from the first source operand (the
 second operand).
 
@@ -79,7 +79,7 @@ memory location. The destination operand is a XMM register.
 
 Handling of special case of input values are listed in Table 5-25.
 
-Operation¶
+Operation ¶
 
     RoundToIntegerDP(SRC[63:0], imm8[7:0]) {
         if (imm8[2] = 1)
@@ -118,7 +118,7 @@ Operation¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRNDSCALESD __m128d _mm_roundscale_sd ( __m128d a, __m128d b, int imm);
 
@@ -132,14 +132,14 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRNDSCALESD __m128d _mm_maskz_roundscale_round_sd ( __mmask8 k, __m128d a, __m128d b, int imm, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 If SPE is enabled, precision exception is not reported (regardless of
 MXCSR exception mask).
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

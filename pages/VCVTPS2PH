@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -15,7 +15,7 @@ VCVTPS2PH — CONVERT SINGLE-PRECISION FP VALUE TO 16-BIT FP VALUE
   EVEX.512.66.0F3A.W0 1D /r ib VCVTPS2PH ymm1/m256 {k1}{z}, zmm2{sae}, imm8   B         V/V                      AVX512F              Convert sixteen packed single-precision floating-point values in zmm2 to packed half-precision (16-bit) floating-point values in ymm1/m256. Imm8 provides rounding controls.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   B       Half Mem     ModRM:r/m (w)   ModRM:reg (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Convert packed single-precision floating values in the source operand to
 half-precision (16-bit) floating-point values and store to the
@@ -112,7 +112,7 @@ destination operand is a YMM/XMM/XMM (low 64-bits) register or a
 Bits (MAXVL-1:256/128/64) of the corresponding destination register are
 zeroed.
 
-Operation¶
+Operation ¶
 
     vCvt_s2h(SRC1[31:0])
     {
@@ -124,7 +124,7 @@ Operation¶
     FI;
     }
 
-VCVTPS2PH (EVEX encoded versions) when dest is a register¶
+VCVTPS2PH (EVEX encoded versions) when dest is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -144,7 +144,7 @@ VCVTPS2PH (EVEX encoded versions) when dest is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0
 
-VCVTPS2PH (EVEX encoded versions) when dest is memory¶
+VCVTPS2PH (EVEX encoded versions) when dest is memory ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -159,7 +159,7 @@ VCVTPS2PH (EVEX encoded versions) when dest is memory¶
         FI;
     ENDFOR
 
-VCVTPS2PH (VEX.256 encoded version)¶
+VCVTPS2PH (VEX.256 encoded version) ¶
 
     DEST[15:0] ←vCvt_s2h(SRC1[31:0]);
     DEST[31:16] ←vCvt_s2h(SRC1[63:32]);
@@ -171,7 +171,7 @@ VCVTPS2PH (VEX.256 encoded version)¶
     DEST[127:112] ←vCvt_s2h(SRC1[255:224]);
     DEST[MAXVL-1:128] ← 0
 
-VCVTPS2PH (VEX.128 encoded version)¶
+VCVTPS2PH (VEX.128 encoded version) ¶
 
     DEST[15:0] ←vCvt_s2h(SRC1[31:0]);
     DEST[31:16] ←vCvt_s2h(SRC1[63:32]);
@@ -179,11 +179,11 @@ VCVTPS2PH (VEX.128 encoded version)¶
     DEST[63:48] ←vCvt_s2h(SRC1[127:96]);
     DEST[MAXVL-1:64] ← 0
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTPS2PH __m256i _mm512_cvtps_ph(__m512 a);
 
@@ -209,11 +209,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTPS2PH __m128i _mm256_cvtps_ph(__m256 m1, const int imm);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Underflow, Overflow, Precision, Denormal (if MXCSR.DAZ=0);
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 11 (do not report #AC);
 

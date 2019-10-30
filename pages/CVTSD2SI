@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -23,7 +23,7 @@ CVTSD2SI — CONVERT SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE TO DOUBLEWORD 
   as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type     Operand 1       Operand 2       Operand 3   Operand 4
@@ -32,7 +32,7 @@ Instruction Operand Encoding¶
   ------- -------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts a double-precision floating-point value in the source operand
 (the second operand) to a signed double-word integer in the destination
@@ -67,9 +67,9 @@ VCVTSD2SI with VEX.L=1 may encounter unpredictable behavior across
 different processor generations.
 
 
-Operation¶
+Operation ¶
 
-VCVTSD2SI (EVEX encoded version)¶
+VCVTSD2SI (EVEX encoded version) ¶
 
     IF SRC *is register* AND (EVEX.b = 1)
         THEN
@@ -82,7 +82,7 @@ VCVTSD2SI (EVEX encoded version)¶
         ELSE DEST[31:0] ← Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0]);
     FI
 
-(V)CVTSD2SI¶
+(V)CVTSD2SI ¶
 
     IF 64-Bit Mode and OperandSize = 64
     THEN
@@ -92,7 +92,7 @@ VCVTSD2SI (EVEX encoded version)¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTSD2SI int _mm_cvtsd_i32(__m128d);
 
@@ -107,12 +107,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     CVTSD2SI int _mm_cvtsd_si32(__m128d a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3;
 

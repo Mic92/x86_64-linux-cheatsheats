@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ BNDMOV — MOVE BOUNDS
   66 0F 1B /r BNDMOV bnd1/m128, bnd2   MR      V/NE                     MPX                  Move lower and upper bound from bnd2 to bound register bnd1/m128.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- -----------
   Op/En   Operand 1       Operand 2       Operand 3
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 BNDMOV moves a pair of lower and upper bound values from the source
 operand (the second operand) to the destination (the first operand).
@@ -40,14 +40,14 @@ Figure 3-5. Memory Layout of BNDMOV to/from Memory
 This instruction does not change flags.
 
 
-Operation¶
+Operation ¶
 
-BNDMOV register to register¶
+BNDMOV register to register ¶
 
     DEST.LB ← SRC.LB;
     DEST.UB ← SRC.UB;
 
-BNDMOV from memory¶
+BNDMOV from memory ¶
 
     IF 64-bit mode THEN
             DEST.LB ← LOAD_QWORD(SRC);
@@ -57,7 +57,7 @@ BNDMOV from memory¶
             DEST.UB ← LOAD_DWORD_ZERO_EXT(SRC+4);
     FI;
 
-BNDMOV to memory¶
+BNDMOV to memory ¶
 
     IF 64-bit mode THEN
             DEST[63:0] ← SRC.LB;
@@ -68,17 +68,17 @@ BNDMOV to memory¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BNDMOV void * _bnd_copy_ptr_bounds(const void *q, const void *r)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -114,7 +114,7 @@ made while CPL is 3.
 code) If a page fault occurs.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
@@ -134,7 +134,7 @@ or GS segment limit.
 If the memory operand effective address is outside the SS segment limit.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
@@ -163,12 +163,12 @@ made while CPL is 3.
 code) If a page fault occurs.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #UD
 

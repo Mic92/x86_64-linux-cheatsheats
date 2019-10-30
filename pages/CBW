@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ CBW/CWDE/CDQE — CONVERT BYTE TO WORD/CONVERT WORD TO DOUBLEWORD/CONVERT DOUBLE
   REX.W + 98   CDQE          ZO      Valid         N.E.              RAX ← sign-extend of EAX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Double the size of the source operand by means of sign extension. The
 CBW (convert byte to word) instruction copies the sign (bit 7) in the
@@ -43,7 +43,7 @@ copies the sign (bit 31) of the doubleword in the EAX register into the
 high 32 bits of RAX.
 
 
-Operation¶
+Operation ¶
 
     IF OperandSize = 16 (* Instruction = CBW *)
         THEN
@@ -55,12 +55,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

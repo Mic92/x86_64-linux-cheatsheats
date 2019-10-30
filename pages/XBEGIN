@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ XBEGIN — TRANSACTIONAL BEGIN
   C7 F8 XBEGIN rel32   A       V/V                     RTM                  Specifies the start of an RTM region. Provides a 32-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ---------- ---------- ----------
   Op/En   Operand 1   Operand2   Operand3   Operand4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- ----------- ---------- ---------- ----------
 
 
-Description¶
+Description ¶
 
 The XBEGIN instruction specifies the start of an RTM code region. If the
 logical processor was not already in transactional execution, then the
@@ -38,9 +38,9 @@ XBEGIN instruction. The fallback address following an abort is computed
 from the outermost XBEGIN instruction.
 
 
-Operation¶
+Operation ¶
 
-XBEGIN¶
+XBEGIN ¶
 
     IF RTM_NEST_COUNT < MAX_RTM_NEST_COUNT
         THEN
@@ -84,22 +84,22 @@ XBEGIN¶
     END
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     XBEGIN: unsigned int _xbegin( void );
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -112,7 +112,7 @@ If LOCK prefix is used.
 If the fallback address is outside the CS segment.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP(0)
 
@@ -125,7 +125,7 @@ CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
 If LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -138,12 +138,12 @@ CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
 If LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-bit Mode Exceptions¶
+64-bit Mode Exceptions ¶
 
 #UD
 

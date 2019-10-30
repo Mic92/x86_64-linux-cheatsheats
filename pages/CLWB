@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,9 +11,9 @@ CLWB — CACHE LINE WRITE BACK
   66 0F AE /6 CLWB m8   M       V/V                      CLWB                 Writes back modified cache line containing m8, and may retain the line in cache hierarchy in non-modified state.
 
 
-Instruction Operand Encoding¹¶
+Instruction Operand Encoding¹ ¶
 
-  1. ModRM.MOD != 011B
+  1. The Mod field of the ModR/M byte cannot have value 11B.
 
   -----------------------------------------------
   Op/En Operand 1 Operand 2 Operand 3 Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¹¶
   -----------------------------------------------
 
 
-Description¶
+Description ¶
 
 Writes back to memory the cache line (if modified) that contains the
 linear address specified with the memory operand from any level of the
@@ -78,22 +78,22 @@ instruction to force a transactional abort, since whether they cause
 transactional abort is implementation dependent.
 
 
-Operation¶
+Operation ¶
 
     Cache_Line_Write_Back(m8);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     CLWB void _mm_clwb(void const *p);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -115,7 +115,7 @@ For an illegal address in the SS segment.
 For a page fault.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
@@ -129,7 +129,7 @@ If any part of the operand lies outside the effective address space from
 0 to FFFFH.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
@@ -138,12 +138,12 @@ Same exceptions as in real address mode.
   ----------------- -------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #UD
 

@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSHUFB — PACKED SHUFFLE BYTES
 
 
-  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------
-  NP 0F 38 00 /r¹ PSHUFB _mm1, mm2/m64_                                  A       V/V                      SSSE3                Shuffle bytes in _mm1_ according to contents of _mm2/m64_.
-  66 0F 38 00 /r PSHUFB _xmm1, xmm2/m128_                                A       V/V                      SSSE3                Shuffle bytes in _xmm1_ according to contents of _xmm2/m128_.
-  VEX.NDS.128.66.0F38.WIG 00 /r VPSHUFB _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Shuffle bytes in _xmm2_ according to contents of _xmm3/m128_.
-  VEX.NDS.256.66.0F38.WIG 00 /r VPSHUFB _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Shuffle bytes in _ymm2_ according to contents of _ymm3/m256_.
-  EVEX.NDS.128.66.0F38.WIG 00 /r VPSHUFB xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Shuffle bytes in xmm2 according to contents of xmm3/m128 under write mask k1.
-  EVEX.NDS.256.66.0F38.WIG 00 /r VPSHUFB ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Shuffle bytes in ymm2 according to contents of ymm3/m256 under write mask k1.
-  EVEX.NDS.512.66.0F38.WIG 00 /r VPSHUFB zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Shuffle bytes in zmm2 according to contents of zmm3/m512 under write mask k1.
+  Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------
+  NP 0F 38 00 /r¹ PSHUFB _mm1, mm2/m64_                              A       V/V                      SSSE3                Shuffle bytes in _mm1_ according to contents of _mm2/m64_.
+  66 0F 38 00 /r PSHUFB _xmm1, xmm2/m128_                            A       V/V                      SSSE3                Shuffle bytes in _xmm1_ according to contents of _xmm2/m128_.
+  VEX.128.66.0F38.WIG 00 /r VPSHUFB _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Shuffle bytes in _xmm2_ according to contents of _xmm3/m128_.
+  VEX.256.66.0F38.WIG 00 /r VPSHUFB _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Shuffle bytes in _ymm2_ according to contents of _ymm3/m256_.
+  EVEX.128.66.0F38.WIG 00 /r VPSHUFB xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Shuffle bytes in xmm2 according to contents of xmm3/m128 under write mask k1.
+  EVEX.256.66.0F38.WIG 00 /r VPSHUFB ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Shuffle bytes in ymm2 according to contents of ymm3/m256 under write mask k1.
+  EVEX.512.66.0F38.WIG 00 /r VPSHUFB zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Shuffle bytes in zmm2 according to contents of zmm3/m512 under write mask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PSHUFB — PACKED SHUFFLE BYTES
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 PSHUFB performs in-place shuffles of bytes in the destination operand
 (the first operand) according to the shuffle control mask in the source
@@ -80,9 +80,9 @@ conditionally updated with writemask k1.
 EVEX and VEX encoded version: Four/two in-lane 128-bit shuffles.
 
 
-Operation¶
+Operation ¶
 
-PSHUFB (with 64 bit operands)¶
+PSHUFB (with 64 bit operands) ¶
 
     TEMP ← DEST
     for i = 0 to 7 {
@@ -94,7 +94,7 @@ PSHUFB (with 64 bit operands)¶
         endif;
     }
 
-PSHUFB (with 128 bit operands)¶
+PSHUFB (with 128 bit operands) ¶
 
     TEMP ← DEST
     for i = 0 to 15 {
@@ -106,7 +106,7 @@ PSHUFB (with 128 bit operands)¶
         endif
     }
 
-VPSHUFB (VEX.128 encoded version)¶
+VPSHUFB (VEX.128 encoded version) ¶
 
     for i = 0 to 15 {
         if (SRC2[(i * 8)+7] = 1) then
@@ -118,7 +118,7 @@ VPSHUFB (VEX.128 encoded version)¶
     }
     DEST[MAXVL-1:128] ← 0
 
-VPSHUFB (VEX.256 encoded version)¶
+VPSHUFB (VEX.256 encoded version) ¶
 
     for i = 0 to 15 {
         if (SRC2[(i * 8)+7] == 1 ) then
@@ -135,7 +135,7 @@ VPSHUFB (VEX.256 encoded version)¶
         endif
     }
 
-VPSHUFB (EVEX encoded versions)¶
+VPSHUFB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     jmask←(KL-1) & ~0xF
@@ -160,7 +160,7 @@ MM1 04H 04H 00H 00H FFH 01H 01H 01H
 Figure 4-15. PSHUFB with 64-Bit Operands
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSHUFB __m512i _mm512_shuffle_epi8(__m512i a, __m512i b);
 
@@ -183,12 +183,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPSHUFB:__m256i _mm256_shuffle_epi8(__m256i a, __m256i b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

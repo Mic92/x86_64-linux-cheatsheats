@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VCVTUDQ2PD — CONVERT PACKED UNSIGNED DOUBLEWORD INTEGERS TO PACKED DOUBLE-PREC
   EVEX.512.F3.0F.W0 7A /r VCVTUDQ2PD zmm1 {k1}{z}, ymm2/m256/m32bcst   A       V/V                      AVX512F              Convert eight packed unsigned doubleword integers from ymm2/m256/m32bcst to eight packed double-precision floating-point values in zmm1 with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Half         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts packed unsigned doubleword integers in the source operand
 (second operand) to packed double-precision floating-point values in the
@@ -37,9 +37,9 @@ ignored.
 Note: EVEX.vvvv is reserved and must be 1111b, otherwise instructions
 will #UD.
 
-Operation¶
+Operation ¶
 
-VCVTUDQ2PD (EVEX encoded versions) when src operand is a register¶
+VCVTUDQ2PD (EVEX encoded versions) when src operand is a register ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -58,7 +58,7 @@ VCVTUDQ2PD (EVEX encoded versions) when src operand is a register¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTUDQ2PD (EVEX encoded versions) when src operand is a memory source¶
+VCVTUDQ2PD (EVEX encoded versions) when src operand is a memory source ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -84,7 +84,7 @@ VCVTUDQ2PD (EVEX encoded versions) when src operand is a memory source¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTUDQ2PD __m512d _mm512_cvtepu32_pd( __m256i a);
 
@@ -104,11 +104,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTUDQ2PD __m128d _mm_maskz_cvtepu32_pd( __mmask8 k, __m128i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instructions, see Exceptions Type E5.
 

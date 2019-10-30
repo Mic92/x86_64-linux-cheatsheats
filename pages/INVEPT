@@ -1,17 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 INVEPT — INVALIDATE TRANSLATIONS DERIVED FROM EPT
 
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  OPCODE INSTRUCTION DESCRIPTION 66 0F 38 80 INVEPT r64, m128 Invalidates EPT-derived entries in the TLBs and paging-structure caches (in 64-bit mode) 66 0F 38 80 INVEPT r32, m128 Invalidates EPT-derived entries in the TLBs and paging-structure caches (outside 64-bit mode)
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Opcode/Instruction             Op/En   Description
+  ------------------------------ ------- ------------------------------------------------------------------------------------------------
+  66 0F 38 80 INVEPT r64, m128   RM      Invalidates EPT-derived entries in the TLBs and paging-structure caches (in 64-bit mode).
+  66 0F 38 80 INVEPT r32, m128   RM      Invalidates EPT-derived entries in the TLBs and paging-structure caches (outside 64-bit mode).
 
 
-Description¶
+Instruction Operand Encoding ¶
+
+  ------- --------------- --------------- ----------- -----------
+  Op/En   Operand 1       Operand 2       Operand 3   Operand 4
+  RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
+  ------- --------------- --------------- ----------- -----------
+
+
+Description ¶
 
 Invalidates mappings in the translation lookaside buffers (TLBs) and
 paging-structure caches that were derived from extended page tables
@@ -48,7 +57,7 @@ value in bits 63:0 (see Figure 30-1).
 Figure 30-1. INVEPT Descriptor
 
 
-Operation¶
+Operation ¶
 
     IF (not in VMX operation) or (CR0.PE = 0) or (RFLAGS.VM = 1) or (IA32_EFER.LMA = 1 and CS.L = 0)
         THEN #UD;
@@ -84,12 +93,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 See the operation section and Section 30.2.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -124,28 +133,28 @@ but does not support the INVEPT instruction
 (IA32_VMX_EPT_VPID_CAP[20]=0).
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------
   #UD   The INVEPT instruction is not recognized in real-address mode.
   ----- ----------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------
   #UD   The INVEPT instruction is not recognized in virtual-8086 mode.
   ----- ----------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The INVEPT instruction is not recognized in compatibility mode.
   ----- -----------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

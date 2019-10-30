@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ CMC — COMPLEMENT CARRY FLAG
   F5       CMC           ZO      Valid         Valid             Complement CF flag.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,24 +19,24 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Complements the CF flag in the EFLAGS register. CMC operation is the
 same in non-64-bit modes and 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     EFLAGS.CF[bit 0]← NOT EFLAGS.CF[bit 0];
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF flag contains the complement of its original value. The OF, ZF,
 SF, AF, and PF flags are unaffected.
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 MINPD — MINIMUM OF PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 5D /r MINPD xmm1, xmm2/m128                                               A       V/V                      SSE2                 Return the minimum double-precision floating-point values between xmm1 and xmm2/mem
-  VEX.NDS.128.66.0F.WIG 5D /r VMINPD xmm1, xmm2, xmm3/m128                        B       V/V                      AVX                  Return the minimum double-precision floating-point values between xmm2 and xmm3/mem.
-  VEX.NDS.256.66.0F.WIG 5D /r VMINPD ymm1, ymm2, ymm3/m256                        B       V/V                      AVX                  Return the minimum packed double-precision floating-point values between ymm2 and ymm3/mem.
-  EVEX.NDS.128.66.0F.W1 5D /r VMINPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst        C       V/V                      AVX512VL AVX512F     Return the minimum packed double-precision floating-point values between xmm2 and xmm3/m128/m64bcst and store result in xmm1 subject to writemask k1.
-  EVEX.NDS.256.66.0F.W1 5D /r VMINPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst        C       V/V                      AVX512VL AVX512F     Return the minimum packed double-precision floating-point values between ymm2 and ymm3/m256/m64bcst and store result in ymm1 subject to writemask k1.
-  EVEX.NDS.512.66.0F.W1 5D /r VMINPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}   C       V/V                      AVX512F              Return the minimum packed double-precision floating-point values between zmm2 and zmm3/m512/m64bcst and store result in zmm1 subject to writemask k1.
+  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 5D /r MINPD xmm1, xmm2/m128                                           A       V/V                      SSE2                 Return the minimum double-precision floating-point values between xmm1 and xmm2/mem
+  VEX.128.66.0F.WIG 5D /r VMINPD xmm1, xmm2, xmm3/m128                        B       V/V                      AVX                  Return the minimum double-precision floating-point values between xmm2 and xmm3/mem.
+  VEX.256.66.0F.WIG 5D /r VMINPD ymm1, ymm2, ymm3/m256                        B       V/V                      AVX                  Return the minimum packed double-precision floating-point values between ymm2 and ymm3/mem.
+  EVEX.128.66.0F.W1 5D /r VMINPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst        C       V/V                      AVX512VL AVX512F     Return the minimum packed double-precision floating-point values between xmm2 and xmm3/m128/m64bcst and store result in xmm1 subject to writemask k1.
+  EVEX.256.66.0F.W1 5D /r VMINPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst        C       V/V                      AVX512VL AVX512F     Return the minimum packed double-precision floating-point values between ymm2 and ymm3/m256/m64bcst and store result in ymm1 subject to writemask k1.
+  EVEX.512.66.0F.W1 5D /r VMINPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}   C       V/V                      AVX512F              Return the minimum packed double-precision floating-point values between zmm2 and zmm3/m512/m64bcst and store result in zmm1 subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD compare of the packed double-precision floating-point
 values in the first source operand and the second source operand and
@@ -66,7 +66,7 @@ an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
 
-Operation¶
+Operation ¶
 
     MIN(SRC1, SRC2)
     {
@@ -78,7 +78,7 @@ Operation¶
         FI;
     }
 
-VMINPD (EVEX encoded version)¶
+VMINPD (EVEX encoded version) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -101,26 +101,26 @@ VMINPD (EVEX encoded version)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMINPD (VEX.256 encoded version)¶
+VMINPD (VEX.256 encoded version) ¶
 
     DEST[63:0]←MIN(SRC1[63:0], SRC2[63:0])
     DEST[127:64]←MIN(SRC1[127:64], SRC2[127:64])
     DEST[191:128]←MIN(SRC1[191:128], SRC2[191:128])
     DEST[255:192]←MIN(SRC1[255:192], SRC2[255:192])
 
-VMINPD (VEX.128 encoded version)¶
+VMINPD (VEX.128 encoded version) ¶
 
     DEST[63:0]←MIN(SRC1[63:0], SRC2[63:0])
     DEST[127:64]←MIN(SRC1[127:64], SRC2[127:64])
     DEST[MAXVL-1:128] ←0
 
-MINPD (128-bit Legacy SSE version)¶
+MINPD (128-bit Legacy SSE version) ¶
 
     DEST[63:0]←MIN(SRC1[63:0], SRC2[63:0])
     DEST[127:64]←MIN(SRC1[127:64], SRC2[127:64])
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMINPD __m512d _mm512_min_pd( __m512d a, __m512d b);
 
@@ -146,11 +146,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MINPD __m128d _mm_min_pd (__m128d a, __m128d b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (including QNaN Source Operand), Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 2.
 

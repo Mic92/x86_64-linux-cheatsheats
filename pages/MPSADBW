@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 MPSADBW — COMPUTE MULTIPLE PACKED SUMS OF ABSOLUTE DIFFERENCE
 
 
-  Opcode/Instruction                                                        Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ---------------- -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 42 /r ib MPSADBW _xmm1, xmm2/m128, imm8_                         RMI     V/V              SSE4_1               Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm1_ and _xmm2/m128_ and writes the results in _xmm1_. Starting offsets within _xmm1_ and _xmm2/m128_ are determined by _imm8_.
-  VEX.NDS.128.66.0F3A.WIG 42 /r ib VMPSADBW _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V              AVX                  Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm2_ and _xmm3/m128_ and writes the results in _xmm1_. Starting offsets within _xmm2_ and _xmm3/m128_ are determined by _imm8_.
-  VEX.NDS.256.66.0F3A.WIG 42 /r ib VMPSADBW _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V              AVX2                 Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm2_ and _ymm3/m128_ and writes the results in _ymm1_. Starting offsets within _ymm2_ and _xmm3/m128_ are determined by _imm8_.
+  Opcode/Instruction                                                    Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ---------------- -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 42 /r ib MPSADBW _xmm1, xmm2/m128, imm8_                     RMI     V/V              SSE4_1               Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm1_ and _xmm2/m128_ and writes the results in _xmm1_. Starting offsets within _xmm1_ and _xmm2/m128_ are determined by _imm8_.
+  VEX.128.66.0F3A.WIG 42 /r ib VMPSADBW _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V              AVX                  Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm2_ and _xmm3/m128_ and writes the results in _xmm1_. Starting offsets within _xmm2_ and _xmm3/m128_ are determined by _imm8_.
+  VEX.256.66.0F3A.WIG 42 /r ib VMPSADBW _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V              AVX2                 Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm2_ and _ymm3/m128_ and writes the results in _ymm1_. Starting offsets within _ymm2_ and _xmm3/m128_ are determined by _imm8_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3       Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 (V)MPSADBW calculates packed word results of sum-absolute-difference
 (SAD) of unsigned bytes from two blocks of 32-bit dword elements, using
@@ -83,9 +83,9 @@ Imm[2]*32 Src1 Sum 16 0 1 Destination
 Figure 4-5. 256-bit VMPSADBW Operation
 
 
-Operation¶
+Operation ¶
 
-VMPSADBW (VEX.256 encoded version)¶
+VMPSADBW (VEX.256 encoded version) ¶
 
     BLK2_OFFSET ← imm8[1:0]*32
     BLK1_OFFSET ← imm8[2]*32
@@ -202,7 +202,7 @@ VMPSADBW (VEX.256 encoded version)¶
     TEMP3←ABS(SRC1_BYTE10 - SRC2_BYTE3)
     DEST[255:240]←TEMP0 + TEMP1 + TEMP2 + TEMP3
 
-VMPSADBW (VEX.128 encoded version)¶
+VMPSADBW (VEX.128 encoded version) ¶
 
     BLK2_OFFSET ← imm8[1:0]*32
     BLK1_OFFSET ← imm8[2]*32
@@ -263,7 +263,7 @@ VMPSADBW (VEX.128 encoded version)¶
     DEST[127:112]←TEMP0 + TEMP1 + TEMP2 + TEMP3
     DEST[MAXVL-1:128] ← 0
 
-MPSADBW (128-bit Legacy SSE version)¶
+MPSADBW (128-bit Legacy SSE version) ¶
 
     SRC_OFFSET ← imm8[1:0]*32
     DEST_OFFSET ← imm8[2]*32
@@ -325,19 +325,19 @@ MPSADBW (128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)MPSADBW: __m128i _mm_mpsadbw_epu8 (__m128i s1, __m128i s2, const int mask);
 
     VMPSADBW: __m256i _mm256_mpsadbw_epu8 (__m256i s1, __m256i s2, const int mask);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ FXRSTOR — RESTORE X87 FPU, MMX, XMM, AND MXCSR STATE
   NP REX.W + 0F AE /1 FXRSTOR64 _m512byte_   M       Valid         N.E.              Restore the x87 FPU, MMX, XMM, and MXCSR register state from _m512byte_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reloads the x87 FPU, MMX technology, XMM, and MXCSR registers from the
 512-byte memory image specified in the source operand. This data should
@@ -67,7 +67,7 @@ Bytes 464:511 of an FXSAVE image are available for software use. FXRSTOR
 ignores the content of bytes 464:511 in an FXSAVE state image.
 
 
-Operation¶
+Operation ¶
 
     IF 64-Bit Mode
         THEN
@@ -78,12 +78,12 @@ Operation¶
     FI;
 
 
-x87 FPU and SIMD Floating-Point Exceptions¶
+x87 FPU and SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -134,7 +134,7 @@ misalignments (4-, 8-, or 16-byte misalignments).
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -159,7 +159,7 @@ If CPUID.01H:EDX.FXSR[bit 24] = 0.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
@@ -170,12 +170,12 @@ Same exceptions as in real address mode.
   ----------------- ---------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

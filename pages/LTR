@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ LTR — LOAD TASK REGISTER
   0F 00 /3   LTR _r/m_16   M       Valid         Valid             Load _r/m_16 into task register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads the source operand into the segment selector field of the task
 register. The source operand (a general-purpose register or a memory
@@ -42,7 +42,7 @@ In 64-bit mode, the operand size is still fixed at 16 bits. The
 instruction references a 16-byte descriptor to load the 64-bit base.
 
 
-Operation¶
+Operation ¶
 
     IF SRC is a NULL selector
         THEN #GP(0);
@@ -59,12 +59,12 @@ Operation¶
     TaskRegister(SegmentDescriptor) ← TSSSegmentDescriptor;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -102,26 +102,26 @@ If a page fault occurs.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------
   #UD   The LTR instruction is not recognized in real-address mode.
   ----- -------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -------------------------------------------------------------
   #UD   The LTR instruction is not recognized in virtual-8086 mode.
   ----- -------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

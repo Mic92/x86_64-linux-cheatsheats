@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 CALL — CALL PROCEDURE
 
 
-  Opcode          Instruction       Op/En   64-bit Mode   Compat/Leg Mode   Description
-  --------------- ----------------- ------- ------------- ----------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  E8 _cw_         CALL _rel16_      M       N.S.          Valid             Call near, relative, displacement relative to next instruction.
-  E8 _cd_         CALL _rel32_      M       Valid         Valid             Call near, relative, displacement relative to next instruction. 32-bit displacement sign extended to 64-bits in 64-bit mode.
-  FF /2           CALL _r/m16_      M       N.E.          Valid             Call near, absolute indirect, address given in _r/m16._
-  FF /2           CALL _r/m32_      M       N.E.          Valid             Call near, absolute indirect, address given in _r/m32._
-  FF /2           CALL _r/m64_      M       Valid         N.E.              Call near, absolute indirect, address given in _r/m_64.
-  9A _cd_         CALL _ptr16:16_   D       Invalid       Valid             Call far, absolute, address given in operand.
-  9A _cp_         CALL _ptr16:32_   D       Invalid       Valid             Call far, absolute, address given in operand.
-  FF /3           CALL _m16:16_     M       Valid         Valid             Call far, absolute indirect address given in _m16:16._ In 32-bit mode: if selector points to a gate, then RIP = 32-bit zero extended displacement taken from gate; else RIP = zero extended 16-bit offset from far pointer referenced in the instruction.
-  FF /3           CALL _m16:32_     M       Valid         Valid             In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = zero extended 32-bit offset from far pointer referenced in the instruction.
-  REX.W + FF /3   CALL _m16:64_     M       Valid         N.E.              In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = 64-bit offset from far pointer referenced in the instruction.
+  Opcode        Instruction       Op/En   64-bit Mode   Compat/Leg Mode   Description
+  ------------- ----------------- ------- ------------- ----------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  E8 _cw_       CALL _rel16_      D       N.S.          Valid             Call near, relative, displacement relative to next instruction.
+  E8 _cd_       CALL _rel32_      D       Valid         Valid             Call near, relative, displacement relative to next instruction. 32-bit displacement sign extended to 64-bits in 64-bit mode.
+  FF /2         CALL _r/m16_      M       N.E.          Valid             Call near, absolute indirect, address given in _r/m16._
+  FF /2         CALL _r/m32_      M       N.E.          Valid             Call near, absolute indirect, address given in _r/m32._
+  FF /2         CALL _r/m64_      M       Valid         N.E.              Call near, absolute indirect, address given in _r/m_64.
+  9A _cd_       CALL _ptr16:16_   D       Invalid       Valid             Call far, absolute, address given in operand.
+  9A _cp_       CALL _ptr16:32_   D       Invalid       Valid             Call far, absolute, address given in operand.
+  FF /3         CALL _m16:16_     M       Valid         Valid             Call far, absolute indirect address given in _m16:16._ In 32-bit mode: if selector points to a gate, then RIP = 32-bit zero extended displacement taken from gate; else RIP = zero extended 16-bit offset from far pointer referenced in the instruction.
+  FF /3         CALL _m16:32_     M       Valid         Valid             In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = zero extended 32-bit offset from far pointer referenced in the instruction.
+  REX.W FF /3   CALL _m16:64_     M       Valid         N.E.              In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = 64-bit offset from far pointer referenced in the instruction.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -29,7 +29,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Saves procedure linking information on the stack and branches to the
 called procedure specified using the target operand. The target operand
@@ -339,8 +339,21 @@ and instruction pointer for the calling procedure’s code segment.
 branches to the address of the procedure being called within the new
 code segment.
 
+INSTRUCTION ORDERING. Instructions following a far call may be fetched
+from memory before earlier instructions complete execution, but they
+will not execute (even speculatively) until all instructions prior to
+the far call have completed execution (the later instructions may
+execute before data stored by the earlier instructions have become
+globally visible).
 
-Operation¶
+Certain situations may lead to the next sequential instruction after a
+near indirect CALL being speculatively executed. If software needs to
+prevent this (e.g., in order to prevent a speculative execution side
+channel), then an INT3 or LFENCE instruction opcode can be placed after
+the near indirect CALL in order to block speculative execution.
+
+
+Operation ¶
 
     IF near call
         THEN IF near relative call
@@ -702,13 +715,13 @@ Operation¶
     END;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 All flags are affected if a task switch occurs; no flags are affected if
 a task switch does not occur.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -814,7 +827,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -828,7 +841,7 @@ If the target offset is beyond the code segment limit.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -851,7 +864,7 @@ made.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
@@ -861,7 +874,7 @@ Same exceptions as in protected mode.
   --------------- -------------------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

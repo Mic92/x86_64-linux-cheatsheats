@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,9 +16,9 @@ MOVNTDQA — LOAD DOUBLE QUADWORD NON-TEMPORAL ALIGNED HINT
   EVEX.512.66.0F38.W0 2A /r VMOVNTDQA zmm1, m512   B         V/V                      AVX512F              Move 512-bit data from m512 to zmm using non-temporal hint if WC memory type.
 
 
-Instruction Operand Encoding¹¶
+Instruction Operand Encoding¹ ¶
 
-  1. ModRM.MOD = 011B required
+  1. ModRM.MOD != 011B
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¹¶
   B       Full Mem     ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 MOVNTDQA loads a double quadword from the source operand (second
 operand) to the destination operand (first operand) using a non-temporal
@@ -88,29 +88,29 @@ instruction will cause a #GP.
 The 512-bit VMOVNTDQA addresses must be 64-byte aligned or the
 instruction will cause a #GP.
 
-Operation¶
+Operation ¶
 
-MOVNTDQA (128bit- Legacy SSE form)¶
+MOVNTDQA (128bit- Legacy SSE form) ¶
 
     DEST ←SRC
     DEST[MAXVL-1:128] (Unmodified)
 
-VMOVNTDQA (VEX.128 and EVEX.128 encoded form)¶
+VMOVNTDQA (VEX.128 and EVEX.128 encoded form) ¶
 
     DEST ← SRC
     DEST[MAXVL-1:128] ← 0
 
-VMOVNTDQA (VEX.256 and EVEX.256 encoded forms)¶
+VMOVNTDQA (VEX.256 and EVEX.256 encoded forms) ¶
 
     DEST[255:0] ← SRC[255:0]
     DEST[MAXVL-1:256] ← 0
 
-VMOVNTDQA (EVEX.512 encoded form)¶
+VMOVNTDQA (EVEX.512 encoded form) ¶
 
     DEST[511:0] ← SRC[511:0]
     DEST[MAXVL-1:512] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVNTDQA __m512i _mm512_stream_load_si512(__m512i const* p);
 
@@ -118,11 +118,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VMOVNTDQA __m256i _mm256_stream_load_si256 (__m256i const* p);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type1;
 

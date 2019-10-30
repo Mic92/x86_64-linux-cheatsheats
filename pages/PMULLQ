@@ -1,25 +1,25 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PMULLD/PMULLQ — MULTIPLY PACKED INTEGERS AND STORE LOW RESULT
 
 
-  Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 40 /r PMULLD xmm1, xmm2/m128                                         A       V/V                      SSE4_1               Multiply the packed dword signed integers in xmm1 and xmm2/m128 and store the low 32 bits of each product in xmm1.
-  VEX.NDS.128.66.0F38.WIG 40 /r VPMULLD xmm1, xmm2, xmm3/m128                   B       V/V                      AVX                  Multiply the packed dword signed integers in xmm2 and xmm3/m128 and store the low 32 bits of each product in xmm1.
-  VEX.NDS.256.66.0F38.WIG 40 /r VPMULLD ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Multiply the packed dword signed integers in ymm2 and ymm3/m256 and store the low 32 bits of each product in ymm1.
-  EVEX.NDS.128.66.0F38.W0 40 /r VPMULLD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Multiply the packed dword signed integers in xmm2 and xmm3/m128/m32bcst and store the low 32 bits of each product in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F38.W0 40 /r VPMULLD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Multiply the packed dword signed integers in ymm2 and ymm3/m256/m32bcst and store the low 32 bits of each product in ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F38.W0 40 /r VPMULLD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Multiply the packed dword signed integers in zmm2 and zmm3/m512/m32bcst and store the low 32 bits of each product in zmm1 under writemask k1.
-  EVEX.NDS.128.66.0F38.W1 40 /r VPMULLQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512DQ    Multiply the packed qword signed integers in xmm2 and xmm3/m128/m64bcst and store the low 64 bits of each product in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F38.W1 40 /r VPMULLQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512DQ    Multiply the packed qword signed integers in ymm2 and ymm3/m256/m64bcst and store the low 64 bits of each product in ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F38.W1 40 /r VPMULLQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512DQ             Multiply the packed qword signed integers in zmm2 and zmm3/m512/m64bcst and store the low 64 bits of each product in zmm1 under writemask k1.
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 40 /r PMULLD xmm1, xmm2/m128                                     A       V/V                      SSE4_1               Multiply the packed dword signed integers in xmm1 and xmm2/m128 and store the low 32 bits of each product in xmm1.
+  VEX.128.66.0F38.WIG 40 /r VPMULLD xmm1, xmm2, xmm3/m128                   B       V/V                      AVX                  Multiply the packed dword signed integers in xmm2 and xmm3/m128 and store the low 32 bits of each product in xmm1.
+  VEX.256.66.0F38.WIG 40 /r VPMULLD ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Multiply the packed dword signed integers in ymm2 and ymm3/m256 and store the low 32 bits of each product in ymm1.
+  EVEX.128.66.0F38.W0 40 /r VPMULLD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Multiply the packed dword signed integers in xmm2 and xmm3/m128/m32bcst and store the low 32 bits of each product in xmm1 under writemask k1.
+  EVEX.256.66.0F38.W0 40 /r VPMULLD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Multiply the packed dword signed integers in ymm2 and ymm3/m256/m32bcst and store the low 32 bits of each product in ymm1 under writemask k1.
+  EVEX.512.66.0F38.W0 40 /r VPMULLD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Multiply the packed dword signed integers in zmm2 and zmm3/m512/m32bcst and store the low 32 bits of each product in zmm1 under writemask k1.
+  EVEX.128.66.0F38.W1 40 /r VPMULLQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512DQ    Multiply the packed qword signed integers in xmm2 and xmm3/m128/m64bcst and store the low 64 bits of each product in xmm1 under writemask k1.
+  EVEX.256.66.0F38.W1 40 /r VPMULLQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512DQ    Multiply the packed qword signed integers in ymm2 and ymm3/m256/m64bcst and store the low 64 bits of each product in ymm1 under writemask k1.
+  EVEX.512.66.0F38.W1 40 /r VPMULLQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512DQ             Multiply the packed qword signed integers in zmm2 and zmm3/m512/m64bcst and store the low 64 bits of each product in zmm1 under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -28,7 +28,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD signed multiply of the packed signed dword/qword
 integers from each element of the first source operand with the
@@ -56,9 +56,9 @@ register. The second source operand is a ZMM/YMM/XMM register, a
 from a 32/64-bit memory location. The destination operand is
 conditionally updated based on writemask k1.
 
-Operation¶
+Operation ¶
 
-VPMULLQ (EVEX encoded versions)¶
+VPMULLQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -79,7 +79,7 @@ VPMULLQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMULLD (EVEX encoded versions)¶
+VPMULLD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -101,7 +101,7 @@ VPMULLD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMULLD (VEX.256 encoded version)¶
+VPMULLD (VEX.256 encoded version) ¶
 
     Temp0[63:0]←SRC1[31:0] * SRC2[31:0]
     Temp1[63:0]←SRC1[63:32] * SRC2[63:32]
@@ -121,7 +121,7 @@ VPMULLD (VEX.256 encoded version)¶
     DEST[255:224] ← Temp7[31:0]
     DEST[MAXVL-1:256] ← 0
 
-VPMULLD (VEX.128 encoded version)¶
+VPMULLD (VEX.128 encoded version) ¶
 
     Temp0[63:0]←SRC1[31:0] * SRC2[31:0]
     Temp1[63:0]←SRC1[63:32] * SRC2[63:32]
@@ -133,7 +133,7 @@ VPMULLD (VEX.128 encoded version)¶
     DEST[127:96] ← Temp3[31:0]
     DEST[MAXVL-1:128] ← 0
 
-PMULLD (128-bit Legacy SSE version)¶
+PMULLD (128-bit Legacy SSE version) ¶
 
     Temp0[63:0]←DEST[31:0] * SRC[31:0]
     Temp1[63:0]←DEST[63:32] * SRC[63:32]
@@ -145,7 +145,7 @@ PMULLD (128-bit Legacy SSE version)¶
     DEST[127:96] ← Temp3[31:0]
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMULLD __m512i _mm512_mullo_epi32(__m512i a, __m512i b);
 
@@ -183,11 +183,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPMULLQ __m128i _mm_maskz_mullo_epi64( __mmask8 k, __m128i a, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ KSHIFTRW/KSHIFTRB/KSHIFTRQ/KSHIFTRD — SHIFT RIGHT MASK REGISTERS
   VEX.L0.66.0F3A.W0 31 /r KSHIFTRD k1, k2, imm8   RRI     V/V                      AVX512BW             Shift right 32 bits in k2 by immediate and write result in k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ---------------------------------------- -----------
   Op/En   Operand 1       Operand 2                                Operand 3
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- ---------------------------------------- -----------
 
 
-Description¶
+Description ¶
 
 Shifts 8/16/32/64 bits in the second operand (source operand) right by
 the count specified in immediate and place the least significant
@@ -32,9 +32,9 @@ zero if the count value is greater than 7 (for byte shift), 15 (for word
 shift), 31 (for doubleword shift) or 63 (for quadword shift).
 
 
-Operation¶
+Operation ¶
 
-KSHIFTRW¶
+KSHIFTRW ¶
 
     COUNT ← imm8[7:0]
     DEST[MAX_KL-1:0] ← 0
@@ -42,7 +42,7 @@ KSHIFTRW¶
         THEN DEST[15:0]←SRC1[15:0] >> COUNT;
     FI;
 
-KSHIFTRB¶
+KSHIFTRB ¶
 
     COUNT ← imm8[7:0]
     DEST[MAX_KL-1:0] ← 0
@@ -50,7 +50,7 @@ KSHIFTRB¶
         THEN DEST[7:0] ← SRC1[7:0] >> COUNT;
     FI;
 
-KSHIFTRQ¶
+KSHIFTRQ ¶
 
     COUNT ← imm8[7:0]
     DEST[MAX_KL-1:0] ← 0
@@ -58,7 +58,7 @@ KSHIFTRQ¶
         THEN DEST[63:0] ← SRC1[63:0] >> COUNT;
     FI;
 
-KSHIFTRD¶
+KSHIFTRD ¶
 
     COUNT ← imm8[7:0]
     DEST[MAX_KL-1:0] ← 0
@@ -67,22 +67,22 @@ KSHIFTRD¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     Compiler auto generates KSHIFTRW when needed.
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type K20.
 

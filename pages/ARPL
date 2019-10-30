@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -8,18 +8,18 @@ ARPL — ADJUST RPL FIELD OF SEGMENT SELECTOR
 
   Opcode    Instruction         Op/En   64-bit Mode   Compat/Leg Mode   Description
   --------- ------------------- ------- ------------- ----------------- ------------------------------------------------------
-  63 /_r_   ARPL _r/m16, r16_   ZO      N. E.         Valid             Adjust RPL of _r/m16_ to not less than RPL of _r16._
+  63 /_r_   ARPL _r/m16, r16_   MR      N. E.         Valid             Adjust RPL of _r/m16_ to not less than RPL of _r16._
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
-  ZO      ModRM:r/m (w)   ModRM:reg (r)   NA          NA
+  MR      ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Compares the RPL fields of two segment selectors. The first operand (the
 destination operand) contains one segment selector and the second
@@ -56,7 +56,7 @@ Developer’s Manual, Volume 3A_, for more information about the use of
 this instruction.
 
 
-Operation¶
+Operation ¶
 
     IF 64-BIT MODE
         THEN
@@ -72,13 +72,13 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The ZF flag is set to 1 if the RPL field of the destination operand is
 less than that of the source operand; otherwise, it is set to 0.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -108,7 +108,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
@@ -117,7 +117,7 @@ The ARPL instruction is not recognized in real-address mode.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
@@ -126,12 +126,12 @@ The ARPL instruction is not recognized in virtual-8086 mode.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Not applicable.
 

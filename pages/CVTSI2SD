@@ -1,25 +1,25 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 CVTSI2SD — CONVERT DOUBLEWORD INTEGER TO SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                            Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------- --------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
-  F2 0F 2A /r CVTSI2SD xmm1, r32/m32                            A         V/V                      SSE2                 Convert one signed doubleword integer from r32/m32 to one double-precision floating-point value in xmm1.
-  F2 REX.W 0F 2A /r CVTSI2SD xmm1, r/m64                        A         V/N.E.                   SSE2                 Convert one signed quadword integer from r/m64 to one double-precision floating-point value in xmm1.
-  VEX.NDS.LIG.F2.0F.W0 2A /r VCVTSI2SD xmm1, xmm2, r/m32        B         V/V                      AVX                  Convert one signed doubleword integer from r/m32 to one double-precision floating-point value in xmm1.
-  VEX.NDS.LIG.F2.0F.W1 2A /r VCVTSI2SD xmm1, xmm2, r/m64        B         V/N.E.¹                  AVX                  Convert one signed quadword integer from r/m64 to one double-precision floating-point value in xmm1.
-  EVEX.NDS.LIG.F2.0F.W0 2A /r VCVTSI2SD xmm1, xmm2, r/m32       C         V/V                      AVX512F              Convert one signed doubleword integer from r/m32 to one double-precision floating-point value in xmm1.
-  EVEX.NDS.LIG.F2.0F.W1 2A /r VCVTSI2SD xmm1, xmm2, r/m64{er}   C         V/N.E.¹                  AVX512F              Convert one signed quadword integer from r/m64 to one double-precision floating-point value in xmm1.
+  Opcode/Instruction                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------- --------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
+  F2 0F 2A /r CVTSI2SD xmm1, r32/m32                        A         V/V                      SSE2                 Convert one signed doubleword integer from r32/m32 to one double-precision floating-point value in xmm1.
+  F2 REX.W 0F 2A /r CVTSI2SD xmm1, r/m64                    A         V/N.E.                   SSE2                 Convert one signed quadword integer from r/m64 to one double-precision floating-point value in xmm1.
+  VEX.LIG.F2.0F.W0 2A /r VCVTSI2SD xmm1, xmm2, r/m32        B         V/V                      AVX                  Convert one signed doubleword integer from r/m32 to one double-precision floating-point value in xmm1.
+  VEX.LIG.F2.0F.W1 2A /r VCVTSI2SD xmm1, xmm2, r/m64        B         V/N.E.¹                  AVX                  Convert one signed quadword integer from r/m64 to one double-precision floating-point value in xmm1.
+  EVEX.LIG.F2.0F.W0 2A /r VCVTSI2SD xmm1, xmm2, r/m32       C         V/V                      AVX512F              Convert one signed doubleword integer from r/m32 to one double-precision floating-point value in xmm1.
+  EVEX.LIG.F2.0F.W1 2A /r VCVTSI2SD xmm1, xmm2, r/m64{er}   C         V/N.E.¹                  AVX512F              Convert one signed quadword integer from r/m64 to one double-precision floating-point value in xmm1.
 
   1. VEX.W1/EVEX.W1 in non-64 bit is ignored; the instructions behaves
   as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
@@ -29,7 +29,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Converts a signed doubleword integer (or signed quadword integer if
 operand size is 64 bits) in the “convert-from” source operand to a
@@ -67,9 +67,9 @@ VCVTSI2SD with VEX.L=1 may encounter unpredictable behavior across
 different processor generations.
 
 
-Operation¶
+Operation ¶
 
-VCVTSI2SD (EVEX encoded version)¶
+VCVTSI2SD (EVEX encoded version) ¶
 
     IF (SRC2 *is register*) AND (EVEX.b = 1)
         THEN
@@ -86,7 +86,7 @@ VCVTSI2SD (EVEX encoded version)¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-VCVTSI2SD (VEX.128 encoded version)¶
+VCVTSI2SD (VEX.128 encoded version) ¶
 
     IF 64-Bit Mode And OperandSize = 64
     THEN
@@ -97,7 +97,7 @@ VCVTSI2SD (VEX.128 encoded version)¶
     DEST[127:64] ←SRC1[127:64]
     DEST[MAXVL-1:128] ←0
 
-CVTSI2SD¶
+CVTSI2SD ¶
 
     IF 64-Bit Mode And OperandSize = 64
     THEN
@@ -108,7 +108,7 @@ CVTSI2SD¶
     DEST[MAXVL-1:64] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTSI2SD __m128d _mm_cvti32_sd(__m128d s, int a);
 
@@ -121,12 +121,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     CVTSI2SD __m128d_mm_cvtsi32_sd(__m128d a, int b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3 if W1, else Type 5.
 

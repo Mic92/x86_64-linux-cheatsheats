@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ VERR/VERW — VERIFY A SEGMENT FOR READING OR WRITING
   0F 00 /5   VERW _r/m16_   M       Valid         Valid             Set ZF=1 if segment specified with _r/m16_ can be written.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Verifies whether the code or data segment specified with the source
 operand is readable (VERR) or writable (VERW) from the current privilege
@@ -55,7 +55,7 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode. The operand size is fixed at 16 bits.
 
 
-Operation¶
+Operation ¶
 
     IF SRC(Offset) > (GDTR(Limit) or (LDTR(Limit))
         THEN ZF ← 0; FI;
@@ -74,13 +74,13 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The ZF flag is set to 1 if the segment is accessible and readable (VERR)
 or writable (VERW); otherwise, it is set to 0.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 The only exceptions generated for these instructions are those related
 to illegal addressing of the source operand.
@@ -111,7 +111,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
@@ -120,7 +120,7 @@ The VERR and VERW instructions are not recognized in real-address mode.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
@@ -129,12 +129,12 @@ The VERR and VERW instructions are not recognized in virtual-8086 mode.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

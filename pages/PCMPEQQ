@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PCMPEQQ — COMPARE PACKED QWORD DATA FOR EQUAL
 
 
-  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 29 /r PCMPEQQ _xmm1, xmm2/m128_                                  A       V/V                      SSE4_1               Compare packed qwords in _xmm2/m128_ and _xmm1_ for equality.
-  VEX.NDS.128.66.0F38.WIG 29 /r VPCMPEQQ _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed quadwords in _xmm3/m128_ and _xmm2_ for equality.
-  VEX.NDS.256.66.0F38.WIG 29 /r VPCMPEQQ _ymm1, ymm2, ymm3 /m256_           B       V/V                      AVX2                 Compare packed quadwords in _ymm3/m256_ and _ymm2_ for equality.
-  EVEX.NDS.128.66.0F38.W1 29 /r VPCMPEQQ k1 {k2}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Compare Equal between int64 vector xmm2 and int64 vector xmm3/m128/m64bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.256.66.0F38.W1 29 /r VPCMPEQQ k1 {k2}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Compare Equal between int64 vector ymm2 and int64 vector ymm3/m256/m64bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.512.66.0F38.W1 29 /r VPCMPEQQ k1 {k2}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Compare Equal between int64 vector zmm2 and int64 vector zmm3/m512/m64bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 29 /r PCMPEQQ _xmm1, xmm2/m128_                              A       V/V                      SSE4_1               Compare packed qwords in _xmm2/m128_ and _xmm1_ for equality.
+  VEX.128.66.0F38.WIG 29 /r VPCMPEQQ _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed quadwords in _xmm3/m128_ and _xmm2_ for equality.
+  VEX.256.66.0F38.WIG 29 /r VPCMPEQQ _ymm1, ymm2, ymm3 /m256_           B       V/V                      AVX2                 Compare packed quadwords in _ymm3/m256_ and _ymm2_ for equality.
+  EVEX.128.66.0F38.W1 29 /r VPCMPEQQ k1 {k2}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Compare Equal between int64 vector xmm2 and int64 vector xmm3/m128/m64bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.256.66.0F38.W1 29 /r VPCMPEQQ k1 {k2}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Compare Equal between int64 vector ymm2 and int64 vector ymm3/m256/m64bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.512.66.0F38.W1 29 /r VPCMPEQQ k1 {k2}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Compare Equal between int64 vector zmm2 and int64 vector zmm3/m512/m64bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs an SIMD compare for equality of the packed quadwords in the
 destination operand (first operand) and the source operand (second
@@ -55,9 +55,9 @@ broadcasted from a 64-bit memory location. The destination operand
 k2.
 
 
-Operation¶
+Operation ¶
 
-PCMPEQQ (with 128-bit operands)¶
+PCMPEQQ (with 128-bit operands) ¶
 
     IF (DEST[63:0] = SRC[63:0])
         THEN DEST[63:0]←FFFFFFFFFFFFFFFFH;
@@ -67,7 +67,7 @@ PCMPEQQ (with 128-bit operands)¶
         ELSE DEST[127:64]←0; FI;
     DEST[MAXVL-1:128] (Unmodified)
 
-COMPARE_QWORDS_EQUAL (SRC1, SRC2)¶
+COMPARE_QWORDS_EQUAL (SRC1, SRC2) ¶
 
     IF SRC1[63:0] = SRC2[63:0]
     THEN DEST[63:0]←FFFFFFFFFFFFFFFFH;
@@ -76,18 +76,18 @@ COMPARE_QWORDS_EQUAL (SRC1, SRC2)¶
     THEN DEST[127:64]←FFFFFFFFFFFFFFFFH;
     ELSE DEST[127:64]←0; FI;
 
-VPCMPEQQ (VEX.128 encoded version)¶
+VPCMPEQQ (VEX.128 encoded version) ¶
 
     DEST[127:0] ←COMPARE_QWORDS_EQUAL(SRC1,SRC2)
     DEST[MAXVL-1:128] ← 0
 
-VPCMPEQQ (VEX.256 encoded version)¶
+VPCMPEQQ (VEX.256 encoded version) ¶
 
     DEST[127:0] ←COMPARE_QWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
     DEST[255:128] ←COMPARE_QWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
     DEST[MAXVL-1:256] ← 0
 
-VPCMPEQQ (EVEX encoded versions)¶
+VPCMPEQQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -108,7 +108,7 @@ VPCMPEQQ (EVEX encoded versions)¶
     DEST[MAX_KL-1:KL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPCMPEQQ __mmask8 _mm512_cmpeq_epi64_mask( __m512i a, __m512i b);
 
@@ -127,17 +127,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPCMPEQQ: __m256i _mm256_cmpeq_epi64( __m256i a, __m256i b);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

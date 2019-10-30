@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VGETEXPPS — CONVERT EXPONENTS OF PACKED SP FP VALUES TO SP FP VALUES
   EVEX.512.66.0F38.W0 42 /r VGETEXPPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}   A       V/V                      AVX512F              Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Extracts the biased exponents from the normalized SP FP representation
 of each dword element of the source operand (the second operand) as
@@ -64,7 +64,7 @@ src1 = NaN
 
 QNaN(src1)
 
-No Exceptions
+If (SRC = SNaN) then #IE If (SRC = denormal) then #DE
 
 0 < |src1| < INF
 
@@ -93,7 +93,7 @@ normalized representation.
 
 Figure 5-14. VGETEXPPS Functionality On Normal Input values
 
-Operation¶
+Operation ¶
 
     NormalizeExpTinySPFP(SRC[31:0])
     {
@@ -153,7 +153,7 @@ Operation¶
         }
     }
 
-VGETEXPPS (EVEX encoded versions)¶
+VGETEXPPS (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -180,7 +180,7 @@ VGETEXPPS (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETEXPPS __m512 _mm512_getexp_ps( __m512 a);
 
@@ -206,11 +206,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETEXPPS __m128 _mm_maskz_getexp_ps( __mmask8 k, __m128 a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

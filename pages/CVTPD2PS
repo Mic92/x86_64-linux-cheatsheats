@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,7 +16,7 @@ CVTPD2PS — CONVERT PACKED DOUBLE-PRECISION FLOATING-POINT VALUES TO PACKED SIN
   EVEX.512.66.0F.W1 5A /r VCVTPD2PS ymm1 {k1}{z}, zmm2/m512/m64bcst{er}   B       V/V                      AVX512F              Convert eight packed double-precision floating-point values in zmm2/m512/m64bcst to eight single-precision floating-point values in ymm1with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   ------- ------------ --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts two, four or eight packed double-precision floating-point
 values in the source operand (second operand) to two, four or eight
@@ -67,9 +67,9 @@ X1 X0 X3 X2 SRC DEST 0 X3 X2 X1 X0
 Figure 3-13. VCVTPD2PS (VEX.256 encoded version)
 
 
-Operation¶
+Operation ¶
 
-VCVTPD2PS (EVEX encoded version) when src operand is a register¶
+VCVTPD2PS (EVEX encoded version) when src operand is a register ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -94,7 +94,7 @@ VCVTPD2PS (EVEX encoded version) when src operand is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0
 
-VCVTPD2PS (EVEX encoded version) when src operand is a memory source¶
+VCVTPD2PS (EVEX encoded version) when src operand is a memory source ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -118,7 +118,7 @@ VCVTPD2PS (EVEX encoded version) when src operand is a memory source¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0
 
-VCVTPD2PS (VEX.256 encoded version)¶
+VCVTPD2PS (VEX.256 encoded version) ¶
 
     DEST[31:0] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[63:0])
     DEST[63:32] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[127:64])
@@ -126,13 +126,13 @@ VCVTPD2PS (VEX.256 encoded version)¶
     DEST[127:96] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[255:192)
     DEST[MAXVL-1:128] ← 0
 
-VCVTPD2PS (VEX.128 encoded version)¶
+VCVTPD2PS (VEX.128 encoded version) ¶
 
     DEST[31:0] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[63:0])
     DEST[63:32] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[127:64])
     DEST[MAXVL-1:64] ← 0
 
-CVTPD2PS (128-bit Legacy SSE version)¶
+CVTPD2PS (128-bit Legacy SSE version) ¶
 
     DEST[31:0] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[63:0])
     DEST[63:32] ← Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[127:64])
@@ -140,7 +140,7 @@ CVTPD2PS (128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTPD2PS __m256 _mm512_cvtpd_ps( __m512d a);
 
@@ -167,12 +167,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     CVTPD2PS __m128 _mm_cvtpd_ps (__m128d a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision, Underflow, Overflow, Denormal
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 2;
 

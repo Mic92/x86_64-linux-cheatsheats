@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PALIGNR — PACKED ALIGN RIGHT
 
 
-  Opcode/Instruction                                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 3A 0F /r ib¹ PALIGNR _mm1, mm2/m64, imm8_                                  A       V/V                      SSSE3                Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in _imm8_ into _mm1_.
-  66 0F 3A 0F /r ib PALIGNR _xmm1, xmm2/m128, imm8_                                A       V/V                      SSSE3                Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in _imm8_ into _xmm1._
-  VEX.NDS.128.66.0F3A.WIG 0F /r ib VPALIGNR _xmm1, xmm2, xmm3/m128, imm8_          B       V/V                      AVX                  Concatenate _xmm2_ and _xmm3/m128_, extract byte aligned result shifted to the right by constant value in _imm8_ and result is stored in _xmm1_.
-  VEX.NDS.256.66.0F3A.WIG 0F /r ib VPALIGNR _ymm1, ymm2, ymm3/m256, imm8_          B       V/V                      AVX2                 Concatenate pairs of 16 bytes in ymm2 and _ymm3/m256_ into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in _imm8_ from each intermediate result, and two 16-byte results are stored in _ymm1_.
-  EVEX.NDS.128.66.0F3A.WIG 0F /r ib VPALIGNR xmm1 {k1}{z}, xmm2, xmm3/m128, imm8   C       V/V                      AVX512VL AVX512BW    Concatenate xmm2 and xmm3/m128 into a 32-byte intermediate result, extract byte aligned result shifted to the right by constant value in imm8 and result is stored in xmm1.
-  EVEX.NDS.256.66.0F3A.WIG 0F /r ib VPALIGNR ymm1 {k1}{z}, ymm2, ymm3/m256, imm8   C       V/V                      AVX512VL AVX512BW    Concatenate pairs of 16 bytes in ymm2 and ymm3/m256 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.
-  EVEX.NDS.512.66.0F3A.WIG 0F /r ib VPALIGNR zmm1 {k1}{z}, zmm2, zmm3/m512, imm8   C       V/V                      AVX512BW             Concatenate pairs of 16 bytes in zmm2 and zmm3/m512 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and four 16-byte results are stored in zmm1.
+  Opcode/Instruction                                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 3A 0F /r ib¹ PALIGNR _mm1, mm2/m64, imm8_                              A       V/V                      SSSE3                Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in _imm8_ into _mm1_.
+  66 0F 3A 0F /r ib PALIGNR _xmm1, xmm2/m128, imm8_                            A       V/V                      SSSE3                Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in _imm8_ into _xmm1._
+  VEX.128.66.0F3A.WIG 0F /r ib VPALIGNR _xmm1, xmm2, xmm3/m128, imm8_          B       V/V                      AVX                  Concatenate _xmm2_ and _xmm3/m128_, extract byte aligned result shifted to the right by constant value in _imm8_ and result is stored in _xmm1_.
+  VEX.256.66.0F3A.WIG 0F /r ib VPALIGNR _ymm1, ymm2, ymm3/m256, imm8_          B       V/V                      AVX2                 Concatenate pairs of 16 bytes in ymm2 and _ymm3/m256_ into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in _imm8_ from each intermediate result, and two 16-byte results are stored in _ymm1_.
+  EVEX.128.66.0F3A.WIG 0F /r ib VPALIGNR xmm1 {k1}{z}, xmm2, xmm3/m128, imm8   C       V/V                      AVX512VL AVX512BW    Concatenate xmm2 and xmm3/m128 into a 32-byte intermediate result, extract byte aligned result shifted to the right by constant value in imm8 and result is stored in xmm1.
+  EVEX.256.66.0F3A.WIG 0F /r ib VPALIGNR ymm1 {k1}{z}, ymm2, ymm3/m256, imm8   C       V/V                      AVX512VL AVX512BW    Concatenate pairs of 16 bytes in ymm2 and ymm3/m256 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.
+  EVEX.512.66.0F3A.WIG 0F /r ib VPALIGNR zmm1 {k1}{z}, zmm2, zmm3/m512, imm8   C       V/V                      AVX512BW             Concatenate pairs of 16 bytes in zmm2 and zmm3/m512 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and four 16-byte results are stored in zmm1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PALIGNR — PACKED ALIGN RIGHT
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 (V)PALIGNR concatenates the destination operand (the first operand) and
 the source operand (the second operand) into an intermediate composite,
@@ -101,33 +101,33 @@ SRC1 SRC2 Imm8[7:0]*8 128 255 128 255 SRC1 SRC2 Imm8[7:0]*8 128 127 0
 Figure 4-7. 256-bit VPALIGN Instruction Operation
 
 
-Operation¶
+Operation ¶
 
-PALIGNR (with 64-bit operands)¶
+PALIGNR (with 64-bit operands) ¶
 
     temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8*8)
     DEST[63:0] = temp1[63:0]
 
-PALIGNR (with 128-bit operands)¶
+PALIGNR (with 128-bit operands) ¶
 
     temp1[255:0]←((DEST[127:0] << 128) OR SRC[127:0])>>(imm8*8);
     DEST[127:0] ← temp1[127:0]
     DEST[MAXVL-1:128] (Unmodified)
 
-VPALIGNR (VEX.128 encoded version)¶
+VPALIGNR (VEX.128 encoded version) ¶
 
     temp1[255:0]←((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8*8);
     DEST[127:0] ← temp1[127:0]
     DEST[MAXVL-1:128] ← 0
 
-VPALIGNR (VEX.256 encoded version)¶
+VPALIGNR (VEX.256 encoded version) ¶
 
     temp1[255:0]←((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8[7:0]*8);
     DEST[127:0] ← temp1[127:0]
     temp1[255:0]←((SRC1[255:128] << 128) OR SRC2[255:128])>>(imm8[7:0]*8);
     DEST[MAXVL-1:128] ← temp1[127:0]
 
-VPALIGNR (EVEX encoded versions)¶
+VPALIGNR (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR l←0 TO VL-1 with increments of 128
@@ -151,7 +151,7 @@ VPALIGNR (EVEX encoded versions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     PALIGNR: __m64 _mm_alignr_pi8 (__m64 a, __m64 b, int n)
 
@@ -172,12 +172,12 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPALIGNR __m128i _mm_maskz_alignr_epi8 (__mmask16 m, __m128i a, __m128i b, const int n)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

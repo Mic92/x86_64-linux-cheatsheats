@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -96,7 +96,7 @@ SSE2
 
 Add packed quadword integers from _xmm2/m128_ and _xmm1_.
 
-VEX.NDS.128.66.0F.WIG FC /_r_ VPADDB _xmm1, xmm2, xmm3/m128_
+VEX.128.66.0F.WIG FC /_r_ VPADDB _xmm1, xmm2, xmm3/m128_
 
 B
 
@@ -106,7 +106,7 @@ AVX
 
 Add packed byte integers from _xmm2, and xmm3/m128_ and store in _xmm1_.
 
-VEX.NDS.128.66.0F.WIG FD /_r_ VPADDW _xmm1, xmm2, xmm3/m128_
+VEX.128.66.0F.WIG FD /_r_ VPADDW _xmm1, xmm2, xmm3/m128_
 
 B
 
@@ -116,7 +116,7 @@ AVX
 
 Add packed word integers from _xmm2, xmm3/m128_ and _store in xmm1_.
 
-VEX.NDS.128.66.0F.WIG FE /_r_ VPADDD _xmm1, xmm2, xmm3/m128_
+VEX.128.66.0F.WIG FE /_r_ VPADDD _xmm1, xmm2, xmm3/m128_
 
 B
 
@@ -127,7 +127,7 @@ AVX
 Add packed doubleword integers from _xmm2, xmm3/m128_ and store in
 _xmm1_.
 
-VEX.NDS.128.66.0F.WIG D4 /_r_ VPADDQ _xmm1, xmm2, xmm3/m128_
+VEX.128.66.0F.WIG D4 /_r_ VPADDQ _xmm1, xmm2, xmm3/m128_
 
 B
 
@@ -137,7 +137,7 @@ AVX
 
 Add packed quadword integers from _xmm2, xmm3/m128_ and store in _xmm1_.
 
-VEX.NDS.256.66.0F.WIG FC /_r_ VPADDB _ymm1, ymm2, ymm3/m256_
+VEX.256.66.0F.WIG FC /_r_ VPADDB _ymm1, ymm2, ymm3/m256_
 
 B
 
@@ -147,7 +147,7 @@ AVX2
 
 Add packed byte integers from _ymm2, and ymm3/m256_ and store in _ymm1_.
 
-VEX.NDS.256.66.0F.WIG FD /_r_ VPADDW _ymm1, ymm2, ymm3/m256_
+VEX.256.66.0F.WIG FD /_r_ VPADDW _ymm1, ymm2, ymm3/m256_
 
 B
 
@@ -157,7 +157,7 @@ AVX2
 
 Add packed word integers from _ymm2, ymm3/m256_ and _store in ymm1_.
 
-VEX.NDS.256.66.0F.WIG FE /_r_ VPADDD _ymm1, ymm2, ymm3/m256_
+VEX.256.66.0F.WIG FE /_r_ VPADDD _ymm1, ymm2, ymm3/m256_
 
 B
 
@@ -168,7 +168,7 @@ AVX2
 Add packed doubleword integers from _ymm2, ymm3/m256_ and _store in
 ymm1_.
 
-VEX.NDS.256.66.0F.WIG D4 /_r_ VPADDQ _ymm1, ymm2, ymm3/m256_
+VEX.256.66.0F.WIG D4 /_r_ VPADDQ _ymm1, ymm2, ymm3/m256_
 
 B
 
@@ -178,7 +178,7 @@ AVX2
 
 Add packed quadword integers from _ymm2, ymm3/m256_ and store in _ymm1_.
 
-EVEX.NDS.128.66.0F.WIG FC /r VPADDB _xmm1 {k1}{z}, xmm2, xmm3/m128_
+EVEX.128.66.0F.WIG FC /r VPADDB _xmm1 {k1}{z}, xmm2, xmm3/m128_
 
 C
 
@@ -189,7 +189,7 @@ AVX512VL AVX512BW
 Add packed byte integers from _xmm2, and xmm3/m128_ and store in _xmm1_
 using writemask k1.
 
-EVEX.NDS.128.66.0F.WIG FD /r VPADDW _xmm1 {k1}{z}, xmm2, xmm3/m128_
+EVEX.128.66.0F.WIG FD /r VPADDW _xmm1 {k1}{z}, xmm2, xmm3/m128_
 
 C
 
@@ -200,8 +200,7 @@ AVX512VL AVX512BW
 Add packed word integers from _xmm2, and xmm3/m128_ and store in _xmm1_
 using writemask k1.
 
-EVEX.NDS.128.66.0F.W0 FE /r VPADDD _xmm1 {k1}{z}, xmm2,_
-xmm3/m128/m32bcst
+EVEX.128.66.0F.W0 FE /r VPADDD _xmm1 {k1}{z}, xmm2,_ xmm3/m128/m32bcst
 
 D
 
@@ -212,8 +211,7 @@ AVX512VL AVX512F
 Add packed doubleword integers from _xmm2, and xmm3/m128/m32bcst_ and
 store in _xmm1_ using writemask k1.
 
-EVEX.NDS.128.66.0F.W1 D4 /r VPADDQ _xmm1 {k1}{z}, xmm2,_
-xmm3/m128/m64bcst
+EVEX.128.66.0F.W1 D4 /r VPADDQ _xmm1 {k1}{z}, xmm2,_ xmm3/m128/m64bcst
 
 D
 
@@ -224,7 +222,7 @@ AVX512VL AVX512F
 Add packed quadword integers from _xmm2, and xmm3/m128/m64bcst_ and
 store in _xmm1_ using writemask k1.
 
-EVEX.NDS.256.66.0F.WIG FC /r VPADDB _ymm1 {k1}{z}, ymm2, ymm3/m256_
+EVEX.256.66.0F.WIG FC /r VPADDB _ymm1 {k1}{z}, ymm2, ymm3/m256_
 
 C
 
@@ -235,7 +233,7 @@ AVX512VL AVX512BW
 Add packed byte integers from _ymm2, and ymm3/m256_ and store in _ymm1_
 using writemask k1.
 
-EVEX.NDS.256.66.0F.WIG FD /r VPADDW _ymm1 {k1}{z}, ymm2, ymm3/m256_
+EVEX.256.66.0F.WIG FD /r VPADDW _ymm1 {k1}{z}, ymm2, ymm3/m256_
 
 C
 
@@ -246,8 +244,7 @@ AVX512VL AVX512BW
 Add packed word integers from _ymm2, and ymm3/m256_ and store in _ymm1_
 using writemask k1.
 
-EVEX.NDS.256.66.0F.W0 FE /r VPADDD _ymm1 {k1}{z}, ymm2,_
-ymm3/m256/m32bcst
+EVEX.256.66.0F.W0 FE /r VPADDD _ymm1 {k1}{z}, ymm2,_ ymm3/m256/m32bcst
 
 D
 
@@ -258,8 +255,7 @@ AVX512VL AVX512F
 Add packed doubleword integers from _ymm2, ymm3/m256/m32bcst_ and store
 in _ymm1_ using writemask k1.
 
-EVEX.NDS.256.66.0F.W1 D4 /r VPADDQ _ymm1 {k1}{z}, ymm2,_
-ymm3/m256/m64bcst
+EVEX.256.66.0F.W1 D4 /r VPADDQ _ymm1 {k1}{z}, ymm2,_ ymm3/m256/m64bcst
 
 D
 
@@ -270,7 +266,7 @@ AVX512VL AVX512F
 Add packed quadword integers from _ymm2, ymm3/m256/m64bcst_ and store in
 _ymm1_ using writemask k1.
 
-EVEX.NDS.512.66.0F.WIG FC /r VPADDB _zmm1 {k1}{z}, zmm2, zmm3/m512_
+EVEX.512.66.0F.WIG FC /r VPADDB _zmm1 {k1}{z}, zmm2, zmm3/m512_
 
 C
 
@@ -281,7 +277,7 @@ AVX512BW
 Add packed byte integers from _zmm2, and zmm3/m512_ and store in _zmm1_
 using writemask k1.
 
-EVEX.NDS.512.66.0F.WIG FD /r VPADDW _zmm1 {k1}{z}, zmm2, zmm3/m512_
+EVEX.512.66.0F.WIG FD /r VPADDW _zmm1 {k1}{z}, zmm2, zmm3/m512_
 
 C
 
@@ -292,8 +288,7 @@ AVX512BW
 Add packed word integers from _zmm2, and zmm3/m512_ and store in _zmm1_
 using writemask k1.
 
-EVEX.NDS.512.66.0F.W0 FE /_r_ VPADDD _zmm1 {k1}{z}, zmm2,_
-zmm3/m512/m32bcst
+EVEX.512.66.0F.W0 FE /_r_ VPADDD _zmm1 {k1}{z}, zmm2,_ zmm3/m512/m32bcst
 
 D
 
@@ -304,8 +299,7 @@ AVX512F
 Add packed doubleword integers from _zmm2, zmm3/m512/m32bcst_ and store
 in _zmm1_ using writemask k1.
 
-EVEX.NDS.512.66.0F.W1 D4 /_r_ VPADDQ _zmm1 {k1}{z}, zmm2,_
-zmm3/m512/m64bcst
+EVEX.512.66.0F.W1 D4 /_r_ VPADDQ _zmm1 {k1}{z}, zmm2,_ zmm3/m512/m64bcst
 
 D
 
@@ -324,7 +318,7 @@ the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
 Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -334,7 +328,7 @@ Instruction Operand Encoding¶
   D       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD add of the packed integers from the source operand
 (second operand) and the destination operand (first operand), and stores
@@ -406,109 +400,109 @@ The destination is not distinct from the first source XMM register and
 the upper bits (MAXVL-1:128) of the corresponding ZMM register
 destination are unmodified.
 
-Operation¶
+Operation ¶
 
-PADDB (with 64-bit operands)¶
+PADDB (with 64-bit operands) ¶
 
     DEST[7:0] ← DEST[7:0] + SRC[7:0];
     (* Repeat add operation for 2nd through 7th byte *)
     DEST[63:56] ← DEST[63:56] + SRC[63:56];
 
-PADDW (with 64-bit operands)¶
+PADDW (with 64-bit operands) ¶
 
     DEST[15:0] ← DEST[15:0] + SRC[15:0];
     (* Repeat add operation for 2nd and 3th word *)
     DEST[63:48] ← DEST[63:48] + SRC[63:48];
 
-PADDD (with 64-bit operands)¶
+PADDD (with 64-bit operands) ¶
 
     DEST[31:0] ← DEST[31:0] + SRC[31:0];
     DEST[63:32] ← DEST[63:32] + SRC[63:32];
 
-PADDQ (with 64-Bit operands)¶
+PADDQ (with 64-Bit operands) ¶
 
     DEST[63:0] ← DEST[63:0] + SRC[63:0];
 
-PADDB (Legacy SSE instruction)¶
+PADDB (Legacy SSE instruction) ¶
 
     DEST[7:0]← DEST[7:0] + SRC[7:0];
     (* Repeat add operation for 2nd through 15th byte *)
     DEST[127:120]← DEST[127:120] + SRC[127:120];
     DEST[MAXVL-1:128] (Unmodified)
 
-PADDW (Legacy SSE instruction)¶
+PADDW (Legacy SSE instruction) ¶
 
     DEST[15:0] ← DEST[15:0] + SRC[15:0];
     (* Repeat add operation for 2nd through 7th word *)
     DEST[127:112]← DEST[127:112] + SRC[127:112];
     DEST[MAXVL-1:128] (Unmodified)
 
-PADDD (Legacy SSE instruction)¶
+PADDD (Legacy SSE instruction) ¶
 
     DEST[31:0]← DEST[31:0] + SRC[31:0];
     (* Repeat add operation for 2nd and 3th doubleword *)
     DEST[127:96]← DEST[127:96] + SRC[127:96];
     DEST[MAXVL-1:128] (Unmodified)
 
-PADDQ (Legacy SSE instruction)¶
+PADDQ (Legacy SSE instruction) ¶
 
     DEST[63:0]← DEST[63:0] + SRC[63:0];
     DEST[127:64]← DEST[127:64] + SRC[127:64];
     DEST[MAXVL-1:128] (Unmodified)
 
-VPADDB (VEX.128 encoded instruction)¶
+VPADDB (VEX.128 encoded instruction) ¶
 
     DEST[7:0]← SRC1[7:0] + SRC2[7:0];
     (* Repeat add operation for 2nd through 15th byte *)
     DEST[127:120]← SRC1[127:120] + SRC2[127:120];
     DEST[MAXVL-1:128] ← 0;
 
-VPADDW (VEX.128 encoded instruction)¶
+VPADDW (VEX.128 encoded instruction) ¶
 
     DEST[15:0] ← SRC1[15:0] + SRC2[15:0];
     (* Repeat add operation for 2nd through 7th word *)
     DEST[127:112]← SRC1[127:112] + SRC2[127:112];
     DEST[MAXVL-1:128] ← 0;
 
-VPADDD (VEX.128 encoded instruction)¶
+VPADDD (VEX.128 encoded instruction) ¶
 
     DEST[31:0]← SRC1[31:0] + SRC2[31:0];
     (* Repeat add operation for 2nd and 3th doubleword *)
     DEST[127:96] ← SRC1[127:96] + SRC2[127:96];
     DEST[MAXVL-1:128] ← 0;
 
-VPADDQ (VEX.128 encoded instruction)¶
+VPADDQ (VEX.128 encoded instruction) ¶
 
     DEST[63:0]← SRC1[63:0] + SRC2[63:0];
     DEST[127:64] ← SRC1[127:64] + SRC2[127:64];
     DEST[MAXVL-1:128] ← 0;
 
-VPADDB (VEX.256 encoded instruction)¶
+VPADDB (VEX.256 encoded instruction) ¶
 
     DEST[7:0]← SRC1[7:0] + SRC2[7:0];
     (* Repeat add operation for 2nd through 31th byte *)
     DEST[255:248]← SRC1[255:248] + SRC2[255:248];
 
-VPADDW (VEX.256 encoded instruction)¶
+VPADDW (VEX.256 encoded instruction) ¶
 
     DEST[15:0] ← SRC1[15:0] + SRC2[15:0];
     (* Repeat add operation for 2nd through 15th word *)
     DEST[255:240]← SRC1[255:240] + SRC2[255:240];
 
-VPADDD (VEX.256 encoded instruction)¶
+VPADDD (VEX.256 encoded instruction) ¶
 
     DEST[31:0]← SRC1[31:0] + SRC2[31:0];
     (* Repeat add operation for 2nd and 7th doubleword *)
     DEST[255:224] ← SRC1[255:224] + SRC2[255:224];
 
-VPADDQ (VEX.256 encoded instruction)¶
+VPADDQ (VEX.256 encoded instruction) ¶
 
     DEST[63:0]← SRC1[63:0] + SRC2[63:0];
     DEST[127:64] ← SRC1[127:64] + SRC2[127:64];
     DEST[191:128]← SRC1[191:128] + SRC2[191:128];
     DEST[255:192] ← SRC1[255:192] + SRC2[255:192];
 
-VPADDB (EVEX encoded versions)¶
+VPADDB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -526,7 +520,7 @@ VPADDB (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPADDW (EVEX encoded versions)¶
+VPADDW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -544,7 +538,7 @@ VPADDW (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPADDD (EVEX encoded versions)¶
+VPADDD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -566,7 +560,7 @@ VPADDD (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPADDQ (EVEX encoded versions)¶
+VPADDQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -588,7 +582,7 @@ VPADDQ (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPADDB__m512i _mm512_add_epi8 ( __m512i a, __m512i b)
 
@@ -670,11 +664,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     PADDQ __m64 _mm_add_si64(__m64 m1, __m64 m2)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

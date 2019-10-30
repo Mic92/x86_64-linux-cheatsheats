@@ -1,28 +1,28 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPRORD/VPRORVD/VPRORQ/VPRORVQ — BIT ROTATE RIGHT
 
 
-  Opcode/Instruction                                                            Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F38.W0 14 /r VPRORVD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   B         V/V                      AVX512VL AVX512F     Rotate doublewords in xmm2 right by count in the corresponding element of xmm3/m128/m32bcst, store result using writemask k1.
-  EVEX.NDD.128.66.0F.W0 72 /0 ib VPRORD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate doublewords in xmm2/m128/m32bcst right by imm8, store result using writemask k1.
-  EVEX.NDS.128.66.0F38.W1 14 /r VPRORVQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   B         V/V                      AVX512VL AVX512F     Rotate quadwords in xmm2 right by count in the corresponding element of xmm3/m128/m64bcst, store result using writemask k1.
-  EVEX.NDD.128.66.0F.W1 72 /0 ib VPRORQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate quadwords in xmm2/m128/m64bcst right by imm8, store result using writemask k1.
-  EVEX.NDS.256.66.0F38.W0 14 /r VPRORVD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   B         V/V                      AVX512VL AVX512F     Rotate doublewords in ymm2 right by count in the corresponding element of ymm3/m256/m32bcst, store using result writemask k1.
-  EVEX.NDD.256.66.0F.W0 72 /0 ib VPRORD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate doublewords in ymm2/m256/m32bcst right by imm8, store result using writemask k1.
-  EVEX.NDS.256.66.0F38.W1 14 /r VPRORVQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   B         V/V                      AVX512VL AVX512F     Rotate quadwords in ymm2 right by count in the corresponding element of ymm3/m256/m64bcst, store result using writemask k1.
-  EVEX.NDD.256.66.0F.W1 72 /0 ib VPRORQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate quadwords in ymm2/m256/m64bcst right by imm8, store result using writemask k1.
-  EVEX.NDS.512.66.0F38.W0 14 /r VPRORVD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   B         V/V                      AVX512F              Rotate doublewords in zmm2 right by count in the corresponding element of zmm3/m512/m32bcst, store result using writemask k1.
-  EVEX.NDD.512.66.0F.W0 72 /0 ib VPRORD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   A         V/V                      AVX512F              Rotate doublewords in zmm2/m512/m32bcst right by imm8, store result using writemask k1.
-  EVEX.NDS.512.66.0F38.W1 14 /r VPRORVQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   B         V/V                      AVX512F              Rotate quadwords in zmm2 right by count in the corresponding element of zmm3/m512/m64bcst, store result using writemask k1.
-  EVEX.NDD.512.66.0F.W1 72 /0 ib VPRORQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   A         V/V                      AVX512F              Rotate quadwords in zmm2/m512/m64bcst right by imm8, store result using writemask k1.
+  Opcode/Instruction                                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F38.W0 14 /r VPRORVD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   B         V/V                      AVX512VL AVX512F     Rotate doublewords in xmm2 right by count in the corresponding element of xmm3/m128/m32bcst, store result using writemask k1.
+  EVEX.128.66.0F.W0 72 /0 ib VPRORD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate doublewords in xmm2/m128/m32bcst right by imm8, store result using writemask k1.
+  EVEX.128.66.0F38.W1 14 /r VPRORVQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   B         V/V                      AVX512VL AVX512F     Rotate quadwords in xmm2 right by count in the corresponding element of xmm3/m128/m64bcst, store result using writemask k1.
+  EVEX.128.66.0F.W1 72 /0 ib VPRORQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate quadwords in xmm2/m128/m64bcst right by imm8, store result using writemask k1.
+  EVEX.256.66.0F38.W0 14 /r VPRORVD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   B         V/V                      AVX512VL AVX512F     Rotate doublewords in ymm2 right by count in the corresponding element of ymm3/m256/m32bcst, store using result writemask k1.
+  EVEX.256.66.0F.W0 72 /0 ib VPRORD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate doublewords in ymm2/m256/m32bcst right by imm8, store result using writemask k1.
+  EVEX.256.66.0F38.W1 14 /r VPRORVQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   B         V/V                      AVX512VL AVX512F     Rotate quadwords in ymm2 right by count in the corresponding element of ymm3/m256/m64bcst, store result using writemask k1.
+  EVEX.256.66.0F.W1 72 /0 ib VPRORQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   A         V/V                      AVX512VL AVX512F     Rotate quadwords in ymm2/m256/m64bcst right by imm8, store result using writemask k1.
+  EVEX.512.66.0F38.W0 14 /r VPRORVD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   B         V/V                      AVX512F              Rotate doublewords in zmm2 right by count in the corresponding element of zmm3/m512/m32bcst, store result using writemask k1.
+  EVEX.512.66.0F.W0 72 /0 ib VPRORD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   A         V/V                      AVX512F              Rotate doublewords in zmm2/m512/m32bcst right by imm8, store result using writemask k1.
+  EVEX.512.66.0F38.W1 14 /r VPRORVQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   B         V/V                      AVX512F              Rotate quadwords in zmm2 right by count in the corresponding element of zmm3/m512/m64bcst, store result using writemask k1.
+  EVEX.512.66.0F.W1 72 /0 ib VPRORQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   A         V/V                      AVX512F              Rotate quadwords in zmm2/m512/m64bcst right by imm8, store result using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
@@ -30,7 +30,7 @@ Instruction Operand Encoding¶
   B       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Rotates the bits in the individual data elements (doublewords, or
 quadword) in the first source operand to the right by the number of bits
@@ -60,7 +60,7 @@ register and the counter operand (the third operand) is a ZMM register,
 a 512-bit memory location or a 512-bit vector broadcasted from a
 32/64-bit memory location.
 
-Operation¶
+Operation ¶
 
     RIGHT_ROTATE_DWORDS(SRC, COUNT_SRC)
     COUNT← COUNT_SRC modulo 32;
@@ -69,7 +69,7 @@ Operation¶
     COUNT← COUNT_SRC modulo 64;
     DEST[63:0]←(SRC >> COUNT) | (SRC << (64 - COUNT));
 
-VPRORD (EVEX encoded versions)¶
+VPRORD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -90,7 +90,7 @@ VPRORD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPRORVD (EVEX encoded versions)¶
+VPRORVD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -111,7 +111,7 @@ VPRORVD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPRORQ (EVEX encoded versions)¶
+VPRORQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -132,7 +132,7 @@ VPRORQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPRORVQ (EVEX encoded versions)¶
+VPRORVQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -153,7 +153,7 @@ VPRORVQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPRORD __m512i _mm512_ror_epi32(__m512i a, int imm);
 
@@ -227,11 +227,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPRORVQ __m128i _mm_maskz_rorv_epi64(__mmask8 k, __m128i a, __m128i cnt);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E4.
 

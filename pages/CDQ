@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ CWD/CDQ/CQO — CONVERT WORD TO DOUBLEWORD/CONVERT DOUBLEWORD TO QUADWORD
   REX.W + 99   CQO           ZO      Valid         N.E.              RDX:RAX← sign-extend of RAX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Doubles the size of the operand in register AX, EAX, or RAX (depending
 on the operand size) by means of sign extension and stores the result in
@@ -52,7 +52,7 @@ The CQO mnemonics reference the same opcode as CWD/CDQ. See the summary
 chart at the beginning of this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     IF OperandSize = 16 (* CWD instruction *)
         THEN
@@ -64,12 +64,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

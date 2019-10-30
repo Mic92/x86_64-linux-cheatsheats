@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ FSAVE/FNSAVE — STORE X87 FPU STATE
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
 
-Description¶
+Description ¶
 
 Stores the current FPU state (operating environment and register stack)
 at the specified destination in memory, and then re-initializes the FPU.
@@ -55,7 +55,7 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 For Intel math coprocessors and FPUs prior to the Intel Pentium
 processor, an FWAIT instruction should be executed before attempting to
@@ -74,7 +74,7 @@ interrupted in this way on later Intel processors, except for the Intel
 Quark^(TM) X1000 processor.
 
 
-Operation¶
+Operation ¶
 
     (* Save FPU State and Registers *)
     DEST[FPUControlWord] ← FPUControlWord;
@@ -100,17 +100,17 @@ Operation¶
     FPULastInstructionOpcode ← 0;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
 The C0, C1, C2, and C3 flags are saved and then cleared.
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -144,7 +144,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -154,7 +154,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -166,12 +166,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

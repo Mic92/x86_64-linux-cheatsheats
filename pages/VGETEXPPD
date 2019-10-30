@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VGETEXPPD — CONVERT EXPONENTS OF PACKED DP FP VALUES TO DP FP VALUES
   EVEX.512.66.0F38.W1 42 /r VGETEXPPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}   A       V/V                      AVX512F              Convert the exponent of packed double-precision floating-point values in the source operand to DP FP results representing unbiased integer exponents and stores the results in the destination under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Extracts the biased exponents from the normalized DP FP representation
 of each qword data element of the source operand (the second operand) as
@@ -59,7 +59,7 @@ src1 = NaN
 
 QNaN(src1)
 
-No Exceptions
+If (SRC = SNaN) then #IE If (SRC = denormal) then #DE
 
 0 < |src1| < INF
 
@@ -75,7 +75,7 @@ floor(log₂(|src1|))
 
 Table 5-14. VGETEXPPD/SD Special Cases
 
-Operation¶
+Operation ¶
 
     NormalizeExpTinyDPFP(SRC[63:0])
     {
@@ -135,7 +135,7 @@ Operation¶
         }
     }
 
-VGETEXPPD (EVEX encoded versions)¶
+VGETEXPPD (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -160,7 +160,7 @@ VGETEXPPD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETEXPPD __m512d _mm512_getexp_pd(__m512d a);
 
@@ -186,11 +186,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETEXPPD __m128d _mm_maskz_getexp_pd( __mmask8 k, __m128d a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

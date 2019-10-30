@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ SMSW — STORE MACHINE STATUS WORD
   REX.W + 0F 01 /4   SMSW _r64/m16_   M       Valid         Valid             Store machine status word in low-order 16 bits of _r64/m16_; high-order 16 bits of _r32_ are undefined.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Stores the machine status word (bits 0 through 15 of control register
 CR0) into the destination operand. The destination operand can be a
@@ -57,18 +57,18 @@ Developer’s Manual, Volume 3C_, for more information about the behavior
 of this instruction in VMX non-root operation.
 
 
-Operation¶
+Operation ¶
 
     DEST ← CR0[15:0];
     (* Machine status word *)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -100,7 +100,7 @@ made while CPL = 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   -------- -------------------------------------------------------------------------------------------
   #GP      If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -109,7 +109,7 @@ Real-Address Mode Exceptions¶
   -------- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -136,12 +136,12 @@ made.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

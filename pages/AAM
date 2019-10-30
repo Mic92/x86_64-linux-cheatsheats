@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ AAM — ASCII ADJUST AX AFTER MULTIPLY
   D4 _ib_   AAM imm8      ZO      Invalid       Valid             Adjust AX after multiply to number base _imm8._
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Adjusts the result of the multiplication of two unpacked BCD values to
 create a pair of unpacked (base 10) BCD values. The AX register is the
@@ -44,7 +44,7 @@ This instruction executes as described in compatibility mode and legacy
 mode. It is not valid in 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     IF 64-Bit Mode
         THEN
@@ -57,13 +57,13 @@ Operation¶
     The immediate value (imm8) is taken from the second byte of the instruction.
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The SF, ZF, and PF flags are set according to the resulting binary value
 in the AL register. The OF, AF, and CF flags are undefined.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -------------------------------------
   #DE   If an immediate value of 0 is used.
@@ -71,22 +71,22 @@ Protected Mode Exceptions¶
   ----- -------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- --------------------
   #UD   If in 64-bit mode.

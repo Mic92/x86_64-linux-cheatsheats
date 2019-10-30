@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ LAHF — LOAD STATUS FLAGS INTO AH REGISTER
   *Valid in specific steppings. See Description section.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,14 +21,14 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 This instruction executes as described above in compatibility mode and
 legacy mode. It is valid in 64-bit mode only if
 CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1.
 
 
-Operation¶
+Operation ¶
 
     IF 64-Bit Mode
         THEN
@@ -41,34 +41,34 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None. The state of the flags in the EFLAGS register is not affected.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #UD
 

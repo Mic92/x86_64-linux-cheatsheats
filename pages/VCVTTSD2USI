@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -15,14 +15,14 @@ VCVTTSD2USI — CONVERT WITH TRUNCATION SCALAR DOUBLE-PRECISION FLOATING-POINT V
   instructions behaves as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type     Operand 1       Operand 2       Operand 3   Operand 4
   A       Tuple1 Fixed   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- -------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts with truncation a double-precision floating-point value in the
 source operand (the second operand) to an unsigned doubleword integer
@@ -43,16 +43,16 @@ bits in the destination format.
 EVEX.W1 version: promotes the instruction to produce 64-bit data in
 64-bit mode.
 
-Operation¶
+Operation ¶
 
-VCVTTSD2USI (EVEX encoded version)¶
+VCVTTSD2USI (EVEX encoded version) ¶
 
     IF 64-Bit Mode and OperandSize = 64
         THEN DEST[63:0] ← Convert_Double_Precision_Floating_Point_To_UInteger_Truncate(SRC[63:0]);
         ELSE DEST[31:0] ← Convert_Double_Precision_Floating_Point_To_UInteger_Truncate(SRC[63:0]);
     FI
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTTSD2USI unsigned int _mm_cvttsd_u32(__m128d);
 
@@ -62,11 +62,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTTSD2USI unsigned __int64 _mm_cvtt_roundsd_u64(__m128d, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instructions, see Exceptions Type E3NF.
 

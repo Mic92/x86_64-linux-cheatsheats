@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,14 +16,14 @@ VPGATHERDD/VPGATHERDQ — GATHER PACKED DWORD, PACKED QWORD WITH SIGNED DWORD IN
   EVEX.512.66.0F38.W1 90 /vsib VPGATHERDQ zmm1 {k1}, vm32y   A       V/V                      AVX512F              Using signed dword indices, gather quadword values from memory using writemask k1 for merging-masking.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- -------------------------------------------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2                                          Operand 3   Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   BaseReg (R): VSIB:base, VectorReg(R): VSIB:index   NA          NA
   ------- --------------- --------------- -------------------------------------------------- ----------- -----------
 
-Description¶
+Description ¶
 
 A set of 16 or 8 doubleword/quadword memory locations pointed to by base
 address BASE_ADDR and index vector VINDEX with scale SCALE are gathered.
@@ -90,14 +90,14 @@ bits used by the processor (e.g., in 32-bit mode, if the scale is
 greater than one). In this case, the most significant bits beyond the
 number of address bits are ignored.
 
-Operation¶
+Operation ¶
 
     BASE_ADDR stands for the memory operand base address (a GPR); may not exist
     VINDEX stands for the memory operand vector of indices (a ZMM register)
     SCALE stands for the memory operand scalar (1, 2, 4 or 8)
-    DISP is the optional 1, 2 or 4 byte displacement
+    DISP is the optional 1 or 4 byte displacement
 
-VPGATHERDD (EVEX encoded version)¶
+VPGATHERDD (EVEX encoded version) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -113,7 +113,7 @@ VPGATHERDD (EVEX encoded version)¶
     k1[MAX_KL-1:KL] ← 0
     DEST[MAXVL-1:VL] ← 0
 
-VPGATHERDQ (EVEX encoded version)¶
+VPGATHERDQ (EVEX encoded version) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -130,7 +130,7 @@ VPGATHERDQ (EVEX encoded version)¶
     k1[MAX_KL-1:KL] ← 0
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPGATHERDD __m512i _mm512_i32gather_epi32( __m512i vdx, void * base, int scale);
 
@@ -148,11 +148,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPGATHERDQ __m128i _mm_mmask_i32gather_epi64(__m128i s, __mmask8 k, __m128i vdx, void * base, int scale);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E12.
 

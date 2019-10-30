@@ -57,6 +57,7 @@ CDQE            Convert Byte to Word/Convert Word to Doubleword/Convert Doublewo
 CLAC            Clear AC Flag in EFLAGS Register
 CLC             Clear Carry Flag
 CLD             Clear Direction Flag
+CLDEMOTE        Cache Line Demote
 CLFLUSH         Flush Cache Line
 CLFLUSHOPT      Flush Cache Line Optimized
 CLI             Clear Interrupt Flag
@@ -207,6 +208,9 @@ FXSAVE          Save x87 FPU, MMX Technology, and SSE State
 FXTRACT         Extract Exponent and Significand
 FYL2X           Compute y ∗ log2x
 FYL2XP1         Compute y ∗ log2(x +1)
+GF2P8AFFINEINVQB Galois Field Affine Transformation Inverse
+GF2P8AFFINEQB   Galois Field Affine Transformation
+GF2P8MULB       Galois Field Multiply Bytes
 HADDPD          Packed Double-FP Horizontal Add
 HADDPS          Packed Single-FP Horizontal Add
 HLT             Halt
@@ -330,6 +334,8 @@ MOVAPS          Move Aligned Packed Single-Precision Floating-Point Values
 MOVBE           Move Data After Swapping Bytes
 MOVD            Move Doubleword/Move Quadword
 MOVDDUP         Replicate Double FP Values
+MOVDIR64B       Move 64 Bytes as Direct Store
+MOVDIRI         Move Doubleword as Direct Store
 MOVDQ2Q         Move Quadword from XMM to MMX Technology Register
 MOVDQA          Move Aligned Packed Integer Values
 MOVDQU          Move Unaligned Packed Integer Values
@@ -607,10 +613,13 @@ SYSENTER        Fast System Call
 SYSEXIT         Fast Return from Fast System Call
 SYSRET          Return From Fast System Call
 TEST            Logical Compare
+TPAUSE          Timed PAUSE
 TZCNT           Count the Number of Trailing Zero Bits
 UCOMISD         Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS
 UCOMISS         Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS
 UD              Undefined Instruction
+UMONITOR        User Level Set Up Monitor Address
+UMWAIT          User Level Monitor Wait
 UNPCKHPD        Unpack and Interleave High Packed Double-Precision Floating-Point Values
 UNPCKHPS        Unpack and Interleave High Packed Single-Precision Floating-Point Values
 UNPCKLPD        Unpack and Interleave Low Packed Double-Precision Floating-Point Values
@@ -946,40 +955,49 @@ XSAVES          Save Processor Extended States Supervisor
 XSETBV          Set Extended Control Register
 XTEST           Test If In Transactional Execution
 
-EACCEPT         Accept Changes to an EPC Page
-EACCEPTCOPY     Initialize a Pending Page
-EADD            Add a Page to an Uninitialized Enclave
-EAUG            Add a Page to an Initialized Enclave
-EBLOCK          Mark a page in EPC as Blocked
-ECREATE         Create an SECS page in the Enclave Page Cache
-EDBGRD          Read From a Debug Enclave
-EDBGWR          Write to a Debug Enclave
-EDECVIRTCHILD   Decrement VIRTCHILDCNT in SECS
-EENTER          Enters an Enclave
-EEXIT           Exits an Enclave
-EEXTEND         Extend Uninitialized Enclave Measurement by 256 Bytes
-EGETKEY         Retrieves a Cryptographic Key
-EINCVIRTCHILD   Increment VIRTCHILDCNT in SECS
-EINIT           Initialize an Enclave for Execution
-ELBUC           Load an EPC Page and Mark its State
-ELDB            Load an EPC Page and Mark its State
-ELDBC           Load an EPC Page and Mark its State
-ELDU            Load an EPC Page and Mark its State
-EMODPE          Extend an EPC Page Permissions
-EMODPR          Restrict the Permissions of an EPC Page
-EMODT           Change the Type of an EPC Page
 ENCLS           Execute an Enclave System Function of Specified Leaf Number
+ENCLS[EADD]     Add a Page to an Uninitialized Enclave
+ENCLS[EAUG]     Add a Page to an Initialized Enclave
+ENCLS[EBLOCK]   Mark a page in EPC as Blocked
+ENCLS[ECREATE]  Create an SECS page in the Enclave Page Cache
+ENCLS[EDBGRD]   Read From a Debug Enclave
+ENCLS[EDBGWR]   Write to a Debug Enclave
+ENCLS[EEXTEND]  Extend Uninitialized Enclave Measurement by 256 Bytes
+ENCLS[EINIT]    Initialize an Enclave for Execution
+ENCLS[ELBUC]    Load an EPC Page and Mark its State
+ENCLS[ELDBC]    Load an EPC Page and Mark its State
+ENCLS[ELDB]     Load an EPC Page and Mark its State
+ENCLS[ELDU]     Load an EPC Page and Mark its State
+ENCLS[EMODPR]   Restrict the Permissions of an EPC Page
+ENCLS[EMODT]    Change the Type of an EPC Page
+ENCLS[EPA]      Add Version Array
+ENCLS[ERDINFO]  Read Type and Status Information About an EPC Page
+ENCLS[EREMOVE]  Remove a page from the EPC
+ENCLS[ETRACKC]  Activates EBLOCK Checks
+ENCLS[ETRACK]   Activates EBLOCK Checks
+ENCLS[EWB]      Invalidate an EPC Page and Write out to Main Memory
 ENCLU           Execute an Enclave User Function of Specified Leaf Number
+ENCLU[EACCEPTCOPY] Initialize a Pending Page
+ENCLU[EACCEPT]  Accept Changes to an EPC Page
+ENCLU[EENTER]   Enters an Enclave
+ENCLU[EEXIT]    Exits an Enclave
+ENCLU[EGETKEY]  Retrieves a Cryptographic Key
+ENCLU[EMODPE]   Extend an EPC Page Permissions
+ENCLU[EREPORT]  Create a Cryptographic Report of the Enclave
+ENCLU[ERESUME]  Re-Enters an Enclave
 ENCLV           Execute an Enclave VMM Function of Specified Leaf Number
-EPA             Add Version Array
-ERDINFO         Read Type and Status Information About an EPC Page
-EREMOVE         Remove a page from the EPC
-EREPORT         Create a Cryptographic Report of the Enclave
-ERESUME         Re-Enters an Enclave
-ESETCONTEXT     Set the ENCLAVECONTEXT Field in SECS
-ETRACK          Activates EBLOCK Checks
-ETRACKC         Activates EBLOCK Checks
-EWB             Invalidate an EPC Page and Write out to Main Memory
+ENCLV[EDECVIRTCHILD] Decrement VIRTCHILDCNT in SECS
+ENCLV[EINCVIRTCHILD] Increment VIRTCHILDCNT in SECS
+ENCLV[ESETCONTEXT] Set the ENCLAVECONTEXT Field in SECS
+
+GETSEC[CAPABILITIES] Report the SMX Capabilities
+GETSEC[ENTERACCS] Execute Authenticated Chipset Code
+GETSEC[EXITAC]  Exit Authenticated Code Execution Mode
+GETSEC[PARAMETERS] Report the SMX Parameters
+GETSEC[SENTER]  Enter a Measured Environment
+GETSEC[SEXIT]   Exit Measured Environment
+GETSEC[SMCTRL]  SMX Mode Control
+GETSEC[WAKEUP]  Wake up sleeping processors in measured environment
 
 INVEPT          Invalidate Translations Derived from EPT
 INVVPID         Invalidate Translations Based on VPID

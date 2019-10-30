@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,14 +14,14 @@ VSCATTERPF1DPS/VSCATTERPF1QPS/VSCATTERPF1DPD/VSCATTERPF1QPD — SPARSE PREFETCH 
   EVEX.512.66.0F38.W1 C7 /6 /vsib VSCATTERPF1QPD vm64z {k1}   A       V/V                      AVX512PF             Using signed qword indices, prefetch sparse byte memory locations containing double-precision data using writemask k1 and T1 hint with intent to write.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- -------------------------------------------------- ----------- ----------- -----------
   Op/En   Tuple Type      Operand 1                                          Operand 2   Operand 3   Operand 4
   A       Tuple1 Scalar   BaseReg (R): VSIB:base, VectorReg(R): VSIB:index   NA          NA          NA
   ------- --------------- -------------------------------------------------- ----------- ----------- -----------
 
-Description¶
+Description ¶
 
 The instruction conditionally prefetches up to sixteen 32-bit or eight
 64-bit integer byte data elements. The elements are specified via the
@@ -56,7 +56,7 @@ instruction is a hint.
 (6) A #UD is signaled if the memory operand is encoded without the SIB
 byte.
 
-Operation¶
+Operation ¶
 
     BASE_ADDR stands for the memory operand base address (a GPR); may not exist
     VINDEX stands for the memory operand vector of indices (a vector register)
@@ -66,7 +66,7 @@ Operation¶
     for exclusive/ownership is done if ‘State’ is 1. Note that the memory location ignore cache line splits. This operation is considered a
     hint for the processor and may be skipped depending on implementation.
 
-VSCATTERPF1DPS (EVEX encoded version)¶
+VSCATTERPF1DPS (EVEX encoded version) ¶
 
     (KL, VL) = (16, 512)
     FOR j←0 TO KL-1
@@ -76,7 +76,7 @@ VSCATTERPF1DPS (EVEX encoded version)¶
         FI;
     ENDFOR
 
-VSCATTERPF1DPD (EVEX encoded version)¶
+VSCATTERPF1DPD (EVEX encoded version) ¶
 
     (KL, VL) = (8, 512)
     FOR j←0 TO KL-1
@@ -87,7 +87,7 @@ VSCATTERPF1DPD (EVEX encoded version)¶
         FI;
     ENDFOR
 
-VSCATTERPF1QPS (EVEX encoded version)¶
+VSCATTERPF1QPS (EVEX encoded version) ¶
 
     (KL, VL) = (8, 512)
     FOR j←0 TO KL-1
@@ -97,7 +97,7 @@ VSCATTERPF1QPS (EVEX encoded version)¶
         FI;
     ENDFOR
 
-VSCATTERPF1QPD (EVEX encoded version)¶
+VSCATTERPF1QPD (EVEX encoded version) ¶
 
     (KL, VL) = (8, 512)
     FOR j←0 TO KL-1
@@ -108,7 +108,7 @@ VSCATTERPF1QPD (EVEX encoded version)¶
         FI;
     ENDFOR
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSCATTERPF1DPD void _mm512_prefetch_i32scatter_pd(void *base, __m256i vdx, int scale, int hint);
 
@@ -126,11 +126,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSCATTERPF1QPS void _mm512_mask_prefetch_i64scatter_ps(void *base, __mmask8 m, __m512i vdx, int scale, int hint);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E12NP.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ MOVQ2DQ — MOVE QUADWORD FROM MMX TECHNOLOGY TO XMM REGISTER
   F3 0F D6 /r   MOVQ2DQ _xmm_, _mm_   RM      Valid         Valid             Move quadword from _mmx_ to low quadword of _xmm_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Moves the quadword from the source operand (second operand) to the low
 quadword of the destination operand (first operand). The source operand
@@ -36,23 +36,23 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to
 access additional registers (XMM8-XMM15).
 
 
-Operation¶
+Operation ¶
 
     DEST[63:0] ← SRC[63:0];
     DEST[127:64] ← 00000000000000000H;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MOVQ2DQ: __128i _mm_movpi64_epi64 ( __m64 a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #NM
 
@@ -73,22 +73,22 @@ If the LOCK prefix is used.
 If there is a pending x87 FPU exception.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

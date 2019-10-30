@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -22,14 +22,14 @@ VPMOVB2M/VPMOVW2M/VPMOVD2M/VPMOVQ2M — CONVERT A VECTOR REGISTER TO A MASK
   EVEX.512.F3.0F38.W1 39 /r VPMOVQ2M k1, zmm1   RM      V/V                      AVX512DQ             Sets each bit in k1 to 1 or 0 based on the value of the most significant bit of the corresponding quadword in ZMM1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts a vector register to a mask register. Each element in the
 destination register is set to 1 or 0 depending on the value of most
@@ -40,9 +40,9 @@ a mask register.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPMOVB2M (EVEX encoded versions)¶
+VPMOVB2M (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -54,7 +54,7 @@ VPMOVB2M (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPMOVW2M (EVEX encoded versions)¶
+VPMOVW2M (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -66,7 +66,7 @@ VPMOVW2M (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPMOVD2M (EVEX encoded versions)¶
+VPMOVD2M (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -78,7 +78,7 @@ VPMOVD2M (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPMOVQ2M (EVEX encoded versions)¶
+VPMOVQ2M (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -90,7 +90,7 @@ VPMOVQ2M (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMPOVB2M __mmask64 _mm512_movepi8_mask( __m512i );
 
@@ -116,11 +116,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     VPMPOVW2M __mmask8 _mm_movepi16_mask( __m128i );
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E7NM
 

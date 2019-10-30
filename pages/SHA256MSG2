@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,22 +11,22 @@ SHA256MSG2 — PERFORM A FINAL CALCULATION FOR THE NEXT FOUR SHA256 MESSAGE DWOR
   NP 0F 38 CD /r SHA256MSG2 xmm1, xmm2/m128   RM      V/V                      SHA                  Performs the final calculation for the next four SHA256 message dwords using previous message dwords from xmm1 and xmm2/m128, storing the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA
   ------- ------------------ --------------- -----------
 
-Description¶
+Description ¶
 
 The SHA256MSG2 instruction is one of two SHA2 message scheduling
 instructions. The instruction performs the final calculation for the
 next four SHA256 message dwords.
 
-Operation¶
+Operation ¶
 
-SHA256MSG2¶
+SHA256MSG2 ¶
 
     W14←SRC2[95:64] ;
     W15←SRC2[127:96] ;
@@ -39,19 +39,19 @@ SHA256MSG2¶
     DEST[63:32]←W17 ;
     DEST[31:0] ← W16;
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     SHA256MSG2 : __m128i _mm_sha256msg2_epu32(__m128i, __m128i);
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4.
 

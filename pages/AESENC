@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 AESENC — PERFORM ONE ROUND OF AN AES ENCRYPTION FLOW
 
 
-  Opcode/Instruction                                            Op/En   64/32-bit Mode   CPUID Feature Flag       Description
-  ------------------------------------------------------------- ------- ---------------- ------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 DC /r AESENC xmm1, xmm2/m128                         RM      V/V              AES                      Perform one round of an AES encryption flow, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.
-  VEX.NDS.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128   RVM     V/V              Both AES and AVX flags   Perform one round of an AES encryption flow, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from the xmm3/m128; store the result in xmm1.
+  Opcode/Instruction                                        Op/En   64/32-bit Mode   CPUID Feature Flag       Description
+  --------------------------------------------------------- ------- ---------------- ------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 DC /r AESENC xmm1, xmm2/m128                     RM      V/V              AES                      Perform one round of an AES encryption flow, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.
+  VEX.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128   RVM     V/V              Both AES and AVX flags   Perform one round of an AES encryption flow, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from the xmm3/m128; store the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- ----------
   Op/En   Operand 1          Operand2        Operand3        Operand4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- ----------
 
 
-Description¶
+Description ¶
 
 This instruction performs a single round of an AES encryption flow using
 a round key from the second source operand, operating on 128-bit data
@@ -43,9 +43,9 @@ register or a 128-bit memory location. Bits (MAXVL-1:128) of the
 destination YMM register are zeroed.
 
 
-Operation¶
+Operation ¶
 
-AESENC¶
+AESENC ¶
 
     STATE ← SRC1;
     RoundKey ← SRC2;
@@ -55,7 +55,7 @@ AESENC¶
     DEST[127:0] ← STATE XOR RoundKey;
     DEST[MAXVL-1:128] (Unmodified)
 
-VAESENC¶
+VAESENC ¶
 
     STATE ← SRC1;
     RoundKey ← SRC2;
@@ -66,17 +66,17 @@ VAESENC¶
     DEST[MAXVL-1:128] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)AESENC: __m128i _mm_aesenc (__m128i, __m128i)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4.
 

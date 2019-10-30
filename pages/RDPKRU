@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ RDPKRU — READ PROTECTION KEY RIGHTS FOR USER PAGES
   NP 0F 01 EE   RDPKRU        ZO      V/V                     OSPKE                Reads PKRU into EAX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reads the value of PKRU into EAX and clears EDX. ECX must be 0 when
 RDPKRU is executed; otherwise, a general-protection exception (#GP)
@@ -34,7 +34,7 @@ On processors that support the Intel 64 Architecture, the high-order
 cleared.
 
 
-Operation¶
+Operation ¶
 
     IF (ECX = 0)
         THEN
@@ -44,17 +44,17 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     RDPKRU: uint32_t _rdpkru_u32(void);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -67,22 +67,22 @@ If the LOCK prefix is used.
 If CR4.PKE = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

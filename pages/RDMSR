@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ RDMSR — READ FROM MODEL SPECIFIC REGISTER
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reads the contents of a 64-bit model specific register (MSR) specified
 in the ECX register into registers EDX:EAX. (On processors that support
@@ -49,7 +49,7 @@ The CPUID instruction should be used to determine whether MSRs are
 supported (CPUID.01H:EDX[5] = 1) before using this instruction.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 The MSRs and the ability to read them with the RDMSR instruction were
 introduced into the IA-32 Architecture with the Pentium processor.
@@ -62,17 +62,17 @@ Developer’s Manual, Volume 3C_, for more information about the behavior
 of this instruction in VMX non-root operation.
 
 
-Operation¶
+Operation ¶
 
     EDX:EAX ← MSR[ECX];
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -85,7 +85,7 @@ If the value in ECX specifies a reserved or unimplemented MSR address.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------------
   #GP   If the value in ECX specifies a reserved or unimplemented MSR address.
@@ -93,19 +93,19 @@ Real-Address Mode Exceptions¶
   ----- ------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   -------- ---------------------------------------------------------------
   #GP(0)   The RDMSR instruction is not recognized in virtual-8086 mode.
   -------- ---------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -21,7 +21,7 @@ PMOVMSKB — MOVE BYTE MASK
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -29,7 +29,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Creates a mask made up of the most significant bit of each byte of the
 source operand (second operand) and stores the result in the low byte or
@@ -54,9 +54,9 @@ VEX.256 encoded version: The source operand is a YMM register.
 Note: VEX.vvvv is reserved and must be 1111b.
 
 
-Operation¶
+Operation ¶
 
-PMOVMSKB (with 64-bit source operand and r32)¶
+PMOVMSKB (with 64-bit source operand and r32) ¶
 
         r32[0] ← SRC[7];
         r32[1] ← SRC[15];
@@ -70,14 +70,14 @@ PMOVMSKB (with 64-bit source operand and r32)¶
         r32[15] ← SRC[127];
         r32[31:16] ← ZERO_FILL;
 
-VPMOVMSKB (with 256-bit source operand and r32)¶
+VPMOVMSKB (with 256-bit source operand and r32) ¶
 
     r32[0] ← SRC[7];
     r32[1] ← SRC[15];
     (* Repeat operation for bytes 3rd through 31*)
     r32[31] ← SRC[255];
 
-PMOVMSKB (with 64-bit source operand and r64)¶
+PMOVMSKB (with 64-bit source operand and r64) ¶
 
     r64[0] ← SRC[7];
     r64[1] ← SRC[15];
@@ -85,7 +85,7 @@ PMOVMSKB (with 64-bit source operand and r64)¶
     r64[7] ← SRC[63];
     r64[63:8] ← ZERO_FILL;
 
-(V)PMOVMSKB (with 128-bit source operand and r64)¶
+(V)PMOVMSKB (with 128-bit source operand and r64) ¶
 
     r64[0] ← SRC[7];
     r64[1] ← SRC[15];
@@ -93,7 +93,7 @@ PMOVMSKB (with 64-bit source operand and r64)¶
     r64[15] ← SRC[127];
     r64[63:16] ← ZERO_FILL;
 
-VPMOVMSKB (with 256-bit source operand and r64)¶
+VPMOVMSKB (with 256-bit source operand and r64) ¶
 
     r64[0] ← SRC[7];
     r64[1] ← SRC[15];
@@ -102,7 +102,7 @@ VPMOVMSKB (with 256-bit source operand and r64)¶
     r64[63:32] ← ZERO_FILL;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PMOVMSKB: int _mm_movemask_pi8(__m64 a)
 
@@ -111,17 +111,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPMOVMSKB: int _mm256_movemask_epi8 ( __m256i a)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 7; additionally
 

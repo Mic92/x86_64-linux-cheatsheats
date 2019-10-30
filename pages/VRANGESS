@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VRANGESS — RANGE RESTRICTION CALCULATION FROM A PAIR OF SCALAR FLOAT32 VALUES
 
 
-  Opcode/Instruction                                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F3A.W0 51 /r VRANGESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512DQ             Calculate a RANGE operation output value from 2 single-precision floating-point values in xmm2 and xmm3/m32, store the output to xmm1 under writemask. Imm8 specifies the comparison and sign of the range operation.
+  Opcode/Instruction                                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F3A.W0 51 /r VRANGESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512DQ             Calculate a RANGE operation output value from 2 single-precision floating-point values in xmm2 and xmm3/m32, store the output to xmm1 under writemask. Imm8 specifies the comparison and sign of the range operation.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 This instruction calculates a range operation output from two input
 single-precision FP values in the low dword element of the first source
@@ -61,7 +61,7 @@ Additionally, non-zero, equal-magnitude with opposite-sign input values
 perform MIN_ABS or MAX_ABS comparison operation with result listed in
 Table 5-21.
 
-Operation¶
+Operation ¶
 
     RangeSP(SRC1[31:0], SRC2[31:0], CmpOpCtl[1:0], SignSelCtl[1:0])
     {
@@ -103,7 +103,7 @@ Operation¶
     CmpOpCtl[1:0]= imm8[1:0];
     SignSelCtl[1:0]=imm8[3:2];
 
-VRANGESS¶
+VRANGESS ¶
 
     IF k1[0] OR *no writemask*
             THEN DEST[31:0]←RangeSP (SRC1[31:0], SRC2[31:0], CmpOpCtl[1:0], SignSelCtl[1:0]);
@@ -131,7 +131,7 @@ VRANGESS¶
     Thus, if xmm_src < -150, the result of VRANGESS will be the minimal value of -150 while if xmm_src > +150,
     the result of VRANGE will be the maximal value of +150.
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRANGESS __m128 _mm_range_ss ( __m128 a, __m128 b, int imm);
 
@@ -145,11 +145,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRANGESS __m128 _mm_maskz_range_round_ss ( __mmask8 k, __m128 a, __m128 b, int imm, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

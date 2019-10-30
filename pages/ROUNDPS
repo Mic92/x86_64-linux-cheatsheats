@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ ROUNDPS — ROUND PACKED SINGLE PRECISION FLOATING-POINT VALUES
   VEX.256.66.0F3A.WIG 08 /r ib VROUNDPS _ymm1, ymm2/m256, imm8_   RMI     V/V                      AVX                  Round packed single-precision floating-point values in _ymm2/m256_ and place the result in ymm1. The rounding mode is determined by _imm8_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Round the 4 single-precision floating-point values in the source operand
 (second operand) using the rounding mode specified in the immediate
@@ -34,7 +34,7 @@ The immediate operand specifies control fields for the rounding
 operation, three bit fields are defined and shown in Figure 4-24. Bit 3
 of the immediate byte controls processor behavior for a precision
 exception, bit 2 selects the source of rounding mode control. Bits 1:0
-specify a non-sticky rounding-mode value (Table 4-18 lists the encoded
+specify a non-sticky rounding-mode value (Table 4-17 lists the encoded
 values for rounding-mode field).
 
 The Precision Floating-Point Exception is signaled according to the
@@ -59,7 +59,7 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
     IF (imm[2] = ‘1)
         THEN // rounding mode is determined by MXCSR.RC
@@ -74,7 +74,7 @@ Operation¶
             DEST[127:96] ← ConvertSPFPToInteger_Imm(SRC[127:96]);
     FI;
 
-ROUNDPS(128-bit Legacy SSE version)¶
+ROUNDPS(128-bit Legacy SSE version) ¶
 
     DEST[31:0]←RoundToInteger(SRC[31:0], ROUND_CONTROL)
     DEST[63:32]←RoundToInteger(SRC[63:32], ROUND_CONTROL)
@@ -82,7 +82,7 @@ ROUNDPS(128-bit Legacy SSE version)¶
     DEST[127:96]←RoundToInteger(SRC[127:96]], ROUND_CONTROL)
     DEST[MAXVL-1:128] (Unmodified)
 
-VROUNDPS (VEX.128 encoded version)¶
+VROUNDPS (VEX.128 encoded version) ¶
 
     DEST[31:0]←RoundToInteger(SRC[31:0], ROUND_CONTROL)
     DEST[63:32]←RoundToInteger(SRC[63:32], ROUND_CONTROL)
@@ -90,7 +90,7 @@ VROUNDPS (VEX.128 encoded version)¶
     DEST[127:96]←RoundToInteger(SRC[127:96]], ROUND_CONTROL)
     DEST[MAXVL-1:128] ← 0
 
-VROUNDPS (VEX.256 encoded version)¶
+VROUNDPS (VEX.256 encoded version) ¶
 
     DEST[31:0]←RoundToInteger(SRC[31:0], ROUND_CONTROL)
     DEST[63:32]←RoundToInteger(SRC[63:32], ROUND_CONTROL)
@@ -102,7 +102,7 @@ VROUNDPS (VEX.256 encoded version)¶
     DEST[255:224]←RoundToInteger(SRC[255:224] ], ROUND_CONTROL)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     __m128 _mm_round_ps(__m128 s1, int iRoundMode);
 
@@ -117,7 +117,7 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     __m256 _mm256_ceil_ps(__m256 s1)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (signaled only if SRC = SNaN)
 
@@ -128,7 +128,7 @@ signaled.)
 Note that Denormal is not signaled by ROUNDPS.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 2; additionally
 

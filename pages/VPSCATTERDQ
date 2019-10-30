@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -22,14 +22,14 @@ VPSCATTERDD/VPSCATTERDQ/VPSCATTERQD/VPSCATTERQQ — SCATTER PACKED DWORD, PACKED
   EVEX.512.66.0F38.W1 A1 /vsib VPSCATTERQQ vm64z {k1}, zmm1   A       V/V                      AVX512F              Using signed qword indices, scatter qword values to memory using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- -------------------------------------------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1                                          Operand 2       Operand 3   Operand 4
   A       Tuple1 Scalar   BaseReg (R): VSIB:base, VectorReg(R): VSIB:index   ModRM:reg (r)   NA          NA
   ------- --------------- -------------------------------------------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Stores up to 16 elements (8 elements for qword indices) in doubleword
 vector or 8 elements in quadword vector to the memory locations pointed
@@ -96,14 +96,14 @@ The instruction will #UD fault if the k0 mask register is specified.
 
 The instruction will #UD fault if EVEX.Z = 1.
 
-Operation¶
+Operation ¶
 
     BASE_ADDR stands for the memory operand base address (a GPR); may not exist
     VINDEX stands for the memory operand vector of indices (a ZMM register)
     SCALE stands for the memory operand scalar (1, 2, 4 or 8)
-    DISP is the optional 1, 2 or 4 byte displacement
+    DISP is the optional 1 or 4 byte displacement
 
-VPSCATTERDD (EVEX encoded versions)¶
+VPSCATTERDD (EVEX encoded versions) ¶
 
     (KL, VL)= (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -115,7 +115,7 @@ VPSCATTERDD (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-VPSCATTERDQ (EVEX encoded versions)¶
+VPSCATTERDQ (EVEX encoded versions) ¶
 
     (KL, VL)= (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -128,7 +128,7 @@ VPSCATTERDQ (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-VPSCATTERQD (EVEX encoded versions)¶
+VPSCATTERQD (EVEX encoded versions) ¶
 
     (KL, VL)= (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -141,7 +141,7 @@ VPSCATTERQD (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-VPSCATTERQQ (EVEX encoded versions)¶
+VPSCATTERQQ (EVEX encoded versions) ¶
 
     (KL, VL)= (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -152,7 +152,7 @@ VPSCATTERQQ (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSCATTERDD void _mm512_i32scatter_epi32(void * base, __m512i vdx, __m512i a, int scale);
 
@@ -202,11 +202,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPSCATTERQQ void _mm_mask_i64scatter_epi64(void * base, __mmask8 k, __m128i vdx, __m128i a, int scale);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E12.
 

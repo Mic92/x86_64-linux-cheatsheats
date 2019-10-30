@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 DPPD — DOT PRODUCT OF PACKED DOUBLE PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                  Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------------- ------- ---------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 41 /r ib DPPD _xmm1, xmm2/m128, imm8_                      RMI     V/V              SSE4_1               Selectively multiply packed DP floating-point values from _xmm1_ with packed DP floating-point values from _xmm2_, add and selectively store the packed DP floating-point values to _xmm1_.
-  VEX.NDS.128.66.0F3A.WIG 41 /r ib VDPPD xmm1,xmm2, xmm3/m128, imm8   RVMI    V/V              AVX                  Selectively multiply packed DP floating-point values from xmm2 with packed DP floating-point values from xmm3, add and selectively store the packed DP floating-point values to xmm1.
+  Opcode/Instruction                                              Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------------------------- ------- ---------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 41 /r ib DPPD _xmm1, xmm2/m128, imm8_                  RMI     V/V              SSE4_1               Selectively multiply packed DP floating-point values from _xmm1_ with packed DP floating-point values from _xmm2_, add and selectively store the packed DP floating-point values to _xmm1_.
+  VEX.128.66.0F3A.WIG 41 /r ib VDPPD xmm1,xmm2, xmm3/m128, imm8   RVMI    V/V              AVX                  Selectively multiply packed DP floating-point values from xmm2 with packed DP floating-point values from xmm3, add and selectively store the packed DP floating-point values to xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3       Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Conditionally multiplies the packed double-precision floating-point
 values in the destination operand (first operand) with the packed
@@ -63,9 +63,9 @@ If VDPPD is encoded with VEX.L= 1, an attempt to execute the instruction
 encoded with VEX.L= 1 will cause an #UD exception.
 
 
-Operation¶
+Operation ¶
 
-DP_primitive (SRC1, SRC2)¶
+DP_primitive (SRC1, SRC2) ¶
 
     IF (imm8[4] = 1)
         THEN Temp1[63:0]←DEST[63:0] * SRC[63:0]; // update SIMD exception flags
@@ -83,28 +83,28 @@ DP_primitive (SRC1, SRC2)¶
         THEN DEST[127:64]←Temp2[63:0];
         ELSE DEST[127:64]←+0.0; FI;
 
-DPPD (128-bit Legacy SSE version)¶
+DPPD (128-bit Legacy SSE version) ¶
 
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[MAXVL-1:128] (Unmodified)
 
-VDPPD (VEX.128 encoded version)¶
+VDPPD (VEX.128 encoded version) ¶
 
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[MAXVL-1:128] ← 0
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     DPPD: __m128d _mm_dp_pd ( __m128d a, __m128d b, const int mask);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
@@ -112,7 +112,7 @@ Exceptions are determined separately for each add and multiply
 operation. Unmasked exceptions will leave the destination untouched.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 2; additionally
 

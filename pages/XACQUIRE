@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,7 +16,7 @@ XACQUIRE/XRELEASE — HARDWARE LOCK ELISION PREFIX HINTS
   feature flag reports 0.
 
 
-Description¶
+Description ¶
 
 The XACQUIRE prefix is a hint to start lock elision on the memory
 address specified by the instruction and the XRELEASE prefix is a hint
@@ -85,9 +85,9 @@ the F3H prefix behaves the same way as in prior hardware, according to
 -   Undefined for non-string instructions or other situations.
 
 
-Operation¶
+Operation ¶
 
-XACQUIRE¶
+XACQUIRE ¶
 
     IF XACQUIRE-enabled instruction
         THEN
@@ -118,7 +118,7 @@ XACQUIRE¶
             Treat instruction as non-XACQUIRE F2H prefixed legacy instruction
     FI;
 
-XRELEASE¶
+XRELEASE ¶
 
     IF XRELEASE-enabled instruction
         THEN
@@ -168,12 +168,12 @@ XRELEASE¶
     END
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
   -------- --------------------------------------------------------------------
   #GP(0)   If the use of prefix causes instruction length to exceed 15 bytes.

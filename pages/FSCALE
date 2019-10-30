@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ FSCALE — SCALE
   D9 FD    FSCALE        Valid         Valid             Scale ST(0) by ST(1).
 
 
-Description¶
+Description ¶
 
 Truncates the value in the source operand (toward 0) to an integral
 value and adds that value to the exponent of the destination operand.
@@ -182,12 +182,12 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     ST(0) ← ST(0) ∗ 2RoundTowardZero(ST(1));
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
 C1
 
@@ -200,7 +200,7 @@ C0, C2, C3
 Undefined.
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
   ----- ------------------------------------------------------------
   #IS   Stack underflow occurred.
@@ -212,7 +212,7 @@ Floating-Point Exceptions¶
   ----- ------------------------------------------------------------
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
@@ -221,22 +221,22 @@ Protected Mode Exceptions¶
   ----- ------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

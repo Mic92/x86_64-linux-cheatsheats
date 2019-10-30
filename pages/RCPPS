@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ RCPPS — COMPUTE RECIPROCALS OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   VEX.256.0F.WIG 53 /r VRCPPS _ymm1, ymm2/m256_   RM      V/V                      AVX                  Computes the approximate reciprocals of packed single-precision values in _ymm2/mem_ and stores the results in _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a SIMD computation of the approximate reciprocals of the four
 packed single-precision floating-point values in the source operand
@@ -72,9 +72,9 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-RCPPS (128-bit Legacy SSE version)¶
+RCPPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0] ← APPROXIMATE(1/SRC[31:0])
     DEST[63:32] ← APPROXIMATE(1/SRC[63:32])
@@ -82,7 +82,7 @@ RCPPS (128-bit Legacy SSE version)¶
     DEST[127:96] ← APPROXIMATE(1/SRC[127:96])
     DEST[MAXVL-1:128] (Unmodified)
 
-VRCPPS (VEX.128 encoded version)¶
+VRCPPS (VEX.128 encoded version) ¶
 
     DEST[31:0] ← APPROXIMATE(1/SRC[31:0])
     DEST[63:32] ← APPROXIMATE(1/SRC[63:32])
@@ -90,7 +90,7 @@ VRCPPS (VEX.128 encoded version)¶
     DEST[127:96] ← APPROXIMATE(1/SRC[127:96])
     DEST[MAXVL-1:128] ← 0
 
-VRCPPS (VEX.256 encoded version)¶
+VRCPPS (VEX.256 encoded version) ¶
 
     DEST[31:0] ← APPROXIMATE(1/SRC[31:0])
     DEST[63:32] ← APPROXIMATE(1/SRC[63:32])
@@ -102,19 +102,19 @@ VRCPPS (VEX.256 encoded version)¶
     DEST[255:224] ← APPROXIMATE(1/SRC[255:224])
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RCCPS: __m128 _mm_rcp_ps(__m128 a)
 
     RCPPS: __m256 _mm256_rcp_ps (__m256 a);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

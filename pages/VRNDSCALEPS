@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VRNDSCALEPS — ROUND PACKED FLOAT32 VALUES TO INCLUDE A GIVEN NUMBER OF FRACTIO
   EVEX.512.66.0F3A.W0 08 /r ib VRNDSCALEPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}, imm8   A       V/V                      AVX512F              Rounds packed single-precision floating-point values in zmm2/m512/m32bcst to a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register using writemask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Round the single-precision floating-point values in the source operand
 by the rounding mode specified in the immediate operand (see Figure
@@ -79,7 +79,7 @@ will #UD.
 
 Handling of special case of input values are listed in Table 5-25.
 
-Operation¶
+Operation ¶
 
     RoundToIntegerSP(SRC[31:0], imm8[7:0]) {
         if (imm8[2] = 1)
@@ -123,7 +123,7 @@ Operation¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRNDSCALEPS __m512 _mm512_roundscale_ps( __m512 a, int imm);
 
@@ -149,14 +149,14 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRNDSCALEPS __m128 _mm_maskz_roundscale_ps( __mmask8 k, __m128 a, int imm);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 If SPE is enabled, precision exception is not reported (regardless of
 MXCSR exception mask).
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

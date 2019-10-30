@@ -1,17 +1,25 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VMFUNC — INVOKE VM FUNCTION
 
 
-  ----------------------------------------------------------------------------------------
-  OPCODE INSTRUCTION DESCRIPTION NP 0F 01 D4 VMFUNC Invoke VM function specified in EAX.
-  ----------------------------------------------------------------------------------------
+  Opcode/Instruction   Op/En   Description
+  -------------------- ------- --------------------------------------
+  NP 0F 01 D4 VMFUNC   ZO      Invoke VM function specified in EAX.
 
 
-Description¶
+Instruction Operand Encoding ¶
+
+  ------- ----------- ----------- ----------- -----------
+  Op/En   Operand 1   Operand 2   Operand 3   Operand 4
+  ZO      NA          NA          NA          NA
+  ------- ----------- ----------- ----------- -----------
+
+
+Description ¶
 
 This instruction allows software in VMX non-root operation to invoke a
 VM function, which is processor functionality enabled and configured by
@@ -22,18 +30,18 @@ The behavior of each VM function (including any additional fault
 checking) is specified in Section 25.5.5, “VM Functions”.
 
 
-Operation¶
+Operation ¶
 
     Perform functionality of the VM function specified in EAX;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 Depends on the VM function specified in EAX. See Section 25.5.5, “VM
 Functions”.
 
 
-Protected Mode Exceptions (not including those defined by specific VM functions)¶
+Protected Mode Exceptions (not including those defined by specific VM functions) ¶
 
 #UD If executed outside VMX non-root operation.
 
@@ -42,22 +50,22 @@ If “enable VM functions” VM-execution control is 0.
 If EAX ≥ 64.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Exceptions¶
+Virtual-8086 Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

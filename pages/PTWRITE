@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -8,11 +8,11 @@ PTWRITE — WRITE DATA TO A PROCESSOR TRACE PACKET
 
   Opcode/Instruction                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------
-  F3 REX.W 0F AE /4 PTWRITE _r64/m64_   RM      V/N.E                                         Reads the data from r64/m64 to encod into a PTW packet if dependencies are met (see details below).
+  F3 REX.W 0F AE /4 PTWRITE _r64/m64_   RM      V/N.E                                         Reads the data from r64/m64 to encode into a PTW packet if dependencies are met (see details below).
   F3 0F AE /4 PTWRITE _r32/m32_         RM      V/V                                           Reads the data from r32/m32 to encode into a PTW packet if dependencies are met (see details below).
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------- ----------- ----------- -----------
   Op/En   Operand 1      Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- -------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 This instruction reads data in the source operand and sends it to the
 Intel Processor Trace hardware to be encoded in a PTW packet if
@@ -34,7 +34,7 @@ operand.
 Note: The instruction will #UD if prefix 66H is used.
 
 
-Operation¶
+Operation ¶
 
     IF (IA32_RTIT_STATUS.TriggerEn & IA32_RTIT_STATUS.ContextEn & IA32_RTIT_STATUS.FilterEn & IA32_RTIT_CTL.PTWEn) = 1
         PTW.PayloadBytes ← Encoded payload size;
@@ -45,12 +45,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 #GP(0)
 
@@ -79,7 +79,7 @@ If LOCK prefix is used.
 If 66H prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP(0)
 
@@ -99,7 +99,7 @@ If LOCK prefix is used.
 If 66H prefix is used.
 
 
-Virtual 8086 Mode Exceptions¶
+Virtual 8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -128,12 +128,12 @@ If LOCK prefix is used.
 If 66H prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in Protected Mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

@@ -1,29 +1,29 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPCMPB/VPCMPUB — COMPARE PACKED BYTE VALUES INTO MASK
 
 
-  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F3A.W0 3F /r ib VPCMPB k1 {k2}, xmm2, xmm3/m128, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed byte values in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.256.66.0F3A.W0 3F /r ib VPCMPB k1 {k2}, ymm2, ymm3/m256, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed byte values in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.512.66.0F3A.W0 3F /r ib VPCMPB k1 {k2}, zmm2, zmm3/m512, imm8    A       V/V                      AVX512BW             Compare packed signed byte values in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.128.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned byte values in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.256.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned byte values in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.512.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, zmm2, zmm3/m512, imm8   A       V/V                      AVX512BW             Compare packed unsigned byte values in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W0 3F /r ib VPCMPB k1 {k2}, xmm2, xmm3/m128, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed byte values in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.256.66.0F3A.W0 3F /r ib VPCMPB k1 {k2}, ymm2, ymm3/m256, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed byte values in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.512.66.0F3A.W0 3F /r ib VPCMPB k1 {k2}, zmm2, zmm3/m512, imm8    A       V/V                      AVX512BW             Compare packed signed byte values in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.128.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned byte values in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.256.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned byte values in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.512.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, zmm2, zmm3/m512, imm8   A       V/V                      AVX512BW             Compare packed unsigned byte values in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- ----------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2   Operand 3       Operand 4
   A       Full Mem     ModRM:reg (w)   vvvv (r)    ModRM:r/m (r)   NA
   ------- ------------ --------------- ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD compare of the packed byte values in the second source
 operand and the first source operand and returns the results of the
@@ -59,7 +59,7 @@ listed in Table 5-17.
 
 Table 5-17. Pseudo-Op and VPCMP* Implementation
 
-Operation¶
+Operation ¶
 
     CASE (COMPARISON PREDICATE) OF
         0: OP←EQ;
@@ -72,7 +72,7 @@ Operation¶
         7: OP←TRUE;
     ESAC;
 
-VPCMPB (EVEX encoded versions)¶
+VPCMPB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -89,7 +89,7 @@ VPCMPB (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPCMPUB (EVEX encoded versions)¶
+VPCMPUB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -106,7 +106,7 @@ VPCMPUB (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPCMPB __mmask64 _mm512_cmp_epi8_mask( __m512i a, __m512i b, int cmp);
 
@@ -156,11 +156,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPCMPUB __mmask16 _mm_mask_cmp[eq|ge|gt|le|lt|neq]_epu8_mask( __mmask16 m, __m128i a, __m128i b, int cmp);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E4.nb.
 

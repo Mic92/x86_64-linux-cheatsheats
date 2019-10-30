@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VSCALEFSD — SCALE SCALAR FLOAT64 VALUES WITH FLOAT64 VALUES
 
 
-  Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F38.W1 2D /r VSCALEFSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   A       V/V                      AVX512F              Scale the scalar double-precision floating-point values in xmm2 using the value from xmm3/m64. Under writemask k1.
+  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F38.W1 2D /r VSCALEFSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   A       V/V                      AVX512F              Scale the scalar double-precision floating-point values in xmm2 using the value from xmm3/m64. Under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a floating-point scale of the packed double-precision
 floating-point value in the first source operand by multiplying it by 2
@@ -46,7 +46,7 @@ writemask k1.
 Handling of special-case input values are listed in Table 5-30 and Table
 5-31.
 
-Operation¶
+Operation ¶
 
     SCALE(SRC1, SRC2)
     {
@@ -59,7 +59,7 @@ Operation¶
     DEST[63:0]←TMP_SRC1[63:0] * POW(2, Floor(TMP_SRC2[63:0]))
     }
 
-VSCALEFSD (EVEX encoded version)¶
+VSCALEFSD (EVEX encoded version) ¶
 
     IF (EVEX.b= 1) and SRC2 *is a register*
         THEN
@@ -79,7 +79,7 @@ VSCALEFSD (EVEX encoded version)¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSCALEFSD __m128d _mm_scalef_round_sd(__m128d a, __m128d b, int);
 
@@ -87,13 +87,13 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSCALEFSD __m128d _mm_maskz_scalef_round_sd(__mmask8 k, __m128d a, __m128d b, int);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal (for Src1).
 
 Denormal is not reported for Src2.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

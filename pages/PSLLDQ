@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSLLDQ — SHIFT DOUBLE QUADWORD LEFT LOGICAL
 
 
-  Opcode/Instruction                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
-  66 0F 73 /7 ib PSLLDQ _xmm1_, _imm8_                            A       V/V                      SSE2                 Shift _xmm1_ left by _imm8_ bytes while shifting in 0s.
-  VEX.NDD.128.66.0F.WIG 73 /7 ib VPSLLDQ _xmm1, xmm2, imm8_       B       V/V                      AVX                  Shift _xmm2_ left by _imm8_ bytes while shifting in 0s and store result in _xmm1_.
-  VEX.NDD.256.66.0F.WIG 73 /7 ib VPSLLDQ _ymm1, ymm2, imm8_       B       V/V                      AVX2                 Shift _ymm2_ left by _imm8_ bytes while shifting in 0s and store result in _ymm1_.
-  EVEX.NDD.128.66.0F.WIG 73 /7 ib VPSLLDQ xmm1,xmm2/ m128, imm8   C       V/V                      AVX512VL AVX512BW    Shift xmm2/m128 left by imm8 bytes while shifting in 0s and store result in xmm1.
-  EVEX.NDD.256.66.0F.WIG 73 /7 ib VPSLLDQ ymm1, ymm2/m256, imm8   C       V/V                      AVX512VL AVX512BW    Shift ymm2/m256 left by imm8 bytes while shifting in 0s and store result in ymm1.
-  EVEX.NDD.512.66.0F.WIG 73 /7 ib VPSLLDQ zmm1, zmm2/m512, imm8   C       V/V                      AVX512BW             Shift zmm2/m512 left by imm8 bytes while shifting in 0s and store result in zmm1.
+  Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
+  66 0F 73 /7 ib PSLLDQ _xmm1_, _imm8_                        A       V/V                      SSE2                 Shift _xmm1_ left by _imm8_ bytes while shifting in 0s.
+  VEX.128.66.0F.WIG 73 /7 ib VPSLLDQ _xmm1, xmm2, imm8_       B       V/V                      AVX                  Shift _xmm2_ left by _imm8_ bytes while shifting in 0s and store result in _xmm1_.
+  VEX.256.66.0F.WIG 73 /7 ib VPSLLDQ _ymm1, ymm2, imm8_       B       V/V                      AVX2                 Shift _ymm2_ left by _imm8_ bytes while shifting in 0s and store result in _ymm1_.
+  EVEX.128.66.0F.WIG 73 /7 ib VPSLLDQ xmm1,xmm2/ m128, imm8   C       V/V                      AVX512VL AVX512BW    Shift xmm2/m128 left by imm8 bytes while shifting in 0s and store result in xmm1.
+  EVEX.256.66.0F.WIG 73 /7 ib VPSLLDQ ymm1, ymm2/m256, imm8   C       V/V                      AVX512VL AVX512BW    Shift ymm2/m256 left by imm8 bytes while shifting in 0s and store result in ymm1.
+  EVEX.512.66.0F.WIG 73 /7 ib VPSLLDQ zmm1, zmm2/m512, imm8   C       V/V                      AVX512BW             Shift zmm2/m512 left by imm8 bytes while shifting in 0s and store result in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3   Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Shifts the destination operand (first operand) to the left by the number
 of bytes specified in the count operand (second operand). The empty
@@ -52,9 +52,9 @@ EVEX encoded versions: The source operand is a ZMM/YMM/XMM register or a
 ZMM/YMM/XMM register. The count operand applies to each 128-bit lanes.
 
 
-Operation¶
+Operation ¶
 
-VPSLLDQ (EVEX.U1.512 encoded version)¶
+VPSLLDQ (EVEX.U1.512 encoded version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
@@ -64,7 +64,7 @@ VPSLLDQ (EVEX.U1.512 encoded version)¶
     DEST[511:384]←SRC[511:384] << (TEMP * 8)
     DEST[MAXVL-1:512] ← 0
 
-VPSLLDQ (VEX.256 and EVEX.256 encoded version)¶
+VPSLLDQ (VEX.256 and EVEX.256 encoded version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
@@ -72,14 +72,14 @@ VPSLLDQ (VEX.256 and EVEX.256 encoded version)¶
     DEST[255:128]←SRC[255:128] << (TEMP * 8)
     DEST[MAXVL-1:256] ← 0
 
-VPSLLDQ (VEX.128 and EVEX.128 encoded version)¶
+VPSLLDQ (VEX.128 and EVEX.128 encoded version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
     DEST←SRC << (TEMP * 8)
     DEST[MAXVL-1:128] ← 0
 
-PSLLDQ(128-bit Legacy SSE version)¶
+PSLLDQ(128-bit Legacy SSE version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
@@ -87,7 +87,7 @@ PSLLDQ(128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)PSLLDQ:__m128i _mm_slli_si128 ( __m128i a, int imm)
 
@@ -96,17 +96,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPSLLDQ __m512i _mm512_bslli_epi128 ( __m512i a, const int imm)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 7.
 

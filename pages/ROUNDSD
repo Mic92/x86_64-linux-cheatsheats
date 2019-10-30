@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 ROUNDSD — ROUND SCALAR DOUBLE PRECISION FLOATING-POINT VALUES
 
 
-  Opcode*/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------ ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 0B /r ib ROUNDSD _xmm1, xmm2/m64, imm8_                         RMI     V/V                      SSE4_1               Round the low packed double precision floating-point value in _xmm2/m64_ and place the result in _xmm1._ The rounding mode is determined by _imm8_.
-  VEX.NDS.LIG.66.0F3A.WIG 0B /r ib VROUNDSD _xmm1, xmm2, xmm3/m64, imm8_   RVMI    V/V                      AVX                  Round the low packed double precision floating-point value in _xmm3/m64_ and place the result in _xmm1_. The rounding mode is determined by _imm8_. Upper packed double precision floating-point value (bits[127:64]) from _xmm2_ is copied to _xmm1_[127:64].
+  Opcode*/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 0B /r ib ROUNDSD _xmm1, xmm2/m64, imm8_                     RMI     V/V                      SSE4_1               Round the low packed double precision floating-point value in _xmm2/m64_ and place the result in _xmm1._ The rounding mode is determined by _imm8_.
+  VEX.LIG.66.0F3A.WIG 0B /r ib VROUNDSD _xmm1, xmm2, xmm3/m64, imm8_   RVMI    V/V                      AVX                  Round the low packed double precision floating-point value in _xmm3/m64_ and place the result in _xmm1_. The rounding mode is determined by _imm8_. Upper packed double precision floating-point value (bits[127:64]) from _xmm2_ is copied to _xmm1_[127:64].
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- -----------
   Op/En   Operand 1       Operand 2       Operand 3       Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Round the DP FP value in the lower qword of the source operand (second
 operand) using the rounding mode specified in the immediate operand
@@ -35,7 +35,7 @@ The immediate operand specifies control fields for the rounding
 operation, three bit fields are defined and shown in Figure 4-24. Bit 3
 of the immediate byte controls processor behavior for a precision
 exception, bit 2 selects the source of rounding mode control. Bits 1:0
-specify a non-sticky rounding-mode value (Table 4-18 lists the encoded
+specify a non-sticky rounding-mode value (Table 4-17 lists the encoded
 values for rounding-mode field).
 
 The Precision Floating-Point Exception is signaled according to the
@@ -51,7 +51,7 @@ VEX.128 encoded version: Bits (MAXVL-1:128) of the destination YMM
 register are zeroed.
 
 
-Operation¶
+Operation ¶
 
     IF (imm[2] = ‘1)
         THEN // rounding mode is determined by MXCSR.RC
@@ -61,19 +61,19 @@ Operation¶
     FI;
     DEST[127:63] remains unchanged ;
 
-ROUNDSD (128-bit Legacy SSE version)¶
+ROUNDSD (128-bit Legacy SSE version) ¶
 
     DEST[63:0]←RoundToInteger(SRC[63:0], ROUND_CONTROL)
     DEST[MAXVL-1:64] (Unmodified)
 
-VROUNDSD (VEX.128 encoded version)¶
+VROUNDSD (VEX.128 encoded version) ¶
 
     DEST[63:0]←RoundToInteger(SRC2[63:0], ROUND_CONTROL)
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ROUNDSD: __m128d mm_round_sd(__m128d dst, __m128d s1, int iRoundMode);
 
@@ -82,7 +82,7 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     __m128d mm_ceil_sd(__m128d dst, __m128d s1);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (signaled only if SRC = SNaN)
 
@@ -93,7 +93,7 @@ signaled.)
 Note that Denormal is not signaled by ROUNDSD.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 3.
 

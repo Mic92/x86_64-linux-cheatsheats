@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 RDRAND — READ RANDOM NUMBER
 
 
-  Opcode*/Instruction           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------
-  0F C7 /6 RDRAND r16           M       V/V                      RDRAND               Read a 16-bit random number and store in the destination register.
-  0F C7 /6 RDRAND r32           M       V/V                      RDRAND               Read a 32-bit random number and store in the destination register.
-  REX.W + 0F C7 /6 RDRAND r64   M       V/I                      RDRAND               Read a 64-bit random number and store in the destination register.
+  Opcode*/Instruction               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------
+  NFx 0F C7 /6 RDRAND r16           M       V/V                      RDRAND               Read a 16-bit random number and store in the destination register.
+  NFx 0F C7 /6 RDRAND r32           M       V/V                      RDRAND               Read a 32-bit random number and store in the destination register.
+  NFx REX.W + 0F C7 /6 RDRAND r64   M       V/I                      RDRAND               Read a 64-bit random number and store in the destination register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads a hardware generated random value and store it in the destination
 register. The size of the random value is determined by the destination
@@ -45,7 +45,7 @@ operation to 64 bit operands. See the summary chart at the beginning of
 this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     IF HW_RND_GEN.ready = 1
         THEN
@@ -66,13 +66,13 @@ Operation¶
     OF, SF, ZF, AF, PF ← 0;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF flag is set according to the result (see the “Operation” section
 above). The OF, SF, ZF, AF, and PF flags are set to 0.
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RDRAND: int _rdrand16_step( unsigned short * );
 
@@ -81,33 +81,31 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     RDRAND: int _rdrand64_step( unsigned __int64 *);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
 If the LOCK prefix is used.
 
-If the F2H or F3H prefix is used.
-
 If CPUID.01H:ECX.RDRAND[bit 30] = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

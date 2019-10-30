@@ -1,27 +1,27 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 MOVSS — MOVE OR MERGE SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                            Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
-  F3 0F 10 /r MOVSS xmm1, xmm2                                  A         V/V                      SSE                  Merge scalar single-precision floating-point value from xmm2 to xmm1 register.
-  F3 0F 10 /r MOVSS xmm1, m32                                   A         V/V                      SSE                  Load scalar single-precision floating-point value from m32 to xmm1 register.
-  VEX.NDS.LIG.F3.0F.WIG 10 /r VMOVSS xmm1, xmm2, xmm3           B         V/V                      AVX                  Merge scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register
-  VEX.LIG.F3.0F.WIG 10 /r VMOVSS xmm1, m32                      D         V/V                      AVX                  Load scalar single-precision floating-point value from m32 to xmm1 register.
-  F3 0F 11 /r MOVSS xmm2/m32, xmm1                              C         V/V                      SSE                  Move scalar single-precision floating-point value from xmm1 register to xmm2/m32.
-  VEX.NDS.LIG.F3.0F.WIG 11 /r VMOVSS xmm1, xmm2, xmm3           E         V/V                      AVX                  Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register.
-  VEX.LIG.F3.0F.WIG 11 /r VMOVSS m32, xmm1                      C         V/V                      AVX                  Move scalar single-precision floating-point value from xmm1 register to m32.
-  EVEX.NDS.LIG.F3.0F.W0 10 /r VMOVSS xmm1 {k1}{z}, xmm2, xmm3   B         V/V                      AVX512F              Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register under writemask k1.
-  EVEX.LIG.F3.0F.W0 10 /r VMOVSS xmm1 {k1}{z}, m32              F         V/V                      AVX512F              Move scalar single-precision floating-point values from m32 to xmm1 under writemask k1.
-  EVEX.NDS.LIG.F3.0F.W0 11 /r VMOVSS xmm1 {k1}{z}, xmm2, xmm3   E         V/V                      AVX512F              Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register under writemask k1.
-  EVEX.LIG.F3.0F.W0 11 /r VMOVSS m32 {k1}, xmm1                 G         V/V                      AVX512F              Move scalar single-precision floating-point values from xmm1 to m32 under writemask k1.
+  Opcode/Instruction                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
+  F3 0F 10 /r MOVSS xmm1, xmm2                              A         V/V                      SSE                  Merge scalar single-precision floating-point value from xmm2 to xmm1 register.
+  F3 0F 10 /r MOVSS xmm1, m32                               A         V/V                      SSE                  Load scalar single-precision floating-point value from m32 to xmm1 register.
+  VEX.LIG.F3.0F.WIG 10 /r VMOVSS xmm1, xmm2, xmm3           B         V/V                      AVX                  Merge scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register
+  VEX.LIG.F3.0F.WIG 10 /r VMOVSS xmm1, m32                  D         V/V                      AVX                  Load scalar single-precision floating-point value from m32 to xmm1 register.
+  F3 0F 11 /r MOVSS xmm2/m32, xmm1                          C         V/V                      SSE                  Move scalar single-precision floating-point value from xmm1 register to xmm2/m32.
+  VEX.LIG.F3.0F.WIG 11 /r VMOVSS xmm1, xmm2, xmm3           E         V/V                      AVX                  Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register.
+  VEX.LIG.F3.0F.WIG 11 /r VMOVSS m32, xmm1                  C         V/V                      AVX                  Move scalar single-precision floating-point value from xmm1 register to m32.
+  EVEX.LIG.F3.0F.W0 10 /r VMOVSS xmm1 {k1}{z}, xmm2, xmm3   B         V/V                      AVX512F              Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register under writemask k1.
+  EVEX.LIG.F3.0F.W0 10 /r VMOVSS xmm1 {k1}{z}, m32          F         V/V                      AVX512F              Move scalar single-precision floating-point values from m32 to xmm1 under writemask k1.
+  EVEX.LIG.F3.0F.W0 11 /r VMOVSS xmm1 {k1}{z}, xmm2, xmm3   E         V/V                      AVX512F              Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register under writemask k1.
+  EVEX.LIG.F3.0F.W0 11 /r VMOVSS m32 {k1}, xmm1             G         V/V                      AVX512F              Move scalar single-precision floating-point values from xmm1 to m32 under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   G       Tuple1 Scalar   ModRM:r/m (w)      ModRM:reg (r)   NA              NA
   ------- --------------- ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Moves a scalar single-precision floating-point value from the source
 operand (second operand) to the destination operand (first operand). The
@@ -76,9 +76,9 @@ Software should ensure VMOVSS is encoded with VEX.L=0. Encoding VMOVSS
 with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
-Operation¶
+Operation ¶
 
-VMOVSS (EVEX.NDS.LIG.F3.0F.W0 11 /r when the source operand is memory and the destination is an XMM register)¶
+VMOVSS (EVEX.LIG.F3.0F.W0 11 /r when the source operand is memory and the destination is an XMM register) ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[31:0] ← SRC[31:0]
@@ -91,14 +91,14 @@ VMOVSS (EVEX.NDS.LIG.F3.0F.W0 11 /r when the source operand is memory and the de
     FI;
     DEST[MAXVL-1:32] ← 0
 
-VMOVSS (EVEX.NDS.LIG.F3.0F.W0 10 /r when the source operand is an XMM register and the destination is memory)¶
+VMOVSS (EVEX.LIG.F3.0F.W0 10 /r when the source operand is an XMM register and the destination is memory) ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[31:0] ← SRC[31:0]
         ELSE *DEST[31:0] remains unchanged* ; merging-masking
     FI;
 
-VMOVSS (EVEX.NDS.LIG.F3.0F.W0 10/11 /r where the source and destination are XMM registers)¶
+VMOVSS (EVEX.LIG.F3.0F.W0 10/11 /r where the source and destination are XMM registers) ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[31:0] ← SRC2[31:0]
@@ -112,39 +112,39 @@ VMOVSS (EVEX.NDS.LIG.F3.0F.W0 10/11 /r where the source and destination are XMM 
     DEST[127:32] ← SRC1[127:32]
     DEST[MAXVL-1:128] ← 0
 
-MOVSS (Legacy SSE version when the source and destination operands are both XMM registers)¶
+MOVSS (Legacy SSE version when the source and destination operands are both XMM registers) ¶
 
     DEST[31:0] ←SRC[31:0]
     DEST[MAXVL-1:32] (Unmodified)
 
-VMOVSS (VEX.NDS.128.F3.0F 11 /r where the destination is an XMM register)¶
+VMOVSS (VEX.128.F3.0F 11 /r where the destination is an XMM register) ¶
 
     DEST[31:0] ←SRC2[31:0]
     DEST[127:32] ←SRC1[127:32]
     DEST[MAXVL-1:128] ←0
 
-VMOVSS (VEX.NDS.128.F3.0F 10 /r where the source and destination are XMM registers)¶
+VMOVSS (VEX.128.F3.0F 10 /r where the source and destination are XMM registers) ¶
 
     DEST[31:0] ←SRC2[31:0]
     DEST[127:32] ←SRC1[127:32]
     DEST[MAXVL-1:128] ←0
 
-VMOVSS (VEX.NDS.128.F3.0F 10 /r when the source operand is memory and the destination is an XMM register)¶
+VMOVSS (VEX.128.F3.0F 10 /r when the source operand is memory and the destination is an XMM register) ¶
 
     DEST[31:0] ←SRC[31:0]
     DEST[MAXVL-1:32] ←0
 
-MOVSS/VMOVSS (when the source operand is an XMM register and the destination is memory)¶
+MOVSS/VMOVSS (when the source operand is an XMM register and the destination is memory) ¶
 
     DEST[31:0] ←SRC[31:0]
 
-MOVSS (Legacy SSE version when the source operand is memory and the destination is an XMM register)¶
+MOVSS (Legacy SSE version when the source operand is memory and the destination is an XMM register) ¶
 
     DEST[31:0] ←SRC[31:0]
     DEST[127:32] ←0
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVSS __m128 _mm_mask_load_ss(__m128 s, __mmask8 k, float * p);
 
@@ -162,11 +162,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MOVSS __m128 _mm_move_ss(__m128 a, __m128 b)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 5; additionally
 

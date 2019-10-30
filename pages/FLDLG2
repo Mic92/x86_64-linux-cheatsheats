@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -19,7 +19,7 @@ FLD1/FLDL2T/FLDL2E/FLDPI/FLDLG2/FLDLN2/FLDZ — LOAD CONSTANT
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
 
-Description¶
+Description ¶
 
 Push one of seven commonly used constants (in double extended-precision
 floating-point format) onto the FPU register stack. The constants that
@@ -38,20 +38,20 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 When the RC field is set to round-to-nearest, the FPU produces the same
 constants that is produced by the Intel 8087 and Intel 287 math
 coprocessors.
 
 
-Operation¶
+Operation ¶
 
     TOP ← TOP − 1;
     ST(0) ← CONSTANT;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
   ------------ -----------------------------------------------------------
   C1           Set to 1 if stack overflow occurred; otherwise, set to 0.
@@ -59,14 +59,14 @@ FPU Flags Affected¶
   ------------ -----------------------------------------------------------
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
   ----- --------------------------
   #IS   Stack overflow occurred.
   ----- --------------------------
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
@@ -75,27 +75,27 @@ Protected Mode Exceptions¶
   ----- ------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

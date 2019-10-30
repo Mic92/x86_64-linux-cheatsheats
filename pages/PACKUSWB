@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PACKUSWB — PACK WITH UNSIGNED SATURATION
 
 
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 67 /_r_¹ PACKUSWB _mm, mm/m64_                                    A       V/V                      MMX                  Converts 4 signed word integers from _mm_ and 4 signed word integers from _mm/m64_ into 8 unsigned byte integers in _mm_ using unsigned saturation.
-  66 0F 67 /_r_ PACKUSWB _xmm1_, _xmm2/m128_                              A       V/V                      SSE2                 Converts 8 signed word integers from _xmm1_ and 8 signed word integers from _xmm2/m128_ into 16 unsigned byte integers in _xmm1_ using unsigned saturation.
-  VEX.NDS.128.66.0F.WIG 67 /r VPACKUSWB _xmm1, xmm2, xmm3/m128_           B       V/V                      AVX                  Converts 8 signed word integers from _xmm2_ and 8 signed word integers from _xmm3/m128_ into 16 unsigned byte integers in _xmm1_ using unsigned saturation.
-  VEX.NDS.256.66.0F.WIG 67 /r VPACKUSWB _ymm1, ymm2, ymm3/m256_           B       V/V                      AVX2                 Converts 16 signed word integers from _ymm2_ and 16signed word integers from _ymm3/m256_ into 32 unsigned byte integers in _ymm1_ using unsigned saturation.
-  EVEX.NDS.128.66.0F.WIG 67 /r VPACKUSWB _xmm1{k1}{z}, xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Converts signed word integers from _xmm2_ and signed word integers from _xmm3/m128_ into unsigned byte integers in _xmm1_ using unsigned saturation under writemask k1.
-  EVEX.NDS.256.66.0F.WIG 67 /r VPACKUSWB _ymm1{k1}{z}, ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Converts signed word integers from _ymm2_ and signed word integers from _ymm3/m256_ into unsigned byte integers in _ymm1_ using unsigned saturation under writemask k1.
-  EVEX.NDS.512.66.0F.WIG 67 /r VPACKUSWB _zmm1{k1}{z}, zmm2, zmm3/m512_   C       V/V                      AVX512BW             Converts signed word integers from _zmm2_ and signed word integers from _zmm3/m512_ into unsigned byte integers in _zmm1_ using unsigned saturation under writemask k1.
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 67 /_r_¹ PACKUSWB _mm, mm/m64_                                A       V/V                      MMX                  Converts 4 signed word integers from _mm_ and 4 signed word integers from _mm/m64_ into 8 unsigned byte integers in _mm_ using unsigned saturation.
+  66 0F 67 /_r_ PACKUSWB _xmm1_, _xmm2/m128_                          A       V/V                      SSE2                 Converts 8 signed word integers from _xmm1_ and 8 signed word integers from _xmm2/m128_ into 16 unsigned byte integers in _xmm1_ using unsigned saturation.
+  VEX.128.66.0F.WIG 67 /r VPACKUSWB _xmm1, xmm2, xmm3/m128_           B       V/V                      AVX                  Converts 8 signed word integers from _xmm2_ and 8 signed word integers from _xmm3/m128_ into 16 unsigned byte integers in _xmm1_ using unsigned saturation.
+  VEX.256.66.0F.WIG 67 /r VPACKUSWB _ymm1, ymm2, ymm3/m256_           B       V/V                      AVX2                 Converts 16 signed word integers from _ymm2_ and 16signed word integers from _ymm3/m256_ into 32 unsigned byte integers in _ymm1_ using unsigned saturation.
+  EVEX.128.66.0F.WIG 67 /r VPACKUSWB _xmm1{k1}{z}, xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Converts signed word integers from _xmm2_ and signed word integers from _xmm3/m128_ into unsigned byte integers in _xmm1_ using unsigned saturation under writemask k1.
+  EVEX.256.66.0F.WIG 67 /r VPACKUSWB _ymm1{k1}{z}, ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Converts signed word integers from _ymm2_ and signed word integers from _ymm3/m256_ into unsigned byte integers in _ymm1_ using unsigned saturation under writemask k1.
+  EVEX.512.66.0F.WIG 67 /r VPACKUSWB _zmm1{k1}{z}, zmm2, zmm3/m512_   C       V/V                      AVX512BW             Converts signed word integers from _zmm2_ and signed word integers from _zmm3/m512_ into unsigned byte integers in _zmm1_ using unsigned saturation under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PACKUSWB — PACK WITH UNSIGNED SATURATION
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Converts 4, 8, 16 or 32 signed word integers from the destination
 operand (first operand) and 4, 8, 16 or 32 signed word integers from the
@@ -67,9 +67,9 @@ the upper bits (MAXVL-1:128) of the corresponding register destination
 are unmodified.
 
 
-Operation¶
+Operation ¶
 
-PACKUSWB (with 64-bit operands)¶
+PACKUSWB (with 64-bit operands) ¶
 
     DEST[7:0] ← SaturateSignedWordToUnsignedByte DEST[15:0];
     DEST[15:8] ← SaturateSignedWordToUnsignedByte DEST[31:16];
@@ -80,7 +80,7 @@ PACKUSWB (with 64-bit operands)¶
     DEST[55:48] ← SaturateSignedWordToUnsignedByte SRC[47:32];
     DEST[63:56] ← SaturateSignedWordToUnsignedByte SRC[63:48];
 
-PACKUSWB (Legacy SSE instruction)¶
+PACKUSWB (Legacy SSE instruction) ¶
 
     DEST[7:0]←SaturateSignedWordToUnsignedByte (DEST[15:0]);
     DEST[15:8]←SaturateSignedWordToUnsignedByte (DEST[31:16]);
@@ -99,7 +99,7 @@ PACKUSWB (Legacy SSE instruction)¶
     DEST[119:112]←SaturateSignedWordToUnsignedByte (SRC[111:96]);
     DEST[127:120]←SaturateSignedWordToUnsignedByte (SRC[127:112]);
 
-PACKUSWB (VEX.128 encoded version)¶
+PACKUSWB (VEX.128 encoded version) ¶
 
     DEST[7:0]←SaturateSignedWordToUnsignedByte (SRC1[15:0]);
     DEST[15:8]←SaturateSignedWordToUnsignedByte (SRC1[31:16]);
@@ -119,7 +119,7 @@ PACKUSWB (VEX.128 encoded version)¶
     DEST[127:120]←SaturateSignedWordToUnsignedByte (SRC2[127:112]);
     DEST[MAXVL-1:128] ← 0;
 
-VPACKUSWB (VEX.256 encoded version)¶
+VPACKUSWB (VEX.256 encoded version) ¶
 
     DEST[7:0]←SaturateSignedWordToUnsignedByte (SRC1[15:0]);
     DEST[15:8]←SaturateSignedWordToUnsignedByte (SRC1[31:16]);
@@ -154,7 +154,7 @@ VPACKUSWB (VEX.256 encoded version)¶
     DEST[247:240]←SaturateSignedWordToUnsignedByte (SRC2[239:224]);
     DEST[255:248]←SaturateSignedWordToUnsignedByte (SRC2[255:240]);
 
-VPACKUSWB (EVEX encoded versions)¶
+VPACKUSWB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     TMP_DEST[7:0]←SaturateSignedWordToUnsignedByte (SRC1[15:0]);
@@ -242,7 +242,7 @@ VPACKUSWB (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPACKUSWB__m512i _mm512_packus_epi16(__m512i m1, __m512i m2);
 
@@ -265,17 +265,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPACKUSWB: __m256i _mm256_packus_epi16(__m256i m1, __m256i m2);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

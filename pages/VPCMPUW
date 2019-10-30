@@ -1,29 +1,29 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPCMPW/VPCMPUW — COMPARE PACKED WORD VALUES INTO MASK
 
 
-  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F3A.W1 3F /r ib VPCMPW k1 {k2}, xmm2, xmm3/m128, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed word integers in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.256.66.0F3A.W1 3F /r ib VPCMPW k1 {k2}, ymm2, ymm3/m256, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed word integers in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.512.66.0F3A.W1 3F /r ib VPCMPW k1 {k2}, zmm2, zmm3/m512, imm8    A       V/V                      AVX512BW             Compare packed signed word integers in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.128.66.0F3A.W1 3E /r ib VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned word integers in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  EVEX.NDS.256.66.0F3A.W1 3E /r ib VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned word integers in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-  VPCMPUW k1 {k2}, zmm2, zmm3/m512, imm8                                    A       V/V                      AVX512BW             Compare packed unsigned word integers in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W1 3F /r ib VPCMPW k1 {k2}, xmm2, xmm3/m128, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed word integers in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.256.66.0F3A.W1 3F /r ib VPCMPW k1 {k2}, ymm2, ymm3/m256, imm8    A       V/V                      AVX512VL AVX512BW    Compare packed signed word integers in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.512.66.0F3A.W1 3F /r ib VPCMPW k1 {k2}, zmm2, zmm3/m512, imm8    A       V/V                      AVX512BW             Compare packed signed word integers in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.128.66.0F3A.W1 3E /r ib VPCMPUW k1 {k2}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned word integers in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  EVEX.256.66.0F3A.W1 3E /r ib VPCMPUW k1 {k2}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned word integers in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
+  VPCMPUW k1 {k2}, zmm2, zmm3/m512, imm8                                A       V/V                      AVX512BW             Compare packed unsigned word integers in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- ----------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2   Operand 3       Operand 4
   A       Full Mem     ModRM:reg (w)   vvvv (r)    ModRM:r/m (r)   NA
   ------- ------------ --------------- ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD compare of the packed integer word in the second source
 operand and the first source operand and returns the results of the
@@ -48,7 +48,7 @@ the type of comparison to be performed. Bits 3 through 7 of the
 immediate are reserved. Compiler can implement the pseudo-op mnemonic
 listed in Table 5-17.
 
-Operation¶
+Operation ¶
 
     CASE (COMPARISON PREDICATE) OF
         0: OP←EQ;
@@ -61,7 +61,7 @@ Operation¶
         7: OP←TRUE;
     ESAC;
 
-VPCMPW (EVEX encoded versions)¶
+VPCMPW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -78,7 +78,7 @@ VPCMPW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPCMPUW (EVEX encoded versions)¶
+VPCMPUW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -95,7 +95,7 @@ VPCMPUW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPCMPW __mmask32 _mm512_cmp_epi16_mask( __m512i a, __m512i b, int cmp);
 
@@ -145,11 +145,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPCMPUW __mmask8 _mm_mask_cmp[eq|ge|gt|le|lt|neq]_epu16_mask( __mmask8 m, __m128i a, __m128i b, int cmp);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E4.nb.
 

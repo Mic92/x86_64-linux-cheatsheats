@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -18,7 +18,7 @@ FSUBR/FSUBRP/FISUBR — REVERSE SUBTRACT
   DE /5     FISUBR _m16int_       Valid         Valid             Subtract ST(0) from _m16int_ and store result in ST(0).
 
 
-Description¶
+Description ¶
 
 Subtracts the destination operand from the source operand and stores the
 difference in the destination location. The destination operand is
@@ -208,7 +208,7 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     IF Instruction = FISUBR
         THEN
@@ -220,7 +220,7 @@ Operation¶
             PopRegisterStack; FI;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
 C1
 
@@ -233,7 +233,7 @@ C0, C2, C3
 Undefined.
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
 #IS
 
@@ -262,7 +262,7 @@ Result is too large for destination format.
 Value cannot be represented exactly in destination format.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -294,7 +294,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -304,7 +304,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -316,12 +316,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

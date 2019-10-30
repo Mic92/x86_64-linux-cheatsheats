@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,14 +16,14 @@ VPBROADCASTM — BROADCAST MASK TO VECTOR REGISTER
   EVEX.512.F3.0F38.W0 3A /r VPBROADCASTMW2D zmm1, k1   RM      V/V                      AVX512CD             Broadcast low word value in k1 to sixteen locations in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Broadcasts the zero-extended 64/32 bit value of the low byte/word of the
 source operand (the second operand) to each 64/32 bit element of the
@@ -33,9 +33,9 @@ register (EVEX.256), or XMM register (EVEX.128).
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPBROADCASTMB2Q¶
+VPBROADCASTMB2Q ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -44,7 +44,7 @@ VPBROADCASTMB2Q¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTMW2D¶
+VPBROADCASTMW2D ¶
 
     (KL, VL) = (4, 128), (8, 256),(16, 512)
     FOR j←0 TO KL-1
@@ -53,7 +53,7 @@ VPBROADCASTMW2D¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPBROADCASTMB2Q __m512i _mm512_broadcastmb_epi64( __mmask8);
 
@@ -67,11 +67,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPBROADCASTMW2D __m128i _mm_broadcastmw_epi32( __mmask8);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E6NF.
 

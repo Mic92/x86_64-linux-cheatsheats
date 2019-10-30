@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -27,7 +27,7 @@ PEXTRW — EXTRACT WORD
   REX.W=1 prefix in PEXTRW).
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
@@ -37,7 +37,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Copies the word in the source operand (second operand) specified by the
 count operand (third operand) to the destination operand (first
@@ -64,7 +64,7 @@ bits, the bits above the least significant byte/word/dword data are
 filled with zeros.
 
 
-Operation¶
+Operation ¶
 
     IF (DEST = Mem16)
     THEN
@@ -97,12 +97,12 @@ Operation¶
         FI;
     FI;
 
-VPEXTRW ( dest=m16)¶
+VPEXTRW ( dest=m16) ¶
 
     SRC_Offset ← Imm8[2:0]
     Mem16←(Src >> Src_Offset*16)
 
-VPEXTRW ( dest=reg)¶
+VPEXTRW ( dest=reg) ¶
 
     IF (64-Bit Mode )
     THEN
@@ -116,24 +116,24 @@ VPEXTRW ( dest=reg)¶
     FI
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PEXTRW: int _mm_extract_pi16 (__m64 a, int n)
 
     PEXTRW: int _mm_extract_epi16 ( __m128i a, int imm)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 5;
 

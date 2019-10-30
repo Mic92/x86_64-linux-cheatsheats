@@ -1,29 +1,29 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPBLENDMB/VPBLENDMW — BLEND BYTE/WORD VECTORS USING AN OPMASK CONTROL
 
 
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F38.W0 66 /r VPBLENDMB xmm1 {k1}{z}, xmm2, xmm3/m128   A       V/V                      AVX512VL AVX512BW    Blend byte integer vector xmm2 and byte vector xmm3/m128 and store the result in xmm1, under control mask.
-  EVEX.NDS.256.66.0F38.W0 66 /r VPBLENDMB ymm1 {k1}{z}, ymm2, ymm3/m256   A       V/V                      AVX512VL AVX512BW    Blend byte integer vector ymm2 and byte vector ymm3/m256 and store the result in ymm1, under control mask.
-  EVEX.NDS.512.66.0F38.W0 66 /r VPBLENDMB zmm1 {k1}{z}, zmm2, zmm3/m512   A       V/V                      AVX512BW             Blend byte integer vector zmm2 and byte vector zmm3/m512 and store the result in zmm1, under control mask.
-  EVEX.NDS.128.66.0F38.W1 66 /r VPBLENDMW xmm1 {k1}{z}, xmm2, xmm3/m128   A       V/V                      AVX512VL AVX512BW    Blend word integer vector xmm2 and word vector xmm3/m128 and store the result in xmm1, under control mask.
-  EVEX.NDS.256.66.0F38.W1 66 /r VPBLENDMW ymm1 {k1}{z}, ymm2, ymm3/m256   A       V/V                      AVX512VL AVX512BW    Blend word integer vector ymm2 and word vector ymm3/m256 and store the result in ymm1, under control mask.
-  EVEX.NDS.512.66.0F38.W1 66 /r VPBLENDMW zmm1 {k1}{z}, zmm2, zmm3/m512   A       V/V                      AVX512BW             Blend word integer vector zmm2 and word vector zmm3/m512 and store the result in zmm1, under control mask.
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F38.W0 66 /r VPBLENDMB xmm1 {k1}{z}, xmm2, xmm3/m128   A       V/V                      AVX512VL AVX512BW    Blend byte integer vector xmm2 and byte vector xmm3/m128 and store the result in xmm1, under control mask.
+  EVEX.256.66.0F38.W0 66 /r VPBLENDMB ymm1 {k1}{z}, ymm2, ymm3/m256   A       V/V                      AVX512VL AVX512BW    Blend byte integer vector ymm2 and byte vector ymm3/m256 and store the result in ymm1, under control mask.
+  EVEX.512.66.0F38.W0 66 /r VPBLENDMB zmm1 {k1}{z}, zmm2, zmm3/m512   A       V/V                      AVX512BW             Blend byte integer vector zmm2 and byte vector zmm3/m512 and store the result in zmm1, under control mask.
+  EVEX.128.66.0F38.W1 66 /r VPBLENDMW xmm1 {k1}{z}, xmm2, xmm3/m128   A       V/V                      AVX512VL AVX512BW    Blend word integer vector xmm2 and word vector xmm3/m128 and store the result in xmm1, under control mask.
+  EVEX.256.66.0F38.W1 66 /r VPBLENDMW ymm1 {k1}{z}, ymm2, ymm3/m256   A       V/V                      AVX512VL AVX512BW    Blend word integer vector ymm2 and word vector ymm3/m256 and store the result in ymm1, under control mask.
+  EVEX.512.66.0F38.W1 66 /r VPBLENDMW zmm1 {k1}{z}, zmm2, zmm3/m512   A       V/V                      AVX512BW             Blend word integer vector zmm2 and word vector zmm3/m512 and store the result in zmm1, under control mask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- ----------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2   Operand 3       Operand 4
   A       Full Mem     ModRM:reg (w)   EVEX.vvvv   ModRM:r/m (r)   NA
   ------- ------------ --------------- ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs an element-by-element blending of byte/word elements between
 the first source operand byte vector register and the second source
@@ -40,9 +40,9 @@ mask is used as an element selector: every element of the destination is
 conditionally selected between first source or second source using the
 value of the related mask bit (0 for first source, 1 for second source).
 
-Operation¶
+Operation ¶
 
-VPBLENDMB (EVEX encoded versions)¶
+VPBLENDMB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -61,7 +61,7 @@ VPBLENDMB (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0;
 
-VPBLENDMW (EVEX encoded versions)¶
+VPBLENDMW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -78,7 +78,7 @@ VPBLENDMW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPBLENDMB __m512i _mm512_mask_blend_epi8(__mmask64 m, __m512i a, __m512i b);
 
@@ -92,11 +92,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPBLENDMW __m128i _mm_mask_blend_epi16(__mmask8 m, __m128i a, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E4.
 

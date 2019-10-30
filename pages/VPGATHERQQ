@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPGATHERDQ/VPGATHERQQ — GATHER PACKED QWORD VALUES USING SIGNED DWORD/QWORD INDICES
 
 
-  Opcode/Instruction                                            Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ----------------- -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  VEX.DDS.128.66.0F38.W1 90 /r VPGATHERDQ _xmm1, vm32x, xmm2_   A       V/V               AVX2                 Using dword indices specified in _vm32x_, gather qword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
-  VEX.DDS.128.66.0F38.W1 91 /r VPGATHERQQ _xmm1, vm64x, xmm2_   A       V/V               AVX2                 Using qword indices specified in _vm64x_, gather qword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
-  VEX.DDS.256.66.0F38.W1 90 /r VPGATHERDQ _ymm1, vm32x, ymm2_   A       V/V               AVX2                 Using dword indices specified in _vm32x_, gather qword values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
-  VEX.DDS.256.66.0F38.W1 91 /r VPGATHERQQ _ymm1, vm64y, ymm2_   A       V/V               AVX2                 Using qword indices specified in _vm64y_, gather qword values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
+  Opcode/Instruction                                        Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------------------- ------- ----------------- -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W1 90 /r VPGATHERDQ _xmm1, vm32x, xmm2_   A       V/V               AVX2                 Using dword indices specified in _vm32x_, gather qword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  VEX.128.66.0F38.W1 91 /r VPGATHERQQ _xmm1, vm64x, xmm2_   A       V/V               AVX2                 Using qword indices specified in _vm64x_, gather qword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  VEX.256.66.0F38.W1 90 /r VPGATHERDQ _ymm1, vm32x, ymm2_   A       V/V               AVX2                 Using dword indices specified in _vm32x_, gather qword values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
+  VEX.256.66.0F38.W1 91 /r VPGATHERQQ _ymm1, vm64y, ymm2_   A       V/V               AVX2                 Using qword indices specified in _vm64y_, gather qword values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------------- -------------------------------------------------- ----------------- -----------
   Op/En   Operand 1         Operand 2                                          Operand 3         Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ----------------- -------------------------------------------------- ----------------- -----------
 
 
-Description¶
+Description ¶
 
 The instruction conditionally loads up to 2 or 4 qword values from
 memory addresses specified by the memory operand (the second operand)
@@ -105,7 +105,7 @@ Note that:
     the number of address bits are ignored.
 
 
-Operation¶
+Operation ¶
 
     DEST ← SRC1;
     BASE_ADDR: base register encoded in VSIB addressing;
@@ -114,8 +114,9 @@ Operation¶
     DISP: optional 1, 4 byte displacement;
     MASK ← SRC3;
 
-VPGATHERDQ (VEX.128 version)¶
+VPGATHERDQ (VEX.128 version) ¶
 
+    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 1
         i←j * 64;
         IF MASK[63+i] THEN
@@ -133,12 +134,11 @@ VPGATHERDQ (VEX.128 version)¶
         FI;
         MASK[i +63:i]←0;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     DEST[MAXVL-1:128] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
-VPGATHERQQ (VEX.128 version)¶
+VPGATHERQQ (VEX.128 version) ¶
 
+    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 1
         i←j * 64;
         IF MASK[63+i] THEN
@@ -155,12 +155,11 @@ VPGATHERQQ (VEX.128 version)¶
         FI;
         MASK[i +63:i]←0;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     DEST[MAXVL-1:128] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
-VPGATHERQQ (VEX.256 version)¶
+VPGATHERQQ (VEX.256 version) ¶
 
+    MASK[MAXVL-1:256] ← 0;
     FOR j←0 to 3
         i←j * 64;
         IF MASK[63+i] THEN
@@ -177,10 +176,11 @@ VPGATHERQQ (VEX.256 version)¶
         FI;
         MASK[i +63:i]←0;
     ENDFOR
-    (non-masked elements of the mask register have the content of respective element cleared)
+    DEST[MAXVL-1:256] ← 0;
 
-VPGATHERDQ (VEX.256 version)¶
+VPGATHERDQ (VEX.256 version) ¶
 
+    MASK[MAXVL-1:256] ← 0;
     FOR j←0 to 3
         i←j * 64;
         IF MASK[63+i] THEN
@@ -198,10 +198,10 @@ VPGATHERDQ (VEX.256 version)¶
         FI;
         MASK[i +63:i]←0;
     ENDFOR
-    (non-masked elements of the mask register have the content of respective element cleared)
+    DEST[MAXVL-1:256] ← 0;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPGATHERDQ: __m128i _mm_i32gather_epi64 (__int64 const * base, __m128i index, const int scale);
 
@@ -220,12 +220,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPGATHERQQ: __m256i _mm256_mask_i64gather_epi64 (__m256i src, __int64 const * base, __m256i index, __m256i mask, const int scale);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 12.
 

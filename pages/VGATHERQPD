@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VGATHERDPD/VGATHERQPD — GATHER PACKED DP FP VALUES USING SIGNED DWORD/QWORD INDICES
 
 
-  Opcode/Instruction                                            Op/En   64/3 2-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ----------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  VEX.DDS.128.66.0F38.W1 92 /r VGATHERDPD _xmm1, vm32x, xmm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32x_, gather double-precision FP values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
-  VEX.DDS.128.66.0F38.W1 93 /r VGATHERQPD _xmm1, vm64x, xmm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64x_, gather double-precision FP values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
-  VEX.DDS.256.66.0F38.W1 92 /r VGATHERDPD _ymm1, vm32x, ymm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32x_, gather double-precision FP values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
-  VEX.DDS.256.66.0F38.W1 93 /r VGATHERQPD _ymm1, vm64y, ymm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64y_, gather double-precision FP values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
+  Opcode/Instruction                                        Op/En   64/3 2-bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------------------- ------- ----------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W1 92 /r VGATHERDPD _xmm1, vm32x, xmm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32x_, gather double-precision FP values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  VEX.128.66.0F38.W1 93 /r VGATHERQPD _xmm1, vm64x, xmm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64x_, gather double-precision FP values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  VEX.256.66.0F38.W1 92 /r VGATHERDPD _ymm1, vm32x, ymm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32x_, gather double-precision FP values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
+  VEX.256.66.0F38.W1 93 /r VGATHERQPD _ymm1, vm64y, ymm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64y_, gather double-precision FP values from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------------- -------------------------------------------------- ----------------- -----------
   Op/En   Operand 1         Operand 2                                          Operand 3         Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ----------------- -------------------------------------------------- ----------------- -----------
 
 
-Description¶
+Description ¶
 
 The instruction conditionally loads up to 2 or 4 double-precision
 floating-point values from memory addresses specified by the memory
@@ -106,7 +106,7 @@ Note that:
     the number of address bits are ignored.
 
 
-Operation¶
+Operation ¶
 
     DEST ← SRC1;
     BASE_ADDR: base register encoded in VSIB addressing;
@@ -115,8 +115,9 @@ Operation¶
     DISP: optional 1, 4 byte displacement;
     MASK ← SRC3;
 
-VGATHERDPD (VEX.128 version)¶
+VGATHERDPD (VEX.128 version) ¶
 
+    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 1
         i←j * 64;
         IF MASK[63+i] THEN
@@ -134,12 +135,11 @@ VGATHERDPD (VEX.128 version)¶
         FI;
         MASK[i +63: i]←0;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     DEST[MAXVL-1:128] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
-VGATHERQPD (VEX.128 version)¶
+VGATHERQPD (VEX.128 version) ¶
 
+    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 1
         i←j * 64;
         IF MASK[63+i] THEN
@@ -156,12 +156,11 @@ VGATHERQPD (VEX.128 version)¶
         FI;
         MASK[i +63: i]←0;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     DEST[MAXVL-1:128] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
-VGATHERQPD (VEX.256 version)¶
+VGATHERQPD (VEX.256 version) ¶
 
+    MASK[MAXVL-1:256] ← 0;
     FOR j←0 to 3
         i←j * 64;
         IF MASK[63+i] THEN
@@ -178,10 +177,11 @@ VGATHERQPD (VEX.256 version)¶
         FI;
         MASK[i +63: i]←0;
     ENDFOR
-    (non-masked elements of the mask register have the content of respective element cleared)
+    DEST[MAXVL-1:256] ← 0;
 
-VGATHERDPD (VEX.256 version)¶
+VGATHERDPD (VEX.256 version) ¶
 
+    MASK[MAXVL-1:256] ← 0;
     FOR j←0 to 3
         i←j * 64;
         IF MASK[63+i] THEN
@@ -199,10 +199,10 @@ VGATHERDPD (VEX.256 version)¶
         FI;
         MASK[i +63:i]←0;
     ENDFOR
-    (non-masked elements of the mask register have the content of respective element cleared)
+    DEST[MAXVL-1:256] ← 0;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGATHERDPD: __m128d _mm_i32gather_pd (double const * base, __m128i index, const int scale);
 
@@ -221,12 +221,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VGATHERQPD: __m256d _mm256_mask_i64gather_pd (__m256d src, double const * base, __m256i index, __m256d mask, const int scale);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 12.
 

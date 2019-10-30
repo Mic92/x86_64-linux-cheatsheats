@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 DIVPS — DIVIDE PACKED SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 5E /r DIVPS xmm1, xmm2/m128                                           A       V/V                      SSE                  Divide packed single-precision floating-point values in xmm1 by packed single-precision floating-point values in xmm2/mem.
-  VEX.NDS.128.0F.WIG 5E /r VDIVPS xmm1, xmm2, xmm3/m128                       B       V/V                      AVX                  Divide packed single-precision floating-point values in xmm2 by packed single-precision floating-point values in xmm3/mem.
-  VEX.NDS.256.0F.WIG 5E /r VDIVPS ymm1, ymm2, ymm3/m256                       B       V/V                      AVX                  Divide packed single-precision floating-point values in ymm2 by packed single-precision floating-point values in ymm3/mem.
-  EVEX.NDS.128.0F.W0 5E /r VDIVPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       C       V/V                      AVX512VL AVX512F     Divide packed single-precision floating-point values in xmm2 by packed single-precision floating-point values in xmm3/m128/m32bcst and write results to xmm1 subject to writemask k1.
-  EVEX.NDS.256.0F.W0 5E /r VDIVPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       C       V/V                      AVX512VL AVX512F     Divide packed single-precision floating-point values in ymm2 by packed single-precision floating-point values in ymm3/m256/m32bcst and write results to ymm1 subject to writemask k1.
-  EVEX.NDS.512.0F.W0 5E /r VDIVPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   C       V/V                      AVX512F              Divide packed single-precision floating-point values in zmm2 by packed single-precision floating-point values in zmm3/m512/m32bcst and write results to zmm1 subject to writemask k1.
+  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 5E /r DIVPS xmm1, xmm2/m128                                       A       V/V                      SSE                  Divide packed single-precision floating-point values in xmm1 by packed single-precision floating-point values in xmm2/mem.
+  VEX.128.0F.WIG 5E /r VDIVPS xmm1, xmm2, xmm3/m128                       B       V/V                      AVX                  Divide packed single-precision floating-point values in xmm2 by packed single-precision floating-point values in xmm3/mem.
+  VEX.256.0F.WIG 5E /r VDIVPS ymm1, ymm2, ymm3/m256                       B       V/V                      AVX                  Divide packed single-precision floating-point values in ymm2 by packed single-precision floating-point values in ymm3/mem.
+  EVEX.128.0F.W0 5E /r VDIVPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       C       V/V                      AVX512VL AVX512F     Divide packed single-precision floating-point values in xmm2 by packed single-precision floating-point values in xmm3/m128/m32bcst and write results to xmm1 subject to writemask k1.
+  EVEX.256.0F.W0 5E /r VDIVPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       C       V/V                      AVX512VL AVX512F     Divide packed single-precision floating-point values in ymm2 by packed single-precision floating-point values in ymm3/m256/m32bcst and write results to ymm1 subject to writemask k1.
+  EVEX.512.0F.W0 5E /r VDIVPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   C       V/V                      AVX512F              Divide packed single-precision floating-point values in zmm2 by packed single-precision floating-point values in zmm3/m512/m32bcst and write results to zmm1 subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a SIMD divide of the four, eight or sixteen packed
 single-precision floating-point values in the first source operand (the
@@ -55,9 +55,9 @@ first source XMM register and the upper bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
 
 
-Operation¶
+Operation ¶
 
-VDIVPS (EVEX encoded versions)¶
+VDIVPS (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF (VL = 512) AND (EVEX.b = 1) AND SRC2 *is a register*
@@ -86,7 +86,7 @@ VDIVPS (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VDIVPS (VEX.256 encoded version)¶
+VDIVPS (VEX.256 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] / SRC2[31:0]
     DEST[63:32]←SRC1[63:32] / SRC2[63:32]
@@ -98,7 +98,7 @@ VDIVPS (VEX.256 encoded version)¶
     DEST[255:224]←SRC1[255:224] / SRC2[255:224].
     DEST[MAXVL-1:256] ←0;
 
-VDIVPS (VEX.128 encoded version)¶
+VDIVPS (VEX.128 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] / SRC2[31:0]
     DEST[63:32]←SRC1[63:32] / SRC2[63:32]
@@ -106,7 +106,7 @@ VDIVPS (VEX.128 encoded version)¶
     DEST[127:96]←SRC1[127:96] / SRC2[127:96]
     DEST[MAXVL-1:128] ←0
 
-DIVPS (128-bit Legacy SSE version)¶
+DIVPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0]←SRC1[31:0] / SRC2[31:0]
     DEST[63:32]←SRC1[63:32] / SRC2[63:32]
@@ -115,7 +115,7 @@ DIVPS (128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VDIVPS __m512 _mm512_div_ps( __m512 a, __m512 b);
 
@@ -142,12 +142,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     DIVPS __m128 _mm_div_ps (__m128 a, __m128 b);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Divide-by-Zero, Precision, Denormal
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 2.
 

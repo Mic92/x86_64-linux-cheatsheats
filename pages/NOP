@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ NOP — NO OPERATION
   NP 0F 1F /0   NOP r/m32     M       Valid         Valid             Multi-byte no-operation instruction.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 This instruction performs no operation. It is a one-byte or multi-byte
 NOP that takes up space in the instruction stream but does not impact
@@ -38,7 +38,7 @@ and will not issue a memory operation. The instruction’s operation is
 the same in non-64-bit modes and 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     The one-byte NOP instruction is an alias mnemonic for the XCHG (E)AX, (E)AX instruction.
     The multi-byte NOP instruction performs no operation on supported processors and generates undefined opcode
@@ -54,12 +54,12 @@ Operation¶
 Table 4-12. Recommended Multi-Byte Sequence of NOP Instruction
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

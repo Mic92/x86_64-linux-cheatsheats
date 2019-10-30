@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VCVTPS2UDQ — CONVERT PACKED SINGLE-PRECISION FLOATING-POINT VALUES TO PACKED U
   EVEX.512.0F.W0 79 /r VCVTPS2UDQ zmm1 {k1}{z}, zmm2/m512/m32bcst{er}   A       V/V                      AVX512F              Convert sixteen packed single-precision floating-point values from zmm2/m512/m32bcst to sixteen packed unsigned doubleword values in zmm1 subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts sixteen packed single-precision floating-point values in the
 source operand to sixteen unsigned double-word integers in the
@@ -41,9 +41,9 @@ conditionally updated with writemask k1.
 Note: EVEX.vvvv is reserved and must be 1111b otherwise instructions
 will #UD.
 
-Operation¶
+Operation ¶
 
-VCVTPS2UDQ (EVEX encoded versions) when src operand is a register¶
+VCVTPS2UDQ (EVEX encoded versions) when src operand is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -67,7 +67,7 @@ VCVTPS2UDQ (EVEX encoded versions) when src operand is a register¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTPS2UDQ (EVEX encoded versions) when src operand is a memory source¶
+VCVTPS2UDQ (EVEX encoded versions) when src operand is a memory source ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -92,7 +92,7 @@ VCVTPS2UDQ (EVEX encoded versions) when src operand is a memory source¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTPS2UDQ __m512i _mm512_cvtps_epu32( __m512 a);
 
@@ -118,11 +118,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTPS2UDQ __m128i _mm_maskz_cvtps_epu32( __mmask8 k, __m128 a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instructions, see Exceptions Type E2.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ FXAM — EXAMINE FLOATING-POINT
   D9 E5    FXAM          Valid         Valid             Classify value or number in ST(0).
 
 
-Description¶
+Description ¶
 
 Examines the contents of the ST(0) register and sets the condition code
 flags C0, C2, and C3 in the FPU status word to indicate the class of
@@ -36,7 +36,7 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     C1 ← sign bit of ST; (* 0 for positive, 1 for negative *)
     CASE (class of value or number in ST(0)) OF
@@ -56,7 +56,7 @@ Operation¶
     ESAC;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
   ------------ -------------------------
   C1           Sign of value in ST(0).
@@ -64,12 +64,12 @@ FPU Flags Affected¶
   ------------ -------------------------
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
@@ -78,22 +78,22 @@ Protected Mode Exceptions¶
   ----- ------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VPEXPANDQ — LOAD SPARSE PACKED QUADWORD INTEGER VALUES FROM DENSE MEMORY / REG
   EVEX.512.66.0F38.W1 89 /r VPEXPANDQ zmm1 {k1}{z}, zmm2/m512   A       V/V                      AVX512F              Expand packed quad-word integer values from zmm2/m512 to zmm1 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Expand (load) up to 8 quadword integer values from the source operand
 (the second operand) to sparse elements in the destination operand (the
@@ -42,9 +42,9 @@ Note that the compressed displacement assumes a pre-scaling (N)
 corresponding to the size of one single element instead of the size of
 the full vector.
 
-Operation¶
+Operation ¶
 
-VPEXPANDQ (EVEX encoded versions)¶
+VPEXPANDQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     k←0
@@ -65,7 +65,7 @@ VPEXPANDQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPEXPANDQ __m512i _mm512_mask_expandloadu_epi64(__m512i s, __mmask8 k, void * a);
 
@@ -91,11 +91,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPEXPANDQ __m128i _mm_maskz_expand_epi64( __mmask8 k, __m128i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E4.nb.
 

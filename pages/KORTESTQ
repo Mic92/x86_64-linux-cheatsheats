@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ KORTESTW/KORTESTB/KORTESTQ/KORTESTD — OR MASKS AND SET FLAGS
   VEX.L0.66.0F.W1 98 /r KORTESTD k1, k2   RR      V/V                      AVX512BW             Bitwise OR 32 bits masks k1 and k2 and update ZF and CF accordingly.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------------------------------------
   Op/En   Operand 1       Operand 2
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------------------------------------
 
 
-Description¶
+Description ¶
 
 Performs a bitwise OR between the vector mask register k2, and the
 vector mask register k1, and sets CF and ZF based on the operation
@@ -32,9 +32,9 @@ ZF flag is set if both sources are 0x0. CF is set if, after the OR
 operation is done, the operation result is all 1’s.
 
 
-Operation¶
+Operation ¶
 
-KORTESTW¶
+KORTESTW ¶
 
     TMP[15:0]←DEST[15:0] BITWISE OR SRC[15:0]
     IF(TMP[15:0]=0)
@@ -46,7 +46,7 @@ KORTESTW¶
         ELSE CF←0
     FI;
 
-KORTESTB¶
+KORTESTB ¶
 
     TMP[7:0]←DEST[7:0] BITWISE OR SRC[7:0]
     IF(TMP[7:0]=0)
@@ -58,7 +58,7 @@ KORTESTB¶
         ELSE CF←0
     FI;
 
-KORTESTQ¶
+KORTESTQ ¶
 
     TMP[63:0]←DEST[63:0] BITWISE OR SRC[63:0]
     IF(TMP[63:0]=0)
@@ -70,7 +70,7 @@ KORTESTQ¶
         ELSE CF←0
     FI;
 
-KORTESTD¶
+KORTESTD ¶
 
     TMP[31:0]←DEST[31:0] BITWISE OR SRC[31:0]
     IF(TMP[31:0]=0)
@@ -83,12 +83,12 @@ KORTESTD¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     KORTESTW __mmask16 _mm512_kortest[cz](__mmask16 a, __mmask16 b);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The ZF flag is set if the result of OR-ing both sources is all 0s.
 
@@ -97,7 +97,7 @@ The CF flag is set if the result of OR-ing both sources is all 1s.
 The OF, SF, AF, and PF flags are set to 0.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type K20.
 

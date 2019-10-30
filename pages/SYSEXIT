@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ SYSEXIT — FAST RETURN FROM FAST SYSTEM CALL
   REX.W + 0F 35   SYSEXIT       ZO      Valid         Valid             Fast return to 64-bit mode privilege level 3 user code.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Executes a fast return to privilege level 3 user code. SYSEXIT is a
 companion instruction to the SYSENTER instruction. The instruction is
@@ -90,8 +90,15 @@ When the CPUID instruction is executed on the Pentium Pro processor
 (model 1), the processor returns a the SEP flag as set, but does not
 support the SYSENTER/SYSEXIT instructions.
 
+INSTRUCTION ORDERING. Instructions following a SYSEXIT may be fetched
+from memory before earlier instructions complete execution, but they
+will not execute (even speculatively) until all instructions prior to
+the SYSEXIT have completed execution (the later instructions may execute
+before data stored by the earlier instructions have become globally
+visible).
 
-Operation¶
+
+Operation ¶
 
     IF IA32_SYSENTER_CS[15:2] = 0 OR CR0.PE = 0 OR CPL ≠ 0 THEN #GP(0); FI;
     IF operand size is 64-bit
@@ -149,12 +156,12 @@ Operation¶
                 (* 4-KByte granularity *)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -167,7 +174,7 @@ If CPL ≠ 0.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #GP   The SYSEXIT instruction is not recognized in real-address mode.
@@ -175,19 +182,19 @@ Real-Address Mode Exceptions¶
   ----- -----------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   -------- -----------------------------------------------------------------
   #GP(0)   The SYSEXIT instruction is not recognized in virtual-8086 mode.
   -------- -----------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

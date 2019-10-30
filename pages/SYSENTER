@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ SYSENTER — FAST SYSTEM CALL
   0F 34    SYSENTER      ZO      Valid         Valid             Fast call to privilege level 0 system procedures.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Executes a fast call to a level 0 system procedure or routine. SYSENTER
 is a companion instruction to SYSEXIT. The instruction is optimized to
@@ -114,8 +114,15 @@ When the CPUID instruction is executed on the Pentium Pro processor
 (model 1), the processor returns a the SEP flag as set, but does not
 support the SYSENTER/SYSEXIT instructions.
 
+INSTRUCTION ORDERING. Instructions following a SYSENTER may be fetched
+from memory before earlier instructions complete execution, but they
+will not execute (even speculatively) until all instructions prior to
+the SYSENTER have completed execution (the later instructions may
+execute before data stored by the earlier instructions have become
+globally visible).
 
-Operation¶
+
+Operation ¶
 
     IF CR0.PE = 0 OR IA32_SYSENTER_CS[15:2] = 0 THEN #GP(0); FI;
     RFLAGS.VM ← 0;
@@ -174,12 +181,12 @@ Operation¶
                 (* 4-KByte granularity *)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 VM, IF (see Operation above)
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   -------- --------------------------------
   #GP(0)   If IA32_SYSENTER_CS[15:2] = 0.
@@ -187,7 +194,7 @@ Protected Mode Exceptions¶
   -------- --------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------
   #GP   The SYSENTER instruction is not recognized in real-address mode.
@@ -195,17 +202,17 @@ Real-Address Mode Exceptions¶
   ----- ------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

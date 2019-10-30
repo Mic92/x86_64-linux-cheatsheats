@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ CLI — CLEAR INTERRUPT FLAG
   FA       CLI           ZO      Valid         Valid             Clear interrupt flag; interrupts disabled when interrupt flag cleared.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 In most cases, CLI clears the IF flag in the EFLAGS register and no
 other flags are affected. Clearing the IF flag causes the processor to
@@ -102,7 +102,7 @@ Table 3-7. Decision Table for CLI Results
   3. PVI mode and virtual-8086 mode each imply CPL = 3.
 
 
-Operation¶
+Operation ¶
 
     IF CR0.PE = 0
         THEN IF ← 0; (* Reset Interrupt Flag *)
@@ -118,13 +118,13 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 Either the IF flag or the VIF flag is cleared to 0. Other flags are
 unaffected.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -137,14 +137,14 @@ If CPL is greater than IOPL and less than 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   -------- ----------------------------------------------------
   #GP(0)   If IOPL is less than 3 and VME mode is not active.
@@ -152,12 +152,12 @@ Virtual-8086 Mode Exceptions¶
   -------- ----------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -46,7 +46,7 @@ PMOVSX — PACKED MOVE WITH SIGN EXTEND
   EVEX.512.66.0F38.W0 25 /r VPMOVSXDQ zmm1 {k1}{z}, ymm2/m256    B         V/V                      AVX512F              Sign extend 8 packed 32-bit integers in the low 32 bytes of ymm2/m256 to 8 packed 64-bit integers in zmm1 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type    Operand 1       Operand 2       Operand 3   Operand 4
@@ -56,7 +56,7 @@ Instruction Operand Encoding¶
   D       Eighth Mem    ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Legacy and VEX encoded versions: Packed byte, word, or dword integers in
 the low bytes of the source operand (second operand) are sign extended
@@ -81,9 +81,9 @@ Register.
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-Operation¶
+Operation ¶
 
-Packed_Sign_Extend_BYTE_to_WORD(DEST, SRC)¶
+Packed_Sign_Extend_BYTE_to_WORD(DEST, SRC) ¶
 
     DEST[15:0] ←SignExtend(SRC[7:0]);
     DEST[31:16] ←SignExtend(SRC[15:8]);
@@ -94,36 +94,36 @@ Packed_Sign_Extend_BYTE_to_WORD(DEST, SRC)¶
     DEST[111:96] ←SignExtend(SRC[55:48]);
     DEST[127:112] ←SignExtend(SRC[63:56]);
 
-Packed_Sign_Extend_BYTE_to_DWORD(DEST, SRC)¶
+Packed_Sign_Extend_BYTE_to_DWORD(DEST, SRC) ¶
 
     DEST[31:0] ←SignExtend(SRC[7:0]);
     DEST[63:32] ←SignExtend(SRC[15:8]);
     DEST[95:64] ←SignExtend(SRC[23:16]);
     DEST[127:96] ←SignExtend(SRC[31:24]);
 
-Packed_Sign_Extend_BYTE_to_QWORD(DEST, SRC)¶
+Packed_Sign_Extend_BYTE_to_QWORD(DEST, SRC) ¶
 
     DEST[63:0] ←SignExtend(SRC[7:0]);
     DEST[127:64] ←SignExtend(SRC[15:8]);
 
-Packed_Sign_Extend_WORD_to_DWORD(DEST, SRC)¶
+Packed_Sign_Extend_WORD_to_DWORD(DEST, SRC) ¶
 
     DEST[31:0] ←SignExtend(SRC[15:0]);
     DEST[63:32] ←SignExtend(SRC[31:16]);
     DEST[95:64] ←SignExtend(SRC[47:32]);
     DEST[127:96] ←SignExtend(SRC[63:48]);
 
-Packed_Sign_Extend_WORD_to_QWORD(DEST, SRC)¶
+Packed_Sign_Extend_WORD_to_QWORD(DEST, SRC) ¶
 
     DEST[63:0] ←SignExtend(SRC[15:0]);
     DEST[127:64] ←SignExtend(SRC[31:16]);
 
-Packed_Sign_Extend_DWORD_to_QWORD(DEST, SRC)¶
+Packed_Sign_Extend_DWORD_to_QWORD(DEST, SRC) ¶
 
     DEST[63:0] ←SignExtend(SRC[31:0]);
     DEST[127:64] ←SignExtend(SRC[63:32]);
 
-VPMOVSXBW (EVEX encoded versions)¶
+VPMOVSXBW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     Packed_Sign_Extend_BYTE_to_WORD(TMP_DEST[127:0], SRC[63:0])
@@ -150,7 +150,7 @@ VPMOVSXBW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVSXBD (EVEX encoded versions)¶
+VPMOVSXBD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     Packed_Sign_Extend_BYTE_to_DWORD(TMP_DEST[127:0], SRC[31:0])
@@ -177,7 +177,7 @@ VPMOVSXBD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVSXBQ (EVEX encoded versions)¶
+VPMOVSXBQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     Packed_Sign_Extend_BYTE_to_QWORD(TMP_DEST[127:0], SRC[15:0])
@@ -204,7 +204,7 @@ VPMOVSXBQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVSXWD (EVEX encoded versions)¶
+VPMOVSXWD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     Packed_Sign_Extend_WORD_to_DWORD(TMP_DEST[127:0], SRC[63:0])
@@ -231,7 +231,7 @@ VPMOVSXWD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVSXWQ (EVEX encoded versions)¶
+VPMOVSXWQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     Packed_Sign_Extend_WORD_to_QWORD(TMP_DEST[127:0], SRC[31:0])
@@ -258,7 +258,7 @@ VPMOVSXWQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVSXDQ (EVEX encoded versions)¶
+VPMOVSXDQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     Packed_Sign_Extend_DWORD_to_QWORD(TEMP_DEST[127:0], SRC[63:0])
@@ -285,103 +285,103 @@ VPMOVSXDQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVSXBW (VEX.256 encoded version)¶
+VPMOVSXBW (VEX.256 encoded version) ¶
 
     Packed_Sign_Extend_BYTE_to_WORD(DEST[127:0], SRC[63:0])
     Packed_Sign_Extend_BYTE_to_WORD(DEST[255:128], SRC[127:64])
     DEST[MAXVL-1:256] ← 0
 
-VPMOVSXBD (VEX.256 encoded version)¶
+VPMOVSXBD (VEX.256 encoded version) ¶
 
     Packed_Sign_Extend_BYTE_to_DWORD(DEST[127:0], SRC[31:0])
     Packed_Sign_Extend_BYTE_to_DWORD(DEST[255:128], SRC[63:32])
     DEST[MAXVL-1:256] ← 0
 
-VPMOVSXBQ (VEX.256 encoded version)¶
+VPMOVSXBQ (VEX.256 encoded version) ¶
 
     Packed_Sign_Extend_BYTE_to_QWORD(DEST[127:0], SRC[15:0])
     Packed_Sign_Extend_BYTE_to_QWORD(DEST[255:128], SRC[31:16])
     DEST[MAXVL-1:256] ← 0
 
-VPMOVSXWD (VEX.256 encoded version)¶
+VPMOVSXWD (VEX.256 encoded version) ¶
 
     Packed_Sign_Extend_WORD_to_DWORD(DEST[127:0], SRC[63:0])
     Packed_Sign_Extend_WORD_to_DWORD(DEST[255:128], SRC[127:64])
     DEST[MAXVL-1:256] ← 0
 
-VPMOVSXWQ (VEX.256 encoded version)¶
+VPMOVSXWQ (VEX.256 encoded version) ¶
 
     Packed_Sign_Extend_WORD_to_QWORD(DEST[127:0], SRC[31:0])
     Packed_Sign_Extend_WORD_to_QWORD(DEST[255:128], SRC[63:32])
     DEST[MAXVL-1:256] ← 0
 
-VPMOVSXDQ (VEX.256 encoded version)¶
+VPMOVSXDQ (VEX.256 encoded version) ¶
 
     Packed_Sign_Extend_DWORD_to_QWORD(DEST[127:0], SRC[63:0])
     Packed_Sign_Extend_DWORD_to_QWORD(DEST[255:128], SRC[127:64])
     DEST[MAXVL-1:256] ← 0
 
-VPMOVSXBW (VEX.128 encoded version)¶
+VPMOVSXBW (VEX.128 encoded version) ¶
 
     Packed_Sign_Extend_BYTE_to_WORDDEST[127:0], SRC[127:0]()
     DEST[MAXVL-1:128] ←0
 
-VPMOVSXBD (VEX.128 encoded version)¶
+VPMOVSXBD (VEX.128 encoded version) ¶
 
     Packed_Sign_Extend_BYTE_to_DWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] ←0
 
-VPMOVSXBQ (VEX.128 encoded version)¶
+VPMOVSXBQ (VEX.128 encoded version) ¶
 
     Packed_Sign_Extend_BYTE_to_QWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] ←0
 
-VPMOVSXWD (VEX.128 encoded version)¶
+VPMOVSXWD (VEX.128 encoded version) ¶
 
     Packed_Sign_Extend_WORD_to_DWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] ←0
 
-VPMOVSXWQ (VEX.128 encoded version)¶
+VPMOVSXWQ (VEX.128 encoded version) ¶
 
     Packed_Sign_Extend_WORD_to_QWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] ←0
 
-VPMOVSXDQ (VEX.128 encoded version)¶
+VPMOVSXDQ (VEX.128 encoded version) ¶
 
     Packed_Sign_Extend_DWORD_to_QWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] ←0
 
-PMOVSXBW¶
+PMOVSXBW ¶
 
     Packed_Sign_Extend_BYTE_to_WORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-PMOVSXBD¶
+PMOVSXBD ¶
 
     Packed_Sign_Extend_BYTE_to_DWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-PMOVSXBQ¶
+PMOVSXBQ ¶
 
     Packed_Sign_Extend_BYTE_to_QWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-PMOVSXWD¶
+PMOVSXWD ¶
 
     Packed_Sign_Extend_WORD_to_DWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-PMOVSXWQ¶
+PMOVSXWQ ¶
 
     Packed_Sign_Extend_WORD_to_QWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-PMOVSXDQ¶
+PMOVSXDQ ¶
 
     Packed_Sign_Extend_DWORD_to_QWORD(DEST[127:0], SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMOVSXBW __m512i _mm512_cvtepi8_epi16(__m512i a);
 
@@ -491,11 +491,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     PMOVSXDQ __m128i _mm_ cvtepi32_epi64 ( __m128i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 5.
 

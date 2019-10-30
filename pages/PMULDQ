@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PMULDQ — MULTIPLY PACKED DOUBLEWORD INTEGERS
 
 
-  Opcode/Instruction                                                            Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 28 /r PMULDQ xmm1, xmm2/m128                                         A         V/V                      SSE4_1               Multiply packed signed doubleword integers in xmm1 by packed signed doubleword integers in xmm2/m128, and store the quadword results in xmm1.
-  VEX.NDS.128.66.0F38.WIG 28 /r VPMULDQ xmm1, xmm2, xmm3/m128                   B         V/V                      AVX                  Multiply packed signed doubleword integers in xmm2 by packed signed doubleword integers in xmm3/m128, and store the quadword results in xmm1.
-  VEX.NDS.256.66.0F38.WIG 28 /r VPMULDQ ymm1, ymm2, ymm3/m256                   B         V/V                      AVX2                 Multiply packed signed doubleword integers in ymm2 by packed signed doubleword integers in ymm3/m256, and store the quadword results in ymm1.
-  EVEX.NDS.128.66.0F38.W1 28 /r VPMULDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C         V/V                      AVX512VL AVX512F     Multiply packed signed doubleword integers in xmm2 by packed signed doubleword integers in xmm3/m128/m64bcst, and store the quadword results in xmm1 using writemask k1.
-  EVEX.NDS.256.66.0F38.W1 28 /r VPMULDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C         V/V                      AVX512VL AVX512F     Multiply packed signed doubleword integers in ymm2 by packed signed doubleword integers in ymm3/m256/m64bcst, and store the quadword results in ymm1 using writemask k1.
-  EVEX.NDS.512.66.0F38.W1 28 /r VPMULDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C         V/V                      AVX512F              Multiply packed signed doubleword integers in zmm2 by packed signed doubleword integers in zmm3/m512/m64bcst, and store the quadword results in zmm1 using writemask k1.
+  Opcode/Instruction                                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 28 /r PMULDQ xmm1, xmm2/m128                                     A         V/V                      SSE4_1               Multiply packed signed doubleword integers in xmm1 by packed signed doubleword integers in xmm2/m128, and store the quadword results in xmm1.
+  VEX.128.66.0F38.WIG 28 /r VPMULDQ xmm1, xmm2, xmm3/m128                   B         V/V                      AVX                  Multiply packed signed doubleword integers in xmm2 by packed signed doubleword integers in xmm3/m128, and store the quadword results in xmm1.
+  VEX.256.66.0F38.WIG 28 /r VPMULDQ ymm1, ymm2, ymm3/m256                   B         V/V                      AVX2                 Multiply packed signed doubleword integers in ymm2 by packed signed doubleword integers in ymm3/m256, and store the quadword results in ymm1.
+  EVEX.128.66.0F38.W1 28 /r VPMULDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C         V/V                      AVX512VL AVX512F     Multiply packed signed doubleword integers in xmm2 by packed signed doubleword integers in xmm3/m128/m64bcst, and store the quadword results in xmm1 using writemask k1.
+  EVEX.256.66.0F38.W1 28 /r VPMULDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C         V/V                      AVX512VL AVX512F     Multiply packed signed doubleword integers in ymm2 by packed signed doubleword integers in ymm3/m256/m64bcst, and store the quadword results in ymm1 using writemask k1.
+  EVEX.512.66.0F38.W1 28 /r VPMULDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C         V/V                      AVX512F              Multiply packed signed doubleword integers in zmm2 by packed signed doubleword integers in zmm3/m512/m64bcst, and store the quadword results in zmm1 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Multiplies packed signed doubleword integers in the even-numbered
 (zero-based reference) elements of the first source operand with the
@@ -68,9 +68,9 @@ ZMM/YMM/XMM register, a 512/256/128-bit memory location or a
 destination is a ZMM/YMM/XMM register, and updated according to the
 writemask at 64-bit granularity.
 
-Operation¶
+Operation ¶
 
-VPMULDQ (EVEX encoded versions)¶
+VPMULDQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -92,7 +92,7 @@ VPMULDQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMULDQ (VEX.256 encoded version)¶
+VPMULDQ (VEX.256 encoded version) ¶
 
     DEST[63:0]←SignExtend64( SRC1[31:0]) * SignExtend64( SRC2[31:0])
     DEST[127:64]←SignExtend64( SRC1[95:64]) * SignExtend64( SRC2[95:64])
@@ -100,19 +100,19 @@ VPMULDQ (VEX.256 encoded version)¶
     DEST[255:192]←SignExtend64( SRC1[223:192]) * SignExtend64( SRC2[223:192])
     DEST[MAXVL-1:256] ←0
 
-VPMULDQ (VEX.128 encoded version)¶
+VPMULDQ (VEX.128 encoded version) ¶
 
     DEST[63:0]←SignExtend64( SRC1[31:0]) * SignExtend64( SRC2[31:0])
     DEST[127:64]←SignExtend64( SRC1[95:64]) * SignExtend64( SRC2[95:64])
     DEST[MAXVL-1:128] ←0
 
-PMULDQ (128-bit Legacy SSE version)¶
+PMULDQ (128-bit Legacy SSE version) ¶
 
     DEST[63:0]←SignExtend64( DEST[31:0]) * SignExtend64( SRC[31:0])
     DEST[127:64]←SignExtend64( DEST[95:64]) * SignExtend64( SRC[95:64])
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMULDQ __m512i _mm512_mul_epi32(__m512i a, __m512i b);
 
@@ -132,11 +132,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPMULDQ __m256i _mm256_mul_epi32( __m256i a, __m256i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

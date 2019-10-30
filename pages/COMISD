@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ COMISD — COMPARE SCALAR ORDERED DOUBLE-PRECISION FLOATING-POINT VALUES AND SET
   EVEX.LIG.66.0F.W1 2F /r VCOMISD xmm1, xmm2/m64{sae}   B       V/V                      AVX512F              Compare low double-precision floating-point values in xmm1 and xmm2/mem64 and set the EFLAGS flags accordingly.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Compares the double-precision floating-point values in the low quadwords
 of operand 1 (first operand) and operand 2 (second operand), and sets
@@ -51,9 +51,9 @@ with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
 
-Operation¶
+Operation ¶
 
-COMISD (all versions)¶
+COMISD (all versions) ¶
 
     RESULT← OrderedCompare(DEST[63:0] <> SRC[63:0]) {
     (* Set EFLAGS *) CASE (RESULT) OF
@@ -65,7 +65,7 @@ COMISD (all versions)¶
     OF, AF, SF←0; }
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCOMISD int _mm_comi_round_sd(__m128d a, __m128d b, int imm, int sae);
 
@@ -82,12 +82,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VCOMISD int _mm_comineq_sd (__m128d a, __m128d b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (if SNaN or QNaN operands), Denormal.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3;
 

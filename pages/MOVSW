@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -20,7 +20,7 @@ MOVS/MOVSB/MOVSW/MOVSD/MOVSQ — MOVE DATA FROM STRING TO STRING
   REX.W + A5   MOVSQ               ZO      Valid         N.E.              Move qword from address (R|E)SI to (R|E)DI.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -28,7 +28,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Moves the byte, word, or doubleword specified with the second operand
 (source operand) to the location specified with the first operand
@@ -91,7 +91,7 @@ operations, by 2 for word operations, or by 4 for doubleword operations.
   encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     DEST ← SRC;
     Non-64-bit Mode:
@@ -171,12 +171,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -205,7 +205,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -214,7 +214,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -225,12 +225,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

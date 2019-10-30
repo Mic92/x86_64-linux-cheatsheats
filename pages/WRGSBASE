@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -57,7 +57,7 @@ FSGSBASE
 Load the GS base address with the 64-bit value in the source register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -65,7 +65,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads the FS or GS segment base address with the general-purpose
 register indicated by the modR/M:r/m field.
@@ -79,17 +79,17 @@ the source register are ignored and upper 32 bits of the base address
 This instruction is supported only in 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     FS/GS segment base address ← SRC;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     WRFSBASE: void _writefsbase_u32( unsigned int );
 
@@ -100,35 +100,35 @@ C/C++ Compiler Intrinsic Equivalent¶
     WRGSBASE: _writegsbase_u64( unsigned __int64 );
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------------------
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in protected mode.
   ----- ------------------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in real-address mode.
   ----- ---------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in virtual-8086 mode.
   ----- ---------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------------------------
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in compatibility mode.
   ----- ----------------------------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #UD
 

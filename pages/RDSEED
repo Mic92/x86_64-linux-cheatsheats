@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 RDSEED — READ RANDOM SEED
 
 
-  Opcode/Instruction            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------
-  0F C7 /7 RDSEED r16           M       V/V                      RDSEED               Read a 16-bit NIST SP800-90B & C compliant random value and store in the destination register.
-  0F C7 /7 RDSEED r32           M       V/V                      RDSEED               Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.
-  REX.W + 0F C7 /7 RDSEED r64   M       V/I                      RDSEED               Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.
+  Opcode/Instruction                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------
+  NFx 0F C7 /7 RDSEED r16           M       V/V                      RDSEED               Read a 16-bit NIST SP800-90B & C compliant random value and store in the destination register.
+  NFx 0F C7 /7 RDSEED r32           M       V/V                      RDSEED               Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.
+  NFx REX.W + 0F C7 /7 RDSEED r64   M       V/I                      RDSEED               Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads a hardware generated random value and store it in the destination
 register. The random value is generated from an Enhanced NRBG (Non
@@ -48,7 +48,7 @@ operation to 64 bit operands. See the summary chart at the beginning of
 this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     IF HW_NRND_GEN.ready = 1
         THEN
@@ -69,13 +69,13 @@ Operation¶
     OF, SF, ZF, AF, PF ← 0;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF flag is set according to the result (see the "Operation" section
 above). The OF, SF, ZF, AF, and PF flags are set to 0.
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     RDSEED int _rdseed16_step( unsigned short * );
 
@@ -84,57 +84,47 @@ C/C++ Compiler Intrinsic Equivalent¶
     RDSEED int _rdseed64_step( unsigned __int64 *);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
 If the LOCK prefix is used.
-
-If the F2H or F3H prefix is used.
 
 If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
 If the LOCK prefix is used.
-
-If the F2H or F3H prefix is used.
 
 If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
 If the LOCK prefix is used.
-
-If the F2H or F3H prefix is used.
 
 If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 #UD
 
 If the LOCK prefix is used.
-
-If the F2H or F3H prefix is used.
 
 If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #UD
 
 If the LOCK prefix is used.
-
-If the F2H or F3H prefix is used.
 
 If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
 

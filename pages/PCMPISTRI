@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ PCMPISTRI — PACKED COMPARE IMPLICIT LENGTH STRINGS, RETURN INDEX
   VEX.128.66.0F3A.WIG 63 /r ib VPCMPISTRI _xmm1, xmm2/m128, imm8_   RM      V/V                      AVX                  Perform a packed comparison of string data with implicit lengths, generating an index, and storing the result in ECX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 The instruction compares data from two strings based on the encoded
 value in the Imm8 Control Byte (see Section 4.1, “Imm8 Control Byte
@@ -58,7 +58,7 @@ Note: In VEX.128 encoded version, VEX.vvvv is reserved and must be
 1111b, VEX.L must be 0, otherwise the instruction will #UD.
 
 
-Effective Operand Size¶
+Effective Operand Size ¶
 
   Operating mode/size   Operand1   Operand 2   Result
   --------------------- ---------- ----------- --------
@@ -67,12 +67,12 @@ Effective Operand Size¶
   64 bit                xmm        xmm/m128    ECX
 
 
-Intel C/C++ Compiler Intrinsic Equivalent For Returning Index¶
+Intel C/C++ Compiler Intrinsic Equivalent For Returning Index ¶
 
 int _mm_cmpistri (__m128i a, __m128i b, const int mode);
 
 
-Intel C/C++ Compiler Intrinsics For Reading EFlag Results¶
+Intel C/C++ Compiler Intrinsics For Reading EFlag Results ¶
 
 int _mm_cmpistra (__m128i a, __m128i b, const int mode);
 
@@ -85,12 +85,12 @@ int _mm_cmpistrs (__m128i a, __m128i b, const int mode);
 int _mm_cmpistrz (__m128i a, __m128i b, const int mode);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally, this instruction does not cause #GP
 if the memory operand is not aligned to 16 Byte boundary, and

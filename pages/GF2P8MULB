@@ -1,0 +1,71 @@
+-   Index
+-   May 2019
+
+
+
+GF2P8MULB — GALOIS FIELD MULTIPLY BYTES
+
+
+  Opcode/Instruction                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------
+  66 0F38 CF /r GF2P8MULB xmm1, xmm2/m128   A       V/V                      GFNI                 Multiplies elements in the finite field GF(2^8).
+
+
+Instruction Operand Encoding ¶
+
+  Op/En   Tuple   Operand 1          Operand 2       Operand 3   Operand 4
+  ------- ------- ------------------ --------------- ----------- -----------
+  A       NA      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
+
+Description ¶
+
+The instruction multiplies elements in the finite field GF(2⁸),
+operating on a byte (field element) in the first source operand and the
+corresponding byte in a second source operand. The field GF(2⁸) is
+represented in polynomial representation with the reduction polynomial
+x⁸ + x⁴ + x³ + x + 1.
+
+This instruction does not support broadcasting.
+
+The SSE encoded forms of the instruction require16B alignment on their
+memory operations.
+
+Operation ¶
+
+    define gf2p8mul_byte(src1byte, src2byte):
+        tword ← 0
+        FOR i ← 0 to 7:
+            IF src2byte.bit[i]:
+                tword ← tword XOR (src1byte<< i)
+            * carry out polynomial reduction by the characteristic polynomial p*
+        FOR i ← 14 downto 8:
+            p ← 0x11B << (i-8) *0x11B = 0000_0001_0001_1011 in binary*
+            IF tword.bit[i]:
+                tword ← tword XOR p
+    return tword.byte[0]
+
+GF2P8MULB srcdest, src1 (128b SSE encoded version) ¶
+
+    FOR j ← 0 TO 15:
+        SRCDEST.byte[j] ← gf2p8mul_byte(SRCDEST.byte[j], SRC1.byte[j])
+
+Intel C/C++ Compiler Intrinsic Equivalent ¶
+
+    VGF2P8MULB __m128i _mm_gf2p8mul_epi8(__m128i, __m128i);
+
+    VGF2P8MULB __m128i _mm_mask_gf2p8mul_epi8(__m128i, __mmask16, __m128i, __m128i);
+
+    VGF2P8MULB __m128i _mm_maskz_gf2p8mul_epi8(__mmask16, __m128i, __m128i);
+
+SIMD Floating-Point Exceptions ¶
+
+None.
+
+Other Exceptions ¶
+
+Legacy-encoded: Exceptions Type 4.
+
+This UNOFFICIAL, mechanically-separated, non-verified reference is
+provided for convenience, but it may be incomplete or b_(r)oke_(n) in
+various obvious or non-obvious ways. Refer to Intel® 64 and IA-32
+Architectures Software Developer’s Manual for anything serious.

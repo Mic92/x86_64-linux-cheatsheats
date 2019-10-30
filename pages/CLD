@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ CLD — CLEAR DIRECTION FLAG
   FC       CLD           ZO      Valid         Valid             Clear DF flag.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,25 +19,25 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Clears the DF flag in the EFLAGS register. When the DF flag is set to 0,
 string operations increment the index registers (ESI and/or EDI).
 Operation is the same in all modes.
 
 
-Operation¶
+Operation ¶
 
     DF ← 0;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The DF flag is set to 0. The CF, OF, ZF, SF, AF, and PF flags are
 unaffected.
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ DAS — DECIMAL ADJUST AL AFTER SUBTRACTION
   2F       DAS           ZO      Invalid       Valid             Decimal adjust AL after subtraction.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Adjusts the result of the subtraction of two packed BCD values to create
 a packed BCD result. The AL register is the implied source and
@@ -34,7 +34,7 @@ This instruction executes as described above in compatibility mode and
 legacy mode. It is not valid in 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     IF 64-Bit Mode
         THEN
@@ -59,7 +59,7 @@ Operation¶
     FI;
 
 
-Example¶
+Example ¶
 
 SUB AL, BL Before: AL = 35H, BL = 47H, EFLAGS(OSZAPC) = XXXXXX After: AL
 = EEH, BL = 47H, EFLAGS(0SZAPC) = 010111 DAA Before: AL = EEH, BL = 47H,
@@ -67,7 +67,7 @@ EFLAGS(OSZAPC) = 010111 After: AL = 88H, BL = 47H, EFLAGS(0SZAPC) =
 X10111
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF and AF flags are set if the adjustment of the value results in a
 decimal borrow in either digit of the result (see the “Operation”
@@ -75,35 +75,35 @@ section above). The SF, ZF, and PF flags are set according to the
 result. The OF flag is undefined.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- --------------------
   #UD   If in 64-bit mode.

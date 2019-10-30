@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ CVTPI2PS — CONVERT PACKED DWORD INTEGERS TO PACKED SINGLE-PRECISION FP VALUES
   NP 0F 2A /_r_ CVTPI2PS _xmm_, _mm_/_m64_   RM      Valid         Valid             Convert two signed doubleword integers from _mm_/_m64_ to two single-precision floating-point values in _xmm_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts two packed signed doubleword integers in the source operand
 (second operand) to two packed single-precision floating-point values in
@@ -42,24 +42,24 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to
 access additional registers (XMM8-XMM15).
 
 
-Operation¶
+Operation ¶
 
     DEST[31:0] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[31:0]);
     DEST[63:32] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[63:32]);
     (* High quadword of destination unchanged *)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTPI2PS: __m128 _mm_cvtpi32_ps(__m128 a, __m64 b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Table 22-5, “Exception Conditions for Legacy SIMD/MMX Instructions
 with XMM and FP Exception,” in the _Intel® 64 and IA-32 Architectures

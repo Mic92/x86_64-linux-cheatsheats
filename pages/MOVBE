@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ MOVBE — MOVE DATA AFTER SWAPPING BYTES
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a byte swap operation on the data copied from the second
 operand (source operand) and store the result in the first operand
@@ -41,7 +41,7 @@ of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     TEMP ← SRC
     IF ( OperandSize = 16)
@@ -65,12 +65,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -103,7 +103,7 @@ If the LOCK prefix is used.
 If REP (F3H) prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -123,7 +123,7 @@ If the LOCK prefix is used.
 If REP (F3H) prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -154,12 +154,12 @@ If REP (F3H) prefix is used.
 If REPNE (F2H) prefix is used and CPUID.01H:ECX.SSE4_2[bit 20] = 0.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

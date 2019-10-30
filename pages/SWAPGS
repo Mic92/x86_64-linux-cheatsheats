@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ SWAPGS — SWAP GS BASE REGISTER
   0F 01 F8   SWAPGS        ZO      Valid         Invalid           Exchanges the current GS base register value with the value contained in MSR address C0000102H.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 SWAPGS exchanges the current GS base register value with the value
 contained in MSR address C0000102H (IA32_KERNEL_GS_BASE). The SWAPGS
@@ -47,7 +47,7 @@ instructions. Those instructions are only accessible at privilege level
 contains a canonical address.
 
 
-Operation¶
+Operation ¶
 
     IF CS.L ≠ 1 (* Not in 64-Bit Mode *)
         THEN
@@ -59,40 +59,40 @@ Operation¶
     IA32_KERNEL_GS_BASE ← tmp;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -------------------
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -------------------
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- -------------------
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   -------- -----------------------------
   #GP(0)   If CPL ≠ 0.

@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 UNPCKLPS — UNPACK AND INTERLEAVE LOW PACKED SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 14 /r UNPCKLPS xmm1, xmm2/m128                                       A       V/V                      SSE                  Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm1 and xmm2/m128.
-  VEX.NDS.128.0F.WIG 14 /r VUNPCKLPS xmm1,xmm2, xmm3/m128                    B       V/V                      AVX                  Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/m128.
-  VEX.NDS.256.0F.WIG 14 /r VUNPCKLPS ymm1,ymm2,ymm3/m256                     B       V/V                      AVX                  Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/m256.
-  EVEX.NDS.128.0F.W0 14 /r VUNPCKLPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/mem and write result to xmm1 subject to write mask k1.
-  EVEX.NDS.256.0F.W0 14 /r VUNPCKLPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/mem and write result to ymm1 subject to write mask k1.
-  EVEX.NDS.512.0F.W0 14 /r VUNPCKLPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Unpacks and Interleaves single-precision floating-point values from low quadwords of zmm2 and zmm3/m512/m32bcst and write result to zmm1 subject to write mask k1.
+  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 14 /r UNPCKLPS xmm1, xmm2/m128                                   A       V/V                      SSE                  Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm1 and xmm2/m128.
+  VEX.128.0F.WIG 14 /r VUNPCKLPS xmm1,xmm2, xmm3/m128                    B       V/V                      AVX                  Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/m128.
+  VEX.256.0F.WIG 14 /r VUNPCKLPS ymm1,ymm2,ymm3/m256                     B       V/V                      AVX                  Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/m256.
+  EVEX.128.0F.W0 14 /r VUNPCKLPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/mem and write result to xmm1 subject to write mask k1.
+  EVEX.256.0F.W0 14 /r VUNPCKLPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/mem and write result to ymm1 subject to write mask k1.
+  EVEX.512.0F.W0 14 /r VUNPCKLPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Unpacks and Interleaves single-precision floating-point values from low quadwords of zmm2 and zmm3/m512/m32bcst and write result to zmm1 subject to write mask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs an interleaved unpack of the low single-precision
 floating-point values from the first source operand and the second
@@ -71,9 +71,9 @@ or a 128-bit vector broadcasted from a 32-bit memory location. The
 destination operand is a XMM register, conditionally updated using
 writemask k1.
 
-Operation¶
+Operation ¶
 
-VUNPCKLPS (EVEX encoded version when SRC2 is a ZMM register)¶
+VUNPCKLPS (EVEX encoded version when SRC2 is a ZMM register) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF VL >= 128
@@ -113,7 +113,7 @@ VUNPCKLPS (EVEX encoded version when SRC2 is a ZMM register)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VUNPCKLPS (EVEX encoded version when SRC2 is memory)¶
+VUNPCKLPS (EVEX encoded version when SRC2 is memory) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -161,7 +161,7 @@ VUNPCKLPS (EVEX encoded version when SRC2 is memory)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-UNPCKLPS (VEX.256 encoded version)¶
+UNPCKLPS (VEX.256 encoded version) ¶
 
     DEST[31:0] ←SRC1[31:0]
     DEST[63:32] ←SRC2[31:0]
@@ -173,7 +173,7 @@ UNPCKLPS (VEX.256 encoded version)¶
     DEST[255:224] ←SRC2[191:160]
     DEST[MAXVL-1:256] ← 0
 
-VUNPCKLPS (VEX.128 encoded version)¶
+VUNPCKLPS (VEX.128 encoded version) ¶
 
     DEST[31:0] ←SRC1[31:0]
     DEST[63:32] ←SRC2[31:0]
@@ -181,7 +181,7 @@ VUNPCKLPS (VEX.128 encoded version)¶
     DEST[127:96] ←SRC2[63:32]
     DEST[MAXVL-1:128] ←0
 
-UNPCKLPS (128-bit Legacy SSE version)¶
+UNPCKLPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0] ←SRC1[31:0]
     DEST[63:32] ←SRC2[31:0]
@@ -189,7 +189,7 @@ UNPCKLPS (128-bit Legacy SSE version)¶
     DEST[127:96] ←SRC2[63:32]
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VUNPCKLPS __m512 _mm512_unpacklo_ps(__m512 a, __m512 b);
 
@@ -209,11 +209,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VUNPCKLPS __m128 _mm_maskz_unpacklo_ps(__mmask8 k, __m128 a, __m128 b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instructions, see Exceptions Type 4.
 

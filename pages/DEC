@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -20,7 +20,7 @@ DEC — DECREMENT BY 1
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------------- ----------- ----------- -----------
   Op/En   Operand 1            Operand 2   Operand 3   Operand 4
@@ -29,7 +29,7 @@ Instruction Operand Encoding¶
   ------- -------------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Subtracts 1 from the destination operand, while preserving the state of
 the CF flag. The destination operand can be a register or a memory
@@ -50,18 +50,18 @@ See the summary chart at the beginning of this section for encoding data
 and limits.
 
 
-Operation¶
+Operation ¶
 
     DEST ← DEST – 1;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF flag is not affected. The OF, SF, ZF, AF, and PF flags are set
 according to the result.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -90,7 +90,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used but the destination is not a memory operand.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -99,7 +99,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -110,12 +110,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

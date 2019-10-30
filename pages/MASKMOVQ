@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ MASKMOVQ — STORE SELECTED BYTES OF QUADWORD
   NP 0F F7 /_r_ MASKMOVQ _mm1_, _mm2_   RM      Valid         Valid             Selectively write bytes from _mm1_ to memory location using the byte mask in _mm2._ The default memory location is specified by DS:DI/EDI/RDI.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Stores selected bytes from the source operand (first operand) into a
 64-bit memory location. The mask operand (second operand) selects which
@@ -73,7 +73,7 @@ allocating old data prior to the store.
 In 64-bit mode, the memory address is specified by DS:RDI.
 
 
-Operation¶
+Operation ¶
 
     IF (MASK[7] = 1)
         THEN DEST[DI/EDI] ← SRC[7:0] ELSE (* Memory location unchanged *); FI;
@@ -84,12 +84,12 @@ Operation¶
         THEN DEST[DI/EDI +15] ← SRC[63:56] ELSE (* Memory location unchanged *); FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_maskmove_si64(__m64d, __m64n, char * p)
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Table 22-8, “Exception Conditions for Legacy SIMD/MMX Instructions
 without FP Exception,” in the _Intel® 64 and IA-32 Architectures

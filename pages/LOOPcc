@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ LOOP/LOOPCC — LOOP ACCORDING TO ECX COUNTER
   E0 _cb_   LOOPNE _rel8_   D       Valid         Valid             Decrement count; jump short if count ≠ 0 and ZF = 0.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a loop operation using the RCX, ECX or CX register as a counter
 (depending on whether address size is 64 bits, 32 bits, or 16 bits).
@@ -50,7 +50,7 @@ the LOOP_cc_ instruction itself does not affect the state of the ZF
 flag; the ZF flag is changed by other instructions in the loop.
 
 
-Operation¶
+Operation ¶
 
     IF (AddressSize = 32)
         THEN Count is ECX;
@@ -99,12 +99,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   -------- -----------------------------------------------------------------------
   #GP(0)   If the offset being jumped to is beyond the limits of the CS segment.
@@ -112,7 +112,7 @@ Protected Mode Exceptions¶
   -------- -----------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   #GP   If the offset being jumped to is beyond the limits of the CS segment or is outside of the effective address space from 0 to FFFFH. This condition can occur if a 32-bit address size override prefix is used.
@@ -120,17 +120,17 @@ Real-Address Mode Exceptions¶
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   -------- -----------------------------------------------------------
   #GP(0)   If the offset being jumped to is in a non-canonical form.

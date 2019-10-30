@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ STC — SET CARRY FLAG
   F9       STC           ZO      Valid         Valid             Set CF flag.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,23 +19,23 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Sets the CF flag in the EFLAGS register. Operation is the same in all
 modes.
 
 
-Operation¶
+Operation ¶
 
     CF ← 1;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF flag is set. The OF, ZF, SF, AF, and PF flags are unaffected.
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

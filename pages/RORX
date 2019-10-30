@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ RORX — ROTATE RIGHT LOGICAL WITHOUT AFFECTING FLAGS
   VEX.LZ.F2.0F3A.W1 F0 /r ib RORX r64, _r/m64, imm8_   RMI     V/N.E.            BMI2                 Rotate 64-bit _r/m64_ right _imm8_ times without affecting arithmetic flags.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Rotates the bits of second operand right by the count value specified in
 imm8 without affecting arithmetic flags. The RORX instruction does not
@@ -33,7 +33,7 @@ An attempt to execute this instruction with VEX.L not equal to 0 will
 cause #UD.
 
 
-Operation¶
+Operation ¶
 
     IF (OperandSize = 32)
         y ← imm8 AND 1FH;
@@ -44,29 +44,24 @@ Operation¶
     ENDIF
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     Auto-generated from high-level language.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
-See Section 2.5.1, “Exception Conditions for VEX-Encoded GPR
-Instructions”, Table 2-29; additionally
-
-  ----- ---------------
-  #UD   If VEX.W = 1.
-  ----- ---------------
+See Exceptions Type 13.
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

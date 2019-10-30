@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 ADDSUBPS — PACKED SINGLE-FP ADD/SUBTRACT
 
 
-  Opcode/Instruction                                            Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ---------------- -------------------- --------------------------------------------------------------------------------------------------------
-  F2 0F D0 /r ADDSUBPS _xmm1_, _xmm2/m128_                      RM      V/V              SSE3                 Add/subtract single-precision floating-point values from _xmm2/m128_ to _xmm1_.
-  VEX.NDS.128.F2.0F.WIG D0 /r VADDSUBPS xmm1, xmm2, xmm3/m128   RVM     V/V              AVX                  Add/subtract single-precision floating-point values from xmm3/mem to xmm2 and stores result in xmm1.
-  VEX.NDS.256.F2.0F.WIG D0 /r VADDSUBPS ymm1, ymm2, ymm3/m256   RVM     V/V              AVX                  Add / subtract single-precision floating-point values from ymm3/mem to ymm2 and stores result in ymm1.
+  Opcode/Instruction                                        Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------------------- ------- ---------------- -------------------- --------------------------------------------------------------------------------------------------------
+  F2 0F D0 /r ADDSUBPS _xmm1_, _xmm2/m128_                  RM      V/V              SSE3                 Add/subtract single-precision floating-point values from _xmm2/m128_ to _xmm1_.
+  VEX.128.F2.0F.WIG D0 /r VADDSUBPS xmm1, xmm2, xmm3/m128   RVM     V/V              AVX                  Add/subtract single-precision floating-point values from xmm3/mem to xmm2 and stores result in xmm1.
+  VEX.256.F2.0F.WIG D0 /r VADDSUBPS ymm1, ymm2, ymm3/m256   RVM     V/V              AVX                  Add / subtract single-precision floating-point values from ymm3/mem to ymm2 and stores result in ymm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3       Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Adds odd-numbered single-precision floating-point values of the first
 source operand (second operand) with the corresponding single-precision
@@ -59,9 +59,9 @@ xmm1 xmm2/m128[127:96] m128[95:64] xmm2/m128[63:32] xmm2/m128[31:0]
 Figure 3-4. ADDSUBPS—Packed Single-FP Add/Subtract
 
 
-Operation¶
+Operation ¶
 
-ADDSUBPS (128-bit Legacy SSE version)¶
+ADDSUBPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0]←DEST[31:0] - SRC[31:0]
     DEST[63:32]←DEST[63:32] + SRC[63:32]
@@ -69,7 +69,7 @@ ADDSUBPS (128-bit Legacy SSE version)¶
     DEST[127:96]←DEST[127:96] + SRC[127:96]
     DEST[MAXVL-1:128] (Unmodified)
 
-VADDSUBPS (VEX.128 encoded version)¶
+VADDSUBPS (VEX.128 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] - SRC2[31:0]
     DEST[63:32]←SRC1[63:32] + SRC2[63:32]
@@ -77,7 +77,7 @@ VADDSUBPS (VEX.128 encoded version)¶
     DEST[127:96]←SRC1[127:96] + SRC2[127:96]
     DEST[MAXVL-1:128] ← 0
 
-VADDSUBPS (VEX.256 encoded version)¶
+VADDSUBPS (VEX.256 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] - SRC2[31:0]
     DEST[63:32]←SRC1[63:32] + SRC2[63:32]
@@ -89,26 +89,26 @@ VADDSUBPS (VEX.256 encoded version)¶
     DEST[255:224]←SRC1[255:224] + SRC2[255:224].
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ADDSUBPS: __m128 _mm_addsub_ps(__m128 a, __m128 b)
 
     VADDSUBPS: __m256 _mm256_addsub_ps (__m256 a, __m256 b)
 
 
-Exceptions¶
+Exceptions ¶
 
 When the source operand is a memory operand, the operand must be aligned
 on a 16-byte boundary or a general-protection exception (#GP) will be
 generated.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 2.
 

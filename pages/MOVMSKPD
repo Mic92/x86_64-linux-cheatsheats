@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ MOVMSKPD — EXTRACT PACKED DOUBLE-PRECISION FLOATING-POINT SIGN MASK
   VEX.256.66.0F.WIG 50 /r VMOVMSKPD _reg, ymm2_   RM      V/V              AVX                  Extract 4-bit sign mask from _ymm2_ and store in reg. The upper bits of _r32_ or _r64_ are zeroed.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Extracts the sign bits from the packed double-precision floating-point
 values in the source operand (second operand), formats them into a 2-bit
@@ -44,9 +44,9 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-(V)MOVMSKPD (128-bit versions)¶
+(V)MOVMSKPD (128-bit versions) ¶
 
     DEST[0] ← SRC[63]
     DEST[1] ← SRC[127]
@@ -55,7 +55,7 @@ Operation¶
         ELSE DEST[63:2]←0;
     FI
 
-VMOVMSKPD (VEX.256 encoded version)¶
+VMOVMSKPD (VEX.256 encoded version) ¶
 
     DEST[0] ← SRC[63]
     DEST[1] ← SRC[127]
@@ -67,19 +67,19 @@ VMOVMSKPD (VEX.256 encoded version)¶
     FI
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MOVMSKPD: int _mm_movemask_pd ( __m128d a)
 
     VMOVMSKPD: _mm256_movemask_pd(__m256d a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 7; additionally
 

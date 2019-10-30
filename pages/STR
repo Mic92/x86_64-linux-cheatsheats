@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ STR — STORE TASK REGISTER
   0F 00 /1   STR _r/m16_   M       Valid         Valid             Stores segment selector from TR in _r/m16_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Stores the segment selector from the task register (TR) in the
 destination operand. The destination operand can be a general-purpose
@@ -41,17 +41,17 @@ The STR instruction is useful only in operating-system software. It can
 only be executed in protected mode.
 
 
-Operation¶
+Operation ¶
 
     DEST ← TR(SegmentSelector);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -82,26 +82,26 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------
   #UD   The STR instruction is not recognized in real-address mode.
   ----- -------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -------------------------------------------------------------
   #UD   The STR instruction is not recognized in virtual-8086 mode.
   ----- -------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ SFENCE — STORE FENCE
   NP 0F AE F8   SFENCE        ZO      Valid         Valid             Serializes store operations.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Orders processor execution relative to all memory stores prior to the
 SFENCE instruction. The processor ensures that every store prior to
@@ -47,17 +47,17 @@ ModR/M byte. Thus, SFENCE is encoded by any opcode of the form 0F AE Fx,
 where x is in the range 8-F.
 
 
-Operation¶
+Operation ¶
 
     Wait_On_Following_Stores_Until(preceding_stores_globally_visible);
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_sfence(void)
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If CPUID.01H:EDX.SSE[bit 25] = 0.
 

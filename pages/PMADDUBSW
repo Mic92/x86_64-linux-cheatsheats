@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PMADDUBSW — MULTIPLY AND ADD PACKED SIGNED AND UNSIGNED BYTES
 
 
-  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 38 04 /r¹ PMADDUBSW _mm1, mm2/m64_                                  A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _mm1_.
-  66 0F 38 04 /r PMADDUBSW _xmm1, xmm2/m128_                                A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _xmm1_.
-  VEX.NDS.128.66.0F38.WIG 04 /r VPMADDUBSW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _xmm1_.
-  VEX.NDS.256.66.0F38.WIG 04 /r VPMADDUBSW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _ymm1._
-  EVEX.NDS.128.66.0F38.WIG 04 /r VPMADDUBSW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F38.WIG 04 /r VPMADDUBSW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F38.WIG 04 /r VPMADDUBSW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to zmm1 under writemask k1.
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 38 04 /r¹ PMADDUBSW _mm1, mm2/m64_                              A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _mm1_.
+  66 0F 38 04 /r PMADDUBSW _xmm1, xmm2/m128_                            A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _xmm1_.
+  VEX.128.66.0F38.WIG 04 /r VPMADDUBSW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _xmm1_.
+  VEX.256.66.0F38.WIG 04 /r VPMADDUBSW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _ymm1._
+  EVEX.128.66.0F38.WIG 04 /r VPMADDUBSW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to xmm1 under writemask k1.
+  EVEX.256.66.0F38.WIG 04 /r VPMADDUBSW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to ymm1 under writemask k1.
+  EVEX.512.66.0F38.WIG 04 /r VPMADDUBSW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to zmm1 under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PMADDUBSW — MULTIPLY AND ADD PACKED SIGNED AND UNSIGNED BYTES
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 (V)PMADDUBSW multiplies vertically each unsigned byte of the destination
 operand (first operand) with the corresponding signed byte of the source
@@ -74,36 +74,36 @@ register or a 512-bit memory location. The first source and destination
 operands are ZMM registers.
 
 
-Operation¶
+Operation ¶
 
-PMADDUBSW (with 64 bit operands)¶
+PMADDUBSW (with 64 bit operands) ¶
 
     DEST[15-0] = SaturateToSignedWord(SRC[15-8]*DEST[15-8]+SRC[7-0]*DEST[7-0]);
     DEST[31-16] = SaturateToSignedWord(SRC[31-24]*DEST[31-24]+SRC[23-16]*DEST[23-16]);
     DEST[47-32] = SaturateToSignedWord(SRC[47-40]*DEST[47-40]+SRC[39-32]*DEST[39-32]);
     DEST[63-48] = SaturateToSignedWord(SRC[63-56]*DEST[63-56]+SRC[55-48]*DEST[55-48]);
 
-PMADDUBSW (with 128 bit operands)¶
+PMADDUBSW (with 128 bit operands) ¶
 
     DEST[15-0] = SaturateToSignedWord(SRC[15-8]* DEST[15-8]+SRC[7-0]*DEST[7-0]);
     // Repeat operation for 2nd through 7th word
     SRC1/DEST[127-112] = SaturateToSignedWord(SRC[127-120]*DEST[127-120]+ SRC[119-112]* DEST[119-112]);
 
-VPMADDUBSW (VEX.128 encoded version)¶
+VPMADDUBSW (VEX.128 encoded version) ¶
 
     DEST[15:0]←SaturateToSignedWord(SRC2[15:8]* SRC1[15:8]+SRC2[7:0]*SRC1[7:0])
     // Repeat operation for 2nd through 7th word
     DEST[127:112]←SaturateToSignedWord(SRC2[127:120]*SRC1[127:120]+ SRC2[119:112]* SRC1[119:112])
     DEST[MAXVL-1:128] ← 0
 
-VPMADDUBSW (VEX.256 encoded version)¶
+VPMADDUBSW (VEX.256 encoded version) ¶
 
     DEST[15:0]←SaturateToSignedWord(SRC2[15:8]* SRC1[15:8]+SRC2[7:0]*SRC1[7:0])
     // Repeat operation for 2nd through 15th word
     DEST[255:240]←SaturateToSignedWord(SRC2[255:248]*SRC1[255:248]+ SRC2[247:240]* SRC1[247:240])
     DEST[MAXVL-1:256] ← 0
 
-VPMADDUBSW (EVEX encoded versions)¶
+VPMADDUBSW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -122,7 +122,7 @@ VPMADDUBSW (EVEX encoded versions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMADDUBSW __m512i _mm512_maddubs_epi16( __m512i a, __m512i b);
 
@@ -145,12 +145,12 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPMADDUBSW: __m256i _mm256_maddubs_epi16 (__m256i a, __m256i b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

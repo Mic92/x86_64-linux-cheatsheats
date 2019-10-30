@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 DPPS — DOT PRODUCT OF PACKED SINGLE PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                   Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  -------------------------------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 40 /r ib DPPS _xmm1, xmm2/m128, imm8_                       RMI     V/V              SSE4_1               Selectively multiply packed SP floating-point values from _xmm1_ with packed SP floating-point values from _xmm2_, add and selectively store the packed SP floating-point values or zero values to _xmm1_.
-  VEX.NDS.128.66.0F3A.WIG 40 /r ib VDPPS xmm1,xmm2, xmm3/m128, imm8    RVMI    V/V              AVX                  Multiply packed SP floating point values from xmm1 with packed SP floating point values from xmm2/mem selectively add and store to xmm1.
-  VEX.NDS.256.66.0F3A.WIG 40 /r ib VDPPS ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V              AVX                  Multiply packed single-precision floating-point values from ymm2 with packed SP floating point values from ymm3/mem, selectively add pairs of elements and store to ymm1.
+  Opcode/Instruction                                               Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  ---------------------------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 40 /r ib DPPS _xmm1, xmm2/m128, imm8_                   RMI     V/V              SSE4_1               Selectively multiply packed SP floating-point values from _xmm1_ with packed SP floating-point values from _xmm2_, add and selectively store the packed SP floating-point values or zero values to _xmm1_.
+  VEX.128.66.0F3A.WIG 40 /r ib VDPPS xmm1,xmm2, xmm3/m128, imm8    RVMI    V/V              AVX                  Multiply packed SP floating point values from xmm1 with packed SP floating point values from xmm2/mem selectively add and store to xmm1.
+  VEX.256.66.0F3A.WIG 40 /r ib VDPPS ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V              AVX                  Multiply packed single-precision floating-point values from ymm2 with packed SP floating point values from ymm3/mem, selectively add pairs of elements and store to ymm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3       Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Conditionally multiplies the packed single precision floating-point
 values in the destination operand (first operand) with the packed
@@ -65,9 +65,9 @@ second source operand can be a YMM register or a 256-bit memory
 location. The destination operand is a YMM register.
 
 
-Operation¶
+Operation ¶
 
-DP_primitive (SRC1, SRC2)¶
+DP_primitive (SRC1, SRC2) ¶
 
     IF (imm8[4] = 1)
         THEN Temp1[31:0]←DEST[31:0] * SRC[31:0]; // update SIMD exception flags
@@ -100,35 +100,35 @@ DP_primitive (SRC1, SRC2)¶
         THEN DEST[127:96]←Temp4[31:0];
         ELSE DEST[127:96]←+0.0; FI;
 
-DPPS (128-bit Legacy SSE version)¶
+DPPS (128-bit Legacy SSE version) ¶
 
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[MAXVL-1:128] (Unmodified)
 
-VDPPS (VEX.128 encoded version)¶
+VDPPS (VEX.128 encoded version) ¶
 
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[MAXVL-1:128] ← 0
 
-VDPPS (VEX.256 encoded version)¶
+VDPPS (VEX.256 encoded version) ¶
 
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[255:128]←DP_Primitive(SRC1[255:128], SRC2[255:128]);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)DPPS: __m128 _mm_dp_ps ( __m128 a, __m128 b, const int mask);
 
     VDPPS: __m256 _mm256_dp_ps ( __m256 a, __m256 b, const int mask);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
@@ -137,7 +137,7 @@ operation, in the order of their execution. Unmasked exceptions will
 leave the destination operands unchanged.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 2.
 

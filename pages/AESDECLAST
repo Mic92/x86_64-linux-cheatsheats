@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 AESDECLAST — PERFORM LAST ROUND OF AN AES DECRYPTION FLOW
 
 
-  Opcode/Instruction                                                Op/En   64/32-bit Mode   CPUID Feature Flag       Description
-  ----------------------------------------------------------------- ------- ---------------- ------------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 DF /r AESDECLAST xmm1, xmm2/m128                         RM      V/V              AES                      Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.
-  VEX.NDS.128.66.0F38.WIG DF /r VAESDECLAST xmm1, xmm2, xmm3/m128   RVM     V/V              Both AES and AVX flags   Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from xmm3/m128; store the result in xmm1.
+  Opcode/Instruction                                            Op/En   64/32-bit Mode   CPUID Feature Flag       Description
+  ------------------------------------------------------------- ------- ---------------- ------------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 DF /r AESDECLAST xmm1, xmm2/m128                     RM      V/V              AES                      Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.
+  VEX.128.66.0F38.WIG DF /r VAESDECLAST xmm1, xmm2, xmm3/m128   RVM     V/V              Both AES and AVX flags   Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from xmm3/m128; store the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- ----------
   Op/En   Operand 1          Operand2        Operand3        Operand4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- ----------
 
 
-Description¶
+Description ¶
 
 This instruction performs the last round of the AES decryption flow
 using the Equivalent Inverse Cipher, with the round key from the second
@@ -40,9 +40,9 @@ register or a 128-bit memory location. Bits (MAXVL-1:128) of the
 destination YMM register are zeroed.
 
 
-Operation¶
+Operation ¶
 
-AESDECLAST¶
+AESDECLAST ¶
 
     STATE ← SRC1;
     RoundKey ← SRC2;
@@ -51,7 +51,7 @@ AESDECLAST¶
     DEST[127:0] ← STATE XOR RoundKey;
     DEST[MAXVL-1:128] (Unmodified)
 
-VAESDECLAST¶
+VAESDECLAST ¶
 
     STATE ← SRC1;
     RoundKey ← SRC2;
@@ -61,17 +61,17 @@ VAESDECLAST¶
     DEST[MAXVL-1:128] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)AESDECLAST: __m128i _mm_aesdeclast (__m128i, __m128i)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4.
 

@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPERMILPS — PERMUTE IN-LANE OF QUADRUPLES OF SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                              Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------
-  VEX.NDS.128.66.0F38.W0 0C /r VPERMILPS xmm1, xmm2, xmm3/m128                    A         V/V                      AVX                  Permute single-precision floating-point values in xmm2 using controls from xmm3/m128 and store result in xmm1.
-  VEX.128.66.0F3A.W0 04 /r ib VPERMILPS xmm1, xmm2/m128, imm8                     B         V/V                      AVX                  Permute single-precision floating-point values in xmm2/m128 using controls from imm8 and store result in xmm1.
-  VEX.NDS.256.66.0F38.W0 0C /r VPERMILPS ymm1, ymm2, ymm3/m256                    A         V/V                      AVX                  Permute single-precision floating-point values in ymm2 using controls from ymm3/m256 and store result in ymm1.
-  VEX.256.66.0F3A.W0 04 /r ib VPERMILPS ymm1, ymm2/m256, imm8                     B         V/V                      AVX                  Permute single-precision floating-point values in ymm2/m256 using controls from imm8 and store result in ymm1.
-  EVEX.NDS.128.66.0F38.W0 0C /r VPERMILPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values xmm2 using control from xmm3/m128/m32bcst and store the result in xmm1 using writemask k1.
-  EVEX.NDS.256.66.0F38.W0 0C /r VPERMILPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values ymm2 using control from ymm3/m256/m32bcst and store the result in ymm1 using writemask k1.
-  EVEX.NDS.512.66.0F38.W0 0C /r VPERMILPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C         V/V                      AVX512F              Permute single-precision floating-point values zmm2 using control from zmm3/m512/m32bcst and store the result in zmm1 using writemask k1.
-  EVEX.128.66.0F3A.W0 04 /r ib VPERMILPS xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8    D         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values xmm2/m128/m32bcst using controls from imm8 and store the result in xmm1 using writemask k1.
-  EVEX.256.66.0F3A.W0 04 /r ib VPERMILPS ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8    D         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values ymm2/m256/m32bcst using controls from imm8 and store the result in ymm1 using writemask k1.
-  EVEX.512.66.0F3A.W0 04 /r ibVPERMILPS zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8     D         V/V                      AVX512F              Permute single-precision floating-point values zmm2/m512/m32bcst using controls from imm8 and store the result in zmm1 using writemask k1.
+  Opcode/Instruction                                                             Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------------ --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W0 0C /r VPERMILPS xmm1, xmm2, xmm3/m128                       A         V/V                      AVX                  Permute single-precision floating-point values in xmm2 using controls from xmm3/m128 and store result in xmm1.
+  VEX.128.66.0F3A.W0 04 /r ib VPERMILPS xmm1, xmm2/m128, imm8                    B         V/V                      AVX                  Permute single-precision floating-point values in xmm2/m128 using controls from imm8 and store result in xmm1.
+  VEX.256.66.0F38.W0 0C /r VPERMILPS ymm1, ymm2, ymm3/m256                       A         V/V                      AVX                  Permute single-precision floating-point values in ymm2 using controls from ymm3/m256 and store result in ymm1.
+  VEX.256.66.0F3A.W0 04 /r ib VPERMILPS ymm1, ymm2/m256, imm8                    B         V/V                      AVX                  Permute single-precision floating-point values in ymm2/m256 using controls from imm8 and store result in ymm1.
+  EVEX.128.66.0F38.W0 0C /r VPERMILPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst      C         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values xmm2 using control from xmm3/m128/m32bcst and store the result in xmm1 using writemask k1.
+  EVEX.256.66.0F38.W0 0C /r VPERMILPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst      C         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values ymm2 using control from ymm3/m256/m32bcst and store the result in ymm1 using writemask k1.
+  EVEX.512.66.0F38.W0 0C /r VPERMILPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst      C         V/V                      AVX512F              Permute single-precision floating-point values zmm2 using control from zmm3/m512/m32bcst and store the result in zmm1 using writemask k1.
+  EVEX.128.66.0F3A.W0 04 /r ib VPERMILPS xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   D         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values xmm2/m128/m32bcst using controls from imm8 and store the result in xmm1 using writemask k1.
+  EVEX.256.66.0F3A.W0 04 /r ib VPERMILPS ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   D         V/V                      AVX512VL AVX512F     Permute single-precision floating-point values ymm2/m256/m32bcst using controls from imm8 and store the result in ymm1 using writemask k1.
+  EVEX.512.66.0F3A.W0 04 /r ibVPERMILPS zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8    D         V/V                      AVX512F              Permute single-precision floating-point values zmm2/m512/m32bcst using controls from imm8 and store the result in zmm1 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
@@ -30,7 +30,7 @@ Instruction Operand Encoding¶
   D       Full         ModRM:reg (w)   ModRM:r/m (r)   NA              NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 (variable control version)
 
@@ -80,7 +80,7 @@ to the destination under the writemask.
 Note: For the imm8 version, VEX.vvvv and EVEX.vvvv are reserved and must
 be 1111b otherwise instruction will #UD.
 
-Operation¶
+Operation ¶
 
     Select4(SRC, control) {
     CASE (control[1:0]) OF
@@ -92,7 +92,7 @@ Operation¶
     RETURN TMP
     }
 
-VPERMILPS (EVEX immediate versions)¶
+VPERMILPS (EVEX immediate versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -136,7 +136,7 @@ VPERMILPS (EVEX immediate versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPERMILPS (256-bit immediate version)¶
+VPERMILPS (256-bit immediate version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], imm8[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], imm8[3:2]);
@@ -147,7 +147,7 @@ VPERMILPS (256-bit immediate version)¶
     DEST[223:192]←Select4(SRC1[255:128], imm8[5:4]);
     DEST[255:224]←Select4(SRC1[255:128], imm8[7:6]);
 
-VPERMILPS (128-bit immediate version)¶
+VPERMILPS (128-bit immediate version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], imm8[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], imm8[3:2]);
@@ -155,7 +155,7 @@ VPERMILPS (128-bit immediate version)¶
     DEST[127:96]←Select4(SRC1[127:0], imm8[7:6]);
     DEST[MAXVL-1:128]←0
 
-VPERMILPS (EVEX variable versions)¶
+VPERMILPS (EVEX variable versions) ¶
 
     (KL, VL) = (16, 512)
     FOR j←0 TO KL-1
@@ -198,7 +198,7 @@ VPERMILPS (EVEX variable versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPERMILPS (256-bit variable version)¶
+VPERMILPS (256-bit variable version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], SRC2[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], SRC2[33:32]);
@@ -210,7 +210,7 @@ VPERMILPS (256-bit variable version)¶
     DEST[255:224]←Select4(SRC1[255:128], SRC2[225:224]);
     DEST[MAXVL-1:256]←0
 
-VPERMILPS (128-bit variable version)¶
+VPERMILPS (128-bit variable version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], SRC2[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], SRC2[33:32]);
@@ -218,7 +218,7 @@ VPERMILPS (128-bit variable version)¶
     DEST[127:96]←Select4(SRC1[127:0], SRC2[97:96]);
     DEST[MAXVL-1:128]←0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPERMILPS __m512 _mm512_permute_ps( __m512 a, int imm);
 
@@ -256,11 +256,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPERMILPS __m256 _mm256_permutevar_ps (__m256 a, __m256i control);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4;
 

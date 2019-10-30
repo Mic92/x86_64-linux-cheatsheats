@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSRLDQ — SHIFT DOUBLE QUADWORD RIGHT LOGICAL
 
 
-  Opcode/Instruction                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
-  66 0F 73 /3 ib PSRLDQ _xmm1_, _imm8_                            A       V/V                      SSE2                 Shift _xmm1_ right by _imm8_ while shifting in 0s.
-  VEX.NDD.128.66.0F.WIG 73 /3 ib VPSRLDQ _xmm1, xmm2, imm8_       B       V/V                      AVX                  Shift _xmm2_ right by _imm8_ bytes while shifting in 0s.
-  VEX.NDD.256.66.0F.WIG 73 /3 ib VPSRLDQ _ymm1, ymm2, imm8_       B       V/V                      AVX2                 Shift _ymm1_ right by _imm8_ bytes while shifting in 0s.
-  EVEX.NDD.128.66.0F.WIG 73 /3 ib VPSRLDQ xmm1, xmm2/m128, imm8   C       V/V                      AVX512VL AVX512BW    Shift xmm2/m128 right by imm8 bytes while shifting in 0s and store result in xmm1.
-  EVEX.NDD.256.66.0F.WIG 73 /3 ib VPSRLDQ ymm1, ymm2/m256, imm8   C       V/V                      AVX512VL AVX512BW    Shift ymm2/m256 right by imm8 bytes while shifting in 0s and store result in ymm1.
-  EVEX.NDD.512.66.0F.WIG 73 /3 ib VPSRLDQ zmm1, zmm2/m512, imm8   C       V/V                      AVX512BW             Shift zmm2/m512 right by imm8 bytes while shifting in 0s and store result in zmm1.
+  Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
+  66 0F 73 /3 ib PSRLDQ _xmm1_, _imm8_                        A       V/V                      SSE2                 Shift _xmm1_ right by _imm8_ while shifting in 0s.
+  VEX.128.66.0F.WIG 73 /3 ib VPSRLDQ _xmm1, xmm2, imm8_       B       V/V                      AVX                  Shift _xmm2_ right by _imm8_ bytes while shifting in 0s.
+  VEX.256.66.0F.WIG 73 /3 ib VPSRLDQ _ymm1, ymm2, imm8_       B       V/V                      AVX2                 Shift _ymm1_ right by _imm8_ bytes while shifting in 0s.
+  EVEX.128.66.0F.WIG 73 /3 ib VPSRLDQ xmm1, xmm2/m128, imm8   C       V/V                      AVX512VL AVX512BW    Shift xmm2/m128 right by imm8 bytes while shifting in 0s and store result in xmm1.
+  EVEX.256.66.0F.WIG 73 /3 ib VPSRLDQ ymm1, ymm2/m256, imm8   C       V/V                      AVX512VL AVX512BW    Shift ymm2/m256 right by imm8 bytes while shifting in 0s and store result in ymm1.
+  EVEX.512.66.0F.WIG 73 /3 ib VPSRLDQ zmm1, zmm2/m512, imm8   C       V/V                      AVX512BW             Shift zmm2/m512 right by imm8 bytes while shifting in 0s and store result in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3   Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Shifts the destination operand (first operand) to the right by the
 number of bytes specified in the count operand (second operand). The
@@ -62,9 +62,9 @@ ZMM/YMM/XMM register. The count operand applies to each 128-bit lanes.
 Note: VEX.vvvv/EVEX.vvvv encodes the destination register.
 
 
-Operation¶
+Operation ¶
 
-VPSRLDQ (EVEX.512 encoded version)¶
+VPSRLDQ (EVEX.512 encoded version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
@@ -74,7 +74,7 @@ VPSRLDQ (EVEX.512 encoded version)¶
     DEST[511:384]←SRC[511:384] >> (TEMP * 8)
     DEST[MAXVL-1:512] ← 0;
 
-VPSRLDQ (VEX.256 and EVEX.256 encoded version)¶
+VPSRLDQ (VEX.256 and EVEX.256 encoded version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
@@ -82,14 +82,14 @@ VPSRLDQ (VEX.256 and EVEX.256 encoded version)¶
     DEST[255:128]←SRC[255:128] >> (TEMP * 8)
     DEST[MAXVL-1:256] ← 0;
 
-VPSRLDQ (VEX.128 and EVEX.128 encoded version)¶
+VPSRLDQ (VEX.128 and EVEX.128 encoded version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
     DEST←SRC >> (TEMP * 8)
     DEST[MAXVL-1:128] ← 0;
 
-PSRLDQ(128-bit Legacy SSE version)¶
+PSRLDQ(128-bit Legacy SSE version) ¶
 
     TEMP ← COUNT
     IF (TEMP > 15) THEN TEMP←16; FI
@@ -97,7 +97,7 @@ PSRLDQ(128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     (V)PSRLDQ __m128i _mm_srli_si128 ( __m128i a, int imm)
 
@@ -106,16 +106,16 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPSRLDQ __m512i _mm512_bsrli_epi128 ( __m512i, int)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 7.
 

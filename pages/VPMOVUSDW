@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -19,14 +19,14 @@ VPMOVDW/VPMOVSDW/VPMOVUSDW — DOWN CONVERT DWORD TO WORD
   EVEX.512.F3.0F38.W0 13 /_r_ VPMOVUSDW _ymm1/m256 {k1}{z}, zmm2_   A         V/V                      AVX512F              Converts 16 packed unsigned double-word integers from _zmm2_ into 16 packed unsigned word integers in _ymm1/m256_ using unsigned saturation under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Half Mem     ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 VPMOVDW down converts 32-bit integer elements in the source operand (the
 second operand) into packed words using truncation. VPMOVSDW converts
@@ -44,9 +44,9 @@ destination operand are updated according to the writemask. Bits
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPMOVDW instruction (EVEX encoded versions) when dest is a register¶
+VPMOVDW instruction (EVEX encoded versions) when dest is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -65,7 +65,7 @@ VPMOVDW instruction (EVEX encoded versions) when dest is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0;
 
-VPMOVDW instruction (EVEX encoded versions) when dest is memory¶
+VPMOVDW instruction (EVEX encoded versions) when dest is memory ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -78,7 +78,7 @@ VPMOVDW instruction (EVEX encoded versions) when dest is memory¶
         FI;
     ENDFOR
 
-VPMOVSDW instruction (EVEX encoded versions) when dest is a register¶
+VPMOVSDW instruction (EVEX encoded versions) when dest is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -97,7 +97,7 @@ VPMOVSDW instruction (EVEX encoded versions) when dest is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0;
 
-VPMOVSDW instruction (EVEX encoded versions) when dest is memory¶
+VPMOVSDW instruction (EVEX encoded versions) when dest is memory ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -110,7 +110,7 @@ VPMOVSDW instruction (EVEX encoded versions) when dest is memory¶
         FI;
     ENDFOR
 
-VPMOVUSDW instruction (EVEX encoded versions) when dest is a register¶
+VPMOVUSDW instruction (EVEX encoded versions) when dest is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -129,7 +129,7 @@ VPMOVUSDW instruction (EVEX encoded versions) when dest is a register¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0;
 
-VPMOVUSDW instruction (EVEX encoded versions) when dest is memory¶
+VPMOVUSDW instruction (EVEX encoded versions) when dest is memory ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -143,7 +143,7 @@ VPMOVUSDW instruction (EVEX encoded versions) when dest is memory¶
         FI;
     ENDFOR
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMOVDW __m256i _mm512_cvtepi32_epi16( __m512i a);
 
@@ -217,11 +217,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     VPMOVDW void _mm_mask_cvtepi32_storeu_epi16(void * , __mmask8 k, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E6.
 

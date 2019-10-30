@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -29,7 +29,7 @@ MOVD/MOVQ — MOVE DOUBLEWORD/MOVE QUADWORD
   ignored; the instructions behaves as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
@@ -40,7 +40,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Copies a doubleword from the source operand (second operand) to the
 destination operand (first operand). The source and destination operands
@@ -64,7 +64,7 @@ of the REX.R prefix permits access to additional registers (R8-R15). Use
 of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
-MOVD/Q with XMM destination:¶
+MOVD/Q with XMM destination: ¶
 
 Moves a dword/qword integer from the source operand and stores it in the
 low 32/64-bits of the destination XMM register. The upper bits of the
@@ -81,7 +81,7 @@ are zeroed. Qword operation requires the use of VEX.W=1.
 EVEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
 are zeroed. Qword operation requires the use of EVEX.W=1.
 
-MOVD/Q with 32/64 reg/mem destination:¶
+MOVD/Q with 32/64 reg/mem destination: ¶
 
 Stores the low dword/qword of the source XMM register to 32/64-bit
 memory location or general-purpose register. Qword operation requires
@@ -94,59 +94,59 @@ If VMOVD or VMOVQ is encoded with VEX.L= 1, an attempt to execute the
 instruction encoded with VEX.L= 1 will cause an #UD exception.
 
 
-Operation¶
+Operation ¶
 
-MOVD (when destination operand is MMX technology register)¶
+MOVD (when destination operand is MMX technology register) ¶
 
     DEST[31:0] ← SRC;
     DEST[63:32] ← 00000000H;
 
-MOVD (when destination operand is XMM register)¶
+MOVD (when destination operand is XMM register) ¶
 
     DEST[31:0] ← SRC;
     DEST[127:32] ← 000000000000000000000000H;
     DEST[MAXVL-1:128] (Unmodified)
 
-MOVD (when source operand is MMX technology or XMM register)¶
+MOVD (when source operand is MMX technology or XMM register) ¶
 
     DEST ← SRC[31:0];
 
-VMOVD (VEX-encoded version when destination is an XMM register)¶
+VMOVD (VEX-encoded version when destination is an XMM register) ¶
 
     DEST[31:0] ← SRC[31:0]
     DEST[MAXVL-1:32] ← 0
 
-MOVQ (when destination operand is XMM register)¶
+MOVQ (when destination operand is XMM register) ¶
 
     DEST[63:0] ← SRC[63:0];
     DEST[127:64] ← 0000000000000000H;
     DEST[MAXVL-1:128] (Unmodified)
 
-MOVQ (when destination operand is r/m64)¶
+MOVQ (when destination operand is r/m64) ¶
 
     DEST[63:0] ← SRC[63:0];
 
-MOVQ (when source operand is XMM register or r/m64)¶
+MOVQ (when source operand is XMM register or r/m64) ¶
 
     DEST ← SRC[63:0];
 
-VMOVQ (VEX-encoded version when destination is an XMM register)¶
+VMOVQ (VEX-encoded version when destination is an XMM register) ¶
 
     DEST[63:0] ← SRC[63:0]
     DEST[MAXVL-1:64] ← 0
 
-VMOVD (EVEX-encoded version when destination is an XMM register)¶
+VMOVD (EVEX-encoded version when destination is an XMM register) ¶
 
     DEST[31:0] ← SRC[31:0]
     DEST[MAXVL-1:32] ← 0
 
-VMOVQ (EVEX-encoded version when destination is an XMM register)¶
+VMOVQ (EVEX-encoded version when destination is an XMM register) ¶
 
     DEST[63:0] ← SRC[63:0]
     DEST[MAXVL-1:64] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MOVD: __m64 _mm_cvtsi32_si64 (int i )
 
@@ -173,17 +173,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VMOVQ void _mm_storel_epi64( __m128i * d, __m128i s);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 5.
 

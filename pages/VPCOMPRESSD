@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VPCOMPRESSD — STORE SPARSE PACKED DOUBLEWORD INTEGER VALUES INTO DENSE MEMORY/
   EVEX.512.66.0F38.W0 8B /r VPCOMPRESSD zmm1/m512 {k1}{z}, zmm2   A       V/V                      AVX512F              Compress packed doubleword integer values from zmm2 to zmm1/m512 using controlmask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
   A       Tuple1 Scalar   ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Compress (store) up to 16/8/4 doubleword integer values from the source
 operand (second operand) to the destination operand (first operand). The
@@ -48,9 +48,9 @@ Note that the compressed displacement assumes a pre-scaling (N)
 corresponding to the size of one single element instead of the size of
 the full vector.
 
-Operation¶
+Operation ¶
 
-VPCOMPRESSD (EVEX encoded versions) store form¶
+VPCOMPRESSD (EVEX encoded versions) store form ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     SIZE ← 32
@@ -64,7 +64,7 @@ VPCOMPRESSD (EVEX encoded versions) store form¶
         FI;
     ENDFOR;
 
-VPCOMPRESSD (EVEX encoded versions) reg-reg form¶
+VPCOMPRESSD (EVEX encoded versions) reg-reg form ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     SIZE ← 32
@@ -83,7 +83,7 @@ VPCOMPRESSD (EVEX encoded versions) reg-reg form¶
     FI
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPCOMPRESSD __m512i _mm512_mask_compress_epi32(__m512i s, __mmask16 c, __m512i a);
 
@@ -103,11 +103,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPCOMPRESSD void _mm_mask_compressstoreu_epi32(void * a, __mmask8 c, __m128i s);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E4.nb.
 

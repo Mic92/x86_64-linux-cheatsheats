@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ F2XM1 — COMPUTE 2X–1
   D9 F0    F2XM1         Valid         Valid             Replace ST(0) with (2^(ST(0)) – 1).
 
 
-Description¶
+Description ¶
 
 Computes the exponential value of 2 to the power of the source operand
 minus 1. The source operand is located in register ST(0) and the result
@@ -40,12 +40,12 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     ST(0) ← (2ST(0) − 1);
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
 C1
 
@@ -58,7 +58,7 @@ C0, C2, C3
 Undefined.
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
   ----- ------------------------------------------------------------
   #IS   Stack underflow occurred.
@@ -69,7 +69,7 @@ Floating-Point Exceptions¶
   ----- ------------------------------------------------------------
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -------------------------------------
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
@@ -77,22 +77,22 @@ Protected Mode Exceptions¶
   ----- -------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ AESKEYGENASSIST — AES ROUND KEY GENERATION ASSIST
   VEX.128.66.0F3A.WIG DF /r ib VAESKEYGENASSIST xmm1, xmm2/m128, imm8   RMI     V/V              Both AES and AVX flags   Assist in AES round key generation using 8 bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ---------- ----------
   Op/En   Operand 1       Operand2        Operand3   Operand4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ---------- ----------
 
 
-Description¶
+Description ¶
 
 Assist in expanding the AES cipher key, by computing steps towards
 generating a round key for encryption, using 128-bit data specified in
@@ -40,9 +40,9 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-AESKEYGENASSIST¶
+AESKEYGENASSIST ¶
 
     X3[31:0] ← SRC [127: 96];
     X2[31:0] ← SRC [95: 64];
@@ -55,7 +55,7 @@ AESKEYGENASSIST¶
     DEST[127:96] ← RotWord( SubWord(X3) ) XOR RCON;
     DEST[MAXVL-1:128] (Unmodified)
 
-VAESKEYGENASSIST¶
+VAESKEYGENASSIST ¶
 
     X3[31:0]←SRC [127: 96];
     X2[31:0]←SRC [95: 64];
@@ -69,17 +69,17 @@ VAESKEYGENASSIST¶
     DEST[MAXVL-1:128] ← 0;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)AESKEYGENASSIST: __m128i _mm_aeskeygenassist (__m128i, const int)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

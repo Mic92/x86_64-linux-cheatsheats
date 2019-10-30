@@ -1,30 +1,30 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PADDUSB/PADDUSW — ADD PACKED UNSIGNED INTEGERS WITH UNSIGNED SATURATION
 
 
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
-  NP 0F DC /_r_¹ PADDUSB _mm, mm/m64_                                     A       V/V                      MMX                  Add packed unsigned byte integers from _mm/m64 and mm_ and saturate the results.
-  66 0F DC /_r_ PADDUSB _xmm1, xmm2/m128_                                 A       V/V                      SSE2                 Add packed unsigned byte integers from _xmm2/m128_ and _xmm1_ saturate the results.
-  NP 0F DD /_r_¹ PADDUSW _mm, mm/m64_                                     A       V/V                      MMX                  Add packed unsigned word integers from _mm/m64 and mm_ and saturate the results.
-  66 0F DD /_r_ PADDUSW _xmm1, xmm2/m128_                                 A       V/V                      SSE2                 Add packed unsigned word integers from _xmm2/m128_ to _xmm1_ and saturate the results.
-  VEX.NDS.128.660F.WIG DC /r VPADDUSB _xmm1, xmm2, xmm3/m128_             B       V/V                      AVX                  Add packed unsigned byte integers from _xmm3/m128_ to _xmm2_ and saturate the results.
-  VEX.NDS.128.66.0F.WIG DD /r VPADDUSW _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Add packed unsigned word integers from _xmm3/m128_ to _xmm2_ and saturate the results.
-  VEX.NDS.256.66.0F.WIG DC /r VPADDUSB _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Add packed unsigned byte integers from _ymm2_, and _ymm3/m256_ and store the saturated results in _ymm1_.
-  VEX.NDS.256.66.0F.WIG DD /r VPADDUSW _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Add packed unsigned word integers from _ymm2_, and _ymm3/m256_ and store the saturated results in _ymm1_.
-  EVEX.NDS.128.66.0F.WIG DC /r VPADDUSB _xmm1 {k1}{z}, xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned byte integers from xmm2, and _xmm3/m128_ and store the saturated results in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F.WIG DC /r VPADDUSB _ymm1 {k1}{z}, ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned byte integers from ymm2, and _ymm3/m256_ and store the saturated results in ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F.WIG DC /r VPADDUSB _zmm1 {k1}{z}, zmm2, zmm3/m512_   C       V/V                      AVX512BW             Add packed unsigned byte integers from zmm2, and _zmm3/m512_ and store the saturated results in zmm1 under writemask k1.
-  EVEX.NDS.128.66.0F.WIG DD /r VPADDUSW _xmm1 {k1}{z}, xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned word integers from xmm2, and _xmm3/m128_ and store the saturated results in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F.WIG DD /r VPADDUSW _ymm1 {k1}{z}, ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned word integers from ymm2, and _ymm3/m256_ and store the saturated results in ymm1 under writemask k1.
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
+  NP 0F DC /_r_¹ PADDUSB _mm, mm/m64_                                 A       V/V                      MMX                  Add packed unsigned byte integers from _mm/m64 and mm_ and saturate the results.
+  66 0F DC /_r_ PADDUSB _xmm1, xmm2/m128_                             A       V/V                      SSE2                 Add packed unsigned byte integers from _xmm2/m128_ and _xmm1_ saturate the results.
+  NP 0F DD /_r_¹ PADDUSW _mm, mm/m64_                                 A       V/V                      MMX                  Add packed unsigned word integers from _mm/m64 and mm_ and saturate the results.
+  66 0F DD /_r_ PADDUSW _xmm1, xmm2/m128_                             A       V/V                      SSE2                 Add packed unsigned word integers from _xmm2/m128_ to _xmm1_ and saturate the results.
+  VEX.128.660F.WIG DC /r VPADDUSB _xmm1, xmm2, xmm3/m128_             B       V/V                      AVX                  Add packed unsigned byte integers from _xmm3/m128_ to _xmm2_ and saturate the results.
+  VEX.128.66.0F.WIG DD /r VPADDUSW _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Add packed unsigned word integers from _xmm3/m128_ to _xmm2_ and saturate the results.
+  VEX.256.66.0F.WIG DC /r VPADDUSB _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Add packed unsigned byte integers from _ymm2_, and _ymm3/m256_ and store the saturated results in _ymm1_.
+  VEX.256.66.0F.WIG DD /r VPADDUSW _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Add packed unsigned word integers from _ymm2_, and _ymm3/m256_ and store the saturated results in _ymm1_.
+  EVEX.128.66.0F.WIG DC /r VPADDUSB _xmm1 {k1}{z}, xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned byte integers from xmm2, and _xmm3/m128_ and store the saturated results in xmm1 under writemask k1.
+  EVEX.256.66.0F.WIG DC /r VPADDUSB _ymm1 {k1}{z}, ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned byte integers from ymm2, and _ymm3/m256_ and store the saturated results in ymm1 under writemask k1.
+  EVEX.512.66.0F.WIG DC /r VPADDUSB _zmm1 {k1}{z}, zmm2, zmm3/m512_   C       V/V                      AVX512BW             Add packed unsigned byte integers from zmm2, and _zmm3/m512_ and store the saturated results in zmm1 under writemask k1.
+  EVEX.128.66.0F.WIG DD /r VPADDUSW _xmm1 {k1}{z}, xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned word integers from xmm2, and _xmm3/m128_ and store the saturated results in xmm1 under writemask k1.
+  EVEX.256.66.0F.WIG DD /r VPADDUSW _ymm1 {k1}{z}, ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Add packed unsigned word integers from ymm2, and _ymm3/m256_ and store the saturated results in ymm1 under writemask k1.
 
-  ----------------------------------------------------------------------- --- ----- ---------- --------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.512.66.0F.WIG DD /r VPADDUSW _zmm1 {k1}{z}, zmm2, zmm3/m512_   C   V/V   AVX512BW   Add packed unsigned word integers from zmm2, and _zmm3/m512_ and store the saturated results in zmm1 under writemask k1.
-  ----------------------------------------------------------------------- --- ----- ---------- --------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------- --- ----- ---------- --------------------------------------------------------------------------------------------------------------------------
+  EVEX.512.66.0F.WIG DD /r VPADDUSW _zmm1 {k1}{z}, zmm2, zmm3/m512_   C   V/V   AVX512BW   Add packed unsigned word integers from zmm2, and _zmm3/m512_ and store the saturated results in zmm1 under writemask k1.
+  ------------------------------------------------------------------- --- ----- ---------- --------------------------------------------------------------------------------------------------------------------------
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -34,7 +34,7 @@ PADDUSB/PADDUSW — ADD PACKED UNSIGNED INTEGERS WITH UNSIGNED SATURATION
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -44,7 +44,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a SIMD add of the packed unsigned integers from the source
 operand (second operand) and the destination operand (first operand),
@@ -89,53 +89,53 @@ the upper bits (MAXVL-1:128) of the corresponding register destination
 are unmodified.
 
 
-Operation¶
+Operation ¶
 
-PADDUSB (with 64-bit operands)¶
+PADDUSB (with 64-bit operands) ¶
 
     DEST[7:0] ← SaturateToUnsignedByte(DEST[7:0] + SRC (7:0] );
     (* Repeat add operation for 2nd through 7th bytes *)
     DEST[63:56] ← SaturateToUnsignedByte(DEST[63:56] + SRC[63:56]
 
-PADDUSB (with 128-bit operands)¶
+PADDUSB (with 128-bit operands) ¶
 
     DEST[7:0] ← SaturateToUnsignedByte (DEST[7:0] + SRC[7:0]);
     (* Repeat add operation for 2nd through 14th bytes *)
     DEST[127:120] ← SaturateToUnSignedByte (DEST[127:120] + SRC[127:120]);
 
-VPADDUSB (VEX.128 encoded version)¶
+VPADDUSB (VEX.128 encoded version) ¶
 
     DEST[7:0]←SaturateToUnsignedByte (SRC1[7:0] + SRC2[7:0]);
     (* Repeat subtract operation for 2nd through 14th bytes *)
     DEST[127:120]←SaturateToUnsignedByte (SRC1[111:120] + SRC2[127:120]);
     DEST[MAXVL-1:128] ← 0
 
-VPADDUSB (VEX.256 encoded version)¶
+VPADDUSB (VEX.256 encoded version) ¶
 
     DEST[7:0]←SaturateToUnsignedByte (SRC1[7:0] + SRC2[7:0]);
     (* Repeat add operation for 2nd through 31st bytes *)
     DEST[255:248]←SaturateToUnsignedByte (SRC1[255:248] + SRC2[255:248]);
 
-PADDUSW (with 64-bit operands)¶
+PADDUSW (with 64-bit operands) ¶
 
     DEST[15:0] ← SaturateToUnsignedWord(DEST[15:0] + SRC[15:0] );
     (* Repeat add operation for 2nd and 3rd words *)
     DEST[63:48] ← SaturateToUnsignedWord(DEST[63:48] + SRC[63:48] );
 
-PADDUSW (with 128-bit operands)¶
+PADDUSW (with 128-bit operands) ¶
 
     DEST[15:0] ← SaturateToUnsignedWord (DEST[15:0] + SRC[15:0]);
     (* Repeat add operation for 2nd through 7th words *)
     DEST[127:112] ← SaturateToUnSignedWord (DEST[127:112] + SRC[127:112]);
 
-VPADDUSW (VEX.128 encoded version)¶
+VPADDUSW (VEX.128 encoded version) ¶
 
     DEST[15:0]←SaturateToUnsignedWord (SRC1[15:0] + SRC2[15:0]);
     (* Repeat subtract operation for 2nd through 7th words *)
     DEST[127:112]←SaturateToUnsignedWord (SRC1[127:112] + SRC2[127:112]);
     DEST[MAXVL-1:128] ← 0
 
-VPADDUSW (VEX.256 encoded version)¶
+VPADDUSW (VEX.256 encoded version) ¶
 
         DEST[15:0]←SaturateToUnsignedWord (SRC1[15:0] + SRC2[15:0]);
         (* Repeat add operation for 2nd through 15th words *)
@@ -157,7 +157,7 @@ VPADDUSW (VEX.256 encoded version)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPADDUSW (EVEX encoded versions)¶
+VPADDUSW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -176,7 +176,7 @@ VPADDUSW (EVEX encoded versions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     PADDUSB: __m64 _mm_adds_pu8(__m64 m1, __m64 m2)
 
@@ -217,17 +217,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPADDUSW__m128i _mm_maskz_adds_epu16 (__mmask8 m, __m128i a, __m128i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

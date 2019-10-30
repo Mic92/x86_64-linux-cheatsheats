@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VGETEXPSD — CONVERT EXPONENTS OF SCALAR DP FP VALUES TO DP FP VALUE
 
 
-  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F38.W1 43 /r VGETEXPSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}   A       V/V                      AVX512F              Convert the biased exponent (bits 62:52) of the low double-precision floating-point value in xmm3/m64 to a DP FP value representing unbiased integer exponent. Stores the result to the low 64-bit of xmm1 under the writemask k1 and merge with the other elements of xmm2.
+  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F38.W1 43 /r VGETEXPSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}   A       V/V                      AVX512F              Convert the biased exponent (bits 62:52) of the low double-precision floating-point value in xmm3/m64 to a DP FP value representing unbiased integer exponent. Stores the result to the low 64-bit of xmm1 under the writemask k1 and merge with the other elements of xmm2.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Extracts the biased exponent from the normalized DP FP representation of
 the low qword data element of the source operand (the third operand) as
@@ -44,12 +44,12 @@ GETEXP(x) = floor(log₂(|x|))
 Notation FLOOR(X) stands for maximal integer not exceeding real number
 x.
 
-Operation¶
+Operation ¶
 
     // NormalizeExpTinyDPFP(SRC[63:0]) is defined in the Operation section of VGETEXPPD
     // ConvertExpDPFP(SRC[63:0]) is defined in the Operation section of VGETEXPPD
 
-VGETEXPSD (EVEX encoded version)¶
+VGETEXPSD (EVEX encoded version) ¶
 
     IF k1[0] OR *no writemask*
         THEN DEST[63:0]←
@@ -66,7 +66,7 @@ VGETEXPSD (EVEX encoded version)¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETEXPSD __m128d _mm_getexp_sd( __m128d a, __m128d b);
 
@@ -80,11 +80,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETEXPSD __m128d _mm_maskz_getexp_round_sd( __mmask8 k, __m128d a, __m128d b, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

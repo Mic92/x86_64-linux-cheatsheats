@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -17,7 +17,7 @@ VEXTRACTI128/VEXTRACTI32X4/VEXTRACTI64X2/VEXTRACTI32X8/VEXTRACTI64X4 — EXTRACT
   EVEX.512.66.0F3A.W1 3B /r ib VEXTRACTI64x4 ymm1/m256 {k1}{z}, zmm2, imm8   C       V/V                      AVX512F              Extract 256 bits of quad-word integer values from zmm2 and store results in ymm1/m256 subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -27,7 +27,7 @@ Instruction Operand Encoding¶
   D       Tuple8       ModRM:r/m (w)   ModRM:reg (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 VEXTRACTI128/VEXTRACTI32x4 and VEXTRACTI64x2 extract 128-bits of
 doubleword integer values from the source operand (the second operand)
@@ -64,9 +64,9 @@ The high 7 bits (6 bits in EVEX.512) of the immediate are ignored.
 If VEXTRACTI128 is encoded with VEX.L= 0, an attempt to execute the
 instruction encoded with VEX.L= 0 will cause an #UD exception.
 
-Operation¶
+Operation ¶
 
-VEXTRACTI32x4 (EVEX encoded versions) when destination is a register¶
+VEXTRACTI32x4 (EVEX encoded versions) when destination is a register ¶
 
     VL = 256, 512
     IF VL = 256
@@ -99,7 +99,7 @@ VEXTRACTI32x4 (EVEX encoded versions) when destination is a register¶
     ENDFOR
     DEST[MAXVL-1:128] ← 0
 
-VEXTRACTI32x4 (EVEX encoded versions) when destination is memory¶
+VEXTRACTI32x4 (EVEX encoded versions) when destination is memory ¶
 
     VL = 256, 512
     IF VL = 256
@@ -125,7 +125,7 @@ VEXTRACTI32x4 (EVEX encoded versions) when destination is memory¶
         FI;
     ENDFOR
 
-VEXTRACTI64x2 (EVEX encoded versions) when destination is a register¶
+VEXTRACTI64x2 (EVEX encoded versions) when destination is a register ¶
 
     VL = 256, 512
     IF VL = 256
@@ -158,7 +158,7 @@ VEXTRACTI64x2 (EVEX encoded versions) when destination is a register¶
     ENDFOR
     DEST[MAXVL-1:128] ← 0
 
-VEXTRACTI64x2 (EVEX encoded versions) when destination is memory¶
+VEXTRACTI64x2 (EVEX encoded versions) when destination is memory ¶
 
     VL = 256, 512
     IF VL = 256
@@ -184,7 +184,7 @@ VEXTRACTI64x2 (EVEX encoded versions) when destination is memory¶
         FI;
     ENDFOR
 
-VEXTRACTI32x8 (EVEX.U1.512 encoded version) when destination is a register¶
+VEXTRACTI32x8 (EVEX.U1.512 encoded version) when destination is a register ¶
 
     VL = 512
     CASE (imm8[0]) OF
@@ -207,7 +207,7 @@ VEXTRACTI32x8 (EVEX.U1.512 encoded version) when destination is a register¶
     ENDFOR
     DEST[MAXVL-1:256] ← 0
 
-VEXTRACTI32x8 (EVEX.U1.512 encoded version) when destination is memory¶
+VEXTRACTI32x8 (EVEX.U1.512 encoded version) when destination is memory ¶
 
     CASE (imm8[0]) OF
         0: TMP_DEST[255:0]←SRC1[255:0]
@@ -222,7 +222,7 @@ VEXTRACTI32x8 (EVEX.U1.512 encoded version) when destination is memory¶
         FI;
     ENDFOR
 
-VEXTRACTI64x4 (EVEX.512 encoded version) when destination is a register¶
+VEXTRACTI64x4 (EVEX.512 encoded version) when destination is a register ¶
 
     VL = 512
     CASE (imm8[0]) OF
@@ -245,7 +245,7 @@ VEXTRACTI64x4 (EVEX.512 encoded version) when destination is a register¶
     ENDFOR
     DEST[MAXVL-1:256] ← 0
 
-VEXTRACTI64x4 (EVEX.512 encoded version) when destination is memory¶
+VEXTRACTI64x4 (EVEX.512 encoded version) when destination is memory ¶
 
     CASE (imm8[0]) OF
         0: TMP_DEST[255:0]←SRC1[255:0]
@@ -260,14 +260,14 @@ VEXTRACTI64x4 (EVEX.512 encoded version) when destination is memory¶
         FI;
     ENDFOR
 
-VEXTRACTI128 (memory destination form)¶
+VEXTRACTI128 (memory destination form) ¶
 
     CASE (imm8[0]) OF
         0: DEST[127:0]←SRC1[127:0]
         1: DEST[127:0]←SRC1[255:128]
     ESAC.
 
-VEXTRACTI128 (register destination form)¶
+VEXTRACTI128 (register destination form) ¶
 
     CASE (imm8[0]) OF
         0: DEST[127:0]←SRC1[127:0]
@@ -275,7 +275,7 @@ VEXTRACTI128 (register destination form)¶
     ESAC.
     DEST[MAXVL-1:128] ←0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VEXTRACTI32x4 __m128i _mm512_extracti32x4_epi32(__m512i a, const int nidx);
 
@@ -315,11 +315,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VEXTRACTI128 __m128i _mm256_extracti128_si256(__m256i a, int offset);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 6;
 

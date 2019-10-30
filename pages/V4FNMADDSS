@@ -1,25 +1,25 @@
 -   Index
--   March 2018
+-   May 2019
 
 
 
 V4FMADDSS/V4FNMADDSS — SCALAR SINGLE-PRECISION FLOATING-POINT FUSED MULTIPLY-ADD (4-ITERATIONS)
 
 
-  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.DDS.LLIG.F2.0F38.W0 9B /r V4FMADDSS xmm1{k1}{z}, xmm2+3, m128    A       V/V                      AVX512_4FMAPS        Multiply scalar single-precision floating-point values from source register block indicated by xmm2 by values from m128 and accumulate the result in xmm1.
-  EVEX.DDS.LLIG.F2.0F38.W0 AB /r V4FNMADDSS xmm1{k1}{z}, xmm2+3, m128   A       V/V                      AVX512_4FMAPS        Multiply and negate scalar single-precision floating-point values from source register block indicated by xmm2 by values from m128 and accumulate the result in xmm1.
+  Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LLIG.F2.0F38.W0 9B /r V4FMADDSS xmm1{k1}{z}, xmm2+3, m128    A       V/V                      AVX512_4FMAPS        Multiply scalar single-precision floating-point values from source register block indicated by xmm2 by values from m128 and accumulate the result in xmm1.
+  EVEX.LLIG.F2.0F38.W0 AB /r V4FNMADDSS xmm1{k1}{z}, xmm2+3, m128   A       V/V                      AVX512_4FMAPS        Multiply and negate scalar single-precision floating-point values from source register block indicated by xmm2 by values from m128 and accumulate the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   -------------------------------------------------------------
   Op/En Tuple Operand 1 Operand 2 Operand 3 Operand 4
   A Tuple1_4X ModRM:reg (r, w) EVEX.vvvv (r) ModRM:r/m (r) NA
   -------------------------------------------------------------
 
-Description¶
+Description ¶
 
 This instruction computes 4 sequential scalar fused single-precision
 floating-point multiply-add instructions with a sequentially selected
@@ -42,7 +42,7 @@ sequentially. Pre- and post-computational exceptions of the first FMA
 take priority over the pre- and post-computational exceptions of the
 second FMA, etc.
 
-Operation¶
+Operation ¶
 
     src_reg_id is the 5 bit index of the vector register specified in the instruction as the src1 register.
     define NFMA_SS(vl, dest, k1, msrc, regs_loaded, src_base, posneg):
@@ -65,7 +65,7 @@ Operation¶
     posneg ← 0 if negative form, 1 otherwise
     NFMA_SS(vl, dest, k1, msrc, regs_loaded, src_base, posneg)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     V4FMADDSS __m128 _mm_4fmadd_ss(__m128, __m128x4, __m128 *);
 
@@ -79,11 +79,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     V4FNMADDSS __m128 _mm_maskz_4fnmadd_ss(__mmask8, __m128, __m128x4, __m128 *);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Type E2; additionally
 

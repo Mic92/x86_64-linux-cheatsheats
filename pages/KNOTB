@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ KNOTW/KNOTB/KNOTQ/KNOTD — NOT MASK REGISTER
   VEX.L0.66.0F.W1 44 /r KNOTD k1, k2   RR      V/V                      AVX512BW             Bitwise NOT of 32 bits mask k2.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------------------------------------
   Op/En   Operand 1       Operand 2
@@ -22,51 +22,51 @@ Instruction Operand Encoding¶
   ------- --------------- ----------------------------------------
 
 
-Description¶
+Description ¶
 
 Performs a bitwise NOT of vector mask k2 and writes the result into
 vector mask k1.
 
 
-Operation¶
+Operation ¶
 
-KNOTW¶
+KNOTW ¶
 
     DEST[15:0]←BITWISE NOT SRC[15:0]
     DEST[MAX_KL-1:16] ← 0
 
-KNOTB¶
+KNOTB ¶
 
     DEST[7:0]←BITWISE NOT SRC[7:0]
     DEST[MAX_KL-1:8] ← 0
 
-KNOTQ¶
+KNOTQ ¶
 
     DEST[63:0]←BITWISE NOT SRC[63:0]
     DEST[MAX_KL-1:64] ← 0
 
-KNOTD¶
+KNOTD ¶
 
     DEST[31:0]←BITWISE NOT SRC[31:0]
     DEST[MAX_KL-1:32] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     KNOTW __mmask16 _mm512_knot(__mmask16 a);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type K20.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ WRPKRU — WRITE DATA TO USER PAGE KEY REGISTER
   NP 0F 01 EF   WRPKRU        ZO      V/V                     OSPKE                Writes EAX into PKRU.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Writes the value of EAX into PKRU. ECX and EDX must be 0 when WRPKRU is
 executed; otherwise, a general-protection exception (#GP) occurs.
@@ -32,7 +32,7 @@ On processors that support the Intel 64 Architecture, the high-order
 32-bits of RCX, RDX and RAX are ignored.
 
 
-Operation¶
+Operation ¶
 
     IF (ECX = 0 AND EDX = 0)
         THEN PKRU ← EAX;
@@ -40,17 +40,17 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     WRPKRU: void _wrpkru(uint32_t);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -65,22 +65,22 @@ If the LOCK prefix is used.
 If CR4.PKE = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

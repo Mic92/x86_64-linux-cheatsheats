@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VRCP14PD — COMPUTE APPROXIMATE RECIPROCALS OF PACKED FLOAT64 VALUES
   EVEX.512.66.0F38.W1 4C /r VRCP14PD zmm1 {k1}{z}, zmm2/m512/m64bcst   A       V/V                      AVX512F              Computes the approximate reciprocals of the packed double-precision floating-point values in zmm2/m512/m64bcst and stores the results in zmm1. Under writemask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 This instruction performs a SIMD computation of the approximate
 reciprocals of eight/four/two packed double-precision floating-point
@@ -61,13 +61,13 @@ Table 5-22. VRCP14PD/VRCP14SD Special Cases
 
 * in this case the mantissa is shifted right by one or two bits
 
-A numerically exact implementation of VRCP14xx can be found at https://software.intel.com/en-us/articles/refer-¶
+A numerically exact implementation of VRCP14xx can be found at https://software.intel.com/en-us/articles/refer- ¶
 
-ence-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2.¶
+ence-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2. ¶
 
-Operation¶
+Operation ¶
 
-VRCP14PD ((EVEX encoded versions)¶
+VRCP14PD ((EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -87,7 +87,7 @@ VRCP14PD ((EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRCP14PD __m512d _mm512_rcp14_pd( __m512d a);
 
@@ -95,11 +95,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRCP14PD __m512d _mm512_maskz_rcp14_pd( __mmask8 k, __m512d a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E4.
 

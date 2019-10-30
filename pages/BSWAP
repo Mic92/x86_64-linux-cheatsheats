@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ BSWAP — BYTE SWAP
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------------- ----------- ----------- -----------
   Op/En   Operand 1            Operand 2   Operand 3   Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- -------------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reverses the byte order of a 32-bit or 64-bit (destination) register.
 This instruction is provided for converting little-endian values to
@@ -37,7 +37,7 @@ operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
 
-IA-32 Architecture Legacy Compatibility¶
+IA-32 Architecture Legacy Compatibility ¶
 
 The BSWAP instruction is not supported on IA-32 processors earlier than
 the Intel486TM processor family. For compatibility with this
@@ -46,7 +46,7 @@ execution on Intel processors earlier than the Intel486 processor
 family.
 
 
-Operation¶
+Operation ¶
 
     TEMP ← DEST
     IF 64-bit mode AND OperandSize = 64
@@ -67,12 +67,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

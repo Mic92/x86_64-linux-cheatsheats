@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,22 +11,22 @@ SHA256MSG1 — PERFORM AN INTERMEDIATE CALCULATION FOR THE NEXT FOUR SHA256 MESS
   NP 0F 38 CC /r SHA256MSG1 xmm1, xmm2/m128   RM      V/V                      SHA                  Performs an intermediate calculation for the next four SHA256 message dwords using previous message dwords from xmm1 and xmm2/m128, storing the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA
   ------- ------------------ --------------- -----------
 
-Description¶
+Description ¶
 
 The SHA256MSG1 instruction is one of two SHA256 message scheduling
 instructions. The instruction performs an intermediate calculation for
 the next four SHA256 message dwords.
 
-Operation¶
+Operation ¶
 
-SHA256MSG1¶
+SHA256MSG1 ¶
 
     W4←SRC2[31: 0] ;
     W3←SRC1[127:96] ;
@@ -38,19 +38,19 @@ SHA256MSG1¶
     DEST[63:32]←W1 + σ0( W2);
     DEST[31:0]←W0 + σ0( W1);
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     SHA256MSG1: __m128i _mm_sha256msg1_epu32(__m128i, __m128i);
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4.
 

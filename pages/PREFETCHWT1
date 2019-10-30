@@ -1,17 +1,17 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
-PREFETCHW — PREFETCH DATA INTO CACHES IN ANTICIPATION OF A WRITE
+PREFETCHWT1 — PREFETCH VECTOR DATA INTO CACHES WITH INTENT TO WRITE AND T1 HINT
 
 
-  Opcode/Instruction      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------
-  0F 0D /1 PREFETCHW m8   A       V/V                      PRFCHW               Move data from m8 closer to the processor in anticipation of a write.
+  Opcode/Instruction        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------
+  0F 0D /2 PREFETCHWT1 m8   M       V/V                      PREFETCHWT1          Move data from m8 closer to the processor using T1 hint with intent to write.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -19,92 +19,99 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
-Fetches the cache line of data from memory that contains the byte
-specified with the source operand to a location in the 1st or 2nd level
-cache and invalidates other cached instances of the line.
+Fetches the line of data from memory that contains the byte specified
+with the source operand to a location in the cache hierarchy specified
+by an intent to write hint (so that data is brought into ‘Exclusive’
+state via a request for ownership) and a locality hint:
 
-The source operand is a byte memory location. If the line selected is
-already present in the lowest level cache and is already in an
-exclusively owned state, no data movement occurs. Prefetches from
-non-writeback memory are ignored.
+-   T1 (temporal data with respect to first level cache)—prefetch data
+    into the second level cache.
 
-The PREFETCHW instruction is merely a hint and does not affect program
+The source operand is a byte memory location. (The locality hints are
+encoded into the machine level instruction using bits 3 through 5 of the
+ModR/M byte. Use of any ModR/M value other than the specified ones will
+lead to unpredictable behavior.)
+
+If the line selected is already present in the cache hierarchy at a
+level closer to the processor, no data movement occurs. Prefetches from
+uncacheable or WC memory are ignored.
+
+The PREFETCHh instruction is merely a hint and does not affect program
 behavior. If executed, this instruction moves data closer to the
-processor and invalidates other cached copies in anticipation of the
-line being written to in the future.
+processor in anticipation of future use.
 
-The characteristic of prefetch locality hints is
+The implementation of prefetch locality hints is
 implementation-dependent, and can be overloaded or ignored by a
 processor implementation. The amount of data prefetched is also
 processor implementation-dependent. It will, however, be a minimum of 32
-bytes. Additional details of the implementation-dependent locality hints
-are described in Section 7.4 of _Intel® 64 and IA-32 Architectures
-Optimization Reference Manual_.
+bytes.
 
 It should be noted that processors are free to speculatively fetch and
-cache data with exclusive ownership from system memory regions that
-permit such accesses (that is, the WB memory type). A PREFETCHW
-instruction is considered a hint to this speculative behavior. Because
-this speculative fetching can occur at any time and is not tied to
-instruction execution, a PREFETCHW instruction is not ordered with
-respect to the fence instructions (MFENCE, SFENCE, and LFENCE) or locked
-memory references. A PREFETCHW instruction is also unordered with
-respect to CLFLUSH and CLFLUSHOPT instructions, other PREFETCHW
-instructions, or any other general instruction
+cache data from system memory regions that are assigned a memory-type
+that permits speculative reads (that is, the WB, WC, and WT memory
+types). A PREFETCHh instruction is considered a hint to this speculative
+behavior. Because this speculative fetching can occur at any time and is
+not tied to instruction execution, a PREFETCHh instruction is not
+ordered with respect to the fence instructions (MFENCE, SFENCE, and
+LFENCE) or locked memory references. A PREFETCHh instruction is also
+unordered with respect to CLFLUSH and CLFLUSHOPT instructions, other
+PREFETCHh instructions, or any other general instruction. It is ordered
+with respect to serializing instructions such as CPUID, WRMSR, OUT, and
+MOV CR.
 
-It is ordered with respect to serializing instructions such as CPUID,
-WRMSR, OUT, and MOV CR.
-
-This instruction's operation is the same in non-64-bit modes and 64-bit
+This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
-    FETCH_WITH_EXCLUSIVE_OWNERSHIP (m8);
+    PREFETCH(mem, Level, State) Prefetches a byte memory location pointed by ‘mem’ into the cache level specified by ‘Level’; a request
+    for exclusive/ownership is done if ‘State’ is 1. Note that the memory location ignore cache line splits. This operation is considered a
+    hint for the processor and may be skipped depending on implementation.
+    Prefetch (m8, Level = 1, EXCLUSIVE=1);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 All flags are affected
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
-    void _m_prefetchw( void * );
-
-
-Protected Mode Exceptions¶
-
-  ----- -----------------------------
-  #UD   If the LOCK prefix is used.
-  ----- -----------------------------
+    void _mm_prefetch( char const *, int hint= _MM_HINT_ET1);
 
 
-Real-Address Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Compatibility Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-64-Bit Mode Exceptions¶
+Compatibility Mode Exceptions ¶
+
+  ----- -----------------------------
+  #UD   If the LOCK prefix is used.
+  ----- -----------------------------
+
+
+64-Bit Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.

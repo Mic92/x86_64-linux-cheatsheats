@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,7 +16,7 @@ CVTDQ2PS — CONVERT PACKED DOUBLEWORD INTEGERS TO PACKED SINGLE-PRECISION FLOAT
   EVEX.512.0F.W0 5B /r VCVTDQ2PS zmm1 {k1}{z}, zmm2/m512/m32bcst{er}   B       V/V                      AVX512F              Convert sixteen packed signed doubleword integers from zmm2/m512/m32bcst to sixteen packed single-precision floating-point values in zmm1with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   ------- ------------ --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts four, eight or sixteen packed signed doubleword integers in the
 source operand to four, eight or sixteen packed single-precision
@@ -54,18 +54,16 @@ VEX.vvvv and EVEX.vvvv are reserved and must be 1111b, otherwise
 instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-VCVTDQ2PS (EVEX encoded versions) when SRC operand is a register¶
+VCVTDQ2PS (EVEX encoded versions) when SRC operand is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF (VL = 512) AND (EVEX.b = 1)
         THEN
-            SET_RM(EVEX.RC);
-                            ; refer to Table 2-4 in the Intel® Architecture Instruction Set Extensions Programming Reference
+            SET_RM(EVEX.RC); ; refer to Table 15-4 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1
         ELSE
-            SET_RM(MXCSR.RM);
-                            ; refer to Table 2-4 in the Intel® Architecture Instruction Set Extensions Programming Reference
+            SET_RM(MXCSR.RM); ; refer to Table 15-4 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1
     FI;
     FOR j←0 TO KL-1
         i←j * 32
@@ -82,7 +80,7 @@ VCVTDQ2PS (EVEX encoded versions) when SRC operand is a register¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTDQ2PS (EVEX encoded versions) when SRC operand is a memory source¶
+VCVTDQ2PS (EVEX encoded versions) when SRC operand is a memory source ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -108,7 +106,7 @@ VCVTDQ2PS (EVEX encoded versions) when SRC operand is a memory source¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTDQ2PS (VEX.256 encoded version)¶
+VCVTDQ2PS (VEX.256 encoded version) ¶
 
     DEST[31:0] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[31:0])
     DEST[63:32] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[63:32])
@@ -120,7 +118,7 @@ VCVTDQ2PS (VEX.256 encoded version)¶
     DEST[255:224] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[255:224)
     DEST[MAXVL-1:256] ← 0
 
-VCVTDQ2PS (VEX.128 encoded version)¶
+VCVTDQ2PS (VEX.128 encoded version) ¶
 
     DEST[31:0] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[31:0])
     DEST[63:32] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[63:32])
@@ -128,7 +126,7 @@ VCVTDQ2PS (VEX.128 encoded version)¶
     DEST[127:96] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[127z:96)
     DEST[MAXVL-1:128] ← 0
 
-CVTDQ2PS (128-bit Legacy SSE version)¶
+CVTDQ2PS (128-bit Legacy SSE version) ¶
 
     DEST[31:0] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[31:0])
     DEST[63:32] ← Convert_Integer_To_Single_Precision_Floating_Point(SRC[63:32])
@@ -137,7 +135,7 @@ CVTDQ2PS (128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTDQ2PS __m512 _mm512_cvtepi32_ps( __m512i a);
 
@@ -164,12 +162,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     CVTDQ2PS __m128 _mm_cvtepi32_ps (__m128i src)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 2;
 

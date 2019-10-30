@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ PCMPESTRI — PACKED COMPARE EXPLICIT LENGTH STRINGS, RETURN INDEX
   VEX.128.66.0F3A 61 /r ib VPCMPESTRI _xmm1, xmm2/m128, imm8_   RMI     V/V                      AVX                  Perform a packed comparison of string data with explicit lengths, generating an index, and storing the result in ECX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 The instruction compares and processes data from two string fragments
 based on the encoded value in the Imm8 Control Byte (see Section 4.1,
@@ -62,7 +62,7 @@ AFlag – Reset
 PFlag – Reset
 
 
-Effective Operand Size¶
+Effective Operand Size ¶
 
   Operating mode/size   Operand 1   Operand 2   Length 1   Length 2   Result
   --------------------- ----------- ----------- ---------- ---------- --------
@@ -72,12 +72,12 @@ Effective Operand Size¶
   64 bit + REX.W        xmm         xmm/m128    RAX        RDX        ECX
 
 
-Intel C/C++ Compiler Intrinsic Equivalent For Returning Index¶
+Intel C/C++ Compiler Intrinsic Equivalent For Returning Index ¶
 
 int _mm_cmpestri (__m128i a, int la, __m128i b, int lb, const int mode);
 
 
-Intel C/C++ Compiler Intrinsics For Reading EFlag Results¶
+Intel C/C++ Compiler Intrinsics For Reading EFlag Results ¶
 
 int _mm_cmpestra (__m128i a, int la, __m128i b, int lb, const int mode);
 
@@ -90,12 +90,12 @@ int _mm_cmpestrs (__m128i a, int la, __m128i b, int lb, const int mode);
 int _mm_cmpestrz (__m128i a, int la, __m128i b, int lb, const int mode);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally, this instruction does not cause #GP
 if the memory operand is not aligned to 16 Byte boundary, and

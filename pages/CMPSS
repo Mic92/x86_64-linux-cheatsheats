@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 CMPSS — COMPARE SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                                         Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  F3 0F C2 /r ib CMPSS xmm1, xmm2/m32, imm8                                  A         V/V                      SSE                  Compare low single-precision floating-point value in xmm2/m32 and xmm1 using bits 2:0 of imm8 as comparison predicate.
-  VEX.NDS.LIG.F3.0F.WIG C2 /r ib VCMPSS xmm1, xmm2, xmm3/m32, imm8           B         V/V                      AVX                  Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate.
-  EVEX.NDS.LIG.F3.0F.W0 C2 /r ib VCMPSS k1 {k2}, xmm2, xmm3/m32{sae}, imm8   C         V/V                      AVX512F              Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate with writemask k2 and leave the result in mask register k1.
+  Opcode/Instruction                                                     Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  F3 0F C2 /r ib CMPSS xmm1, xmm2/m32, imm8                              A         V/V                      SSE                  Compare low single-precision floating-point value in xmm2/m32 and xmm1 using bits 2:0 of imm8 as comparison predicate.
+  VEX.LIG.F3.0F.WIG C2 /r ib VCMPSS xmm1, xmm2, xmm3/m32, imm8           B         V/V                      AVX                  Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate.
+  EVEX.LIG.F3.0F.W0 C2 /r ib VCMPSS k1 {k2}, xmm2, xmm3/m32{sae}, imm8   C         V/V                      AVX512F              Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate with writemask k2 and leave the result in mask register k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   ------- --------------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Compares the low single-precision floating-point values in the second
 source operand and the first source operand and returns the results of
@@ -171,7 +171,7 @@ with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
 
-Operation¶
+Operation ¶
 
     CASE (COMPARISON PREDICATE) OF
         0: OP3←EQ_OQ; OP5←EQ_OQ;
@@ -209,7 +209,7 @@ Operation¶
         DEFAULT: Reserved
     ESAC;
 
-VCMPSS (EVEX encoded version)¶
+VCMPSS (EVEX encoded version) ¶
 
     CMP0←SRC1[31:0] OP5 SRC2[31:0];
     IF k2[0] or *no writemask*
@@ -221,7 +221,7 @@ VCMPSS (EVEX encoded version)¶
     FI;
     DEST[MAX_KL-1:1] ← 0
 
-CMPSS (128-bit Legacy SSE version)¶
+CMPSS (128-bit Legacy SSE version) ¶
 
     CMP0←DEST[31:0] OP3 SRC[31:0];
     IF CMP0 = TRUE
@@ -229,7 +229,7 @@ CMPSS (128-bit Legacy SSE version)¶
     ELSE DEST[31:0]←00000000H; FI;
     DEST[MAXVL-1:32] (Unmodified)
 
-VCMPSS (VEX.128 encoded version)¶
+VCMPSS (VEX.128 encoded version) ¶
 
     CMP0←SRC1[31:0] OP5 SRC2[31:0];
     IF CMP0 = TRUE
@@ -239,7 +239,7 @@ VCMPSS (VEX.128 encoded version)¶
     DEST[MAXVL-1:128] ←0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCMPSS __mmask8 _mm_cmp_ss_mask( __m128 a, __m128 b, int imm);
 
@@ -252,13 +252,13 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     (V)CMPSS __m128 _mm_cmp_ss(__m128 a, __m128 b, const int imm)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid if SNaN operand, Invalid if QNaN and predicate as listed in
 Table 3-1, Denormal.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3.
 

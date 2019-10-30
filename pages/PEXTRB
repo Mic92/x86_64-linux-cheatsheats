@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -25,7 +25,7 @@ PEXTRB/PEXTRD/PEXTRQ — EXTRACT BYTE/DWORD/QWORD
   if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Extract a byte/dword/qword integer value from the source XMM register at
 a byte/dword/qword offset determined from imm8[3:0]. The destination can
@@ -58,7 +58,7 @@ register, the default operand size in 64-bit mode for VPEXTRB/VPEXTRD is
 filled with zeros.
 
 
-Operation¶
+Operation ¶
 
     CASE of
         PEXTRB: SEL←COUNT[3:0];
@@ -82,7 +82,7 @@ Operation¶
             DEST ← TEMP;
     EASC:
 
-VPEXTRTD/VPEXTRQ¶
+VPEXTRTD/VPEXTRQ ¶
 
     IF (64-Bit Mode and 64-bit dest operand)
     THEN
@@ -93,12 +93,12 @@ VPEXTRTD/VPEXTRQ¶
         r32/m32←((Src >> Src_Offset *32) AND 0FFFFFFFFh);
     FI
 
-VPEXTRB ( dest=m8)¶
+VPEXTRB ( dest=m8) ¶
 
     SRC_Offset ← Imm8[3:0]
     Mem8←(Src >> Src_Offset*8)
 
-VPEXTRB ( dest=reg)¶
+VPEXTRB ( dest=reg) ¶
 
     IF (64-Bit Mode )
     THEN
@@ -112,7 +112,7 @@ VPEXTRB ( dest=reg)¶
     FI
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PEXTRB: int _mm_extract_epi8 (__m128i src, const int ndx);
 
@@ -121,17 +121,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     PEXTRQ: __int64 _mm_extract_epi64 (__m128i src, const int ndx);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 5;
 

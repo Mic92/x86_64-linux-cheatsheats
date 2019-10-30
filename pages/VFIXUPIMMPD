@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VFIXUPIMMPD — FIX UP SPECIAL PACKED FLOAT64 VALUES
 
 
-  Opcode/Instruction                                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F3A.W1 54 /r ib VFIXUPIMMPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Fix up special numbers in float64 vector xmm1, float64 vector xmm2 and int64 vector xmm3/m128/m64bcst and store the result in xmm1, under writemask.
-  EVEX.NDS.256.66.0F3A.W1 54 /r ib VFIXUPIMMPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Fix up special numbers in float64 vector ymm1, float64 vector ymm2 and int64 vector ymm3/m256/m64bcst and store the result in ymm1, under writemask.
-  EVEX.NDS.512.66.0F3A.W1 54 /r ib VFIXUPIMMPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Fix up elements of float64 vector in zmm2 using int64 vector table in zmm3/m512/m64bcst, combine with preserved elements from zmm1, and store the result in zmm1.
+  Opcode/Instruction                                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W1 54 /r ib VFIXUPIMMPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Fix up special numbers in float64 vector xmm1, float64 vector xmm2 and int64 vector xmm3/m128/m64bcst and store the result in xmm1, under writemask.
+  EVEX.256.66.0F3A.W1 54 /r ib VFIXUPIMMPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Fix up special numbers in float64 vector ymm1, float64 vector ymm2 and int64 vector ymm3/m256/m64bcst and store the result in ymm1, under writemask.
+  EVEX.512.66.0F3A.W1 54 /r ib VFIXUPIMMPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Fix up elements of float64 vector in zmm2 using int64 vector table in zmm3/m512/m64bcst, combine with preserved elements from zmm1, and store the result in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ ----------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2   Operand 3       Operand 4
   A       Full         ModRM:reg (r, w)   EVEX.vvvv   ModRM:r/m (r)   Imm8
   ------- ------------ ------------------ ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Perform fix-up of quad-word elements encoded in double-precision
 floating-point format in the first source operand (the second operand)
@@ -71,7 +71,7 @@ corresponding bit set in vector mask register k1 are computed and stored
 into zmm1. Elements in the destination with the corresponding bit clear
 in k1 retain their previous values or are set to 0.
 
-Operation¶
+Operation ¶
 
     enum TOKEN_TYPE
     {
@@ -135,7 +135,7 @@ Operation¶
     }
             ; end of FIXUPIMM_DP()
 
-VFIXUPIMMPD¶
+VFIXUPIMMPD ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -164,7 +164,7 @@ ZERO #IE ZERO #ZE
 
 Figure 5-9. VFIXUPIMMPD Immediate Control Description
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VFIXUPIMMPD __m512d _mm512_fixupimm_pd( __m512d a, __m512i tbl, int imm);
 
@@ -190,11 +190,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VFIXUPIMMPD __m128d _mm_maskz_fixupimm_pd( __mmask8 k, __m128d a, __m128i tbl, int imm);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Zero, Invalid
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

@@ -1,24 +1,24 @@
 -   Index
--   March 2018
+-   May 2019
 
 
 
 VP4DPWSSD — DOT PRODUCT OF SIGNED WORDS WITH DWORD ACCUMULATION (4-ITERATIONS)
 
 
-  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.DDS.512.F2.0F38.W0 52 /r VP4DPWSSD zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4VNNIW        Multiply signed words from source register block indicated by zmm2 by signed words from m128 and accumulate resulting signed dwords in zmm1.
+  Opcode/Instruction                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.512.F2.0F38.W0 52 /r VP4DPWSSD zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4VNNIW        Multiply signed words from source register block indicated by zmm2 by signed words from m128 and accumulate resulting signed dwords in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   -------------------------------------------------------------
   Op/En Tuple Operand 1 Operand 2 Operand 3 Operand 4
   A Tuple1_4X ModRM:reg (r, w) EVEX.vvvv (r) ModRM:r/m (r) NA
   -------------------------------------------------------------
 
-Description¶
+Description ¶
 
 This instruction computes 4 sequential register source-block
 dot-products of two signed word operands with doubleword accumulation;
@@ -46,7 +46,7 @@ Operands with Doubleword Accumulation¹
   1. For illustration purposes, one source-block dot product instance is
   shown out of the four.
 
-Operation¶
+Operation ¶
 
     src_reg_id is the 5 bit index of the vector register specified in the instruction as the src1 register.
     VP4DPWSSD dest, src1, src2
@@ -67,7 +67,7 @@ Operation¶
             DEST.dword[i] ← ORIGDEST.dword[i]
     DEST[MAX_VL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VP4DPWSSD __m512i _mm512_4dpwssd_epi32(__m512i, __m512ix4, __m128i *);
 
@@ -75,11 +75,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VP4DPWSSD __m512i _mm512_maskz_4dpwssd_epi32(__mmask16, __m512i, __m512ix4, __m128i *);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Type E4; additionally
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -178,7 +178,7 @@ NOTES: *
 In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- ------------ -----------
   Op/En   Operand 1          Operand 2       Operand 3    Operand 4
@@ -188,7 +188,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- ------------ -----------
 
 
-Description¶
+Description ¶
 
 Performs a signed multiplication of two operands. This instruction has
 three forms, depending on the number of operands.
@@ -252,7 +252,7 @@ the three forms of the instruction as follows.
     bits.
 
 
-Operation¶
+Operation ¶
 
     IF (NumberOfOperands = 1)
         THEN IF (OperandSize = 8)
@@ -301,7 +301,7 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 For the one operand form of the instruction, the CF and OF flags are set
 when significant bits are carried into the upper half of the result and
@@ -312,7 +312,7 @@ destination operand size and cleared when the result fits exactly in the
 destination operand size. The SF, ZF, AF, and PF flags are undefined.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -340,7 +340,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -349,7 +349,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -360,12 +360,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

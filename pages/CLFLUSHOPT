@@ -1,17 +1,17 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 CLFLUSHOPT — FLUSH CACHE LINE OPTIMIZED
 
 
-  Opcode        Instruction       Op/En   64-bit Mode   Compat/Leg Mode   Description
-  ------------- ----------------- ------- ------------- ----------------- -------------------------------------
-  66 0F AE /7   CLFLUSHOPT _m8_   M       Valid         Valid             Flushes cache line containing _m8_.
+  Opcode / Instruction              Op/En   64-bit Mode   Compat/Leg Mode   Description
+  --------------------------------- ------- ------------- ----------------- -------------------------------------
+  NFx 66 0F AE /7 CLFLUSHOPT _m8_   M       Valid         Valid             Flushes cache line containing _m8_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Invalidates from every level of the cache hierarchy in the cache
 coherence domain the cache line that contains the linear address
@@ -49,11 +49,12 @@ a CLFLUSH instruction that references the cache line).
 Executions of the CLFLUSHOPT instruction are ordered with respect to
 fence instructions and to locked read-modify-write instructions; they
 are also ordered with respect to the following accesses to the cache
-line being invalidated: writes, executions of CLFLUSH, and executions of
-CLFLUSHOPT. They are not ordered with respect to writes, executions of
-CLFLUSH, or executions of CLFLUSHOPT that access other cache lines; to
-enforce ordering with such an operation, software can insert an SFENCE
-instruction between CFLUSHOPT and that operation.
+line being invalidated: older writes and older executions of CLFLUSH.
+They are not ordered with respect to writes, executions of CLFLUSH that
+access other cache lines, or executions of CLFLUSHOPT regardless of
+cache line; to enforce CLFLUSHOPT ordering with any write, CLFLUSH, or
+CLFLUSHOPT operation, software can insert an SFENCE instruction between
+CLFLUSHOPT and that operation.
 
 The CLFLUSHOPT instruction can be used at all privilege levels and is
 subject to all permission checking and faults associated with a byte
@@ -71,17 +72,17 @@ they cause transactional abort is implementation dependent.
 CLFLUSHOPT operation is the same in non-64-bit modes and 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     Flush_Cache_Line_Optimized(SRC);
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     CLFLUSHOPT:void _mm_clflushopt(void const *p)
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -105,7 +106,7 @@ If the LOCK prefix is used.
 If an instruction prefix F2H or F3H is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -121,7 +122,7 @@ If the LOCK prefix is used.
 If an instruction prefix F2H or F3H is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
@@ -130,12 +131,12 @@ Same exceptions as in real address mode.
   ----------------- -------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

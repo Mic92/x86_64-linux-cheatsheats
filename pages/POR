@@ -1,23 +1,23 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 POR — BITWISE LOGICAL OR
 
 
-  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
-  NP 0F EB /_r_¹ POR _mm, mm/m64_                                           A       V/V                      MMX                  Bitwise OR of _mm/m64_ and _mm_.
-  66 0F EB /_r_ POR _xmm1_, _xmm2/m128_                                     A       V/V                      SSE2                 Bitwise OR of _xmm2/m128_ and _xmm1_.
-  VEX.NDS.128.66.0F.WIG EB /r VPOR _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Bitwise OR of _xmm2/m128_ and _xmm3_.
-  VEX.NDS.256.66.0F.WIG EB /r VPOR _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Bitwise OR of _ymm2/m256_ and _ymm3_.
-  EVEX.NDS.128.66.0F.W0 EB /r VPORD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed doubleword integers in xmm2 and xmm3/m128/m32bcst using writemask k1.
-  EVEX.NDS.256.66.0F.W0 EB /r VPORD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed doubleword integers in ymm2 and ymm3/m256/m32bcst using writemask k1.
-  EVEX.NDS.512.66.0F.W0 EB /r VPORD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise OR of packed doubleword integers in zmm2 and zmm3/m512/m32bcst using writemask k1.
-  EVEX.NDS.128.66.0F.W1 EB /r VPORQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed quadword integers in xmm2 and xmm3/m128/m64bcst using writemask k1.
-  EVEX.NDS.256.66.0F.W1 EB /r VPORQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed quadword integers in ymm2 and ymm3/m256/m64bcst using writemask k1.
-  EVEX.NDS.512.66.0F.W1 EB /r VPORQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise OR of packed quadword integers in zmm2 and zmm3/m512/m64bcst using writemask k1.
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
+  NP 0F EB /_r_¹ POR _mm, mm/m64_                                       A       V/V                      MMX                  Bitwise OR of _mm/m64_ and _mm_.
+  66 0F EB /_r_ POR _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Bitwise OR of _xmm2/m128_ and _xmm1_.
+  VEX.128.66.0F.WIG EB /r VPOR _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Bitwise OR of _xmm2/m128_ and _xmm3_.
+  VEX.256.66.0F.WIG EB /r VPOR _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Bitwise OR of _ymm2/m256_ and _ymm3_.
+  EVEX.128.66.0F.W0 EB /r VPORD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed doubleword integers in xmm2 and xmm3/m128/m32bcst using writemask k1.
+  EVEX.256.66.0F.W0 EB /r VPORD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed doubleword integers in ymm2 and ymm3/m256/m32bcst using writemask k1.
+  EVEX.512.66.0F.W0 EB /r VPORD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise OR of packed doubleword integers in zmm2 and zmm3/m512/m32bcst using writemask k1.
+  EVEX.128.66.0F.W1 EB /r VPORQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed quadword integers in xmm2 and xmm3/m128/m64bcst using writemask k1.
+  EVEX.256.66.0F.W1 EB /r VPORQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed quadword integers in ymm2 and ymm3/m256/m64bcst using writemask k1.
+  EVEX.512.66.0F.W1 EB /r VPORQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise OR of packed quadword integers in zmm2 and zmm3/m512/m64bcst using writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -27,7 +27,7 @@ POR — BITWISE LOGICAL OR
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -37,7 +37,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a bitwise logical OR operation on the source operand (second
 operand) and the destination operand (first operand) and stores the
@@ -75,28 +75,28 @@ ZMM/YMM/XMM register conditionally updated with writemask k1 at
 32/64-bit granularity.
 
 
-Operation¶
+Operation ¶
 
-POR (64-bit operand)¶
+POR (64-bit operand) ¶
 
     DEST←DEST OR SRC
 
-POR (128-bit Legacy SSE version)¶
+POR (128-bit Legacy SSE version) ¶
 
     DEST←DEST OR SRC
     DEST[MAXVL-1:128] (Unmodified)
 
-VPOR (VEX.128 encoded version)¶
+VPOR (VEX.128 encoded version) ¶
 
     DEST←SRC1 OR SRC2
     DEST[MAXVL-1:128] ← 0
 
-VPOR (VEX.256 encoded version)¶
+VPOR (VEX.256 encoded version) ¶
 
     DEST←SRC1 OR SRC2
     DEST[MAXVL-1:256] ← 0
 
-VPORD (EVEX encoded versions)¶
+VPORD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -118,7 +118,7 @@ VPORD (EVEX encoded versions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPORD __m512i _mm512_or_epi32(__m512i a, __m512i b);
 
@@ -163,17 +163,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPOR: __m256i _mm256_or_si256 ( __m256i a, __m256i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

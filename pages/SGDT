@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ SGDT — STORE GLOBAL DESCRIPTOR TABLE REGISTER
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Stores the content of the global descriptor table register (GDTR) in the
 destination operand. The destination operand specifies a memory
@@ -44,7 +44,7 @@ Architectures Software Developer’s Manual, Volume 2A_, for information
 on loading the GDTR and IDTR.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 The 16-bit form of the SGDT is compatible with the Intel 286 processor
 if the upper 8 bits are not referenced. The Intel 286 processor fills
@@ -52,7 +52,7 @@ these bits with 1s; processor generations later than the Intel 286
 processor fill these bits with 0s.
 
 
-Operation¶
+Operation ¶
 
     IF instruction is SGDT
         IF OperandSize =16 or OperandSize = 32 (* Legacy or Compatibility Mode *)
@@ -67,12 +67,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -104,7 +104,7 @@ If alignment checking is enabled and an unaligned memory reference is
 made while CPL = 3.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #UD   If the LOCK prefix is used.
@@ -113,7 +113,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
@@ -140,12 +140,12 @@ If alignment checking is enabled and an unaligned memory reference is
 made.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

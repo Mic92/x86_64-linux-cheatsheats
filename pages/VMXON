@@ -1,17 +1,25 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VMXON — ENTER VMX OPERATION
 
 
-  ----------------------------------------------------------------------------------
-  OPCODE INSTRUCTION DESCRIPTION F3 0F C7 /6 VMXON m64 Enter VMX root operation_._
-  ----------------------------------------------------------------------------------
+  Opcode/Instruction      Op/En   Description
+  ----------------------- ------- -----------------------------
+  F3 0F C7 /6 VMXON m64   M       Enter VMX root operation_._
 
 
-Description¶
+Instruction Operand Encoding ¶
+
+  ------- --------------- ----------- ----------- -----------
+  Op/En   Operand 1       Operand 2   Operand 3   Operand 4
+  M       ModRM:r/m (r)   NA          NA          NA
+  ------- --------------- ----------- ----------- -----------
+
+
+Description ¶
 
 Puts the logical processor in VMX operation with no current VMCS, blocks
 INIT signals, disables A20M, and clears any address-range monitoring
@@ -23,7 +31,7 @@ processor may use to support VMX operation. This operand is always 64
 bits and is always in memory.
 
 
-Operation¶
+Operation ¶
 
     IF (register operand) or (CR0.PE = 0) or (CR4.VMXE = 0) or (RFLAGS.VM = 1) or (IA32_EFER.LMA = 1 and CS.L = 0)
         THEN #UD;
@@ -49,11 +57,6 @@ Operation¶
                                     enter VMX operation;
                                     block INIT signals;
                                     block and disable A20M;
-                                    clear address-range monitoring;
-                                    IF the processor supports Intel PT but does not allow it to be used in VMX operation13
-                                        THEN IA32_RTIT_CTL.TraceEn ← 0;
-                                    FI;
-                                    VMsucceed;
 
   10. See the information on MONITOR/MWAIT in Chapter 8,
   “Multiple-Processor Management,” of the _Intel® 64 and IA-32
@@ -68,10 +71,11 @@ Operation¶
   12. If IA32_VMX_BASIC[48] is read as 1, VMfailInvalid occurs if addr
   sets any bits in the range 63:32; see Appendix A.1.
 
-  13. Software should read the VMX capability MSR IA32_VMX_MISC to
-  determine whether the processor allows Intel PT to be used in VMX
-  operation (see Appendix A.6).
-
+                        clear address-range monitoring;
+                        IF the processor supports Intel PT but does not allow it to be used in VMX operation13
+                            THEN IA32_RTIT_CTL.TraceEn ← 0;
+                        FI;
+                        VMsucceed;
                     FI;
                 FI;
             FI;
@@ -82,13 +86,17 @@ Operation¶
         ELSE VMfail(“VMXON executed in VMX root operation”);
     FI;
 
+  13. Software should read the VMX capability MSR IA32_VMX_MISC to
+  determine whether the processor allows Intel PT to be used in VMX
+  operation (see Appendix A.6).
 
-Flags Affected¶
+
+Flags Affected ¶
 
 See the operation section and Section 30.2.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -125,28 +133,28 @@ If operand is a register.
 If executed with CR4.VMXE = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------
   #UD   The VMXON instruction is not recognized in real-address mode.
   ----- ---------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------
   #UD   The VMXON instruction is not recognized in virtual-8086 mode.
   ----- ---------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------
   #UD   The VMXON instruction is not recognized in compatibility mode.
   ----- ----------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

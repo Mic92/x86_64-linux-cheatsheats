@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -23,7 +23,7 @@ LDS/LES/LFS/LGS/LSS — LOAD FAR POINTER
   REX + 0F B5 /_r_   LGS _r64,m16:64_   RM      Valid         N.E.              Load GS:_r64_ with far pointer from memory.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -31,7 +31,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads a far pointer (segment selector and offset) from the second
 operand (source operand) into a segment register and the first operand
@@ -64,7 +64,7 @@ access to additional registers (R8-R15). See the summary chart at the
 beginning of this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     64-BIT_MODE
         IF SS is loaded
@@ -144,12 +144,12 @@ Operation¶
         DEST ← Offset(SRC);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -204,7 +204,7 @@ If alignment checking is enabled and an unaligned memory reference is
 made while the current privilege level is 3.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -222,7 +222,7 @@ If source operand is not a memory location.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
@@ -249,12 +249,12 @@ If alignment checking is enabled and an unaligned memory reference is
 made.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

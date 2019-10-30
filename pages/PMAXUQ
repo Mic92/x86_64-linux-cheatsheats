@@ -1,25 +1,25 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PMAXUD/PMAXUQ — MAXIMUM OF PACKED UNSIGNED INTEGERS
 
 
-  Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 3F /r PMAXUD xmm1, xmm2/m128                                         A       V/V                      SSE4_1               Compare packed unsigned dword integers in xmm1 and xmm2/m128 and store packed maximum values in xmm1.
-  VEX.NDS.128.66.0F38.WIG 3F /r VPMAXUD xmm1, xmm2, xmm3/m128                   B       V/V                      AVX                  Compare packed unsigned dword integers in xmm2 and xmm3/m128 and store packed maximum values in xmm1.
-  VEX.NDS.256.66.0F38.WIG 3F /r VPMAXUD ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Compare packed unsigned dword integers in ymm2 and ymm3/m256 and store packed maximum values in ymm1.
-  EVEX.NDS.128.66.0F38.W0 3F /r VPMAXUD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned dword integers in xmm2 and xmm3/m128/m32bcst and store packed maximum values in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F38.W0 3F /r VPMAXUD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned dword integers in ymm2 and ymm3/m256/m32bcst and store packed maximum values in ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F38.W0 3F /r VPMAXUD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Compare packed unsigned dword integers in zmm2 and zmm3/m512/m32bcst and store packed maximum values in zmm1 under writemask k1.
-  EVEX.NDS.128.66.0F38.W1 3F /r VPMAXUQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned qword integers in xmm2 and xmm3/m128/m64bcst and store packed maximum values in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F38.W1 3F /r VPMAXUQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned qword integers in ymm2 and ymm3/m256/m64bcst and store packed maximum values in ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F38.W1 3F /r VPMAXUQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Compare packed unsigned qword integers in zmm2 and zmm3/m512/m64bcst and store packed maximum values in zmm1 under writemask k1.
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 3F /r PMAXUD xmm1, xmm2/m128                                     A       V/V                      SSE4_1               Compare packed unsigned dword integers in xmm1 and xmm2/m128 and store packed maximum values in xmm1.
+  VEX.128.66.0F38.WIG 3F /r VPMAXUD xmm1, xmm2, xmm3/m128                   B       V/V                      AVX                  Compare packed unsigned dword integers in xmm2 and xmm3/m128 and store packed maximum values in xmm1.
+  VEX.256.66.0F38.WIG 3F /r VPMAXUD ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Compare packed unsigned dword integers in ymm2 and ymm3/m256 and store packed maximum values in ymm1.
+  EVEX.128.66.0F38.W0 3F /r VPMAXUD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned dword integers in xmm2 and xmm3/m128/m32bcst and store packed maximum values in xmm1 under writemask k1.
+  EVEX.256.66.0F38.W0 3F /r VPMAXUD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned dword integers in ymm2 and ymm3/m256/m32bcst and store packed maximum values in ymm1 under writemask k1.
+  EVEX.512.66.0F38.W0 3F /r VPMAXUD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Compare packed unsigned dword integers in zmm2 and zmm3/m512/m32bcst and store packed maximum values in zmm1 under writemask k1.
+  EVEX.128.66.0F38.W1 3F /r VPMAXUQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned qword integers in xmm2 and xmm3/m128/m64bcst and store packed maximum values in xmm1 under writemask k1.
+  EVEX.256.66.0F38.W1 3F /r VPMAXUQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Compare packed unsigned qword integers in ymm2 and ymm3/m256/m64bcst and store packed maximum values in ymm1 under writemask k1.
+  EVEX.512.66.0F38.W1 3F /r VPMAXUQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Compare packed unsigned qword integers in zmm2 and zmm3/m512/m64bcst and store packed maximum values in zmm1 under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -28,7 +28,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD compare of the packed unsigned dword or qword integers
 in the second source operand and the first source operand and returns
@@ -54,9 +54,9 @@ register; The second source operand is a ZMM/YMM/XMM register, a
 from a 32/64-bit memory location. The destination operand is
 conditionally updated based on writemask k1.
 
-Operation¶
+Operation ¶
 
-PMAXUD (128-bit Legacy SSE version)¶
+PMAXUD (128-bit Legacy SSE version) ¶
 
         IF DEST[31:0] >SRC[31:0] THEN
             DEST[31:0] ← DEST[31:0];
@@ -69,7 +69,7 @@ PMAXUD (128-bit Legacy SSE version)¶
             DEST[127:96]←SRC[127:96]; FI;
     DEST[MAXVL-1:128] (Unmodified)
 
-VPMAXUD (VEX.128 encoded version)¶
+VPMAXUD (VEX.128 encoded version) ¶
 
         IF SRC1[31:0] > SRC2[31:0] THEN
             DEST[31:0] ← SRC1[31:0];
@@ -82,7 +82,7 @@ VPMAXUD (VEX.128 encoded version)¶
             DEST[127:96]←SRC2[127:96]; FI;
     DEST[MAXVL-1:128] ← 0
 
-VPMAXUD (VEX.256 encoded version)¶
+VPMAXUD (VEX.256 encoded version) ¶
 
         IF SRC1[31:0] > SRC2[31:0] THEN
             DEST[31:0] ← SRC1[31:0];
@@ -95,7 +95,7 @@ VPMAXUD (VEX.256 encoded version)¶
             DEST[255:224]←SRC2[255:224]; FI;
     DEST[MAXVL-1:256] ← 0
 
-VPMAXUD (EVEX encoded versions)¶
+VPMAXUD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -123,7 +123,7 @@ VPMAXUD (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPMAXUQ (EVEX encoded versions)¶
+VPMAXUQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -152,7 +152,7 @@ VPMAXUQ (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMAXUD __m512i _mm512_max_epu32( __m512i a, __m512i b);
 
@@ -186,11 +186,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPMAXUD __m256i _mm256_max_epu32 ( __m256i a, __m256i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

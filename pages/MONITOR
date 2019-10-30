@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,14 +11,14 @@ MONITOR — SET UP MONITOR ADDRESS
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   --------------------------------------------------------------
   Op/En Operand 1 Operand 2 Operand 3 Operand 4 ZO NA NA NA NA
   --------------------------------------------------------------
 
 
-Description¶
+Description ¶
 
 The MONITOR instruction arms address monitoring hardware using an
 address specified in EAX (the address range that the monitoring hardware
@@ -62,7 +62,7 @@ The instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     MONITOR sets up an address range for the monitor hardware using the content of EAX (RAX in 64-bit mode) as an
     effective address and puts the monitor hardware in armed state. Always use memory of the write-back caching
@@ -70,17 +70,17 @@ Operation¶
     used to communicate other information to the monitor hardware.
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MONITOR: void _mm_monitor(void const *p, unsigned extensions,unsigned hints)
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -106,7 +106,7 @@ If CPUID.01H:ECX.MONITOR[bit 3] = 0.
 If current privilege level is not 0.
 
 
-Real Address Mode Exceptions¶
+Real Address Mode Exceptions ¶
 
 #GP
 
@@ -125,19 +125,19 @@ outside of the effective address space from 0 to FFFFH.
 If CPUID.01H:ECX.MONITOR[bit 3] = 0.
 
 
-Virtual 8086 Mode Exceptions¶
+Virtual 8086 Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------------------------------------------------
   #UD   The MONITOR instruction is not recognized in virtual-8086 mode (even if CPUID.01H:ECX.MONITOR[bit 3] = 1).
   ----- ------------------------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

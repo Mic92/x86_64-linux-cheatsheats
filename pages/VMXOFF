@@ -1,23 +1,31 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VMXOFF — LEAVE VMX OPERATION
 
 
-  ------------------------------------------------------------------------
-  OPCODE INSTRUCTION DESCRIPTION 0F 01 C4 VMXOFF Leaves VMX operation_._
-  ------------------------------------------------------------------------
+  Opcode/Instruction   Op/En   Description
+  -------------------- ------- -------------------------
+  0F 01 C4 VMXOFF      ZO      Leaves VMX operation_._
 
 
-Description¶
+Instruction Operand Encoding ¶
+
+  ------- ----------- ----------- ----------- -----------
+  Op/En   Operand 1   Operand 2   Operand 3   Operand 4
+  ZO      NA          NA          NA          NA
+  ------- ----------- ----------- ----------- -----------
+
+
+Description ¶
 
 Takes the logical processor out of VMX operation, unblocks INIT signals,
 conditionally re-enables A20M, and clears any address-range monitoring.⁷
 
 
-Operation¶
+Operation ¶
 
     IF (not in VMX operation) or (CR0.PE = 0) or (RFLAGS.VM = 1) or (IA32_EFER.LMA = 1 and CS.L = 0)
         THEN #UD;
@@ -55,41 +63,44 @@ Operation¶
   Reference.”
 
 
-Flags Affected¶
+Flags Affected ¶
 
 See the operation section and Section 30.2.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   -------- -------------------------------------------------
   #GP(0)   If executed in VMX root operation with CPL > 0.
-  #UD      If executed outside VMX operation.
   -------- -------------------------------------------------
 
+  ----- ------------------------------------
+  #UD   If executed outside VMX operation.
+  ----- ------------------------------------
 
-Real-Address Mode Exceptions¶
+
+Real-Address Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------
   #UD   The VMXOFF instruction is not recognized in real-address mode.
   ----- ----------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------
   #UD   The VMXOFF instruction is not recognized in virtual-8086 mode.
   ----- ----------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The VMXOFF instruction is not recognized in compatibility mode.
   ----- -----------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   -------- -------------------------------------------------
   #GP(0)   If executed in VMX root operation with CPL > 0.

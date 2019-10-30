@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ STI — SET INTERRUPT FLAG
   FB       STI           ZO      Valid         Valid             Set interrupt flag; external, maskable interrupts enabled at the end of the next instruction.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,22 +19,26 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 In most cases, STI sets the interrupt flag (IF) in the EFLAGS register.
-After the IF flag is set, the processor begins responding to external,
-maskable interrupts after the next instruction is executed. The delayed
-effect of this instruction is provided to allow interrupts to be enabled
-just before returning from a procedure (or subroutine). For instance, if
-an STI instruction is followed by an RET instruction, the RET
-instruction is allowed to execute before external interrupts are
-recognized¹. If the STI instruction is followed by a CLI instruction
-(which clears the IF flag), the effect of the STI instruction is
-negated.
+This allows the processor to respond to maskable hardware interrupts.
+
+If IF = 0, maskable hardware interrupts remain inhibited on the
+instruction boundary following an execution of STI. (The delayed effect
+of this instruction is provided to allow interrupts to be enabled just
+before returning from a procedure or subroutine. For instance, if an STI
+instruction is followed by an RET instruction, the RET instruction is
+allowed to execute before external interrupts are recognized. No
+interrupts can be recognized if an execution of CLI immediately follow
+such an execution of STI.) The inhibition ends after delivery of another
+event (e.g., exception) or the execution of the next instruction.
 
 The IF flag and the STI and CLI instructions do not prohibit the
-generation of exceptions and NMI interrupts. NMI interrupts (and SMIs)
-may be blocked for one macroinstruction following an STI.
+generation of exceptions and nonmaskable interrupts (NMIs). However,
+NMIs (and system-management interrupts) may be inhibited on the
+instruction boundary following an execution of STI that begins with IF =
+0.
 
 Operation is different in two modes defined as follows:
 
@@ -46,7 +50,7 @@ Operation is different in two modes defined as follows:
 If IOPL < 3, EFLAGS.VIP = 1, and either VME mode or PVI mode is active,
 STI sets the VIF flag in the EFLAGS register, leaving IF unaffected.
 
-Table 4-19 indicates the action of the STI instruction depending on the
+Table 4-18 indicates the action of the STI instruction depending on the
 processor operating mode, IOPL, CPL, and EFLAGS.VIP.
 
 Mode
@@ -111,24 +115,6 @@ X
 
 #GP fault
 
-Table 4-19. Decision Table for STI Results
-
-  1. The STI instruction delays recognition of interrupts only if it is
-  executed with EFLAGS.IF = 0. In a sequence of STI instructions, only
-  the first instruction in the sequence is guaranteed to delay
-  interrupts.
-
-  In the following instruction sequence, interrupts may be recognized
-  before RET executes: STI STI RET
-
-Mode
-
-IOPL
-
-EFLAGS.VIP
-
-STI Result
-
 Virtual-8086, VME³
 
 3
@@ -147,17 +133,17 @@ VIF = 1
 
 #GP fault
 
-Table 4-19. Decision Table for STI Results
+Table 4-18. Decision Table for STI Results
 
   1. X = This setting has no effect on instruction operation.
 
-  2. For this table, “protected mode” applies whenever CR0.PE = 1 and
-  EFLAGS.VM = 0; it includes compatibility mode and 64-bit mode.
+2. For this table, “protected mode” applies whenever CR0.PE = 1 and
+EFLAGS.VM = 0; it includes compatibility mode and 64-bit mode.
 
-  3. PVI mode and virtual-8086 mode each imply CPL = 3.
+3. PVI mode and virtual-8086 mode each imply CPL = 3.
 
 
-Operation¶
+Operation ¶
 
     IF CR0.PE = 0 (* Executing in real-address mode *)
         THEN IF ← 1; (* Set Interrupt Flag *)
@@ -177,13 +163,13 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 Either the IF flag or the VIF flag is set to 1. Other flags are
 unaffected.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -196,14 +182,14 @@ If CPL is greater than IOPL and EFLAGS.VIP = 1.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -216,12 +202,12 @@ If IOPL is less than 3 and EFLAGS.VIP = 1.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

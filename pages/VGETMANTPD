@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VGETMANTPD — EXTRACT FLOAT64 VECTOR OF NORMALIZED MANTISSAS FROM FLOAT64 VECTO
   EVEX.512.66.0F3A.W1 26 /r ib VGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Convert double-precision floating values in the source operand (the
 second operand) to DP FP values with the mantissa normalization and sign
@@ -86,7 +86,7 @@ will #UD.
 
 Table 5-16. GetMant() Special Float Values Behavior
 
-Operation¶
+Operation ¶
 
     GetNormalizeMantissaDP(SRC[63:0], SignCtrl[1:0], Interv[1:0])
     {
@@ -155,7 +155,7 @@ Operation¶
         Return (DEST);
     }
 
-VGETMANTPD (EVEX encoded versions)¶
+VGETMANTPD (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     SignCtrl[1:0] ← IMM8[3:2];
@@ -181,7 +181,7 @@ VGETMANTPD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETMANTPD __m512d _mm512_getmant_pd( __m512d a, enum intv, enum sgn);
 
@@ -207,11 +207,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETMANTPD __m128d _mm_maskz_getmant_pd( __mmask8 k, __m128d a, enum intv, enum sgn);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Denormal, Invalid
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

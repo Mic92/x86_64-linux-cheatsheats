@@ -1,17 +1,17 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPERM2I128 — PERMUTE INTEGER VALUES
 
 
-  Opcode/Instruction                                                         Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------- ------- ----------------- -------------------- --------------------------------------------------------------------------------------------------------------
-  VEX.NDS.256.66.0F3A.W0 46 /r ib VPERM2I128 _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V               AVX2                 Permute 128-bit integer data in _ymm2_ and _ymm3/mem_ using controls from _imm8_ and store result in _ymm1_.
+  Opcode/Instruction                                                     Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- ------- ----------------- -------------------- --------------------------------------------------------------------------------------------------------------
+  VEX.256.66.0F3A.W0 46 /r ib VPERM2I128 _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V               AVX2                 Permute 128-bit integer data in _ymm2_ and _ymm3/mem_ using controls from _imm8_ and store result in _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- --------------- -----------
   Op/En   Operand 1       Operand 2   Operand 3       Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Permute 128 bit integer data from the first source operand (second
 operand) and second source operand (third operand) using bits in the
@@ -40,9 +40,9 @@ is set, the low 128-bit field is zeroed. If imm8[7] is set, the high
 VEX.L must be 1, otherwise the instruction will #UD.
 
 
-Operation¶
+Operation ¶
 
-VPERM2I128¶
+VPERM2I128 ¶
 
     CASE IMM8[1:0] of
     0: DEST[127:0]←SRC1[127:0]
@@ -64,17 +64,17 @@ VPERM2I128¶
     FI
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 6; additionally
 

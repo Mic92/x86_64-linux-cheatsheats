@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -22,7 +22,7 @@ MOVAPD — MOVE ALIGNED PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.512.66.0F.W1 29 /r VMOVAPD zmm2/m512 {k1}{z}, zmm1   D       V/V                      AVX512F              Move aligned packed double-precision floating-point values from zmm1 to zmm2/m512 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -32,7 +32,7 @@ Instruction Operand Encoding¶
   D       Full Mem     ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Moves 2, 4 or 8 double-precision floating-point values from the source
 operand (second operand) to the destination operand (first operand).
@@ -95,9 +95,9 @@ destination register remain unchanged.
 (E)VEX.128 encoded version: Bits (MAXVL-1:128) of the destination ZMM
 register destination are zeroed.
 
-Operation¶
+Operation ¶
 
-VMOVAPD (EVEX encoded versions, register-copy form)¶
+VMOVAPD (EVEX encoded versions, register-copy form) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -115,7 +115,7 @@ VMOVAPD (EVEX encoded versions, register-copy form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVAPD (EVEX encoded versions, store-form)¶
+VMOVAPD (EVEX encoded versions, store-form) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -128,7 +128,7 @@ VMOVAPD (EVEX encoded versions, store-form)¶
         FI;
     ENDFOR;
 
-VMOVAPD (EVEX encoded versions, load-form)¶
+VMOVAPD (EVEX encoded versions, load-form) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -144,30 +144,30 @@ VMOVAPD (EVEX encoded versions, load-form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVAPD (VEX.256 encoded version, load - and register copy)¶
+VMOVAPD (VEX.256 encoded version, load - and register copy) ¶
 
     DEST[255:0] ← SRC[255:0]
     DEST[MAXVL-1:256] ← 0
 
-VMOVAPD (VEX.256 encoded version, store-form)¶
+VMOVAPD (VEX.256 encoded version, store-form) ¶
 
     DEST[255:0] ← SRC[255:0]
 
-VMOVAPD (VEX.128 encoded version, load - and register copy)¶
+VMOVAPD (VEX.128 encoded version, load - and register copy) ¶
 
     DEST[127:0] ← SRC[127:0]
     DEST[MAXVL-1:128] ← 0
 
-MOVAPD (128-bit load- and register-copy- form Legacy SSE version)¶
+MOVAPD (128-bit load- and register-copy- form Legacy SSE version) ¶
 
     DEST[127:0] ← SRC[127:0]
     DEST[MAXVL-1:128] (Unmodified)
 
-(V)MOVAPD (128-bit store-form version)¶
+(V)MOVAPD (128-bit store-form version) ¶
 
     DEST[127:0] ← SRC[127:0]
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVAPD __m512d _mm512_load_pd( void * m);
 
@@ -199,11 +199,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MOVAPD void _mm_store_pd(double * p, __m128d a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type1.SSE2;
 

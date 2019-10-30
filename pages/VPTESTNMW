@@ -1,28 +1,28 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPTESTNMB/VPTESTNMW/VPTESTNMD/VPTESTNMQ — LOGICAL NAND AND SET
 
 
-  Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID               Description
-  -------------------------------------------------------------------------- ------- ------------------------ ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.F3.0F38.W0 26 /r VPTESTNMB k2 {k1}, xmm2, xmm3/m128           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed byte integers in xmm2 and xmm3/m128 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.256.F3.0F38.W0 26 /r VPTESTNMB k2 {k1}, ymm2, ymm3/m256           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed byte integers in ymm2 and ymm3/m256 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.512.F3.0F38.W0 26 /r VPTESTNMB k2 {k1}, zmm2, zmm3/m512           A       V/V                      AVX512F AVX512BW    Bitwise NAND of packed byte integers in zmm2 and zmm3/m512 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.128.F3.0F38.W1 26 /r VPTESTNMW k2 {k1}, xmm2, xmm3/m128           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed word integers in xmm2 and xmm3/m128 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.256.F3.0F38.W1 26 /r VPTESTNMW k2 {k1}, ymm2, ymm3/m256           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed word integers in ymm2 and ymm3/m256 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.512.F3.0F38.W1 26 /r VPTESTNMW k2 {k1}, zmm2, zmm3/m512           A       V/V                      AVX512F AVX512BW    Bitwise NAND of packed word integers in zmm2 and zmm3/m512 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.128.F3.0F38.W0 27 /r VPTESTNMD k2 {k1}, xmm2, xmm3/m128/m32bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed doubleword integers in xmm2 and xmm3/m128/m32bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.256.F3.0F38.W0 27 /r VPTESTNMD k2 {k1}, ymm2, ymm3/m256/m32bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed doubleword integers in ymm2 and ymm3/m256/m32bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.512.F3.0F38.W0 27 /r VPTESTNMD k2 {k1}, zmm2, zmm3/m512/m32bcst   B       V/V                      AVX512F             Bitwise NAND of packed doubleword integers in zmm2 and zmm3/m512/m32bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.128.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, xmm2, xmm3/m128/m64bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed quadword integers in xmm2 and xmm3/m128/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.256.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, ymm2, ymm3/m256/m64bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed quadword integers in ymm2 and ymm3/m256/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-  EVEX.NDS.512.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, zmm2, zmm3/m512/m64bcst   B       V/V                      AVX512F             Bitwise NAND of packed quadword integers in zmm2 and zmm3/m512/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID               Description
+  ---------------------------------------------------------------------- ------- ------------------------ ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.F3.0F38.W0 26 /r VPTESTNMB k2 {k1}, xmm2, xmm3/m128           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed byte integers in xmm2 and xmm3/m128 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.256.F3.0F38.W0 26 /r VPTESTNMB k2 {k1}, ymm2, ymm3/m256           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed byte integers in ymm2 and ymm3/m256 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.512.F3.0F38.W0 26 /r VPTESTNMB k2 {k1}, zmm2, zmm3/m512           A       V/V                      AVX512F AVX512BW    Bitwise NAND of packed byte integers in zmm2 and zmm3/m512 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.128.F3.0F38.W1 26 /r VPTESTNMW k2 {k1}, xmm2, xmm3/m128           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed word integers in xmm2 and xmm3/m128 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.256.F3.0F38.W1 26 /r VPTESTNMW k2 {k1}, ymm2, ymm3/m256           A       V/V                      AVX512VL AVX512BW   Bitwise NAND of packed word integers in ymm2 and ymm3/m256 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.512.F3.0F38.W1 26 /r VPTESTNMW k2 {k1}, zmm2, zmm3/m512           A       V/V                      AVX512F AVX512BW    Bitwise NAND of packed word integers in zmm2 and zmm3/m512 and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.128.F3.0F38.W0 27 /r VPTESTNMD k2 {k1}, xmm2, xmm3/m128/m32bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed doubleword integers in xmm2 and xmm3/m128/m32bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.256.F3.0F38.W0 27 /r VPTESTNMD k2 {k1}, ymm2, ymm3/m256/m32bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed doubleword integers in ymm2 and ymm3/m256/m32bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.512.F3.0F38.W0 27 /r VPTESTNMD k2 {k1}, zmm2, zmm3/m512/m32bcst   B       V/V                      AVX512F             Bitwise NAND of packed doubleword integers in zmm2 and zmm3/m512/m32bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.128.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, xmm2, xmm3/m128/m64bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed quadword integers in xmm2 and xmm3/m128/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.256.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, ymm2, ymm3/m256/m64bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed quadword integers in ymm2 and ymm3/m256/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
+  EVEX.512.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, zmm2, zmm3/m512/m64bcst   B       V/V                      AVX512F             Bitwise NAND of packed quadword integers in zmm2 and zmm3/m512/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
@@ -30,7 +30,7 @@ Instruction Operand Encoding¶
   B       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a bitwise logical NAND operation on the
 byte/word/doubleword/quadword element of the first source operand (the
@@ -52,9 +52,9 @@ registers. The second source operand can be a ZMM/YMM/XMM register, a
 512/256/128-bit memory location. The destination is updated according to
 the writemask.
 
-Operation¶
+Operation ¶
 
-VPTESTNMB¶
+VPTESTNMB ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j ← 0 TO KL-1
@@ -67,7 +67,7 @@ VPTESTNMB¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPTESTNMW¶
+VPTESTNMW ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j ← 0 TO KL-1
@@ -80,7 +80,7 @@ VPTESTNMW¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPTESTNMD¶
+VPTESTNMD ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -96,7 +96,7 @@ VPTESTNMD¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-VPTESTNMQ¶
+VPTESTNMQ ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -112,7 +112,7 @@ VPTESTNMQ¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPTESTNMB __mmask64 _mm512_testn_epi8_mask( __m512i a, __m512i b);
 
@@ -162,11 +162,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPTESTNMQ __mmask8 _mm_mask_testn_epi64_mask(__mmask8, __m128i a, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VPTESTNMD/VPTESTNMQ: See Exceptions Type E4.
 

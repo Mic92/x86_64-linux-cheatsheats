@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ MOVMSKPS — EXTRACT PACKED SINGLE-PRECISION FLOATING-POINT SIGN MASK
   VEX.256.0F.WIG 50 /r VMOVMSKPS _reg, ymm2_   RM      V/V              AVX                  Extract 8-bit sign mask from ymm2 and store in reg. The upper bits of _r32_ or _r64_ are zeroed.
 
 
-Instruction Operand Encoding¹¶
+Instruction Operand Encoding¹ ¶
 
   1. ModRM.MOD = 011B required
 
@@ -23,7 +23,7 @@ Instruction Operand Encoding¹¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Extracts the sign bits from the packed single-precision floating-point
 values in the source operand (second operand), formats them into a 4- or
@@ -47,7 +47,7 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
     DEST[0] ← SRC[31];
     DEST[1] ← SRC[63];
@@ -58,7 +58,7 @@ Operation¶
         ELSE DEST[63:4] ← ZeroExtend;
     FI;
 
-(V)MOVMSKPS (128-bit version)¶
+(V)MOVMSKPS (128-bit version) ¶
 
     DEST[0] ← SRC[31]
     DEST[1] ← SRC[63]
@@ -69,7 +69,7 @@ Operation¶
         ELSE DEST[63:4]←0;
     FI
 
-VMOVMSKPS (VEX.256 encoded version)¶
+VMOVMSKPS (VEX.256 encoded version) ¶
 
     DEST[0] ← SRC[31]
     DEST[1] ← SRC[63]
@@ -85,19 +85,19 @@ VMOVMSKPS (VEX.256 encoded version)¶
     FI
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     int _mm_movemask_ps(__m128 a)
 
     int _mm256_movemask_ps(__m256 a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 7; additionally
 

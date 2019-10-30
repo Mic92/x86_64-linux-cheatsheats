@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -53,7 +53,7 @@ Count the number of leading zero bits in r/m64, return result in r64.
 LZCNT r64, r/m64
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -61,7 +61,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Counts the number of leading most significant zero bits in a source
 operand (second operand) returning the result into a destination (first
@@ -75,7 +75,7 @@ BSR.
 In 64-bit mode 64-bit operand size requires REX.W=1.
 
 
-Operation¶
+Operation ¶
 
     temp ← OperandSize - 1
     DEST ← 0
@@ -96,21 +96,21 @@ Operation¶
     FI
 
 
-Flags Affected¶
+Flags Affected ¶
 
 ZF flag is set to 1 in case of zero output (most significant bit of the
 source is set), and to 0 otherwise, CF flag is set to 1 if input was
 zero and cleared otherwise. OF, SF, PF and AF flags are undefined.
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     LZCNT: unsigned __int32 _lzcnt_u32(unsigned __int32 src);
 
     LZCNT: unsigned __int64 _lzcnt_u64(unsigned __int64 src);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -134,7 +134,7 @@ If alignment checking is enabled and an unaligned memory reference is
 made while the current privilege level is 3.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   -------- ------------------------------------------------------------------------------------------
   #GP(0)   If any part of the operand lies outside of the effective address space from 0 to 0FFFFH.
@@ -142,7 +142,7 @@ Real-Address Mode Exceptions¶
   -------- ------------------------------------------------------------------------------------------
 
 
-Virtual 8086 Mode Exceptions¶
+Virtual 8086 Mode Exceptions ¶
 
   -------- --------------------------------------------------------------------------------------------------------------------
   #GP(0)   If any part of the operand lies outside of the effective address space from 0 to 0FFFFH.
@@ -152,12 +152,12 @@ Virtual 8086 Mode Exceptions¶
   -------- --------------------------------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in Protected Mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   -------- --------------------------------------------------------------------------------------------------------------------
   #GP(0)   If the memory address is in a non-canonical form.

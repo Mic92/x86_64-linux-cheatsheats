@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PEXT — PARALLEL BITS EXTRACT
 
 
-  Opcode/Instruction                                     Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------ ------- ----------------- -------------------- ------------------------------------------------------------------------------------------
-  VEX.NDS.LZ.F3.0F38.W0 F5 /r PEXT _r32a, r32b, r/m32_   RVM     V/V               BMI2                 Parallel extract of bits from _r32b_ using mask in _r/m32_, result is written to _r32a_.
-  VEX.NDS.LZ.F3.0F38.W1 F5 /r PEXT _r64a, r64b, r/m64_   RVM     V/N.E.            BMI2                 Parallel extract of bits from _r64b_ using mask in _r/m64_, result is written to _r64a_.
+  Opcode/Instruction                                 Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  -------------------------------------------------- ------- ----------------- -------------------- ------------------------------------------------------------------------------------------
+  VEX.LZ.F3.0F38.W0 F5 /r PEXT _r32a, r32b, r/m32_   RVM     V/V               BMI2                 Parallel extract of bits from _r32b_ using mask in _r/m32_, result is written to _r32a_.
+  VEX.LZ.F3.0F38.W1 F5 /r PEXT _r64a, r64b, r/m64_   RVM     V/N.E.            BMI2                 Parallel extract of bits from _r64b_ using mask in _r/m64_, result is written to _r64a_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- -------------- --------------- -----------
   Op/En   Operand 1       Operand 2      Operand 3       Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- -------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 PEXT uses a mask in the second source operand (the third operand) to
 transfer either contiguous or non-contiguous bits in the first source
@@ -42,7 +42,7 @@ An attempt to execute this instruction with VEX.L not equal to 0 will
 cause #UD.
 
 
-Operation¶
+Operation ¶
 
     TEMP ← SRC1;
     MASK ← SRC2;
@@ -57,31 +57,26 @@ Operation¶
     OD
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PEXT: unsigned __int32 _pext_u32(unsigned __int32 src, unsigned __int32 mask);
 
     PEXT: unsigned __int64 _pext_u64(unsigned __int64 src, unsigned __int32 mask);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
-See Section 2.5.1, “Exception Conditions for VEX-Encoded GPR
-Instructions”, Table 2-29; additionally
-
-  ----- ---------------
-  #UD   If VEX.W = 1.
-  ----- ---------------
+See Exceptions Type 13.
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

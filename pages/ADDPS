@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 ADDPS — ADD PACKED SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------------- --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 58 /r ADDPS xmm1, xmm2/m128                                            A         V/V                      SSE                  Add packed single-precision floating-point values from xmm2/m128 to xmm1 and store result in xmm1.
-  VEX.NDS.128.0F.WIG 58 /r VADDPS xmm1,xmm2, xmm3/m128                         B         V/V                      AVX                  Add packed single-precision floating-point values from xmm3/m128 to xmm2 and store result in xmm1.
-  VEX.NDS.256.0F.WIG 58 /r VADDPS ymm1, ymm2, ymm3/m256                        B         V/V                      AVX                  Add packed single-precision floating-point values from ymm3/m256 to ymm2 and store result in ymm1.
-  EVEX.NDS.128.0F.W0 58 /r VADDPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst        C         V/V                      AVX512VL AVX512F     Add packed single-precision floating-point values from xmm3/m128/m32bcst to xmm2 and store result in xmm1 with writemask k1.
-  EVEX.NDS.256.0F.W0 58 /r VADDPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst        C         V/V                      AVX512VL AVX512F     Add packed single-precision floating-point values from ymm3/m256/m32bcst to ymm2 and store result in ymm1 with writemask k1.
-  EVEX.NDS.512.0F.W0 58 /r VADDPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst {er}   C         V/V                      AVX512F              Add packed single-precision floating-point values from zmm3/m512/m32bcst to zmm2 and store result in zmm1 with writemask k1.
+  Opcode/Instruction                                                       Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------ --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 58 /r ADDPS xmm1, xmm2/m128                                        A         V/V                      SSE                  Add packed single-precision floating-point values from xmm2/m128 to xmm1 and store result in xmm1.
+  VEX.128.0F.WIG 58 /r VADDPS xmm1,xmm2, xmm3/m128                         B         V/V                      AVX                  Add packed single-precision floating-point values from xmm3/m128 to xmm2 and store result in xmm1.
+  VEX.256.0F.WIG 58 /r VADDPS ymm1, ymm2, ymm3/m256                        B         V/V                      AVX                  Add packed single-precision floating-point values from ymm3/m256 to ymm2 and store result in ymm1.
+  EVEX.128.0F.W0 58 /r VADDPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst        C         V/V                      AVX512VL AVX512F     Add packed single-precision floating-point values from xmm3/m128/m32bcst to xmm2 and store result in xmm1 with writemask k1.
+  EVEX.256.0F.W0 58 /r VADDPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst        C         V/V                      AVX512VL AVX512F     Add packed single-precision floating-point values from ymm3/m256/m32bcst to ymm2 and store result in ymm1 with writemask k1.
+  EVEX.512.0F.W0 58 /r VADDPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst {er}   C         V/V                      AVX512F              Add packed single-precision floating-point values from zmm3/m512/m32bcst to zmm2 and store result in zmm1 with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Add four, eight or sixteen packed single-precision floating-point values
 from the first source operand with the second source operand, and stores
@@ -55,9 +55,9 @@ first source XMM register and the upper Bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
 
 
-Operation¶
+Operation ¶
 
-VADDPS (EVEX encoded versions) when src2 operand is a register¶
+VADDPS (EVEX encoded versions) when src2 operand is a register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -80,7 +80,7 @@ VADDPS (EVEX encoded versions) when src2 operand is a register¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VADDPS (EVEX encoded versions) when src2 operand is a memory source¶
+VADDPS (EVEX encoded versions) when src2 operand is a memory source ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -96,15 +96,14 @@ VADDPS (EVEX encoded versions) when src2 operand is a memory source¶
             ELSE
                 IF *merging-masking* ; merging-masking
                     THEN *DEST[i+31:i] remains unchanged*
-                    ELSE
-                            ; zeroing-masking
+                    ELSE ; zeroing-masking
                         DEST[i+31:i] ← 0
                 FI
         FI;
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VADDPS (VEX.256 encoded version)¶
+VADDPS (VEX.256 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] + SRC2[31:0]
     DEST[63:32]←SRC1[63:32] + SRC2[63:32]
@@ -116,7 +115,7 @@ VADDPS (VEX.256 encoded version)¶
     DEST[255:224]←SRC1[255:224] + SRC2[255:224].
     DEST[MAXVL-1:256] ← 0
 
-VADDPS (VEX.128 encoded version)¶
+VADDPS (VEX.128 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] + SRC2[31:0]
     DEST[63:32]←SRC1[63:32] + SRC2[63:32]
@@ -131,7 +130,7 @@ VADDPS (VEX.128 encoded version)¶
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VADDPS __m512 _mm512_add_ps (__m512 a, __m512 b);
 
@@ -158,12 +157,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     ADDPS __m128 _mm_add_ps (__m128 a, __m128 b);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instruction, see Exceptions Type 2.
 

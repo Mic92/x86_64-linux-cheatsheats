@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,14 +16,14 @@ VPLZCNTD/VPLZCNTQ — COUNT THE NUMBER OF LEADING ZERO BITS FOR PACKED DWORD, PA
   EVEX.512.66.0F38.W1 44 /r VPLZCNTQ zmm1 {k1}{z}, zmm2/m512/m64bcst   A       V/V                      AVX512CD             Count the number of leading zero bits in each qword element of zmm2/m512/m64bcst using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Counts the number of leading most significant zero bits in each dword or
 qword element of the source operand (the second operand) and stores the
@@ -48,9 +48,9 @@ conditionally updated using writemask k1.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPLZCNTD¶
+VPLZCNTD ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -73,7 +73,7 @@ VPLZCNTD¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPLZCNTQ¶
+VPLZCNTQ ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -96,7 +96,7 @@ VPLZCNTQ¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPLZCNTD __m512i _mm512_lzcnt_epi32(__m512i a);
 
@@ -134,11 +134,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPLZCNTQ __m128i _mm_maskz_lzcnt_epi64(__mmask8 m, __m128i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E4.
 

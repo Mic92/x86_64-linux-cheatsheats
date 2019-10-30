@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSUBQ — SUBTRACT PACKED QUADWORD INTEGERS
 
 
-  Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------
-  NP 0F FB /_r_¹ PSUBQ _mm1_, _mm2/m64_                                      A       V/V                      SSE2                 Subtract quadword integer in _mm1_ from _mm2 /m64_.
-  66 0F FB /_r_ PSUBQ _xmm1_, _xmm2/m128_                                    A       V/V                      SSE2                 Subtract packed quadword integers in _xmm1_ from _xmm2 /m128_.
-  VEX.NDS.128.66.0F.WIG FB/r VPSUBQ _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Subtract packed quadword integers in _xmm3/m128_ from _xmm2_.
-  VEX.NDS.256.66.0F.WIG FB /r VPSUBQ _ymm1, ymm2, ymm3/m256_                 B       V/V                      AVX2                 Subtract packed quadword integers in _ymm3/m256_ from _ymm2._
-  EVEX.NDS.128.66.0F.W1 FB /r VPSUBQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Subtract packed quadword integers in xmm3/m128/m64bcst from xmm2 and store in xmm1 using writemask k1.
-  EVEX.NDS.256.66.0F.W1 FB /r VPSUBQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Subtract packed quadword integers in ymm3/m256/m64bcst from ymm2 and store in ymm1 using writemask k1.
-  EVEX.NDS.512.66.0F.W1 FB/r VPSUBQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst    C       V/V                      AVX512F              Subtract packed quadword integers in zmm3/m512/m64bcst from zmm2 and store in zmm1 using writemask k1.
+  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------
+  NP 0F FB /_r_¹ PSUBQ _mm1_, _mm2/m64_                                  A       V/V                      SSE2                 Subtract quadword integer in _mm1_ from _mm2 /m64_.
+  66 0F FB /_r_ PSUBQ _xmm1_, _xmm2/m128_                                A       V/V                      SSE2                 Subtract packed quadword integers in _xmm1_ from _xmm2 /m128_.
+  VEX.128.66.0F.WIG FB/r VPSUBQ _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Subtract packed quadword integers in _xmm3/m128_ from _xmm2_.
+  VEX.256.66.0F.WIG FB /r VPSUBQ _ymm1, ymm2, ymm3/m256_                 B       V/V                      AVX2                 Subtract packed quadword integers in _ymm3/m256_ from _ymm2._
+  EVEX.128.66.0F.W1 FB /r VPSUBQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Subtract packed quadword integers in xmm3/m128/m64bcst from xmm2 and store in xmm1 using writemask k1.
+  EVEX.256.66.0F.W1 FB /r VPSUBQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Subtract packed quadword integers in ymm3/m256/m64bcst from ymm2 and store in ymm1 using writemask k1.
+  EVEX.512.66.0F.W1 FB/r VPSUBQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst    C       V/V                      AVX512F              Subtract packed quadword integers in zmm3/m512/m64bcst from zmm2 and store in zmm1 using writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PSUBQ — SUBTRACT PACKED QUADWORD INTEGERS
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Subtracts the second operand (source operand) from the first operand
 (destination operand) and stores the result in the destination operand.
@@ -79,24 +79,24 @@ and destination operands are ZMM/YMM/XMM registers. The destination is
 conditionally updated with writemask k1.
 
 
-Operation¶
+Operation ¶
 
-PSUBQ (with 64-Bit operands)¶
+PSUBQ (with 64-Bit operands) ¶
 
     DEST[63:0] ← DEST[63:0] − SRC[63:0];
 
-PSUBQ (with 128-Bit operands)¶
+PSUBQ (with 128-Bit operands) ¶
 
     DEST[63:0] ← DEST[63:0] − SRC[63:0];
     DEST[127:64] ← DEST[127:64] − SRC[127:64];
 
-VPSUBQ (VEX.128 encoded version)¶
+VPSUBQ (VEX.128 encoded version) ¶
 
     DEST[63:0] ← SRC1[63:0]-SRC2[63:0]
     DEST[127:64] ← SRC1[127:64]-SRC2[127:64]
     DEST[MAXVL-1:128] ← 0
 
-VPSUBQ (VEX.256 encoded version)¶
+VPSUBQ (VEX.256 encoded version) ¶
 
     DEST[63:0] ← SRC1[63:0]-SRC2[63:0]
     DEST[127:64] ← SRC1[127:64]-SRC2[127:64]
@@ -104,7 +104,7 @@ VPSUBQ (VEX.256 encoded version)¶
     DEST[255:192] ← SRC1[255:192]-SRC2[255:192]
     DEST[MAXVL-1:256] ← 0
 
-VPSUBQ (EVEX encoded versions)¶
+VPSUBQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -126,7 +126,7 @@ VPSUBQ (EVEX encoded versions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPSUBQ __m512i _mm512_sub_epi64(__m512i a, __m512i b);
 
@@ -149,17 +149,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPSUBQ:__m256i _mm256_sub_epi64(__m256i m1, __m256i m2)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

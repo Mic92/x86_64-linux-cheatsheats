@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ CVTTPD2PI — CONVERT WITH TRUNCATION PACKED DOUBLE-PRECISION FP VALUES TO PACKE
   66 0F 2C /_r_ CVTTPD2PI _mm_, _xmm/m128_   RM      Valid         Valid             Convert two packer double-precision floating-point values from _xmm/m128_ to two packed signed doubleword integers in _mm_ using truncation.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts two packed double-precision floating-point values in the source
 operand (second operand) to two packed signed doubleword integers in the
@@ -43,24 +43,24 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to
 access additional registers (XMM8-XMM15).
 
 
-Operation¶
+Operation ¶
 
     DEST[31:0] ← Convert_Double_Precision_Floating_Point_To_Integer32_Truncate(SRC[63:0]);
     DEST[63:32] ← Convert_Double_Precision_Floating_Point_To_Integer32_
         Truncate(SRC[127:64]);
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTTPD1PI: __m64 _mm_cvttpd_pi32(__m128d a)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 
-Other Mode Exceptions¶
+Other Mode Exceptions ¶
 
 See Table 22-4, “Exception Conditions for Legacy SIMD/MMX Instructions
 with FP Exception and 16-Byte Alignment,” in the _Intel® 64 and IA-32

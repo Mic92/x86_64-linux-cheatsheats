@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 ADDSD — ADD SCALAR DOUBLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------
-  F2 0F 58 /r ADDSD xmm1, xmm2/m64                                      A       V/V                      SSE2                 Add the low double-precision floating-point value from xmm2/mem to xmm1 and store the result in xmm1.
-  VEX.NDS.LIG.F2.0F.WIG 58 /r VADDSD xmm1, xmm2, xmm3/m64               B       V/V                      AVX                  Add the low double-precision floating-point value from xmm3/mem to xmm2 and store the result in xmm1.
-  EVEX.NDS.LIG.F2.0F.W1 58 /r VADDSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   C       V/V                      AVX512F              Add the low double-precision floating-point value from xmm3/m64 to xmm2 and store the result in xmm1 with writemask k1.
+  Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------
+  F2 0F 58 /r ADDSD xmm1, xmm2/m64                                  A       V/V                      SSE2                 Add the low double-precision floating-point value from xmm2/mem to xmm1 and store the result in xmm1.
+  VEX.LIG.F2.0F.WIG 58 /r VADDSD xmm1, xmm2, xmm3/m64               B       V/V                      AVX                  Add the low double-precision floating-point value from xmm3/mem to xmm2 and store the result in xmm1.
+  EVEX.LIG.F2.0F.W1 58 /r VADDSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   C       V/V                      AVX512F              Add the low double-precision floating-point value from xmm3/m64 to xmm2 and store the result in xmm1 with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   ------- --------------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Adds the low double-precision floating-point values from the second
 source operand and the first source operand and stores the
@@ -49,9 +49,9 @@ with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
 
-Operation¶
+Operation ¶
 
-VADDSD (EVEX encoded version)¶
+VADDSD (EVEX encoded version) ¶
 
     IF (EVEX.b = 1) AND SRC2 *is a register*
         THEN
@@ -71,19 +71,19 @@ VADDSD (EVEX encoded version)¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-VADDSD (VEX.128 encoded version)¶
+VADDSD (VEX.128 encoded version) ¶
 
     DEST[63:0]←SRC1[63:0] + SRC2[63:0]
     DEST[127:64] ←SRC1[127:64]
     DEST[MAXVL-1:128] ←0
 
-ADDSD (128-bit Legacy SSE version)¶
+ADDSD (128-bit Legacy SSE version) ¶
 
     DEST[63:0]←DEST[63:0] + SRC[63:0]
     DEST[MAXVL-1:64] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VADDSD __m128d _mm_mask_add_sd (__m128d s, __mmask8 k, __m128d a, __m128d b);
 
@@ -98,12 +98,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     ADDSD __m128d _mm_add_sd (__m128d a, __m128d b);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instruction, see Exceptions Type 3.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -22,14 +22,14 @@ VSCATTERDPS/VSCATTERDPD/VSCATTERQPS/VSCATTERQPD — SCATTER PACKED SINGLE, PACKE
   EVEX.512.66.0F38.W1 A3 /vsib VSCATTERQPD vm64z {k1}, zmm1   A        V/V                      AVX512F              Using signed qword indices, scatter double-precision floating-point values to memory using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- -------------------------------------------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1                                          Operand 2       Operand 3   Operand 4
   A       Tuple1 Scalar   BaseReg (R): VSIB:base, VectorReg(R): VSIB:index   ModRM:reg (r)   NA          NA
   ------- --------------- -------------------------------------------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Stores up to 16 elements (or 8 elements) in doubleword/quadword vector
 zmm1 to the memory locations pointed by base address BASE_ADDR and index
@@ -94,14 +94,14 @@ number of address bits are ignored.
 
 The instruction will #UD fault if the k0 mask register is specified.
 
-Operation¶
+Operation ¶
 
     BASE_ADDR stands for the memory operand base address (a GPR); may not exist
     VINDEX stands for the memory operand vector of indices (a ZMM register)
     SCALE stands for the memory operand scalar (1, 2, 4 or 8)
-    DISP is the optional 1, 2 or 4 byte displacement
+    DISP is the optional 1 or 4 byte displacement
 
-VSCATTERDPS (EVEX encoded versions)¶
+VSCATTERDPS (EVEX encoded versions) ¶
 
     (KL, VL)= (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -114,7 +114,7 @@ VSCATTERDPS (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-VSCATTERDPD (EVEX encoded versions)¶
+VSCATTERDPD (EVEX encoded versions) ¶
 
     (KL, VL)= (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -128,7 +128,7 @@ VSCATTERDPD (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-VSCATTERQPS (EVEX encoded versions)¶
+VSCATTERQPS (EVEX encoded versions) ¶
 
     (KL, VL)= (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -142,7 +142,7 @@ VSCATTERQPS (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-VSCATTERQPD (EVEX encoded versions)¶
+VSCATTERQPD (EVEX encoded versions) ¶
 
     (KL, VL)= (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -155,7 +155,7 @@ VSCATTERQPD (EVEX encoded versions)¶
     ENDFOR
     k1[MAX_KL-1:KL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSCATTERDPD void _mm512_i32scatter_pd(void * base, __m256i vdx, __m512d a, int scale);
 
@@ -205,11 +205,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSCATTERQPS void _mm_mask_i64scatter_ps(void * base, __mmask8 k, __m128i vdx, __m128 a, int scale);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Overflow, Underflow, Precision, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E12.
 

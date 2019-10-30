@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VSCALEFPS — SCALE PACKED FLOAT32 VALUES WITH FLOAT32 VALUES
 
 
-  Opcode/Instruction                                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F38.W0 2C /r VSCALEFPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       A       V/V                      AVX512VL AVX512F     Scale the packed single-precision floating-point values in xmm2 using values from xmm3/m128/m32bcst. Under writemask k1.
-  EVEX.NDS.256.66.0F38.W0 2C /r VSCALEFPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       A       V/V                      AVX512VL AVX512F     Scale the packed single-precision values in ymm2 using floating point values from ymm3/m256/m32bcst. Under writemask k1.
-  EVEX.NDS.512.66.0F38.W0 2C /r VSCALEFPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   A       V/V                      AVX512F              Scale the packed single-precision floating-point values in zmm2 using floating-point values from zmm3/m512/m32bcst. Under writemask k1.
+  Opcode/Instruction                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F38.W0 2C /r VSCALEFPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       A       V/V                      AVX512VL AVX512F     Scale the packed single-precision floating-point values in xmm2 using values from xmm3/m128/m32bcst. Under writemask k1.
+  EVEX.256.66.0F38.W0 2C /r VSCALEFPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       A       V/V                      AVX512VL AVX512F     Scale the packed single-precision values in ymm2 using floating point values from ymm3/m256/m32bcst. Under writemask k1.
+  EVEX.512.66.0F38.W0 2C /r VSCALEFPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   A       V/V                      AVX512F              Scale the packed single-precision floating-point values in zmm2 using floating-point values from zmm3/m512/m32bcst. Under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
   A       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a floating-point scale of the packed single-precision
 floating-point values in the first source operand by multiplying it by 2
@@ -67,7 +67,7 @@ Handling of special-case input values are listed in Table 5-30 and Table
 
 Table 5-32. Additional VSCALEFPS/SS Special Cases
 
-Operation¶
+Operation ¶
 
     SCALE(SRC1, SRC2)
     { ; Check for denormal operands
@@ -79,7 +79,7 @@ Operation¶
     DEST[31:0]←TMP_SRC1[31:0] * POW(2, Floor(TMP_SRC2[31:0]))
     }
 
-VSCALEFPS (EVEX encoded versions)¶
+VSCALEFPS (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF (VL = 512) AND (EVEX.b = 1) AND (SRC2 *is register*)
@@ -105,7 +105,7 @@ VSCALEFPS (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0;
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSCALEFPS __m512 _mm512_scalef_round_ps(__m512 a, __m512 b, int rounding);
 
@@ -131,13 +131,13 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSCALEFPS __m128 _mm_maskz_scalef_ps(__mmask8 k, __m128 a, __m128 b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal (for Src1).
 
 Denormal is not reported for Src2.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

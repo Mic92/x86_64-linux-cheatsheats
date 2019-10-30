@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VFIXUPIMMSS — FIX UP SPECIAL SCALAR FLOAT32 VALUE
 
 
-  Opcode/Instruction                                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F3A.W0 55 /r ib VFIXUPIMMSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512F              Fix up a float32 number in the low doubleword element in xmm2 using scalar int32 table in xmm3/m32 and store the result in xmm1.
+  Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F3A.W0 55 /r ib VFIXUPIMMSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512F              Fix up a float32 number in the low doubleword element in xmm2 using scalar int32 table in xmm3/m32 and store the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ ----------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2   Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (r, w)   EVEX.vvvv   ModRM:r/m (r)   Imm8
   ------- --------------- ------------------ ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Perform a fix-up of the low doubleword element encoded in
 single-precision floating-point format in the first source operand (the
@@ -65,7 +65,7 @@ MXCSR mask bits are ignored and are treated as if all mask bits are set
 to masked response). If any of the imm8 bits is set and the condition
 met for fault reporting, MXCSR.IE or MXCSR.ZE might be updated.
 
-Operation¶
+Operation ¶
 
     enum TOKEN_TYPE
     {
@@ -127,7 +127,7 @@ Operation¶
         return dest[31:0];
     } ; end of FIXUPIMM_SP()
 
-VFIXUPIMMSS (EVEX encoded version)¶
+VFIXUPIMMSS (EVEX encoded version) ¶
 
     IF k1[0] OR *no writemask*
         THEN DEST[31:0]←FIXUPIMM_SP(DEST[31:0], SRC1[31:0], SRC2[31:0], imm8 [7:0])
@@ -145,7 +145,7 @@ ZERO #IE ZERO #ZE
 
 Figure 5-12. VFIXUPIMMSS Immediate Control Description
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VFIXUPIMMSS __m128 _mm_fixupimm_ss( __m128 a, __m128i tbl, int imm);
 
@@ -159,11 +159,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VFIXUPIMMSS __m128 _mm_maskz_fixupimm_round_ss( __mmask8 k, __m128 a, __m128i tbl, int imm, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Zero, Invalid
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

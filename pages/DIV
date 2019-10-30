@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -18,7 +18,7 @@ DIV — UNSIGNED DIVIDE
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Divides unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX
 registers (dividend) by the source operand (divisor) and stores the
@@ -60,7 +60,7 @@ and limits. See Table 3-15.
 Table 3-15. DIV Action
 
 
-Operation¶
+Operation ¶
 
     IFSRC =0
         THEN #DE; FI; (* Divide Error *)
@@ -106,12 +106,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The CF, OF, SF, ZF, AF, and PF flags are undefined.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #DE
 
@@ -144,7 +144,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #DE
 
@@ -168,7 +168,7 @@ If a memory operand effective address is outside the SS segment limit.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #DE
 
@@ -199,12 +199,12 @@ made.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

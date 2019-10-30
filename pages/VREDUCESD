@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VREDUCESD — PERFORM A REDUCTION TRANSFORMATION ON A SCALAR FLOAT64 VALUE
 
 
-  Opcode/Instruction                                                               Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F3A.W1 57 VREDUCESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8/r   A         V/V                      AVX512D Q            Perform a reduction transformation on a scalar double-precision floating point value in xmm3/m64 by subtracting a number of fraction bits specified by the imm8 field. Also, upper double precision floating-point value (bits[127:64]) from xmm2 are copied to xmm1[127:64]. Stores the result in xmm1 register.
+  Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F3A.W1 57 VREDUCESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8/r   A         V/V                      AVX512D Q            Perform a reduction transformation on a scalar double-precision floating point value in xmm3/m64 by subtracting a number of fraction bits specified by the imm8 field. Also, upper double precision floating-point value (bits[127:64]) from xmm2 are copied to xmm1[127:64]. Stores the result in xmm1 register.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Perform a reduction transformation of the binary encoded
 double-precision FP value in the low qword element of the second source
@@ -56,7 +56,7 @@ The operation is write masked.
 
 Handling of special case of input values are listed in Table 5-24.
 
-Operation¶
+Operation ¶
 
     ReduceArgumentDP(SRC[63:0], imm8[7:0])
     {
@@ -72,7 +72,7 @@ Operation¶
         RETURN TMP[63:0]; // binary encoded FP with biased exponent and normalized significand
     }
 
-VREDUCESD¶
+VREDUCESD ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[63:0]←ReduceArgumentDP(SRC2[63:0], imm8[7:0])
@@ -86,7 +86,7 @@ VREDUCESD¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VREDUCESD __m128d _mm_mask_reduce_sd( __m128d a, __m128d b, int imm, int sae)
 
@@ -94,14 +94,14 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VREDUCESD __m128d _mm_maskz_reduce_sd(__mmask16 k, __m128d a, __m128d b, int imm, int sae)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 If SPE is enabled, precision exception is not reported (regardless of
 MXCSR exception mask).
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

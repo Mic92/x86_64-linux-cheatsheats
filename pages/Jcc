@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -105,7 +105,7 @@ JCC — JUMP IF CONDITION IS MET
   0F 84 _cd_   JZ _rel32_     D       Valid         Valid             Jump near if 0 (ZF=1).
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -113,7 +113,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Checks the state of one or more of the status flags in the EFLAGS
 register (CF, OF, PF, SF, and ZF) and, if the flags are in the specified
@@ -177,7 +177,7 @@ In 64-bit mode, operand size is fixed at 64 bits. JMP Short is RIP = RIP
 offset sign extended to 64 bits.
 
 
-Operation¶
+Operation ¶
 
     IF condition
         THEN
@@ -192,12 +192,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   -------- -----------------------------------------------------------------------
   #GP(0)   If the offset being jumped to is beyond the limits of the CS segment.
@@ -205,7 +205,7 @@ Protected Mode Exceptions¶
   -------- -----------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   #GP   If the offset being jumped to is beyond the limits of the CS segment or is outside of the effective address space from 0 to FFFFH. This condition can occur if a 32-bit address size override prefix is used.
@@ -213,17 +213,17 @@ Real-Address Mode Exceptions¶
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   -------- ---------------------------------------------------
   #GP(0)   If the memory address is in a non-canonical form.

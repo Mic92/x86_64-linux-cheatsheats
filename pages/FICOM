@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ FICOM/FICOMP — COMPARE INTEGER
   DA /3    FICOMP _m32int_   Valid         Valid             Compare ST(0) with _m32int_ and pop stack register.
 
 
-Description¶
+Description ¶
 
 Compares the value in ST(0) with an integer source operand and sets the
 condition code flags C0, C2, and C3 in the FPU status word according to
@@ -46,7 +46,7 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     CASE (relation of operands) OF
         ST(0) > SRC:
@@ -64,7 +64,7 @@ Operation¶
     FI;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
   ------------ -----------------------------
   C1           Set to 0.
@@ -72,7 +72,7 @@ FPU Flags Affected¶
   ------------ -----------------------------
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
   ----- ------------------------------------------------------------------
   #IS   Stack underflow occurred.
@@ -81,7 +81,7 @@ Floating-Point Exceptions¶
   ----- ------------------------------------------------------------------
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -112,7 +112,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -122,7 +122,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -134,12 +134,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

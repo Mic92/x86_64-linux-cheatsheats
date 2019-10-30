@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PMULHRSW — PACKED MULTIPLY HIGH WITH ROUND AND SCALE
 
 
-  Opcode/Instruction                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------ ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
-  NP 0F 38 0B /r¹ PMULHRSW _mm1, mm2/m64_                                  A       V/V                      SSSE3                Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _mm1_.
-  66 0F 38 0B /r PMULHRSW _xmm1, xmm2/m128_                                A       V/V                      SSSE3                Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _xmm1_.
-  VEX.NDS.128.66.0F38.WIG 0B /r VPMULHRSW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _xmm1_.
-  VEX.NDS.256.66.0F38.WIG 0B /r VPMULHRSW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _ymm1_.
-  EVEX.NDS.128.66.0F38.WIG 0B /r VPMULHRSW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F38.WIG 0B /r VPMULHRSW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F38.WIG 0B /r VPMULHRSW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to zmm1 under writemask k1.
+  Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
+  NP 0F 38 0B /r¹ PMULHRSW _mm1, mm2/m64_                              A       V/V                      SSSE3                Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _mm1_.
+  66 0F 38 0B /r PMULHRSW _xmm1, xmm2/m128_                            A       V/V                      SSSE3                Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _xmm1_.
+  VEX.128.66.0F38.WIG 0B /r VPMULHRSW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _xmm1_.
+  VEX.256.66.0F38.WIG 0B /r VPMULHRSW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to _ymm1_.
+  EVEX.128.66.0F38.WIG 0B /r VPMULHRSW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to xmm1 under writemask k1.
+  EVEX.256.66.0F38.WIG 0B /r VPMULHRSW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to ymm1 under writemask k1.
+  EVEX.512.66.0F38.WIG 0B /r VPMULHRSW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply 16-bit signed words, scale and round signed doublewords, pack high 16 bits to zmm1 under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PMULHRSW — PACKED MULTIPLY HIGH WITH ROUND AND SCALE
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 PMULHRSW multiplies vertically each signed 16-bit integer from the
 destination operand (first operand) with the corresponding signed 16-bit
@@ -77,9 +77,9 @@ register. The second source operand can be a ZMM/YMM/XMM register, a
 ZMM/YMM/XMM register conditionally updated with writemask k1.
 
 
-Operation¶
+Operation ¶
 
-PMULHRSW (with 64-bit operands)¶
+PMULHRSW (with 64-bit operands) ¶
 
     temp0[31:0] = INT32 ((DEST[15:0] * SRC[15:0]) >>14) + 1;
     temp1[31:0] = INT32 ((DEST[31:16] * SRC[31:16]) >>14) + 1;
@@ -90,7 +90,7 @@ PMULHRSW (with 64-bit operands)¶
     DEST[47:32] = temp2[16:1];
     DEST[63:48] = temp3[16:1];
 
-PMULHRSW (with 128-bit operand)¶
+PMULHRSW (with 128-bit operand) ¶
 
     temp0[31:0] = INT32 ((DEST[15:0] * SRC[15:0]) >>14) + 1;
     temp1[31:0] = INT32 ((DEST[31:16] * SRC[31:16]) >>14) + 1;
@@ -109,7 +109,7 @@ PMULHRSW (with 128-bit operand)¶
     DEST[111:96] = temp6[16:1];
     DEST[127:112] = temp7[16:1];
 
-VPMULHRSW (VEX.128 encoded version)¶
+VPMULHRSW (VEX.128 encoded version) ¶
 
     temp0[31:0]←INT32 ((SRC1[15:0] * SRC2[15:0]) >>14) + 1
     temp1[31:0]←INT32 ((SRC1[31:16] * SRC2[31:16]) >>14) + 1
@@ -129,7 +129,7 @@ VPMULHRSW (VEX.128 encoded version)¶
     DEST[127:112] ← temp7[16:1]
     DEST[MAXVL-1:128] ← 0
 
-VPMULHRSW (VEX.256 encoded version)¶
+VPMULHRSW (VEX.256 encoded version) ¶
 
     temp0[31:0]←INT32 ((SRC1[15:0] * SRC2[15:0]) >>14) + 1
     temp1[31:0]←INT32 ((SRC1[31:16] * SRC2[31:16]) >>14) + 1
@@ -165,7 +165,7 @@ VPMULHRSW (VEX.256 encoded version)¶
     DEST[255:240] ← temp15[16:1]
     DEST[MAXVL-1:256] ← 0
 
-VPMULHRSW (EVEX encoded version)¶
+VPMULHRSW (EVEX encoded version) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -186,7 +186,7 @@ VPMULHRSW (EVEX encoded version)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMULHRSW __m512i _mm512_mulhrs_epi16(__m512i a, __m512i b);
 
@@ -209,12 +209,12 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPMULHRSW:__m256i _mm256_mulhrs_epi16 (__m256i a, __m256i b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

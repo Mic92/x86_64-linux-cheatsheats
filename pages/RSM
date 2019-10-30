@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ RSM — RESUME FROM SYSTEM MANAGEMENT MODE
   0F AA     RSM           ZO      Valid         Valid             Resume operation of interrupted program.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Returns program control from system management mode (SMM) to the
 application program or operating-system procedure that was interrupted
@@ -46,7 +46,7 @@ Architectures Software Developer’s Manual, Volume 3C_, for more
 information about SMM and the behavior of the RSM instruction.
 
 
-Operation¶
+Operation ¶
 
     ReturnFromSMM;
     IF (IA-32e mode supported) or (CPUID DisplayFamily_DisplayModel = 06H_0CH )
@@ -57,12 +57,12 @@ Operation¶
     FI
 
 
-Flags Affected¶
+Flags Affected ¶
 
 All.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -72,22 +72,22 @@ not in SMM.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

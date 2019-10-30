@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,14 +11,14 @@ MFENCE — MEMORY FENCE
   --------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   --------------------------------------------------------------
   Op/En Operand 1 Operand 2 Operand 3 Operand 4 ZO NA NA NA NA
   --------------------------------------------------------------
 
 
-Description¶
+Description ¶
 
 Performs a serializing operation on all load-from-memory and
 store-to-memory instructions that were issued prior the MFENCE
@@ -60,17 +60,17 @@ ModR/M byte. Thus, MFENCE is encoded by any opcode of the form 0F AE Fx,
 where x is in the range 0-7.
 
 
-Operation¶
+Operation ¶
 
     Wait_On_Following_Loads_And_Stores_Until(preceding_loads_and_stores_globally_visible);
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_mfence(void)
 
 
-Exceptions (All Modes of Operation)¶
+Exceptions (All Modes of Operation) ¶
 
 #UD If CPUID.01H:EDX.SSE2[bit 26] = 0.
 

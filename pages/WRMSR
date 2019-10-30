@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ WRMSR — WRITE TO MODEL SPECIFIC REGISTER
   0F 30    WRMSR         ZO      Valid         Valid             Write the value in EDX:EAX to MSR specified by ECX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Writes the contents of registers EDX:EAX into the 64-bit model specific
 register (MSR) specified in the ECX register. (On processors that
@@ -60,7 +60,7 @@ The CPUID instruction should be used to determine whether MSRs are
 supported (CPUID.01H:EDX[5] = 1) before using this instruction.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 The MSRs and the ability to read them with the WRMSR instruction were
 introduced into the IA-32 architecture with the Pentium processor.
@@ -68,17 +68,17 @@ Execution of this instruction by an IA-32 processor earlier than the
 Pentium processor results in an invalid opcode exception #UD.
 
 
-Operation¶
+Operation ¶
 
     MSR[ECX] ← EDX:EAX;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -99,7 +99,7 @@ IA32_SYSENTER_ESP.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -118,19 +118,19 @@ IA32_SYSENTER_ESP.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   -------- ---------------------------------------------------------------
   #GP(0)   The WRMSR instruction is not recognized in virtual-8086 mode.
   -------- ---------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

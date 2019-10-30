@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSADBW — COMPUTE SUM OF ABSOLUTE DIFFERENCES
 
 
-  Opcode/Instruction                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F F6 /_r_¹ PSADBW _mm1, mm2/m64_                          A       V/V                      SSE                  Computes the absolute differences of the packed unsigned byte integers from _mm2 /m64_ and _mm1_; differences are then summed to produce an unsigned word integer result.
-  66 0F F6 /_r_ PSADBW _xmm1_, _xmm2/m128_                      A       V/V                      SSE2                 Computes the absolute differences of the packed unsigned byte integers from _xmm2 /m128_ and _xmm1_; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.
-  VEX.NDS.128.66.0F.WIG F6 /r VPSADBW _xmm1, xmm2, xmm3/m128_   B       V/V                      AVX                  Computes the absolute differences of the packed unsigned byte integers from _xmm3 /m128_ and _xmm2_; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.
-  VEX.NDS.256.66.0F.WIG F6 /r VPSADBW _ymm1, ymm2, ymm3/m256_   B       V/V                      AVX2                 Computes the absolute differences of the packed unsigned byte integers from _ymm3 /m256_ and _ymm2_; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
-  EVEX.NDS.128.66.0F.WIG F6 /r VPSADBW xmm1, xmm2, xmm3/m128    C       V/V                      AVX512VL AVX512BW    Computes the absolute differences of the packed unsigned byte integers from xmm3 /m128 and xmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
-  EVEX.NDS.256.66.0F.WIG F6 /r VPSADBW ymm1, ymm2, ymm3/m256    C       V/V                      AVX512VL AVX512BW    Computes the absolute differences of the packed unsigned byte integers from ymm3 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
-  EVEX.NDS.512.66.0F.WIG F6 /r VPSADBW zmm1, zmm2, zmm3/m512    C       V/V                      AVX512BW             Computes the absolute differences of the packed unsigned byte integers from zmm3 /m512 and zmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
+  Opcode/Instruction                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F F6 /_r_¹ PSADBW _mm1, mm2/m64_                      A       V/V                      SSE                  Computes the absolute differences of the packed unsigned byte integers from _mm2 /m64_ and _mm1_; differences are then summed to produce an unsigned word integer result.
+  66 0F F6 /_r_ PSADBW _xmm1_, _xmm2/m128_                  A       V/V                      SSE2                 Computes the absolute differences of the packed unsigned byte integers from _xmm2 /m128_ and _xmm1_; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.
+  VEX.128.66.0F.WIG F6 /r VPSADBW _xmm1, xmm2, xmm3/m128_   B       V/V                      AVX                  Computes the absolute differences of the packed unsigned byte integers from _xmm3 /m128_ and _xmm2_; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.
+  VEX.256.66.0F.WIG F6 /r VPSADBW _ymm1, ymm2, ymm3/m256_   B       V/V                      AVX2                 Computes the absolute differences of the packed unsigned byte integers from _ymm3 /m256_ and _ymm2_; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
+  EVEX.128.66.0F.WIG F6 /r VPSADBW xmm1, xmm2, xmm3/m128    C       V/V                      AVX512VL AVX512BW    Computes the absolute differences of the packed unsigned byte integers from xmm3 /m128 and xmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
+  EVEX.256.66.0F.WIG F6 /r VPSADBW ymm1, ymm2, ymm3/m256    C       V/V                      AVX512VL AVX512BW    Computes the absolute differences of the packed unsigned byte integers from ymm3 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
+  EVEX.512.66.0F.WIG F6 /r VPSADBW zmm1, zmm2, zmm3/m512    C       V/V                      AVX512BW             Computes the absolute differences of the packed unsigned byte integers from zmm3 /m512 and zmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PSADBW — COMPUTE SUM OF ABSOLUTE DIFFERENCES
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Computes the absolute value of the difference of 8 unsigned byte
 integers from the source operand (second operand) and from the
@@ -101,9 +101,9 @@ ABS(X0:Y0) DEST 00H 00H 00H 00H 00H 00H SUM(TEMP7...TEMP0)
 Figure 4-14. PSADBW Instruction Operation Using 64-bit Operands
 
 
-Operation¶
+Operation ¶
 
-VPSADBW (EVEX encoded versions)¶
+VPSADBW (EVEX encoded versions) ¶
 
     VL = 128, 256, 512
     TEMP0←ABS(SRC1[7:0] - SRC2[7:0])
@@ -135,7 +135,7 @@ VPSADBW (EVEX encoded versions)¶
     FI;
     DEST[MAXVL-1:VL] ← 0
 
-VPSADBW (VEX.256 encoded version)¶
+VPSADBW (VEX.256 encoded version) ¶
 
     TEMP0←ABS(SRC1[7:0] - SRC2[7:0])
     (* Repeat operation for bytes 2 through 30*)
@@ -150,7 +150,7 @@ VPSADBW (VEX.256 encoded version)¶
     DEST[223:208] ← 00000000000H
     DEST[MAXVL-1:256] ← 0
 
-VPSADBW (VEX.128 encoded version)¶
+VPSADBW (VEX.128 encoded version) ¶
 
     TEMP0←ABS(SRC1[7:0] - SRC2[7:0])
     (* Repeat operation for bytes 2 through 14 *)
@@ -161,7 +161,7 @@ VPSADBW (VEX.128 encoded version)¶
     DEST[127:80] ← 00000000000H
     DEST[MAXVL-1:128] ← 0
 
-PSADBW (128-bit Legacy SSE version)¶
+PSADBW (128-bit Legacy SSE version) ¶
 
     TEMP0←ABS(DEST[7:0] - SRC[7:0])
     (* Repeat operation for bytes 2 through 14 *)
@@ -172,7 +172,7 @@ PSADBW (128-bit Legacy SSE version)¶
     DEST[127:80] ← 00000000000
     DEST[MAXVL-1:128] (Unmodified)
 
-PSADBW (64-bit operand)¶
+PSADBW (64-bit operand) ¶
 
     TEMP0←ABS(DEST[7:0] - SRC[7:0])
     (* Repeat operation for bytes 2 through 6 *)
@@ -180,7 +180,7 @@ PSADBW (64-bit operand)¶
     DEST[15:0] ←SUM(TEMP0:TEMP7)
     DEST[63:16] ← 000000000000H
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSADBW __m512i _mm512_sad_epu8( __m512i a, __m512i b)
 
@@ -191,17 +191,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPSADBW:__m256i _mm256_sad_epu8( __m256i a, __m256i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

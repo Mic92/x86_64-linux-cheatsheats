@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ XTEST — TEST IF IN TRANSACTIONAL EXECUTION
   NP 0F 01 D6 XTEST    A       V/V                     HLE or RTM           Test if executing in a transactional region
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ---------- ---------- ----------
   Op/En   Operand 1   Operand2   Operand3   Operand4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ---------- ---------- ----------
 
 
-Description¶
+Description ¶
 
 The XTEST instruction queries the transactional execution status. If the
 instruction executes inside a transactionally executing RTM region or a
@@ -27,9 +27,9 @@ transactionally executing HLE region, then the ZF flag is cleared, else
 it is set.
 
 
-Operation¶
+Operation ¶
 
-XTEST¶
+XTEST ¶
 
     IF (RTM_ACTIVE = 1 OR HLE_ACTIVE = 1)
         THEN
@@ -39,23 +39,23 @@ XTEST¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The ZF flag is cleared if the instruction is executed transactionally;
 otherwise it is set to 1. The CF, OF, SF, PF, and AF, flags are cleared.
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     XTEST: int _xtest( void );
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 #UD
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ PUSHA/PUSHAD — PUSH ALL GENERAL-PURPOSE REGISTERS
   60       PUSHAD        ZO      Invalid       Valid             Push EAX, ECX, EDX, EBX, original ESP, EBP, ESI, and EDI.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Pushes the contents of the general-purpose registers onto the stack. The
 registers are stored on the stack in the following order: EAX, ECX, EDX,
@@ -51,7 +51,7 @@ This instruction executes as described in compatibility mode and legacy
 mode. It is not valid in 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     IF 64-bit Mode
         THEN #UD
@@ -80,12 +80,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If the starting or ending stack address is outside the stack segment limit.
@@ -95,7 +95,7 @@ Protected Mode Exceptions¶
   ----------------- --------------------------------------------------------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------
   #GP   If the ESP or SP register contains 7, 9, 11, 13, or 15.
@@ -103,7 +103,7 @@ Real-Address Mode Exceptions¶
   ----- ---------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------
   #GP(0)            If the ESP or SP register contains 7, 9, 11, 13, or 15.
@@ -113,12 +113,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- --------------------
   #UD   If in 64-bit mode.

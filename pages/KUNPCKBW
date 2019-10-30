@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 KUNPCKBW/KUNPCKWD/KUNPCKDQ — UNPACK FOR MASK REGISTERS
 
 
-  Opcode/Instruction                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------
-  VEX.NDS.L1.66.0F.W0 4B /r KUNPCKBW k1, k2, k3   RVR     V/V                      AVX512F              Unpack and interleave 8 bits masks in k2 and k3 and write word result in k1.
-  VEX.NDS.L1.0F.W0 4B /r KUNPCKWD k1, k2, k3      RVR     V/V                      AVX512BW             Unpack and interleave 16 bits in k2 and k3 and write double-word result in k1.
-  VEX.NDS.L1.0F.W1 4B /r KUNPCKDQ k1, k2, k3      RVR     V/V                      AVX512BW             Unpack and interleave 32 bits masks in k2 and k3 and write quadword result in k1.
+  Opcode/Instruction                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------
+  VEX.L1.66.0F.W0 4B /r KUNPCKBW k1, k2, k3   RVR     V/V                      AVX512F              Unpack 8-bit masks in k2 and k3 and write word result in k1.
+  VEX.L1.0F.W0 4B /r KUNPCKWD k1, k2, k3      RVR     V/V                      AVX512BW             Unpack 16-bit masks in k2 and k3 and write doubleword result in k1.
+  VEX.L1.0F.W1 4B /r KUNPCKDQ k1, k2, k3      RVR     V/V                      AVX512BW             Unpack 32-bit masks in k2 and k3 and write quadword result in k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- -------------- ----------------------------------------
   Op/En   Operand 1       Operand 2      Operand 3
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- -------------- ----------------------------------------
 
 
-Description¶
+Description ¶
 
 Unpacks the lower 8/16/32 bits of the second and third operands (source
 operands) into the low part of the first operand (destination operand),
@@ -29,28 +29,28 @@ starting from the low bytes. The result is zero-extended in the
 destination.
 
 
-Operation¶
+Operation ¶
 
-KUNPCKBW¶
+KUNPCKBW ¶
 
     DEST[7:0] ← SRC2[7:0]
     DEST[15:8] ← SRC1[7:0]
     DEST[MAX_KL-1:16] ← 0
 
-KUNPCKWD¶
+KUNPCKWD ¶
 
     DEST[15:0] ← SRC2[15:0]
     DEST[31:16] ← SRC1[15:0]
     DEST[MAX_KL-1:32] ← 0
 
-KUNPCKDQ¶
+KUNPCKDQ ¶
 
     DEST[31:0] ← SRC2[31:0]
     DEST[63:32] ← SRC1[31:0]
     DEST[MAX_KL-1:64] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     KUNPCKBW __mmask16 _mm512_kunpackb(__mmask16 a, __mmask16 b);
 
@@ -59,17 +59,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     KUNPCKWD __mmask32 _mm512_kunpackw(__mmask32 a, __mmask32 b);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type K20.
 

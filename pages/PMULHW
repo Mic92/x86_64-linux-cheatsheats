@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PMULHW — MULTIPLY PACKED SIGNED INTEGERS AND STORE HIGH RESULT
 
 
-  Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F E5 /_r_¹ PMULHW _mm, mm/m64_                                   A       V/V                      MMX                  Multiply the packed signed word integers in _mm1_ register and _mm2/m64_, and store the high 16 bits of the results in _mm1_.
-  66 0F E5 /_r_ PMULHW _xmm1_, _xmm2/m128_                             A       V/V                      SSE2                 Multiply the packed signed word integers in _xmm1_ and _xmm2/m128_, and store the high 16 bits of the results in _xmm1_.
-  VEX.NDS.128.66.0F.WIG E5 /r VPMULHW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply the packed signed word integers in _xmm2_ and _xmm3/m128_, and store the high 16 bits of the results in _xmm1_.
-  VEX.NDS.256.66.0F.WIG E5 /r VPMULHW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply the packed signed word integers in _ymm2_ and _ymm3/m256_, and store the high 16 bits of the results in _ymm1_.
-  EVEX.NDS.128.66.0F.WIG E5 /r VPMULHW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply the packed signed word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F.WIG E5 /r VPMULHW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply the packed signed word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F.WIG E5 /r VPMULHW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply the packed signed word integers in zmm2 and zmm3/m512, and store the high 16 bits of the results in zmm1 under writemask k1.
+  Opcode/Instruction                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F E5 /_r_¹ PMULHW _mm, mm/m64_                               A       V/V                      MMX                  Multiply the packed signed word integers in _mm1_ register and _mm2/m64_, and store the high 16 bits of the results in _mm1_.
+  66 0F E5 /_r_ PMULHW _xmm1_, _xmm2/m128_                         A       V/V                      SSE2                 Multiply the packed signed word integers in _xmm1_ and _xmm2/m128_, and store the high 16 bits of the results in _xmm1_.
+  VEX.128.66.0F.WIG E5 /r VPMULHW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply the packed signed word integers in _xmm2_ and _xmm3/m128_, and store the high 16 bits of the results in _xmm1_.
+  VEX.256.66.0F.WIG E5 /r VPMULHW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply the packed signed word integers in _ymm2_ and _ymm3/m256_, and store the high 16 bits of the results in _ymm1_.
+  EVEX.128.66.0F.WIG E5 /r VPMULHW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply the packed signed word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.
+  EVEX.256.66.0F.WIG E5 /r VPMULHW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply the packed signed word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.
+  EVEX.512.66.0F.WIG E5 /r VPMULHW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply the packed signed word integers in zmm2 and zmm3/m512, and store the high 16 bits of the results in zmm1 under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -24,7 +24,7 @@ PMULHW — MULTIPLY PACKED SIGNED INTEGERS AND STORE HIGH RESULT
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -34,7 +34,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a SIMD signed multiply of the packed signed word integers in
 the destination operand (first operand) and the source operand (second
@@ -70,9 +70,9 @@ register. The second source operand can be a ZMM/YMM/XMM register, a
 ZMM/YMM/XMM register conditionally updated with writemask k1.
 
 
-Operation¶
+Operation ¶
 
-PMULHW (with 64-bit operands)¶
+PMULHW (with 64-bit operands) ¶
 
     TEMP0[31:0] ←
         DEST[15:0] ∗ SRC[15:0]; (* Signed multiplication *)
@@ -91,7 +91,7 @@ PMULHW (with 64-bit operands)¶
     DEST[63:48] ←
         TEMP3[31:16];
 
-PMULHW (with 128-bit operands)¶
+PMULHW (with 128-bit operands) ¶
 
     TEMP0[31:0] ←
         DEST[15:0] ∗ SRC[15:0]; (* Signed multiplication *)
@@ -126,7 +126,7 @@ PMULHW (with 128-bit operands)¶
     DEST[127:112] ←
         TEMP7[31:16];
 
-VPMULHW (VEX.128 encoded version)¶
+VPMULHW (VEX.128 encoded version) ¶
 
     TEMP0[31:0]←SRC1[15:0] * SRC2[15:0] (*Signed Multiplication*)
     TEMP1[31:0]←SRC1[31:16] * SRC2[31:16]
@@ -146,7 +146,7 @@ VPMULHW (VEX.128 encoded version)¶
     DEST[127:112] ← TEMP7[31:16]
     DEST[MAXVL-1:128] ← 0
 
-PMULHW (VEX.256 encoded version)¶
+PMULHW (VEX.256 encoded version) ¶
 
     TEMP0[31:0]←SRC1[15:0] * SRC2[15:0] (*Signed Multiplication*)
     TEMP1[31:0]←SRC1[31:16] * SRC2[31:16]
@@ -182,7 +182,7 @@ PMULHW (VEX.256 encoded version)¶
     DEST[255:240] ← TEMP15[31:16]
     DEST[MAXVL-1:256] ← 0
 
-PMULHW (EVEX encoded versions)¶
+PMULHW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -203,7 +203,7 @@ PMULHW (EVEX encoded versions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMULHW __m512i _mm512_mulhi_epi16(__m512i a, __m512i b);
 
@@ -226,17 +226,17 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPMULHW:__m256i _mm256_mulhi_epi16 ( __m256i a, __m256i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

@@ -1,17 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VMWRITE — WRITE FIELD TO VIRTUAL-MACHINE CONTROL STRUCTURE
 
 
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  OPCODE INSTRUCTION DESCRIPTION NP 0F 79 VMWRITE r64, r/m64 Writes a specified VMCS field (in 64-bit mode) NP 0F 79 VMWRITE r32, r/m32 Writes a specified VMCS field (outside 64-bit mode)
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Opcode/Instruction            Op/En   Description
+  ----------------------------- ------- ------------------------------------------------------
+  NP 0F 79 VMWRITE r64, r/m64   RM      Writes a specified VMCS field (in 64-bit mode).
+  NP 0F 79 VMWRITE r32, r/m32   RM      Writes a specified VMCS field (outside 64-bit mode).
 
 
-Description¶
+Instruction Operand Encoding ¶
+
+  ------- --------------- --------------- ----------- -----------
+  Op/En   Operand 1       Operand 2       Operand 3   Operand 4
+  RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
+  ------- --------------- --------------- ----------- -----------
+
+
+Description ¶
 
 Writes the contents of a primary source operand (register or memory) to
 a specified field in a VMCS. In VMX root operation, the instruction
@@ -38,7 +47,7 @@ relevant VMCS pointer is valid but before determining if the destination
 VMCS field is supported.
 
 
-Operation¶
+Operation ¶
 
     IF (not in VMX operation) or (CR0.PE = 0) or (RFLAGS.VM = 1) or (IA32_EFER.LMA = 1 and CS.L = 0)
         THEN #UD;
@@ -56,12 +65,6 @@ Operation¶
     processor does not support writing to such fields6
         THEN VMfailValid(VMWRITE to read-only VMCS component);
         ELSE
-                IF in VMX root operation
-                    THEN field indexed by secondary source operand in current VMCS ← primary source operand;
-                    ELSE field indexed by secondary source operand in VMCS referenced by VMCS link pointer ← primary source operand;
-            FI;
-            VMsucceed;
-    FI;
 
   5. The VMWRITE bit for a secondary source operand is defined as
   follows. Let _x_ be the value of bits 14:0 of the secondary source
@@ -72,13 +75,20 @@ Operation¶
   6. Software can discover whether these fields can be written by
   reading the VMX capability MSR IA32_VMX_MISC (see Appendix A.6).
 
+            IF in VMX root operation
+                THEN field indexed by secondary source operand in current VMCS ← primary source operand;
+                ELSE field indexed by secondary source operand in VMCS referenced by VMCS link pointer ← primary source operand;
+        FI;
+        VMsucceed;
+    FI;
 
-Flags Affected¶
+
+Flags Affected ¶
 
 See the operation section and Section 30.2.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -107,28 +117,28 @@ If the SS register contains an unusable segment.
 If not in VMX operation.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The VMWRITE instruction is not recognized in real-address mode.
   ----- -----------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The VMWRITE instruction is not recognized in virtual-8086 mode.
   ----- -----------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------
   #UD   The VMWRITE instruction is not recognized in compatibility mode.
   ----- ------------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

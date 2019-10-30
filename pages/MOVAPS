@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -22,7 +22,7 @@ MOVAPS — MOVE ALIGNED PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   EVEX.512.0F.W0 29 /r VMOVAPS zmm2/m512 {k1}{z}, zmm1   D       V/V                      AVX512F              Move aligned packed single-precision floating-point values from zmm1 to zmm2/m512 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -32,7 +32,7 @@ Instruction Operand Encoding¶
   D       Full Mem     ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Moves 4, 8 or 16 single-precision floating-point values from the source
 operand (second operand) to the destination operand (first operand).
@@ -94,9 +94,9 @@ destination register remain unchanged.
 (E)VEX.128 encoded version: Bits (MAXVL-1:128) of the destination ZMM
 register are zeroed.
 
-Operation¶
+Operation ¶
 
-VMOVAPS (EVEX encoded versions, register-copy form)¶
+VMOVAPS (EVEX encoded versions, register-copy form) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -114,7 +114,7 @@ VMOVAPS (EVEX encoded versions, register-copy form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVAPS (EVEX encoded versions, store-form)¶
+VMOVAPS (EVEX encoded versions, store-form) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -128,7 +128,7 @@ VMOVAPS (EVEX encoded versions, store-form)¶
                 ;
     ENDFOR;
 
-VMOVAPS (EVEX encoded versions, load-form)¶
+VMOVAPS (EVEX encoded versions, load-form) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -144,30 +144,30 @@ VMOVAPS (EVEX encoded versions, load-form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVAPS (VEX.256 encoded version, load - and register copy)¶
+VMOVAPS (VEX.256 encoded version, load - and register copy) ¶
 
     DEST[255:0] ← SRC[255:0]
     DEST[MAXVL-1:256] ← 0
 
-VMOVAPS (VEX.256 encoded version, store-form)¶
+VMOVAPS (VEX.256 encoded version, store-form) ¶
 
     DEST[255:0] ← SRC[255:0]
 
-VMOVAPS (VEX.128 encoded version, load - and register copy)¶
+VMOVAPS (VEX.128 encoded version, load - and register copy) ¶
 
     DEST[127:0] ← SRC[127:0]
     DEST[MAXVL-1:128] ← 0
 
-MOVAPS (128-bit load- and register-copy- form Legacy SSE version)¶
+MOVAPS (128-bit load- and register-copy- form Legacy SSE version) ¶
 
     DEST[127:0] ← SRC[127:0]
     DEST[MAXVL-1:128] (Unmodified)
 
-(V)MOVAPS (128-bit store-form version)¶
+(V)MOVAPS (128-bit store-form version) ¶
 
     DEST[127:0] ← SRC[127:0]
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVAPS __m512 _mm512_load_ps( void * m);
 
@@ -199,11 +199,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MOVAPS void _mm_store_ps(float * p, __m128 a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type1.SSE; additionally
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ RDTSCP — READ TIME-STAMP COUNTER AND PROCESSOR ID
   0F 01 F9   RDTSCP        ZO      Valid         Valid             Read 64-bit time-stamp counter and IA32_TSC_AUX value into EDX:EAX and ECX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reads the current value of the processor’s time-stamp counter (a 64-bit
 MSR) into the EDX:EAX registers and also reads the value of the
@@ -64,7 +64,7 @@ Developer’s Manual, Volume 3C_, for more information about the behavior
 of this instruction in VMX non-root operation.
 
 
-Operation¶
+Operation ¶
 
     IF (CR4.TSD = 0) or (CPL = 0) or (CR0.PE = 0)
         THEN
@@ -75,12 +75,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -93,7 +93,7 @@ If the LOCK prefix is used.
 If CPUID.80000001H:EDX.RDTSCP[bit 27] = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
@@ -102,7 +102,7 @@ If the LOCK prefix is used.
 If CPUID.80000001H:EDX.RDTSCP[bit 27] = 0.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -115,12 +115,12 @@ If the LOCK prefix is used.
 If CPUID.80000001H:EDX.RDTSCP[bit 27] = 0.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

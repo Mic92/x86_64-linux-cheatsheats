@@ -1,27 +1,27 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPSRAVW/VPSRAVD/VPSRAVQ — VARIABLE BIT SHIFT RIGHT ARITHMETIC
 
 
-  Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------
-  VEX.NDS.128.66.0F38.W0 46 /r VPSRAVD xmm1, xmm2, xmm3/m128                    A       V/V                      AVX2                 Shift doublewords in xmm2 right by amount specified in the corresponding element of xmm3/m128 while shifting in sign bits.
-  VEX.NDS.256.66.0F38.W0 46 /r VPSRAVD ymm1, ymm2, ymm3/m256                    A       V/V                      AVX2                 Shift doublewords in ymm2 right by amount specified in the corresponding element of ymm3/m256 while shifting in sign bits.
-  EVEX.NDS.128.66.0F38.W1 11 /r VPSRAVW xmm1 {k1}{z}, xmm2, xmm3/m128           B       V/V                      AVX512VL AVX512BW    Shift words in xmm2 right by amount specified in the corresponding element of xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.256.66.0F38.W1 11 /r VPSRAVW ymm1 {k1}{z}, ymm2, ymm3/m256           B       V/V                      AVX512VL AVX512BW    Shift words in ymm2 right by amount specified in the corresponding element of ymm3/m256 while shifting in sign bits using writemask k1.
-  EVEX.NDS.512.66.0F38.W1 11 /r VPSRAVW zmm1 {k1}{z}, zmm2, zmm3/m512           B       V/V                      AVX512BW             Shift words in zmm2 right by amount specified in the corresponding element of zmm3/m512 while shifting in sign bits using writemask k1.
-  EVEX.NDS.128.66.0F38.W0 46 /r VPSRAVD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Shift doublewords in xmm2 right by amount specified in the corresponding element of xmm3/m128/m32bcst while shifting in sign bits using writemask k1.
-  EVEX.NDS.256.66.0F38.W0 46 /r VPSRAVD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Shift doublewords in ymm2 right by amount specified in the corresponding element of ymm3/m256/m32bcst while shifting in sign bits using writemask k1.
-  EVEX.NDS.512.66.0F38.W0 46 /r VPSRAVD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Shift doublewords in zmm2 right by amount specified in the corresponding element of zmm3/m512/m32bcst while shifting in sign bits using writemask k1.
-  EVEX.NDS.128.66.0F38.W1 46 /r VPSRAVQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Shift quadwords in xmm2 right by amount specified in the corresponding element of xmm3/m128/m64bcst while shifting in sign bits using writemask k1.
-  EVEX.NDS.256.66.0F38.W1 46 /r VPSRAVQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Shift quadwords in ymm2 right by amount specified in the corresponding element of ymm3/m256/m64bcst while shifting in sign bits using writemask k1.
-  EVEX.NDS.512.66.0F38.W1 46 /r VPSRAVQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Shift quadwords in zmm2 right by amount specified in the corresponding element of zmm3/m512/m64bcst while shifting in sign bits using writemask k1.
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W0 46 /r VPSRAVD xmm1, xmm2, xmm3/m128                    A       V/V                      AVX2                 Shift doublewords in xmm2 right by amount specified in the corresponding element of xmm3/m128 while shifting in sign bits.
+  VEX.256.66.0F38.W0 46 /r VPSRAVD ymm1, ymm2, ymm3/m256                    A       V/V                      AVX2                 Shift doublewords in ymm2 right by amount specified in the corresponding element of ymm3/m256 while shifting in sign bits.
+  EVEX.128.66.0F38.W1 11 /r VPSRAVW xmm1 {k1}{z}, xmm2, xmm3/m128           B       V/V                      AVX512VL AVX512BW    Shift words in xmm2 right by amount specified in the corresponding element of xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F38.W1 11 /r VPSRAVW ymm1 {k1}{z}, ymm2, ymm3/m256           B       V/V                      AVX512VL AVX512BW    Shift words in ymm2 right by amount specified in the corresponding element of ymm3/m256 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F38.W1 11 /r VPSRAVW zmm1 {k1}{z}, zmm2, zmm3/m512           B       V/V                      AVX512BW             Shift words in zmm2 right by amount specified in the corresponding element of zmm3/m512 while shifting in sign bits using writemask k1.
+  EVEX.128.66.0F38.W0 46 /r VPSRAVD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Shift doublewords in xmm2 right by amount specified in the corresponding element of xmm3/m128/m32bcst while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F38.W0 46 /r VPSRAVD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Shift doublewords in ymm2 right by amount specified in the corresponding element of ymm3/m256/m32bcst while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F38.W0 46 /r VPSRAVD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Shift doublewords in zmm2 right by amount specified in the corresponding element of zmm3/m512/m32bcst while shifting in sign bits using writemask k1.
+  EVEX.128.66.0F38.W1 46 /r VPSRAVQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Shift quadwords in xmm2 right by amount specified in the corresponding element of xmm3/m128/m64bcst while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F38.W1 46 /r VPSRAVQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Shift quadwords in ymm2 right by amount specified in the corresponding element of ymm3/m256/m64bcst while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F38.W1 46 /r VPSRAVQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Shift quadwords in zmm2 right by amount specified in the corresponding element of zmm3/m512/m64bcst while shifting in sign bits using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
@@ -30,7 +30,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Shifts the bits in the individual data elements
 (word/doublewords/quadword) in the first source operand (the second
@@ -43,14 +43,8 @@ The count values are specified individually in each data element of the
 second source operand. If the unsigned integer value specified in the
 respective data element of the second source operand is greater than 15
 (for words), 31 (for doublewords), or 63 (for a quadword), then the
-destination data element are filled with the corresponding sign bit of
+destination data element is filled with the corresponding sign bit of
 the source element.
-
-The count values are specified individually in each data element of the
-second source operand. If the unsigned integer value specified in the
-respective data element of the second source operand is greater than 16
-(for word), 31 (for doublewords), or 63 (for a quadword), then the
-destination data element are written with 0.
 
 VEX.128 encoded version: The destination and first source operands are
 XMM registers. The count operand can be either an XMM register or a
@@ -73,9 +67,9 @@ operands are ZMM/YMM/XMM registers. The count operand can be either a
 ZMM/YMM/XMM register, a 512/256/128-bit memory location. The destination
 is conditionally updated with writemask k1.
 
-Operation¶
+Operation ¶
 
-VPSRAVW (EVEX encoded version)¶
+VPSRAVW (EVEX encoded version) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -100,27 +94,27 @@ VPSRAVW (EVEX encoded version)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0;
 
-VPSRAVD (VEX.128 version)¶
+VPSRAVD (VEX.128 version) ¶
 
     COUNT_0←SRC2[31 : 0]
         (* Repeat Each COUNT_i for the 2nd through 4th dwords of SRC2*)
-    COUNT_3←SRC2[100 : 96];
+    COUNT_3←SRC2[127 : 96];
     DEST[31:0]←SignExtend(SRC1[31:0] >> COUNT_0);
         (* Repeat shift operation for 2nd through 4th dwords *)
     DEST[127:96]←SignExtend(SRC1[127:96] >> COUNT_3);
     DEST[MAXVL-1:128] ← 0;
 
-VPSRAVD (VEX.256 version)¶
+VPSRAVD (VEX.256 version) ¶
 
     COUNT_0←SRC2[31 : 0];
         (* Repeat Each COUNT_i for the 2nd through 8th dwords of SRC2*)
-    COUNT_7←SRC2[228 : 224];
+    COUNT_7←SRC2[255 : 224];
     DEST[31:0]←SignExtend(SRC1[31:0] >> COUNT_0);
         (* Repeat shift operation for 2nd through 7th dwords *)
     DEST[255:224]←SignExtend(SRC1[255:224] >> COUNT_7);
     DEST[MAXVL-1:256] ← 0;
 
-VPSRAVD (EVEX encoded version)¶
+VPSRAVD (EVEX encoded version) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -158,7 +152,7 @@ VPSRAVD (EVEX encoded version)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0;
 
-VPSRAVQ (EVEX encoded version)¶
+VPSRAVQ (EVEX encoded version) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -194,7 +188,7 @@ VPSRAVQ (EVEX encoded version)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0;
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSRAVD __m512i _mm512_srav_epi32(__m512i a, __m512i cnt);
 
@@ -252,11 +246,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPSRAVD __m256i _mm256_srav_epi32 (__m256i m, __m256i count)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

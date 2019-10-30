@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -75,7 +75,7 @@ RCL/RCR/ROL/ROR — ROTATE
   ** See IA-32 Architecture Compatibility section below.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -85,7 +85,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Shifts (rotates) the bits of the first operand (destination operand) the
 number of bit positions specified in the second operand (count operand)
@@ -125,7 +125,7 @@ operand to 64 bits and causes the count operand to become a 6-bit
 counter.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 The 8086 does not mask the rotation count. However, all other IA-32
 processors (starting with the Intel 286 processor) do mask the rotation
@@ -134,7 +134,7 @@ done in all operating modes (including the virtual-8086 mode) to reduce
 the maximum execution time of the instructions.
 
 
-Operation¶
+Operation ¶
 
     (* RCL and RCR instructions *)
     SIZE ← OperandSize;
@@ -211,7 +211,7 @@ Operation¶
         ELSE OF is undefined;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 If the masked count is 0, the flags are not affected. If the masked
 count is 1, then the OF flag is affected, otherwise (masked count is
@@ -220,7 +220,7 @@ the masked count is nonzero. The SF, ZF, AF, and PF flags are always
 unaffected.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -249,7 +249,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -258,7 +258,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -269,12 +269,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

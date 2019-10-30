@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VREDUCEPS — PERFORM REDUCTION TRANSFORMATION ON PACKED FLOAT32 VALUES
   EVEX.512.66.0F3A.W0 56 /r ib VREDUCEPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}, imm8   A       V/V                      AVX512DQ             Perform reduction transformation on packed single-precision floating point values in zmm2/m512/m32bcst by subtracting a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Perform reduction transformation of the packed binary encoded
 single-precision FP values in the source operand (the second operand)
@@ -55,7 +55,7 @@ EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
 Handling of special case of input values are listed in Table 5-24.
 
-Operation¶
+Operation ¶
 
     ReduceArgumentSP(SRC[31:0], imm8[7:0])
     {
@@ -71,7 +71,7 @@ Operation¶
     RETURN TMP[31:0]; // binary encoded FP with biased exponent and normalized significand
     }
 
-VREDUCEPS¶
+VREDUCEPS ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -91,7 +91,7 @@ VREDUCEPS¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VREDUCEPS __m512 _mm512_mask_reduce_ps( __m512 a, int imm, int sae)
 
@@ -111,14 +111,14 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VREDUCEPS __m128 _mm_maskz_reduce_ps(__mmask8 k, __m128 a, int imm)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 If SPE is enabled, precision exception is not reported (regardless of
 MXCSR exception mask).
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2, additionally
 

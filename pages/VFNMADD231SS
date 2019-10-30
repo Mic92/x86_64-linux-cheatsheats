@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VFNMADD132SS/VFNMADD213SS/VFNMADD231SS — FUSED NEGATIVE MULTIPLY-ADD OF SCALAR SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------
-  VEX.DDS.LIG.66.0F38.W0 9D /r VFNMADD132SS xmm1, xmm2, xmm3/m32                A       V/V                      FMA                  Multiply scalar single-precision floating-point value from xmm1 and xmm3/m32, negate the multiplication result and add to xmm2 and put result in xmm1.
-  VEX.DDS.LIG.66.0F38.W0 AD /r VFNMADD213SS xmm1, xmm2, xmm3/m32                A       V/V                      FMA                  Multiply scalar single-precision floating-point value from xmm1 and xmm2, negate the multiplication result and add to xmm3/m32 and put result in xmm1.
-  VEX.DDS.LIG.66.0F38.W0 BD /r VFNMADD231SS xmm1, xmm2, xmm3/m32                A       V/V                      FMA                  Multiply scalar single-precision floating-point value from xmm2 and xmm3/m32, negate the multiplication result and add to xmm1 and put result in xmm1.
-  EVEX.DDS.LIG.66.0F38.W0 9D /r VFNMADD132SS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   B       V/V                      AVX512F              Multiply scalar single-precision floating-point value from xmm1 and xmm3/m32, negate the multiplication result and add to xmm2 and put result in xmm1.
-  EVEX.DDS.LIG.66.0F38.W0 AD /r VFNMADD213SS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   B       V/V                      AVX512F              Multiply scalar single-precision floating-point value from xmm1 and xmm2, negate the multiplication result and add to xmm3/m32 and put result in xmm1.
-  EVEX.DDS.LIG.66.0F38.W0 BD /r VFNMADD231SS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   B       V/V                      AVX512F              Multiply scalar single-precision floating-point value from xmm2 and xmm3/m32, negate the multiplication result and add to xmm1 and put result in xmm1.
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------
+  VEX.LIG.66.0F38.W0 9D /r VFNMADD132SS xmm1, xmm2, xmm3/m32                A       V/V                      FMA                  Multiply scalar single-precision floating-point value from xmm1 and xmm3/m32, negate the multiplication result and add to xmm2 and put result in xmm1.
+  VEX.LIG.66.0F38.W0 AD /r VFNMADD213SS xmm1, xmm2, xmm3/m32                A       V/V                      FMA                  Multiply scalar single-precision floating-point value from xmm1 and xmm2, negate the multiplication result and add to xmm3/m32 and put result in xmm1.
+  VEX.LIG.66.0F38.W0 BD /r VFNMADD231SS xmm1, xmm2, xmm3/m32                A       V/V                      FMA                  Multiply scalar single-precision floating-point value from xmm2 and xmm3/m32, negate the multiplication result and add to xmm1 and put result in xmm1.
+  EVEX.LIG.66.0F38.W0 9D /r VFNMADD132SS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   B       V/V                      AVX512F              Multiply scalar single-precision floating-point value from xmm1 and xmm3/m32, negate the multiplication result and add to xmm2 and put result in xmm1.
+  EVEX.LIG.66.0F38.W0 AD /r VFNMADD213SS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   B       V/V                      AVX512F              Multiply scalar single-precision floating-point value from xmm1 and xmm2, negate the multiplication result and add to xmm3/m32 and put result in xmm1.
+  EVEX.LIG.66.0F38.W0 BD /r VFNMADD231SS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   B       V/V                      AVX512F              Multiply scalar single-precision floating-point value from xmm2 and xmm3/m32, negate the multiplication result and add to xmm1 and put result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -24,7 +24,7 @@ Instruction Operand Encoding¶
   B       Tuple1 Scalar   ModRM:reg (r, w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 VFNMADD132SS: Multiplies the low packed single-precision floating-point
 value from the first source operand to the low packed single-precision
@@ -65,12 +65,12 @@ summary table. The behavior of the complementary mnemonic in situations
 involving NANs are governed by the definition of the instruction
 mnemonic defined in the opcode/instruction column.
 
-Operation¶
+Operation ¶
 
     In the operations below, “*” and “+” symbols represent multiplication and addition with infinite precision inputs and outputs (no
     rounding).
 
-VFNMADD132SS DEST, SRC2, SRC3 (EVEX encoded version)¶
+VFNMADD132SS DEST, SRC2, SRC3 (EVEX encoded version) ¶
 
     IF (EVEX.b = 1) and SRC3 *is a register*
         THEN
@@ -90,7 +90,7 @@ VFNMADD132SS DEST, SRC2, SRC3 (EVEX encoded version)¶
     DEST[127:32] ← DEST[127:32]
     DEST[MAXVL-1:128] ← 0
 
-VFNMADD213SS DEST, SRC2, SRC3 (EVEX encoded version)¶
+VFNMADD213SS DEST, SRC2, SRC3 (EVEX encoded version) ¶
 
     IF (EVEX.b = 1) and SRC3 *is a register*
         THEN
@@ -110,7 +110,7 @@ VFNMADD213SS DEST, SRC2, SRC3 (EVEX encoded version)¶
     DEST[127:32] ← DEST[127:32]
     DEST[MAXVL-1:128] ← 0
 
-VFNMADD231SS DEST, SRC2, SRC3 (EVEX encoded version)¶
+VFNMADD231SS DEST, SRC2, SRC3 (EVEX encoded version) ¶
 
     IF (EVEX.b = 1) and SRC3 *is a register*
         THEN
@@ -130,25 +130,25 @@ VFNMADD231SS DEST, SRC2, SRC3 (EVEX encoded version)¶
     DEST[127:32] ← DEST[127:32]
     DEST[MAXVL-1:128] ← 0
 
-VFNMADD132SS DEST, SRC2, SRC3 (VEX encoded version)¶
+VFNMADD132SS DEST, SRC2, SRC3 (VEX encoded version) ¶
 
     DEST[31:0]←RoundFPControl_MXCSR(- (DEST[31:0]*SRC3[31:0]) + SRC2[31:0])
     DEST[127:32] ←DEST[127:32]
     DEST[MAXVL-1:128] ←0
 
-VFNMADD213SS DEST, SRC2, SRC3 (VEX encoded version)¶
+VFNMADD213SS DEST, SRC2, SRC3 (VEX encoded version) ¶
 
     DEST[31:0]←RoundFPControl_MXCSR(- (SRC2[31:0]*DEST[31:0]) + SRC3[31:0])
     DEST[127:32] ←DEST[127:32]
     DEST[MAXVL-1:128] ←0
 
-VFNMADD231SS DEST, SRC2, SRC3 (VEX encoded version)¶
+VFNMADD231SS DEST, SRC2, SRC3 (VEX encoded version) ¶
 
     DEST[31:0]←RoundFPControl_MXCSR(- (SRC2[31:0]*SRC3[31:0]) + DEST[31:0])
     DEST[127:32] ←DEST[127:32]
     DEST[MAXVL-1:128] ←0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VFNMADDxxxSS __m128 _mm_fnmadd_round_ss(__m128 a, __m128 b, __m128 c, int r);
 
@@ -166,11 +166,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VFNMADDxxxSS __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3.
 

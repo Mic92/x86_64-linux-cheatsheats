@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ FYL2XP1 — COMPUTE Y ∗ LOG2(X +1)
   D9 F9    FYL2XP1       Valid         Valid             Replace ST(1) with ST(1) ∗ log₂(ST(0) + 1.0) and pop the register stack.
 
 
-Description¶
+Description ¶
 
 Computes (ST(1) ∗ log₂(ST(0) + 1.0)), stores the result in register
 ST(1), and pops the FPU register stack. The source operand in ST(0) must
@@ -56,13 +56,13 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     ST(1) ← ST(1) ∗ log2(ST(0) + 1.0);
     PopRegisterStack;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
 C1
 
@@ -75,7 +75,7 @@ C0, C2, C3
 Undefined.
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
   ----- ------------------------------------------------------------
   #IS   Stack underflow occurred.
@@ -87,7 +87,7 @@ Floating-Point Exceptions¶
   ----- ------------------------------------------------------------
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
@@ -96,22 +96,22 @@ Protected Mode Exceptions¶
   ----- ------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

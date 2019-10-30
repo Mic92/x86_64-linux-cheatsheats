@@ -1,37 +1,37 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PCMPGTB/PCMPGTW/PCMPGTD — COMPARE PACKED SIGNED INTEGERS FOR GREATER THAN
 
 
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 64 /_r_¹ PCMPGTB _mm, mm/m64_                                     A       V/V                      MMX                  Compare packed signed byte integers in _mm_ and _mm/m64_ for greater than.
-  66 0F 64 /_r_ PCMPGTB _xmm1_, _xmm2/m128_                               A       V/V                      SSE2                 Compare packed signed byte integers in _xmm1_ and _xmm2/m128_ for greater than.
-  NP 0F 65 /_r_¹ PCMPGTW _mm, mm/m64_                                     A       V/V                      MMX                  Compare packed signed word integers in _mm_ and _mm/m64_ for greater than.
-  66 0F 65 /_r_ PCMPGTW _xmm1_, _xmm2/m128_                               A       V/V                      SSE2                 Compare packed signed word integers in _xmm1_ and _xmm2/m128_ for greater than.
-  NP 0F 66 /_r_¹ PCMPGTD _mm, mm/m64_                                     A       V/V                      MMX                  Compare packed signed doubleword integers in _mm_ and _mm/m64_ for greater than.
-  66 0F 66 /_r_ PCMPGTD _xmm1_, _xmm2/m128_                               A       V/V                      SSE2                 Compare packed signed doubleword integers in _xmm1_ and _xmm2/m128_ for greater than.
-  VEX.NDS.128.66.0F.WIG 64 /r VPCMPGTB _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed signed byte integers in _xmm2_ and _xmm3/m128_ for greater than.
-  VEX.NDS.128.66.0F.WIG 65 /r VPCMPGTW _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed signed word integers in _xmm2_ and _xmm3/m128_ for greater than.
-  VEX.NDS.128.66.0F.WIG 66 /r VPCMPGTD _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed signed doubleword integers in _xmm2_ and _xmm3/m128_ for greater than.
-  VEX.NDS.256.66.0F.WIG 64 /r VPCMPGTB _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Compare packed signed byte integers in _ymm2_ and _ymm3/m256_ for greater than.
-  VEX.NDS.256.66.0F.WIG 65 /r VPCMPGTW _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Compare packed signed word integers in _ymm2_ and _ymm3/m256_ for greater than.
-  VEX.NDS.256.66.0F.WIG 66 /r VPCMPGTD _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Compare packed signed doubleword integers in _ymm2_ and _ymm3/m256_ for greater than.
-  EVEX.NDS.128.66.0F.W0 66 /r VPCMPGTD k1 {k2}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Compare Greater between int32 vector xmm2 and int32 vector xmm3/m128/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.256.66.0F.W0 66 /r VPCMPGTD k1 {k2}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Compare Greater between int32 vector ymm2 and int32 vector ymm3/m256/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.512.66.0F.W0 66 /r VPCMPGTD k1 {k2}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Compare Greater between int32 elements in zmm2 and zmm3/m512/m32bcst, and set destination k1 according to the comparison results under writemask. k2.
-  EVEX.NDS.128.66.0F.WIG 64 /r VPCMPGTB k1 {k2}, xmm2, xmm3/m128          D       V/V                      AVX512VL AVX512BW    Compare packed signed byte integers in xmm2 and xmm3/m128 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.256.66.0F.WIG 64 /r VPCMPGTB k1 {k2}, ymm2, ymm3/m256          D       V/V                      AVX512VL AVX512BW    Compare packed signed byte integers in ymm2 and ymm3/m256 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 64 /_r_¹ PCMPGTB _mm, mm/m64_                                 A       V/V                      MMX                  Compare packed signed byte integers in _mm_ and _mm/m64_ for greater than.
+  66 0F 64 /_r_ PCMPGTB _xmm1_, _xmm2/m128_                           A       V/V                      SSE2                 Compare packed signed byte integers in _xmm1_ and _xmm2/m128_ for greater than.
+  NP 0F 65 /_r_¹ PCMPGTW _mm, mm/m64_                                 A       V/V                      MMX                  Compare packed signed word integers in _mm_ and _mm/m64_ for greater than.
+  66 0F 65 /_r_ PCMPGTW _xmm1_, _xmm2/m128_                           A       V/V                      SSE2                 Compare packed signed word integers in _xmm1_ and _xmm2/m128_ for greater than.
+  NP 0F 66 /_r_¹ PCMPGTD _mm, mm/m64_                                 A       V/V                      MMX                  Compare packed signed doubleword integers in _mm_ and _mm/m64_ for greater than.
+  66 0F 66 /_r_ PCMPGTD _xmm1_, _xmm2/m128_                           A       V/V                      SSE2                 Compare packed signed doubleword integers in _xmm1_ and _xmm2/m128_ for greater than.
+  VEX.128.66.0F.WIG 64 /r VPCMPGTB _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed signed byte integers in _xmm2_ and _xmm3/m128_ for greater than.
+  VEX.128.66.0F.WIG 65 /r VPCMPGTW _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed signed word integers in _xmm2_ and _xmm3/m128_ for greater than.
+  VEX.128.66.0F.WIG 66 /r VPCMPGTD _xmm1, xmm2, xmm3/m128_            B       V/V                      AVX                  Compare packed signed doubleword integers in _xmm2_ and _xmm3/m128_ for greater than.
+  VEX.256.66.0F.WIG 64 /r VPCMPGTB _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Compare packed signed byte integers in _ymm2_ and _ymm3/m256_ for greater than.
+  VEX.256.66.0F.WIG 65 /r VPCMPGTW _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Compare packed signed word integers in _ymm2_ and _ymm3/m256_ for greater than.
+  VEX.256.66.0F.WIG 66 /r VPCMPGTD _ymm1, ymm2, ymm3/m256_            B       V/V                      AVX2                 Compare packed signed doubleword integers in _ymm2_ and _ymm3/m256_ for greater than.
+  EVEX.128.66.0F.W0 66 /r VPCMPGTD k1 {k2}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Compare Greater between int32 vector xmm2 and int32 vector xmm3/m128/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.256.66.0F.W0 66 /r VPCMPGTD k1 {k2}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Compare Greater between int32 vector ymm2 and int32 vector ymm3/m256/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.512.66.0F.W0 66 /r VPCMPGTD k1 {k2}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Compare Greater between int32 elements in zmm2 and zmm3/m512/m32bcst, and set destination k1 according to the comparison results under writemask. k2.
+  EVEX.128.66.0F.WIG 64 /r VPCMPGTB k1 {k2}, xmm2, xmm3/m128          D       V/V                      AVX512VL AVX512BW    Compare packed signed byte integers in xmm2 and xmm3/m128 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.256.66.0F.WIG 64 /r VPCMPGTB k1 {k2}, ymm2, ymm3/m256          D       V/V                      AVX512VL AVX512BW    Compare packed signed byte integers in ymm2 and ymm3/m256 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
 
-  ---------------------------------------------------------------- --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.512.66.0F.WIG 64 /r VPCMPGTB k1 {k2}, zmm2, zmm3/m512   D   V/V   AVX512BW            Compare packed signed byte integers in zmm2 and zmm3/m512 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.128.66.0F.WIG 65 /r VPCMPGTW k1 {k2}, xmm2, xmm3/m128   D   V/V   AVX512VL AVX512BW   Compare packed signed word integers in xmm2 and xmm3/m128 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.256.66.0F.WIG 65 /r VPCMPGTW k1 {k2}, ymm2, ymm3/m256   D   V/V   AVX512VL AVX512BW   Compare packed signed word integers in ymm2 and ymm3/m256 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  EVEX.NDS.512.66.0F.WIG 65 /r VPCMPGTW k1 {k2}, zmm2, zmm3/m512   D   V/V   AVX512BW            Compare packed signed word integers in zmm2 and zmm3/m512 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
-  ---------------------------------------------------------------- --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------ --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.512.66.0F.WIG 64 /r VPCMPGTB k1 {k2}, zmm2, zmm3/m512   D   V/V   AVX512BW            Compare packed signed byte integers in zmm2 and zmm3/m512 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.128.66.0F.WIG 65 /r VPCMPGTW k1 {k2}, xmm2, xmm3/m128   D   V/V   AVX512VL AVX512BW   Compare packed signed word integers in xmm2 and xmm3/m128 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.256.66.0F.WIG 65 /r VPCMPGTW k1 {k2}, ymm2, ymm3/m256   D   V/V   AVX512VL AVX512BW   Compare packed signed word integers in ymm2 and ymm3/m256 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  EVEX.512.66.0F.WIG 65 /r VPCMPGTW k1 {k2}, zmm2, zmm3/m512   D   V/V   AVX512BW            Compare packed signed word integers in zmm2 and zmm3/m512 for greater than, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.
+  ------------------------------------------------------------ --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -41,7 +41,7 @@ PCMPGTB/PCMPGTW/PCMPGTD — COMPARE PACKED SIGNED INTEGERS FOR GREATER THAN
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -52,7 +52,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs an SIMD signed compare for the greater value of the packed
 byte, word, or doubleword integers in the destination operand (first
@@ -103,9 +103,9 @@ register, a 512/256/128-bit memory location. The destination operand
 k2.
 
 
-Operation¶
+Operation ¶
 
-PCMPGTB (with 64-bit operands)¶
+PCMPGTB (with 64-bit operands) ¶
 
     IF DEST[7:0] > SRC[7:0]
         THEN DEST[7:0) ← FFH;
@@ -115,7 +115,7 @@ PCMPGTB (with 64-bit operands)¶
         THEN DEST[63:56] ← FFH;
         ELSE DEST[63:56] ← 0; FI;
 
-COMPARE_BYTES_GREATER (SRC1, SRC2)¶
+COMPARE_BYTES_GREATER (SRC1, SRC2) ¶
 
         IF SRC1[7:0] > SRC2[7:0]
         THEN DEST[7:0]←FFH;
@@ -125,7 +125,7 @@ COMPARE_BYTES_GREATER (SRC1, SRC2)¶
         THEN DEST[127:120]←FFH;
         ELSE DEST[127:120]←0; FI;
 
-COMPARE_WORDS_GREATER (SRC1, SRC2)¶
+COMPARE_WORDS_GREATER (SRC1, SRC2) ¶
 
         IF SRC1[15:0] > SRC2[15:0]
         THEN DEST[15:0]←FFFFH;
@@ -135,7 +135,7 @@ COMPARE_WORDS_GREATER (SRC1, SRC2)¶
         THEN DEST[127:112]←FFFFH;
         ELSE DEST[127:112]←0; FI;
 
-COMPARE_DWORDS_GREATER (SRC1, SRC2)¶
+COMPARE_DWORDS_GREATER (SRC1, SRC2) ¶
 
         IF SRC1[31:0] > SRC2[31:0]
         THEN DEST[31:0]←FFFFFFFFH;
@@ -145,23 +145,23 @@ COMPARE_DWORDS_GREATER (SRC1, SRC2)¶
         THEN DEST[127:96]←FFFFFFFFH;
         ELSE DEST[127:96]←0; FI;
 
-PCMPGTB (with 128-bit operands)¶
+PCMPGTB (with 128-bit operands) ¶
 
     DEST[127:0] ←COMPARE_BYTES_GREATER(DEST[127:0],SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-VPCMPGTB (VEX.128 encoded version)¶
+VPCMPGTB (VEX.128 encoded version) ¶
 
     DEST[127:0] ←COMPARE_BYTES_GREATER(SRC1,SRC2)
     DEST[MAXVL-1:128] ← 0
 
-VPCMPGTB (VEX.256 encoded version)¶
+VPCMPGTB (VEX.256 encoded version) ¶
 
     DEST[127:0] ←COMPARE_BYTES_GREATER(SRC1[127:0],SRC2[127:0])
     DEST[255:128] ←COMPARE_BYTES_GREATER(SRC1[255:128],SRC2[255:128])
     DEST[MAXVL-1:256] ← 0
 
-VPCMPGTB (EVEX encoded versions)¶
+VPCMPGTB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -179,7 +179,7 @@ VPCMPGTB (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_KL-1:KL] ← 0
 
-PCMPGTW (with 64-bit operands)¶
+PCMPGTW (with 64-bit operands) ¶
 
     IF DEST[15:0] > SRC[15:0]
         THEN DEST[15:0] ← FFFFH;
@@ -189,23 +189,23 @@ PCMPGTW (with 64-bit operands)¶
         THEN DEST[63:48] ← FFFFH;
         ELSE DEST[63:48] ← 0; FI;
 
-PCMPGTW (with 128-bit operands)¶
+PCMPGTW (with 128-bit operands) ¶
 
     DEST[127:0] ←COMPARE_WORDS_GREATER(DEST[127:0],SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-VPCMPGTW (VEX.128 encoded version)¶
+VPCMPGTW (VEX.128 encoded version) ¶
 
     DEST[127:0] ←COMPARE_WORDS_GREATER(SRC1,SRC2)
     DEST[MAXVL-1:128] ← 0
 
-VPCMPGTW (VEX.256 encoded version)¶
+VPCMPGTW (VEX.256 encoded version) ¶
 
     DEST[127:0] ←COMPARE_WORDS_GREATER(SRC1[127:0],SRC2[127:0])
     DEST[255:128] ←COMPARE_WORDS_GREATER(SRC1[255:128],SRC2[255:128])
     DEST[MAXVL-1:256] ← 0
 
-VPCMPGTW (EVEX encoded versions)¶
+VPCMPGTW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -234,7 +234,7 @@ VPCMPGTW (EVEX encoded versions)¶
                 FI;
     DEST[MAX_KL-1:KL] ← 0
 
-PCMPGTD (with 64-bit operands)¶
+PCMPGTD (with 64-bit operands) ¶
 
     IF DEST[31:0] > SRC[31:0]
         THEN DEST[31:0] ← FFFFFFFFH;
@@ -243,23 +243,23 @@ PCMPGTD (with 64-bit operands)¶
         THEN DEST[63:32] ← FFFFFFFFH;
         ELSE DEST[63:32] ← 0; FI;
 
-PCMPGTD (with 128-bit operands)¶
+PCMPGTD (with 128-bit operands) ¶
 
     DEST[127:0] ←COMPARE_DWORDS_GREATER(DEST[127:0],SRC[127:0])
     DEST[MAXVL-1:128] (Unmodified)
 
-VPCMPGTD (VEX.128 encoded version)¶
+VPCMPGTD (VEX.128 encoded version) ¶
 
     DEST[127:0] ←COMPARE_DWORDS_GREATER(SRC1,SRC2)
     DEST[MAXVL-1:128] ← 0
 
-VPCMPGTD (VEX.256 encoded version)¶
+VPCMPGTD (VEX.256 encoded version) ¶
 
     DEST[127:0] ←COMPARE_DWORDS_GREATER(SRC1[127:0],SRC2[127:0])
     DEST[255:128] ←COMPARE_DWORDS_GREATER(SRC1[255:128],SRC2[255:128])
     DEST[MAXVL-1:256] ← 0
 
-VPCMPGTD (EVEX encoded versions)¶
+VPCMPGTD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -281,7 +281,7 @@ VPCMPGTD (EVEX encoded versions)¶
     DEST[MAX_KL-1:KL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPCMPGTB __mmask64 _mm512_cmpgt_epi8_mask(__m512i a, __m512i b);
 
@@ -338,17 +338,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPCMPGTD: __m256i _mm256_cmpgt_epi32 ( __m256i a, __m256i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

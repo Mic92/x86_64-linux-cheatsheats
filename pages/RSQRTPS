@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ RSQRTPS — COMPUTE RECIPROCALS OF SQUARE ROOTS OF PACKED SINGLE-PRECISION FLOAT
   VEX.256.0F.WIG 52 /r VRSQRTPS _ymm1, ymm2/m256_   RM      V/V                      AVX                  Computes the approximate reciprocals of the square roots of packed single-precision values in _ymm2/mem_ and stores the results in _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a SIMD computation of the approximate reciprocals of the square
 roots of the four packed single-precision floating-point values in the
@@ -65,9 +65,9 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-RSQRTPS (128-bit Legacy SSE version)¶
+RSQRTPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0] ← APPROXIMATE(1/SQRT(SRC[31:0]))
     DEST[63:32] ← APPROXIMATE(1/SQRT(SRC1[63:32]))
@@ -75,7 +75,7 @@ RSQRTPS (128-bit Legacy SSE version)¶
     DEST[127:96] ← APPROXIMATE(1/SQRT(SRC2[127:96]))
     DEST[MAXVL-1:128] (Unmodified)
 
-VRSQRTPS (VEX.128 encoded version)¶
+VRSQRTPS (VEX.128 encoded version) ¶
 
     DEST[31:0] ← APPROXIMATE(1/SQRT(SRC[31:0]))
     DEST[63:32] ← APPROXIMATE(1/SQRT(SRC1[63:32]))
@@ -83,7 +83,7 @@ VRSQRTPS (VEX.128 encoded version)¶
     DEST[127:96] ← APPROXIMATE(1/SQRT(SRC2[127:96]))
     DEST[MAXVL-1:128] ← 0
 
-VRSQRTPS (VEX.256 encoded version)¶
+VRSQRTPS (VEX.256 encoded version) ¶
 
     DEST[31:0] ← APPROXIMATE(1/SQRT(SRC[31:0]))
     DEST[63:32] ← APPROXIMATE(1/SQRT(SRC1[63:32]))
@@ -95,19 +95,19 @@ VRSQRTPS (VEX.256 encoded version)¶
     DEST[255:224] ← APPROXIMATE(1/SQRT(SRC2[255:224]))
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RSQRTPS: __m128 _mm_rsqrt_ps(__m128 a)
 
     RSQRTPS: __m256 _mm256_rsqrt_ps (__m256 a);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

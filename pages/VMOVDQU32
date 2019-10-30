@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -40,7 +40,7 @@ MOVDQU/VMOVDQU8/VMOVDQU16/VMOVDQU32/VMOVDQU64 — MOVE UNALIGNED PACKED INTEGER 
   EVEX.512.F3.0F.W1 7F /r VMOVDQU64 zmm2/m512 {k1}{z}, zmm1    D       V/V                      AVX512F              Move unaligned packed quadword integer values from zmm1 to zmm2/m512 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -50,7 +50,7 @@ Instruction Operand Encoding¶
   D       Full Mem     ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
@@ -78,7 +78,7 @@ to move data between two YMM registers.
 
 Bits (MAXVL-1:256) of the destination register are zeroed.
 
-128-bit versions:¶
+128-bit versions: ¶
 
 Moves 128 bits of packed integer values from the source operand (second
 operand) to the destination operand (first operand). This instruction
@@ -96,9 +96,9 @@ exception (#GP) to be generated
 VEX.128 ENCODED VERSION: Bits (MAXVL-1:128) of the destination register
 are zeroed.
 
-Operation¶
+Operation ¶
 
-VMOVDQU8 (EVEX encoded versions, register-copy form)¶
+VMOVDQU8 (EVEX encoded versions, register-copy form) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -114,7 +114,7 @@ VMOVDQU8 (EVEX encoded versions, register-copy form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU8 (EVEX encoded versions, store-form)¶
+VMOVDQU8 (EVEX encoded versions, store-form) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -128,7 +128,7 @@ VMOVDQU8 (EVEX encoded versions, store-form)¶
                 ;
     ENDFOR;
 
-VMOVDQU8 (EVEX encoded versions, load-form)¶
+VMOVDQU8 (EVEX encoded versions, load-form) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -144,7 +144,7 @@ VMOVDQU8 (EVEX encoded versions, load-form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU16 (EVEX encoded versions, register-copy form)¶
+VMOVDQU16 (EVEX encoded versions, register-copy form) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -160,7 +160,7 @@ VMOVDQU16 (EVEX encoded versions, register-copy form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU16 (EVEX encoded versions, store-form)¶
+VMOVDQU16 (EVEX encoded versions, store-form) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -174,7 +174,7 @@ VMOVDQU16 (EVEX encoded versions, store-form)¶
                 ;
     ENDFOR;
 
-VMOVDQU16 (EVEX encoded versions, load-form)¶
+VMOVDQU16 (EVEX encoded versions, load-form) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -190,7 +190,7 @@ VMOVDQU16 (EVEX encoded versions, load-form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU32 (EVEX encoded versions, register-copy form)¶
+VMOVDQU32 (EVEX encoded versions, register-copy form) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -206,7 +206,7 @@ VMOVDQU32 (EVEX encoded versions, register-copy form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU32 (EVEX encoded versions, store-form)¶
+VMOVDQU32 (EVEX encoded versions, store-form) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -220,7 +220,7 @@ VMOVDQU32 (EVEX encoded versions, store-form)¶
                 ;
     ENDFOR;
 
-VMOVDQU32 (EVEX encoded versions, load-form)¶
+VMOVDQU32 (EVEX encoded versions, load-form) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -236,7 +236,7 @@ VMOVDQU32 (EVEX encoded versions, load-form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU64 (EVEX encoded versions, register-copy form)¶
+VMOVDQU64 (EVEX encoded versions, register-copy form) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -252,7 +252,7 @@ VMOVDQU64 (EVEX encoded versions, register-copy form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU64 (EVEX encoded versions, store-form)¶
+VMOVDQU64 (EVEX encoded versions, store-form) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -264,7 +264,7 @@ VMOVDQU64 (EVEX encoded versions, store-form)¶
         FI;
     ENDFOR;
 
-VMOVDQU64 (EVEX encoded versions, load-form)¶
+VMOVDQU64 (EVEX encoded versions, load-form) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -280,28 +280,28 @@ VMOVDQU64 (EVEX encoded versions, load-form)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VMOVDQU (VEX.256 encoded version, load - and register copy)¶
+VMOVDQU (VEX.256 encoded version, load - and register copy) ¶
 
     DEST[255:0] ← SRC[255:0]
     DEST[MAXVL-1:256] ← 0
 
-VMOVDQU (VEX.256 encoded version, store-form)¶
+VMOVDQU (VEX.256 encoded version, store-form) ¶
 
     DEST[255:0] ← SRC[255:0]
     VMOVDQU (VEX.128 encoded version)
     DEST[127:0] ← SRC[127:0]
     DEST[MAXVL-1:128] ← 0
 
-VMOVDQU (128-bit load- and register-copy- form Legacy SSE version)¶
+VMOVDQU (128-bit load- and register-copy- form Legacy SSE version) ¶
 
     DEST[127:0] ← SRC[127:0]
     DEST[MAXVL-1:128] (Unmodified)
 
-(V)MOVDQU (128-bit store-form version)¶
+(V)MOVDQU (128-bit store-form version) ¶
 
     DEST[127:0] ← SRC[127:0]
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVDQU16 __m512i _mm512_mask_loadu_epi16(__m512i s, __mmask32 k, void * sa);
 
@@ -399,11 +399,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MOVDQU _mm_storeu_si128(__m128i *p, __m128i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4;
 

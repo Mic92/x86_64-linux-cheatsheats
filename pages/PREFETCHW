@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -8,10 +8,10 @@ PREFETCHW — PREFETCH DATA INTO CACHES IN ANTICIPATION OF A WRITE
 
   Opcode/Instruction      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------
-  0F 0D /1 PREFETCHW m8   A       V/V                      PRFCHW               Move data from m8 closer to the processor in anticipation of a write.
+  0F 0D /1 PREFETCHW m8   A       V/V                      PREFETCHW            Move data from m8 closer to the processor in anticipation of a write.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Fetches the cache line of data from memory that contains the byte
 specified with the source operand to a location in the 1st or 2nd level
@@ -61,50 +61,50 @@ This instruction's operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     FETCH_WITH_EXCLUSIVE_OWNERSHIP (m8);
 
 
-Flags Affected¶
+Flags Affected ¶
 
-All flags are affected
+All flags are affected.
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     void _m_prefetchw( void * );
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.

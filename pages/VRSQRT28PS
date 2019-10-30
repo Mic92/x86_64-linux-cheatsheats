@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,14 +11,14 @@ VRSQRT28PS — APPROXIMATION TO THE RECIPROCAL SQUARE ROOT OF PACKED SINGLE-PREC
   EVEX.512.66.0F38.W0 CC /r VRSQRT28PS zmm1 {k1}{z}, zmm2/m512/m32bcst {sae}   A       V/V                      AVX512ER             Computes approximations to the Reciprocal square root (<2^-28 relative error) of the packed single-precision floating-point values from zmm2/m512/m32bcst and stores result in zmm1with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Computes the reciprocal square root of the float32 values in the source
 operand (the second operand) and store the results to the destination
@@ -43,13 +43,13 @@ writemask k1.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-A numerically exact implementation of VRSQRT28xx can be found at https://software.intel.com/en-us/arti-¶
+A numerically exact implementation of VRSQRT28xx can be found at https://software.intel.com/en-us/arti- ¶
 
-cles/reference-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2.¶
+cles/reference-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2. ¶
 
-Operation¶
+Operation ¶
 
-VRSQRT28PS (EVEX encoded versions)¶
+VRSQRT28PS (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 512)
     FOR j←0 TO KL-1
@@ -79,7 +79,7 @@ VRSQRT28PS (EVEX encoded versions)¶
 
 Table 6-41. VRSQRT28PS Special Cases
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRSQRT28PS __m512 _mm512_rsqrt28_round_ps(__m512 a, int sae);
 
@@ -87,11 +87,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRSQRT28PS __m512 _mm512_maskz_rsqrt28_round_ps(__mmask16 m,__m512 a, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (if SNaN input), Divide-by-zero
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

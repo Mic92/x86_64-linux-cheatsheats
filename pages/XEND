@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ XEND — TRANSACTIONAL END
   NP 0F 01 D5 XEND     A       V/V                     RTM                  Specifies the end of an RTM code region.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ---------- ---------- ----------
   Op/En   Operand 1   Operand2   Operand3   Operand4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ---------- ---------- ----------
 
 
-Description¶
+Description ¶
 
 The instruction marks the end of an RTM code region. If this corresponds
 to the outermost scope (that is, including this XEND instruction, the
@@ -35,9 +35,9 @@ XEND executed outside a transactional region will cause a #GP (General
 Protection Fault).
 
 
-Operation¶
+Operation ¶
 
-XEND¶
+XEND ¶
 
     IF (RTM_ACTIVE = 0) THEN
         SIGNAL #GP
@@ -69,28 +69,28 @@ XEND¶
     END
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     XEND: void _xend( void );
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 #UD
 
 CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11] = 0.
 
-If LOCK or 66H or F2H or F3H prefix is used.
+If LOCK prefix is used.
 
 #GP(0)
 

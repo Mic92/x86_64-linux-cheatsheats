@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,14 +11,14 @@ VRCP28PD — APPROXIMATION TO THE RECIPROCAL OF PACKED DOUBLE-PRECISION FLOATING
   EVEX.512.66.0F38.W1 CA /r VRCP28PD zmm1 {k1}{z}, zmm2/m512/m64bcst {sae}   A       V/V                      AVX512ER             Computes the approximate reciprocals ( < 2^-28 relative error) of the packed double-precision floating-point values in zmm2/m512/m64bcst and stores the results in zmm1. Under writemask.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Computes the reciprocal approximation of the float64 values in the
 source operand (the second operand) and store the results to the
@@ -41,13 +41,13 @@ writemask k1.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-A numerically exact implementation of VRCP28xx can be found at https://software.intel.com/en-us/articles/refer-¶
+A numerically exact implementation of VRCP28xx can be found at https://software.intel.com/en-us/articles/refer- ¶
 
-ence-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2.¶
+ence-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2. ¶
 
-Operation¶
+Operation ¶
 
-VRCP28PD (EVEX encoded versions)¶
+VRCP28PD (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 512)
     FOR j←0 TO KL-1
@@ -80,7 +80,7 @@ VRCP28PD (EVEX encoded versions)¶
 
 Table 6-35. VRCP28PD Special Cases
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRCP28PD __m512d _mm512_rcp28_round_pd ( __m512d a, int sae);
 
@@ -88,11 +88,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRCP28PD __m512d _mm512_maskz_rcp28_round_pd( __mmask8 m, __m512d b, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (if SNaN input), Divide-by-zero
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ MWAIT — MONITOR WAIT
   0F 01 C9   MWAIT         ZO      Valid         Valid             A hint that allows the processor to stop instruction execution and enter an implementation-dependent optimized state until occurrence of a class of events.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 MWAIT instruction provides hints to allow the processor to enter an
 implementation-dependent optimized state. There are two principal
@@ -46,7 +46,7 @@ use the CPUID instruction to determine the extensions and hints
 supported by the processor.
 
 
-MWAIT for Address Range Monitoring¶
+MWAIT for Address Range Monitoring ¶
 
 For address-range monitoring, the MWAIT instruction operates with the
 MONITOR instruction. The two instructions allow the definition of an
@@ -86,7 +86,7 @@ implementation-dependent-optimized state. Execution will resume at the
 instruction following the MWAIT.
 
 
-MWAIT for Power Management¶
+MWAIT for Power Management ¶
 
 MWAIT accepts a hint and optional extension to the processor that it can
 enter a specified target C state while waiting for an event or a store
@@ -134,7 +134,7 @@ Thermal Management,” of _Intel® 64 and IA-32 Architectures Software
 Developer’s Manual, Volume 3A_.
 
 
-Operation¶
+Operation ¶
 
     (* MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension
     MWAIT EAX, ECX *)
@@ -145,12 +145,12 @@ Operation¶
     }
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MWAIT: void _mm_mwait(unsigned extensions, unsigned hints)
 
 
-Example¶
+Example ¶
 
 MONITOR/MWAIT instruction pair must be coded in the same loop because
 execution of the MWAIT instruction will trigger the monitor hardware. It
@@ -185,12 +185,12 @@ would go un-noticed. Typical usage of MONITOR and MWAIT would have the
 above code sequence within a loop.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -205,7 +205,7 @@ If CPUID.01H:ECX.MONITOR[bit 3] = 0.
 If current privilege level is not 0.
 
 
-Real Address Mode Exceptions¶
+Real Address Mode Exceptions ¶
 
 #GP
 
@@ -218,19 +218,19 @@ If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
 If CPUID.01H:ECX.MONITOR[bit 3] = 0.
 
 
-Virtual 8086 Mode Exceptions¶
+Virtual 8086 Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------------------------------------------------
   #UD   The MWAIT instruction is not recognized in virtual-8086 mode (even if CPUID.01H:ECX.MONITOR[bit 3] = 1).
   ----- ----------------------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

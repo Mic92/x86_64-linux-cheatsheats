@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ PAUSE — SPIN LOOP HINT
   F3 90    PAUSE         ZO      Valid         Valid             Gives hint to processor that improves performance of spin-wait loops.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Improves the performance of spin-wait loops. When executing a “spin-wait
 loop,” processors will suffer a severe performance penalty when exiting
@@ -49,17 +49,17 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     Execute_Next_Instruction(DELAY);
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Exceptions (All Operating Modes)¶
+Exceptions (All Operating Modes) ¶
 
 #UD If the LOCK prefix is used.
 

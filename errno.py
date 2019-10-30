@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+import errno
 import os
 
 
 def main():
     with open("pages/errno", "w") as f:
-        for k, v in sorted(os.errno.errorcode.items()):
+        for k, v in sorted(errno.errorcode.items()):
             name = os.strerror(k)
             content = "{:>3} {:>15} {}\n".format(k, v, name)
             f.write(content)

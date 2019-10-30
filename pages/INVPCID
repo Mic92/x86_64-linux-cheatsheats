@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,15 +12,15 @@ INVPCID — INVALIDATE PROCESS-CONTEXT IDENTIFIER
   66 0F 38 82 /r INVPCID r64, m128   RM      V/NE             INVPCID              Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r64 and descriptor in m128.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
-  RM      ModRM:reg (R)   ModRM:r/m (R)   NA          NA
+  RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Invalidates mappings in the translation lookaside buffers (TLBs) and
 paging-structure caches based on process-context identifier (PCID). (See
@@ -77,7 +77,7 @@ Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the _Intel® 64
 and IA-32 Architectures Software Developer’s Manual, Volume 3A_).
 
 
-Operation¶
+Operation ¶
 
     INVPCID_TYPE ← value of register operand; // must be in the range of 0–3
     INVPCID_DESC ← value of memory operand;
@@ -104,17 +104,17 @@ Operation¶
     ESAC;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     INVPCID: void _invpcid(unsigned __int32 type, void * descriptor);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -154,7 +154,7 @@ If if CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -175,19 +175,19 @@ If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   -------- -----------------------------------------------------------------
   #GP(0)   The INVPCID instruction is not recognized in virtual-8086 mode.
   -------- -----------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

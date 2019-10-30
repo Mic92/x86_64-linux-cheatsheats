@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -19,14 +19,14 @@ VPMOVQD/VPMOVSQD/VPMOVUSQD — DOWN CONVERT QWORD TO DWORD
   EVEX.512.F3.0F38.W0 15 /_r_ VPMOVUSQD _ymm1/m256 {k1}{z}, zmm2_   A       V/V                      AVX512F              Converts 8 packed unsigned quad-word integers from _zmm2_ into 8 packed unsigned double-word integers in _ymm1/m256_ using unsigned saturation subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Half Mem     ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 VPMOVQW down converts 64-bit integer elements in the source operand (the
 second operand) into packed double-words using truncation. VPMOVSQW
@@ -45,9 +45,9 @@ zeroed.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPMOVQD instruction (EVEX encoded version) reg-reg form¶
+VPMOVQD instruction (EVEX encoded version) reg-reg form ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -63,7 +63,7 @@ VPMOVQD instruction (EVEX encoded version) reg-reg form¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0;
 
-VPMOVQD instruction (EVEX encoded version) memory form¶
+VPMOVQD instruction (EVEX encoded version) memory form ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -75,7 +75,7 @@ VPMOVQD instruction (EVEX encoded version) memory form¶
         FI;
     ENDFOR
 
-VPMOVSQD instruction (EVEX encoded version) reg-reg form¶
+VPMOVSQD instruction (EVEX encoded version) reg-reg form ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -94,7 +94,7 @@ VPMOVSQD instruction (EVEX encoded version) reg-reg form¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0;
 
-VPMOVSQD instruction (EVEX encoded version) memory form¶
+VPMOVSQD instruction (EVEX encoded version) memory form ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -106,7 +106,7 @@ VPMOVSQD instruction (EVEX encoded version) memory form¶
         FI;
     ENDFOR
 
-VPMOVUSQD instruction (EVEX encoded version) reg-reg form¶
+VPMOVUSQD instruction (EVEX encoded version) reg-reg form ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -125,7 +125,7 @@ VPMOVUSQD instruction (EVEX encoded version) reg-reg form¶
     ENDFOR
     DEST[MAXVL-1:VL/2] ← 0;
 
-VPMOVUSQD instruction (EVEX encoded version) memory form¶
+VPMOVUSQD instruction (EVEX encoded version) memory form ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -137,7 +137,7 @@ VPMOVUSQD instruction (EVEX encoded version) memory form¶
         FI;
     ENDFOR
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMOVQD __m256i _mm512_cvtepi64_epi32( __m512i a);
 
@@ -211,11 +211,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     VPMOVQD void _mm_mask_cvtepi64_storeu_epi32(void * , __mmask8 k, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E6.
 

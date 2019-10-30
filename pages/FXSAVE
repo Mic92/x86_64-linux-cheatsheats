@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ FXSAVE — SAVE X87 FPU, MMX TECHNOLOGY, AND SSE STATE
   NP REX.W + 0F AE /0 FXSAVE64 _m512byte_   M       Valid         N.E.              Save the x87 FPU, MMX, XMM, and MXCSR register state to _m512byte_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Saves the current state of the x87 FPU, MMX technology, XMM, and MXCSR
 registers to a 512-byte memory location specified in the destination
@@ -34,7 +34,7 @@ write to bytes 464:511 of an FXSAVE area.
 The operation of FXSAVE in non-64-bit modes is described first.
 
 
-Non-64-Bit Mode Operation¶
+Non-64-Bit Mode Operation ¶
 
 Table 3-43 shows the layout of the state information in memory when the
 processor is operating in legacy modes.
@@ -409,7 +409,7 @@ When the M-bit is the most significant bit of the fractional portion of
 the significand, it must be 0 if the fraction is all 0’s.
 
 
-IA-32e Mode Operation¶
+IA-32e Mode Operation ¶
 
 In compatibility sub-mode of IA-32e mode, legacy SSE registers, XMM0
 through XMM7, are saved according to the legacy FXSAVE map. In 64-bit
@@ -785,7 +785,7 @@ Available
 Table 3-47. Layout of the 64-bit-mode FXSAVE Map (REX.W = 0)
 
 
-Operation¶
+Operation ¶
 
     IF 64-Bit Mode
         THEN
@@ -801,7 +801,7 @@ Operation¶
     FI;
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -849,7 +849,7 @@ general protection exception might be signaled for all other
 misalignments (4-, 8-, or 16-byte misalignments).
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -872,7 +872,7 @@ If CPUID.01H:EDX.FXSR[bit 24] = 0.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
@@ -883,12 +883,12 @@ Same exceptions as in real address mode.
   ----------------- ---------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 
@@ -933,7 +933,7 @@ general protection exception might be signaled for all other
 misalignments (4-, 8-, or 16-byte misalignments).
 
 
-Implementation Note¶
+Implementation Note ¶
 
 The order in which the processor signals general-protection (#GP) and
 page-fault (#PF) exceptions when they both occur on an instruction

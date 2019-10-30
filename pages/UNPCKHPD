@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 UNPCKHPD — UNPACK AND INTERLEAVE HIGH PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 15 /r UNPCKHPD xmm1, xmm2/m128                                          A       V/V                      SSE2                 Unpacks and Interleaves double-precision floating-point values from high quadwords of xmm1 and xmm2/m128.
-  VEX.NDS.128.66.0F.WIG 15 /r VUNPCKHPD xmm1,xmm2, xmm3/m128                    B       V/V                      AVX                  Unpacks and Interleaves double-precision floating-point values from high quadwords of xmm2 and xmm3/m128.
-  VEX.NDS.256.66.0F.WIG 15 /r VUNPCKHPD ymm1,ymm2, ymm3/m256                    B       V/V                      AVX                  Unpacks and Interleaves double-precision floating-point values from high quadwords of ymm2 and ymm3/m256.
-  EVEX.NDS.128.66.0F.W1 15 /r VUNPCKHPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves double precision floating-point values from high quadwords of xmm2 and xmm3/m128/m64bcst subject to writemask k1.
-  EVEX.NDS.256.66.0F.W1 15 /r VUNPCKHPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves double precision floating-point values from high quadwords of ymm2 and ymm3/m256/m64bcst subject to writemask k1.
-  EVEX.NDS.512.66.0F.W1 15 /r VUNPCKHPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Unpacks and Interleaves double-precision floating-point values from high quadwords of zmm2 and zmm3/m512/m64bcst subject to writemask k1.
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 15 /r UNPCKHPD xmm1, xmm2/m128                                      A       V/V                      SSE2                 Unpacks and Interleaves double-precision floating-point values from high quadwords of xmm1 and xmm2/m128.
+  VEX.128.66.0F.WIG 15 /r VUNPCKHPD xmm1,xmm2, xmm3/m128                    B       V/V                      AVX                  Unpacks and Interleaves double-precision floating-point values from high quadwords of xmm2 and xmm3/m128.
+  VEX.256.66.0F.WIG 15 /r VUNPCKHPD ymm1,ymm2, ymm3/m256                    B       V/V                      AVX                  Unpacks and Interleaves double-precision floating-point values from high quadwords of ymm2 and ymm3/m256.
+  EVEX.128.66.0F.W1 15 /r VUNPCKHPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves double precision floating-point values from high quadwords of xmm2 and xmm3/m128/m64bcst subject to writemask k1.
+  EVEX.256.66.0F.W1 15 /r VUNPCKHPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves double precision floating-point values from high quadwords of ymm2 and ymm3/m256/m64bcst subject to writemask k1.
+  EVEX.512.66.0F.W1 15 /r VUNPCKHPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Unpacks and Interleaves double-precision floating-point values from high quadwords of zmm2 and zmm3/m512/m64bcst subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs an interleaved unpack of the high double-precision
 floating-point values from the first source operand and the second
@@ -67,9 +67,9 @@ or a 128-bit vector broadcasted from a 64-bit memory location. The
 destination operand is a XMM register, conditionally updated using
 writemask k1.
 
-Operation¶
+Operation ¶
 
-VUNPCKHPD (EVEX encoded versions when SRC2 is a register)¶
+VUNPCKHPD (EVEX encoded versions when SRC2 is a register) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF VL >= 128
@@ -102,7 +102,7 @@ VUNPCKHPD (EVEX encoded versions when SRC2 is a register)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VUNPCKHPD (EVEX encoded version when SRC2 is memory)¶
+VUNPCKHPD (EVEX encoded version when SRC2 is memory) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -142,7 +142,7 @@ VUNPCKHPD (EVEX encoded version when SRC2 is memory)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VUNPCKHPD (VEX.256 encoded version)¶
+VUNPCKHPD (VEX.256 encoded version) ¶
 
     DEST[63:0] ←SRC1[127:64]
     DEST[127:64] ←SRC2[127:64]
@@ -150,19 +150,19 @@ VUNPCKHPD (VEX.256 encoded version)¶
     DEST[255:192]←SRC2[255:192]
     DEST[MAXVL-1:256] ←0
 
-VUNPCKHPD (VEX.128 encoded version)¶
+VUNPCKHPD (VEX.128 encoded version) ¶
 
     DEST[63:0] ←SRC1[127:64]
     DEST[127:64] ←SRC2[127:64]
     DEST[MAXVL-1:128] ←0
 
-UNPCKHPD (128-bit Legacy SSE version)¶
+UNPCKHPD (128-bit Legacy SSE version) ¶
 
     DEST[63:0] ←SRC1[127:64]
     DEST[127:64] ←SRC2[127:64]
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VUNPCKHPD __m512d _mm512_unpackhi_pd( __m512d a, __m512d b);
 
@@ -182,11 +182,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VUNPCKHPD __m128d _mm_maskz_unpackhi_pd(__mmask8 k, __m128d a, __m128d b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instructions, see Exceptions Type 4.
 

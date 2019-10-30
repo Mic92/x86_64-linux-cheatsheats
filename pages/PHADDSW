@@ -1,17 +1,17 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PHADDSW — PACKED HORIZONTAL ADD AND SATURATE
 
 
-  Opcode/Instruction                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------
-  NP 0F 38 03 /r¹ PHADDSW _mm1, mm2/m64_                           RM      V/V                      SSSE3                Add 16-bit signed integers horizontally, pack saturated integers to _mm1_.
-  66 0F 38 03 /r PHADDSW _xmm1, xmm2/m128_                         RM      V/V                      SSSE3                Add 16-bit signed integers horizontally, pack saturated integers to _xmm1_.
-  VEX.NDS.128.66.0F38.WIG 03 /r VPHADDSW _xmm1, xmm2, xmm3/m128_   RVM     V/V                      AVX                  Add 16-bit signed integers horizontally, pack saturated integers to _xmm1_.
-  VEX.NDS.256.66.0F38.WIG 03 /r VPHADDSW _ymm1, ymm2, ymm3/m256_   RVM     V/V                      AVX2                 Add 16-bit signed integers horizontally, pack saturated integers to _ymm1_.
+  Opcode/Instruction                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------ ------- ------------------------ -------------------- -----------------------------------------------------------------------------
+  NP 0F 38 03 /r¹ PHADDSW _mm1, mm2/m64_                       RM      V/V                      SSSE3                Add 16-bit signed integers horizontally, pack saturated integers to _mm1_.
+  66 0F 38 03 /r PHADDSW _xmm1, xmm2/m128_                     RM      V/V                      SSSE3                Add 16-bit signed integers horizontally, pack saturated integers to _xmm1_.
+  VEX.128.66.0F38.WIG 03 /r VPHADDSW _xmm1, xmm2, xmm3/m128_   RVM     V/V                      AVX                  Add 16-bit signed integers horizontally, pack saturated integers to _xmm1_.
+  VEX.256.66.0F38.WIG 03 /r VPHADDSW _ymm1, ymm2, ymm3/m256_   RVM     V/V                      AVX2                 Add 16-bit signed integers horizontally, pack saturated integers to _ymm1_.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -21,7 +21,7 @@ PHADDSW — PACKED HORIZONTAL ADD AND SATURATE
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3       Operand 4
@@ -30,7 +30,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 (V)PHADDSW adds two adjacent signed 16-bit integers horizontally from
 the source and destination operands and saturates the signed results;
@@ -61,16 +61,16 @@ YMM registers. The second source operand can be an YMM register or a
 Note: VEX.L must be 0, otherwise the instruction will #UD.
 
 
-Operation¶
+Operation ¶
 
-PHADDSW (with 64-bit operands)¶
+PHADDSW (with 64-bit operands) ¶
 
     mm1[15-0] = SaturateToSignedWord((mm1[31-16] + mm1[15-0]);
     mm1[31-16] = SaturateToSignedWord(mm1[63-48] + mm1[47-32]);
     mm1[47-32] = SaturateToSignedWord(mm2/m64[31-16] + mm2/m64[15-0]);
     mm1[63-48] = SaturateToSignedWord(mm2/m64[63-48] + mm2/m64[47-32]);
 
-PHADDSW (with 128-bit operands)¶
+PHADDSW (with 128-bit operands) ¶
 
     xmm1[15-0]= SaturateToSignedWord(xmm1[31-16] + xmm1[15-0]);
     xmm1[31-16] = SaturateToSignedWord(xmm1[63-48] + xmm1[47-32]);
@@ -81,7 +81,7 @@ PHADDSW (with 128-bit operands)¶
     xmm1[111-96] = SaturateToSignedWord(xmm2/m128[95-80] + xmm2/m128[79-64]);
     xmm1[127-112] = SaturateToSignedWord(xmm2/m128[127-112] + xmm2/m128[111-96]);
 
-VPHADDSW (VEX.128 encoded version)¶
+VPHADDSW (VEX.128 encoded version) ¶
 
     DEST[15:0]= SaturateToSignedWord(SRC1[31:16] + SRC1[15:0])
     DEST[31:16] = SaturateToSignedWord(SRC1[63:48] + SRC1[47:32])
@@ -93,7 +93,7 @@ VPHADDSW (VEX.128 encoded version)¶
     DEST[127:112] = SaturateToSignedWord(SRC2[127:112] + SRC2[111:96])
     DEST[MAXVL-1:128] ← 0
 
-VPHADDSW (VEX.256 encoded version)¶
+VPHADDSW (VEX.256 encoded version) ¶
 
     DEST[15:0]= SaturateToSignedWord(SRC1[31:16] + SRC1[15:0])
     DEST[31:16] = SaturateToSignedWord(SRC1[63:48] + SRC1[47:32])
@@ -113,7 +113,7 @@ VPHADDSW (VEX.256 encoded version)¶
     DEST[255:240] = SaturateToSignedWord(SRC2[255:240] + SRC2[239:224])
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PHADDSW: __m64 _mm_hadds_pi16 (__m64 a, __m64 b)
 
@@ -122,12 +122,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPHADDSW: __m256i _mm256_hadds_epi16 (__m256i a, __m256i b)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

@@ -1,27 +1,27 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PAVGB/PAVGW — AVERAGE PACKED INTEGERS
 
 
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------
-  NP 0F E0 /_r_¹ PAVGB _mm1, mm2/m64_                                     A       V/V                      SSE                  Average packed unsigned byte integers from _mm2/m64_ and _mm1_ with rounding.
-  66 0F E0, /_r_ PAVGB _xmm1_, _xmm2/m128_                                A       V/V                      SSE2                 Average packed unsigned byte integers from _xmm2/m128_ and _xmm1_ with rounding.
-  NP 0F E3 /_r_¹ PAVGW _mm1, mm2/m64_                                     A       V/V                      SSE                  Average packed unsigned word integers from mm2/m64 and _mm1_ with rounding.
-  66 0F E3 /_r_ PAVGW _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Average packed unsigned word integers from _xmm2/m128_ and _xmm1_ with rounding.
-  VEX.NDS.128.66.0F.WIG E0 /r VPAVGB _xmm1, xmm2, xmm3/m128_              B       V/V                      AVX                  Average packed unsigned byte integers from _xmm3/m128_ and _xmm2_ with rounding.
-  VEX.NDS.128.66.0F.WIG E3 /r VPAVGW _xmm1, xmm2, xmm3/m128_              B       V/V                      AVX                  Average packed unsigned word integers from _xmm3/m128_ and _xmm2_ with rounding.
-  VEX.NDS.256.66.0F.WIG E0 /r VPAVGB _ymm1_, _ymm2, ymm3/m256_            B       V/V                      AVX2                 Average packed unsigned byte integers from ymm2, and _ymm3/m256_ with rounding and store to _ymm1_.
-  VEX.NDS.256.66.0F.WIG E3 /r VPAVGW _ymm1_, _ymm2, ymm3/m256_            B       V/V                      AVX2                 Average packed unsigned word integers from _ymm2_, _ymm3/m256_ with rounding to _ymm1_.
-  EVEX.NDS.128.66.0F.WIG E0 /r VPAVGB _xmm1_ {k1}{z}, _xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned byte integers from xmm2, and _xmm3/m128_ with rounding and store to xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F.WIG E0 /r VPAVGB _ymm1_ {k1}{z}, _ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned byte integers from ymm2, and _ymm3/m256_ with rounding and store to ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F.WIG E0 /r VPAVGB _zmm1_ {k1}{z}, _zmm2, zmm3/m512_   C       V/V                      AVX512BW             Average packed unsigned byte integers from zmm2, and _zmm3/m512_ with rounding and store to zmm1 under writemask k1.
-  EVEX.NDS.128.66.0F.WIG E3 /r VPAVGW _xmm1_ {k1}{z}, _xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned word integers from xmm2, _xmm3/m128_ with rounding to xmm1 under writemask k1.
-  EVEX.NDS.256.66.0F.WIG E3 /r VPAVGW _ymm1_ {k1}{z}, _ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned word integers from ymm2, _ymm3/m256_ with rounding to ymm1 under writemask k1.
-  EVEX.NDS.512.66.0F.WIG E3 /r VPAVGW _zmm1_ {k1}{z}, _zmm2, zmm3/m512_   C       V/V                      AVX512BW             Average packed unsigned word integers from zmm2, _zmm3/m512_ with rounding to zmm1 under writemask k1.
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------
+  NP 0F E0 /_r_¹ PAVGB _mm1, mm2/m64_                                 A       V/V                      SSE                  Average packed unsigned byte integers from _mm2/m64_ and _mm1_ with rounding.
+  66 0F E0, /_r_ PAVGB _xmm1_, _xmm2/m128_                            A       V/V                      SSE2                 Average packed unsigned byte integers from _xmm2/m128_ and _xmm1_ with rounding.
+  NP 0F E3 /_r_¹ PAVGW _mm1, mm2/m64_                                 A       V/V                      SSE                  Average packed unsigned word integers from mm2/m64 and _mm1_ with rounding.
+  66 0F E3 /_r_ PAVGW _xmm1_, _xmm2/m128_                             A       V/V                      SSE2                 Average packed unsigned word integers from _xmm2/m128_ and _xmm1_ with rounding.
+  VEX.128.66.0F.WIG E0 /r VPAVGB _xmm1, xmm2, xmm3/m128_              B       V/V                      AVX                  Average packed unsigned byte integers from _xmm3/m128_ and _xmm2_ with rounding.
+  VEX.128.66.0F.WIG E3 /r VPAVGW _xmm1, xmm2, xmm3/m128_              B       V/V                      AVX                  Average packed unsigned word integers from _xmm3/m128_ and _xmm2_ with rounding.
+  VEX.256.66.0F.WIG E0 /r VPAVGB _ymm1_, _ymm2, ymm3/m256_            B       V/V                      AVX2                 Average packed unsigned byte integers from ymm2, and _ymm3/m256_ with rounding and store to _ymm1_.
+  VEX.256.66.0F.WIG E3 /r VPAVGW _ymm1_, _ymm2, ymm3/m256_            B       V/V                      AVX2                 Average packed unsigned word integers from _ymm2_, _ymm3/m256_ with rounding to _ymm1_.
+  EVEX.128.66.0F.WIG E0 /r VPAVGB _xmm1_ {k1}{z}, _xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned byte integers from xmm2, and _xmm3/m128_ with rounding and store to xmm1 under writemask k1.
+  EVEX.256.66.0F.WIG E0 /r VPAVGB _ymm1_ {k1}{z}, _ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned byte integers from ymm2, and _ymm3/m256_ with rounding and store to ymm1 under writemask k1.
+  EVEX.512.66.0F.WIG E0 /r VPAVGB _zmm1_ {k1}{z}, _zmm2, zmm3/m512_   C       V/V                      AVX512BW             Average packed unsigned byte integers from zmm2, and _zmm3/m512_ with rounding and store to zmm1 under writemask k1.
+  EVEX.128.66.0F.WIG E3 /r VPAVGW _xmm1_ {k1}{z}, _xmm2, xmm3/m128_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned word integers from xmm2, _xmm3/m128_ with rounding to xmm1 under writemask k1.
+  EVEX.256.66.0F.WIG E3 /r VPAVGW _ymm1_ {k1}{z}, _ymm2, ymm3/m256_   C       V/V                      AVX512VL AVX512BW    Average packed unsigned word integers from ymm2, _ymm3/m256_ with rounding to ymm1 under writemask k1.
+  EVEX.512.66.0F.WIG E3 /r VPAVGW _zmm1_ {k1}{z}, _zmm2, zmm3/m512_   C       V/V                      AVX512BW             Average packed unsigned word integers from zmm2, _zmm3/m512_ with rounding to zmm1 under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -31,7 +31,7 @@ PAVGB/PAVGW — AVERAGE PACKED INTEGERS
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -41,7 +41,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a SIMD average of the packed unsigned integers from the source
 operand (second operand) and the destination operand (first operand),
@@ -81,53 +81,53 @@ memory location. The destination operand is an XMM register. The upper
 bits (MAXVL-1:128) of the corresponding register destination are zeroed.
 
 
-Operation¶
+Operation ¶
 
-PAVGB (with 64-bit operands)¶
+PAVGB (with 64-bit operands) ¶
 
     DEST[7:0] ← (SRC[7:0] + DEST[7:0] + 1) >> 1; (* Temp sum before shifting is 9 bits *)
     (* Repeat operation performed for bytes 2 through 6 *)
     DEST[63:56] ← (SRC[63:56] + DEST[63:56] + 1) >> 1;
 
-PAVGW (with 64-bit operands)¶
+PAVGW (with 64-bit operands) ¶
 
     DEST[15:0] ← (SRC[15:0] + DEST[15:0] + 1) >> 1; (* Temp sum before shifting is 17 bits *)
     (* Repeat operation performed for words 2 and 3 *)
     DEST[63:48] ← (SRC[63:48] + DEST[63:48] + 1) >> 1;
 
-PAVGB (with 128-bit operands)¶
+PAVGB (with 128-bit operands) ¶
 
     DEST[7:0] ← (SRC[7:0] + DEST[7:0] + 1) >> 1; (* Temp sum before shifting is 9 bits *)
     (* Repeat operation performed for bytes 2 through 14 *)
     DEST[127:120] ← (SRC[127:120] + DEST[127:120] + 1) >> 1;
 
-PAVGW (with 128-bit operands)¶
+PAVGW (with 128-bit operands) ¶
 
     DEST[15:0] ← (SRC[15:0] + DEST[15:0] + 1) >> 1; (* Temp sum before shifting is 17 bits *)
     (* Repeat operation performed for words 2 through 6 *)
     DEST[127:112] ← (SRC[127:112] + DEST[127:112] + 1) >> 1;
 
-VPAVGB (VEX.128 encoded version)¶
+VPAVGB (VEX.128 encoded version) ¶
 
     DEST[7:0]←(SRC1[7:0] + SRC2[7:0] + 1) >> 1;
     (* Repeat operation performed for bytes 2 through 15 *)
     DEST[127:120]←(SRC1[127:120] + SRC2[127:120] + 1) >> 1
     DEST[MAXVL-1:128] ← 0
 
-VPAVGW (VEX.128 encoded version)¶
+VPAVGW (VEX.128 encoded version) ¶
 
     DEST[15:0]←(SRC1[15:0] + SRC2[15:0] + 1) >> 1;
     (* Repeat operation performed for 16-bit words 2 through 7 *)
     DEST[127:112]←(SRC1[127:112] + SRC2[127:112] + 1) >> 1
     DEST[MAXVL-1:128] ← 0
 
-VPAVGB (VEX.256 encoded instruction)¶
+VPAVGB (VEX.256 encoded instruction) ¶
 
     DEST[7:0] ← (SRC1[7:0] + SRC2[7:0] + 1) >> 1; (* Temp sum before shifting is 9 bits *)
     (* Repeat operation performed for bytes 2 through 31)
     DEST[255:248]←(SRC1[255:248] + SRC2[255:248] + 1) >> 1;
 
-VPAVGW (VEX.256 encoded instruction)¶
+VPAVGW (VEX.256 encoded instruction) ¶
 
         DEST[15:0] ← (SRC1[15:0] + SRC2[15:0] + 1) >> 1; (* Temp sum before shifting is 17 bits *)
         (* Repeat operation performed for words 2 through 15)
@@ -149,7 +149,7 @@ VPAVGW (VEX.256 encoded instruction)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPAVGW (EVEX encoded versions)¶
+VPAVGW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -168,7 +168,7 @@ VPAVGW (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPAVGB __m512i _mm512_avg_epu8( __m512i a, __m512i b);
 
@@ -211,17 +211,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPAVGW: __m256i _mm256_avg_epu16 ( __m256i a, __m256i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

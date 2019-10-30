@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VRANGEPD — RANGE RESTRICTION CALCULATION FOR PACKED PAIRS OF FLOAT64 VALUES
 
 
-  Opcode/Instruction                                                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F3A.W1 50 /r ib VRANGEPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Calculate two RANGE operation output value from 2 pairs of double-precision floating-point values in xmm2 and xmm3/m128/m32bcst, store the results to xmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
-  EVEX.NDS.256.66.0F3A.W1 50 /r ib VRANGEPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Calculate four RANGE operation output value from 4pairs of double-precision floating-point values in ymm2 and ymm3/m256/m32bcst, store the results to ymm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
-  EVEX.NDS.512.66.0F3A.W1 50 /r ib VRANGEPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8   A       V/V                      AVX512DQ             Calculate eight RANGE operation output value from 8 pairs of double-precision floating-point values in zmm2 and zmm3/m512/m32bcst, store the results to zmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
+  Opcode/Instruction                                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W1 50 /r ib VRANGEPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Calculate two RANGE operation output value from 2 pairs of double-precision floating-point values in xmm2 and xmm3/m128/m32bcst, store the results to xmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
+  EVEX.256.66.0F3A.W1 50 /r ib VRANGEPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Calculate four RANGE operation output value from 4pairs of double-precision floating-point values in ymm2 and ymm3/m256/m32bcst, store the results to ymm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
+  EVEX.512.66.0F3A.W1 50 /r ib VRANGEPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8   A       V/V                      AVX512DQ             Calculate eight RANGE operation output value from 8 pairs of double-precision floating-point values in zmm2 and zmm3/m512/m32bcst, store the results to zmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
   A       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   Imm8
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 This instruction calculates 2/4/8 range operation outputs from two sets
 of packed input double-precision FP values in the first source operand
@@ -168,7 +168,7 @@ a
 Table 5-21. Comparison Result of Equal-Magnitude Input Cases for MIN_ABS
 and MAX_ABS, (|a| = |b|, a>0, b<0)
 
-Operation¶
+Operation ¶
 
     RangeDP(SRC1[63:0], SRC2[63:0], CmpOpCtl[1:0], SignSelCtl[1:0])
     {
@@ -210,7 +210,7 @@ Operation¶
     CmpOpCtl[1:0]= imm8[1:0];
     SignSelCtl[1:0]=imm8[3:2];
 
-VRANGEPD (EVEX encoded versions)¶
+VRANGEPD (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -245,7 +245,7 @@ VRANGEPD (EVEX encoded versions)¶
     Thus, if zmm_src < -1023, the result of VRANGEPD will be the minimal value of -1023 while if zmm_src > +1023,
     the result of VRANGE will be the maximal value of +1023.
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRANGEPD __m512d _mm512_range_pd ( __m512d a, __m512d b, int imm);
 
@@ -271,11 +271,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRANGEPD __m128d _mm_maskz_range_pd ( __mmask8 k, __m128d a, __m128d b, int imm);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

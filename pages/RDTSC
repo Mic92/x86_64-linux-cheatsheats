@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ RDTSC — READ TIME-STAMP COUNTER
   0F 31     RDTSC         ZO      Valid         Valid             Read time-stamp counter into EDX:EAX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reads the current value of the processor’s time-stamp counter (a 64-bit
 MSR) into the EDX:EAX registers. The EDX register is loaded with the
@@ -70,7 +70,7 @@ Developer’s Manual, Volume 3C_, for more information about the behavior
 of this instruction in VMX non-root operation.
 
 
-Operation¶
+Operation ¶
 
     IF (CR4.TSD = 0) or (CPL = 0) or (CR0.PE = 0)
         THEN EDX:EAX ← TimeStampCounter;
@@ -79,12 +79,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   -------- -----------------------------------------------------------------------
   #GP(0)   If the TSD flag in register CR4 is set and the CPL is greater than 0.
@@ -92,14 +92,14 @@ Protected Mode Exceptions¶
   -------- -----------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   -------- -----------------------------------------
   #GP(0)   If the TSD flag in register CR4 is set.
@@ -107,12 +107,12 @@ Virtual-8086 Mode Exceptions¶
   -------- -----------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PBLENDW — BLEND PACKED WORDS
 
 
-  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
-  66 0F 3A 0E /r ib PBLENDW _xmm1, xmm2/m128, imm8_                         RMI     V/V                      SSE4_1               Select words from _xmm1_ and _xmm2/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
-  VEX.NDS.128.66.0F3A.WIG 0E /r ib VPBLENDW _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V                      AVX                  Select words from _xmm2_ and _xmm3/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
-  VEX.NDS.256.66.0F3A.WIG 0E /r ib VPBLENDW _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V                      AVX2                 Select words from _ymm2_ and _ymm3/m256_ from mask specified in _imm8_ and store the values into _ymm1_.
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
+  66 0F 3A 0E /r ib PBLENDW _xmm1, xmm2/m128, imm8_                     RMI     V/V                      SSE4_1               Select words from _xmm1_ and _xmm2/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
+  VEX.128.66.0F3A.WIG 0E /r ib VPBLENDW _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V                      AVX                  Select words from _xmm2_ and _xmm3/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
+  VEX.256.66.0F3A.WIG 0E /r ib VPBLENDW _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V                      AVX2                 Select words from _ymm2_ and _ymm3/m256_ from mask specified in _imm8_ and store the values into _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- --------------- -----------
   Op/En   Operand 1          Operand 2       Operand 3       Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Words from the source operand (second operand) are conditionally written
 to the destination operand (first operand) depending on bits in the
@@ -47,9 +47,9 @@ second source operand is a YMM register or a 256-bit memory location.
 The destination operand is a YMM register.
 
 
-Operation¶
+Operation ¶
 
-PBLENDW (128-bit Legacy SSE version)¶
+PBLENDW (128-bit Legacy SSE version) ¶
 
     IF (imm8[0] = 1) THEN DEST[15:0]←SRC[15:0]
     ELSE DEST[15:0]←DEST[15:0]
@@ -68,7 +68,7 @@ PBLENDW (128-bit Legacy SSE version)¶
     IF (imm8[7] = 1) THEN DEST[127:112]←SRC[127:112]
     ELSE DEST[127:112]←DEST[127:112]
 
-VPBLENDW (VEX.128 encoded version)¶
+VPBLENDW (VEX.128 encoded version) ¶
 
     IF (imm8[0] = 1) THEN DEST[15:0]←SRC2[15:0]
     ELSE DEST[15:0]←SRC1[15:0]
@@ -88,7 +88,7 @@ VPBLENDW (VEX.128 encoded version)¶
     ELSE DEST[127:112]←SRC1[127:112]
     DEST[MAXVL-1:128] ← 0
 
-VPBLENDW (VEX.256 encoded version)¶
+VPBLENDW (VEX.256 encoded version) ¶
 
     IF (imm8[0] == 1) THEN DEST[15:0]←SRC2[15:0]
     ELSE DEST[15:0]←SRC1[15:0]
@@ -124,24 +124,24 @@ VPBLENDW (VEX.256 encoded version)¶
     ELSE DEST[255:240]←SRC1[255:240]
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)PBLENDW: __m128i _mm_blend_epi16 (__m128i v1, __m128i v2, const int mask);
 
     VPBLENDW: __m256i _mm256_blend_epi16 (__m256i v1, __m256i v2, const int mask)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

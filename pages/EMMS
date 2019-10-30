@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ EMMS — EMPTY MMX TECHNOLOGY STATE
   NP 0F 77   EMMS          ZO      Valid         Valid             Set the x87 FPU tag word to empty.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Sets the values of all the tags in the x87 FPU tag word to empty (all
 1s). This operation marks the x87 FPU data registers (which are aliased
@@ -41,22 +41,22 @@ floating-point exception or incorrect result.
 EMMS operation is the same in non-64-bit modes and 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     x87FPUTagWord ← FFFFH;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_empty()
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- --------------------------------------
   #UD   If CR0.EM[bit 2] = 1.
@@ -66,22 +66,22 @@ Protected Mode Exceptions¶
   ----- --------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

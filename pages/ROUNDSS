@@ -1,18 +1,18 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 ROUNDSS — ROUND SCALAR SINGLE PRECISION FLOATING-POINT VALUES
 
 
-  Opcode*/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------ ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 0A /r ib ROUNDSS _xmm1, xmm2/m32, imm8_                         RMI     V/V                      SSE4_1               Round the low packed single precision floating-point value in _xmm2/m32_ and place the result in _xmm1_. The rounding mode is determined by _imm8_.
-  VEX.NDS.LIG.66.0F3A.WIG 0A /r ib VROUNDSS _xmm1, xmm2, xmm3/m32, imm8_   RVMI    V/V                      AVX                  Round the low packed single precision floating-point value in _xmm3/m32_ and place the result in _xmm1_. The rounding mode is determined by _imm8_. Also, upper packed single precision floating-point values (bits[127:32]) from _xmm2_ are copied to _xmm1_[127:32].
+  Opcode*/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 0A /r ib ROUNDSS _xmm1, xmm2/m32, imm8_                     RMI     V/V                      SSE4_1               Round the low packed single precision floating-point value in _xmm2/m32_ and place the result in _xmm1_. The rounding mode is determined by _imm8_.
+  VEX.LIG.66.0F3A.WIG 0A /r ib VROUNDSS _xmm1, xmm2, xmm3/m32, imm8_   RVMI    V/V                      AVX                  Round the low packed single precision floating-point value in _xmm3/m32_ and place the result in _xmm1_. The rounding mode is determined by _imm8_. Also, upper packed single precision floating-point values (bits[127:32]) from _xmm2_ are copied to _xmm1_[127:32].
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- -----------
   Op/En   Operand 1       Operand 2       Operand 3       Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Round the single-precision floating-point value in the lowest dword of
 the source operand (second operand) using the rounding mode specified in
@@ -36,7 +36,7 @@ The immediate operand specifies control fields for the rounding
 operation, three bit fields are defined and shown in Figure 4-24. Bit 3
 of the immediate byte controls processor behavior for a precision
 exception, bit 2 selects the source of rounding mode control. Bits 1:0
-specify a non-sticky rounding-mode value (Table 4-18 lists the encoded
+specify a non-sticky rounding-mode value (Table 4-17 lists the encoded
 values for rounding-mode field).
 
 The Precision Floating-Point Exception is signaled according to the
@@ -52,7 +52,7 @@ VEX.128 encoded version: Bits (MAXVL-1:128) of the destination YMM
 register are zeroed.
 
 
-Operation¶
+Operation ¶
 
     IF (imm[2] = ‘1)
         THEN // rounding mode is determined by MXCSR.RC
@@ -62,19 +62,19 @@ Operation¶
     FI;
     DEST[127:32] remains unchanged ;
 
-ROUNDSS (128-bit Legacy SSE version)¶
+ROUNDSS (128-bit Legacy SSE version) ¶
 
     DEST[31:0]←RoundToInteger(SRC[31:0], ROUND_CONTROL)
     DEST[MAXVL-1:32] (Unmodified)
 
-VROUNDSS (VEX.128 encoded version)¶
+VROUNDSS (VEX.128 encoded version) ¶
 
     DEST[31:0]←RoundToInteger(SRC2[31:0], ROUND_CONTROL)
     DEST[127:32] ← SRC1[127:32]
     DEST[MAXVL-1:128] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ROUNDSS: __m128 mm_round_ss(__m128 dst, __m128 s1, int iRoundMode);
 
@@ -83,7 +83,7 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     __m128 mm_ceil_ss(__m128 dst, __m128 s1);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (signaled only if SRC = SNaN)
 
@@ -94,7 +94,7 @@ signaled.)
 Note that Denormal is not signaled by ROUNDSS.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 3.
 

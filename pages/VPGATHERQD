@@ -1,20 +1,20 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPGATHERDD/VPGATHERQD — GATHER PACKED DWORD VALUES USING SIGNED DWORD/QWORD INDICES
 
 
-  Opcode/Instruction                                            Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ----------------- -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  VEX.DDS.128.66.0F38.W0 90 /r VPGATHERDD _xmm1, vm32x, xmm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32x_, gather dword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
-  VEX.DDS.128.66.0F38.W0 91 /r VPGATHERQD _xmm1, vm64x, xmm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64x_, gather dword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
-  VEX.DDS.256.66.0F38.W0 90 /r VPGATHERDD _ymm1, vm32y, ymm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32y_, gather dword from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
-  VEX.DDS.256.66.0F38.W0 91 /r VPGATHERQD _xmm1, vm64y, xmm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64y_, gather dword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  Opcode/Instruction                                        Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------------------- ------- ----------------- -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W0 90 /r VPGATHERDD _xmm1, vm32x, xmm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32x_, gather dword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  VEX.128.66.0F38.W0 91 /r VPGATHERQD _xmm1, vm64x, xmm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64x_, gather dword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
+  VEX.256.66.0F38.W0 90 /r VPGATHERDD _ymm1, vm32y, ymm2_   RMV     V/V               AVX2                 Using dword indices specified in _vm32y_, gather dword from memory conditioned on mask specified by _ymm2_. Conditionally gathered elements are merged into _ymm1_.
+  VEX.256.66.0F38.W0 91 /r VPGATHERQD _xmm1, vm64y, xmm2_   RMV     V/V               AVX2                 Using qword indices specified in _vm64y_, gather dword values from memory conditioned on mask specified by _xmm2_. Conditionally gathered elements are merged into _xmm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------------- -------------------------------------------------- ----------------- -----------
   Op/En   Operand 1         Operand 2                                          Operand 3         Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- ----------------- -------------------------------------------------- ----------------- -----------
 
 
-Description¶
+Description ¶
 
 The instruction conditionally loads up to 4 or 8 dword values from
 memory addresses specified by the memory operand (the second operand)
@@ -106,7 +106,7 @@ Note that:
     the number of address bits are ignored.
 
 
-Operation¶
+Operation ¶
 
     DEST ← SRC1;
     BASE_ADDR: base register encoded in VSIB addressing;
@@ -115,8 +115,9 @@ Operation¶
     DISP: optional 1, 4 byte displacement;
     MASK ← SRC3;
 
-VPGATHERDD (VEX.128 version)¶
+VPGATHERDD (VEX.128 version) ¶
 
+    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 3
         i←j * 32;
         IF MASK[31+i] THEN
@@ -125,7 +126,6 @@ VPGATHERDD (VEX.128 version)¶
             MASK[i +31:i]←0;
         FI;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 3
         i←j * 32;
         DATA_ADDR←BASE_ADDR + (SignExtend(VINDEX[i+31:i])*SCALE + DISP;
@@ -135,10 +135,10 @@ VPGATHERDD (VEX.128 version)¶
         MASK[i +31:i]←0;
     ENDFOR
     DEST[MAXVL-1:128] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
-VPGATHERQD (VEX.128 version)¶
+VPGATHERQD (VEX.128 version) ¶
 
+    MASK[MAXVL-1:64] ← 0;
     FOR j←0 to 3
         i←j * 32;
         IF MASK[31+i] THEN
@@ -147,7 +147,6 @@ VPGATHERQD (VEX.128 version)¶
             MASK[i +31:i]←0;
         FI;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 1
         k←j * 64;
         i←j * 32;
@@ -157,12 +156,11 @@ VPGATHERQD (VEX.128 version)¶
         FI;
         MASK[i +31:i]←0;
     ENDFOR
-    MASK[127:64] ← 0;
     DEST[MAXVL-1:64] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
-VPGATHERDD (VEX.256 version)¶
+VPGATHERDD (VEX.256 version) ¶
 
+    MASK[MAXVL-1:256] ← 0;
     FOR j←0 to 7
         i←j * 32;
         IF MASK[31+i] THEN
@@ -179,10 +177,11 @@ VPGATHERDD (VEX.256 version)¶
         FI;
         MASK[i +31:i]←0;
     ENDFOR
-    (non-masked elements of the mask register have the content of respective element cleared)
+    DEST[MAXVL-1:256] ← 0;
 
-VPGATHERQD (VEX.256 version)¶
+VPGATHERQD (VEX.256 version) ¶
 
+    MASK[MAXVL-1:128] ← 0;
     FOR j←0 to 7
         i←j * 32;
         IF MASK[31+i] THEN
@@ -200,12 +199,10 @@ VPGATHERQD (VEX.256 version)¶
         FI;
         MASK[i +31:i]←0;
     ENDFOR
-    MASK[MAXVL-1:128] ← 0;
     DEST[MAXVL-1:128] ← 0;
-    (non-masked elements of the mask register have the content of respective element cleared)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPGATHERDD: __m128i _mm_i32gather_epi32 (int const * base, __m128i index, const int scale);
 
@@ -224,12 +221,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPGATHERQD: __m128i _mm256_mask_i64gather_epi32 (__m128i src, int const * base, __m256i index, __m128i mask, const int scale);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 12.
 

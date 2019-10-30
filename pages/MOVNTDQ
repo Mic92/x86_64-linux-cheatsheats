@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,9 +16,9 @@ MOVNTDQ — STORE PACKED INTEGERS USING NON-TEMPORAL HINT
   EVEX.512.66.0F.W0 E7 /r VMOVNTDQ m512, zmm1   B       V/V                      AVX512F              Move packed integer values in zmm1 to m512 using non-temporal hint.
 
 
-Instruction Operand Encoding¹¶
+Instruction Operand Encoding¹ ¶
 
-  1. ModRM.MOD = 011B required
+  1. ModRM.MOD != 011B
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -26,7 +26,7 @@ Instruction Operand Encoding¹¶
   B       Full Mem     ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Moves the packed integers in the source operand (second operand) to the
 destination operand (first operand) using a non-temporal hint to prevent
@@ -58,19 +58,19 @@ destination memory locations.
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b, VEX.L must
 be 0; otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VMOVNTDQ(EVEX encoded versions)¶
+VMOVNTDQ(EVEX encoded versions) ¶
 
     VL = 128, 256, 512
     DEST[VL-1:0] ← SRC[VL-1:0]
     DEST[MAXVL-1:VL] ← 0
 
-MOVNTDQ (Legacy and VEX versions)¶
+MOVNTDQ (Legacy and VEX versions) ¶
 
     DEST ← SRC
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVNTDQ void _mm512_stream_si512(void * p, __m512i a);
 
@@ -78,11 +78,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MOVNTDQ void _mm_stream_si128 (__m128i * p, __m128i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type1.SSE2;
 

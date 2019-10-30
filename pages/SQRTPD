@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,12 +11,12 @@ SQRTPD — SQUARE ROOT OF DOUBLE-PRECISION FLOATING-POINT VALUES
   66 0F 51 /r SQRTPD xmm1, xmm2/m128                                    A       V/V                      SSE2                 Computes Square Roots of the packed double-precision floating-point values in xmm2/m128 and stores the result in xmm1.
   VEX.128.66.0F.WIG 51 /r VSQRTPD xmm1, xmm2/m128                       A       V/V                      AVX                  Computes Square Roots of the packed double-precision floating-point values in xmm2/m128 and stores the result in xmm1.
   VEX.256.66.0F.WIG 51 /r VSQRTPD ymm1, ymm2/m256                       A       V/V                      AVX                  Computes Square Roots of the packed double-precision floating-point values in ymm2/m256 and stores the result in ymm1.
-  EVEX.128.66.0F.W1 51 /r VSQRTPD xmm1 {k1}{z}, xmm2/m128/m32bcst       B       V/V                      AVX512VL AVX512F     Computes Square Roots of the packed double-precision floating-point values in xmm2/m128/m64bcst and stores the result in xmm1 subject to writemask k1.
-  EVEX.256.66.0F.W1 51 /r VSQRTPD ymm1 {k1}{z}, ymm2/m256/m32bcst       B       V/V                      AVX512VL AVX512F     Computes Square Roots of the packed double-precision floating-point values in ymm2/m256/m64bcst and stores the result in ymm1 subject to writemask k1.
+  EVEX.128.66.0F.W1 51 /r VSQRTPD xmm1 {k1}{z}, xmm2/m128/m64bcst       B       V/V                      AVX512VL AVX512F     Computes Square Roots of the packed double-precision floating-point values in xmm2/m128/m64bcst and stores the result in xmm1 subject to writemask k1.
+  EVEX.256.66.0F.W1 51 /r VSQRTPD ymm1 {k1}{z}, ymm2/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Computes Square Roots of the packed double-precision floating-point values in ymm2/m256/m64bcst and stores the result in ymm1 subject to writemask k1.
   EVEX.512.66.0F.W1 51 /r VSQRTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{er}   B       V/V                      AVX512F              Computes Square Roots of the packed double-precision floating-point values in zmm2/m512/m64bcst and stores the result in zmm1 subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -24,7 +24,7 @@ Instruction Operand Encoding¶
   B       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD computation of the square roots of the two, four or
 eight packed double-precision floating-point values in the source
@@ -54,9 +54,9 @@ corresponding ZMM register destination are unmodified.
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VSQRTPD (EVEX encoded versions)¶
+VSQRTPD (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF (VL = 512) AND (EVEX.b = 1) AND (SRC *is register*)
@@ -82,7 +82,7 @@ VSQRTPD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VSQRTPD (VEX.256 encoded version)¶
+VSQRTPD (VEX.256 encoded version) ¶
 
     DEST[63:0] ←SQRT(SRC[63:0])
     DEST[127:64] ←SQRT(SRC[127:64])
@@ -91,19 +91,19 @@ VSQRTPD (VEX.256 encoded version)¶
     DEST[MAXVL-1:256] ← 0
     .
 
-VSQRTPD (VEX.128 encoded version)¶
+VSQRTPD (VEX.128 encoded version) ¶
 
     DEST[63:0] ←SQRT(SRC[63:0])
     DEST[127:64] ←SQRT(SRC[127:64])
     DEST[MAXVL-1:128] ←0
 
-SQRTPD (128-bit Legacy SSE version)¶
+SQRTPD (128-bit Legacy SSE version) ¶
 
     DEST[63:0] ←SQRT(SRC[63:0])
     DEST[127:64] ←SQRT(SRC[127:64])
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSQRTPD __m512d _mm512_sqrt_round_pd(__m512d a, int r);
 
@@ -123,11 +123,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSQRTPD __m128d _mm_maskz_sqrt_pd( __mmask8 k, __m128d a, int r);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 2; additionally
 

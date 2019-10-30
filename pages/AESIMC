@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ AESIMC — PERFORM THE AES INVMIXCOLUMN TRANSFORMATION
   VEX.128.66.0F38.WIG DB /r VAESIMC xmm1, xmm2/m128   RM      V/V              Both AES and AVX flags   Perform the InvMixColumn transformation on a 128-bit round key from xmm2/m128 and store the result in xmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ---------- ----------
   Op/En   Operand 1       Operand2        Operand3   Operand4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ---------- ----------
 
 
-Description¶
+Description ¶
 
 Perform the InvMixColumns transformation on the source operand and store
 the result in the destination operand. The destination operand is an XMM
@@ -42,30 +42,30 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-AESIMC¶
+AESIMC ¶
 
     DEST[127:0] ← InvMixColumns( SRC );
     DEST[MAXVL-1:128] (Unmodified)
 
-VAESIMC¶
+VAESIMC ¶
 
     DEST[127:0]←InvMixColumns( SRC );
     DEST[MAXVL-1:128] ← 0;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)AESIMC: __m128i _mm_aesimc (__m128i)
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 

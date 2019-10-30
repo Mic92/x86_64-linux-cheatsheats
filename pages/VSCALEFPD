@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VSCALEFPD — SCALE PACKED FLOAT64 VALUES WITH FLOAT64 VALUES
 
 
-  Opcode/Instruction                                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F38.W1 2C /r VSCALEFPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       A       V/V                      AVX512VL AVX512F     Scale the packed double-precision floating-point values in xmm2 using values from xmm3/m128/m64bcst. Under writemask k1.
-  EVEX.NDS.256.66.0F38.W1 2C /r VSCALEFPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       A       V/V                      AVX512VL AVX512F     Scale the packed double-precision floating-point values in ymm2 using values from ymm3/m256/m64bcst. Under writemask k1.
-  EVEX.NDS.512.66.0F38.W1 2C /r VSCALEFPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   A       V/V                      AVX512F              Scale the packed double-precision floating-point values in zmm2 using values from zmm3/m512/m64bcst. Under writemask k1.
+  Opcode/Instruction                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F38.W1 2C /r VSCALEFPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       A       V/V                      AVX512VL AVX512F     Scale the packed double-precision floating-point values in xmm2 using values from xmm3/m128/m64bcst. Under writemask k1.
+  EVEX.256.66.0F38.W1 2C /r VSCALEFPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       A       V/V                      AVX512VL AVX512F     Scale the packed double-precision floating-point values in ymm2 using values from ymm3/m256/m64bcst. Under writemask k1.
+  EVEX.512.66.0F38.W1 2C /r VSCALEFPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   A       V/V                      AVX512F              Scale the packed double-precision floating-point values in zmm2 using values from zmm3/m512/m64bcst. Under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
   A       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a floating-point scale of the packed double-precision
 floating-point values in the first source operand by multiplying it by 2
@@ -132,7 +132,7 @@ Table 5-30. \VSCALEFPD/SD/PS/SS Special Cases
 
 Table 5-31. Additional VSCALEFPD/SD Special Cases
 
-Operation¶
+Operation ¶
 
     SCALE(SRC1, SRC2)
     {
@@ -144,7 +144,7 @@ Operation¶
     DEST[63:0]←TMP_SRC1[63:0] * POW(2, Floor(TMP_SRC2[63:0]))
     }
 
-VSCALEFPD (EVEX encoded versions)¶
+VSCALEFPD (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF (VL = 512) AND (EVEX.b = 1) AND (SRC2 *is register*)
@@ -171,7 +171,7 @@ VSCALEFPD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSCALEFPD __m512d _mm512_scalef_round_pd(__m512d a, __m512d b, int rounding);
 
@@ -197,13 +197,13 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSCALEFPD __m128d _mm_maskz_scalef_pd(__mmask8 k, __m128d a, __m128d b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal (for Src1).
 
 Denormal is not reported for Src2.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

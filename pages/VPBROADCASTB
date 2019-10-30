@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -25,14 +25,14 @@ VPBROADCASTB/VPBROADCASTW/VPBROADCASTD/VPBROADCASTQ — LOAD WITH BROADCAST INTE
   W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Broadcasts a 8-bit, 16-bit, 32-bit or 64-bit value from a
 general-purpose register (the second operand) to all the locations in
@@ -41,9 +41,9 @@ k1.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPBROADCASTB (EVEX encoded versions)¶
+VPBROADCASTB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -62,7 +62,7 @@ VPBROADCASTB (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTW (EVEX encoded versions)¶
+VPBROADCASTW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -81,7 +81,7 @@ VPBROADCASTW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTD (EVEX encoded versions)¶
+VPBROADCASTD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -100,7 +100,7 @@ VPBROADCASTD (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTQ (EVEX encoded versions)¶
+VPBROADCASTQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -117,7 +117,7 @@ VPBROADCASTQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPBROADCASTB __m512i _mm512_mask_set1_epi8(__m512i s, __mmask64 k, int a);
 
@@ -167,7 +167,7 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPBROADCASTW __m128i _mm_maskz_set1_epi16( __mmask8 k, int a);
 
-Exceptions¶
+Exceptions ¶
 
 EVEX-encoded instructions, see Exceptions Type E7NM.
 

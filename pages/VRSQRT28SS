@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VRSQRT28SS — APPROXIMATION TO THE RECIPROCAL SQUARE ROOT OF SCALAR SINGLE-PRECISION FLOATING- POINT VALUE WITH LESS THAN 2^-28 RELATIVE ERROR
 
 
-  Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F38.W0 CD /r VRSQRT28SS xmm1 {k1}{z}, xmm2, xmm3/m32 {sae}   A       V/V                      AVX512ER             Computes approximate reciprocal square root (<2^-28 relative error) of the scalar single-precision floating-point value from xmm3/m32 and stores result in xmm1with writemask k1. Also, upper 3 single-precision floating-point value (bits[127:32]) from xmm2 is copied to xmm1[127:32].
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F38.W0 CD /r VRSQRT28SS xmm1 {k1}{z}, xmm2, xmm3/m32 {sae}   A       V/V                      AVX512ER             Computes approximate reciprocal square root (<2^-28 relative error) of the scalar single-precision floating-point value from xmm3/m32 and stores result in xmm1with writemask k1. Also, upper 3 single-precision floating-point value (bits[127:32]) from xmm2 is copied to xmm1[127:32].
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Computes the reciprocal square root of the low float32 value in the
 second source operand (the third operand) and store the result to the
@@ -43,13 +43,13 @@ The first source operand is an XMM register. The second source operand
 is an XMM register or a 32-bit memory location. The destination operand
 is a XMM register.
 
-A numerically exact implementation of VRSQRT28xx can be found at https://software.intel.com/en-us/arti-¶
+A numerically exact implementation of VRSQRT28xx can be found at https://software.intel.com/en-us/arti- ¶
 
-cles/reference-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2.¶
+cles/reference-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2. ¶
 
-Operation¶
+Operation ¶
 
-VRSQRT28SS (EVEX encoded versions)¶
+VRSQRT28SS (EVEX encoded versions) ¶
 
         IF k1[0] OR *no writemask* THEN
                     DEST[31: 0]←(1.0/ SQRT(SRC[31: 0]));
@@ -75,7 +75,7 @@ VRSQRT28SS (EVEX encoded versions)¶
 
 Table 6-42. VRSQRT28SS Special Cases
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRSQRT28SS __m128 _mm_rsqrt28_round_ss(__m128 a, __m128 b, int rounding);
 
@@ -83,11 +83,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRSQRT28SS __m128 _mm_maskz_rsqrt28_round_ss(__mmask8 m,__m128 a,__m128 b, int rounding);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (if SNaN input), Divide-by-zero
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

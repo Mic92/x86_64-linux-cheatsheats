@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPMASKMOV — CONDITIONAL SIMD INTEGER PACKED LOADS AND STORES
 
 
-  Opcode/Instruction                                           Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------ ------- ----------------- -------------------- ---------------------------------------------------------------------------------------
-  VEX.NDS.128.66.0F38.W0 8C /r VPMASKMOVD _xmm1, xmm2, m128_   RVM     V/V               AVX2                 Conditionally load dword values from _m128_ using mask in _xmm2_ and store in _xmm1_.
-  VEX.NDS.256.66.0F38.W0 8C /r VPMASKMOVD _ymm1, ymm2, m256_   RVM     V/V               AVX2                 Conditionally load dword values from _m256_ using mask in _ymm2_ and store in _ymm1_.
-  VEX.NDS.128.66.0F38.W1 8C /r VPMASKMOVQ _xmm1, xmm2, m128_   RVM     V/V               AVX2                 Conditionally load qword values from _m128_ using mask in _xmm2_ and store in _xmm1_.
-  VEX.NDS.256.66.0F38.W1 8C /r VPMASKMOVQ _ymm1, ymm2, m256_   RVM     V/V               AVX2                 Conditionally load qword values from _m256_ using mask in _ymm2_ and store in _ymm1_.
-  VEX.NDS.128.66.0F38.W0 8E /r VPMASKMOVD _m128, xmm1, xmm2_   MVR     V/V               AVX2                 Conditionally store dword values from _xmm2_ using mask in _xmm1_.
-  VEX.NDS.256.66.0F38.W0 8E /r VPMASKMOVD _m256, ymm1, ymm2_   MVR     V/V               AVX2                 Conditionally store dword values from _ymm2_ using mask in _ymm1_.
-  VEX.NDS.128.66.0F38.W1 8E /r VPMASKMOVQ _m128, xmm1, xmm2_   MVR     V/V               AVX2                 Conditionally store qword values from _xmm2_ using mask in _xmm1_.
-  VEX.NDS.256.66.0F38.W1 8E /r VPMASKMOVQ _m256, ymm1, ymm2_   MVR     V/V               AVX2                 Conditionally store qword values from _ymm2_ using mask in _ymm1_.
+  Opcode/Instruction                                       Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  -------------------------------------------------------- ------- ----------------- -------------------- ---------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W0 8C /r VPMASKMOVD _xmm1, xmm2, m128_   RVM     V/V               AVX2                 Conditionally load dword values from _m128_ using mask in _xmm2_ and store in _xmm1_.
+  VEX.256.66.0F38.W0 8C /r VPMASKMOVD _ymm1, ymm2, m256_   RVM     V/V               AVX2                 Conditionally load dword values from _m256_ using mask in _ymm2_ and store in _ymm1_.
+  VEX.128.66.0F38.W1 8C /r VPMASKMOVQ _xmm1, xmm2, m128_   RVM     V/V               AVX2                 Conditionally load qword values from _m128_ using mask in _xmm2_ and store in _xmm1_.
+  VEX.256.66.0F38.W1 8C /r VPMASKMOVQ _ymm1, ymm2, m256_   RVM     V/V               AVX2                 Conditionally load qword values from _m256_ using mask in _ymm2_ and store in _ymm1_.
+  VEX.128.66.0F38.W0 8E /r VPMASKMOVD _m128, xmm1, xmm2_   MVR     V/V               AVX2                 Conditionally store dword values from _xmm2_ using mask in _xmm1_.
+  VEX.256.66.0F38.W0 8E /r VPMASKMOVD _m256, ymm1, ymm2_   MVR     V/V               AVX2                 Conditionally store dword values from _ymm2_ using mask in _ymm1_.
+  VEX.128.66.0F38.W1 8E /r VPMASKMOVQ _m128, xmm1, xmm2_   MVR     V/V               AVX2                 Conditionally store qword values from _xmm2_ using mask in _xmm1_.
+  VEX.256.66.0F38.W1 8E /r VPMASKMOVQ _m256, ymm1, ymm2_   MVR     V/V               AVX2                 Conditionally store qword values from _ymm2_ using mask in _ymm1_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- --------------- -----------
   Op/En   Operand 1       Operand 2   Operand 3       Operand 4
@@ -27,7 +27,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Conditionally moves packed data elements from the second source operand
 into the corresponding data element of the destination operand,
@@ -74,9 +74,9 @@ VEX.vvvv; the second source register is encoded in reg_field, and the
 destination memory location is encoded in rm_field.
 
 
-Operation¶
+Operation ¶
 
-VPMASKMOVD - 256-bit load¶
+VPMASKMOVD - 256-bit load ¶
 
     DEST[31:0]←IF (SRC1[31]) Load_32(mem) ELSE 0
     DEST[63:32]←IF (SRC1[63]) Load_32(mem + 4) ELSE 0
@@ -87,7 +87,7 @@ VPMASKMOVD - 256-bit load¶
     DEST[223:192]←IF (SRC1[223]) Load_32(mem + 24) ELSE 0
     DEST[255:224]←IF (SRC1[255]) Load_32(mem + 28) ELSE 0
 
-VPMASKMOVD -128-bit load¶
+VPMASKMOVD -128-bit load ¶
 
     DEST[31:0]←IF (SRC1[31]) Load_32(mem) ELSE 0
     DEST[63:32]←IF (SRC1[63]) Load_32(mem + 4) ELSE 0
@@ -95,20 +95,20 @@ VPMASKMOVD -128-bit load¶
     DEST[127:97]←IF (SRC1[127]) Load_32(mem + 12) ELSE 0
     DEST[MAXVL-1:128] ← 0
 
-VPMASKMOVQ - 256-bit load¶
+VPMASKMOVQ - 256-bit load ¶
 
     DEST[63:0]←IF (SRC1[63]) Load_64(mem) ELSE 0
     DEST[127:64]←IF (SRC1[127]) Load_64(mem + 8) ELSE 0
     DEST[195:128]←IF (SRC1[191]) Load_64(mem + 16) ELSE 0
     DEST[255:196]←IF (SRC1[255]) Load_64(mem + 24) ELSE 0
 
-VPMASKMOVQ - 128-bit load¶
+VPMASKMOVQ - 128-bit load ¶
 
     DEST[63:0]←IF (SRC1[63]) Load_64(mem) ELSE 0
     DEST[127:64]←IF (SRC1[127]) Load_64(mem + 16) ELSE 0
     DEST[MAXVL-1:128] ← 0
 
-VPMASKMOVD - 256-bit store¶
+VPMASKMOVD - 256-bit store ¶
 
     IF (SRC1[31]) DEST[31:0]←SRC2[31:0]
     IF (SRC1[63]) DEST[63:32]←SRC2[63:32]
@@ -119,27 +119,27 @@ VPMASKMOVD - 256-bit store¶
     IF (SRC1[223]) DEST[223:192]←SRC2[223:192]
     IF (SRC1[255]) DEST[255:224]←SRC2[255:224]
 
-VPMASKMOVD - 128-bit store¶
+VPMASKMOVD - 128-bit store ¶
 
     IF (SRC1[31]) DEST[31:0]←SRC2[31:0]
     IF (SRC1[63]) DEST[63:32]←SRC2[63:32]
     IF (SRC1[95]) DEST[95:64]←SRC2[95:64]
     IF (SRC1[127]) DEST[127:96]←SRC2[127:96]
 
-VPMASKMOVQ - 256-bit store¶
+VPMASKMOVQ - 256-bit store ¶
 
     IF (SRC1[63]) DEST[63:0]←SRC2[63:0]
     IF (SRC1[127]) DEST[127:64]←SRC2[127:64]
     IF (SRC1[191]) DEST[191:128]←SRC2[191:128]
     IF (SRC1[255]) DEST[255:192]←SRC2[255:192]
 
-VPMASKMOVQ - 128-bit store¶
+VPMASKMOVQ - 128-bit store ¶
 
     IF (SRC1[63]) DEST[63:0]←SRC2[63:0]
     IF (SRC1[127]) DEST[127:64]←SRC2[127:64]
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMASKMOVD: __m256i _mm256_maskload_epi32(int const *a, __m256i mask)
 
@@ -158,12 +158,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VPMASKMOVQ: void _mm_maskstore_epi64(__int64 *a, __m128i mask, __m128i b);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 6 (No AC# reported for any mask bit combinations).
 

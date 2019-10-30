@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -40,7 +40,7 @@ VPBROADCAST — LOAD INTEGER AND BROADCAST
   EVEX.512.66.0F38.W1 5B /r VBROADCASTI64X4 zmm1 {k1}{z}, m256       D       V/V                      AVX512F              Broadcast 256 bits of 4 quadword integer data in mem to locations in zmm1 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
@@ -51,7 +51,7 @@ Instruction Operand Encoding¶
   E       Tuple8          ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Load integer data from the source operand (the second operand) and
 broadcast to all elements of the destination operand (the first
@@ -100,9 +100,9 @@ m256 X0 DEST X0 X0
 
 Figure 5-20. VBROADCASTI256 Operation (512-bit version)
 
-Operation¶
+Operation ¶
 
-VPBROADCASTB (EVEX encoded versions)¶
+VPBROADCASTB (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -121,7 +121,7 @@ VPBROADCASTB (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTW (EVEX encoded versions)¶
+VPBROADCASTW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -140,7 +140,7 @@ VPBROADCASTW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTD (128 bit version)¶
+VPBROADCASTD (128 bit version) ¶
 
     temp ← SRC[31:0]
     DEST[31:0] ← temp
@@ -149,7 +149,7 @@ VPBROADCASTD (128 bit version)¶
     DEST[127:96] ← temp
     DEST[MAXVL-1:128] ← 0
 
-VPBROADCASTD (VEX.256 encoded version)¶
+VPBROADCASTD (VEX.256 encoded version) ¶
 
     temp ← SRC[31:0]
     DEST[31:0] ← temp
@@ -179,7 +179,7 @@ VPBROADCASTD (VEX.256 encoded version)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPBROADCASTQ (VEX.256 encoded version)¶
+VPBROADCASTQ (VEX.256 encoded version) ¶
 
     temp ← SRC[63:0]
     DEST[63:0] ← temp
@@ -188,7 +188,7 @@ VPBROADCASTQ (VEX.256 encoded version)¶
     DEST[255:192] ← temp
     DEST[MAXVL-1:256] ← 0
 
-VPBROADCASTQ (EVEX encoded versions)¶
+VPBROADCASTQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -225,14 +225,14 @@ VPBROADCASTQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VBROADCASTI128 (VEX.256 encoded version)¶
+VBROADCASTI128 (VEX.256 encoded version) ¶
 
     temp ← SRC[127:0]
     DEST[127:0] ← temp
     DEST[255:128] ← temp
     DEST[MAXVL-1:256] ← 0
 
-VBROADCASTI32X4 (EVEX encoded versions)¶
+VBROADCASTI32X4 (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -252,7 +252,7 @@ VBROADCASTI32X4 (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VBROADCASTI64X2 (EVEX encoded versions)¶
+VBROADCASTI64X2 (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -269,7 +269,7 @@ VBROADCASTI64X2 (EVEX encoded versions)¶
         FI;
     ENDFOR;
 
-VBROADCASTI32X8 (EVEX.U1.512 encoded version)¶
+VBROADCASTI32X8 (EVEX.U1.512 encoded version) ¶
 
     FOR j←0 TO 15
         i←j * 32
@@ -288,7 +288,7 @@ VBROADCASTI32X8 (EVEX.U1.512 encoded version)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VBROADCASTI64X4 (EVEX.512 encoded version)¶
+VBROADCASTI64X4 (EVEX.512 encoded version) ¶
 
     FOR j←0 TO 7
         i←j * 64
@@ -305,7 +305,7 @@ VBROADCASTI64X4 (EVEX.512 encoded version)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPBROADCASTB __m512i _mm512_broadcastb_epi8( __m128i a);
 
@@ -433,11 +433,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VBROADCASTI64x4 __m512i _mm512_maskz_broadcast_i64x4( __mmask8 k, __m256i a);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instructions, see Exceptions Type 6;
 

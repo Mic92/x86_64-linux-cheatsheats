@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ BNDMK — MAKE BOUNDS
   F3 0F 1B /r BNDMK bnd, m64   RM      V/NE                     MPX                  Make lower and upper bounds from m64 and store them in bnd.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- -----------
   Op/En   Operand 1       Operand 2       Operand 3
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Makes bounds from the second operand and stores the lower and upper
 bounds in the bound register bnd. The second operand must be a memory
@@ -40,7 +40,7 @@ The instruction causes an invalid-opcode exception (#UD) if executed in
 64-bit mode with RIP-relative addressing.
 
 
-Operation¶
+Operation ¶
 
     BND.LB ← SRCMEM.base;
     IF 64-bit mode Then
@@ -50,17 +50,17 @@ Operation¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BNDMKvoid * _bnd_set_ptr_bounds(const void * q, size_t size);
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -73,7 +73,7 @@ If 67H prefix is not used and CS.D=0.
 If 67H prefix is used and CS.D=1.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #UD
 
@@ -84,7 +84,7 @@ If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
 If 16-bit addressing is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #UD
 
@@ -95,12 +95,12 @@ If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
 If 16-bit addressing is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #UD
 

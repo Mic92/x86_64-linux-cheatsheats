@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,14 +13,14 @@ VRNDSCALEPD — ROUND PACKED FLOAT64 VALUES TO INCLUDE A GIVEN NUMBER OF FRACTIO
   EVEX.512.66.0F3A.W1 09 /r ib VRNDSCALEPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Rounds packed double-precision floating-point values in zmm2/m512/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Round the double-precision floating-point values in the source operand
 by the rounding mode specified in the immediate operand (see Figure
@@ -97,7 +97,7 @@ Handling of special case of input values are listed in Table 5-25.
 
 Table 5-25. VRNDSCALEPD/SD/PS/SS Special Cases
 
-Operation¶
+Operation ¶
 
     RoundToIntegerDP(SRC[63:0], imm8[7:0]) {
         if (imm8[2] = 1)
@@ -124,7 +124,7 @@ Operation¶
         return(Dest[63:0])
     }
 
-VRNDSCALEPD (EVEX encoded versions)¶
+VRNDSCALEPD (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF *src is a memory operand*
@@ -146,7 +146,7 @@ VRNDSCALEPD (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRNDSCALEPD __m512d _mm512_roundscale_pd( __m512d a, int imm);
 
@@ -172,14 +172,14 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRNDSCALEPD __m128d _mm_maskz_roundscale_pd( __mmask8 k, __m128d a, int imm);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 If SPE is enabled, precision exception is not reported (regardless of
 MXCSR exception mask).
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

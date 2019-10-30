@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ RDPID — READ PROCESSOR ID
   F3 0F C7 /7 RDPID r64   R       V/N.E.           RDPID                Read IA32_TSC_AUX into r64.
 
 
-Instruction Operand Encoding¹¶
+Instruction Operand Encoding¹ ¶
 
   1.ModRM.MOD = 011B required
 
@@ -22,24 +22,24 @@ Instruction Operand Encoding¹¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reads the value of the IA32_TSC_AUX MSR (address C0000103H) into the
 destination register. The value of CS.D and operand-size prefixes (66H
 and REX.W) do not affect the behavior of the RDPID instruction.
 
 
-Operation¶
+Operation ¶
 
     DEST ← IA32_TSC_AUX
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -48,22 +48,22 @@ If the LOCK prefix is used.
 If CPUID.7H.0:ECX.RDPID[bit 22] = 0.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

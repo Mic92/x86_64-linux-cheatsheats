@@ -1,21 +1,21 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPERMQ — QWORDS ELEMENT PERMUTATION
 
 
-  Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------
-  VEX.256.66.0F3A.W1 00 /r ib VPERMQ ymm1, ymm2/m256, imm8                     A         V/V                      AVX2                 Permute qwords in ymm2/m256 using indices in imm8 and store the result in ymm1.
-  EVEX.256.66.0F3A.W1 00 /r ib VPERMQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8    B         V/V                      AVX512VL AVX512F     Permute qwords in ymm2/m256/m64bcst using indexes in imm8 and store the result in ymm1.
-  EVEX.512.66.0F3A.W1 00 /r ib VPERMQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8    B         V/V                      AVX512F              Permute qwords in zmm2/m512/m64bcst using indices in imm8 and store the result in zmm1.
-  EVEX.NDS.256.66.0F38.W1 36 /r VPERMQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C         V/V                      AVX512VL AVX512F     Permute qwords in ymm3/m256/m64bcst using indexes in ymm2 and store the result in ymm1.
-  EVEX.NDS.512.66.0F38.W1 36 /r VPERMQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C         V/V                      AVX512F              Permute qwords in zmm3/m512/m64bcst using indices in zmm2 and store the result in zmm1.
+  Opcode/Instruction                                                          Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------
+  VEX.256.66.0F3A.W1 00 /r ib VPERMQ ymm1, ymm2/m256, imm8                    A         V/V                      AVX2                 Permute qwords in ymm2/m256 using indices in imm8 and store the result in ymm1.
+  EVEX.256.66.0F3A.W1 00 /r ib VPERMQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   B         V/V                      AVX512VL AVX512F     Permute qwords in ymm2/m256/m64bcst using indexes in imm8 and store the result in ymm1.
+  EVEX.512.66.0F3A.W1 00 /r ib VPERMQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   B         V/V                      AVX512F              Permute qwords in zmm2/m512/m64bcst using indices in imm8 and store the result in zmm1.
+  EVEX.256.66.0F38.W1 36 /r VPERMQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst      C         V/V                      AVX512VL AVX512F     Permute qwords in ymm3/m256/m64bcst using indexes in ymm2 and store the result in ymm1.
+  EVEX.512.66.0F38.W1 36 /r VPERMQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst      C         V/V                      AVX512F              Permute qwords in zmm3/m512/m64bcst using indices in zmm2 and store the result in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3       Operand 4
@@ -24,7 +24,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 The imm8 version: Copies quadwords from the source operand (the second
 operand) to the destination operand (the first operand) according to the
@@ -61,9 +61,9 @@ copied to multiple locations in the destination operand.
 If VPERMPQ is encoded with VEX.L= 0 or EVEX.128, an attempt to execute
 the instruction will cause an #UD exception.
 
-Operation¶
+Operation ¶
 
-VPERMQ (EVEX - imm8 control forms)¶
+VPERMQ (EVEX - imm8 control forms) ¶
 
     (KL, VL) = (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -99,7 +99,7 @@ VPERMQ (EVEX - imm8 control forms)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPERMQ (EVEX - vector control forms)¶
+VPERMQ (EVEX - vector control forms) ¶
 
     (KL, VL) = (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -141,7 +141,7 @@ VPERMQ (EVEX - vector control forms)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPERMQ (VEX.256 encoded version)¶
+VPERMQ (VEX.256 encoded version) ¶
 
     DEST[63:0]←(SRC[255:0] >> (IMM8[1:0] * 64))[63:0];
     DEST[127:64]←(SRC[255:0] >> (IMM8[3:2] * 64))[63:0];
@@ -149,7 +149,7 @@ VPERMQ (VEX.256 encoded version)¶
     DEST[255:192]←(SRC[255:0] >> (IMM8[7:6] * 64))[63:0];
     DEST[MAXVL-1:256] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPERMQ __m512i _mm512_permutex_epi64( __m512i a, int imm);
 
@@ -175,11 +175,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPERMQ __m256i _mm256_maskz_permutexvar_epi64( __mmask8 k, __m256i a, __m256i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4; additionally
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -30,7 +30,7 @@ PABSB/PABSW/PABSD/PABSQ — PACKED ABSOLUTE VALUE
   EVEX.512.66.0F38.WIG 1D /r VPABSW zmm1 {k1}{z}, zmm2/m512          B   V/V   AVX512BW            Compute the absolute value of 16-bit integers in zmm2/m512 and store UNSIGNED result in zmm1 using writemask k1.
   EVEX.128.66.0F38.W0 1E /r VPABSD xmm1 {k1}{z}, xmm2/m128/m32bcst   C   V/V   AVX512VL AVX512F    Compute the absolute value of 32-bit integers in xmm2/m128/m32bcst and store UNSIGNED result in xmm1 using writemask k1.
   EVEX.256.66.0F38.W0 1E /r VPABSD ymm1 {k1}{z}, ymm2/m256/m32bcst   C   V/V   AVX512VL AVX512F    Compute the absolute value of 32-bit integers in ymm2/m256/m32bcst and store UNSIGNED result in ymm1 using writemask k1.
-  VPABSD zmm1 {k1}{z}, zmm2/m512/m32bcst                             C   V/V   AVX512F             Compute the absolute value of 32-bit integers in zmm2/m512/m32bcst and store UNSIGNED result in zmm1 using writemask k1.
+  EVEX.512.66.0F38.W0 1E /r VPABSD zmm1 {k1}{z}, zmm2/m512/m32bcst   C   V/V   AVX512F             Compute the absolute value of 32-bit integers in zmm2/m512/m32bcst and store UNSIGNED result in zmm1 using writemask k1.
   EVEX.128.66.0F38.W1 1F /r VPABSQ xmm1 {k1}{z}, xmm2/m128/m64bcst   C   V/V   AVX512VL AVX512F    Compute the absolute value of 64-bit integers in xmm2/m128/m64bcst and store UNSIGNED result in xmm1 using writemask k1.
   EVEX.256.66.0F38.W1 1F /r VPABSQ ymm1 {k1}{z}, ymm2/m256/m64bcst   C   V/V   AVX512VL AVX512F    Compute the absolute value of 64-bit integers in ymm2/m256/m64bcst and store UNSIGNED result in ymm1 using writemask k1.
   EVEX.512.66.0F38.W1 1F /r VPABSQ zmm1 {k1}{z}, zmm2/m512/m64bcst   C   V/V   AVX512F             Compute the absolute value of 64-bit integers in zmm2/m512/m64bcst and store UNSIGNED result in zmm1 using writemask k1.
@@ -44,7 +44,7 @@ PABSB/PABSW/PABSD/PABSQ — PACKED ABSOLUTE VALUE
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -54,7 +54,7 @@ Instruction Operand Encoding¶
   ------- ------------ --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 PABSB/W/D computes the absolute value of each data element of the source
 operand (the second operand) and stores the UNSIGNED results in the
@@ -89,27 +89,27 @@ unmodified.
 VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-Operation¶
+Operation ¶
 
-PABSB with 128 bit operands:¶
-
-    Unsigned DEST[7:0]←ABS(SRC[7: 0])
-    Repeat operation for 2nd through 15th bytes
-    Unsigned DEST[127:120]←ABS(SRC[127:120])
-
-VPABSB with 128 bit operands:¶
+PABSB with 128 bit operands: ¶
 
     Unsigned DEST[7:0]←ABS(SRC[7: 0])
     Repeat operation for 2nd through 15th bytes
     Unsigned DEST[127:120]←ABS(SRC[127:120])
 
-VPABSB with 256 bit operands:¶
+VPABSB with 128 bit operands: ¶
+
+    Unsigned DEST[7:0]←ABS(SRC[7: 0])
+    Repeat operation for 2nd through 15th bytes
+    Unsigned DEST[127:120]←ABS(SRC[127:120])
+
+VPABSB with 256 bit operands: ¶
 
     Unsigned DEST[7:0]←ABS(SRC[7: 0])
     Repeat operation for 2nd through 31st bytes
     Unsigned DEST[255:248]←ABS(SRC[255:248])
 
-VPABSB (EVEX encoded versions)¶
+VPABSB (EVEX encoded versions) ¶
 
         (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -128,25 +128,25 @@ VPABSB (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-PABSW with 128 bit operands:¶
+PABSW with 128 bit operands: ¶
 
     Unsigned DEST[15:0]←ABS(SRC[15:0])
     Repeat operation for 2nd through 7th 16-bit words
     Unsigned DEST[127:112]←ABS(SRC[127:112])
 
-VPABSW with 128 bit operands:¶
+VPABSW with 128 bit operands: ¶
 
     Unsigned DEST[15:0]←ABS(SRC[15:0])
     Repeat operation for 2nd through 7th 16-bit words
     Unsigned DEST[127:112]←ABS(SRC[127:112])
 
-VPABSW with 256 bit operands:¶
+VPABSW with 256 bit operands: ¶
 
     Unsigned DEST[15:0]←ABS(SRC[15:0])
     Repeat operation for 2nd through 15th 16-bit words
     Unsigned DEST[255:240]←ABS(SRC[255:240])
 
-VPABSW (EVEX encoded versions)¶
+VPABSW (EVEX encoded versions) ¶
 
         (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -164,25 +164,25 @@ VPABSW (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-PABSD with 128 bit operands:¶
+PABSD with 128 bit operands: ¶
 
     Unsigned DEST[31:0]←ABS(SRC[31:0])
     Repeat operation for 2nd through 3rd 32-bit double words
     Unsigned DEST[127:96]←ABS(SRC[127:96])
 
-VPABSD with 128 bit operands:¶
+VPABSD with 128 bit operands: ¶
 
     Unsigned DEST[31:0]←ABS(SRC[31:0])
     Repeat operation for 2nd through 3rd 32-bit double words
     Unsigned DEST[127:96]←ABS(SRC[127:96])
 
-VPABSD with 256 bit operands:¶
+VPABSD with 256 bit operands: ¶
 
     Unsigned DEST[31:0]←ABS(SRC[31:0])
     Repeat operation for 2nd through 7th 32-bit double words
     Unsigned DEST[255:224]←ABS(SRC[255:224])
 
-VPABSD (EVEX encoded versions)¶
+VPABSD (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -206,7 +206,7 @@ VPABSD (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VPABSQ (EVEX encoded versions)¶
+VPABSQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -230,7 +230,7 @@ VPABSQ (EVEX encoded versions)¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPABSB__m512i _mm512_abs_epi8 ( __m512i a)
 
@@ -306,11 +306,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     VPABSD __m256i _mm256_abs_epi32 (__m256i a)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

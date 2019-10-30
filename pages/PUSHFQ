@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ PUSHF/PUSHFD/PUSHFQ — PUSH EFLAGS REGISTER ONTO THE STACK
   9C        PUSHFQ        ZO      Valid         N.E.              Push RFLAGS.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Decrements the stack pointer by 4 (if the current operand-size attribute
 is 32) and pushes the entire contents of the EFLAGS register onto the
@@ -73,7 +73,7 @@ described in the #DF discussion in Chapter 6 of the _Intel® 64 and IA-32
 Architectures Software Developer’s Manual, Volume 3A_.
 
 
-Operation¶
+Operation ¶
 
     IF (PE = 0) or (PE = 1 and ((VM = 0) or (VM = 1 and IOPL = 3)))
     (* Real-Address Mode, Protected mode, or Virtual-8086 mode with IOPL equal to 3 *)
@@ -105,12 +105,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #SS(0)            If the new value of the ESP register is outside the stack segment boundary.
@@ -120,14 +120,14 @@ Protected Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------
   #GP(0)            If the I/O privilege level is less than 3.
@@ -137,12 +137,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If the memory address is in a non-canonical form.

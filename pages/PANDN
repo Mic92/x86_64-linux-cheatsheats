@@ -1,23 +1,23 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PANDN — LOGICAL AND NOT
 
 
-  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
-  NP 0F DF /_r_¹ PANDN _mm, mm/m64_                                           A       V/V                      MMX                  Bitwise AND NOT of _mm/m64_ and _mm_.
-  66 0F DF /_r_ PANDN _xmm1_, _xmm2/m128_                                     A       V/V                      SSE2                 Bitwise AND NOT of _xmm2/m128_ and _xmm1_.
-  VEX.NDS.128.66.0F.WIG DF /r VPANDN _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Bitwise AND NOT of _xmm3/m128_ and _xmm2_.
-  VEX.NDS.256.66.0F.WIG DF /r VPANDN _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Bitwise AND NOT of _ymm2_, and _ymm3/m256_ and store result in _ymm1_.
-  EVEX.NDS.128.66.0F.W0 DF /r VPANDND xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed doubleword integers in xmm2 and xmm3/m128/m32bcst and store result in xmm1 using writemask k1.
-  EVEX.NDS.256.66.0F.W0 DF /r VPANDND ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed doubleword integers in ymm2 and ymm3/m256/m32bcst and store result in ymm1 using writemask k1.
-  EVEX.NDS.512.66.0F.W0 DF /r VPANDND zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise AND NOT of packed doubleword integers in zmm2 and zmm3/m512/m32bcst and store result in zmm1 using writemask k1.
-  EVEX.NDS.128.66.0F.W1 DF /r VPANDNQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed quadword integers in xmm2 and xmm3/m128/m64bcst and store result in xmm1 using writemask k1.
-  EVEX.NDS.256.66.0F.W1 DF /r VPANDNQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed quadword integers in ymm2 and ymm3/m256/m64bcst and store result in ymm1 using writemask k1.
-  EVEX.NDS.512.66.0F.W1 DF /r VPANDNQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise AND NOT of packed quadword integers in zmm2 and zmm3/m512/m64bcst and store result in zmm1 using writemask k1.
+  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
+  NP 0F DF /_r_¹ PANDN _mm, mm/m64_                                       A       V/V                      MMX                  Bitwise AND NOT of _mm/m64_ and _mm_.
+  66 0F DF /_r_ PANDN _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Bitwise AND NOT of _xmm2/m128_ and _xmm1_.
+  VEX.128.66.0F.WIG DF /r VPANDN _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Bitwise AND NOT of _xmm3/m128_ and _xmm2_.
+  VEX.256.66.0F.WIG DF /r VPANDN _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Bitwise AND NOT of _ymm2_, and _ymm3/m256_ and store result in _ymm1_.
+  EVEX.128.66.0F.W0 DF /r VPANDND xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed doubleword integers in xmm2 and xmm3/m128/m32bcst and store result in xmm1 using writemask k1.
+  EVEX.256.66.0F.W0 DF /r VPANDND ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed doubleword integers in ymm2 and ymm3/m256/m32bcst and store result in ymm1 using writemask k1.
+  EVEX.512.66.0F.W0 DF /r VPANDND zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise AND NOT of packed doubleword integers in zmm2 and zmm3/m512/m32bcst and store result in zmm1 using writemask k1.
+  EVEX.128.66.0F.W1 DF /r VPANDNQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed quadword integers in xmm2 and xmm3/m128/m64bcst and store result in xmm1 using writemask k1.
+  EVEX.256.66.0F.W1 DF /r VPANDNQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND NOT of packed quadword integers in ymm2 and ymm3/m256/m64bcst and store result in ymm1 using writemask k1.
+  EVEX.512.66.0F.W1 DF /r VPANDNQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise AND NOT of packed quadword integers in zmm2 and zmm3/m512/m64bcst and store result in zmm1 using writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -27,7 +27,7 @@ PANDN — LOGICAL AND NOT
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -37,7 +37,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Performs a bitwise logical NOT operation on the first source operand,
 then performs bitwise AND with second source operand and stores the
@@ -77,28 +77,28 @@ The destination operand is an XMM register. The upper bits (MAXVL-1:128)
 of the corresponding ZMM register destination are zeroed.
 
 
-Operation¶
+Operation ¶
 
-PANDN (64-bit operand)¶
+PANDN (64-bit operand) ¶
 
     DEST←NOT(DEST) AND SRC
 
-PANDN (128-bit Legacy SSE version)¶
+PANDN (128-bit Legacy SSE version) ¶
 
     DEST←NOT(DEST) AND SRC
     DEST[MAXVL-1:128] (Unmodified)
 
-VPANDN (VEX.128 encoded version)¶
+VPANDN (VEX.128 encoded version) ¶
 
     DEST←NOT(SRC1) AND SRC2
     DEST[MAXVL-1:128] ← 0
 
-VPANDN (VEX.256 encoded instruction)¶
+VPANDN (VEX.256 encoded instruction) ¶
 
     DEST[255:0]←((NOT SRC1[255:0]) AND SRC2[255:0])
     DEST[MAXVL-1:256] ← 0
 
-VPANDND (EVEX encoded versions)¶
+VPANDND (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -120,7 +120,7 @@ VPANDND (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPANDNQ (EVEX encoded versions)¶
+VPANDNQ (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -141,7 +141,7 @@ VPANDNQ (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPANDND __m512i _mm512_andnot_epi32( __m512i a, __m512i b);
 
@@ -178,17 +178,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPANDN: __m256i _mm256_andnot_si256 ( __m256i a, __m256i b)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

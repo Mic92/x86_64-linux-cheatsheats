@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 SUBPS — SUBTRACT PACKED SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 5C /r SUBPS xmm1, xmm2/m128                                           A       V/V                      SSE                  Subtract packed single-precision floating-point values in xmm2/mem from xmm1 and store result in xmm1.
-  VEX.NDS.128.0F.WIG 5C /r VSUBPS xmm1,xmm2, xmm3/m128                        B       V/V                      AVX                  Subtract packed single-precision floating-point values in xmm3/mem from xmm2 and stores result in xmm1.
-  VEX.NDS.256.0F.WIG 5C /r VSUBPS ymm1, ymm2, ymm3/m256                       B       V/V                      AVX                  Subtract packed single-precision floating-point values in ymm3/mem from ymm2 and stores result in ymm1.
-  EVEX.NDS.128.0F.W0 5C /r VSUBPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       C       V/V                      AVX512VL AVX512F     Subtract packed single-precision floating-point values from xmm3/m128/m32bcst to xmm2 and stores result in xmm1 with writemask k1.
-  EVEX.NDS.256.0F.W0 5C /r VSUBPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       C       V/V                      AVX512VL AVX512F     Subtract packed single-precision floating-point values from ymm3/m256/m32bcst to ymm2 and stores result in ymm1 with writemask k1.
-  EVEX.NDS.512.0F.W0 5C /r VSUBPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   C       V/V                      AVX512F              Subtract packed single-precision floating-point values in zmm3/m512/m32bcst from zmm2 and stores result in zmm1 with writemask k1.
+  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 5C /r SUBPS xmm1, xmm2/m128                                       A       V/V                      SSE                  Subtract packed single-precision floating-point values in xmm2/mem from xmm1 and store result in xmm1.
+  VEX.128.0F.WIG 5C /r VSUBPS xmm1,xmm2, xmm3/m128                        B       V/V                      AVX                  Subtract packed single-precision floating-point values in xmm3/mem from xmm2 and stores result in xmm1.
+  VEX.256.0F.WIG 5C /r VSUBPS ymm1, ymm2, ymm3/m256                       B       V/V                      AVX                  Subtract packed single-precision floating-point values in ymm3/mem from ymm2 and stores result in ymm1.
+  EVEX.128.0F.W0 5C /r VSUBPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       C       V/V                      AVX512VL AVX512F     Subtract packed single-precision floating-point values from xmm3/m128/m32bcst to xmm2 and stores result in xmm1 with writemask k1.
+  EVEX.256.0F.W0 5C /r VSUBPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       C       V/V                      AVX512VL AVX512F     Subtract packed single-precision floating-point values from ymm3/m256/m32bcst to ymm2 and stores result in ymm1 with writemask k1.
+  EVEX.512.0F.W0 5C /r VSUBPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   C       V/V                      AVX512F              Subtract packed single-precision floating-point values in zmm3/m512/m32bcst from zmm2 and stores result in zmm1 with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a SIMD subtract of the packed single-precision floating-point
 values in the second Source operand from the First Source operand, and
@@ -53,9 +53,9 @@ an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper Bits (MAXVL-1:128) of the
 corresponding register destination are unmodified.
 
-Operation¶
+Operation ¶
 
-VSUBPS (EVEX encoded versions) when src2 operand is a vector register¶
+VSUBPS (EVEX encoded versions) when src2 operand is a vector register ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -78,7 +78,7 @@ VSUBPS (EVEX encoded versions) when src2 operand is a vector register¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VSUBPS (EVEX encoded versions) when src2 operand is a memory source¶
+VSUBPS (EVEX encoded versions) when src2 operand is a memory source ¶
 
     (KL, VL) = (4, 128), (8, 256),(16, 512)
     FOR j←0 TO KL-1
@@ -98,7 +98,7 @@ VSUBPS (EVEX encoded versions) when src2 operand is a memory source¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-VSUBPS (VEX.256 encoded version)¶
+VSUBPS (VEX.256 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] - SRC2[31:0]
     DEST[63:32]←SRC1[63:32] - SRC2[63:32]
@@ -110,7 +110,7 @@ VSUBPS (VEX.256 encoded version)¶
     DEST[255:224]←SRC1[255:224] - SRC2[255:224].
     DEST[MAXVL-1:256] ← 0
 
-VSUBPS (VEX.128 encoded version)¶
+VSUBPS (VEX.128 encoded version) ¶
 
     DEST[31:0]←SRC1[31:0] - SRC2[31:0]
     DEST[63:32]←SRC1[63:32] - SRC2[63:32]
@@ -118,7 +118,7 @@ VSUBPS (VEX.128 encoded version)¶
     DEST[127:96]←SRC1[127:96] - SRC2[127:96]
     DEST[MAXVL-1:128] ← 0
 
-SUBPS (128-bit Legacy SSE version)¶
+SUBPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0]←SRC1[31:0] - SRC2[31:0]
     DEST[63:32]←SRC1[63:32] - SRC2[63:32]
@@ -126,7 +126,7 @@ SUBPS (128-bit Legacy SSE version)¶
     DEST[127:96]←SRC1[127:96] - SRC2[127:96]
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSUBPS __m512 _mm512_sub_ps (__m512 a, __m512 b);
 
@@ -152,11 +152,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSUBPS __m128 _mm_maskz_sub_ps (__mmask16 k, __m128 a, __m128 b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 2.
 

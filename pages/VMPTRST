@@ -1,23 +1,31 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VMPTRST — STORE POINTER TO VIRTUAL-MACHINE CONTROL STRUCTURE
 
 
-  -------------------------------------------------------------------------------------------------------
-  OPCODE INSTRUCTION DESCRIPTION NP 0F C7 /7 VMPTRST m64 Stores the current VMCS pointer into memory_._
-  -------------------------------------------------------------------------------------------------------
+  Opcode/Instruction        Op/En   Description
+  ------------------------- ------- ------------------------------------------------
+  NP 0F C7 /7 VMPTRST m64   M       Stores the current VMCS pointer into memory_._
 
 
-Description¶
+Instruction Operand Encoding ¶
+
+  ------- --------------- ----------- ----------- -----------
+  Op/En   Operand 1       Operand 2   Operand 3   Operand 4
+  M       ModRM:r/m (w)   NA          NA          NA
+  ------- --------------- ----------- ----------- -----------
+
+
+Description ¶
 
 Stores the current-VMCS pointer into a specified memory address. The
 operand of this instruction is always 64 bits and is always in memory.
 
 
-Operation¶
+Operation ¶
 
     IF (register operand) or (not in VMX operation) or (CR0.PE = 0) or (RFLAGS.VM = 1) or (IA32_EFER.LMA = 1 and CS.L = 0)
         THEN #UD;
@@ -31,12 +39,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 See the operation section and Section 30.2.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -68,28 +76,28 @@ If operand is a register.
 If not in VMX operation.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The VMPTRST instruction is not recognized in real-address mode.
   ----- -----------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The VMPTRST instruction is not recognized in virtual-8086 mode.
   ----- -----------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------
   #UD   The VMPTRST instruction is not recognized in compatibility mode.
   ----- ------------------------------------------------------------------
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

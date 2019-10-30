@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ BNDCU/BNDCN — CHECK UPPER BOUND
   F2 0F 1B /r BNDCN bnd, r/m64   RM      V/NE                     MPX                  Generate a #BR if the address in r/m64 is higher than the upper bound in bnd.UB (bnb.UB not in 1's complement form).
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- -----------
   Op/En   Operand 1       Operand 2       Operand 3
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Compare the address in the second operand with the upper bound in bnd.
 The second operand can be either a register or a memory operand. If the
@@ -40,16 +40,16 @@ write any flags.
 Effective address computation of m32/64 has identical behavior to LEA
 
 
-Operation¶
+Operation ¶
 
-BNDCU BND, reg¶
+BNDCU BND, reg ¶
 
     IF reg > NOT(BND.UB) Then
         BNDSTATUS ← 01H;
         #BR;
     FI;
 
-BNDCU BND, mem¶
+BNDCU BND, mem ¶
 
     TEMP ← LEA(mem);
     IF TEMP > NOT(BND.UB) Then
@@ -57,14 +57,14 @@ BNDCU BND, mem¶
         #BR;
     FI;
 
-BNDCN BND, reg¶
+BNDCN BND, reg ¶
 
     IF reg > BND.UB Then
         BNDSTATUS ← 01H;
         #BR;
     FI;
 
-BNDCN BND, mem¶
+BNDCN BND, mem ¶
 
     TEMP ← LEA(mem);
     IF TEMP > BND.UB Then
@@ -73,17 +73,17 @@ BNDCN BND, mem¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BNDCU .void _bnd_chk_ptr_ubounds(const void *q)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #BR
 
@@ -100,7 +100,7 @@ If 67H prefix is not used and CS.D=0.
 If 67H prefix is used and CS.D=1.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #BR
 
@@ -115,7 +115,7 @@ If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
 If 16-bit addressing is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #BR
 
@@ -130,12 +130,12 @@ If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
 If 16-bit addressing is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- --------------------------------------------------------------------
   #UD   If ModRM.r/m and REX encodes BND4-BND15 when Intel MPX is enabled.

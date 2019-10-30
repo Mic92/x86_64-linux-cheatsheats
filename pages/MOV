@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -58,7 +58,7 @@ MOV — MOVE
   byte registers if a REX prefix is used: AH, BH, CH, DH.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------------- --------------- ----------- -----------
   Op/En   Operand 1         Operand 2       Operand 3   Operand 4
@@ -71,7 +71,7 @@ Instruction Operand Encoding¶
   ------- ----------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Copies the second operand (source operand) to the first operand
 (destination operand). The source operand can be an immediate value,
@@ -100,32 +100,23 @@ However, any subsequent attempt to reference a segment whose
 corresponding segment register is loaded with a NULL value causes a
 general protection exception (#GP) and no memory reference occurs.
 
-Loading the SS register with a MOV instruction inhibits all interrupts
-until after the execution of the next instruction. This operation allows
-a stack pointer to be loaded into the ESP register with the next
-instruction (MOV ESP, STACK-POINTER VALUE) before an interrupt occurs¹.
-Be aware that the LSS instruction offers a more efficient method of
-loading the SS and ESP registers.
-
-  1. If a code instruction breakpoint (for debug) is placed on an
-  instruction located immediately after a MOV SS instruction, the
-  breakpoint may not be triggered. However, in a sequence of
-  instructions that load the SS register, only the first instruction in
-  the sequence is guaranteed to delay an interrupt.
-
-  In the following sequence, interrupts may be recognized before MOV
-  ESP, EBP executes:
-
-  MOV SS, EDX MOV SS, EAX MOV ESP, EBP
+Loading the SS register with a MOV instruction suppresses or inhibits
+some debug exceptions and inhibits interrupts on the following
+instruction boundary. (The inhibition ends after delivery of an
+exception or the execution of the next instruction.) This behavior
+allows a stack pointer to be loaded into the ESP register with the next
+instruction (MOV ESP, STACK-POINTER VALUE) before an event can be
+delivered. See Section 6.8.3, “Masking Exceptions and Interrupts When
+Switching Stacks,” in _Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 3A._ Intel recommends that software use the
+LSS instruction to load the SS register and ESP together.
 
 When executing MOV Reg, Sreg, the processor copies the content of Sreg
 to the 16 least significant bits of the general-purpose register. The
 upper bits of the destination register are zero for most IA-32
-processors (Pentium
-
-Pro processors and later) and all Intel 64 processors, with the
-exception that bits 31:16 are undefined for Intel Quark X1000
-processors, Pentium and earlier processors.
+processors (Pentium Pro processors and later) and all Intel 64
+processors, with the exception that bits 31:16 are undefined for Intel
+Quark X1000 processors, Pentium and earlier processors.
 
 In 64-bit mode, the instruction’s default operation size is 32 bits. Use
 of the REX.R prefix permits access to additional registers (R8-R15). Use
@@ -133,7 +124,7 @@ of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     DEST ← SRC;
     Loading a segment register while in protected mode results in special checks and actions, as described in the
@@ -173,12 +164,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -238,7 +229,7 @@ If attempt is made to load the CS register.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -256,7 +247,7 @@ If attempt is made to load the CS register.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -283,12 +274,12 @@ If attempt is made to load the CS register.
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 
@@ -298,7 +289,7 @@ If an attempt is made to load SS register with NULL segment selector
 when CPL = 3.
 
 If an attempt is made to load SS register with NULL segment selector
-when CPL < 3 and CPL
+when CPL < 3 and CPL ≠ RPL.
 
 #GP(selector)
 

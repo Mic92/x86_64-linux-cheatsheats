@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ RET — RETURN FROM PROCEDURE
   CA _iw_   RET _imm16_   I       Valid         Valid             Far return to calling procedure and pop _imm16_ bytes from stack.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Transfers program control to a return address located on the top of the
 stack. The address is usually placed on the stack by a CALL instruction,
@@ -89,8 +89,20 @@ In 64-bit mode, the default operation size of this instruction is the
 stack-address size, i.e. 64 bits. This applies to near returns, not far
 returns; the default operation size of far returns is 32 bits.
 
+INSTRUCTION ORDERING. Instructions following a far return may be fetched
+from memory before earlier instructions complete execution, but they
+will not execute (even speculatively) until all instructions prior to
+the far return have completed execution (the later instructions may
+execute before data stored by the earlier instructions have become
+globally visible).
 
-Operation¶
+Unlike near indirect CALL and near indirect JMP, the processor will not
+speculatively execute the next sequential instruction after a near RET
+unless that instruction is also the target of a jump or is a target in a
+branch predictor.
+
+
+Operation ¶
 
     (* Near return *)
     IF instruction = near return
@@ -480,12 +492,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -537,7 +549,7 @@ If an unaligned memory access occurs when the CPL is 3 and alignment
 checking is enabled.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------
   #GP   If the return instruction pointer is not within the return code segment limit
@@ -545,7 +557,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------
   #GP(0)            If the return instruction pointer is not within the return code segment limit
@@ -555,12 +567,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same as 64-bit mode exceptions.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 

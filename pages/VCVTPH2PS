@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -15,7 +15,7 @@ VCVTPH2PS — CONVERT 16-BIT FP VALUES TO SINGLE-PRECISION FP VALUES
   EVEX.512.66.0F38.W0 13 /r VCVTPH2PS zmm1 {k1}{z}, ymm2/m256 {sae}   B         V/V                      AVX512F              Convert sixteen packed half precision (16-bit) floating-point values in ymm2/m256 to packed single-precision floating-point values in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2       Operand 3   Operand 4
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   B       Half Mem     ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts packed half precision (16-bits) floating-point values in the
 low-order bits of the source operand (the second operand) to packed
@@ -62,14 +62,14 @@ VS3 VS2 VS1 VS0 xmm1
 
 Figure 5-6. VCVTPH2PS (128-bit Version)
 
-Operation¶
+Operation ¶
 
     vCvt_h2s(SRC1[15:0])
     {
     RETURN Cvt_Half_Precision_To_Single_Precision(SRC1[15:0]);
     }
 
-VCVTPH2PS (EVEX encoded versions)¶
+VCVTPH2PS (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -89,7 +89,7 @@ VCVTPH2PS (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VCVTPH2PS (VEX.256 encoded version)¶
+VCVTPH2PS (VEX.256 encoded version) ¶
 
     DEST[31:0] ←vCvt_h2s(SRC1[15:0]);
     DEST[63:32] ←vCvt_h2s(SRC1[31:16]);
@@ -101,7 +101,7 @@ VCVTPH2PS (VEX.256 encoded version)¶
     DEST[255:224] ←vCvt_h2s(SRC1[127:112]);
     DEST[MAXVL-1:256] ← 0
 
-VCVTPH2PS (VEX.128 encoded version)¶
+VCVTPH2PS (VEX.128 encoded version) ¶
 
     DEST[31:0] ←vCvt_h2s(SRC1[15:0]);
     DEST[63:32] ←vCvt_h2s(SRC1[31:16]);
@@ -109,11 +109,11 @@ VCVTPH2PS (VEX.128 encoded version)¶
     DEST[127:96] ←vCvt_h2s(SRC1[63:48]);
     DEST[MAXVL-1:128] ← 0
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTPH2PS __m512 _mm512_cvtph_ps( __m256i a);
 
@@ -139,11 +139,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTPH2PS __m256 _mm256_cvtph_ps ( __m128i m1)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 11 (do not report #AC);
 

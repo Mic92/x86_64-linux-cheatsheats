@@ -1,24 +1,24 @@
 -   Index
--   March 2018
+-   May 2019
 
 
 
 VP4DPWSSDS — DOT PRODUCT OF SIGNED WORDS WITH DWORD ACCUMULATION AND SATURATION (4-ITERATIONS)
 
 
-  Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.DDS.512.F2.0F38.W0 53 /r VP4DPWSSDS zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4VNNIW        Multiply signed words from source register block indicated by zmm2 by signed words from m128 and accumulate the resulting dword results with signed saturation in zmm1.
+  Opcode/Instruction                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.512.F2.0F38.W0 53 /r VP4DPWSSDS zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4VNNIW        Multiply signed words from source register block indicated by zmm2 by signed words from m128 and accumulate the resulting dword results with signed saturation in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   -------------------------------------------------------------
   Op/En Tuple Operand 1 Operand 2 Operand 3 Operand 4
   A Tuple1_4X ModRM:reg (r, w) EVEX.vvvv (r) ModRM:r/m (r) NA
   -------------------------------------------------------------
 
-Description¶
+Description ¶
 
 This instruction computes 4 sequential register source-block
 dot-products of two signed word operands with doubleword accumulation
@@ -37,7 +37,7 @@ operand is loaded if any bit of the lowest 16-bits of the mask is set to
 The tuple type Tuple1_4X implies that four 32-bit elements (16 bytes)
 are referenced by the memory operation portion of this instruction.
 
-Operation¶
+Operation ¶
 
     src_reg_id is the 5 bit index of the vector register specified in the instruction as the src1 register.
     VP4DPWSSDS dest, src1, src2
@@ -58,7 +58,7 @@ Operation¶
             DEST.dword[i] ← ORIGDEST.dword[i]
     DEST[MAX_VL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VP4DPWSSDS __m512i _mm512_4dpwssds_epi32(__m512i, __m512ix4, __m128i *);
 
@@ -66,11 +66,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VP4DPWSSDS __m512i _mm512_maskz_4dpwssds_epi32(__mmask16, __m512i, __m512ix4, __m128i *);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Type E4; additionally
 

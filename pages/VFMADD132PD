@@ -1,31 +1,31 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VFMADD132PD/VFMADD213PD/VFMADD231PD — FUSED MULTIPLY-ADD OF PACKED DOUBLE- PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------
-  VEX.NDS.128.66.0F38.W1 98 /r VFMADD132PD xmm1, xmm2, xmm3/m128                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from xmm1 and xmm3/mem, add to xmm2 and put result in xmm1.
-  VEX.NDS.128.66.0F38.W1 A8 /r VFMADD213PD xmm1, xmm2, xmm3/m128                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from xmm1 and xmm2, add to xmm3/mem and put result in xmm1.
-  VEX.NDS.128.66.0F38.W1 B8 /r VFMADD231PD xmm1, xmm2, xmm3/m128                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from xmm2 and xmm3/mem, add to xmm1 and put result in xmm1.
-  VEX.NDS.256.66.0F38.W1 98 /r VFMADD132PD ymm1, ymm2, ymm3/m256                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from ymm1 and ymm3/mem, add to ymm2 and put result in ymm1.
-  VEX.NDS.256.66.0F38.W1 A8 /r VFMADD213PD ymm1, ymm2, ymm3/m256                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from ymm1 and ymm2, add to ymm3/mem and put result in ymm1.
-  VEX.NDS.256.66.0F38.W1 B8 /r VFMADD231PD ymm1, ymm2, ymm3/m256                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from ymm2 and ymm3/mem, add to ymm1 and put result in ymm1.
-  EVEX.NDS.128.66.0F38.W1 98 /r VFMADD132PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       A       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from xmm1 and xmm3/m128/m64bcst, add to xmm2 and put result in xmm1.
-  EVEX.NDS.128.66.0F38.W1 A8 /r VFMADD213PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from xmm1 and xmm2, add to xmm3/m128/m64bcst and put result in xmm1.
-  EVEX.NDS.128.66.0F38.W1 B8 /r VFMADD231PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from xmm2 and xmm3/m128/m64bcst, add to xmm1 and put result in xmm1.
-  EVEX.NDS.256.66.0F38.W1 98 /r VFMADD132PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from ymm1 and ymm3/m256/m64bcst, add to ymm2 and put result in ymm1.
-  EVEX.NDS.256.66.0F38.W1 A8 /r VFMADD213PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from ymm1 and ymm2, add to ymm3/m256/m64bcst and put result in ymm1.
-  EVEX.NDS.256.66.0F38.W1 B8 /r VFMADD231PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from ymm2 and ymm3/m256/m64bcst, add to ymm1 and put result in ymm1.
-  EVEX.NDS.512.66.0F38.W1 98 /r VFMADD132PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm3/m512/m64bcst, add to zmm2 and put result in zmm1.
-  EVEX.NDS.512.66.0F38.W1 A8 /r VFMADD213PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm2, add to zmm3/m512/m64bcst and put result in zmm1.
-  EVEX.NDS.512.66.0F38.W1 B8 /r VFMADD231PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm2 and zmm3/m512/m64bcst, add to zmm1 and put result in zmm1.
+  Opcode/Instruction                                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W1 98 /r VFMADD132PD xmm1, xmm2, xmm3/m128                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from xmm1 and xmm3/mem, add to xmm2 and put result in xmm1.
+  VEX.128.66.0F38.W1 A8 /r VFMADD213PD xmm1, xmm2, xmm3/m128                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from xmm1 and xmm2, add to xmm3/mem and put result in xmm1.
+  VEX.128.66.0F38.W1 B8 /r VFMADD231PD xmm1, xmm2, xmm3/m128                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from xmm2 and xmm3/mem, add to xmm1 and put result in xmm1.
+  VEX.256.66.0F38.W1 98 /r VFMADD132PD ymm1, ymm2, ymm3/m256                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from ymm1 and ymm3/mem, add to ymm2 and put result in ymm1.
+  VEX.256.66.0F38.W1 A8 /r VFMADD213PD ymm1, ymm2, ymm3/m256                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from ymm1 and ymm2, add to ymm3/mem and put result in ymm1.
+  VEX.256.66.0F38.W1 B8 /r VFMADD231PD ymm1, ymm2, ymm3/m256                        A       V/V                      FMA                  Multiply packed double-precision floating-point values from ymm2 and ymm3/mem, add to ymm1 and put result in ymm1.
+  EVEX.128.66.0F38.W1 98 /r VFMADD132PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       A       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from xmm1 and xmm3/m128/m64bcst, add to xmm2 and put result in xmm1.
+  EVEX.128.66.0F38.W1 A8 /r VFMADD213PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from xmm1 and xmm2, add to xmm3/m128/m64bcst and put result in xmm1.
+  EVEX.128.66.0F38.W1 B8 /r VFMADD231PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from xmm2 and xmm3/m128/m64bcst, add to xmm1 and put result in xmm1.
+  EVEX.256.66.0F38.W1 98 /r VFMADD132PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from ymm1 and ymm3/m256/m64bcst, add to ymm2 and put result in ymm1.
+  EVEX.256.66.0F38.W1 A8 /r VFMADD213PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from ymm1 and ymm2, add to ymm3/m256/m64bcst and put result in ymm1.
+  EVEX.256.66.0F38.W1 B8 /r VFMADD231PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Multiply packed double-precision floating-point values from ymm2 and ymm3/m256/m64bcst, add to ymm1 and put result in ymm1.
+  EVEX.512.66.0F38.W1 98 /r VFMADD132PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm3/m512/m64bcst, add to zmm2 and put result in zmm1.
+  EVEX.512.66.0F38.W1 A8 /r VFMADD213PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm2, add to zmm3/m512/m64bcst and put result in zmm1.
+  EVEX.512.66.0F38.W1 B8 /r VFMADD231PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm2 and zmm3/m512/m64bcst, add to zmm1 and put result in zmm1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -33,7 +33,7 @@ Instruction Operand Encoding¶
   B       Full         ModRM:reg (r, w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a set of SIMD multiply-add computation on packed
 double-precision floating-point values using three source operands and
@@ -88,12 +88,12 @@ operand is a XMM register and encoded in VEX.vvvv. The third source
 operand is a XMM register or a 128-bit memory location and encoded in
 rm_field. The upper 128 bits of the YMM destination register are zeroed.
 
-Operation¶
+Operation ¶
 
     In the operations below, “*” and “+” symbols represent multiplication and addition with infinite precision inputs and outputs (no
     rounding).
 
-VFMADD132PD DEST, SRC2, SRC3 (VEX encoded version)¶
+VFMADD132PD DEST, SRC2, SRC3 (VEX encoded version) ¶
 
     IF (VEX.128) THEN
         MAXNUM ←2
@@ -110,7 +110,7 @@ VFMADD132PD DEST, SRC2, SRC3 (VEX encoded version)¶
         DEST[MAXVL-1:256] ← 0
     FI
 
-VFMADD213PD DEST, SRC2, SRC3 (VEX encoded version)¶
+VFMADD213PD DEST, SRC2, SRC3 (VEX encoded version) ¶
 
     IF (VEX.128) THEN
         MAXNUM ←2
@@ -127,7 +127,7 @@ VFMADD213PD DEST, SRC2, SRC3 (VEX encoded version)¶
         DEST[MAXVL-1:256] ← 0
     FI
 
-VFMADD231PD DEST, SRC2, SRC3 (VEX encoded version)¶
+VFMADD231PD DEST, SRC2, SRC3 (VEX encoded version) ¶
 
     IF (VEX.128) THEN
         MAXNUM ←2
@@ -144,7 +144,7 @@ VFMADD231PD DEST, SRC2, SRC3 (VEX encoded version)¶
         DEST[MAXVL-1:256] ← 0
     FI
 
-VFMADD132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register)¶
+VFMADD132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -168,7 +168,7 @@ VFMADD132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a regis
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VFMADD132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source)¶
+VFMADD132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -193,7 +193,7 @@ VFMADD132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memor
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VFMADD213PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a is a register)¶
+VFMADD213PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a is a register) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -217,7 +217,7 @@ VFMADD213PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a is a 
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VFMADD213PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source)¶
+VFMADD213PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -242,7 +242,7 @@ VFMADD213PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memor
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VFMADD231PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register)¶
+VFMADD231PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     IF (VL = 512) AND (EVEX.b = 1)
@@ -266,7 +266,7 @@ VFMADD231PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a regis
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VFMADD231PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source)¶
+VFMADD231PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -291,7 +291,7 @@ VFMADD231PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memor
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VFMADDxxxPD __m512d _mm512_fmadd_pd(__m512d a, __m512d b, __m512d c);
 
@@ -325,11 +325,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VFMADDxxxPD __m256d _mm256_fmadd_pd (__m256d a, __m256d b, __m256d c);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 2.
 

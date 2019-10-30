@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 MAXSS — RETURN MAXIMUM SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
-  F3 0F 5F /r MAXSS xmm1, xmm2/m32                                       A       V/V                      SSE                  Return the maximum scalar single-precision floating-point value between xmm2/m32 and xmm1.
-  VEX.NDS.LIG.F3.0F.WIG 5F /r VMAXSS xmm1, xmm2, xmm3/m32                B       V/V                      AVX                  Return the maximum scalar single-precision floating-point value between xmm3/m32 and xmm2.
-  EVEX.NDS.LIG.F3.0F.W0 5F /r VMAXSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   C       V/V                      AVX512F              Return the maximum scalar single-precision floating-point value between xmm3/m32 and xmm2.
+  Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------ ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
+  F3 0F 5F /r MAXSS xmm1, xmm2/m32                                   A       V/V                      SSE                  Return the maximum scalar single-precision floating-point value between xmm2/m32 and xmm1.
+  VEX.LIG.F3.0F.WIG 5F /r VMAXSS xmm1, xmm2, xmm3/m32                B       V/V                      AVX                  Return the maximum scalar single-precision floating-point value between xmm3/m32 and xmm2.
+  EVEX.LIG.F3.0F.W0 5F /r VMAXSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   C       V/V                      AVX512F              Return the maximum scalar single-precision floating-point value between xmm3/m32 and xmm2.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   C       Tuple1 Scalar   ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- --------------- ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Compares the low single-precision floating-point values in the first
 source operand and the second source operand, and returns the maximum
@@ -59,7 +59,7 @@ Software should ensure VMAXSS is encoded with VEX.L=0. Encoding VMAXSS
 with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
-Operation¶
+Operation ¶
 
     MAX(SRC1, SRC2)
     {
@@ -71,7 +71,7 @@ Operation¶
         FI;
     }
 
-VMAXSS (EVEX encoded version)¶
+VMAXSS (EVEX encoded version) ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[31:0]←MAX(SRC1[31:0], SRC2[31:0])
@@ -85,18 +85,18 @@ VMAXSS (EVEX encoded version)¶
     DEST[127:32] ← SRC1[127:32]
     DEST[MAXVL-1:128] ← 0
 
-VMAXSS (VEX.128 encoded version)¶
+VMAXSS (VEX.128 encoded version) ¶
 
     DEST[31:0]←MAX(SRC1[31:0], SRC2[31:0])
     DEST[127:32] ←SRC1[127:32]
     DEST[MAXVL-1:128] ←0
 
-MAXSS (128-bit Legacy SSE version)¶
+MAXSS (128-bit Legacy SSE version) ¶
 
     DEST[31:0]←MAX(DEST[31:0], SRC[31:0])
     DEST[MAXVL-1:32] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMAXSS __m128 _mm_max_round_ss( __m128 a, __m128 b, int);
 
@@ -106,11 +106,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MAXSS __m128 _mm_max_ss(__m128 a, __m128 b)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (Including QNaN Source Operand), Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 3.
 

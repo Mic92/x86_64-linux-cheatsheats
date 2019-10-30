@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -23,7 +23,7 @@ CVTTSD2SI — CONVERT WITH TRUNCATION SCALAR DOUBLE-PRECISION FLOATING-POINT VAL
   ignored; the instructions behaves as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type     Operand 1       Operand 2       Operand 3   Operand 4
@@ -32,7 +32,7 @@ Instruction Operand Encoding¶
   ------- -------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts a double-precision floating-point value in the source operand
 (the second operand) to a signed double-word integer (or signed quadword
@@ -70,9 +70,9 @@ VCVTTSD2SI with VEX.L=1 may encounter unpredictable behavior across
 different processor generations.
 
 
-Operation¶
+Operation ¶
 
-(V)CVTTSD2SI (All versions)¶
+(V)CVTTSD2SI (All versions) ¶
 
     IF 64-Bit Mode and OperandSize = 64
     THEN
@@ -82,7 +82,7 @@ Operation¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTTSD2SI int _mm_cvttsd_i32( __m128d a);
 
@@ -97,12 +97,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     CVTTSD2SI __int64 _mm_cvttsd_si64( __m128d a);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3; additionally
 

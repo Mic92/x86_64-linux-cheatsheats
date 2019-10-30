@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VDBPSADBW — DOUBLE BLOCK PACKED SUM-ABSOLUTE-DIFFERENCES (SAD) ON UNSIGNED BYTES
 
 
-  Opcode/Instruction                                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.128.66.0F3A.W0 42 /r ib VDBPSADBW xmm1 {k1}{z}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compute packed SAD word results of unsigned bytes in dword block from xmm2 with unsigned bytes of dword blocks transformed from xmm3/m128 using the shuffle controls in imm8. Results are written to xmm1 under the writemask k1.
-  EVEX.NDS.256.66.0F3A.W0 42 /r ib VDBPSADBW ymm1 {k1}{z}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compute packed SAD word results of unsigned bytes in dword block from ymm2 with unsigned bytes of dword blocks transformed from ymm3/m256 using the shuffle controls in imm8. Results are written to ymm1 under the writemask k1.
-  EVEX.NDS.512.66.0F3A.W0 42 /r ib VDBPSADBW zmm1 {k1}{z}, zmm2, zmm3/m512, imm8   A       V/V                      AVX512BW             Compute packed SAD word results of unsigned bytes in dword block from zmm2 with unsigned bytes of dword blocks transformed from zmm3/m512 using the shuffle controls in imm8. Results are written to zmm1 under the writemask k1.
+  Opcode/Instruction                                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W0 42 /r ib VDBPSADBW xmm1 {k1}{z}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compute packed SAD word results of unsigned bytes in dword block from xmm2 with unsigned bytes of dword blocks transformed from xmm3/m128 using the shuffle controls in imm8. Results are written to xmm1 under the writemask k1.
+  EVEX.256.66.0F3A.W0 42 /r ib VDBPSADBW ymm1 {k1}{z}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compute packed SAD word results of unsigned bytes in dword block from ymm2 with unsigned bytes of dword blocks transformed from ymm3/m256 using the shuffle controls in imm8. Results are written to ymm1 under the writemask k1.
+  EVEX.512.66.0F3A.W0 42 /r ib VDBPSADBW zmm1 {k1}{z}, zmm2, zmm3/m512, imm8   A       V/V                      AVX512BW             Compute packed SAD word results of unsigned bytes in dword block from zmm2 with unsigned bytes of dword blocks transformed from zmm3/m512 using the shuffle controls in imm8. Results are written to zmm1 under the writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ --------------- ----------- --------------- -----------
   Op/En   Tuple Type   Operand 1       Operand 2   Operand 3       Operand 4
   A       Full Mem     ModRM:reg (w)   EVEX.vvvv   ModRM:r/m (r)   Imm8
   ------- ------------ --------------- ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Compute packed SAD (sum of absolute differences) word results of
 unsigned bytes from two 32-bit dword elements. Packed SAD word results
@@ -74,9 +74,9 @@ abs abs abs + Destination qword superblock
 
 Figure 5-8. 64-bit Super Block of SAD Operation in VDBPSADBW
 
-Operation¶
+Operation ¶
 
-VDBPSADBW (EVEX encoded versions)¶
+VDBPSADBW (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     Selection of quadruplets:
@@ -121,7 +121,7 @@ VDBPSADBW (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VDBPSADBW __m512i _mm512_dbsad_epu8(__m512i a, __m512i b);
 
@@ -141,11 +141,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VDBPSADBW __m128i _mm_maskz_dbsad_epu8(__mmask8 m, __m128i a, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E4NF.nb.
 

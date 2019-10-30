@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VGETEXPSS — CONVERT EXPONENTS OF SCALAR SP FP VALUES TO SP FP VALUE
 
 
-  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F38.W0 43 /r VGETEXPSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   A       V/V                      AVX512F              Convert the biased exponent (bits 30:23) of the low single-precision floating-point value in xmm3/m32 to a SP FP value representing unbiased integer exponent. Stores the result to xmm1 under the writemask k1 and merge with the other elements of xmm2.
+  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F38.W0 43 /r VGETEXPSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   A       V/V                      AVX512F              Convert the biased exponent (bits 30:23) of the low single-precision floating-point value in xmm3/m32 to a SP FP value representing unbiased integer exponent. Stores the result to xmm1 under the writemask k1 and merge with the other elements of xmm2.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Extracts the biased exponent from the normalized SP FP representation of
 the low doubleword data element of the source operand (the third
@@ -49,12 +49,12 @@ involve a combination of GETEXP operation and GETMANT operation (see
 VGETMANTPD). Thus VGETEXPxx instruction do not require software to
 handle SIMD FP exceptions.
 
-Operation¶
+Operation ¶
 
     // NormalizeExpTinySPFP(SRC[31:0]) is defined in the Operation section of VGETEXPPS
     // ConvertExpSPFP(SRC[31:0]) is defined in the Operation section of VGETEXPPS
 
-VGETEXPSS (EVEX encoded version)¶
+VGETEXPSS (EVEX encoded version) ¶
 
     IF k1[0] OR *no writemask*
         THEN DEST[31:0]←
@@ -72,7 +72,7 @@ VGETEXPSS (EVEX encoded version)¶
     DEST[127:32] ← SRC1[127:32]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETEXPSS __m128 _mm_getexp_ss( __m128 a, __m128 b);
 
@@ -86,11 +86,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETEXPSS __m128 _mm_maskz_getexp_round_ss( __mmask8 k, __m128 a, __m128 b, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

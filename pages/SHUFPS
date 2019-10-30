@@ -1,22 +1,22 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 SHUFPS — PACKED INTERLEAVE SHUFFLE OF QUADRUPLETS OF SINGLE-PRECISION FLOATING-POINT VALUES
 
 
-  Opcode/Instruction                                                               Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F C6 /r ib SHUFPS xmm1, xmm3/m128, imm8                                      A         V/V                      SSE                  Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1.
-  VEX.NDS.128.0F.WIG C6 /r ib VSHUFPS xmm1, xmm2, xmm3/m128, imm8                  B         V/V                      AVX                  Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1.
-  VEX.NDS.256.0F.WIG C6 /r ib VSHUFPS ymm1, ymm2, ymm3/m256, imm8                  B         V/V                      AVX                  Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1.
-  EVEX.NDS.128.0F.W0 C6 /r ib VSHUFPS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst, imm8   C         V/V                      AVX512VL AVX512F     Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1, subject to writemask k1.
-  EVEX.NDS.256.0F.W0 C6 /r ib VSHUFPS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst, imm8   C         V/V                      AVX512VL AVX512F     Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1, subject to writemask k1.
-  EVEX.NDS.512.0F.W0 C6 /r ib VSHUFPS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst, imm8   C         V/V                      AVX512F              Select from quadruplet of single-precision floating-point values in zmm2 and zmm3/m512 using imm8, interleaved result pairs are stored in zmm1, subject to writemask k1.
+  Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F C6 /r ib SHUFPS xmm1, xmm3/m128, imm8                                  A         V/V                      SSE                  Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1.
+  VEX.128.0F.WIG C6 /r ib VSHUFPS xmm1, xmm2, xmm3/m128, imm8                  B         V/V                      AVX                  Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1.
+  VEX.256.0F.WIG C6 /r ib VSHUFPS ymm1, ymm2, ymm3/m256, imm8                  B         V/V                      AVX                  Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1.
+  EVEX.128.0F.W0 C6 /r ib VSHUFPS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst, imm8   C         V/V                      AVX512VL AVX512F     Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1, subject to writemask k1.
+  EVEX.256.0F.W0 C6 /r ib VSHUFPS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst, imm8   C         V/V                      AVX512VL AVX512F     Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1, subject to writemask k1.
+  EVEX.512.0F.W0 C6 /r ib VSHUFPS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst, imm8   C         V/V                      AVX512F              Select from quadruplet of single-precision floating-point values in zmm2 and zmm3/m512 using imm8, interleaved result pairs are stored in zmm1, subject to writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -25,7 +25,7 @@ Instruction Operand Encoding¶
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   Imm8
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Selects a single-precision floating-point value of an input quadruplet
 using a two-bit control and move to a designated element of the
@@ -71,7 +71,7 @@ X7 X6 X5 X4 X3 X2 X1 X0 SRC1 Y7 Y6 Y5 Y4 Y3 Y2 Y1 Y0 SRC2 Y3 ..Y0 Y3
 Figure 4-26. 256-bit VSHUFPS Operation of Selection from Input
 Quadruplet and Pair-wise Interleaved Result
 
-Operation¶
+Operation ¶
 
     Select4(SRC, control) {
     CASE (control[1:0]) OF
@@ -83,7 +83,7 @@ Operation¶
     RETURN TMP
     }
 
-VPSHUFPS (EVEX encoded versions when SRC2 is a vector register)¶
+VPSHUFPS (EVEX encoded versions when SRC2 is a vector register) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     TMP_DEST[31:0]←Select4(SRC1[127:0], imm8[1:0]);
@@ -122,7 +122,7 @@ VPSHUFPS (EVEX encoded versions when SRC2 is a vector register)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSHUFPS (EVEX encoded versions when SRC2 is memory)¶
+VPSHUFPS (EVEX encoded versions when SRC2 is memory) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -168,7 +168,7 @@ VPSHUFPS (EVEX encoded versions when SRC2 is memory)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VSHUFPS (VEX.256 encoded version)¶
+VSHUFPS (VEX.256 encoded version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], imm8[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], imm8[3:2]);
@@ -180,7 +180,7 @@ VSHUFPS (VEX.256 encoded version)¶
     DEST[255:224]←Select4(SRC2[255:128], imm8[7:6]);
     DEST[MAXVL-1:256] ←0
 
-VSHUFPS (VEX.128 encoded version)¶
+VSHUFPS (VEX.128 encoded version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], imm8[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], imm8[3:2]);
@@ -188,7 +188,7 @@ VSHUFPS (VEX.128 encoded version)¶
     DEST[127:96]←Select4(SRC2[127:0], imm8[7:6]);
     DEST[MAXVL-1:128] ←0
 
-SHUFPS (128-bit Legacy SSE version)¶
+SHUFPS (128-bit Legacy SSE version) ¶
 
     DEST[31:0]←Select4(SRC1[127:0], imm8[1:0]);
     DEST[63:32]←Select4(SRC1[127:0], imm8[3:2]);
@@ -196,7 +196,7 @@ SHUFPS (128-bit Legacy SSE version)¶
     DEST[127:96]←Select4(SRC2[127:0], imm8[7:6]);
     DEST[MAXVL-1:128] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSHUFPS __m512 _mm512_shuffle_ps(__m512 a, __m512 b, int imm);
 
@@ -216,11 +216,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSHUFPS __m128 _mm_maskz_shuffle_ps(__mmask8 k, __m128 a, __m128 b, int imm);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

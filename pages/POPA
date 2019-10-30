@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ POPA/POPAD — POP ALL GENERAL-PURPOSE REGISTERS
   61       POPAD         ZO      Invalid       Valid             Pop EDI, ESI, EBP, EBX, EDX, ECX, and EAX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Pops doublewords (POPAD) or words (POPA) from the stack into the
 general-purpose registers. The registers are loaded in the following
@@ -47,7 +47,7 @@ This instruction executes as described in non-64-bit modes. It is not
 valid in 64-bit mode.
 
 
-Operation¶
+Operation ¶
 
     IF 64-Bit Mode
         THEN
@@ -76,12 +76,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If the starting or ending stack address is not within the stack segment.
@@ -91,7 +91,7 @@ Protected Mode Exceptions¶
   ----------------- --------------------------------------------------------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- --------------------------------------------------------------------------
   #SS   If the starting or ending stack address is not within the stack segment.
@@ -99,7 +99,7 @@ Real-Address Mode Exceptions¶
   ----- --------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------
   #SS(0)            If the starting or ending stack address is not within the stack segment.
@@ -109,12 +109,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same as for protected mode exceptions.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----- --------------------
   #UD   If in 64-bit mode.

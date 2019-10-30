@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ LGDT/LIDT — LOAD GLOBAL/INTERRUPT DESCRIPTOR TABLE REGISTER
   0F 01 /3   LIDT _m16&64_   M       Valid         N.E.              Load _m_ into IDTR.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads the values in the source operand into the global descriptor table
 register (GDTR) or the interrupt descriptor table register (IDTR). The
@@ -53,7 +53,7 @@ See “SGDT—Store Global Descriptor Table Register” in Chapter 4, _Intel®
 information on storing the contents of the GDTR and IDTR.
 
 
-Operation¶
+Operation ¶
 
     IF Instruction is LIDT
         THEN
@@ -91,12 +91,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -121,7 +121,7 @@ If a memory operand effective address is outside the SS segment limit.
 If a page fault occurs.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #UD   If the LOCK prefix is used.
@@ -130,7 +130,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- ------------------------------------------
   #UD   If the LOCK prefix is used.
@@ -138,12 +138,12 @@ Virtual-8086 Mode Exceptions¶
   ----- ------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #SS(0)
 

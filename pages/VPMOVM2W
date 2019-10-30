@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -22,14 +22,14 @@ VPMOVM2B/VPMOVM2W/VPMOVM2D/VPMOVM2Q — CONVERT A MASK REGISTER TO A VECTOR REGI
   EVEX.512.F3.0F38.W1 38 /r VPMOVM2Q zmm1, k1   RM      V/V                      AVX512DQ             Sets each quadword in ZMM1 to all 1’s or all 0’s based on the value of the corresponding bit in k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts a mask register to a vector register. Each element in the
 destination register is set to all 1’s or all 0’s depending on the value
@@ -40,9 +40,9 @@ ZMM/YMM/XMM register.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
-VPMOVM2B (EVEX encoded versions)¶
+VPMOVM2B (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     FOR j←0 TO KL-1
@@ -54,7 +54,7 @@ VPMOVM2B (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVM2W (EVEX encoded versions)¶
+VPMOVM2W (EVEX encoded versions) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     FOR j←0 TO KL-1
@@ -66,7 +66,7 @@ VPMOVM2W (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVM2D (EVEX encoded versions)¶
+VPMOVM2D (EVEX encoded versions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -78,7 +78,7 @@ VPMOVM2D (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPMOVM2Q (EVEX encoded versions)¶
+VPMOVM2Q (EVEX encoded versions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -90,7 +90,7 @@ VPMOVM2Q (EVEX encoded versions)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMOVM2B __m512i _mm512_movm_epi8(__mmask64 );
 
@@ -116,11 +116,11 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
 
     VPMOVM2W __m128i _mm_movm_epi16(__mmask8 );
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instruction, see Exceptions Type E7NM
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -12,7 +12,7 @@ LDMXCSR — LOAD MXCSR REGISTER
   VEX.LZ.0F.WIG AE /2 VLDMXCSR _m32_   M       V/V              AVX                  Load MXCSR register from _m32._
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -20,7 +20,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads the source operand into the MXCSR control/status register. The
 source operand is a 32-bit memory location. See “MXCSR Control and
@@ -54,22 +54,22 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
     MXCSR ← m32;
 
 
-C/C++ Compiler Intrinsic Equivalent¶
+C/C++ Compiler Intrinsic Equivalent ¶
 
     _mm_setcsr(unsigned int i)
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type 5; additionally
 

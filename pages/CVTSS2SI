@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -23,7 +23,7 @@ CVTSS2SI — CONVERT SCALAR SINGLE-PRECISION FLOATING-POINT VALUE TO DOUBLEWORD 
   as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type     Operand 1       Operand 2       Operand 3   Operand 4
@@ -32,7 +32,7 @@ Instruction Operand Encoding¶
   ------- -------------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Converts a single-precision floating-point value in the source operand
 (the second operand) to a signed doubleword integer (or signed quadword
@@ -65,9 +65,9 @@ VCVTSS2SI with VEX.L=1 may encounter unpredictable behavior across
 different processor generations.
 
 
-Operation¶
+Operation ¶
 
-VCVTSS2SI (EVEX encoded version)¶
+VCVTSS2SI (EVEX encoded version) ¶
 
     IF (SRC *is register*) AND (EVEX.b = 1)
         THEN
@@ -82,7 +82,7 @@ VCVTSS2SI (EVEX encoded version)¶
         DEST[31:0] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[31:0]);
     FI;
 
-(V)CVTSS2SI (Legacy and VEX.128 encoded version)¶
+(V)CVTSS2SI (Legacy and VEX.128 encoded version) ¶
 
     IF 64-bit Mode and OperandSize = 64
     THEN
@@ -92,7 +92,7 @@ VCVTSS2SI (EVEX encoded version)¶
     FI;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTSS2SI int _mm_cvtss_i32( __m128 a);
 
@@ -103,12 +103,12 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
     VCVTSS2SI __int64 _mm_cvt_roundss_i64( __m128 a, int r);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions, see Exceptions Type 3; additionally
 

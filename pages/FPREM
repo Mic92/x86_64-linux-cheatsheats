@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ FPREM — PARTIAL REMAINDER
   D9 F8    FPREM         Valid         Valid             Replace ST(0) with the remainder obtained from dividing ST(0) by ST(1).
 
 
-Description¶
+Description ¶
 
 Computes the remainder obtained from dividing the value in the ST(0)
 register (the dividend) by the value in the ST(1) register (the divisor
@@ -205,7 +205,7 @@ This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
 
-Operation¶
+Operation ¶
 
     D ← exponent(ST(0)) – exponent(ST(1));
     IF D < 64
@@ -222,7 +222,7 @@ Operation¶
     FI;
 
 
-FPU Flags Affected¶
+FPU Flags Affected ¶
 
   ---- -------------------------------------------------------------------------------------------------
   C0   Set to bit 2 (Q2) of the quotient.
@@ -232,7 +232,7 @@ FPU Flags Affected¶
   ---- -------------------------------------------------------------------------------------------------
 
 
-Floating-Point Exceptions¶
+Floating-Point Exceptions ¶
 
   ----- --------------------------------------------------------------------------------------
   #IS   Stack underflow occurred.
@@ -242,7 +242,7 @@ Floating-Point Exceptions¶
   ----- --------------------------------------------------------------------------------------
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
@@ -251,22 +251,22 @@ Protected Mode Exceptions¶
   ----- ------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

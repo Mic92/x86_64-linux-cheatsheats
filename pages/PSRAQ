@@ -1,50 +1,50 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSRAW/PSRAD/PSRAQ — SHIFT PACKED DATA RIGHT ARITHMETIC
 
 
-  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------
-  NP 0F E1 /_r_¹ PSRAW _mm, mm/m64_                                   A       V/V                      MMX                  Shift words in _mm_ right by _mm/m64_ while shifting in sign bits.
-  66 0F E1 /_r_ PSRAW _xmm1_, _xmm2/m128_                             A       V/V                      SSE2                 Shift words in _xmm1_ right by _xmm2/m128_ while shifting in sign bits.
-  NP 0F 71 /4 ib¹ PSRAW _mm, imm8_                                    B       V/V                      MMX                  Shift words in _mm_ right by _imm8_ while shifting in sign bits
-  66 0F 71 /4 ib PSRAW _xmm1_, imm8                                   B       V/V                      SSE2                 Shift words in _xmm1_ right by imm8 while shifting in sign bits
-  NP 0F E2 /_r_¹ PSRAD _mm, mm/m64_                                   A       V/V                      MMX                  Shift doublewords in _mm_ right by _mm/m64_ while shifting in sign bits.
-  66 0F E2 /_r_ PSRAD _xmm1_, _xmm2/m128_                             A       V/V                      SSE2                 Shift doubleword in _xmm1_ right by _xmm2 /m128_ while shifting in sign bits.
-  NP 0F 72 /4 ib¹ PSRAD _mm, imm8_                                    B       V/V                      MMX                  Shift doublewords in _mm_ right by _imm8_ while shifting in sign bits.
-  66 0F 72 /4 ib PSRAD _xmm1_, imm8                                   B       V/V                      SSE2                 Shift doublewords in _xmm1_ right by _imm8_ while shifting in sign bits.
-  VEX.NDS.128.66.0F.WIG E1 /r VPSRAW _xmm1, xmm2, xmm3/m128_          C       V/V                      AVX                  Shift words in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
-  VEX.NDD.128.66.0F.WIG 71 /4 ib VPSRAW _xmm1, xmm2, imm8_            D       V/V                      AVX                  Shift words in _xmm2_ right by _imm8_ while shifting in sign bits.
-  VEX.NDS.128.66.0F.WIG E2 /r VPSRAD _xmm1, xmm2, xmm3/m128_          C       V/V                      AVX                  Shift doublewords in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
-  VEX.NDD.128.66.0F.WIG 72 /4 ib VPSRAD _xmm1, xmm2, imm8_            D       V/V                      AVX                  Shift doublewords in _xmm2_ right by _imm8_ while shifting in sign bits.
-  VEX.NDS.256.66.0F.WIG E1 /r VPSRAW _ymm1, ymm2, xmm3/m128_          C       V/V                      AVX2                 Shift words in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
-  VEX.NDD.256.66.0F.WIG 71 /4 ib VPSRAW _ymm1, ymm2, imm8_            D       V/V                      AVX2                 Shift words in _ymm2_ right by _imm8_ while shifting in sign bits.
-  VEX.NDS.256.66.0F.WIG E2 /r VPSRAD _ymm1, ymm2, xmm3/m128_          C       V/V                      AVX2                 Shift doublewords in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
-  VEX.NDD.256.66.0F.WIG 72 /4 ib VPSRAD _ymm1, ymm2, imm8_            D       V/V                      AVX2                 Shift doublewords in _ymm2_ right by _imm8_ while shifting in sign bits.
-  EVEX.NDS.128.66.0F.WIG E1 /r VPSRAW xmm1 {k1}{z}, xmm2, xmm3/m128   G       V/V                      AVX512VL AVX512BW    Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.256.66.0F.WIG E1 /r VPSRAW ymm1 {k1}{z}, ymm2, xmm3/m128   G       V/V                      AVX512VL AVX512BW    Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.512.66.0F.WIG E1 /r VPSRAW zmm1 {k1}{z}, zmm2, xmm3/m128   G       V/V                      AVX512BW             Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  Opcode/Instruction                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------
+  NP 0F E1 /_r_¹ PSRAW _mm, mm/m64_                               A       V/V                      MMX                  Shift words in _mm_ right by _mm/m64_ while shifting in sign bits.
+  66 0F E1 /_r_ PSRAW _xmm1_, _xmm2/m128_                         A       V/V                      SSE2                 Shift words in _xmm1_ right by _xmm2/m128_ while shifting in sign bits.
+  NP 0F 71 /4 ib¹ PSRAW _mm, imm8_                                B       V/V                      MMX                  Shift words in _mm_ right by _imm8_ while shifting in sign bits
+  66 0F 71 /4 ib PSRAW _xmm1_, imm8                               B       V/V                      SSE2                 Shift words in _xmm1_ right by imm8 while shifting in sign bits
+  NP 0F E2 /_r_¹ PSRAD _mm, mm/m64_                               A       V/V                      MMX                  Shift doublewords in _mm_ right by _mm/m64_ while shifting in sign bits.
+  66 0F E2 /_r_ PSRAD _xmm1_, _xmm2/m128_                         A       V/V                      SSE2                 Shift doubleword in _xmm1_ right by _xmm2 /m128_ while shifting in sign bits.
+  NP 0F 72 /4 ib¹ PSRAD _mm, imm8_                                B       V/V                      MMX                  Shift doublewords in _mm_ right by _imm8_ while shifting in sign bits.
+  66 0F 72 /4 ib PSRAD _xmm1_, imm8                               B       V/V                      SSE2                 Shift doublewords in _xmm1_ right by _imm8_ while shifting in sign bits.
+  VEX.128.66.0F.WIG E1 /r VPSRAW _xmm1, xmm2, xmm3/m128_          C       V/V                      AVX                  Shift words in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
+  VEX.128.66.0F.WIG 71 /4 ib VPSRAW _xmm1, xmm2, imm8_            D       V/V                      AVX                  Shift words in _xmm2_ right by _imm8_ while shifting in sign bits.
+  VEX.128.66.0F.WIG E2 /r VPSRAD _xmm1, xmm2, xmm3/m128_          C       V/V                      AVX                  Shift doublewords in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
+  VEX.128.66.0F.WIG 72 /4 ib VPSRAD _xmm1, xmm2, imm8_            D       V/V                      AVX                  Shift doublewords in _xmm2_ right by _imm8_ while shifting in sign bits.
+  VEX.256.66.0F.WIG E1 /r VPSRAW _ymm1, ymm2, xmm3/m128_          C       V/V                      AVX2                 Shift words in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
+  VEX.256.66.0F.WIG 71 /4 ib VPSRAW _ymm1, ymm2, imm8_            D       V/V                      AVX2                 Shift words in _ymm2_ right by _imm8_ while shifting in sign bits.
+  VEX.256.66.0F.WIG E2 /r VPSRAD _ymm1, ymm2, xmm3/m128_          C       V/V                      AVX2                 Shift doublewords in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in sign bits.
+  VEX.256.66.0F.WIG 72 /4 ib VPSRAD _ymm1, ymm2, imm8_            D       V/V                      AVX2                 Shift doublewords in _ymm2_ right by _imm8_ while shifting in sign bits.
+  EVEX.128.66.0F.WIG E1 /r VPSRAW xmm1 {k1}{z}, xmm2, xmm3/m128   G       V/V                      AVX512VL AVX512BW    Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F.WIG E1 /r VPSRAW ymm1 {k1}{z}, ymm2, xmm3/m128   G       V/V                      AVX512VL AVX512BW    Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F.WIG E1 /r VPSRAW zmm1 {k1}{z}, zmm2, xmm3/m128   G       V/V                      AVX512BW             Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
 
-  ----------------------------------------------------------------------------- --- ----- ------------------- ------------------------------------------------------------------------------------------------------------------
-  EVEX.NDD.128.66.0F.WIG 71 /4 ib VPSRAW xmm1 {k1}{z}, xmm2/m128, imm8          E   V/V   AVX512VL AVX512BW   Shift words in xmm2/m128 right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDD.256.66.0F.WIG 71 /4 ib VPSRAW ymm1 {k1}{z}, ymm2/m256, imm8          E   V/V   AVX512VL AVX512BW   Shift words in ymm2/m256 right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDD.512.66.0F.WIG 71 /4 ib VPSRAW zmm1 {k1}{z}, zmm2/m512, imm8          E   V/V   AVX512BW            Shift words in zmm2/m512 right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDS.128.66.0F.W0 E2 /r VPSRAD xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.256.66.0F.W0 E2 /r VPSRAD ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.512.66.0F.W0 E2 /r VPSRAD zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift doublewords in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDD.128.66.0F.W0 72 /4 ib VPSRAD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in xmm2/m128/m32bcst right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDD.256.66.0F.W0 72 /4 ib VPSRAD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in ymm2/m256/m32bcst right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDD.512.66.0F.W0 72 /4 ib VPSRAD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   F   V/V   AVX512F             Shift doublewords in zmm2/m512/m32bcst right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDS.128.66.0F.W1 E2 /r VPSRAQ xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.256.66.0F.W1 E2 /r VPSRAQ ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDS.512.66.0F.W1 E2 /r VPSRAQ zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift quadwords in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
-  EVEX.NDD.128.66.0F.W1 72 /4 ib VPSRAQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDD.256.66.0F.W1 72 /4 ib VPSRAQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in sign bits using writemask k1.
-  EVEX.NDD.512.66.0F.W1 72 /4 ib VPSRAQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   F   V/V   AVX512F             Shift quadwords in zmm2/m512/m64bcst right by imm8 while shifting in sign bits using writemask k1.
-  ----------------------------------------------------------------------------- --- ----- ------------------- ------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------- --- ----- ------------------- ------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F.WIG 71 /4 ib VPSRAW xmm1 {k1}{z}, xmm2/m128, imm8          E   V/V   AVX512VL AVX512BW   Shift words in xmm2/m128 right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F.WIG 71 /4 ib VPSRAW ymm1 {k1}{z}, ymm2/m256, imm8          E   V/V   AVX512VL AVX512BW   Shift words in ymm2/m256 right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F.WIG 71 /4 ib VPSRAW zmm1 {k1}{z}, zmm2/m512, imm8          E   V/V   AVX512BW            Shift words in zmm2/m512 right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.128.66.0F.W0 E2 /r VPSRAD xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F.W0 E2 /r VPSRAD ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F.W0 E2 /r VPSRAD zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift doublewords in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.128.66.0F.W0 72 /4 ib VPSRAD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in xmm2/m128/m32bcst right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F.W0 72 /4 ib VPSRAD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in ymm2/m256/m32bcst right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F.W0 72 /4 ib VPSRAD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   F   V/V   AVX512F             Shift doublewords in zmm2/m512/m32bcst right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.128.66.0F.W1 E2 /r VPSRAQ xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F.W1 E2 /r VPSRAQ ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F.W1 E2 /r VPSRAQ zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift quadwords in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.
+  EVEX.128.66.0F.W1 72 /4 ib VPSRAQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.256.66.0F.W1 72 /4 ib VPSRAQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in sign bits using writemask k1.
+  EVEX.512.66.0F.W1 72 /4 ib VPSRAQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   F   V/V   AVX512F             Shift quadwords in zmm2/m512/m64bcst right by imm8 while shifting in sign bits using writemask k1.
+  ------------------------------------------------------------------------- --- ----- ------------------- ------------------------------------------------------------------------------------------------------------------
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -54,7 +54,7 @@ PSRAW/PSRAD/PSRAQ — SHIFT PACKED DATA RIGHT ARITHMETIC
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -68,7 +68,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Shifts the bits in the individual data elements (words, doublewords or
 quadwords) in the destination operand (first operand) to the right by
@@ -143,9 +143,9 @@ EVEX.128.66.0F 71-73 /4), VEX.vvvv/EVEX.vvvv encodes the destination
 register.
 
 
-Operation¶
+Operation ¶
 
-PSRAW (with 64-bit operand)¶
+PSRAW (with 64-bit operand) ¶
 
     IF (COUNT > 15)
         THEN COUNT ← 16;
@@ -154,7 +154,7 @@ PSRAW (with 64-bit operand)¶
     (* Repeat shift operation for 2nd and 3rd words *)
     DEST[63:48] ← SignExtend(DEST[63:48] >> COUNT);
 
-PSRAD (with 64-bit operand)¶
+PSRAD (with 64-bit operand) ¶
 
         IF (COUNT > 31)
             THEN COUNT ← 32;
@@ -219,7 +219,7 @@ PSRAD (with 64-bit operand)¶
         (* Repeat shift operation for 2nd through 3rd words *)
     DEST[127:96]←SignExtend(SRC[127:96] >> COUNT);
 
-VPSRAW (EVEX versions, xmm/m128)¶
+VPSRAW (EVEX versions, xmm/m128) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     IF VL = 128
@@ -248,7 +248,7 @@ VPSRAW (EVEX versions, xmm/m128)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRAW (EVEX versions, imm8)¶
+VPSRAW (EVEX versions, imm8) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     IF VL = 128
@@ -277,37 +277,37 @@ VPSRAW (EVEX versions, imm8)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRAW (ymm, ymm, xmm/m128) - VEX¶
+VPSRAW (ymm, ymm, xmm/m128) - VEX ¶
 
     DEST[255:0]←ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ← 0
 
-VPSRAW (ymm, imm8) - VEX¶
+VPSRAW (ymm, imm8) - VEX ¶
 
     DEST[255:0]←ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
     DEST[MAXVL-1:256] ← 0
 
-VPSRAW (xmm, xmm, xmm/m128) - VEX¶
+VPSRAW (xmm, xmm, xmm/m128) - VEX ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ← 0
 
-VPSRAW (xmm, imm8) - VEX¶
+VPSRAW (xmm, imm8) - VEX ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, imm8)
     DEST[MAXVL-1:128] ← 0
 
-PSRAW (xmm, xmm, xmm/m128)¶
+PSRAW (xmm, xmm, xmm/m128) ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-PSRAW (xmm, imm8)¶
+PSRAW (xmm, imm8) ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, imm8)
     DEST[MAXVL-1:128] (Unmodified)
 
-VPSRAD (EVEX versions, imm8)¶
+VPSRAD (EVEX versions, imm8) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -328,7 +328,7 @@ VPSRAD (EVEX versions, imm8)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRAD (EVEX versions, xmm/m128)¶
+VPSRAD (EVEX versions, xmm/m128) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF VL = 128
@@ -357,37 +357,37 @@ VPSRAD (EVEX versions, xmm/m128)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRAD (ymm, ymm, xmm/m128) - VEX¶
+VPSRAD (ymm, ymm, xmm/m128) - VEX ¶
 
     DEST[255:0]←ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ← 0
 
-VPSRAD (ymm, imm8) - VEX¶
+VPSRAD (ymm, imm8) - VEX ¶
 
     DEST[255:0]←ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
     DEST[MAXVL-1:256] ← 0
 
-VPSRAD (xmm, xmm, xmm/m128) - VEX¶
+VPSRAD (xmm, xmm, xmm/m128) - VEX ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ←0
 
-VPSRAD (xmm, imm8) - VEX¶
+VPSRAD (xmm, imm8) - VEX ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, imm8)
     DEST[MAXVL-1:128] ←0
 
-PSRAD (xmm, xmm, xmm/m128)¶
+PSRAD (xmm, xmm, xmm/m128) ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-PSRAD (xmm, imm8)¶
+PSRAD (xmm, imm8) ¶
 
     DEST[127:0]←ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, imm8)
     DEST[MAXVL-1:128] (Unmodified)
 
-VPSRAQ (EVEX versions, imm8)¶
+VPSRAQ (EVEX versions, imm8) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -407,7 +407,7 @@ VPSRAQ (EVEX versions, imm8)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRAQ (EVEX versions, xmm/m128)¶
+VPSRAQ (EVEX versions, xmm/m128) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     TMP_DEST[VL-1:0]←ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC1[VL-1:0], SRC2, VL)
@@ -428,7 +428,7 @@ VPSRAQ (EVEX versions, xmm/m128)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPSRAD __m512i _mm512_srai_epi32(__m512i a, unsigned int imm);
 
@@ -539,17 +539,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPSRAD:__m256i _mm256_sra_epi32 (__m256i m, __m128i count)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions:
 

@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VRSQRT14SS — COMPUTE APPROXIMATE RECIPROCAL OF SQUARE ROOT OF SCALAR FLOAT32 VALUE
 
 
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F38.W0 4F /r VRSQRT14SS xmm1 {k1}{z}, xmm2, xmm3/m32   A       V/V                      AVX512F              Computes the approximate reciprocal square root of the scalar single-precision floating-point value in xmm3/m32 and stores the result in the low doubleword element of xmm1 using writemask k1. Bits[127:32] of xmm2 is copied to xmm1[127:32].
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F38.W0 4F /r VRSQRT14SS xmm1 {k1}{z}, xmm2, xmm3/m32   A       V/V                      AVX512F              Computes the approximate reciprocal square root of the scalar single-precision floating-point value in xmm3/m32 and stores the result in the low doubleword element of xmm1 using writemask k1. Bits[127:32] of xmm2 is copied to xmm1[127:32].
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2   Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   VEX.vvvv    ModRM:r/m (r)   NA
   ------- --------------- --------------- ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Computes of the approximate reciprocal of the square root of the scalar
 single-precision floating-point value in the low doubleword element of
@@ -47,13 +47,13 @@ returned.
 MXCSR exception flags are not affected by this instruction and
 floating-point exceptions are not reported.
 
-A numerically exact implementation of VRSQRT14xx can be found at https://software.intel.com/en-us/arti-¶
+A numerically exact implementation of VRSQRT14xx can be found at https://software.intel.com/en-us/arti- ¶
 
-cles/reference-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2.¶
+cles/reference-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2. ¶
 
-Operation¶
+Operation ¶
 
-VRSQRT14SS (EVEX version)¶
+VRSQRT14SS (EVEX version) ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[31:0]←APPROXIMATE(1.0/ SQRT(SRC2[31:0]))
@@ -78,7 +78,7 @@ VRSQRT14SS (EVEX version)¶
 
 Table 5-29. VRSQRT14SS Special Cases
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VRSQRT14SS __m128 _mm_rsqrt14_ss( __m128 a, __m128 b);
 
@@ -86,11 +86,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VRSQRT14SS __m128 _mm_maskz_rsqrt14_ss( __mmask8 k, __m128 a, __m128 b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E5.
 

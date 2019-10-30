@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,14 +11,14 @@ VEXP2PS — APPROXIMATION TO THE EXPONENTIAL 2^X OF PACKED SINGLE-PRECISION FLOA
   EVEX.512.66.0F38.W0 C8 /r VEXP2PS zmm1 {k1}{z}, zmm2/m512/m32bcst {sae}   A       V/V                      AVX512ER             Computes approximations to the exponential 2^x (with less than 2^-23 of maximum relative error) of the packed single-precision floating-point values from zmm2/m512/m32bcst and stores the floating-point result in zmm1with writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- ----------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3   Operand 4
   A       Full         ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
   ------- ------------ ------------------ --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Computes the approximate base-2 exponential evaluation of the
 single-precision floating-point values in the source operand (the second
@@ -37,13 +37,13 @@ writemask k1.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-A numerically exact implementation of VEXP2xx can be found at https://software.intel.com/en-us/articles/refer-¶
+A numerically exact implementation of VEXP2xx can be found at https://software.intel.com/en-us/articles/refer- ¶
 
-ence-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2.¶
+ence-implementations-for-IA-approximation-instructions-vrcp14-vrsqrt14-vrcp28-vrsqrt28-vexp2. ¶
 
-Operation¶
+Operation ¶
 
-VEXP2PS¶
+VEXP2PS ¶
 
     (KL, VL) = (16, 512)
     FOR j←0 TO KL-1
@@ -72,7 +72,7 @@ VEXP2PS¶
 
 Table 6-34. Special Values Behavior
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VEXP2PS __m512 _mm512_exp2a23_round_ps (__m512 a, int sae);
 
@@ -80,11 +80,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VEXP2PS __m512 _mm512_maskz_exp2a23_round_ps (__mmask16 m, __m512 b, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (if SNaN input), Overflow
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E2.
 

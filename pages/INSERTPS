@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 INSERTPS — INSERT SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                                      Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 21 /r ib INSERTPS xmm1, xmm2/m32, imm8                         A         V/V                      SSE4_1               Insert a single-precision floating-point value selected by imm8 from xmm2/m32 into xmm1 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.
-  VEX.NDS.128.66.0F3A.WIG 21 /r ib VINSERTPS xmm1, xmm2, xmm3/m32, imm8   B         V/V                      AVX                  Insert a single-precision floating-point value selected by imm8 from xmm3/m32 and merge with values in xmm2 at the specified destination element specified by imm8 and write out the result and zero out destination elements in xmm1 as indicated in imm8.
-  EVEX.NDS.128.66.0F3A.W0 21 /r ib VINSERTPS xmm1, xmm2, xmm3/m32, imm8   C         V/V                      AVX512F              Insert a single-precision floating-point value selected by imm8 from xmm3/m32 and merge with values in xmm2 at the specified destination element specified by imm8 and write out the result and zero out destination elements in xmm1 as indicated in imm8.
+  Opcode/Instruction                                                  Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 21 /r ib INSERTPS xmm1, xmm2/m32, imm8                     A         V/V                      SSE4_1               Insert a single-precision floating-point value selected by imm8 from xmm2/m32 into xmm1 at the specified destination element specified by imm8 and zero out destination elements in xmm1 as indicated in imm8.
+  VEX.128.66.0F3A.WIG 21 /r ib VINSERTPS xmm1, xmm2, xmm3/m32, imm8   B         V/V                      AVX                  Insert a single-precision floating-point value selected by imm8 from xmm3/m32 and merge with values in xmm2 at the specified destination element specified by imm8 and write out the result and zero out destination elements in xmm1 as indicated in imm8.
+  EVEX.128.66.0F3A.W0 21 /r ib VINSERTPS xmm1, xmm2, xmm3/m32, imm8   C         V/V                      AVX512F              Insert a single-precision floating-point value selected by imm8 from xmm3/m32 and merge with values in xmm2 at the specified destination element specified by imm8 and write out the result and zero out destination elements in xmm1 as indicated in imm8.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -23,7 +23,7 @@ Instruction Operand Encoding¶
   ------- --------------- ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 (register source form)
 
@@ -58,9 +58,9 @@ If VINSERTPS is encoded with VEX.L= 1, an attempt to execute the
 instruction encoded with VEX.L= 1 will cause an #UD exception.
 
 
-Operation¶
+Operation ¶
 
-VINSERTPS (VEX.128 and EVEX encoded version)¶
+VINSERTPS (VEX.128 and EVEX encoded version) ¶
 
     IF (SRC = REG) THEN COUNT_S←imm8[7:6]
         ELSE COUNT_S←0
@@ -94,7 +94,7 @@ VINSERTPS (VEX.128 and EVEX encoded version)¶
         ELSE DEST[127:96]←TMP2[127:96]
     DEST[MAXVL-1:128] ← 0
 
-INSERTPS (128-bit Legacy SSE version)¶
+INSERTPS (128-bit Legacy SSE version) ¶
 
     IF (SRC = REG) THEN COUNT_S←imm8[7:6]
         ELSE COUNT_S←0
@@ -129,19 +129,19 @@ INSERTPS (128-bit Legacy SSE version)¶
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VINSERTPS __m128 _mm_insert_ps(__m128 dst, __m128 src, const int nidx);
 
     INSETRTPS __m128 _mm_insert_ps(__m128 dst, __m128 src, const int nidx);
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 5; additionally
 

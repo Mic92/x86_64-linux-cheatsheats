@@ -1,43 +1,43 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PUNPCKLBW/PUNPCKLWD/PUNPCKLDQ/PUNPCKLQDQ — UNPACK LOW DATA
 
 
-  Opcode/Instruction                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------
-  NP 0F 60 /_r_¹ PUNPCKLBW _mm, mm/m32_                                           A       V/V                      MMX                  Interleave low-order bytes from _mm_ and _mm/m32_ into _mm_.
-  66 0F 60 /_r_ PUNPCKLBW _xmm1_, _xmm2/m128_                                     A       V/V                      SSE2                 Interleave low-order bytes from _xmm1_ and _xmm2/m128_ into _xmm1_.
-  NP 0F 61 /_r_¹ PUNPCKLWD _mm, mm/m32_                                           A       V/V                      MMX                  Interleave low-order words from _mm_ and _mm/m32_ into _mm_.
-  66 0F 61 /_r_ PUNPCKLWD _xmm1_, _xmm2/m128_                                     A       V/V                      SSE2                 Interleave low-order words from _xmm1_ and _xmm2/m128_ into _xmm1_.
-  NP 0F 62 /_r_¹ PUNPCKLDQ _mm, mm/m32_                                           A       V/V                      MMX                  Interleave low-order doublewords from _mm_ and _mm/m32_ into _mm_.
-  66 0F 62 /_r_ PUNPCKLDQ _xmm1_, _xmm2/m128_                                     A       V/V                      SSE2                 Interleave low-order doublewords from _xmm1_ and _xmm2/m128_ into xmm1.
-  66 0F 6C /_r_ PUNPCKLQDQ _xmm1_, _xmm2/m128_                                    A       V/V                      SSE2                 Interleave low-order quadword from _xmm1_ and _xmm2/m128_ into _xmm1_ register.
-  VEX.NDS.128.66.0F.WIG 60/r VPUNPCKLBW _xmm1,xmm2, xmm3/m128_                    B       V/V                      AVX                  Interleave low-order bytes from _xmm2_ and _xmm3/m128_ into _xmm1_.
-  VEX.NDS.128.66.0F.WIG 61/r VPUNPCKLWD _xmm1,xmm2, xmm3/m128_                    B       V/V                      AVX                  Interleave low-order words from _xmm2_ and _xmm3/m128_ into _xmm1_.
-  VEX.NDS.128.66.0F.WIG 62/r VPUNPCKLDQ _xmm1, xmm2, xmm3/m128_                   B       V/V                      AVX                  Interleave low-order doublewords from _xmm2_ and _xmm3/m128_ into _xmm1_.
-  VEX.NDS.128.66.0F.WIG 6C/r VPUNPCKLQDQ _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Interleave low-order quadword from _xmm2_ and _xmm3/m128_ into _xmm1_ register.
-  VEX.NDS.256.66.0F.WIG 60 /r VPUNPCKLBW _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Interleave low-order bytes from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
-  VEX.NDS.256.66.0F.WIG 61 /r VPUNPCKLWD _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Interleave low-order words from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
-  VEX.NDS.256.66.0F.WIG 62 /r VPUNPCKLDQ _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Interleave low-order doublewords from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
-  VEX.NDS.256.66.0F.WIG 6C /r VPUNPCKLQDQ _ymm1, ymm2, ymm3/m256_                 B       V/V                      AVX2                 Interleave low-order quadword from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
-  EVEX.NDS.128.66.0F.WIG 60 /r VPUNPCKLBW xmm1 {k1}{z}, xmm2, xmm3/m128           C       V/V                      AVX512VL AVX512BW    Interleave low-order bytes from xmm2 and xmm3/m128 into xmm1 register subject to write mask k1.
-  EVEX.NDS.128.66.0F.WIG 61 /r VPUNPCKLWD xmm1 {k1}{z}, xmm2, xmm3/m128           C       V/V                      AVX512VL AVX512BW    Interleave low-order words from xmm2 and xmm3/m128 into xmm1 register subject to write mask k1.
-  EVEX.NDS.128.66.0F.W0 62 /r VPUNPCKLDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst    D       V/V                      AVX512VL AVX512F     Interleave low-order doublewords from xmm2 and xmm3/m128/m32bcst into xmm1 register subject to write mask k1.
-  EVEX.NDS.128.66.0F.W1 6C /r VPUNPCKLQDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   D       V/V                      AVX512VL AVX512F     Interleave low-order quadword from zmm2 and zmm3/m512/m64bcst into zmm1 register subject to write mask k1.
+  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------
+  NP 0F 60 /_r_¹ PUNPCKLBW _mm, mm/m32_                                       A       V/V                      MMX                  Interleave low-order bytes from _mm_ and _mm/m32_ into _mm_.
+  66 0F 60 /_r_ PUNPCKLBW _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Interleave low-order bytes from _xmm1_ and _xmm2/m128_ into _xmm1_.
+  NP 0F 61 /_r_¹ PUNPCKLWD _mm, mm/m32_                                       A       V/V                      MMX                  Interleave low-order words from _mm_ and _mm/m32_ into _mm_.
+  66 0F 61 /_r_ PUNPCKLWD _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Interleave low-order words from _xmm1_ and _xmm2/m128_ into _xmm1_.
+  NP 0F 62 /_r_¹ PUNPCKLDQ _mm, mm/m32_                                       A       V/V                      MMX                  Interleave low-order doublewords from _mm_ and _mm/m32_ into _mm_.
+  66 0F 62 /_r_ PUNPCKLDQ _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Interleave low-order doublewords from _xmm1_ and _xmm2/m128_ into xmm1.
+  66 0F 6C /_r_ PUNPCKLQDQ _xmm1_, _xmm2/m128_                                A       V/V                      SSE2                 Interleave low-order quadword from _xmm1_ and _xmm2/m128_ into _xmm1_ register.
+  VEX.128.66.0F.WIG 60/r VPUNPCKLBW _xmm1,xmm2, xmm3/m128_                    B       V/V                      AVX                  Interleave low-order bytes from _xmm2_ and _xmm3/m128_ into _xmm1_.
+  VEX.128.66.0F.WIG 61/r VPUNPCKLWD _xmm1,xmm2, xmm3/m128_                    B       V/V                      AVX                  Interleave low-order words from _xmm2_ and _xmm3/m128_ into _xmm1_.
+  VEX.128.66.0F.WIG 62/r VPUNPCKLDQ _xmm1, xmm2, xmm3/m128_                   B       V/V                      AVX                  Interleave low-order doublewords from _xmm2_ and _xmm3/m128_ into _xmm1_.
+  VEX.128.66.0F.WIG 6C/r VPUNPCKLQDQ _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Interleave low-order quadword from _xmm2_ and _xmm3/m128_ into _xmm1_ register.
+  VEX.256.66.0F.WIG 60 /r VPUNPCKLBW _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Interleave low-order bytes from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
+  VEX.256.66.0F.WIG 61 /r VPUNPCKLWD _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Interleave low-order words from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
+  VEX.256.66.0F.WIG 62 /r VPUNPCKLDQ _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Interleave low-order doublewords from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
+  VEX.256.66.0F.WIG 6C /r VPUNPCKLQDQ _ymm1, ymm2, ymm3/m256_                 B       V/V                      AVX2                 Interleave low-order quadword from _ymm2_ and _ymm3/m256_ into _ymm1_ register.
+  EVEX.128.66.0F.WIG 60 /r VPUNPCKLBW xmm1 {k1}{z}, xmm2, xmm3/m128           C       V/V                      AVX512VL AVX512BW    Interleave low-order bytes from xmm2 and xmm3/m128 into xmm1 register subject to write mask k1.
+  EVEX.128.66.0F.WIG 61 /r VPUNPCKLWD xmm1 {k1}{z}, xmm2, xmm3/m128           C       V/V                      AVX512VL AVX512BW    Interleave low-order words from xmm2 and xmm3/m128 into xmm1 register subject to write mask k1.
+  EVEX.128.66.0F.W0 62 /r VPUNPCKLDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst    D       V/V                      AVX512VL AVX512F     Interleave low-order doublewords from xmm2 and xmm3/m128/m32bcst into xmm1 register subject to write mask k1.
+  EVEX.128.66.0F.W1 6C /r VPUNPCKLQDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   D       V/V                      AVX512VL AVX512F     Interleave low-order quadword from zmm2 and zmm3/m512/m64bcst into zmm1 register subject to write mask k1.
 
-  ------------------------------------------------------------------------------- --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.256.66.0F.WIG 60 /r VPUNPCKLBW ymm1 {k1}{z}, ymm2, ymm3/m256           C   V/V   AVX512VL AVX512BW   Interleave low-order bytes from ymm2 and ymm3/m256 into ymm1 register subject to write mask k1.
-  EVEX.NDS.256.66.0F.WIG 61 /r VPUNPCKLWD ymm1 {k1}{z}, ymm2, ymm3/m256           C   V/V   AVX512VL AVX512BW   Interleave low-order words from ymm2 and ymm3/m256 into ymm1 register subject to write mask k1.
-  EVEX.NDS.256.66.0F.W0 62 /r VPUNPCKLDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst    D   V/V   AVX512VL AVX512F    Interleave low-order doublewords from ymm2 and ymm3/m256/m32bcst into ymm1 register subject to write mask k1.
-  EVEX.NDS.256.66.0F.W1 6C /r VPUNPCKLQDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   D   V/V   AVX512VL AVX512F    Interleave low-order quadword from ymm2 and ymm3/m256/m64bcst into ymm1 register subject to write mask k1.
-  EVEX.NDS.512.66.0F.WIG 60/r VPUNPCKLBW zmm1 {k1}{z}, zmm2, zmm3/m512            C   V/V   AVX512BW            Interleave low-order bytes from zmm2 and zmm3/m512 into zmm1 register subject to write mask k1.
-  EVEX.NDS.512.66.0F.WIG 61/r VPUNPCKLWD zmm1 {k1}{z}, zmm2, zmm3/m512            C   V/V   AVX512BW            Interleave low-order words from zmm2 and zmm3/m512 into zmm1 register subject to write mask k1.
-  EVEX.NDS.512.66.0F.W0 62 /r VPUNPCKLDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst    D   V/V   AVX512F             Interleave low-order doublewords from zmm2 and zmm3/m512/m32bcst into zmm1 register subject to write mask k1.
-  EVEX.NDS.512.66.0F.W1 6C /r VPUNPCKLQDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   D   V/V   AVX512F             Interleave low-order quadword from zmm2 and zmm3/m512/m64bcst into zmm1 register subject to write mask k1.
-  ------------------------------------------------------------------------------- --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------
+  --------------------------------------------------------------------------- --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------
+  EVEX.256.66.0F.WIG 60 /r VPUNPCKLBW ymm1 {k1}{z}, ymm2, ymm3/m256           C   V/V   AVX512VL AVX512BW   Interleave low-order bytes from ymm2 and ymm3/m256 into ymm1 register subject to write mask k1.
+  EVEX.256.66.0F.WIG 61 /r VPUNPCKLWD ymm1 {k1}{z}, ymm2, ymm3/m256           C   V/V   AVX512VL AVX512BW   Interleave low-order words from ymm2 and ymm3/m256 into ymm1 register subject to write mask k1.
+  EVEX.256.66.0F.W0 62 /r VPUNPCKLDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst    D   V/V   AVX512VL AVX512F    Interleave low-order doublewords from ymm2 and ymm3/m256/m32bcst into ymm1 register subject to write mask k1.
+  EVEX.256.66.0F.W1 6C /r VPUNPCKLQDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   D   V/V   AVX512VL AVX512F    Interleave low-order quadword from ymm2 and ymm3/m256/m64bcst into ymm1 register subject to write mask k1.
+  EVEX.512.66.0F.WIG 60/r VPUNPCKLBW zmm1 {k1}{z}, zmm2, zmm3/m512            C   V/V   AVX512BW            Interleave low-order bytes from zmm2 and zmm3/m512 into zmm1 register subject to write mask k1.
+  EVEX.512.66.0F.WIG 61/r VPUNPCKLWD zmm1 {k1}{z}, zmm2, zmm3/m512            C   V/V   AVX512BW            Interleave low-order words from zmm2 and zmm3/m512 into zmm1 register subject to write mask k1.
+  EVEX.512.66.0F.W0 62 /r VPUNPCKLDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst    D   V/V   AVX512F             Interleave low-order doublewords from zmm2 and zmm3/m512/m32bcst into zmm1 register subject to write mask k1.
+  EVEX.512.66.0F.W1 6C /r VPUNPCKLQDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   D   V/V   AVX512F             Interleave low-order quadword from zmm2 and zmm3/m512/m64bcst into zmm1 register subject to write mask k1.
+  --------------------------------------------------------------------------- --- ----- ------------------- ---------------------------------------------------------------------------------------------------------------
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -47,7 +47,7 @@ PUNPCKLBW/PUNPCKLWD/PUNPCKLDQ/PUNPCKLQDQ — UNPACK LOW DATA
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -58,7 +58,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Unpacks and interleaves the low-order data elements (bytes, words,
 doublewords, and quadwords) of the destination operand (first operand)
@@ -136,9 +136,9 @@ and destination operands are ZMM/YMM/XMM registers. The destination is
 conditionally updated with writemask k1.
 
 
-Operation¶
+Operation ¶
 
-PUNPCKLBW instruction with 64-bit operands:¶
+PUNPCKLBW instruction with 64-bit operands: ¶
 
     DEST[63:56] ← SRC[31:24];
     DEST[55:48] ← DEST[31:24];
@@ -149,14 +149,14 @@ PUNPCKLBW instruction with 64-bit operands:¶
     DEST[15:8] ← SRC[7:0];
     DEST[7:0] ← DEST[7:0];
 
-PUNPCKLWD instruction with 64-bit operands:¶
+PUNPCKLWD instruction with 64-bit operands: ¶
 
     DEST[63:48] ← SRC[31:16];
     DEST[47:32] ← DEST[31:16];
     DEST[31:16] ← SRC[15:0];
     DEST[15:0] ← DEST[15:0];
 
-PUNPCKLDQ instruction with 64-bit operands:¶
+PUNPCKLDQ instruction with 64-bit operands: ¶
 
         DEST[63:32] ← SRC[31:0];
         DEST[31:0] ← DEST[31:0];
@@ -271,22 +271,22 @@ PUNPCKLDQ instruction with 64-bit operands:¶
     DEST[63:0] ← SRC1[63:0]
     DEST[127:64] ← SRC2[63:0]
 
-PUNPCKLBW¶
+PUNPCKLBW ¶
 
     DEST[127:0]←INTERLEAVE_BYTES(DEST, SRC)
     DEST[255:127] (Unmodified)
 
-VPUNPCKLBW (VEX.128 encoded instruction)¶
+VPUNPCKLBW (VEX.128 encoded instruction) ¶
 
     DEST[127:0]←INTERLEAVE_BYTES(SRC1, SRC2)
     DEST[MAXVL-1:127] ←0
 
-VPUNPCKLBW (VEX.256 encoded instruction)¶
+VPUNPCKLBW (VEX.256 encoded instruction) ¶
 
     DEST[255:0]←INTERLEAVE_BYTES_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0
 
-VPUNPCKLBW (EVEX.512 encoded instruction)¶
+VPUNPCKLBW (EVEX.512 encoded instruction) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     IF VL = 128
@@ -315,22 +315,22 @@ VPUNPCKLBW (EVEX.512 encoded instruction)¶
     DEST[MAXVL-1:VL] ← 0
     DEST[511:0]←INTERLEAVE_BYTES_512b(SRC1, SRC2)
 
-PUNPCKLWD¶
+PUNPCKLWD ¶
 
     DEST[127:0]←INTERLEAVE_WORDS(DEST, SRC)
     DEST[255:127] (Unmodified)
 
-VPUNPCKLWD (VEX.128 encoded instruction)¶
+VPUNPCKLWD (VEX.128 encoded instruction) ¶
 
     DEST[127:0]←INTERLEAVE_WORDS(SRC1, SRC2)
     DEST[MAXVL-1:127] ←0
 
-VPUNPCKLWD (VEX.256 encoded instruction)¶
+VPUNPCKLWD (VEX.256 encoded instruction) ¶
 
     DEST[255:0]←INTERLEAVE_WORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0
 
-VPUNPCKLWD (EVEX.512 encoded instruction)¶
+VPUNPCKLWD (EVEX.512 encoded instruction) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     IF VL = 128
@@ -358,22 +358,22 @@ VPUNPCKLWD (EVEX.512 encoded instruction)¶
     DEST[MAXVL-1:VL] ← 0
     DEST[511:0]←INTERLEAVE_WORDS_512b(SRC1, SRC2)
 
-PUNPCKLDQ¶
+PUNPCKLDQ ¶
 
     DEST[127:0]←INTERLEAVE_DWORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-VPUNPCKLDQ (VEX.128 encoded instruction)¶
+VPUNPCKLDQ (VEX.128 encoded instruction) ¶
 
     DEST[127:0]←INTERLEAVE_DWORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ←0
 
-VPUNPCKLDQ (VEX.256 encoded instruction)¶
+VPUNPCKLDQ (VEX.256 encoded instruction) ¶
 
     DEST[255:0]←INTERLEAVE_DWORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0
 
-VPUNPCKLDQ (EVEX encoded instructions)¶
+VPUNPCKLDQ (EVEX encoded instructions) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -409,22 +409,22 @@ VPUNPCKLDQ (EVEX encoded instructions)¶
     DEST511:0]←INTERLEAVE_DWORDS_512b(SRC1, SRC2)
     DEST[MAXVL-1:VL] ← 0
 
-PUNPCKLQDQ¶
+PUNPCKLQDQ ¶
 
     DEST[127:0]←INTERLEAVE_QWORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-VPUNPCKLQDQ (VEX.128 encoded instruction)¶
+VPUNPCKLQDQ (VEX.128 encoded instruction) ¶
 
     DEST[127:0]←INTERLEAVE_QWORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ←0
 
-VPUNPCKLQDQ (VEX.256 encoded instruction)¶
+VPUNPCKLQDQ (VEX.256 encoded instruction) ¶
 
     DEST[255:0]←INTERLEAVE_QWORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0
 
-VPUNPCKLQDQ (EVEX encoded instructions)¶
+VPUNPCKLQDQ (EVEX encoded instructions) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -460,7 +460,7 @@ VPUNPCKLQDQ (EVEX encoded instructions)¶
     DEST[MAXVL-1:VL] ← 0
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPUNPCKLBW __m512i _mm512_unpacklo_epi8(__m512i a, __m512i b);
 
@@ -541,17 +541,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPUNPCKLQDQ:__m256i _mm256_unpacklo_epi64 (__m256i m1, __m256i m2)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4.
 

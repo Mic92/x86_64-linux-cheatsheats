@@ -1,19 +1,19 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 MAXSD — RETURN MAXIMUM SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
-  F2 0F 5F /r MAXSD xmm1, xmm2/m64                                       A       V/V                      SSE2                 Return the maximum scalar double-precision floating-point value between xmm2/m64 and xmm1.
-  VEX.NDS.LIG.F2.0F.WIG 5F /r VMAXSD xmm1, xmm2, xmm3/m64                B       V/V                      AVX                  Return the maximum scalar double-precision floating-point value between xmm3/m64 and xmm2.
-  EVEX.NDS.LIG.F2.0F.W1 5F /r VMAXSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}   C       V/V                      AVX512F              Return the maximum scalar double-precision floating-point value between xmm3/m64 and xmm2.
+  Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------ ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
+  F2 0F 5F /r MAXSD xmm1, xmm2/m64                                   A       V/V                      SSE2                 Return the maximum scalar double-precision floating-point value between xmm2/m64 and xmm1.
+  VEX.LIG.F2.0F.WIG 5F /r VMAXSD xmm1, xmm2, xmm3/m64                B       V/V                      AVX                  Return the maximum scalar double-precision floating-point value between xmm3/m64 and xmm2.
+  EVEX.LIG.F2.0F.W1 5F /r VMAXSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}   C       V/V                      AVX512F              Return the maximum scalar double-precision floating-point value between xmm3/m64 and xmm2.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ------------------ --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   C       Tuple1 Scalar   ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- --------------- ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Compares the low double-precision floating-point values in the first
 source operand and the second source operand, and returns the maximum
@@ -58,7 +58,7 @@ Software should ensure VMAXSD is encoded with VEX.L=0. Encoding VMAXSD
 with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
-Operation¶
+Operation ¶
 
     MAX(SRC1, SRC2)
     {
@@ -70,7 +70,7 @@ Operation¶
         FI;
     }
 
-VMAXSD (EVEX encoded version)¶
+VMAXSD (EVEX encoded version) ¶
 
     IF k1[0] or *no writemask*
         THEN DEST[63:0]←MAX(SRC1[63:0], SRC2[63:0])
@@ -84,18 +84,18 @@ VMAXSD (EVEX encoded version)¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-VMAXSD (VEX.128 encoded version)¶
+VMAXSD (VEX.128 encoded version) ¶
 
     DEST[63:0]←MAX(SRC1[63:0], SRC2[63:0])
     DEST[127:64] ←SRC1[127:64]
     DEST[MAXVL-1:128] ←0
 
-MAXSD (128-bit Legacy SSE version)¶
+MAXSD (128-bit Legacy SSE version) ¶
 
     DEST[63:0]←MAX(DEST[63:0], SRC[63:0])
     DEST[MAXVL-1:64] (Unmodified)
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMAXSD __m128d _mm_max_round_sd( __m128d a, __m128d b, int);
 
@@ -105,11 +105,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     MAXSD __m128d _mm_max_sd(__m128d a, __m128d b)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid (Including QNaN Source Operand), Denormal
 
-Other Exceptions¶
+Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 3.
 

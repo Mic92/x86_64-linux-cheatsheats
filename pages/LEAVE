@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ LEAVE — HIGH LEVEL PROCEDURE EXIT
   C9       LEAVE         ZO      Valid         N.E.              Set RSP to RBP, then pop RBP.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Releases the stack frame set up by an earlier ENTER instruction. The
 LEAVE instruction copies the frame pointer (in the EBP register) into
@@ -44,7 +44,7 @@ In 64-bit mode, the instruction’s default operation size is 64 bits;
 beginning of this section for encoding data and limits.
 
 
-Operation¶
+Operation ¶
 
     IF StackAddressSize = 32
         THEN
@@ -63,12 +63,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If the EBP register points to a location that is not within the limits of the current stack segment.
@@ -78,7 +78,7 @@ Protected Mode Exceptions¶
   ----------------- --------------------------------------------------------------------------------------------------------------------
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- --------------------------------------------------------------------------------------------------
   #GP   If the EBP register points to a location outside of the effective address space from 0 to FFFFH.
@@ -86,7 +86,7 @@ Real-Address Mode Exceptions¶
   ----- --------------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------
   #GP(0)            If the EBP register points to a location outside of the effective address space from 0 to FFFFH.
@@ -96,12 +96,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- --------------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   -------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)   If the stack address is in a non-canonical form.

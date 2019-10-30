@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VSCALEFSS — SCALE SCALAR FLOAT32 VALUE WITH FLOAT32 VALUE
 
 
-  Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F38.W0 2D /r VSCALEFSS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   A       V/V                      AVX512F              Scale the scalar single-precision floating-point value in xmm2 using floating-point value from xmm3/m32. Under writemask k1.
+  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F38.W0 2D /r VSCALEFSS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   A       V/V                      AVX512F              Scale the scalar single-precision floating-point value in xmm2 using floating-point value from xmm3/m32. Under writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Performs a floating-point scale of the scalar single-precision
 floating-point value in the first source operand by multiplying it by 2
@@ -45,7 +45,7 @@ writemask k1.
 Handling of special-case input values are listed in Table 5-30 and Table
 5-32.
 
-Operation¶
+Operation ¶
 
     SCALE(SRC1, SRC2)
     {
@@ -76,7 +76,7 @@ Operation¶
     DEST[127:32] ← SRC1[127:32]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VSCALEFSS __m128 _mm_scalef_round_ss(__m128 a, __m128 b, int);
 
@@ -84,13 +84,13 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VSCALEFSS __m128 _mm_maskz_scalef_round_ss(__mmask8 k, __m128 a, __m128 b, int);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal (for Src1).
 
 Denormal is not reported for Src2.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

@@ -1,24 +1,24 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VGETMANTSS — EXTRACT FLOAT32 VECTOR OF NORMALIZED MANTISSA FROM FLOAT32 VECTOR
 
 
-  Opcode/Instruction                                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.66.0F3A.W0 27 /r ib VGETMANTSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512F              Extract the normalized mantissa from the low float32 element of xmm3/m32 using imm8 for sign control and mantissa interval normalization, store the mantissa to xmm1 under the writemask k1 and merge with the other elements of xmm2.
+  Opcode/Instruction                                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F3A.W0 27 /r ib VGETMANTSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512F              Extract the normalized mantissa from the low float32 element of xmm3/m32 using imm8 for sign control and mantissa interval normalization, store the mantissa to xmm1 under the writemask k1 and merge with the other elements of xmm2.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Convert the single-precision floating values in the low doubleword
 element of the second source operand (the third operand) to SP FP value
@@ -59,11 +59,11 @@ corresponding bit set in vector mask register k1 are computed and stored
 into zmm1. Elements in zmm1 with the corresponding bit clear in k1
 retain their previous values.
 
-Operation¶
+Operation ¶
 
     // GetNormalizeMantissaSP(SRC[31:0], SignCtrl[1:0], Interv[1:0]) is defined in the operation section of VGETMANTPD
 
-VGETMANTSS (EVEX encoded version)¶
+VGETMANTSS (EVEX encoded version) ¶
 
     SignCtrl[1:0] ← IMM8[3:2];
     Interv[1:0] ← IMM8[1:0];
@@ -80,7 +80,7 @@ VGETMANTSS (EVEX encoded version)¶
     DEST[127:32] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VGETMANTSS __m128 _mm_getmant_ss( __m128 a, __m128 b, enum intv, enum sgn);
 
@@ -94,11 +94,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VGETMANTSS __m128 _mm_maskz_getmant_round_ss( __mmask8 k, __m128 a, __m128 b, enum intv, enum sgn, int r);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Denormal, Invalid
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3.
 

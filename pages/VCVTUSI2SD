@@ -1,28 +1,28 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VCVTUSI2SD — CONVERT UNSIGNED INTEGER TO SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE
 
 
-  Opcode/Instruction                                             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
-  EVEX.NDS.LIG.F2.0F.W0 7B /r VCVTUSI2SD xmm1, xmm2, r/m32       A       V/V                      AVX512F              Convert one unsigned doubleword integer from r/m32 to one double-precision floating-point value in xmm1.
-  EVEX.NDS.LIG.F2.0F.W1 7B /r VCVTUSI2SD xmm1, xmm2, r/m64{er}   A       V/N.E.¹                  AVX512F              Convert one unsigned quadword integer from r/m64 to one double-precision floating-point value in xmm1.
+  Opcode/Instruction                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
+  EVEX.LIG.F2.0F.W0 7B /r VCVTUSI2SD xmm1, xmm2, r/m32       A       V/V                      AVX512F              Convert one unsigned doubleword integer from r/m32 to one double-precision floating-point value in xmm1.
+  EVEX.LIG.F2.0F.W1 7B /r VCVTUSI2SD xmm1, xmm2, r/m64{er}   A       V/N.E.¹                  AVX512F              Convert one unsigned quadword integer from r/m64 to one double-precision floating-point value in xmm1.
 
   1. For this specific instruction, EVEX.W in non-64 bit is ignored; the
   instructions behaves as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- --------------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2   Operand 3       Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv   ModRM:r/m (r)   NA
   ------- --------------- --------------- ----------- --------------- -----------
 
-Description¶
+Description ¶
 
 Converts an unsigned doubleword integer (or unsigned quadword integer if
 operand size is 64 bits) in the second source operand to a
@@ -43,9 +43,9 @@ EVEX.W1 version: promotes the instruction to use 64-bit input value in
 EVEX.W0 version: attempt to encode this instruction with EVEX embedded
 rounding is ignored.
 
-Operation¶
+Operation ¶
 
-VCVTUSI2SD (EVEX encoded version)¶
+VCVTUSI2SD (EVEX encoded version) ¶
 
     IF (SRC2 *is register*) AND (EVEX.b = 1)
         THEN
@@ -62,7 +62,7 @@ VCVTUSI2SD (EVEX encoded version)¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTUSI2SD __m128d _mm_cvtu32_sd( __m128d s, unsigned a);
 
@@ -70,11 +70,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTUSI2SD __m128d _mm_cvt_roundu64_sd( __m128d s, unsigned __int64 a, int r);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Precision
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E3NF if W1, else type E10NF.
 

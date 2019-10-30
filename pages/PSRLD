@@ -1,58 +1,58 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 PSRLW/PSRLD/PSRLQ — SHIFT PACKED DATA RIGHT LOGICAL
 
 
-  Opcode/Instruction                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------ ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------
-  NP 0F D1 /_r_¹ PSRLW _mm, mm/m64_                            A       V/V                      MMX                  Shift words in _mm_ right by amount specified in _mm/m64_ while shifting in 0s.
-  66 0F D1 /_r_ PSRLW _xmm1_, _xmm2/m128_                      A       V/V                      SSE2                 Shift words in _xmm1_ right by amount specified in _xmm2/m128_ while shifting in 0s.
-  NP 0F 71 /2 ib¹ PSRLW _mm, imm8_                             B       V/V                      MMX                  Shift words in _mm_ right by _imm8_ while shifting in 0s.
-  66 0F 71 /2 ib PSRLW _xmm1_, _imm8_                          B       V/V                      SSE2                 Shift words in _xmm1_ right by _imm8_ while shifting in 0s.
-  NP 0F D2 /_r_¹ PSRLD _mm, mm/m64_                            A       V/V                      MMX                  Shift doublewords in _mm_ right by amount specified in _mm/m64_ while shifting in 0s.
-  66 0F D2 /_r_ PSRLD _xmm1_, _xmm2/m128_                      A       V/V                      SSE2                 Shift doublewords in _xmm1_ right by amount specified in _xmm2 /m128_ while shifting in 0s.
-  NP 0F 72 /2 ib¹ PSRLD _mm, imm8_                             B       V/V                      MMX                  Shift doublewords in _mm_ right by _imm8_ while shifting in 0s.
-  66 0F 72 /2 ib PSRLD _xmm1_, imm8                            B       V/V                      SSE2                 Shift doublewords in _xmm1_ right by _imm8_ while shifting in 0s.
-  NP 0F D3 /_r_¹ PSRLQ _mm, mm/m64_                            A       V/V                      MMX                  Shift _mm_ right by amount specified in _mm/m64_ while shifting in 0s.
-  66 0F D3 /_r_ PSRLQ _xmm1_, _xmm2/m128_                      A       V/V                      SSE2                 Shift quadwords in _xmm1_ right by amount specified in _xmm2/m128_ while shifting in 0s.
-  NP 0F 73 /2 ib¹ PSRLQ _mm, imm8_                             B       V/V                      MMX                  Shift _mm_ right by _imm8_ while shifting in 0s.
-  66 0F 73 /2 ib PSRLQ _xmm1_, _imm8_                          B       V/V                      SSE2                 Shift quadwords in _xmm1_ right by _imm8_ while shifting in 0s.
-  VEX.NDS.128.66.0F.WIG D1 /r VPSRLW _xmm1, xmm2, xmm3/m128_   C       V/V                      AVX                  Shift words in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
-  VEX.NDD.128.66.0F.WIG 71 /2 ib VPSRLW _xmm1, xmm2, imm8_     D       V/V                      AVX                  Shift words in _xmm2_ right by _imm8_ while shifting in 0s.
-  VEX.NDS.128.66.0F.WIG D2 /r VPSRLD _xmm1, xmm2, xmm3/m128_   C       V/V                      AVX                  Shift doublewords in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
-  VEX.NDD.128.66.0F.WIG 72 /2 ib VPSRLD _xmm1, xmm2, imm8_     D       V/V                      AVX                  Shift doublewords in _xmm2_ right by _imm8_ while shifting in 0s.
-  VEX.NDS.128.66.0F.WIG D3 /r VPSRLQ _xmm1, xmm2, xmm3/m128_   C       V/V                      AVX                  Shift quadwords in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
-  VEX.NDD.128.66.0F.WIG 73 /2 ib VPSRLQ _xmm1, xmm2, imm8_     D       V/V                      AVX                  Shift quadwords in _xmm2_ right by _imm8_ while shifting in 0s.
-  VEX.NDS.256.66.0F.WIG D1 /r VPSRLW _ymm1, ymm2, xmm3/m128_   C       V/V                      AVX2                 Shift words in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
-  VEX.NDD.256.66.0F.WIG 71 /2 ib VPSRLW _ymm1, ymm2, imm8_     D       V/V                      AVX2                 Shift words in _ymm2_ right by _imm8_ while shifting in 0s.
+  Opcode/Instruction                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------
+  NP 0F D1 /_r_¹ PSRLW _mm, mm/m64_                        A       V/V                      MMX                  Shift words in _mm_ right by amount specified in _mm/m64_ while shifting in 0s.
+  66 0F D1 /_r_ PSRLW _xmm1_, _xmm2/m128_                  A       V/V                      SSE2                 Shift words in _xmm1_ right by amount specified in _xmm2/m128_ while shifting in 0s.
+  NP 0F 71 /2 ib¹ PSRLW _mm, imm8_                         B       V/V                      MMX                  Shift words in _mm_ right by _imm8_ while shifting in 0s.
+  66 0F 71 /2 ib PSRLW _xmm1_, _imm8_                      B       V/V                      SSE2                 Shift words in _xmm1_ right by _imm8_ while shifting in 0s.
+  NP 0F D2 /_r_¹ PSRLD _mm, mm/m64_                        A       V/V                      MMX                  Shift doublewords in _mm_ right by amount specified in _mm/m64_ while shifting in 0s.
+  66 0F D2 /_r_ PSRLD _xmm1_, _xmm2/m128_                  A       V/V                      SSE2                 Shift doublewords in _xmm1_ right by amount specified in _xmm2 /m128_ while shifting in 0s.
+  NP 0F 72 /2 ib¹ PSRLD _mm, imm8_                         B       V/V                      MMX                  Shift doublewords in _mm_ right by _imm8_ while shifting in 0s.
+  66 0F 72 /2 ib PSRLD _xmm1_, imm8                        B       V/V                      SSE2                 Shift doublewords in _xmm1_ right by _imm8_ while shifting in 0s.
+  NP 0F D3 /_r_¹ PSRLQ _mm, mm/m64_                        A       V/V                      MMX                  Shift _mm_ right by amount specified in _mm/m64_ while shifting in 0s.
+  66 0F D3 /_r_ PSRLQ _xmm1_, _xmm2/m128_                  A       V/V                      SSE2                 Shift quadwords in _xmm1_ right by amount specified in _xmm2/m128_ while shifting in 0s.
+  NP 0F 73 /2 ib¹ PSRLQ _mm, imm8_                         B       V/V                      MMX                  Shift _mm_ right by _imm8_ while shifting in 0s.
+  66 0F 73 /2 ib PSRLQ _xmm1_, _imm8_                      B       V/V                      SSE2                 Shift quadwords in _xmm1_ right by _imm8_ while shifting in 0s.
+  VEX.128.66.0F.WIG D1 /r VPSRLW _xmm1, xmm2, xmm3/m128_   C       V/V                      AVX                  Shift words in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
+  VEX.128.66.0F.WIG 71 /2 ib VPSRLW _xmm1, xmm2, imm8_     D       V/V                      AVX                  Shift words in _xmm2_ right by _imm8_ while shifting in 0s.
+  VEX.128.66.0F.WIG D2 /r VPSRLD _xmm1, xmm2, xmm3/m128_   C       V/V                      AVX                  Shift doublewords in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
+  VEX.128.66.0F.WIG 72 /2 ib VPSRLD _xmm1, xmm2, imm8_     D       V/V                      AVX                  Shift doublewords in _xmm2_ right by _imm8_ while shifting in 0s.
+  VEX.128.66.0F.WIG D3 /r VPSRLQ _xmm1, xmm2, xmm3/m128_   C       V/V                      AVX                  Shift quadwords in _xmm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
+  VEX.128.66.0F.WIG 73 /2 ib VPSRLQ _xmm1, xmm2, imm8_     D       V/V                      AVX                  Shift quadwords in _xmm2_ right by _imm8_ while shifting in 0s.
+  VEX.256.66.0F.WIG D1 /r VPSRLW _ymm1, ymm2, xmm3/m128_   C       V/V                      AVX2                 Shift words in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
+  VEX.256.66.0F.WIG 71 /2 ib VPSRLW _ymm1, ymm2, imm8_     D       V/V                      AVX2                 Shift words in _ymm2_ right by _imm8_ while shifting in 0s.
 
-  ----------------------------------------------------------------------------- --- ----- ------------------- -----------------------------------------------------------------------------------------------------------
-  VEX.NDS.256.66.0F.WIG D2 /r VPSRLD _ymm1, ymm2, xmm3/m128_                    C   V/V   AVX2                Shift doublewords in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
-  VEX.NDD.256.66.0F.WIG 72 /2 ib VPSRLD _ymm1, ymm2, imm8_                      D   V/V   AVX2                Shift doublewords in _ymm2_ right by _imm8_ while shifting in 0s.
-  VEX.NDS.256.66.0F.WIG D3 /r VPSRLQ _ymm1, ymm2, xmm3/m128_                    C   V/V   AVX2                Shift quadwords in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
-  VEX.NDD.256.66.0F.WIG 73 /2 ib VPSRLQ _ymm1, ymm2, imm8_                      D   V/V   AVX2                Shift quadwords in _ymm2_ right by _imm8_ while shifting in 0s.
-  EVEX.NDS.128.66.0F.WIG D1 /r VPSRLW xmm1 {k1}{z}, xmm2, xmm3/m128             G   V/V   AVX512VL AVX512BW   Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDS.256.66.0F.WIG D1 /r VPSRLW ymm1 {k1}{z}, ymm2, xmm3/m128             G   V/V   AVX512VL AVX512BW   Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDS.512.66.0F.WIG D1 /r VPSRLW zmm1 {k1}{z}, zmm2, xmm3/m128             G   V/V   AVX512BW            Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDD.128.66.0F.WIG 71 /2 ib VPSRLW xmm1 {k1}{z}, xmm2/m128, imm8          E   V/V   AVX512VL AVX512BW   Shift words in xmm2/m128 right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDD.256.66.0F.WIG 71 /2 ib VPSRLW ymm1 {k1}{z}, ymm2/m256, imm8          E   V/V   AVX512VL AVX512BW   Shift words in ymm2/m256 right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDD.512.66.0F.WIG 71 /2 ib VPSRLW zmm1 {k1}{z}, zmm2/m512, imm8          E   V/V   AVX512BW            Shift words in zmm2/m512 right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDS.128.66.0F.W0 D2 /r VPSRLD xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDS.256.66.0F.W0 D2 /r VPSRLD ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDS.512.66.0F.W0 D2 /r VPSRLD zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift doublewords in zmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDD.128.66.0F.W0 72 /2 ib VPSRLD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in xmm2/m128/m32bcst right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDD.256.66.0F.W0 72 /2 ib VPSRLD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in ymm2/m256/m32bcst right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDD.512.66.0F.W0 72 /2 ib VPSRLD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   F   V/V   AVX512F             Shift doublewords in zmm2/m512/m32bcst right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDS.128.66.0F.W1 D3 /r VPSRLQ xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in xmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDS.256.66.0F.W1 D3 /r VPSRLQ ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in ymm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDS.512.66.0F.W1 D3 /r VPSRLQ zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift quadwords in zmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
-  EVEX.NDD.128.66.0F.W1 73 /2 ib VPSRLQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDD.256.66.0F.W1 73 /2 ib VPSRLQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in 0s using writemask k1.
-  EVEX.NDD.512.66.0F.W1 73 /2 ib VPSRLQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   F   V/V   AVX512F             Shift quadwords in zmm2/m512/m64bcst right by imm8 while shifting in 0s using writemask k1.
-  ----------------------------------------------------------------------------- --- ----- ------------------- -----------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------- --- ----- ------------------- -----------------------------------------------------------------------------------------------------------
+  VEX.256.66.0F.WIG D2 /r VPSRLD _ymm1, ymm2, xmm3/m128_                    C   V/V   AVX2                Shift doublewords in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
+  VEX.256.66.0F.WIG 72 /2 ib VPSRLD _ymm1, ymm2, imm8_                      D   V/V   AVX2                Shift doublewords in _ymm2_ right by _imm8_ while shifting in 0s.
+  VEX.256.66.0F.WIG D3 /r VPSRLQ _ymm1, ymm2, xmm3/m128_                    C   V/V   AVX2                Shift quadwords in _ymm2_ right by amount specified in _xmm3/m128_ while shifting in 0s.
+  VEX.256.66.0F.WIG 73 /2 ib VPSRLQ _ymm1, ymm2, imm8_                      D   V/V   AVX2                Shift quadwords in _ymm2_ right by _imm8_ while shifting in 0s.
+  EVEX.128.66.0F.WIG D1 /r VPSRLW xmm1 {k1}{z}, xmm2, xmm3/m128             G   V/V   AVX512VL AVX512BW   Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.256.66.0F.WIG D1 /r VPSRLW ymm1 {k1}{z}, ymm2, xmm3/m128             G   V/V   AVX512VL AVX512BW   Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.512.66.0F.WIG D1 /r VPSRLW zmm1 {k1}{z}, zmm2, xmm3/m128             G   V/V   AVX512BW            Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.128.66.0F.WIG 71 /2 ib VPSRLW xmm1 {k1}{z}, xmm2/m128, imm8          E   V/V   AVX512VL AVX512BW   Shift words in xmm2/m128 right by imm8 while shifting in 0s using writemask k1.
+  EVEX.256.66.0F.WIG 71 /2 ib VPSRLW ymm1 {k1}{z}, ymm2/m256, imm8          E   V/V   AVX512VL AVX512BW   Shift words in ymm2/m256 right by imm8 while shifting in 0s using writemask k1.
+  EVEX.512.66.0F.WIG 71 /2 ib VPSRLW zmm1 {k1}{z}, zmm2/m512, imm8          E   V/V   AVX512BW            Shift words in zmm2/m512 right by imm8 while shifting in 0s using writemask k1.
+  EVEX.128.66.0F.W0 D2 /r VPSRLD xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.256.66.0F.W0 D2 /r VPSRLD ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.512.66.0F.W0 D2 /r VPSRLD zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift doublewords in zmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.128.66.0F.W0 72 /2 ib VPSRLD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in xmm2/m128/m32bcst right by imm8 while shifting in 0s using writemask k1.
+  EVEX.256.66.0F.W0 72 /2 ib VPSRLD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   F   V/V   AVX512VL AVX512F    Shift doublewords in ymm2/m256/m32bcst right by imm8 while shifting in 0s using writemask k1.
+  EVEX.512.66.0F.W0 72 /2 ib VPSRLD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   F   V/V   AVX512F             Shift doublewords in zmm2/m512/m32bcst right by imm8 while shifting in 0s using writemask k1.
+  EVEX.128.66.0F.W1 D3 /r VPSRLQ xmm1 {k1}{z}, xmm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in xmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.256.66.0F.W1 D3 /r VPSRLQ ymm1 {k1}{z}, ymm2, xmm3/m128              G   V/V   AVX512VL AVX512F    Shift quadwords in ymm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.512.66.0F.W1 D3 /r VPSRLQ zmm1 {k1}{z}, zmm2, xmm3/m128              G   V/V   AVX512F             Shift quadwords in zmm2 right by amount specified in xmm3/m128 while shifting in 0s using writemask k1.
+  EVEX.128.66.0F.W1 73 /2 ib VPSRLQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in 0s using writemask k1.
+  EVEX.256.66.0F.W1 73 /2 ib VPSRLQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   F   V/V   AVX512VL AVX512F    Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in 0s using writemask k1.
+  EVEX.512.66.0F.W1 73 /2 ib VPSRLQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   F   V/V   AVX512F             Shift quadwords in zmm2/m512/m64bcst right by imm8 while shifting in 0s using writemask k1.
+  ------------------------------------------------------------------------- --- ----- ------------------- -----------------------------------------------------------------------------------------------------------
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
   Specification” in the _Intel® 64 and IA-32 Architectures Software
@@ -62,7 +62,7 @@ PSRLW/PSRLD/PSRLQ — SHIFT PACKED DATA RIGHT LOGICAL
   Volume 3A_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
@@ -76,7 +76,7 @@ Instruction Operand Encoding¶
   ------- ------------ ------------------ --------------- --------------- -----------
 
 
-Description¶
+Description ¶
 
 Shifts the bits in the individual data elements (words, doublewords, or
 quadword) in the destination operand (first operand) to the right by the
@@ -149,9 +149,9 @@ EVEX.128.66.0F 71-73 /2), VEX.vvvv/EVEX.vvvv encodes the destination
 register.
 
 
-Operation¶
+Operation ¶
 
-PSRLW (with 64-bit operand)¶
+PSRLW (with 64-bit operand) ¶
 
     IF (COUNT > 15)
     THEN
@@ -162,7 +162,7 @@ PSRLW (with 64-bit operand)¶
         DEST[63:48] ← ZeroExtend(DEST[63:48] >> COUNT);
     FI;
 
-PSRLD (with 64-bit operand)¶
+PSRLD (with 64-bit operand) ¶
 
     IF (COUNT > 31)
     THEN
@@ -172,7 +172,7 @@ PSRLD (with 64-bit operand)¶
         DEST[63:32] ← ZeroExtend(DEST[63:32] >> COUNT);
     FI;
 
-PSRLQ (with 64-bit operand)¶
+PSRLQ (with 64-bit operand) ¶
 
         IF (COUNT > 63)
         THEN
@@ -257,7 +257,7 @@ PSRLQ (with 64-bit operand)¶
         DEST[127:64]←ZeroExtend(SRC[127:64] >> COUNT);
     FI;
 
-VPSRLW (EVEX versions, xmm/m128)¶
+VPSRLW (EVEX versions, xmm/m128) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     IF VL = 128
@@ -286,7 +286,7 @@ VPSRLW (EVEX versions, xmm/m128)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRLW (EVEX versions, imm8)¶
+VPSRLW (EVEX versions, imm8) ¶
 
     (KL, VL) = (8, 128), (16, 256), (32, 512)
     IF VL = 128
@@ -315,37 +315,37 @@ VPSRLW (EVEX versions, imm8)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRLW (ymm, ymm, xmm/m128) - VEX.256 encoding¶
+VPSRLW (ymm, ymm, xmm/m128) - VEX.256 encoding ¶
 
     DEST[255:0]←LOGICAL_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0;
 
-VPSRLW (ymm, imm8) - VEX.256 encoding¶
+VPSRLW (ymm, imm8) - VEX.256 encoding ¶
 
     DEST[255:0]←LOGICAL_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
     DEST[MAXVL-1:256] ←0;
 
-VPSRLW (xmm, xmm, xmm/m128) - VEX.128 encoding¶
+VPSRLW (xmm, xmm, xmm/m128) - VEX.128 encoding ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_WORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ←0
 
-VPSRLW (xmm, imm8) - VEX.128 encoding¶
+VPSRLW (xmm, imm8) - VEX.128 encoding ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_WORDS(SRC1, imm8)
     DEST[MAXVL-1:128] ←0
 
-PSRLW (xmm, xmm, xmm/m128)¶
+PSRLW (xmm, xmm, xmm/m128) ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_WORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-PSRLW (xmm, imm8)¶
+PSRLW (xmm, imm8) ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_WORDS(DEST, imm8)
     DEST[MAXVL-1:128] (Unmodified)
 
-VPSRLD (EVEX versions, xmm/m128)¶
+VPSRLD (EVEX versions, xmm/m128) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     IF VL = 128
@@ -374,7 +374,7 @@ VPSRLD (EVEX versions, xmm/m128)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRLD (EVEX versions, imm8)¶
+VPSRLD (EVEX versions, imm8) ¶
 
     (KL, VL) = (4, 128), (8, 256), (16, 512)
     FOR j←0 TO KL-1
@@ -395,37 +395,37 @@ VPSRLD (EVEX versions, imm8)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRLD (ymm, ymm, xmm/m128) - VEX.256 encoding¶
+VPSRLD (ymm, ymm, xmm/m128) - VEX.256 encoding ¶
 
     DEST[255:0]←LOGICAL_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0;
 
-VPSRLD (ymm, imm8) - VEX.256 encoding¶
+VPSRLD (ymm, imm8) - VEX.256 encoding ¶
 
     DEST[255:0]←LOGICAL_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
     DEST[MAXVL-1:256] ←0;
 
-VPSRLD (xmm, xmm, xmm/m128) - VEX.128 encoding¶
+VPSRLD (xmm, xmm, xmm/m128) - VEX.128 encoding ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ←0
 
-VPSRLD (xmm, imm8) - VEX.128 encoding¶
+VPSRLD (xmm, imm8) - VEX.128 encoding ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_DWORDS(SRC1, imm8)
     DEST[MAXVL-1:128] ←0
 
-PSRLD (xmm, xmm, xmm/m128)¶
+PSRLD (xmm, xmm, xmm/m128) ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_DWORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-PSRLD (xmm, imm8)¶
+PSRLD (xmm, imm8) ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_DWORDS(DEST, imm8)
     DEST[MAXVL-1:128] (Unmodified)
 
-VPSRLQ (EVEX versions, xmm/m128)¶
+VPSRLQ (EVEX versions, xmm/m128) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     TMP_DEST[255:0]←LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1[255:0], SRC2)
@@ -456,7 +456,7 @@ VPSRLQ (EVEX versions, xmm/m128)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRLQ (EVEX versions, imm8)¶
+VPSRLQ (EVEX versions, imm8) ¶
 
     (KL, VL) = (2, 128), (4, 256), (8, 512)
     FOR j←0 TO KL-1
@@ -477,38 +477,38 @@ VPSRLQ (EVEX versions, imm8)¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-VPSRLQ (ymm, ymm, xmm/m128) - VEX.256 encoding¶
+VPSRLQ (ymm, ymm, xmm/m128) - VEX.256 encoding ¶
 
     DEST[255:0]←LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, SRC2)
     DEST[MAXVL-1:256] ←0;
 
-VPSRLQ (ymm, imm8) - VEX.256 encoding¶
+VPSRLQ (ymm, imm8) - VEX.256 encoding ¶
 
     DEST[255:0]←LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, imm8)
     DEST[MAXVL-1:256] ←0;
 
-VPSRLQ (xmm, xmm, xmm/m128) - VEX.128 encoding¶
+VPSRLQ (xmm, xmm, xmm/m128) - VEX.128 encoding ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_QWORDS(SRC1, SRC2)
     DEST[MAXVL-1:128] ←0
 
-VPSRLQ (xmm, imm8) - VEX.128 encoding¶
+VPSRLQ (xmm, imm8) - VEX.128 encoding ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_QWORDS(SRC1, imm8)
     DEST[MAXVL-1:128] ←0
 
-PSRLQ (xmm, xmm, xmm/m128)¶
+PSRLQ (xmm, xmm, xmm/m128) ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_QWORDS(DEST, SRC)
     DEST[MAXVL-1:128] (Unmodified)
 
-PSRLQ (xmm, imm8)¶
+PSRLQ (xmm, imm8) ¶
 
     DEST[127:0]←LOGICAL_RIGHT_SHIFT_QWORDS(DEST, imm8)
     DEST[MAXVL-1:128] (Unmodified)
 
 
-Intel C/C++ Compiler Intrinsic Equivalents¶
+Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPSRLD __m512i _mm512_srli_epi32(__m512i a, unsigned int imm);
 
@@ -631,17 +631,17 @@ Intel C/C++ Compiler Intrinsic Equivalents¶
     VPSRLQ:__m256i _mm256_srl_epi64 (__m256i m, __m128i count)
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Numeric Exceptions¶
+Numeric Exceptions ¶
 
 None.
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 VEX-encoded instructions:
 

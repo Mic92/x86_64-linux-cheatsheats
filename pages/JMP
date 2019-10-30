@@ -1,27 +1,27 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 JMP — JUMP
 
 
-  Opcode          Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------------- ---------------- ------- ------------- ----------------- -----------------------------------------------------------------------------------------------
-  EB _cb_         JMP _rel8_       D       Valid         Valid             Jump short, RIP = RIP + 8-bit displacement sign extended to 64-bits
-  E9 _cw_         JMP _rel16_      D       N.S.          Valid             Jump near, relative, displacement relative to next instruction. Not supported in 64-bit mode.
-  E9 _cd_         JMP _rel32_      D       Valid         Valid             Jump near, relative, RIP = RIP + 32-bit displacement sign extended to 64-bits
-  FF /4           JMP _r/m16_      M       N.S.          Valid             Jump near, absolute indirect, address = zero-extended _r/m16._ Not supported in 64-bit mode.
-  FF /4           JMP _r/m32_      M       N.S.          Valid             Jump near, absolute indirect, address given in _r/m32._ Not supported in 64-bit mode.
-  FF /4           JMP _r/m64_      M       Valid         N.E.              Jump near, absolute indirect, RIP = 64-Bit offset from register or memory
-  EA _cd_         JMP _ptr16:16_   D       Inv.          Valid             Jump far, absolute, address given in operand
-  EA _cp_         JMP _ptr16:32_   D       Inv.          Valid             Jump far, absolute, address given in operand
-  FF /5           JMP _m16:16_     D       Valid         Valid             Jump far, absolute indirect, address given in _m16:16_
-  FF /5           JMP _m16:32_     D       Valid         Valid             Jump far, absolute indirect, address given in _m16:32._
-  REX.W + FF /5   JMP _m16:64_     D       Valid         N.E.              Jump far, absolute indirect, address given in _m16:64_.
+  Opcode        Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------- ---------------- ------- ------------- ----------------- -----------------------------------------------------------------------------------------------
+  EB _cb_       JMP _rel8_       D       Valid         Valid             Jump short, RIP = RIP + 8-bit displacement sign extended to 64-bits
+  E9 _cw_       JMP _rel16_      D       N.S.          Valid             Jump near, relative, displacement relative to next instruction. Not supported in 64-bit mode.
+  E9 _cd_       JMP _rel32_      D       Valid         Valid             Jump near, relative, RIP = RIP + 32-bit displacement sign extended to 64-bits
+  FF /4         JMP _r/m16_      M       N.S.          Valid             Jump near, absolute indirect, address = zero-extended _r/m16._ Not supported in 64-bit mode.
+  FF /4         JMP _r/m32_      M       N.S.          Valid             Jump near, absolute indirect, address given in _r/m32._ Not supported in 64-bit mode.
+  FF /4         JMP _r/m64_      M       Valid         N.E.              Jump near, absolute indirect, RIP = 64-Bit offset from register or memory
+  EA _cd_       JMP _ptr16:16_   D       Inv.          Valid             Jump far, absolute, address given in operand
+  EA _cp_       JMP _ptr16:32_   D       Inv.          Valid             Jump far, absolute, address given in operand
+  FF /5         JMP _m16:16_     D       Valid         Valid             Jump far, absolute indirect, address given in _m16:16_
+  FF /5         JMP _m16:32_     D       Valid         Valid             Jump far, absolute indirect, address given in _m16:32._
+  REX.W FF /5   JMP _m16:64_     D       Valid         N.E.              Jump far, absolute indirect, address given in _m16:64_.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
@@ -30,7 +30,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Transfers program control to a different point in the instruction stream
 without recording return information. The destination (target) operand
@@ -162,16 +162,29 @@ differs in this regard from the CALL instruction which does set the NT
 flag and save the previous task link information, allowing a return to
 the calling task with an IRET instruction.
 
-IN 64-BIT MODE — The instruction’s operation size is fixed at 64 bits.
-If a selector points to a gate, then RIP equals the 64-bit displacement
+IN 64-BIT MODE. The instruction’s operation size is fixed at 64 bits. If
+a selector points to a gate, then RIP equals the 64-bit displacement
 taken from gate; else RIP equals the zero-extended offset from the far
 pointer referenced in the instruction.
 
 See the summary chart at the beginning of this section for encoding data
 and limits.
 
+INSTRUCTION ORDERING. Instructions following a far jump may be fetched
+from memory before earlier instructions complete execution, but they
+will not execute (even speculatively) until all instructions prior to
+the far jump have completed execution (the later instructions may
+execute before data stored by the earlier instructions have become
+globally visible).
 
-Operation¶
+Certain situations may lead to the next sequential instruction after a
+near indirect JMP being speculatively executed. If software needs to
+prevent this (e.g., in order to prevent a speculative execution side
+channel), then an INT3 or LFENCE instruction opcode can be placed after
+the near indirect JMP in order to block speculative execution.
+
+
+Operation ¶
 
     IF near jump
         IF 64-bit Mode
@@ -348,13 +361,13 @@ Operation¶
     END;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 All flags are affected if a task switch occurs; no flags are affected if
 a task switch does not occur.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -390,16 +403,10 @@ less than the CPL or than the RPL of the call-gate, task-gate, or TSS’s
 segment selector.
 
 If the segment descriptor for selector in a call gate does not indicate
-it is a code segment.
-
-If the segment descriptor for the segment selector in a task gate does
-not indicate an available TSS.
-
-If the segment selector for a TSS has its local/global bit set for
-local.
-
-If a TSS segment descriptor specifies that the TSS is busy or not
-available.
+it is a code segment. If the segment descriptor for the segment selector
+in a task gate does not indicate an available TSS. If the segment
+selector for a TSS has its local/global bit set for local. If a TSS
+segment descriptor specifies that the TSS is busy or not available.
 
 #SS(0)
 
@@ -426,7 +433,7 @@ target from memory.)
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP
 
@@ -445,7 +452,7 @@ If a memory operand effective address is outside the SS segment limit.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 #GP(0)
 
@@ -472,12 +479,12 @@ made. (Only occurs when fetching target from memory.)
 If the LOCK prefix is used.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same as 64-bit mode exceptions.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 #GP(0)
 
@@ -521,16 +528,12 @@ of the 64-bit call-gate.
 If the upper type field of a 64-bit call gate is not 0x0.
 
 If the segment selector from a 64-bit call gate is beyond the descriptor
-table limits.
-
-If the code segment descriptor pointed to by the selector in the 64-bit
-gate doesn't have the L-bit set and the D-bit clear.
-
-If the segment descriptor for a segment selector from the 64-bit call
-gate does not indicate it is a code segment.
-
-If the code segment is non-conforming and CPL ≠ DPL. If the code segment
-is confirming and CPL < DPL.
+table limits. If the code segment descriptor pointed to by the selector
+in the 64-bit gate doesn't have the L-bit set and the D-bit clear. If
+the segment descriptor for a segment selector from the 64-bit call gate
+does not indicate it is a code segment. If the code segment is
+non-conforming and CPL ≠ DPL. If the code segment is confirming and CPL
+< DPL.
 
 #NP(selector)
 

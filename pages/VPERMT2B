@@ -1,26 +1,26 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
 VPERMT2B — FULL PERMUTE OF BYTES FROM TWO TABLES OVERWRITING A TABLE
 
 
-  Opcode/Instruction                                                     Op /En   64/32 bit Mode Support   CPUID Feature Flag     Description
-  ---------------------------------------------------------------------- -------- ------------------------ ---------------------- -----------------------------------------------------------------------------------------------------------------------
-  EVEX.DDS.128.66.0F38.W0 7D /r VPERMT2B xmm1 {k1}{z}, xmm2, xmm3/m128   A        V/V                      AVX512VL AVX512_VBMI   Permute bytes in xmm3/m128 and xmm1 using byte indexes in xmm2 and store the byte results in xmm1 using writemask k1.
-  EVEX.NDS.256.66.0F38.W0 7D /r VPERMT2B ymm1 {k1}{z}, ymm2, ymm3/m256   A        V/V                      AVX512VL AVX512_VBMI   Permute bytes in ymm3/m256 and ymm1 using byte indexes in ymm2 and store the byte results in ymm1 using writemask k1.
-  EVEX.NDS.512.66.0F38.W0 7D /r VPERMT2B zmm1 {k1}{z}, zmm2, zmm3/m512   A        V/V                      AVX512_VBMI            Permute bytes in zmm3/m512 and zmm1 using byte indexes in zmm2 and store the byte results in zmm1 using writemask k1.
+  Opcode/Instruction                                                 Op /En   64/32 bit Mode Support   CPUID Feature Flag     Description
+  ------------------------------------------------------------------ -------- ------------------------ ---------------------- -----------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F38.W0 7D /r VPERMT2B xmm1 {k1}{z}, xmm2, xmm3/m128   A        V/V                      AVX512VL AVX512_VBMI   Permute bytes in xmm3/m128 and xmm1 using byte indexes in xmm2 and store the byte results in xmm1 using writemask k1.
+  EVEX.256.66.0F38.W0 7D /r VPERMT2B ymm1 {k1}{z}, ymm2, ymm3/m256   A        V/V                      AVX512VL AVX512_VBMI   Permute bytes in ymm3/m256 and ymm1 using byte indexes in ymm2 and store the byte results in ymm1 using writemask k1.
+  EVEX.512.66.0F38.W0 7D /r VPERMT2B zmm1 {k1}{z}, zmm2, zmm3/m512   A        V/V                      AVX512_VBMI            Permute bytes in zmm3/m512 and zmm1 using byte indexes in zmm2 and store the byte results in zmm1 using writemask k1.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
   Op/En   Tuple Type   Operand 1          Operand 2       Operand 3       Operand 4
   A       Full Mem     ModRM:reg (r, w)   EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-Description¶
+Description ¶
 
 Permutes byte values from two tables, comprising of the first operand
 (also the destination operand) and the third operand (the second source
@@ -44,9 +44,9 @@ but the first table is overwritten.
 
 Bits (MAX_VL-1:256/128) of the destination are zeroed for VL=256,128.
 
-Operation¶
+Operation ¶
 
-VPERMT2B (EVEX encoded versions)¶
+VPERMT2B (EVEX encoded versions) ¶
 
     (KL, VL) = (16, 128), (32, 256), (64, 512)
     IF VL = 128:
@@ -69,7 +69,7 @@ VPERMT2B (EVEX encoded versions)¶
     ENDFOR
     DEST[MAX_VL-1:VL] ← 0;
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPERMT2B __m512i _mm512_permutex2var_epi8(__m512i a, __m512i idx, __m512i b);
 
@@ -89,11 +89,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VPERMT2B __m128i _mm_maskz_permutex2var_epi8(__mmask16 k, __m128i a, __m128i idx, __m128i b);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None.
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E4NF.nb.
 

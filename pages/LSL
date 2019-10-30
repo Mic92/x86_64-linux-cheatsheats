@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -16,7 +16,7 @@ LSL — LOAD SEGMENT LIMIT
   Forallloads(regardlessofdestinationsizing),onlybits16-0areused.Otherbitsareignored.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -24,7 +24,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Loads the unscrambled segment limit from the segment descriptor
 specified with the second operand (source operand) into the first
@@ -101,13 +101,13 @@ Reserved 64-bit TSS¹ Reserved Busy 64-bit TSS¹ 64-bit call gate Reserved
 
 No No Yes No No No No No No Yes No Yes No No No No
 
-Table 3-55. Segment and Gate Descriptor Types
+Table 3-56. Segment and Gate Descriptor Types
 
   1. In this case, the descriptor comprises 16 bytes; bits 12:8 of the
   upper 4 bytes must be 0.
 
 
-Operation¶
+Operation ¶
 
     IF SRC(Offset) > descriptor table limit
         THEN ZF ← 0; FI;
@@ -131,13 +131,13 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The ZF flag is set to 1 if the segment limit is loaded successfully;
 otherwise, it is set to 0.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -165,26 +165,26 @@ address is unaligned while the current privilege level is 3.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- --------------------------------------------------------------
   #UD   The LSL instruction cannot be executed in real-address mode.
   ----- --------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----- --------------------------------------------------------------
   #UD   The LSL instruction cannot be executed in virtual-8086 mode.
   ----- --------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------------------
   #SS(0)            If the memory operand effective address referencing the SS segment is in a non-canonical form.

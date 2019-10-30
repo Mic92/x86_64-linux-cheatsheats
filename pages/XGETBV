@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,7 +11,7 @@ XGETBV — GET VALUE OF EXTENDED CONTROL REGISTER
   NP 0F 01 D0   XGETBV        ZO      Valid         Valid             Reads an XCR specified by ECX into EDX:EAX.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
@@ -19,7 +19,7 @@ Instruction Operand Encoding¶
   ------- ----------- ----------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Reads the contents of the extended control register (XCR) specified in
 the ECX register into registers EDX:EAX. (On processors that support the
@@ -43,22 +43,22 @@ Use of any other value for ECX results in a general-protection (#GP)
 exception.
 
 
-Operation¶
+Operation ¶
 
     EDX:EAX ← XCR[ECX];
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None.
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     XGETBV: unsigned __int64 _xgetbv( unsigned int);
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -74,7 +74,7 @@ If CR4.OSXSAVE[bit 18] = 0.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 #GP(0)
 
@@ -90,17 +90,17 @@ If CR4.OSXSAVE[bit 18] = 0.
 If the LOCK prefix is used.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

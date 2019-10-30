@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -13,7 +13,7 @@ LEA — LOAD EFFECTIVE ADDRESS
   REX.W + 8D /_r_   LEA _r64,m_   RM      Valid         N.E.              Store effective address for _m_ in register _r64._
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- ----------- -----------
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
@@ -21,7 +21,7 @@ Instruction Operand Encoding¶
   ------- --------------- --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Computes the effective address of the second operand (the source
 operand) and stores it in the first operand (destination operand). The
@@ -40,7 +40,7 @@ determined by the attribute of the code segment.
   32             16             16-bit effective address is calculated. The 16-bit address is zero-extended and stored in the requested 32-bit register destination.
   32             32             32-bit effective address is calculated and stored in the requested 32-bit register destination.
 
-Table 3-53. Non-64-bit Mode LEA Operation with Address and Operand Size
+Table 3-54. Non-64-bit Mode LEA Operation with Address and Operand Size
 Attributes
 
 Different assemblers may use different algorithms based on the size
@@ -50,7 +50,7 @@ In 64-bit mode, the instruction’s destination operand is governed by
 operand size attribute, the default operand size is 32 bits. Address
 calculation is governed by address size attribute, the default address
 size is 64-bits. In 64-bit mode, address size of 16 bits is not
-encodable. See Table 3-54.
+encodable. See Table 3-55.
 
   Operand Size   Address Size   Action Performed
   -------------- -------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -61,11 +61,11 @@ encodable. See Table 3-54.
   64             32             32-bit effective address is calculated (using 67H prefix), zero-extended to 64-bits, and stored in the requested 64-bit register destination (using REX.W).
   64             64             64-bit effective address is calculated (default address size) and all 64-bits of the address are stored in the requested 64-bit register destination (using REX.W).
 
-Table 3-54. 64-bit Mode LEA Operation with Address and Operand Size
+Table 3-55. 64-bit Mode LEA Operation with Address and Operand Size
 Attributes
 
 
-Operation¶
+Operation ¶
 
     IF OperandSize = 16 and AddressSize = 16
         THEN
@@ -101,12 +101,12 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 None
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #UD
 
@@ -115,22 +115,22 @@ If source operand is not a memory location.
 If the LOCK prefix is used.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 

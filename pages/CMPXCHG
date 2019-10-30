@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -20,7 +20,7 @@ CMPXCHG — COMPARE AND EXCHANGE
   byte registers if a REX prefix is used: AH, BH, CH, DH.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- ------------------ --------------- ----------- -----------
   Op/En   Operand 1          Operand 2       Operand 3   Operand 4
@@ -28,7 +28,7 @@ Instruction Operand Encoding¶
   ------- ------------------ --------------- ----------- -----------
 
 
-Description¶
+Description ¶
 
 Compares the value in the AL, AX, EAX, or RAX register with the first
 operand (destination operand). If the two values are equal, the second
@@ -50,13 +50,13 @@ of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
 
-IA-32 Architecture Compatibility¶
+IA-32 Architecture Compatibility ¶
 
 This instruction is not supported on Intel processors earlier than the
 Intel486 processors.
 
 
-Operation¶
+Operation ¶
 
     (* Accumulator = AL, AX, EAX, or RAX depending on whether a byte, word, doubleword, or quadword comparison is being performed *)
     TEMP ← DEST
@@ -71,7 +71,7 @@ Operation¶
     FI;
 
 
-Flags Affected¶
+Flags Affected ¶
 
 The ZF flag is set if the values in the destination operand and register
 AL, AX, or EAX are equal; otherwise it is cleared. The CF, PF, AF, SF,
@@ -79,7 +79,7 @@ and OF flags are set according to the results of the comparison
 operation.
 
 
-Protected Mode Exceptions¶
+Protected Mode Exceptions ¶
 
 #GP(0)
 
@@ -108,7 +108,7 @@ made while the current privilege level is 3.
 If the LOCK prefix is used but the destination is not a memory operand.
 
 
-Real-Address Mode Exceptions¶
+Real-Address Mode Exceptions ¶
 
   ----- -------------------------------------------------------------------------------------------
   #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -117,7 +117,7 @@ Real-Address Mode Exceptions¶
   ----- -------------------------------------------------------------------------------------------
 
 
-Virtual-8086 Mode Exceptions¶
+Virtual-8086 Mode Exceptions ¶
 
   ----------------- -------------------------------------------------------------------------------------------
   #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
@@ -128,12 +128,12 @@ Virtual-8086 Mode Exceptions¶
   ----------------- -------------------------------------------------------------------------------------------
 
 
-Compatibility Mode Exceptions¶
+Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
 
-64-Bit Mode Exceptions¶
+64-Bit Mode Exceptions ¶
 
   ----------------- --------------------------------------------------------------------------------------------------------------------
   #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.

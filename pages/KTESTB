@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -14,7 +14,7 @@ KTESTW/KTESTB/KTESTQ/KTESTD — PACKED BIT TEST MASKS AND SET FLAGS
   VEX.L0.66.0F.W1 99 /r KTESTD k1, k2   RR      V/V                      AVX512BW             Set ZF and CF depending on sign bit AND and ANDN of 32 bits mask register sources.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- ----------------------------------------
   Op/En   Operand 1       Operand2
@@ -22,7 +22,7 @@ Instruction Operand Encoding¶
   ------- --------------- ----------------------------------------
 
 
-Description¶
+Description ¶
 
 Performs a bitwise comparison of the bits of the first source operand
 and corresponding bits in the second source operand. If the AND
@@ -35,9 +35,9 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
 
-Operation¶
+Operation ¶
 
-KTESTW¶
+KTESTW ¶
 
     TEMP[15:0]←SRC2[15:0] AND SRC1[15:0]
     IF (TEMP[15:0] = = 0)
@@ -51,7 +51,7 @@ KTESTW¶
     FI;
     AF←OF←PF←SF←0;
 
-KTESTB¶
+KTESTB ¶
 
     TEMP[7:0]←SRC2[7:0] AND SRC1[7:0]
     IF (TEMP[7:0] = = 0)
@@ -65,7 +65,7 @@ KTESTB¶
     FI;
     AF←OF←PF←SF←0;
 
-KTESTQ¶
+KTESTQ ¶
 
     TEMP[63:0]←SRC2[63:0] AND SRC1[63:0]
     IF (TEMP[63:0] = = 0)
@@ -79,7 +79,7 @@ KTESTQ¶
     FI;
     AF←OF←PF←SF←0;
 
-KTESTD¶
+KTESTD ¶
 
     TEMP[31:0]←SRC2[31:0] AND SRC1[31:0]
     IF (TEMP[31:0] = = 0)
@@ -94,15 +94,15 @@ KTESTD¶
     AF←OF←PF←SF←0;
 
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type K20.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -15,14 +15,14 @@ VCVTTSS2USI — CONVERT WITH TRUNCATION SCALAR SINGLE-PRECISION FLOATING-POINT V
   instructions behaves as if the W0 version is used.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- -------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type     Operand 1       Operand 2       Operand 3   Operand 4
   A       Tuple1 Fixed   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- -------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 Converts with truncation a single-precision floating-point value in the
 source operand (the second operand) to an unsigned doubleword integer
@@ -46,9 +46,9 @@ EVEX.W1 version: promotes the instruction to produce 64-bit data in
 Note: EVEX.vvvv is reserved and must be 1111b, otherwise instructions
 will #UD.
 
-Operation¶
+Operation ¶
 
-VCVTTSS2USI (EVEX encoded version)¶
+VCVTTSS2USI (EVEX encoded version) ¶
 
     IF 64-bit Mode and OperandSize = 64
     THEN
@@ -57,7 +57,7 @@ VCVTTSS2USI (EVEX encoded version)¶
         DEST[31:0] ← Convert_Single_Precision_Floating_Point_To_UInteger_Truncate(SRC[31:0]);
     FI;
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTTSS2USI unsigned int _mm_cvttss_u32( __m128 a);
 
@@ -67,11 +67,11 @@ Intel C/C++ Compiler Intrinsic Equivalent¶
 
     VCVTTSS2USI unsigned __int64 _mm_cvtt_roundss_u64( __m128 a, int sae);
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
-Other Exceptions¶
+Other Exceptions ¶
 
 EVEX-encoded instructions, see Exceptions Type E3NF.
 

@@ -1,5 +1,5 @@
 -   Index
--   December 2017
+-   May 2019
 
 
 
@@ -11,14 +11,14 @@ VFPCLASSSD — TESTS TYPES OF A SCALAR FLOAT64 VALUES
   EVEX.LIG.66.0F3A.W1 67 /r ib VFPCLASSSD k2 {k1}, xmm2/m64, imm8   A       V/V                      AVX512DQ             Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
 
 
-Instruction Operand Encoding¶
+Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- ----------- -----------
   Op/En   Tuple Type      Operand 1       Operand 2       Operand 3   Operand 4
   A       Tuple1 Scalar   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
 
-Description¶
+Description ¶
 
 The FPCLASSSD instruction checks the low double precision floating point
 value in the source operand for special categories, specified by the set
@@ -34,7 +34,7 @@ The classification categories specified by imm8 are shown in Figure
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 
-Operation¶
+Operation ¶
 
     CheckFPClassDP (tsrc[63:0], imm8[7:0]){
         NegNum ←tsrc[63];
@@ -62,7 +62,7 @@ Operation¶
         Return bResult;
     } //* end of CheckFPClassDP() *//
 
-VFPCLASSSD (EVEX encoded version)¶
+VFPCLASSSD (EVEX encoded version) ¶
 
     IF k1[0] OR *no writemask*
         THEN DEST[0]←
@@ -71,17 +71,17 @@ VFPCLASSSD (EVEX encoded version)¶
     FI;
     DEST[MAX_KL-1:1] ← 0
 
-Intel C/C++ Compiler Intrinsic Equivalent¶
+Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VFPCLASSSD __mmask8 _mm_fpclass_sd_mask( __m128d a, int c)
 
     VFPCLASSSD __mmask8 _mm_mask_fpclass_sd_mask( __mmask8 m, __m128d a, int c)
 
-SIMD Floating-Point Exceptions¶
+SIMD Floating-Point Exceptions ¶
 
 None
 
-Other Exceptions¶
+Other Exceptions ¶
 
 See Exceptions Type E6
 
