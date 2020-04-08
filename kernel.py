@@ -10,10 +10,9 @@ import shutil
 import shlex
 from pathlib import Path
 
-C_HEADER = """
-"""
-
-CXX_HEADER = C_HEADER + """
+KERNEL_HEADER = """
+#include <linux/perf_event.h>
+#include <linux/sched.h>
 """
 
 
@@ -65,18 +64,6 @@ def parse(arg):
     return tuple(shlex.split(arg))
 
 
-def gdb(arg, command):
-    f = tempfile.NamedTemporaryFile(mode="w+")
-    f.write(C_HEADER + """int main() {
-            %s a;
-            printf("%%p", &a);
-    }""" % arg)
-    f.flush()
-    subprocess.check_call(
-        ["c++", "-std=c++11", "-g", "-o", "/tmp/main", "-w", "-x", "c++", f.name])
-    return subprocess.check_output(["gdb", "--nh", "-batch", "-ex", command, "/tmp/main"]).decode("utf-8")
-
-
 class Shell(cmd.Cmd):
     intro = 'Type help or ? to list commands.\n'
     prompt = '> '
@@ -87,6 +74,19 @@ class Shell(cmd.Cmd):
             self.args = self.args[1:]
         return line
 
+    def do_size(self, _):
+        """
+        print sizeof(expression)
+        """
+        if len(self.args) < 1:
+            print("USAGE: %s print-size expr" % sys.argv[0], file=sys.stderr)
+            return 1
+        content = (KERNEL_HEADER + f"size_t size = sizeof({self.args[0]});")
+        with KernelModule(content) as module:
+            subprocess.check_call(["gdb", module, "-batch", "-ex", "p size", "-ex", "quit"])
+
+    do_s = do_size
+
     def do_offset(self, _):
         """
         print offsetof(struct, member)
@@ -96,11 +96,10 @@ class Shell(cmd.Cmd):
                 "USAGE: %s offset struct member" % sys.argv[0],
                 file=sys.stderr)
             return 1
-        content = ("\n#include <linux/perf_event.h>\n" +
-                f"#include <linux/sched.h>\n"
-                f"int OFFSET = __builtin_offsetof({self.args[0]}, {self.args[1]});")
+        content = (KERNEL_HEADER +
+                   f"size_t OFFSET = __builtin_offsetof({self.args[0]}, {self.args[1]});")
         with KernelModule(content) as module:
-            subprocess.check_call(["gdb", module, "-batch", "-ex", "p (size_t)OFFSET", "-ex", "quit"])
+            subprocess.check_call(["gdb", module, "-batch", "-ex", "p OFFSET", "-ex", "quit"])
 
     do_o = do_offset
 
