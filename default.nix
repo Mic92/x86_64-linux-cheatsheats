@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 
 let
   # Replace this with your kernel version!
-  kernel = linux;
+  kernel = linux_latest;
 
   gems = bundlerEnv {
     name = "x86-cheatsheets";
