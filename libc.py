@@ -32,6 +32,7 @@ extern "C" {
 #include <linux/magic.h>
 #include <linux/netlink.h>
 #include <linux/quota.h>
+#include <linux/kvm.h>
 #include <linux/reboot.h>
 #include <locale.h>
 #include <malloc.h>
