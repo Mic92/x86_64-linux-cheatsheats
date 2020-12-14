@@ -49,10 +49,21 @@ struct timeval {
 
 ## Introspect the linux kernel (limited)
 
-(only offset implemented so far)
+(only offset and size implemented so far)
 
 ```
-python3 libc.py repl
+python3 kernel.py repl
 > offset "struct task_struct" "state"
 $1 = 16
 ```
+
+other architectures:
+
+```
+export KERNEL_DIR=$(nix-build --no-out-link '<nixpkgs>' --system aarch64-linux -A linux)
+```
+
+```
+export KERNEL_DIR=$(nix-build --no-out-link '<nixpkgs>' --system i686-linux -A linux)
+```
+
