@@ -89,6 +89,19 @@ class Shell(cmd.Cmd):
 
     do_s = do_size
 
+    def do_print(self, _):
+        if len(self.args) < 1:
+            print(
+                "USAGE: %s print constant" % sys.argv[0],
+                file=sys.stderr)
+            return 1
+        content = (KERNEL_HEADER +
+                   f"typeof({self.args[0]}) VAL = {self.args[0]};")
+        with KernelModule(content) as module:
+            subprocess.check_call(["gdb", module, "-batch", "-ex", "p VAL", "-ex", "quit"])
+
+    do_p = do_print
+
     def do_offset(self, _):
         """
         print offsetof(struct, member)
