@@ -14,6 +14,7 @@ KERNEL_HEADER = """
 #include <linux/perf_event.h>
 #include <linux/sched.h>
 #include <linux/module.h>
+#include <linux/kvm_host.h>
 MODULE_LICENSE("gpl");
 """
 
