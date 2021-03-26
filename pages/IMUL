@@ -1,182 +1,24 @@
 -   Index
 -   May 2019
 
-
-
-IMUL — SIGNED MULTIPLY
-
-
-Opcode
-
-Instruction
-
-Op/En
-
-64-Bit Mode
-
-Compat/Leg Mode
-
-Description
-
-F6 /5
-
-IMUL _r/m8*_
-
-M
-
-Valid
-
-Valid
-
-AX← AL ∗ _r/m_ byte.
-
-F7 /5
-
-IMUL _r/m16_
-
-M
-
-Valid
-
-Valid
-
-DX:AX ← AX ∗ _r/m_ word.
-
-F7 /5
-
-IMUL _r/m32_
-
-M
-
-Valid
-
-Valid
-
-EDX:EAX ← EAX ∗ _r/m_32.
-
-REX.W + F7 /5
-
-IMUL _r/m64_
-
-M
-
-Valid
-
-N.E.
-
-RDX:RAX ← RAX ∗ _r/m_64.
-
-0F AF /_r_
-
-IMUL _r16, r/m16_
-
-RM
-
-Valid
-
-Valid
-
-word register ← word register ∗ _r/m_16.
-
-0F AF /_r_
-
-IMUL _r32, r/m32_
-
-RM
-
-Valid
-
-Valid
-
-doubleword register ← doubleword register ∗ _r/m32._
-
-REX.W + 0F AF /_r_
-
-IMUL _r64, r/m64_
-
-RM
-
-Valid
-
-N.E.
-
-Quadword register ← Quadword register ∗ _r/m64_.
-
-6B /_r ib_
-
-IMUL _r16, r/m16, imm8_
-
-RMI
-
-Valid
-
-Valid
-
-word register ← _r/m16_ ∗ sign-extended immediate byte.
-
-6B /_r ib_
-
-IMUL _r32, r/m32, imm8_
-
-RMI
-
-Valid
-
-Valid
-
-doubleword register ← _r/m32_ ∗ sign-extended immediate byte.
-
-REX.W + 6B /_r ib_
-
-IMUL _r64, r/m64, imm8_
-
-RMI
-
-Valid
-
-N.E.
-
-Quadword register ← _r/m64_ ∗ sign-extended immediate byte.
-
-69 /_r iw_
-
-IMUL _r16, r/m16, imm16_
-
-RMI
-
-Valid
-
-Valid
-
-word register ← _r/m16_ ∗ immediate word.
-
-69 /_r id_
-
-IMUL _r32, r/m32, imm32_
-
-RMI
-
-Valid
-
-Valid
-
-doubleword register ← _r/m32_ ∗ immediate doubleword.
-
-REX.W + 69 /_r id_
-
-IMUL _r64, r/m64, imm32_
-
-RMI
-
-Valid
-
-N.E.
-
-Quadword register ← _r/m64_ ∗ immediate doubleword.
-
-NOTES: *
-In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
+IMUL — Signed Multiply
+
+  Opcode                                                                                                      Instruction              Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ----------------------------------------------------------------------------------------------------------- ------------------------ ------- ------------- ----------------- -------------------------------------------------------------
+  F6 /5                                                                                                       IMUL r/m8*               M       Valid         Valid             AX← AL ∗ r/m byte.
+  F7 /5                                                                                                       IMUL r/m16               M       Valid         Valid             DX:AX ← AX ∗ r/m word.
+  F7 /5                                                                                                       IMUL r/m32               M       Valid         Valid             EDX:EAX ← EAX ∗ r/m32.
+  REX.W + F7 /5                                                                                               IMUL r/m64               M       Valid         N.E.              RDX:RAX ← RAX ∗ r/m64.
+  0F AF /r                                                                                                    IMUL r16, r/m16          RM      Valid         Valid             word register ← word register ∗ r/m16.
+  0F AF /r                                                                                                    IMUL r32, r/m32          RM      Valid         Valid             doubleword register ← doubleword register ∗ r/m32.
+  REX.W + 0F AF /r                                                                                            IMUL r64, r/m64          RM      Valid         N.E.              Quadword register ← Quadword register ∗ r/m64.
+  6B /r ib                                                                                                    IMUL r16, r/m16, imm8    RMI     Valid         Valid             word register ← r/m16 ∗ sign-extended immediate byte.
+  6B /r ib                                                                                                    IMUL r32, r/m32, imm8    RMI     Valid         Valid             doubleword register ← r/m32 ∗ sign-extended immediate byte.
+  REX.W + 6B /r ib                                                                                            IMUL r64, r/m64, imm8    RMI     Valid         N.E.              Quadword register ← r/m64 ∗ sign-extended immediate byte.
+  69 /r iw                                                                                                    IMUL r16, r/m16, imm16   RMI     Valid         Valid             word register ← r/m16 ∗ immediate word.
+  69 /r id                                                                                                    IMUL r32, r/m32, imm32   RMI     Valid         Valid             doubleword register ← r/m32 ∗ immediate doubleword.
+  REX.W + 69 /r id                                                                                            IMUL r64, r/m64, imm32   RMI     Valid         N.E.              Quadword register ← r/m64 ∗ immediate doubleword.
+  NOTES: * In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.                                                                    
 
 Instruction Operand Encoding ¶
 
@@ -187,26 +29,25 @@ Instruction Operand Encoding ¶
   RMI     ModRM:reg (r, w)   ModRM:r/m (r)   imm8/16/32   NA
   ------- ------------------ --------------- ------------ -----------
 
-
 Description ¶
 
 Performs a signed multiplication of two operands. This instruction has
 three forms, depending on the number of operands.
 
--   ONE-OPERAND FORM — This form is identical to that used by the MUL
+-   One-operand form — This form is identical to that used by the MUL
     instruction. Here, the source operand (in a general-purpose register
     or memory location) is multiplied by the value in the AL, AX, EAX,
     or RAX register (depending on the operand size) and the product
     (twice the size of the input operand) is stored in the AX, DX:AX,
     EDX:EAX, or RDX:RAX registers, respectively.
--   TWO-OPERAND FORM — With this form the destination operand (the first
+-   Two-operand form — With this form the destination operand (the first
     operand) is multiplied by the source operand (second operand). The
     destination operand is a general-purpose register and the source
     operand is an immediate value, a general-purpose register, or a
     memory location. The intermediate product (twice the size of the
     input operand) is truncated and stored in the destination operand
     location.
--   THREE-OPERAND FORM — This form requires a destination operand (the
+-   Three-operand form — This form requires a destination operand (the
     first operand) and two source operands (the second and the third
     operands). Here, the first source operand (which can be a
     general-purpose register or a memory location) is multiplied by the
@@ -240,17 +81,16 @@ of the REX.R prefix permits access to additional registers (R8-R15). Use
 of the REX.W prefix promotes operation to 64 bits. Use of REX.W modifies
 the three forms of the instruction as follows.
 
--   ONE-OPERAND FORM —The source operand (in a 64-bit general-purpose
+-   One-operand form —The source operand (in a 64-bit general-purpose
     register or memory location) is multiplied by the value in the RAX
     register and the product is stored in the RDX:RAX registers.
--   TWO-OPERAND FORM — The source operand is promoted to 64 bits if it
+-   Two-operand form — The source operand is promoted to 64 bits if it
     is a register or a memory location. The destination operand is
     promoted to 64 bits.
--   THREE-OPERAND FORM — The first source operand (either a register or
+-   Three-operand form — The first source operand (either a register or
     a memory location) and destination operand are promoted to 64 bits.
     If the source operand is an immediate, it is sign extended to 64
     bits.
-
 
 Operation ¶
 
@@ -300,7 +140,6 @@ Operation ¶
         FI;
     FI;
 
-
 Flags Affected ¶
 
 For the one operand form of the instruction, the CF and OF flags are set
@@ -311,34 +150,16 @@ flags are set when the result must be truncated to fit in the
 destination operand size and cleared when the result fits exactly in the
 destination operand size. The SF, ZF, AF, and PF flags are undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -347,7 +168,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -359,11 +179,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

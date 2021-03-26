@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPERMILPD — PERMUTE IN-LANE OF PAIRS OF DOUBLE-PRECISION FLOATING-POINT VALUES
-
+VPERMILPD — Permute In-Lane of Pairs of Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                             Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------ --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -18,7 +15,6 @@ VPERMILPD — PERMUTE IN-LANE OF PAIRS OF DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.128.66.0F3A.W1 05 /r ib VPERMILPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8   D         V/V                      AVX512VL AVX512F     Permute double-precision floating-point values in xmm2/m128/m64bcst using controls from imm8 and store the result in xmm1 using writemask k1.
   EVEX.256.66.0F3A.W1 05 /r ib VPERMILPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8   D         V/V                      AVX512VL AVX512F     Permute double-precision floating-point values in ymm2/m256/m64bcst using controls from imm8 and store the result in ymm1 using writemask k1.
   EVEX.512.66.0F3A.W1 05 /r ib VPERMILPD zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   D         V/V                      AVX512F              Permute double-precision floating-point values in zmm2/m512/m64bcst using controls from imm8 and store the result in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -50,15 +46,14 @@ register, a 512/256/128-bit memory location or a 512/256/128-bit vector
 broadcasted from a 64-bit memory location. Permuted results are written
 to the destination under the writemask.
 
-X3 X2 X1 X0 SRC1 DEST X2..X3 X2..X3 X0..X1 X0..X1
+[]
 
 Figure 5-23. VPERMILPD Operation
 
 VEX.256 encoded version: Bits (MAXVL-1:256) of the corresponding ZMM
 register are zeroed.
 
-Bit 6665 63 2 1 255 194193 127 .. . ignored ignored ignored sel sel sel
-Control Field 4 Control Field 2 Control Field1
+[]
 
 Figure 5-24. VPERMILPD Shuffle Control
 

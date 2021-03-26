@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-FPATAN — PARTIAL ARCTANGENT
-
+FPATAN — Partial Arctangent
 
   Opcode*   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   --------- ------------- ------------- ----------------- --------------------------------------------------------------------
@@ -13,7 +10,6 @@ FPATAN — PARTIAL ARCTANGENT
 NOTES:
 
 * SeeIA-32ArchitectureCompatibilitysectionbelow.
-
 
 Description ¶
 
@@ -35,142 +31,23 @@ The following table shows the results obtained when computing the
 arctangent of various classes of numbers, assuming that underflow does
 not occur.
 
-ST(0)
-
-ST(1)
-
-−∞
-
-−F
-
-−0
-
-+0
-
-+F
-
-+∞
-
-NaN
-
-−∞
-
-− 3π/4*
-
-− π/2
-
-− π/2
-
-− π/2
-
-− π/2
-
-− π/4*
-
-NaN
-
-−F
-
--p
-
-−π to −π/2
-
-−π/2
-
-−π/2
-
-−π/2 to −0
-
--0
-
-NaN
-
-−0
-
--p
-
--p
-
--p*
-
-− 0*
-
-−0
-
-−0
-
-NaN
-
-+0
-
-+p
-
-+p
-
-+ π*
-
-+ 0*
-
-+0
-
-+0
-
-NaN
-
-+F
-
-+p
-
-+π to +π/2
-
-+ π/2
-
-+π/2
-
-+π/2 to +0
-
-+0
-
-NaN
-
-+∞
-
-+3π/4*
-
-+π/2
-
-+π/2
-
-+π/2
-
-+ π/2
-
-+ π/4*
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
+  ST(0)                                                                      
+  ------- ----- --------- ------------ ------- ------- ------------ -------- -----
+  ST(1)         −∞        −F           −0      +0      +F           +∞       NaN
+          −∞    − 3π/4*   − π/2        − π/2   − π/2   − π/2        − π/4*   NaN
+          −F    -p        −π to −π/2   −π/2    −π/2    −π/2 to −0   -0       NaN
+          −0    -p        -p           -p*     − 0*    −0           −0       NaN
+          +0    +p        +p           + π*    + 0*    +0           +0       NaN
+          +F    +p        +π to +π/2   + π/2   +π/2    +π/2 to +0   +0       NaN
+          +∞    +3π/4*    +π/2         +π/2    +π/2    + π/2        + π/4*   NaN
+          NaN   NaN       NaN          NaN     NaN     NaN          NaN      NaN
 
 Table 3-30. FPATAN Results
 
   F Meansfinitefloating-pointvalue.
 
   *
-  Table8-10inthe_Intel®64andIA-32ArchitecturesSoftwareDeveloper’sManual,Volume1_,specifiesthattheratios0/0and∞/∞
+  Table8-10intheIntel®64andIA-32ArchitecturesSoftwareDeveloper’sManual,Volume1,specifiesthattheratios0/0and∞/∞
   generate the floating-point invalid arithmetic-operation exception
   and, if this exception is masked, the floating-point QNaN indefinite
   value is returned. With the FPATAN instruction, the 0/0 or ∞/∞ value
@@ -188,7 +65,6 @@ accept.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 IA-32 Architecture Compatibility ¶
 
 The source operands for this instruction are restricted for the 80287
@@ -196,25 +72,18 @@ math coprocessor to the following range:
 
 0 ≤ |ST(1)| < |ST(0)| < +∞
 
-
 Operation ¶
 
     ST(1) ← arctan(ST(1) / ST(0));
     PopRegisterStack;
 
-
 FPU Flags Affected ¶
 
-C1
-
-Set to 0 if stack underflow occurred.
-
-Set if result was rounded up; cleared otherwise.
-
-C0, C2, C3
-
-Undefined.
-
+  ------------ --------------------------------------------------
+  C1           Set to 0 if stack underflow occurred.
+               Set if result was rounded up; cleared otherwise.
+  C0, C2, C3   Undefined.
+  ------------ --------------------------------------------------
 
 Floating-Point Exceptions ¶
 
@@ -226,7 +95,6 @@ Floating-Point Exceptions ¶
   #P    Value cannot be represented exactly in destination format.
   ----- ------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
@@ -235,21 +103,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

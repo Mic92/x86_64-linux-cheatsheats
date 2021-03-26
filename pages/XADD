@@ -1,22 +1,18 @@
 -   Index
 -   May 2019
 
+XADD — Exchange and Add
 
-
-XADD — EXCHANGE AND ADD
-
-
-  Opcode               Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------- ------------------- ------- ------------- ----------------- ----------------------------------------------------
-  0F C0 /_r_           XADD _r/m8, r8_     MR      Valid         Valid             Exchange _r8_ and _r/m8_; load sum into _r/m8_.
-  REX + 0F C0 /_r_     XADD _r/m8*, r8*_   MR      Valid         N.E.              Exchange _r8_ and _r/m8_; load sum into _r/m8_.
-  0F C1 /_r_           XADD _r/m16, r16_   MR      Valid         Valid             Exchange _r16_ and _r/m16_; load sum into _r/m16_.
-  0F C1 /_r_           XADD _r/m32, r32_   MR      Valid         Valid             Exchange _r32_ and _r/m32_; load sum into _r/m32_.
-  REX.W + 0F C1 /_r_   XADD _r/m64, r64_   MR      Valid         N.E.              Exchange _r64_ and _r/m64_; load sum into _r/m64_.
+  Opcode             Instruction       Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------ ----------------- ------- ------------- ----------------- ----------------------------------------------
+  0F C0 /r           XADD r/m8, r8     MR      Valid         Valid             Exchange r8 and r/m8; load sum into r/m8.
+  REX + 0F C0 /r     XADD r/m8*, r8*   MR      Valid         N.E.              Exchange r8 and r/m8; load sum into r/m8.
+  0F C1 /r           XADD r/m16, r16   MR      Valid         Valid             Exchange r16 and r/m16; load sum into r/m16.
+  0F C1 /r           XADD r/m32, r32   MR      Valid         Valid             Exchange r32 and r/m32; load sum into r/m32.
+  REX.W + 0F C1 /r   XADD r/m64, r64   MR      Valid         N.E.              Exchange r64 and r/m64; load sum into r/m64.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1          Operand 2          Operand 3   Operand 4
   MR      ModRM:r/m (r, w)   ModRM:reg (r, w)   NA          NA
   ------- ------------------ ------------------ ----------- -----------
-
 
 Description ¶
 
@@ -42,13 +37,11 @@ section for encoding data and limits.
 This instruction can be used with a LOCK prefix to allow the instruction
 to be executed atomically.
 
-
 IA-32 Architecture Compatibility ¶
 
 IA-32 processors earlier than the Intel486 processor do not recognize
 this instruction. If this instruction is used, you should provide an
 equivalent code sequence that runs on earlier processors.
-
 
 Operation ¶
 
@@ -56,41 +49,22 @@ Operation ¶
     SRC ← DEST;
     DEST ← TEMP;
 
-
 Flags Affected ¶
 
 The CF, PF, AF, SF, ZF, and OF flags are set according to the result of
 the addition, which is stored in the destination operand.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -99,7 +73,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -111,11 +84,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

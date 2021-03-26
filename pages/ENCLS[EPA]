@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EPA — ADD VERSION ARRAY
-
+EPA — Add Version Array
 
   Opcode/Instruction     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------- ------- ------------------------ -------------------- -----------------------------------------------------
   EAX = 0AH ENCLS[EPA]   IR      V/V                      SGX1                 This leaf function adds a Version Array to the EPC.
-
 
 Instruction Operand Encoding ¶
 
@@ -28,7 +24,6 @@ must be set to PT_VA.
 The table below provides additional information on the memory parameter
 of EPA leaf function.
 
-
 EPA Memory Parameter Semantics ¶
 
   -----------------------------------
@@ -38,65 +33,18 @@ EPA Memory Parameter Semantics ¶
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EPA
-
-VA [DS:RCX]
-
-Exclusive
-
-#GP
-
-EPC_PAGE_CONFLICT_EXCEPTION
+  Leaf     Parameter     Base Concurrency Restrictions              
+  -------- ------------- ------------------------------------ ----- -----------------------------
+  Access   On Conflict   SGX_CONFLICT VM Exit Qualification         
+  EPA      VA [DS:RCX]   Exclusive                            #GP   EPC_PAGE_CONFLICT_EXCEPTION
 
 Table 40-37. Base Concurrency Restrictions of EPA
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EPA
-
-VA [DS:RCX]
-
-Concurrent
-
-L
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter     Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                 vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict   Access                                On Conflict   Access                On Conflict                
+  EPA                                               VA [DS:RCX]   Concurrent                            L             Concurrent                          Concurrent   
 
 Table 40-38. Additional Concurrency Restrictions of EPA
 
@@ -141,43 +89,27 @@ None
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If another Intel SGX instruction is accessing the EPC page.
-
-If RBX is not set to PT_VA.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
-
-If the EPC page is valid.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If another Intel SGX instruction is accessing the EPC page.
+              If RBX is not set to PT_VA.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+              If the EPC page is valid.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If another Intel SGX instruction is accessing the EPC page.
-
-If RBX is not set to PT_VA.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
-
-If the EPC page is valid.
+  ----------- -------------------------------------------------------------
+  #GP(0)      If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If another Intel SGX instruction is accessing the EPC page.
+              If RBX is not set to PT_VA.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+              If the EPC page is valid.
+  ----------- -------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

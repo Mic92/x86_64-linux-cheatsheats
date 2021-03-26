@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-KORW/KORB/KORQ/KORD — BITWISE LOGICAL OR MASKS
-
+KORW/KORB/KORQ/KORD — Bitwise Logical OR Masks
 
   Opcode/Instruction                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------
@@ -13,7 +10,6 @@ KORW/KORB/KORQ/KORD — BITWISE LOGICAL OR MASKS
   VEX.L1.0F.W1 45 /r KORQ k1, k2, k3      RVR     V/V                      AVX512BW             Bitwise OR 64 bits masks k2 and k3 and place result in k1.
   VEX.L1.66.0F.W1 45 /r KORD k1, k2, k3   RVR     V/V                      AVX512BW             Bitwise OR 32 bits masks k2 and k3 and place result in k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- -------------- ----------------------------------------
@@ -21,12 +17,10 @@ Instruction Operand Encoding ¶
   RVR     ModRM:reg (w)   VEX.1vvv (r)   ModRM:r/m (r, ModRM:[7:6] must be 11b)
   ------- --------------- -------------- ----------------------------------------
 
-
 Description ¶
 
 Performs a bitwise OR between the vector mask k2 and the vector mask k3,
 and writes the result into vector mask k1 (three-operand form).
-
 
 Operation ¶
 
@@ -50,21 +44,17 @@ KORD ¶
     DEST[31:0]←SRC1[31:0] BITWISE OR SRC2[31:0]
     DEST[MAX_KL-1:32] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     KORW __mmask16 _mm512_kor(__mmask16 a, __mmask16 b);
-
 
 Flags Affected ¶
 
 None
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

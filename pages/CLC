@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-CLC — CLEAR CARRY FLAG
-
+CLC — Clear Carry Flag
 
   Opcode   Instruction   Op/En   64-bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- ----------------
   F8       CLC           ZO      Valid         Valid             Clear CF flag.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,23 +14,19 @@ Instruction Operand Encoding ¶
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
 
-
 Description ¶
 
 Clears the CF flag in the EFLAGS register. Operation is the same in all
 modes.
 
-
 Operation ¶
 
     CF ← 0;
-
 
 Flags Affected ¶
 
 The CF flag is set to 0. The OF, ZF, SF, AF, and PF flags are
 unaffected.
-
 
 Exceptions (All Operating Modes) ¶
 

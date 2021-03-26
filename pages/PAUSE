@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-PAUSE — SPIN LOOP HINT
-
+PAUSE — Spin Loop Hint
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- -----------------------------------------------------------------------
   F3 90    PAUSE         ZO      Valid         Valid             Gives hint to processor that improves performance of spin-wait loops.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -48,16 +43,13 @@ instruction does not change the architectural state of the processor
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     Execute_Next_Instruction(DELAY);
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Exceptions (All Operating Modes) ¶
 

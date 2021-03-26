@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVDDUP — REPLICATE DOUBLE FP VALUES
-
+MOVDDUP — Replicate Double FP Values
 
   Opcode/Instruction                                         Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVDDUP — REPLICATE DOUBLE FP VALUES
   EVEX.128.F2.0F.W1 12 /r VMOVDDUP xmm1 {k1}{z}, xmm2/m64    B         V/V                      AVX512VL AVX512F     Move double-precision floating-point value from xmm2/m64 and duplicate each element into xmm1 subject to writemask k1.
   EVEX.256.F2.0F.W1 12 /r VMOVDDUP ymm1 {k1}{z}, ymm2/m256   B         V/V                      AVX512VL AVX512F     Move even index double-precision floating-point values from ymm2/m256 and duplicate each element into ymm1 subject to writemask k1.
   EVEX.512.F2.0F.W1 12 /r VMOVDDUP zmm1 {k1}{z}, zmm2/m512   B         V/V                      AVX512F              Move even index double-precision floating-point values from zmm2/m512 and duplicate each element into zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -56,7 +52,7 @@ location.
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-X3 X2 X1 X0 SRC DEST X2 X2 X0 X0
+[]
 
 Figure 4-2. VMOVDDUP Operation
 

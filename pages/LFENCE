@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-LFENCE — LOAD FENCE
-
+LFENCE — Load Fence
 
   Opcode        Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   ------------- ------------- ------- ------------- ----------------- -----------------------------
   NP 0F AE E8   LFENCE        ZO      Valid         Valid             Serializes load operations.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -28,7 +23,7 @@ later instruction begins execution until LFENCE completes. In
 particular, an instruction that loads from memory and that precedes an
 LFENCE receives data from memory prior to completion of the LFENCE. (An
 LFENCE that follows an instruction that stores to memory might complete
-BEFORE the data being stored have become globally visible.) Instructions
+before the data being stored have become globally visible.) Instructions
 following an LFENCE may be fetched from memory before the LFENCE, but
 they will not execute (even speculatively) until the LFENCE completes.
 
@@ -56,16 +51,13 @@ of E8. For this instruction, the processor ignores the r/m field of the
 ModR/M byte. Thus, LFENCE is encoded by any opcode of the form 0F AE Ex,
 where x is in the range 8-F.
 
-
 Operation ¶
 
     Wait_On_Following_Instructions_Until(preceding_instructions_complete);
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_lfence(void)
-
 
 Exceptions (All Modes of Operation) ¶
 

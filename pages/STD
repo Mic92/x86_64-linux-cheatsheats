@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-STD — SET DIRECTION FLAG
-
+STD — Set Direction Flag
 
   Opcode   Instruction   Op/En   64-bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- --------------
   FD       STD           ZO      Valid         Valid             Set DF flag.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,23 +14,19 @@ Instruction Operand Encoding ¶
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
 
-
 Description ¶
 
 Sets the DF flag in the EFLAGS register. When the DF flag is set to 1,
 string operations decrement the index registers (ESI and/or EDI).
 Operation is the same in all modes.
 
-
 Operation ¶
 
     DF ← 1;
 
-
 Flags Affected ¶
 
 The DF flag is set. The CF, OF, ZF, SF, AF, and PF flags are unaffected.
-
 
 Exceptions (All Operating Modes) ¶
 

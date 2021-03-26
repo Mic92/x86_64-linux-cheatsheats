@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-FCOMI/FCOMIP/FUCOMI/FUCOMIP — COMPARE FLOATING POINT VALUES AND SET EFLAGS
-
+FCOMI/FCOMIP/FUCOMI/FUCOMIP — Compare Floating Point Values and Set EFLAGS
 
   Opcode    Instruction         64-Bit Mode   Compat/Leg Mode   Description
   --------- ------------------- ------------- ----------------- -----------------------------------------------------------------------------------------------------------
@@ -12,7 +9,6 @@ FCOMI/FCOMIP/FUCOMI/FUCOMIP — COMPARE FLOATING POINT VALUES AND SET EFLAGS
   DF F0+i   FCOMIP ST, ST(i)    Valid         Valid             Compare ST(0) with ST(i), set status flags accordingly, and pop register stack.
   DB E8+i   FUCOMI ST, ST(i)    Valid         Valid             Compare ST(0) with ST(i), check for ordered values, and set status flags accordingly.
   DF E8+i   FUCOMIP ST, ST(i)   Valid         Valid             Compare ST(0) with ST(i), check for ordered values, set status flags accordingly, and pop register stack.
-
 
 Description ¶
 
@@ -62,13 +58,11 @@ pointer (TOP) by 1.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 IA-32 Architecture Compatibility ¶
 
 The FCOMI/FCOMIP/FUCOMI/FUCOMIP instructions were introduced to the
 IA-32 Architecture in the P6 family processors and are not available in
 earlier IA-32 processors.
-
 
 Operation ¶
 
@@ -109,7 +103,6 @@ Operation ¶
             PopRegisterStack;
     FI;
 
-
 FPU Flags Affected ¶
 
   ------------ ---------------
@@ -117,22 +110,13 @@ FPU Flags Affected ¶
   C0, C2, C3   Not affected.
   ------------ ---------------
 
-
 Floating-Point Exceptions ¶
 
-#IS
-
-Stack underflow occurred.
-
-#IA
-
-(FCOMI or FCOMIP instruction) One or both operands are NaN values or
-have unsupported formats.
-
-(FUCOMI or FUCOMIP instruction) One or both operands are SNaN values
-(but not QNaNs) or have undefined formats. Detection of a QNaN value
-does not raise an invalid-operand exception.
-
+  ----- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #IS   Stack underflow occurred.
+  #IA   (FCOMI or FCOMIP instruction) One or both operands are NaN values or have unsupported formats.
+        (FUCOMI or FUCOMIP instruction) One or both operands are SNaN values (but not QNaNs) or have undefined formats. Detection of a QNaN value does not raise an invalid-operand exception.
+  ----- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Protected Mode Exceptions ¶
 
@@ -142,21 +126,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

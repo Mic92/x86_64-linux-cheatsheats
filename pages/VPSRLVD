@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPSRLVW/VPSRLVD/VPSRLVQ — VARIABLE BIT SHIFT RIGHT LOGICAL
-
+VPSRLVW/VPSRLVD/VPSRLVQ — Variable Bit Shift Right Logical
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +18,6 @@ VPSRLVW/VPSRLVD/VPSRLVQ — VARIABLE BIT SHIFT RIGHT LOGICAL
   EVEX.128.66.0F38.W1 45 /r VPSRLVQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Shift quadwords in xmm2 right by amount specified in the corresponding element of xmm3/m128/m64bcst while shifting in 0s using writemask k1.
   EVEX.256.66.0F38.W1 45 /r VPSRLVQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Shift quadwords in ymm2 right by amount specified in the corresponding element of ymm3/m256/m64bcst while shifting in 0s using writemask k1.
   EVEX.512.66.0F38.W1 45 /r VPSRLVQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Shift quadwords in zmm2 right by amount specified in the corresponding element of zmm3/m512/m64bcst while shifting in 0s using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

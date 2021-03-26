@@ -1,39 +1,35 @@
 -   Index
 -   May 2019
 
+ADD — Add
 
-
-ADD — ADD
-
-
-  Opcode               Instruction                Op/En   64-bit Mode   Compat/Leg Mode   Description
-  -------------------- -------------------------- ------- ------------- ----------------- --------------------------------------------------
-  04 _ib_              ADD AL, _imm8_             I       Valid         Valid             Add _imm8_ to AL.
-  05 _iw_              ADD AX, _imm16_            I       Valid         Valid             Add _imm16_ to AX.
-  05 _id_              ADD EAX, _imm32_           I       Valid         Valid             Add _imm32_ to EAX.
-  REX.W + 05 _id_      ADD RAX, _imm32_           I       Valid         N.E.              Add _imm32 sign-extended to 64-bits_ to RAX.
-  80 /0 _ib_           ADD _r/m8, imm8_           MI      Valid         Valid             Add _imm8_ to _r/m8._
-  REX + 80 /0 _ib_     ADD _r/m8_^(*)_, imm8_     MI      Valid         N.E.              Add _sign_-extended _imm8_ to _r/m8._
-  81 /0 _iw_           ADD _r/m16, imm16_         MI      Valid         Valid             Add _imm16_ to _r/m16._
-  81 /0 _id_           ADD _r/m32, imm32_         MI      Valid         Valid             Add _imm32_ to _r/m32_.
-  REX.W + 81 /0 _id_   ADD _r/m64, imm32_         MI      Valid         N.E.              Add _imm32 sign-extended to 64-bits_ to _r/m64_.
-  83 /0 _ib_           ADD _r/m16, imm8_          MI      Valid         Valid             Add _sign_-extended _imm8_ to _r/m16._
-  83 /0 _ib_           ADD _r/m32, imm8_          MI      Valid         Valid             Add _sign_-extended _imm8_ to _r/m32._
-  REX.W + 83 /0 _ib_   ADD _r/m64, imm8_          MI      Valid         N.E.              Add _sign_-extended _imm8_ to _r/m64._
-  00 /_r_              ADD _r/m8, r8_             MR      Valid         Valid             Add _r8_ to _r/m8._
-  REX + 00 /_r_        ADD _r/m8_^(*)_, r8_^(*)   MR      Valid         N.E.              Add _r8_ to _r/m8._
-  01 /_r_              ADD _r/m16, r16_           MR      Valid         Valid             Add _r16_ to _r/m16._
-  01 /_r_              ADD _r/m32, r32_           MR      Valid         Valid             Add r32 to _r/m32._
-  REX.W + 01 /_r_      ADD _r/m64, r64_           MR      Valid         N.E.              Add r64 to _r/m64._
-  02 /_r_              ADD _r8, r/m8_             RM      Valid         Valid             Add _r/m8_ to _r8._
-  REX + 02 /_r_        ADD _r8_^(*)_, r/m8_^(*)   RM      Valid         N.E.              Add _r/m8_ to _r8._
-  03 /_r_              ADD _r16, r/m16_           RM      Valid         Valid             Add _r/m16_ to _r16._
-  03 /_r_              ADD _r32, r/m32_           RM      Valid         Valid             Add _r/m32_ to _r32._
-  REX.W + 03 /_r_      ADD _r64, r/m64_           RM      Valid         N.E.              Add _r/m64_ to _r64._
+  Opcode             Instruction            Op/En   64-bit Mode   Compat/Leg Mode   Description
+  ------------------ ---------------------- ------- ------------- ----------------- ----------------------------------------------
+  04 ib              ADD AL, imm8           I       Valid         Valid             Add imm8 to AL.
+  05 iw              ADD AX, imm16          I       Valid         Valid             Add imm16 to AX.
+  05 id              ADD EAX, imm32         I       Valid         Valid             Add imm32 to EAX.
+  REX.W + 05 id      ADD RAX, imm32         I       Valid         N.E.              Add imm32 sign-extended to 64-bits to RAX.
+  80 /0 ib           ADD r/m8, imm8         MI      Valid         Valid             Add imm8 to r/m8.
+  REX + 80 /0 ib     ADD r/m8^(*), imm8     MI      Valid         N.E.              Add sign-extended imm8 to r/m8.
+  81 /0 iw           ADD r/m16, imm16       MI      Valid         Valid             Add imm16 to r/m16.
+  81 /0 id           ADD r/m32, imm32       MI      Valid         Valid             Add imm32 to r/m32.
+  REX.W + 81 /0 id   ADD r/m64, imm32       MI      Valid         N.E.              Add imm32 sign-extended to 64-bits to r/m64.
+  83 /0 ib           ADD r/m16, imm8        MI      Valid         Valid             Add sign-extended imm8 to r/m16.
+  83 /0 ib           ADD r/m32, imm8        MI      Valid         Valid             Add sign-extended imm8 to r/m32.
+  REX.W + 83 /0 ib   ADD r/m64, imm8        MI      Valid         N.E.              Add sign-extended imm8 to r/m64.
+  00 /r              ADD r/m8, r8           MR      Valid         Valid             Add r8 to r/m8.
+  REX + 00 /r        ADD r/m8^(*), r8^(*)   MR      Valid         N.E.              Add r8 to r/m8.
+  01 /r              ADD r/m16, r16         MR      Valid         Valid             Add r16 to r/m16.
+  01 /r              ADD r/m32, r32         MR      Valid         Valid             Add r32 to r/m32.
+  REX.W + 01 /r      ADD r/m64, r64         MR      Valid         N.E.              Add r64 to r/m64.
+  02 /r              ADD r8, r/m8           RM      Valid         Valid             Add r/m8 to r8.
+  REX + 02 /r        ADD r8^(*), r/m8^(*)   RM      Valid         N.E.              Add r/m8 to r8.
+  03 /r              ADD r16, r/m16         RM      Valid         Valid             Add r/m16 to r16.
+  03 /r              ADD r32, r/m32         RM      Valid         Valid             Add r/m32 to r32.
+  REX.W + 03 /r      ADD r64, r/m64         RM      Valid         N.E.              Add r/m64 to r64.
 
   *In 64-bit mode, r/m8 can not be encoded to access the following byte
   registers if a REX prefix is used: AH, BH, CH, DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -44,7 +40,6 @@ Instruction Operand Encoding ¶
   MI      ModRM:r/m (r, w)   imm8/16/32      NA          NA
   I       AL/AX/EAX/RAX      imm8/16/32      NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -70,46 +65,25 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
-
 Operation ¶
 
     DEST ← DEST + SRC;
-
 
 Flags Affected ¶
 
 The OF, SF, ZF, AF, CF, and PF flags are set according to the result.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -118,7 +92,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -130,11 +103,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

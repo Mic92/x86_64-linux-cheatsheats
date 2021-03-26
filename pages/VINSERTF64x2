@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VINSERTF128/VINSERTF32X4/VINSERTF64X2/VINSERTF32X8/VINSERTF64X4 — INSERT PACKED FLOATING-POINT VALUES
-
+VINSERTF128/VINSERTF32x4/VINSERTF64x2/VINSERTF32x8/VINSERTF64x4 — Insert Packed Floating-Point Values
 
   Opcode/Instruction                                                              Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ VINSERTF128/VINSERTF32X4/VINSERTF64X2/VINSERTF32X8/VINSERTF64X4 — INSERT PACKE
   EVEX.512.66.0F3A.W1 18 /r ib VINSERTF64X2 zmm1 {k1}{z}, zmm2, xmm3/m128, imm8   B         V/V                      AVX512DQ             Insert 128 bits of packed double-precision floating-point values from xmm3/m128 and the remaining values from zmm2 into zmm1 under writemask k1.
   EVEX.512.66.0F3A.W0 1A /r ib VINSERTF32X8 zmm1 {k1}{z}, zmm2, ymm3/m256, imm8   D         V/V                      AVX512DQ             Insert 256 bits of packed single-precision floating-point values from ymm3/m256 and the remaining values from zmm2 into zmm1 under writemask k1.
   EVEX.512.66.0F3A.W1 1A /r ib VINSERTF64X4 zmm1 {k1}{z}, zmm2, ymm3/m256, imm8   C         V/V                      AVX512F              Insert 256 bits of packed double-precision floating-point values from ymm3/m256 and the remaining values from zmm2 into zmm1 under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

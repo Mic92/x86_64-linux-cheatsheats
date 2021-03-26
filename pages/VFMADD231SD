@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFMADD132SD/VFMADD213SD/VFMADD231SD — FUSED MULTIPLY-ADD OF SCALAR DOUBLE- PRECISION FLOATING-POINT VALUES
-
+VFMADD132SD/VFMADD213SD/VFMADD231SD — Fused Multiply-Add of Scalar Double- Precision Floating-Point Values
 
   Opcode/Instruction                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VFMADD132SD/VFMADD213SD/VFMADD231SD — FUSED MULTIPLY-ADD OF SCALAR DOUBLE- PRE
   EVEX.LIG.66.0F38.W1 99 /r VFMADD132SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B       V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm1 and xmm3/m64, add to xmm2 and put result in xmm1.
   EVEX.LIG.66.0F38.W1 A9 /r VFMADD213SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B       V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm1 and xmm2, add to xmm3/m64 and put result in xmm1.
   EVEX.LIG.66.0F38.W1 B9 /r VFMADD231SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B       V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm2 and xmm3/m64, add to xmm1 and put result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

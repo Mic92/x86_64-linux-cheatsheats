@@ -1,22 +1,18 @@
 -   Index
 -   May 2019
 
+OUT — Output to Port
 
-
-OUT — OUTPUT TO PORT
-
-
-  Opcode*   Instruction       Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------- ----------------- ------- ------------- ----------------- ------------------------------------------------------
-  E6 _ib_   OUT _imm8_, AL    I       Valid         Valid             Output byte in AL to I/O port address _imm8_.
-  E7 _ib_   OUT _imm8_, AX    I       Valid         Valid             Output word in AX to I/O port address _imm8._
-  E7 _ib_   OUT _imm8_, EAX   I       Valid         Valid             Output doubleword in EAX to I/O port address _imm8_.
-  EE        OUT DX, AL        ZO      Valid         Valid             Output byte in AL to I/O port address in DX.
-  EF        OUT DX, AX        ZO      Valid         Valid             Output word in AX to I/O port address in DX.
-  EF        OUT DX, EAX       ZO      Valid         Valid             Output doubleword in EAX to I/O port address in DX.
+  Opcode*   Instruction     Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------- --------------- ------- ------------- ----------------- -----------------------------------------------------
+  E6 ib     OUT imm8, AL    I       Valid         Valid             Output byte in AL to I/O port address imm8.
+  E7 ib     OUT imm8, AX    I       Valid         Valid             Output word in AX to I/O port address imm8.
+  E7 ib     OUT imm8, EAX   I       Valid         Valid             Output doubleword in EAX to I/O port address imm8.
+  EE        OUT DX, AL      ZO      Valid         Valid             Output byte in AL to I/O port address in DX.
+  EF        OUT DX, AX      ZO      Valid         Valid             Output word in AX to I/O port address in DX.
+  EF        OUT DX, EAX     ZO      Valid         Valid             Output doubleword in EAX to I/O port address in DX.
 
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
-
 
 Instruction Operand Encoding ¶
 
@@ -25,7 +21,6 @@ Instruction Operand Encoding ¶
   I       imm8        NA          NA          NA
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -48,22 +43,19 @@ At the machine code level, I/O instructions are shorter when accessing
 
 This instruction is only useful for accessing I/O ports located in the
 processor’s I/O address space. See Chapter 18, “Input/Output,” in the
-_Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume
-1_, for more information on accessing I/O ports in the I/O address
-space.
+Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1,
+for more information on accessing I/O ports in the I/O address space.
 
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 IA-32 Architecture Compatibility ¶
 
-After executing an OUT instruction, the Pentium_^(®)_ processor ensures
+After executing an OUT instruction, the Pentium^(®) processor ensures
 that the EWBE# pin has been sampled active before it begins to execute
 the next instruction. (Note that the instruction can be prefetched if
 EWBE# is not active, but it will not be executed until the EWBE# pin is
 sampled active.) Only the Pentium processor family has the EWBE# pin.
-
 
 Operation ¶
 
@@ -79,11 +71,9 @@ Operation ¶
             DEST ← SRC; (* Writes to selected I/O port *)
     FI;
 
-
 Flags Affected ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -92,13 +82,11 @@ Protected Mode Exceptions ¶
   #UD      If the LOCK prefix is used.
   -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -108,11 +96,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- ------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same as protected mode exceptions.
-
 
 64-Bit Mode Exceptions ¶
 

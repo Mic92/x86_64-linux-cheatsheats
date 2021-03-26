@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VMXOFF — LEAVE VMX OPERATION
-
+VMXOFF — Leave VMX Operation
 
   Opcode/Instruction   Op/En   Description
-  -------------------- ------- -------------------------
-  0F 01 C4 VMXOFF      ZO      Leaves VMX operation_._
-
+  -------------------- ------- -----------------------
+  0F 01 C4 VMXOFF      ZO      Leaves VMX operation.
 
 Instruction Operand Encoding ¶
 
@@ -18,12 +14,10 @@ Instruction Operand Encoding ¶
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
 
-
 Description ¶
 
 Takes the logical processor out of VMX operation, unblocks INIT signals,
 conditionally re-enables A20M, and clears any address-range monitoring.⁷
-
 
 Operation ¶
 
@@ -48,8 +42,8 @@ Operation ¶
     FI;
 
   7. See the information on MONITOR/MWAIT in Chapter 8,
-  “Multiple-Processor Management,” of the _Intel® 64 and IA-32
-  Architectures Software Developer’s Manual, Volume 3A_.
+  “Multiple-Processor Management,” of the Intel® 64 and IA-32
+  Architectures Software Developer’s Manual, Volume 3A.
 
   8. Setting IA32_SMM_MONITOR_CTL[bit 2] to 1 prevents VMXOFF from
   unblocking SMIs regardless of the value of the register’s value bit
@@ -62,11 +56,9 @@ Operation ¶
   execution of GETSEC[SENTER]. See Chapter 6, “Safer Mode Extensions
   Reference.”
 
-
 Flags Affected ¶
 
 See the operation section and Section 30.2.
-
 
 Protected Mode Exceptions ¶
 
@@ -78,13 +70,11 @@ Protected Mode Exceptions ¶
   #UD   If executed outside VMX operation.
   ----- ------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------
   #UD   The VMXOFF instruction is not recognized in real-address mode.
   ----- ----------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -92,13 +82,11 @@ Virtual-8086 Mode Exceptions ¶
   #UD   The VMXOFF instruction is not recognized in virtual-8086 mode.
   ----- ----------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- -----------------------------------------------------------------
   #UD   The VMXOFF instruction is not recognized in compatibility mode.
   ----- -----------------------------------------------------------------
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ORPD — BITWISE LOGICAL OR OF PACKED DOUBLE PRECISION FLOATING-POINT VALUES
-
+ORPD — Bitwise Logical OR of Packed Double Precision Floating-Point Values
 
   Opcode/Instruction                                                    Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ ORPD — BITWISE LOGICAL OR OF PACKED DOUBLE PRECISION FLOATING-POINT VALUES
   EVEX.128.66.0F.W1 56 /r VORPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C         V/V                      AVX512VL AVX512DQ    Return the bitwise logical OR of packed double-precision floating-point values in xmm2 and xmm3/m128/m64bcst subject to writemask k1.
   EVEX.256.66.0F.W1 56 /r VORPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C         V/V                      AVX512VL AVX512DQ    Return the bitwise logical OR of packed double-precision floating-point values in ymm2 and ymm3/m256/m64bcst subject to writemask k1.
   EVEX.512.66.0F.W1 56 /r VORPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C         V/V                      AVX512DQ             Return the bitwise logical OR of packed double-precision floating-point values in zmm2 and zmm3/m512/m64bcst subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

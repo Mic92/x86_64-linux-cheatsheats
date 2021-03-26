@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VMXON — ENTER VMX OPERATION
-
+VMXON — Enter VMX Operation
 
   Opcode/Instruction      Op/En   Description
-  ----------------------- ------- -----------------------------
-  F3 0F C7 /6 VMXON m64   M       Enter VMX root operation_._
-
+  ----------------------- ------- ---------------------------
+  F3 0F C7 /6 VMXON m64   M       Enter VMX root operation.
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (r)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -29,7 +24,6 @@ The operand of this instruction is a 4KB-aligned physical address (the
 VMXON pointer) that references the VMXON region, which the logical
 processor may use to support VMX operation. This operand is always 64
 bits and is always in memory.
-
 
 Operation ¶
 
@@ -59,8 +53,8 @@ Operation ¶
                                     block and disable A20M;
 
   10. See the information on MONITOR/MWAIT in Chapter 8,
-  “Multiple-Processor Management,” of the _Intel® 64 and IA-32
-  Architectures Software Developer’s Manual, Volume 3A_.
+  “Multiple-Processor Management,” of the Intel® 64 and IA-32
+  Architectures Software Developer’s Manual, Volume 3A.
 
   11. A logical processor is in SMX operation if GETSEC[SEXIT] has not
   been executed since the last execution of GETSEC[SENTER]. A logical
@@ -90,48 +84,25 @@ Operation ¶
   determine whether the processor allows Intel PT to be used in VMX
   operation (see Appendix A.6).
 
-
 Flags Affected ¶
 
 See the operation section and Section 30.2.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside VMX operation with CPL>0 or with invalid CR0 or CR4
-fixed bits.
-
-If executed in A20M mode.
-
-If the memory source operand effective address is outside the CS, DS,
-ES, FS, or GS segment limit.
-
-If the DS, ES, FS, or GS register contains an unusable segment.
-
-If the source operand is located in an execute-only code segment.
-
-If the value of the IA32_FEATURE_CONTROL MSR does not support entry to
-VMX operation in the current processor mode.
-
-#PF(fault-code)
-
-If a page fault occurs in accessing the memory source operand.
-
-#SS(0)
-
-If the memory source operand effective address is outside the SS segment
-limit.
-
-If the SS register contains an unusable segment.
-
-#UD
-
-If operand is a register.
-
-If executed with CR4.VMXE = 0.
-
+  ----------------- ---------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If executed outside VMX operation with CPL>0 or with invalid CR0 or CR4 fixed bits.
+                    If executed in A20M mode.
+                    If the memory source operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains an unusable segment.
+                    If the source operand is located in an execute-only code segment.
+                    If the value of the IA32_FEATURE_CONTROL MSR does not support entry to VMX operation in the current processor mode.
+  #PF(fault-code)   If a page fault occurs in accessing the memory source operand.
+  #SS(0)            If the memory source operand effective address is outside the SS segment limit.
+                    If the SS register contains an unusable segment.
+  #UD               If operand is a register.
+                    If executed with CR4.VMXE = 0.
+  ----------------- ---------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -139,13 +110,11 @@ Real-Address Mode Exceptions ¶
   #UD   The VMXON instruction is not recognized in real-address mode.
   ----- ---------------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------
   #UD   The VMXON instruction is not recognized in virtual-8086 mode.
   ----- ---------------------------------------------------------------
-
 
 Compatibility Mode Exceptions ¶
 
@@ -153,36 +122,23 @@ Compatibility Mode Exceptions ¶
   #UD   The VMXON instruction is not recognized in compatibility mode.
   ----- ----------------------------------------------------------------
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside VMX operation with CPL > 0 or with invalid CR0 or
-CR4 fixed bits.
-
-If executed in A20M mode.
-
-If the source operand is in the CS, DS, ES, FS, or GS segments and the
-memory address is in a non-canonical form.
+  -------- -------------------------------------------------------------------------------------------------------------------
+  #GP(0)   If executed outside VMX operation with CPL > 0 or with invalid CR0 or CR4 fixed bits.
+           If executed in A20M mode.
+           If the source operand is in the CS, DS, ES, FS, or GS segments and the memory address is in a non-canonical form.
+  -------- -------------------------------------------------------------------------------------------------------------------
 
 If the value of the IA32_FEATURE_CONTROL MSR does not support entry to
 VMX operation in the current processor mode.
 
-#PF(fault-code)
-
-If a page fault occurs in accessing the memory source operand.
-
-#SS(0)
-
-If the source operand is in the SS segment and the memory address is in
-a non-canonical form.
-
-#UD
-
-If operand is a register.
-
-If executed with CR4.VMXE = 0.
+  ----------------- -----------------------------------------------------------------------------------------------
+  #PF(fault-code)   If a page fault occurs in accessing the memory source operand.
+  #SS(0)            If the source operand is in the SS segment and the memory address is in a non-canonical form.
+  #UD               If operand is a register.
+                    If executed with CR4.VMXE = 0.
+  ----------------- -----------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

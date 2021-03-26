@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVNTDQ — STORE PACKED INTEGERS USING NON-TEMPORAL HINT
-
+MOVNTDQ — Store Packed Integers Using Non-Temporal Hint
 
   Opcode/Instruction                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVNTDQ — STORE PACKED INTEGERS USING NON-TEMPORAL HINT
   EVEX.128.66.0F.W0 E7 /r VMOVNTDQ m128, xmm1   B       V/V                      AVX512VL AVX512F     Move packed integer values in xmm1 to m128 using non-temporal hint.
   EVEX.256.66.0F.W0 E7 /r VMOVNTDQ m256, ymm1   B       V/V                      AVX512VL AVX512F     Move packed integer values in zmm1 to m256 using non-temporal hint.
   EVEX.512.66.0F.W0 E7 /r VMOVNTDQ m512, zmm1   B       V/V                      AVX512F              Move packed integer values in zmm1 to m512 using non-temporal hint.
-
 
 Instruction Operand Encoding¹ ¶
 

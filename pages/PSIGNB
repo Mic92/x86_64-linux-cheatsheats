@@ -1,160 +1,23 @@
 -   Index
 -   May 2019
 
-
-
-PSIGNB/PSIGNW/PSIGND — PACKED SIGN
-
-
-Opcode/Instruction
-
-Op/En
-
-64/32 bit Mode Support
-
-CPUID Feature Flag
-
-Description
-
-NP 0F 38 08 /r¹ PSIGNB _mm1, mm2/m64_
-
-RM
-
-V/V
-
-SSSE3
-
-Negate/zero/preserve packed byte integers in _mm1_ depending on the
-corresponding sign in _mm2/m64._
-
-66 0F 38 08 /r PSIGNB _xmm1, xmm2/m128_
-
-RM
-
-V/V
-
-SSSE3
-
-Negate/zero/preserve packed byte integers in _xmm1_ depending on the
-corresponding sign in _xmm2/m128_.
-
-NP 0F 38 09 /r¹ PSIGNW _mm1, mm2/m64_
-
-RM
-
-V/V
-
-SSSE3
-
-Negate/zero/preserve packed word integers in _mm1_ depending on the
-corresponding sign in _mm2/m128_.
-
-66 0F 38 09 /r PSIGNW _xmm1, xmm2/m128_
-
-RM
-
-V/V
-
-SSSE3
-
-Negate/zero/preserve packed word integers in _xmm1_ depending on the
-corresponding sign in _xmm2/m128_.
-
-NP 0F 38 0A /r¹ PSIGND _mm1, mm2/m64_
-
-RM
-
-V/V
-
-SSSE3
-
-Negate/zero/preserve packed doubleword integers in _mm1_ depending on
-the corresponding sign in _mm2/m128_.
-
-66 0F 38 0A /r PSIGND _xmm1, xmm2/m128_
-
-RM
-
-V/V
-
-SSSE3
-
-Negate/zero/preserve packed doubleword integers in _xmm1_ depending on
-the corresponding sign in _xmm2/m128_.
-
-VEX.128.66.0F38.WIG 08 /r VPSIGNB _xmm1, xmm2, xmm3/m128_
-
-RVM
-
-V/V
-
-AVX
-
-Negate/zero/preserve packed byte integers in _xmm2_ depending on the
-corresponding sign in _xmm3/m128_.
-
-VEX.128.66.0F38.WIG 09 /r VPSIGNW _xmm1, xmm2, xmm3/m128_
-
-RVM
-
-V/V
-
-AVX
-
-Negate/zero/preserve packed word integers in _xmm2_ depending on the
-corresponding sign in _xmm3/m128_.
-
-VEX.128.66.0F38.WIG 0A /r VPSIGND _xmm1, xmm2, xmm3/m128_
-
-RVM
-
-V/V
-
-AVX
-
-Negate/zero/preserve packed doubleword integers in _xmm2_ depending on
-the corresponding sign in _xmm3/m128_.
-
-VEX.256.66.0F38.WIG 08 /r VPSIGNB _ymm1, ymm2, ymm3/m256_
-
-RVM
-
-V/V
-
-AVX2
-
-Negate packed byte integers in _ymm2_ if the corresponding sign in
-_ymm3/m256_ is less than zero.
-
-VEX.256.66.0F38.WIG 09 /r VPSIGNW _ymm1, ymm2, ymm3/m256_
-
-RVM
-
-V/V
-
-AVX2
-
-Negate packed 16-bit integers in _ymm2_ if the corresponding sign in
-_ymm3/m256_ is less than zero.
-
-VEX.256.66.0F38.WIG 0A /r VPSIGND _ymm1, ymm2, ymm3/m256_
-
-RVM
-
-V/V
-
-AVX2
-
-Negate packed doubleword integers in _ymm2_ if the corresponding sign in
-_ymm3/m256_ is less than zero.
-
-NOTES: 1. See note in Section 2.4, “AVX and SSE Instruction Exception
-Specification” in the _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
-Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_.
-
+PSIGNB/PSIGNW/PSIGND — Packed SIGN
+
+  Opcode/Instruction                                                                                                                                                                                                                                                                                                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
+  NP 0F 38 08 /r¹ PSIGNB mm1, mm2/m64                                                                                                                                                                                                                                                                                                                        RM      V/V                      SSSE3                Negate/zero/preserve packed byte integers in mm1 depending on the corresponding sign in mm2/m64.
+  66 0F 38 08 /r PSIGNB xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                      RM      V/V                      SSSE3                Negate/zero/preserve packed byte integers in xmm1 depending on the corresponding sign in xmm2/m128.
+  NP 0F 38 09 /r¹ PSIGNW mm1, mm2/m64                                                                                                                                                                                                                                                                                                                        RM      V/V                      SSSE3                Negate/zero/preserve packed word integers in mm1 depending on the corresponding sign in mm2/m128.
+  66 0F 38 09 /r PSIGNW xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                      RM      V/V                      SSSE3                Negate/zero/preserve packed word integers in xmm1 depending on the corresponding sign in xmm2/m128.
+  NP 0F 38 0A /r¹ PSIGND mm1, mm2/m64                                                                                                                                                                                                                                                                                                                        RM      V/V                      SSSE3                Negate/zero/preserve packed doubleword integers in mm1 depending on the corresponding sign in mm2/m128.
+  66 0F 38 0A /r PSIGND xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                      RM      V/V                      SSSE3                Negate/zero/preserve packed doubleword integers in xmm1 depending on the corresponding sign in xmm2/m128.
+  VEX.128.66.0F38.WIG 08 /r VPSIGNB xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                    RVM     V/V                      AVX                  Negate/zero/preserve packed byte integers in xmm2 depending on the corresponding sign in xmm3/m128.
+  VEX.128.66.0F38.WIG 09 /r VPSIGNW xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                    RVM     V/V                      AVX                  Negate/zero/preserve packed word integers in xmm2 depending on the corresponding sign in xmm3/m128.
+  VEX.128.66.0F38.WIG 0A /r VPSIGND xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                    RVM     V/V                      AVX                  Negate/zero/preserve packed doubleword integers in xmm2 depending on the corresponding sign in xmm3/m128.
+  VEX.256.66.0F38.WIG 08 /r VPSIGNB ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                    RVM     V/V                      AVX2                 Negate packed byte integers in ymm2 if the corresponding sign in ymm3/m256 is less than zero.
+  VEX.256.66.0F38.WIG 09 /r VPSIGNW ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                    RVM     V/V                      AVX2                 Negate packed 16-bit integers in ymm2 if the corresponding sign in ymm3/m256 is less than zero.
+  VEX.256.66.0F38.WIG 0A /r VPSIGND ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                    RVM     V/V                      AVX2                 Negate packed doubleword integers in ymm2 if the corresponding sign in ymm3/m256 is less than zero.
+  NOTES: 1. See note in Section 2.4, “AVX and SSE Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.                                                         
 
 Instruction Operand Encoding ¶
 
@@ -163,7 +26,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
   RVM     ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -198,7 +60,6 @@ zeroed. VEX.L must be 0, otherwise instructions will #UD.
 VEX.256 encoded version: The first source and destination operands are
 YMM registers. The second source operand is an YMM register or a 256-bit
 memory location.
-
 
 Operation ¶
 
@@ -324,7 +185,6 @@ VPSIGND (VEX.256 encoded version) ¶
 
     DEST[255:0]←DWORD_SIGN(SRC1, SRC2)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PSIGNB: __m64 _mm_sign_pi8 (__m64 a, __m64 b)
@@ -345,11 +205,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSIGND: __m256i _mm256_sign_epi32 (__m256i a, __m256i b)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

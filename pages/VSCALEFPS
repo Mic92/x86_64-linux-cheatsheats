@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VSCALEFPS — SCALE PACKED FLOAT32 VALUES WITH FLOAT32 VALUES
-
+VSCALEFPS — Scale Packed Float32 Values With Float32 Values
 
   Opcode/Instruction                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W0 2C /r VSCALEFPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst       A       V/V                      AVX512VL AVX512F     Scale the packed single-precision floating-point values in xmm2 using values from xmm3/m128/m32bcst. Under writemask k1.
   EVEX.256.66.0F38.W0 2C /r VSCALEFPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       A       V/V                      AVX512VL AVX512F     Scale the packed single-precision values in ymm2 using floating point values from ymm3/m256/m32bcst. Under writemask k1.
   EVEX.512.66.0F38.W0 2C /r VSCALEFPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   A       V/V                      AVX512F              Scale the packed single-precision floating-point values in zmm2 using floating-point values from zmm3/m512/m32bcst. Under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CVTTPD2DQ — CONVERT WITH TRUNCATION PACKED DOUBLE-PRECISION FLOATING-POINT VALUES TO PACKED DOUBLEWORD INTEGERS
-
+CVTTPD2DQ — Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Doubleword Integers
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ CVTTPD2DQ — CONVERT WITH TRUNCATION PACKED DOUBLE-PRECISION FLOATING-POINT VAL
   EVEX.256.66.0F.W1 E6 /r VCVTTPD2DQ xmm1 {k1}{z}, ymm2/m256/m64bcst        B       V/V                      AVX512VL AVX512F     Convert four packed double-precision floating-point values in ymm2/m256/m64bcst to four signed doubleword integers in xmm1 using truncation subject to writemask k1.
   EVEX.512.66.0F.W1 E6 /r VCVTTPD2DQ ymm1 {k1}{z}, zmm2/m512/m64bcst{sae}   B       V/V                      AVX512F              Convert eight packed double-precision floating-point values in zmm2/m512/m64bcst to eight signed doubleword integers in ymm1 using truncation subject to writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   A       NA           ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   B       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -62,10 +57,9 @@ destination are unmodified.
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b, otherwise
 instructions will #UD.
 
-X1 X0 X3 X2 SRC DEST 0 X3 X2 X1 X0
+[]
 
 Figure 3-15. VCVTTPD2DQ (VEX.256 encoded version)
-
 
 Operation ¶
 
@@ -135,7 +129,6 @@ CVTTPD2DQ (128-bit Legacy SSE version) ¶
     DEST[127:64] ←0
     DEST[MAXVL-1:128] (unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTTPD2DQ __m256i _mm512_cvttpd_epi32( __m512d a);
@@ -162,11 +155,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTTPD2DQ __m128i _mm_cvttpd_epi32 (__m128d src);
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
-
 
 Other Exceptions ¶
 

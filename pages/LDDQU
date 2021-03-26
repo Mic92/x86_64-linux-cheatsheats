@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-LDDQU — LOAD UNALIGNED INTEGER 128 BITS
-
+LDDQU — Load Unaligned Integer 128 Bits
 
   Opcode/Instruction                          Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------- ------- ---------------- -------------------- ----------------------------------------------------------------------
-  F2 0F F0 /_r_ LDDQU _xmm1_, _mem_           RM      V/V              SSE3                 Load unaligned data from _mem_ and return double quadword in _xmm1_.
+  ------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------
+  F2 0F F0 /r LDDQU xmm1, mem                 RM      V/V              SSE3                 Load unaligned data from mem and return double quadword in xmm1.
   VEX.128.F2.0F.WIG F0 /r VLDDQU xmm1, m128   RM      V/V              AVX                  Load unaligned packed integer values from mem to xmm1.
   VEX.256.F2.0F.WIG F0 /r VLDDQU ymm1, m256   RM      V/V              AVX                  Load unaligned packed integer values from mem to ymm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,13 +16,12 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-
 Description ¶
 
-The instruction is _functionally similar_ to (V)MOVDQU ymm/xmm,
-m256/m128 for loading from memory. That is: 32/16 bytes of data starting
-at an address specified by the source memory operand (second operand)
-are fetched from memory and placed in a destination register (first
+The instruction is functionally similar to (V)MOVDQU ymm/xmm, m256/m128
+for loading from memory. That is: 32/16 bytes of data starting at an
+address specified by the source memory operand (second operand) are
+fetched from memory and placed in a destination register (first
 operand). The source operand need not be aligned on a 32/16-byte
 boundary. Up to 64/32 bytes may be loaded from memory; this is
 implementation dependent.
@@ -37,7 +32,6 @@ the data loaded by (V)LDDQU be modified and stored to the same location,
 use (V)MOVDQU or (V)MOVDQA instead of (V)LDDQU. To move a double
 quadword to or from memory locations that are known to be aligned on
 16-byte boundaries, use the (V)MOVDQA instruction.
-
 
 Implementation Notes ¶
 
@@ -70,7 +64,6 @@ access additional registers (XMM8-XMM15).
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b
 otherwise instructions will #UD.
 
-
 Operation ¶
 
 LDDQU (128-bit Legacy SSE version) ¶
@@ -87,18 +80,15 @@ VLDDQU (VEX.256 encoded version) ¶
 
     DEST[255:0] ← SRC[255:0]
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     LDDQU: __m128i _mm_lddqu_si128 (__m128i * p);
 
     VLDDQU: __m256i _mm256_lddqu_si256 (__m256i * p);
 
-
 Numeric Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

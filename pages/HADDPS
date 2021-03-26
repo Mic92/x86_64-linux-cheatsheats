@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-HADDPS — PACKED SINGLE-FP HORIZONTAL ADD
-
+HADDPS — Packed Single-FP Horizontal Add
 
   Opcode/Instruction                                      Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------------------------------
-  F2 0F 7C /_r_ HADDPS _xmm1, xmm2/m128_                  RM      V/V              SSE3                 Horizontal add packed single-precision floating-point values from _xmm2/m128_ to _xmm1_.
+  ------------------------------------------------------- ------- ---------------- -------------------- --------------------------------------------------------------------------------------
+  F2 0F 7C /r HADDPS xmm1, xmm2/m128                      RM      V/V              SSE3                 Horizontal add packed single-precision floating-point values from xmm2/m128 to xmm1.
   VEX.128.F2.0F.WIG 7C /r VHADDPS xmm1, xmm2, xmm3/m128   RVM     V/V              AVX                  Horizontal add packed single-precision floating-point values from xmm2 and xmm3/mem.
   VEX.256.F2.0F.WIG 7C /r VHADDPS ymm1, ymm2, ymm3/m256   RVM     V/V              AVX                  Horizontal add packed single-precision floating-point values from ymm2 and ymm3/mem.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
   RVM     ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -45,15 +40,11 @@ access additional registers (XMM8-XMM15).
 
 See Figure 3-18 for HADDPS; see Figure 3-19 for VHADDPS.
 
-HADDPS xmm1, xmm2/m128 xmm2/ [127:96] [95:64] [63:32] [31:0] m128 xmm1
-[95:64] [63:32] [31:0] xmm2/m128 xmm2/m128 RESULT: xmm1[95:64] +
-xmm1[31:0] + [95:64] + xmm2/ [31:0] + xmm2/ xmm1 xmm1[127:96]
-xmm1[63:32] m128[127:96] m128[63:32] [127:96] [95:64] [63:32] [31:0]
+[]
 
 Figure 3-18. HADDPS—Packed Single-FP Horizontal Add
 
-X6 X5 X4 X3 X2 X1 X0 SRC1 Y6 Y5 Y4 Y3 Y2 Y1 Y0 SRC2 Y2+Y3 Y0+Y1 DEST
-Y6+Y7 Y4+Y5 X6+X7 X4+X5 X2+X3 X0+X1
+[]
 
 Figure 3-19. VHADDPS operation
 
@@ -70,7 +61,6 @@ are zeroed.
 VEX.256 encoded version: The first source operand is a YMM register. The
 second source operand can be a YMM register or a 256-bit memory
 location. The destination operand is a YMM register.
-
 
 Operation ¶
 
@@ -101,13 +91,11 @@ VHADDPS (VEX.256 encoded version) ¶
     DEST[223:192]←SRC2[191:160] + SRC2[159:128]
     DEST[255:224]←SRC2[255:224] + SRC2[223:192]
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     HADDPS: __m128 _mm_hadd_ps (__m128 a, __m128 b);
 
     VHADDPS: __m256 _mm256_hadd_ps (__m256 a, __m256 b);
-
 
 Exceptions ¶
 
@@ -115,11 +103,9 @@ When the source operand is a memory operand, the operand must be aligned
 on a 16-byte boundary or a general-protection exception (#GP) will be
 generated.
 
-
 Numeric Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
-
 
 Other Exceptions ¶
 

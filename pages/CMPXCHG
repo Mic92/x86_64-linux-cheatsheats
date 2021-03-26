@@ -1,24 +1,20 @@
 -   Index
 -   May 2019
 
+CMPXCHG — Compare and Exchange
 
-
-CMPXCHG — COMPARE AND EXCHANGE
-
-
-  Opcode/Instruction                       Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ---------------------------------------- ------- ------------- ----------------- ---------------------------------------------------------------------------------------------------------------------------
-  0F B0/_r_ CMPXCHG _r/m8, r8_             MR      Valid         Valid*            Compare AL with _r/m8_. If equal, ZF is set and _r8_ is loaded into _r/m8_. Else, clear ZF and load _r/m8_ into AL.
-  REX + 0F B0/_r_ CMPXCHG _r/m8**,r8_      MR      Valid         N.E.              Compare AL with _r/m8_. If equal, ZF is set and _r8_ is loaded into _r/m8_. Else, clear ZF and load _r/m8_ into AL.
-  0F B1/_r_ CMPXCHG _r/m16, r16_           MR      Valid         Valid*            Compare AX with _r/m16_. If equal, ZF is set and _r16_ is loaded into _r/m16_. Else, clear ZF and load _r/m16_ into AX.
-  0F B1/_r_ CMPXCHG _r/m32, r32_           MR      Valid         Valid*            Compare EAX with _r/m32_. If equal, ZF is set and _r32_ is loaded into _r/m32_. Else, clear ZF and load _r/m32_ into EAX.
-  REX.W + 0F B1/_r_ CMPXCHG _r/m64, r64_   MR      Valid         N.E.              Compare RAX with _r/m64_. If equal, ZF is set and _r64_ is loaded into _r/m64_. Else, clear ZF and load _r/m64_ into RAX.
+  Opcode/Instruction                   Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------------------------ ------- ------------- ----------------- -------------------------------------------------------------------------------------------------------------------
+  0F B0/r CMPXCHG r/m8, r8             MR      Valid         Valid*            Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.
+  REX + 0F B0/r CMPXCHG r/m8**,r8      MR      Valid         N.E.              Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.
+  0F B1/r CMPXCHG r/m16, r16           MR      Valid         Valid*            Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.
+  0F B1/r CMPXCHG r/m32, r32           MR      Valid         Valid*            Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.
+  REX.W + 0F B1/r CMPXCHG r/m64, r64   MR      Valid         N.E.              Compare RAX with r/m64. If equal, ZF is set and r64 is loaded into r/m64. Else, clear ZF and load r/m64 into RAX.
 
   * SeetheIA-32ArchitectureCompatibilitysectionbelow.
 
-  ** In 64-bit mode, _r/m8_ can not be encoded to access the following
+  ** In 64-bit mode, r/m8 can not be encoded to access the following
   byte registers if a REX prefix is used: AH, BH, CH, DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -26,7 +22,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1          Operand 2       Operand 3   Operand 4
   MR      ModRM:r/m (r, w)   ModRM:reg (r)   NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -49,12 +44,10 @@ of the REX.R prefix permits access to additional registers (R8-R15). Use
 of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
-
 IA-32 Architecture Compatibility ¶
 
 This instruction is not supported on Intel processors earlier than the
 Intel486 processors.
-
 
 Operation ¶
 
@@ -70,7 +63,6 @@ Operation ¶
             DEST ← TEMP;
     FI;
 
-
 Flags Affected ¶
 
 The ZF flag is set if the values in the destination operand and register
@@ -78,35 +70,17 @@ AL, AX, or EAX are equal; otherwise it is cleared. The CF, PF, AF, SF,
 and OF flags are set according to the results of the comparison
 operation.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -115,7 +89,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -127,11 +100,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

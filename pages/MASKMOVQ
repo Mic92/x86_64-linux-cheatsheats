@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
+MASKMOVQ — Store Selected Bytes of Quadword
 
-
-MASKMOVQ — STORE SELECTED BYTES OF QUADWORD
-
-
-  Opcode/Instruction                    Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ------------------------------------- ------- ------------- ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F F7 /_r_ MASKMOVQ _mm1_, _mm2_   RM      Valid         Valid             Selectively write bytes from _mm1_ to memory location using the byte mask in _mm2._ The default memory location is specified by DS:DI/EDI/RDI.
-
+  Opcode/Instruction              Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------------------- ------- ------------- ----------------- --------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F F7 /r MASKMOVQ mm1, mm2   RM      Valid         Valid             Selectively write bytes from mm1 to memory location using the byte mask in mm2. The default memory location is specified by DS:DI/EDI/RDI.
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -39,8 +34,8 @@ indicates write.
 The MASKMOVQ instruction generates a non-temporal hint to the processor
 to minimize cache pollution. The non-temporal hint is implemented by
 using a write combining (WC) memory type protocol (see “Caching of
-Temporal vs. Non-Temporal Data” in Chapter 10, of the _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 1_). Because the
+Temporal vs. Non-Temporal Data” in Chapter 10, of the Intel® 64 and
+IA-32 Architectures Software Developer’s Manual, Volume 1). Because the
 WC protocol uses a weakly-ordered memory consistency model, a fencing
 operation implemented with the SFENCE or MFENCE instruction should be
 used in conjunction with MASKMOVQ instructions if multiple processors
@@ -72,7 +67,6 @@ allocating old data prior to the store.
 
 In 64-bit mode, the memory address is specified by DS:RDI.
 
-
 Operation ¶
 
     IF (MASK[7] = 1)
@@ -83,17 +77,15 @@ Operation ¶
     IF (MASK[63] = 1)
         THEN DEST[DI/EDI +15] ← SRC[63:56] ELSE (* Memory location unchanged *); FI;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_maskmove_si64(__m64d, __m64n, char * p)
 
-
 Other Exceptions ¶
 
 See Table 22-8, “Exception Conditions for Legacy SIMD/MMX Instructions
-without FP Exception,” in the _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 3A_.
+without FP Exception,” in the Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 3A.
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

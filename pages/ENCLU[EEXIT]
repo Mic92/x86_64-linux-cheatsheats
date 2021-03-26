@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EEXIT — EXITS AN ENCLAVE
-
+EEXIT — Exits an Enclave
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  OPCODE/OP/EN 64/32 CPUID DESCRIPTION INSTRUCTION BIT MODE FEATURE SUPPORT FLAG EAX = 04H IR V/V SGX1 This leaf function is used to exit an enclave. ENCLU[EEXIT]
+  Opcode/Op/En 64/32 CPUID Description Instruction bit Mode Feature Support Flag EAX = 04H IR V/V SGX1 This leaf function is used to exit an enclave. ENCLU[EEXIT]
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 Instruction Operand Encoding ¶
 
@@ -24,7 +20,6 @@ The ENCLU[EEXIT] instruction exits the currently executing enclave and
 branches to the location specified in RBX. RCX receives the current AEP.
 If RBX is not within the CS (32-bit mode) or is not canonical (64-bit
 mode) a #GP(0) results.
-
 
 EEXIT Memory Parameter Semantics ¶
 
@@ -53,60 +48,22 @@ Performance monitoring counters are unsuppressed.
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EEXIT
-
-Concurrent
+  Leaf     Parameter     Base Concurrency Restrictions           
+  -------- ------------- ------------------------------------ -- --
+  Access   On Conflict   SGX_CONFLICT VM Exit Qualification      
+  EEXIT                  Concurrent                              
 
 Table 40-62. Base Concurrency Restrictions of EEXIT
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EEXIT
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter     Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                 vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict   Access                                On Conflict   Access                On Conflict                
+  EEXIT                                                           Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-63. Additional Concurrency Restrictions of EEXIT
 
 Operation ¶
-
 
 Temp Variables in EEXIT Operational Flow ¶
 
@@ -212,27 +169,19 @@ ERESUME.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If RBX is outside the CS segment.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory.
+  ----------- ---------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If RBX is outside the CS segment.
+  #PF(error   code) If a page fault occurs in accessing memory.
+  ----------- ---------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If RBX is not canonical.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If RBX is not canonical.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

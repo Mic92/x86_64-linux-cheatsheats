@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+PBLENDVB — Variable Blend Packed Bytes
 
-
-PBLENDVB — VARIABLE BLEND PACKED BYTES
-
-
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 10 /r PBLENDVB _xmm1, xmm2/m128, <XMM0>_                       RM      V/V                      SSE4_1               Select byte values from _xmm1_ and _xmm2/m128_ from mask specified in the high bit of each byte in _XMM0_ and store the values into _xmm1._
-  VEX.128.66.0F3A.W0 4C /r /is4 VPBLENDVB _xmm1, xmm2, xmm3/m128, xmm4_   RVMR    V/V                      AVX                  Select byte values from _xmm2_ and _xmm3/m128_ using mask bits in the specified mask register, _xmm4_, and store the values into _xmm1_.
-  VEX.256.66.0F3A.W0 4C /r /is4 VPBLENDVB _ymm1, ymm2, ymm3/m256, ymm4_   RVMR    V/V                      AVX2                 Select byte values from _ymm2_ and _ymm3/m256_ from mask specified in the high bit of each byte in _ymm4_ and store the values into _ymm1_.
-
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 10 /r PBLENDVB xmm1, xmm2/m128, <XMM0>                       RM      V/V                      SSE4_1               Select byte values from xmm1 and xmm2/m128 from mask specified in the high bit of each byte in XMM0 and store the values into xmm1.
+  VEX.128.66.0F3A.W0 4C /r /is4 VPBLENDVB xmm1, xmm2, xmm3/m128, xmm4   RVMR    V/V                      AVX                  Select byte values from xmm2 and xmm3/m128 using mask bits in the specified mask register, xmm4, and store the values into xmm1.
+  VEX.256.66.0F3A.W0 4C /r /is4 VPBLENDVB ymm1, ymm2, ymm3/m256, ymm4   RVMR    V/V                      AVX2                 Select byte values from ymm2 and ymm3/m256 from mask specified in the high bit of each byte in ymm4 and store the values into ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   <XMM0>          NA
   RVMR    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8[7:4]
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -62,7 +57,6 @@ VPBLENDVB permits the mask to be any XMM or YMM register. In contrast,
 PBLENDVB treats XMM0 implicitly as the mask and do not support
 non-destructive destination operation. An attempt to execute PBLENDVB
 encoded with a VEX prefix will cause a #UD exception.
-
 
 Operation ¶
 
@@ -208,23 +202,19 @@ VPBLENDVB (VEX.256 encoded version) ¶
     IF (MASK[255] == 1) THEN DEST[255:248]←SRC2[255:248]
     ELSE DEST[255:248]←SRC1[255:248]
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)PBLENDVB: __m128i _mm_blendv_epi8 (__m128i v1, __m128i v2, __m128i mask);
 
     VPBLENDVB: __m256i _mm256_blendv_epi8 (__m256i v1, __m256i v2, __m256i mask);
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+PBLENDW — Blend Packed Words
 
-
-PBLENDW — BLEND PACKED WORDS
-
-
-  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------
-  66 0F 3A 0E /r ib PBLENDW _xmm1, xmm2/m128, imm8_                     RMI     V/V                      SSE4_1               Select words from _xmm1_ and _xmm2/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
-  VEX.128.66.0F3A.WIG 0E /r ib VPBLENDW _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V                      AVX                  Select words from _xmm2_ and _xmm3/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
-  VEX.256.66.0F3A.WIG 0E /r ib VPBLENDW _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V                      AVX2                 Select words from _ymm2_ and _ymm3/m256_ from mask specified in _imm8_ and store the values into _ymm1_.
-
+  Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------
+  66 0F 3A 0E /r ib PBLENDW xmm1, xmm2/m128, imm8                     RMI     V/V                      SSE4_1               Select words from xmm1 and xmm2/m128 from mask specified in imm8 and store the values into xmm1.
+  VEX.128.66.0F3A.WIG 0E /r ib VPBLENDW xmm1, xmm2, xmm3/m128, imm8   RVMI    V/V                      AVX                  Select words from xmm2 and xmm3/m128 from mask specified in imm8 and store the values into xmm1.
+  VEX.256.66.0F3A.WIG 0E /r ib VPBLENDW ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V                      AVX2                 Select words from ymm2 and ymm3/m256 from mask specified in imm8 and store the values into ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RMI     ModRM:reg (r, w)   ModRM:r/m (r)   imm8            NA
   RVMI    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -45,7 +40,6 @@ register are zeroed.
 VEX.256 encoded version: The first source operand is a YMM register. The
 second source operand is a YMM register or a 256-bit memory location.
 The destination operand is a YMM register.
-
 
 Operation ¶
 
@@ -123,23 +117,19 @@ VPBLENDW (VEX.256 encoded version) ¶
     IF (imm8[7] == 1) THEN DEST[255:240]←SRC2[255:240]
     ELSE DEST[255:240]←SRC1[255:240]
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)PBLENDW: __m128i _mm_blend_epi16 (__m128i v1, __m128i v2, const int mask);
 
     VPBLENDW: __m256i _mm256_blend_epi16 (__m256i v1, __m256i v2, const int mask)
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

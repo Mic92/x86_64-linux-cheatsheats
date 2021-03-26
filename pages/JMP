@@ -1,25 +1,21 @@
 -   Index
 -   May 2019
 
+JMP — Jump
 
-
-JMP — JUMP
-
-
-  Opcode        Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ------------- ---------------- ------- ------------- ----------------- -----------------------------------------------------------------------------------------------
-  EB _cb_       JMP _rel8_       D       Valid         Valid             Jump short, RIP = RIP + 8-bit displacement sign extended to 64-bits
-  E9 _cw_       JMP _rel16_      D       N.S.          Valid             Jump near, relative, displacement relative to next instruction. Not supported in 64-bit mode.
-  E9 _cd_       JMP _rel32_      D       Valid         Valid             Jump near, relative, RIP = RIP + 32-bit displacement sign extended to 64-bits
-  FF /4         JMP _r/m16_      M       N.S.          Valid             Jump near, absolute indirect, address = zero-extended _r/m16._ Not supported in 64-bit mode.
-  FF /4         JMP _r/m32_      M       N.S.          Valid             Jump near, absolute indirect, address given in _r/m32._ Not supported in 64-bit mode.
-  FF /4         JMP _r/m64_      M       Valid         N.E.              Jump near, absolute indirect, RIP = 64-Bit offset from register or memory
-  EA _cd_       JMP _ptr16:16_   D       Inv.          Valid             Jump far, absolute, address given in operand
-  EA _cp_       JMP _ptr16:32_   D       Inv.          Valid             Jump far, absolute, address given in operand
-  FF /5         JMP _m16:16_     D       Valid         Valid             Jump far, absolute indirect, address given in _m16:16_
-  FF /5         JMP _m16:32_     D       Valid         Valid             Jump far, absolute indirect, address given in _m16:32._
-  REX.W FF /5   JMP _m16:64_     D       Valid         N.E.              Jump far, absolute indirect, address given in _m16:64_.
-
+  Opcode        Instruction    Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------- -------------- ------- ------------- ----------------- -----------------------------------------------------------------------------------------------
+  EB cb         JMP rel8       D       Valid         Valid             Jump short, RIP = RIP + 8-bit displacement sign extended to 64-bits
+  E9 cw         JMP rel16      D       N.S.          Valid             Jump near, relative, displacement relative to next instruction. Not supported in 64-bit mode.
+  E9 cd         JMP rel32      D       Valid         Valid             Jump near, relative, RIP = RIP + 32-bit displacement sign extended to 64-bits
+  FF /4         JMP r/m16      M       N.S.          Valid             Jump near, absolute indirect, address = zero-extended r/m16. Not supported in 64-bit mode.
+  FF /4         JMP r/m32      M       N.S.          Valid             Jump near, absolute indirect, address given in r/m32. Not supported in 64-bit mode.
+  FF /4         JMP r/m64      M       Valid         N.E.              Jump near, absolute indirect, RIP = 64-Bit offset from register or memory
+  EA cd         JMP ptr16:16   D       Inv.          Valid             Jump far, absolute, address given in operand
+  EA cp         JMP ptr16:32   D       Inv.          Valid             Jump far, absolute, address given in operand
+  FF /5         JMP m16:16     D       Valid         Valid             Jump far, absolute indirect, address given in m16:16
+  FF /5         JMP m16:32     D       Valid         Valid             Jump far, absolute indirect, address given in m16:32.
+  REX.W FF /5   JMP m16:64     D       Valid         N.E.              Jump far, absolute indirect, address given in m16:64.
 
 Instruction Operand Encoding ¶
 
@@ -28,7 +24,6 @@ Instruction Operand Encoding ¶
   D       Offset          NA          NA          NA
   M       ModRM:r/m (r)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -51,43 +46,43 @@ This instruction can be used to execute four different types of jumps:
 -   Task switch—A jump to an instruction located in a different task.
 
 A task switch can only be executed in protected mode (see Chapter 7, in
-the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_, for information on performing task switches with the JMP
+the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 3A, for information on performing task switches with the JMP
 instruction).
 
-NEAR AND SHORT JUMPS. When executing a near jump, the processor jumps to
+Near and Short Jumps. When executing a near jump, the processor jumps to
 the address (within the current code segment) that is specified with the
 target operand. The target operand specifies either an absolute offset
 (that is an offset from the base of the code segment) or a relative
 offset (a signed displacement relative to the current
 
 value of the instruction pointer in the EIP register). A near jump to a
-relative offset of 8-bits (_rel8_) is referred to as a short jump. The
-CS register is not changed on near and short jumps.
+relative offset of 8-bits (rel8) is referred to as a short jump. The CS
+register is not changed on near and short jumps.
 
 An absolute offset is specified indirectly in a general-purpose register
-or a memory location (_r/m16_ or _r/m32_). The operand-size attribute
+or a memory location (r/m16 or r/m32). The operand-size attribute
 determines the size of the target operand (16 or 32 bits). Absolute
 offsets are loaded directly into the EIP register. If the operand-size
 attribute is 16, the upper two bytes of the EIP register are cleared,
 resulting in a maximum instruction pointer size of 16 bits.
 
-A relative offset (_rel8, rel16_, or _rel32_) is generally specified as
-a label in assembly code, but at the machine code level, it is encoded
-as a signed 8-, 16-, or 32-bit immediate value. This value is added to
-the value in the EIP register. (Here, the EIP register contains the
-address of the instruction following the JMP instruction). When using
-relative offsets, the opcode (for short vs. near jumps) and the
-operand-size attribute (for near relative jumps) determines the size of
-the target operand (8, 16, or 32 bits).
+A relative offset (rel8, rel16, or rel32) is generally specified as a
+label in assembly code, but at the machine code level, it is encoded as
+a signed 8-, 16-, or 32-bit immediate value. This value is added to the
+value in the EIP register. (Here, the EIP register contains the address
+of the instruction following the JMP instruction). When using relative
+offsets, the opcode (for short vs. near jumps) and the operand-size
+attribute (for near relative jumps) determines the size of the target
+operand (8, 16, or 32 bits).
 
-FAR JUMPS IN REAL-ADDRESS OR VIRTUAL-8086 MODE. When executing a far
+Far Jumps in Real-Address or Virtual-8086 Mode. When executing a far
 jump in real-address or virtual-8086 mode, the processor jumps to the
 code segment and offset specified with the target operand. Here the
 target operand specifies an absolute far address either directly with a
-pointer (_ptr16:16_ or _ptr16:32_) or indirectly with a memory location
-(_m16:16_ or _m16:32_). With the pointer method, the segment and address
-of the called procedure is encoded in the instruction, using a 4-byte
+pointer (ptr16:16 or ptr16:32) or indirectly with a memory location
+(m16:16 or m16:32). With the pointer method, the segment and address of
+the called procedure is encoded in the instruction, using a 4-byte
 (16-bit operand size) or 6-byte (32-bit operand size) far address
 immediate. With the indirect method, the target operand specifies a
 memory location that contains a 4-byte (16-bit operand size) or 6-byte
@@ -95,7 +90,7 @@ memory location that contains a 4-byte (16-bit operand size) or 6-byte
 into the CS and EIP registers. If the operand-size attribute is 16, the
 upper two bytes of the EIP register are cleared.
 
-FAR JUMPS IN PROTECTED MODE. When the processor is operating in
+Far Jumps in Protected Mode. When the processor is operating in
 protected mode, the JMP instruction can be used to perform the following
 three types of far jumps:
 
@@ -118,13 +113,13 @@ non-conforming, a general-protection exception is generated.) A far jump
 to the same privilege level in protected mode is very similar to one
 carried out in real-address or virtual-8086 mode. The target operand
 specifies an absolute far address either directly with a pointer
-(_ptr16:16_ or _ptr16:32_) or indirectly with a memory location
-(_m16:16_ or _m16:32_). The operand-size attribute determines the size
-of the offset (16 or 32 bits) in the far address. The new code segment
-selector and its descriptor are loaded into CS register, and the offset
-from the instruction is loaded into the EIP register. Note that a call
-gate (described in the next paragraph) can also be used to perform far
-call to a code segment at the same privilege level. Using this mechanism
+(ptr16:16 or ptr16:32) or indirectly with a memory location (m16:16 or
+m16:32). The operand-size attribute determines the size of the offset
+(16 or 32 bits) in the far address. The new code segment selector and
+its descriptor are loaded into CS register, and the offset from the
+instruction is loaded into the EIP register. Note that a call gate
+(described in the next paragraph) can also be used to perform far call
+to a code segment at the same privilege level. Using this mechanism
 provides an extra level of indirection and is the preferred method of
 making jumps between 16-bit and 32-bit code segments.
 
@@ -134,8 +129,8 @@ part of the target operand is ignored.) The processor then jumps to the
 code segment specified in the call gate descriptor and begins executing
 the instruction at the offset specified in the call gate. No stack
 switch occurs. Here again, the target operand can specify the far
-address of the call gate either directly with a pointer (_ptr16:16_ or
-_ptr16:32_) or indirectly with a memory location (_m16:16_ or _m16:32_).
+address of the call gate either directly with a pointer (ptr16:16 or
+ptr16:32) or indirectly with a memory location (m16:16 or m16:32).
 
 Executing a task switch with the JMP instruction is somewhat similar to
 executing a jump through a call gate. Here the target operand specifies
@@ -150,8 +145,8 @@ instruction.
 
 The JMP instruction can also specify the segment selector of the TSS
 directly, which eliminates the indirection of the task gate. See Chapter
-7 in _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_, for detailed information on the mechanics of a task switch.
+7 in Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 3A, for detailed information on the mechanics of a task switch.
 
 Note that when you execute at task switch with a JMP instruction, the
 nested task flag (NT) is not set in the EFLAGS register and the new
@@ -162,7 +157,7 @@ differs in this regard from the CALL instruction which does set the NT
 flag and save the previous task link information, allowing a return to
 the calling task with an IRET instruction.
 
-IN 64-BIT MODE. The instruction’s operation size is fixed at 64 bits. If
+In 64-Bit Mode. The instruction’s operation size is fixed at 64 bits. If
 a selector points to a gate, then RIP equals the 64-bit displacement
 taken from gate; else RIP equals the zero-extended offset from the far
 pointer referenced in the instruction.
@@ -170,7 +165,7 @@ pointer referenced in the instruction.
 See the summary chart at the beginning of this section for encoding data
 and limits.
 
-INSTRUCTION ORDERING. Instructions following a far jump may be fetched
+Instruction ordering. Instructions following a far jump may be fetched
 from memory before earlier instructions complete execution, but they
 will not execute (even speculatively) until all instructions prior to
 the far jump have completed execution (the later instructions may
@@ -182,7 +177,6 @@ near indirect JMP being speculatively executed. If software needs to
 prevent this (e.g., in order to prevent a speculative execution side
 channel), then an INT3 or LFENCE instruction opcode can be placed after
 the near indirect JMP in order to block speculative execution.
-
 
 Operation ¶
 
@@ -360,200 +354,81 @@ Operation ¶
                 THEN #GP(0); FI;
     END;
 
-
 Flags Affected ¶
 
 All flags are affected if a task switch occurs; no flags are affected if
 a task switch does not occur.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If offset in target operand, call gate, or TSS is beyond the code
-segment limits.
-
-If the segment selector in the destination operand, call gate, task
-gate, or TSS is NULL.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL segment selector.
-
-#GP(selector)
-
-If the segment selector index is outside descriptor table limits.
-
-If the segment descriptor pointed to by the segment selector in the
-destination operand is not for a conforming-code segment,
-nonconforming-code segment, call gate, task gate, or task state segment.
-
-If the DPL for a nonconforming-code segment is not equal to the CPL
-
-(When not using a call gate.) If the RPL for the segment’s segment
-selector is greater than the CPL.
-
-If the DPL for a conforming-code segment is greater than the CPL.
-
-If the DPL from a call-gate, task-gate, or TSS segment descriptor is
-less than the CPL or than the RPL of the call-gate, task-gate, or TSS’s
-segment selector.
-
-If the segment descriptor for selector in a call gate does not indicate
-it is a code segment. If the segment descriptor for the segment selector
-in a task gate does not indicate an available TSS. If the segment
-selector for a TSS has its local/global bit set for local. If a TSS
-segment descriptor specifies that the TSS is busy or not available.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#NP
-
-(selector) If the code segment being accessed is not present.
-
-If call gate, task gate, or TSS not present.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3. (Only occurs when fetching
-target from memory.)
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If offset in target operand, call gate, or TSS is beyond the code segment limits.
+                    If the segment selector in the destination operand, call gate, task gate, or TSS is NULL.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
+  #GP(selector)     If the segment selector index is outside descriptor table limits.
+                    If the segment descriptor pointed to by the segment selector in the destination operand is not for a conforming-code segment, nonconforming-code segment, call gate, task gate, or task state segment.
+                    If the DPL for a nonconforming-code segment is not equal to the CPL
+                    (When not using a call gate.) If the RPL for the segment’s segment selector is greater than the CPL.
+                    If the DPL for a conforming-code segment is greater than the CPL.
+                    If the DPL from a call-gate, task-gate, or TSS segment descriptor is less than the CPL or than the RPL of the call-gate, task-gate, or TSS’s segment selector.
+                    If the segment descriptor for selector in a call gate does not indicate it is a code segment. If the segment descriptor for the segment selector in a task gate does not indicate an available TSS. If the segment selector for a TSS has its local/global bit set for local. If a TSS segment descriptor specifies that the TSS is busy or not available.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #NP               (selector) If the code segment being accessed is not present.
+                    If call gate, task gate, or TSS not present.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3. (Only occurs when fetching target from memory.)
+  #UD               If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS
-
-If a memory operand effective address is outside the SS segment limit.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+        If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If the LOCK prefix is used.
+  ----- -------------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#GP(0)
-
-If the target operand is beyond the code segment limits.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made. (Only occurs when fetching target from memory.)
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- -----------------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the target operand is beyond the code segment limits.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made. (Only occurs when fetching target from memory.)
+  #UD               If the LOCK prefix is used.
+  ----------------- -----------------------------------------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same as 64-bit mode exceptions.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory address is non-canonical.
-
-If target offset in destination operand is non-canonical.
-
-If target offset in destination operand is beyond the new code segment
-limit.
-
-If the segment selector in the destination operand is NULL.
-
-If the code segment selector in the 64-bit gate is NULL.
-
-#GP(selector)
-
-If the code segment or 64-bit call gate is outside descriptor table
-limits.
-
-If the code segment or 64-bit call gate overlaps non-canonical space.
-
-If the segment descriptor from a 64-bit call gate is in non-canonical
-space.
-
-If the segment descriptor pointed to by the segment selector in the
-destination operand is not for a conforming-code segment,
-nonconforming-code segment, 64-bit call gate.
-
-If the segment descriptor pointed to by the segment selector in the
-destination operand is a code segment, and has both the D-bit and the
-L-bit set.
-
-If the DPL for a nonconforming-code segment is not equal to the CPL, or
-the RPL for the segment’s segment selector is greater than the CPL.
-
-If the DPL for a conforming-code segment is greater than the CPL.
-
-If the DPL from a 64-bit call-gate is less than the CPL or than the RPL
-of the 64-bit call-gate.
-
-If the upper type field of a 64-bit call gate is not 0x0.
-
-If the segment selector from a 64-bit call gate is beyond the descriptor
-table limits. If the code segment descriptor pointed to by the selector
-in the 64-bit gate doesn't have the L-bit set and the D-bit clear. If
-the segment descriptor for a segment selector from the 64-bit call gate
-does not indicate it is a code segment. If the code segment is
-non-conforming and CPL ≠ DPL. If the code segment is confirming and CPL
-< DPL.
-
-#NP(selector)
-
-If a code segment or 64-bit call gate is not present.
-
-#UD
-
-(64-bit mode only) If a far jump is direct to an absolute address in
-memory.
-
-If the LOCK prefix is used.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
+  ----------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory address is non-canonical.
+                    If target offset in destination operand is non-canonical.
+                    If target offset in destination operand is beyond the new code segment limit.
+                    If the segment selector in the destination operand is NULL.
+                    If the code segment selector in the 64-bit gate is NULL.
+  #GP(selector)     If the code segment or 64-bit call gate is outside descriptor table limits.
+                    If the code segment or 64-bit call gate overlaps non-canonical space.
+                    If the segment descriptor from a 64-bit call gate is in non-canonical space.
+                    If the segment descriptor pointed to by the segment selector in the destination operand is not for a conforming-code segment, nonconforming-code segment, 64-bit call gate.
+                    If the segment descriptor pointed to by the segment selector in the destination operand is a code segment, and has both the D-bit and the L-bit set.
+                    If the DPL for a nonconforming-code segment is not equal to the CPL, or the RPL for the segment’s segment selector is greater than the CPL.
+                    If the DPL for a conforming-code segment is greater than the CPL.
+                    If the DPL from a 64-bit call-gate is less than the CPL or than the RPL of the 64-bit call-gate.
+                    If the upper type field of a 64-bit call gate is not 0x0.
+                    If the segment selector from a 64-bit call gate is beyond the descriptor table limits. If the code segment descriptor pointed to by the selector in the 64-bit gate doesn't have the L-bit set and the D-bit clear. If the segment descriptor for a segment selector from the 64-bit call gate does not indicate it is a code segment. If the code segment is non-conforming and CPL ≠ DPL. If the code segment is confirming and CPL < DPL.
+  #NP(selector)     If a code segment or 64-bit call gate is not present.
+  #UD               (64-bit mode only) If a far jump is direct to an absolute address in memory.
+                    If the LOCK prefix is used.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

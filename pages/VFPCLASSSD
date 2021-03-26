@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VFPCLASSSD — TESTS TYPES OF A SCALAR FLOAT64 VALUES
-
+VFPCLASSSD — Tests Types Of a Scalar Float64 Values
 
   Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W1 67 /r ib VFPCLASSSD k2 {k1}, xmm2/m64, imm8   A       V/V                      AVX512DQ             Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ORPS — BITWISE LOGICAL OR OF PACKED SINGLE PRECISION FLOATING-POINT VALUES
-
+ORPS — Bitwise Logical OR of Packed Single Precision Floating-Point Values
 
   Opcode/Instruction                                                 Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------ --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ ORPS — BITWISE LOGICAL OR OF PACKED SINGLE PRECISION FLOATING-POINT VALUES
   EVEX.128.0F.W0 56 /r VORPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C         V/V                      AVX512VL AVX512DQ    Return the bitwise logical OR of packed single-precision floating-point values in xmm2 and xmm3/m128/m32bcst subject to writemask k1.
   EVEX.256.0F.W0 56 /r VORPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C         V/V                      AVX512VL AVX512DQ    Return the bitwise logical OR of packed single-precision floating-point values in ymm2 and ymm3/m256/m32bcst subject to writemask k1.
   EVEX.512.0F.W0 56 /r VORPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C         V/V                      AVX512DQ             Return the bitwise logical OR of packed single-precision floating-point values in zmm2 and zmm3/m512/m32bcst subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

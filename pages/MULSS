@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-MULSS — MULTIPLY SCALAR SINGLE-PRECISION FLOATING-POINT VALUES
-
+MULSS — Multiply Scalar Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                 Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------ --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
   F3 0F 59 /r MULSS xmm1,xmm2/m32                                    A         V/V                      SSE                  Multiply the low single-precision floating-point value in xmm2/m32 by the low single-precision floating-point value in xmm1.
   VEX.LIG.F3.0F.WIG 59 /r VMULSS xmm1,xmm2, xmm3/m32                 B         V/V                      AVX                  Multiply the low single-precision floating-point value in xmm3/m32 by the low single-precision floating-point value in xmm2.
   EVEX.LIG.F3.0F.W0 59 /r VMULSS xmm1 {k1}{z}, xmm2, xmm3/m32 {er}   C         V/V                      AVX512F              Multiply the low single-precision floating-point value in xmm3/m32 by the low single-precision floating-point value in xmm2.
-
 
 Instruction Operand Encoding ¶
 

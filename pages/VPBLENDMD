@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPBLENDMD/VPBLENDMQ — BLEND INT32/INT64 VECTORS USING AN OPMASK CONTROL
-
+VPBLENDMD/VPBLENDMQ — Blend Int32/Int64 Vectors Using an OpMask Control
 
   Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPBLENDMD/VPBLENDMQ — BLEND INT32/INT64 VECTORS USING AN OPMASK CONTROL
   EVEX.128.66.0F38.W1 64 /r VPBLENDMQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   A       V/V                      AVX512VL AVX512F     Blend quadword integer vector xmm2 and quadword vector xmm3/m128/m64bcst and store the result in xmm1, under control mask.
   EVEX.256.66.0F38.W1 64 /r VPBLENDMQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   A       V/V                      AVX512VL AVX512F     Blend quadword integer vector ymm2 and quadword vector ymm3/m256/m64bcst and store the result in ymm1, under control mask.
   EVEX.512.66.0F38.W1 64 /r VPBLENDMQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   A       V/V                      AVX512F              Blend quadword integer vector zmm2 and quadword vector zmm3/m512/m64bcst and store the result in zmm1, under control mask.
-
 
 Instruction Operand Encoding ¶
 

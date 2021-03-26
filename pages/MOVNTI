@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+MOVNTI — Store Doubleword Using Non-Temporal Hint
 
-
-MOVNTI — STORE DOUBLEWORD USING NON-TEMPORAL HINT
-
-
-  Opcode                  Instruction           Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ----------------------- --------------------- ------- ------------- ----------------- --------------------------------------------------------------
-  NP 0F C3 /_r_           MOVNTI _m32_, _r32_   MR      Valid         Valid             Move doubleword from _r32_ to _m32_ using non-temporal hint.
-  NP REX.W + 0F C3 /_r_   MOVNTI _m64, r64_     MR      Valid         N.E.              Move quadword from _r64_ to _m64_ using non-temporal hint.
-
+  Opcode                Instruction       Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------------- ----------------- ------- ------------- ----------------- ----------------------------------------------------------
+  NP 0F C3 /r           MOVNTI m32, r32   MR      Valid         Valid             Move doubleword from r32 to m32 using non-temporal hint.
+  NP REX.W + 0F C3 /r   MOVNTI m64, r64   MR      Valid         N.E.              Move quadword from r64 to m64 using non-temporal hint.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   MR      ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -36,8 +31,8 @@ into the cache hierarchy. The memory type of the region being written to
 can override the non-temporal hint, if the memory address specified for
 the non-temporal store is in an uncacheable (UC) or write protected (WP)
 memory region. For more information on non-temporal stores, see “Caching
-of Temporal vs. Non-Temporal Data” in Chapter 10 in the _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 1_.
+of Temporal vs. Non-Temporal Data” in Chapter 10 in the Intel® 64 and
+IA-32 Architectures Software Developer’s Manual, Volume 1.
 
 Because the WC protocol uses a weakly-ordered memory consistency model,
 a fencing operation implemented with the SFENCE or MFENCE instruction
@@ -50,11 +45,9 @@ of the REX.R prefix permits access to additional registers (R8-R15). Use
 of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
-
 Operation ¶
 
     DEST ← SRC;
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -62,47 +55,27 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MOVNTI: void _mm_stream_si64(__int64 *p, __int64 a)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-For an illegal memory operand effective address in the CS, DS, ES, FS or
-GS segments.
-
-#SS(0)
-
-For an illegal address in the SS segment.
-
-#PF(fault-code)
-
-For a page fault.
-
-#UD
-
-If CPUID.01H:EDX.SSE2[bit 26] = 0.
-
-If the LOCK prefix is used.
-
+  ----------------- ---------------------------------------------------------------------------------------
+  #GP(0)            For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments.
+  #SS(0)            For an illegal address in the SS segment.
+  #PF(fault-code)   For a page fault.
+  #UD               If CPUID.01H:EDX.SSE2[bit 26] = 0.
+                    If the LOCK prefix is used.
+  ----------------- ---------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP
-
-If any part of the operand lies outside the effective address space from
-0 to FFFFH.
-
-#UD
-
-If CPUID.01H:EDX.SSE2[bit 26] = 0.
-
-If the LOCK prefix is used.
-
+  ----- --------------------------------------------------------------------------------------
+  #GP   If any part of the operand lies outside the effective address space from 0 to FFFFH.
+  #UD   If CPUID.01H:EDX.SSE2[bit 26] = 0.
+        If the LOCK prefix is used.
+  ----- --------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -112,37 +85,20 @@ Same exceptions as in real address mode.
   #PF(fault-code)   For a page fault.
   ----------------- -------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the memory address is in a non-canonical form.
-
-#PF(fault-code)
-
-For a page fault.
-
-#UD
-
-If CPUID.01H:EDX.SSE2[bit 26] = 0.
-
-If the LOCK prefix is used.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   For a page fault.
+  #UD               If CPUID.01H:EDX.SSE2[bit 26] = 0.
+                    If the LOCK prefix is used.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

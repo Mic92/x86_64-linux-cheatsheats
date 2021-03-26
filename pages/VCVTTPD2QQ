@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VCVTTPD2QQ — CONVERT WITH TRUNCATION PACKED DOUBLE-PRECISION FLOATING-POINT VALUES TO PACKED QUADWORD INTEGERS
-
+VCVTTPD2QQ — Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F.W1 7A /r VCVTTPD2QQ xmm1 {k1}{z}, xmm2/m128/m64bcst        A       V/V                      AVX512VL AVX512DQ    Convert two packed double-precision floating-point values from zmm2/m128/m64bcst to two packed quadword integers in zmm1 using truncation with writemask k1.
   EVEX.256.66.0F.W1 7A /r VCVTTPD2QQ ymm1 {k1}{z}, ymm2/m256/m64bcst        A       V/V                      AVX512VL AVX512DQ    Convert four packed double-precision floating-point values from ymm2/m256/m64bcst to four packed quadword integers in ymm1 using truncation with writemask k1.
   EVEX.512.66.0F.W1 7A /r VCVTTPD2QQ zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}   A       V/V                      AVX512DQ             Convert eight packed double-precision floating-point values from zmm2/m512 to eight packed quadword integers in zmm1 using truncation with writemask k1.
-
 
 Instruction Operand Encoding ¶
 

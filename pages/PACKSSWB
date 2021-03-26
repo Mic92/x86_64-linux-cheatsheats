@@ -1,38 +1,34 @@
 -   Index
 -   May 2019
 
+PACKSSWB/PACKSSDW — Pack with Signed Saturation
 
+  Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 63 /r¹ PACKSSWB mm1, mm2/m64                                        A       V/V                      MMX                  Converts 4 packed signed word integers from mm1 and from mm2/m64 into 8 packed signed byte integers in mm1 using signed saturation.
+  66 0F 63 /r PACKSSWB xmm1, xmm2/m128                                      A       V/V                      SSE2                 Converts 8 packed signed word integers from xmm1 and from xxm2/m128 into 16 packed signed byte integers in xxm1 using signed saturation.
+  NP 0F 6B /r¹ PACKSSDW mm1, mm2/m64                                        A       V/V                      MMX                  Converts 2 packed signed doubleword integers from mm1 and from mm2/m64 into 4 packed signed word integers in mm1 using signed saturation.
+  66 0F 6B /r PACKSSDW xmm1, xmm2/m128                                      A       V/V                      SSE2                 Converts 4 packed signed doubleword integers from xmm1 and from xxm2/m128 into 8 packed signed word integers in xxm1 using signed saturation.
+  VEX.128.66.0F.WIG 63 /r VPACKSSWB xmm1,xmm2, xmm3/m128                    B       V/V                      AVX                  Converts 8 packed signed word integers from xmm2 and from xmm3/m128 into 16 packed signed byte integers in xmm1 using signed saturation.
+  VEX.128.66.0F.WIG 6B /r VPACKSSDW xmm1,xmm2, xmm3/m128                    B       V/V                      AVX                  Converts 4 packed signed doubleword integers from xmm2 and from xmm3/m128 into 8 packed signed word integers in xmm1 using signed saturation.
+  VEX.256.66.0F.WIG 63 /r VPACKSSWB ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Converts 16 packed signed word integers from ymm2 and from ymm3/m256 into 32 packed signed byte integers in ymm1 using signed saturation.
+  VEX.256.66.0F.WIG 6B /r VPACKSSDW ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Converts 8 packed signed doubleword integers from ymm2 and from ymm3/m256 into 16 packed signed word integers in ymm1using signed saturation.
+  EVEX.128.66.0F.WIG 63 /r VPACKSSWB xmm1 {k1}{z}, xmm2, xmm3/m128          C       V/V                      AVX512VL AVX512BW    Converts packed signed word integers from xmm2 and from xmm3/m128 into packed signed byte integers in xmm1 using signed saturation under writemask k1.
+  EVEX.256.66.0F.WIG 63 /r VPACKSSWB ymm1 {k1}{z}, ymm2, ymm3/m256          C       V/V                      AVX512VL AVX512BW    Converts packed signed word integers from ymm2 and from ymm3/m256 into packed signed byte integers in ymm1 using signed saturation under writemask k1.
+  EVEX.512.66.0F.WIG 63 /r VPACKSSWB zmm1 {k1}{z}, zmm2, zmm3/m512          C       V/V                      AVX512BW             Converts packed signed word integers from zmm2 and from zmm3/m512 into packed signed byte integers in zmm1 using signed saturation under writemask k1.
+  EVEX.128.66.0F.W0 6B /r VPACKSSDW xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   D       V/V                      AVX512VL AVX512BW    Converts packed signed doubleword integers from xmm2 and from xmm3/m128/m32bcst into packed signed word integers in xmm1 using signed saturation under writemask k1.
 
-PACKSSWB/PACKSSDW — PACK WITH SIGNED SATURATION
-
-
-  Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 63 /r¹ PACKSSWB _mm1, mm2/m64_                                        A       V/V                      MMX                  Converts 4 packed signed word integers from _mm1_ and from _mm2/m64_ into 8 packed signed byte integers in _mm1_ using signed saturation_._
-  66 0F 63 /_r_ PACKSSWB _xmm1, xmm2/m128_                                    A       V/V                      SSE2                 Converts 8 packed signed word integers from _xmm1_ and from _xxm2/m128_ into 16 packed signed byte integers in _xxm1_ using signed saturation.
-  NP 0F 6B /_r_¹ PACKSSDW _mm1, mm2/m64_                                      A       V/V                      MMX                  Converts 2 packed signed doubleword integers from _mm1_ and from _mm2/m64_ into 4 packed signed word integers in _mm1_ using signed saturation.
-  66 0F 6B /_r_ PACKSSDW _xmm1, xmm2/m128_                                    A       V/V                      SSE2                 Converts 4 packed signed doubleword integers from _xmm1_ and from _xxm2/m128_ into 8 packed signed word integers in _xxm1_ using signed saturation.
-  VEX.128.66.0F.WIG 63 /r VPACKSSWB _xmm1,xmm2, xmm3/m128_                    B       V/V                      AVX                  Converts 8 packed signed word integers from _xmm2_ and from _xmm3/m128_ into 16 packed signed byte integers in _xmm1_ using signed saturation.
-  VEX.128.66.0F.WIG 6B /r VPACKSSDW _xmm1,xmm2, xmm3/m128_                    B       V/V                      AVX                  Converts 4 packed signed doubleword integers from _xmm2_ and from _xmm3/m128_ into 8 packed signed word integers in _xmm1_ using signed saturation.
-  VEX.256.66.0F.WIG 63 /r VPACKSSWB _ymm1, ymm2, ymm3/m256_                   B       V/V                      AVX2                 Converts 16 packed signed word integers from _ymm2_ and from _ymm3/m256_ into 32 packed signed byte integers in _ymm1_ using signed saturation.
-  VEX.256.66.0F.WIG 6B /r VPACKSSDW _ymm1, ymm2, ymm3/m256_                   B       V/V                      AVX2                 Converts 8 packed signed doubleword integers from _ymm2_ and from _ymm3/m256_ into 16 packed signed word integers in _ymm1_using signed saturation.
-  EVEX.128.66.0F.WIG 63 /_r_ VPACKSSWB _xmm1 {k1}{z}, xmm2, xmm3/m128_        C       V/V                      AVX512VL AVX512BW    Converts packed signed word integers from _xmm2_ and from _xmm3/m128_ into packed signed byte integers in _xmm1_ using signed saturation under writemask k1.
-  EVEX.256.66.0F.WIG 63 /_r_ VPACKSSWB _ymm1 {k1}{z}, ymm2, ymm3/m256_        C       V/V                      AVX512VL AVX512BW    Converts packed signed word integers from _ymm2_ and from _ymm3/m256_ into packed signed byte integers in _ymm1_ using signed saturation under writemask k1.
-  EVEX.512.66.0F.WIG 63 /_r_ VPACKSSWB _zmm1 {k1}{z}, zmm2, zmm3/m512_        C       V/V                      AVX512BW             Converts packed signed word integers from _zmm2_ and from _zmm3/m512_ into packed signed byte integers in _zmm1_ using signed saturation under writemask k1.
-  EVEX.128.66.0F.W0 6B /_r_ VPACKSSDW xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   D       V/V                      AVX512VL AVX512BW    Converts packed signed doubleword integers from _xmm2_ and from xmm3/m128/m32bcst into packed signed word integers in xmm1 using signed saturation under writemask k1.
-
-  ------------------------------------------------------------------------- --- ----- ------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.256.66.0F.W0 6B /r VPACKSSDW ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   D   V/V   AVX512VL AVX512BW   Converts packed signed doubleword integers from _ymm2_ and from ymm3/m256/m32bcst into packed signed word integers in ymm1 using signed saturation under writemask k1.
+  ------------------------------------------------------------------------- --- ----- ------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.256.66.0F.W0 6B /r VPACKSSDW ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   D   V/V   AVX512VL AVX512BW   Converts packed signed doubleword integers from ymm2 and from ymm3/m256/m32bcst into packed signed word integers in ymm1 using signed saturation under writemask k1.
   EVEX.512.66.0F.W0 6B /r VPACKSSDW zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   D   V/V   AVX512BW            Converts packed signed doubleword integers from zmm2 and from zmm3/m512/m32bcst into packed signed word integers in zmm1 using signed saturation under writemask k1.
-  ------------------------------------------------------------------------- --- ----- ------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------- --- ----- ------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
-
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
 Instruction Operand Encoding ¶
 
@@ -44,7 +40,6 @@ Instruction Operand Encoding ¶
   D       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
 
-
 Description ¶
 
 Converts packed signed word integers into packed signed byte integers
@@ -52,7 +47,7 @@ Converts packed signed word integers into packed signed byte integers
 signed word integers (PACKSSDW), using saturation to handle overflow
 conditions. See Figure 4-6 for an example of the packing operation.
 
-64-Bit SRC 64-Bit DEST C B D A B’ C’ D’ A’ 64-Bit DEST
+[]
 
 Figure 4-6. Operation of the PACKSSDW Instruction Using 64-bit Operands
 

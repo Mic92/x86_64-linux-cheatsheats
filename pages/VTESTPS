@@ -1,18 +1,14 @@
 -   Index
 -   May 2019
 
+VTESTPD/VTESTPS — Packed Bit Test
 
-
-VTESTPD/VTESTPS — PACKED BIT TEST
-
-
-  Opcode/Instruction                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------
-  VEX.128.66.0F38.W0 0E /r VTESTPS _xmm1, xmm2/m128_   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.
-  VEX.256.66.0F38.W0 0E /r VTESTPS _ymm1, ymm2/m256_   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.
-  VEX.128.66.0F38.W0 0F /r VTESTPD _xmm1, xmm2/m128_   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.
-  VEX.256.66.0F38.W0 0F /r VTESTPD _ymm1, ymm2/m256_   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.
-
+  Opcode/Instruction                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W0 0E /r VTESTPS xmm1, xmm2/m128   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.
+  VEX.256.66.0F38.W0 0E /r VTESTPS ymm1, ymm2/m256   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.
+  VEX.128.66.0F38.W0 0F /r VTESTPD xmm1, xmm2/m128   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.
+  VEX.256.66.0F38.W0 0F /r VTESTPD ymm1, ymm2/m256   RM      V/V                      AVX                  Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -40,7 +35,7 @@ set else the ZF is clear. If the AND the source sign bits with the
 inverted dest sign bits produces all zeros the CF is set else the CF is
 clear. An attempt to execute VTESTPS with VEX.W=1 will cause #UD.
 
-The first source register is specified by the ModR/M _reg_ field.
+The first source register is specified by the ModR/M reg field.
 
 128-bit version: The first source register is an XMM register. The
 second source register can be an XMM register or a 128-bit memory
@@ -52,7 +47,6 @@ location. The destination register is not modified.
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -108,7 +102,6 @@ VTESTPD (VEX.256 encoded version) ¶
     DEST (unmodified)
     AF←OF←PF←SF←0;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VTESTPS int _mm256_testz_ps (__m256 s1, __m256 s2);
@@ -135,27 +128,23 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     int _mm_testnzc_pd (__m128d s1, __m128d s2);
 
-
 Flags Affected ¶
 
 The 0F, AF, PF, SF flags are cleared and the ZF, CF flags are set
 according to the operation.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 
-#UD
-
-If VEX.vvvv ≠ 1111B.
-
-If VEX.W = 1 for VTESTPS or VTESTPD.
+  ----- --------------------------------------
+  #UD   If VEX.vvvv ≠ 1111B.
+        If VEX.W = 1 for VTESTPS or VTESTPD.
+  ----- --------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

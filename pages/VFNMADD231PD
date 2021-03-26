@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFNMADD132PD/VFNMADD213PD/VFNMADD231PD — FUSED NEGATIVE MULTIPLY-ADD OF PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+VFNMADD132PD/VFNMADD213PD/VFNMADD231PD — Fused Negative Multiply-Add of Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +20,6 @@ VFNMADD132PD/VFNMADD213PD/VFNMADD231PD — FUSED NEGATIVE MULTIPLY-ADD OF PACKED
   EVEX.512.66.0F38.W1 9C /r VFNMADD132PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm3/m512/m64bcst, negate the multiplication result and add to zmm2 and put result in zmm1.
   EVEX.512.66.0F38.W1 AC /r VFNMADD213PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm2, negate the multiplication result and add to zmm3/m512/m64bcst and put result in zmm1.
   EVEX.512.66.0F38.W1 BC /r VFNMADD231PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm2 and zmm3/m512/m64bcst, negate the multiplication result and add to zmm1 and put result in zmm1.
-
 
 Instruction Operand Encoding ¶
 

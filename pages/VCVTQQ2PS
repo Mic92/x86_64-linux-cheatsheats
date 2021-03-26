@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VCVTQQ2PS — CONVERT PACKED QUADWORD INTEGERS TO PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+VCVTQQ2PS — Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.0F.W1 5B /r VCVTQQ2PS xmm1 {k1}{z}, xmm2/m128/m64bcst       A       V/V                      AVX512VL AVX512DQ    Convert two packed quadword integers from xmm2/mem to packed single-precision floating-point values in xmm1 with writemask k1.
   EVEX.256.0F.W1 5B /r VCVTQQ2PS xmm1 {k1}{z}, ymm2/m256/m64bcst       A       V/V                      AVX512VL AVX512DQ    Convert four packed quadword integers from ymm2/mem to packed single-precision floating-point values in xmm1 with writemask k1.
   EVEX.512.0F.W1 5B /r VCVTQQ2PS ymm1 {k1}{z}, zmm2/m512/m64bcst{er}   A       V/V                      AVX512DQ             Convert eight packed quadword integers from zmm2/mem to eight packed single-precision floating-point values in ymm1 with writemask k1.
-
 
 Instruction Operand Encoding ¶
 

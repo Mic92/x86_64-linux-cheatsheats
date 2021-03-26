@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+LEA — Load Effective Address
 
-
-LEA — LOAD EFFECTIVE ADDRESS
-
-
-  Opcode            Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ----------------- ------------- ------- ------------- ----------------- ----------------------------------------------------
-  8D /_r_           LEA _r16,m_   RM      Valid         Valid             Store effective address for _m_ in register _r16._
-  8D /_r_           LEA _r32,m_   RM      Valid         Valid             Store effective address for _m_ in register _r32._
-  REX.W + 8D /_r_   LEA _r64,m_   RM      Valid         N.E.              Store effective address for _m_ in register _r64._
-
+  Opcode          Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------- ------------- ------- ------------- ----------------- ------------------------------------------------
+  8D /r           LEA r16,m     RM      Valid         Valid             Store effective address for m in register r16.
+  8D /r           LEA r32,m     RM      Valid         Valid             Store effective address for m in register r32.
+  REX.W + 8D /r   LEA r64,m     RM      Valid         N.E.              Store effective address for m in register r64.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -64,7 +59,6 @@ encodable. See Table 3-55.
 Table 3-55. 64-bit Mode LEA Operation with Address and Operand Size
 Attributes
 
-
 Operation ¶
 
     IF OperandSize = 16 and AddressSize = 16
@@ -100,35 +94,28 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If source operand is not a memory location.
-
-If the LOCK prefix is used.
-
+  ----- ---------------------------------------------
+  #UD   If source operand is not a memory location.
+        If the LOCK prefix is used.
+  ----- ---------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

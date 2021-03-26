@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+PTEST — Logical Compare
 
-
-PTEST — LOGICAL COMPARE
-
-
-  Opcode/Instruction                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
-  66 0F 38 17 /r PTEST _xmm1, xmm2/m128_               RM      V/V                      SSE4_1               Set ZF if _xmm2/m128_ AND _xmm1_ result is all 0s. Set CF if _xmm2/m128_ AND NOT _xmm1_ result is all 0s.
-  VEX.128.66.0F38.WIG 17 /r VPTEST _xmm1, xmm2/m128_   RM      V/V                      AVX                  Set ZF and CF depending on bitwise AND and ANDN of sources.
-  VEX.256.66.0F38.WIG 17 /r VPTEST _ymm1, ymm2/m256_   RM      V/V                      AVX                  Set ZF and CF depending on bitwise AND and ANDN of sources.
-
+  Opcode/Instruction                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------
+  66 0F 38 17 /r PTEST xmm1, xmm2/m128               RM      V/V                      SSE4_1               Set ZF if xmm2/m128 AND xmm1 result is all 0s. Set CF if xmm2/m128 AND NOT xmm1 result is all 0s.
+  VEX.128.66.0F38.WIG 17 /r VPTEST xmm1, xmm2/m128   RM      V/V                      AVX                  Set ZF and CF depending on bitwise AND and ANDN of sources.
+  VEX.256.66.0F38.WIG 17 /r VPTEST ymm1, ymm2/m256   RM      V/V                      AVX                  Set ZF and CF depending on bitwise AND and ANDN of sources.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -29,7 +24,7 @@ source operand (second operand). VPTEST sets the CF flag if all bits in
 the result are 0 of the bitwise AND of the second source operand (second
 operand) and the logical NOT of the destination operand.
 
-The first source register is specified by the ModR/M _reg_ field.
+The first source register is specified by the ModR/M reg field.
 
 128-bit versions: The first source register is an XMM register. The
 second source register can be an XMM register or a 128-bit memory
@@ -41,7 +36,6 @@ location. The destination register is not modified.
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -65,7 +59,6 @@ VPTEST (VEX.256 encoded version) ¶
     DEST (unmodified)
     AF←OF←PF←SF←0;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PTEST int _mm_testz_si128 (__m128i s1, __m128i s2);
@@ -86,17 +79,14 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     int _mm_testnzc_si128 (__m128i s1, __m128i s2);
 
-
 Flags Affected ¶
 
 The 0F, AF, PF, SF flags are cleared and the ZF, CF flags are set
 according to the operation.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

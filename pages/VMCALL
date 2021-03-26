@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VMCALL — CALL TO VM MONITOR
-
+VMCALL — Call to VM Monitor
 
   Opcode/Instruction   Op/En   Description
-  -------------------- ------- ------------------------------------------
-  0F 01 C1 VMCALL      ZO      Call to VM monitor by causing VM exit_._
-
+  -------------------- ------- ----------------------------------------
+  0F 01 C1 VMCALL      ZO      Call to VM monitor by causing VM exit.
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -30,7 +25,6 @@ Use of this instruction in VMX root operation invokes an SMM monitor
 (see Section 34.15.2). This invocation will activate the dual-monitor
 treatment of system-management interrupts (SMIs) and system-management
 mode (SMM) if it is not already active (see Section 34.15.6).
-
 
 Operation ¶
 
@@ -71,11 +65,9 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 See the operation section and Section 30.2.
-
 
 Protected Mode Exceptions ¶
 
@@ -84,13 +76,11 @@ Protected Mode Exceptions ¶
   #UD      If executed outside VMX operation.
   -------- ---------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- ------------------------------------
   #UD   If executed outside VMX operation.
   ----- ------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -98,13 +88,11 @@ Virtual-8086 Mode Exceptions ¶
   #UD   If executed outside VMX non-root operation.
   ----- ---------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- ---------------------------------------------
   #UD   If executed outside VMX non-root operation.
   ----- ---------------------------------------------
-
 
 64-Bit Mode Exceptions ¶
 

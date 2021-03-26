@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRSQRT14SS — COMPUTE APPROXIMATE RECIPROCAL OF SQUARE ROOT OF SCALAR FLOAT32 VALUE
-
+VRSQRT14SS — Compute Approximate Reciprocal of Square Root of Scalar Float32 Value
 
   Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W0 4F /r VRSQRT14SS xmm1 {k1}{z}, xmm2, xmm3/m32   A       V/V                      AVX512F              Computes the approximate reciprocal square root of the scalar single-precision floating-point value in xmm3/m32 and stores the result in the low doubleword element of xmm1 using writemask k1. Bits[127:32] of xmm2 is copied to xmm1[127:32].
-
 
 Instruction Operand Encoding ¶
 

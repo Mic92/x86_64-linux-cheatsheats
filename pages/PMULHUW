@@ -1,28 +1,24 @@
 -   Index
 -   May 2019
 
-
-
-PMULHUW — MULTIPLY PACKED UNSIGNED INTEGERS AND STORE HIGH RESULT
-
+PMULHUW — Multiply Packed Unsigned Integers and Store High Result
 
   Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F E4 /_r_¹ PMULHUW _mm1_, _mm2/m64_                           A       V/V                      SSE                  Multiply the packed unsigned word integers in _mm1_ register and _mm2/m64_, and store the high 16 bits of the results in _mm1_.
-  66 0F E4 /_r_ PMULHUW _xmm1_, _xmm2/m128_                         A       V/V                      SSE2                 Multiply the packed unsigned word integers in _xmm1_ and _xmm2/m128_, and store the high 16 bits of the results in _xmm1_.
-  VEX.128.66.0F.WIG E4 /r VPMULHUW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply the packed unsigned word integers in _xmm2_ and _xmm3/m128_, and store the high 16 bits of the results in _xmm1_.
-  VEX.256.66.0F.WIG E4 /r VPMULHUW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply the packed unsigned word integers in _ymm2_ and _ymm3/m256_, and store the high 16 bits of the results in _ymm1_.
+  NP 0F E4 /r¹ PMULHUW mm1, mm2/m64                                 A       V/V                      SSE                  Multiply the packed unsigned word integers in mm1 register and mm2/m64, and store the high 16 bits of the results in mm1.
+  66 0F E4 /r PMULHUW xmm1, xmm2/m128                               A       V/V                      SSE2                 Multiply the packed unsigned word integers in xmm1 and xmm2/m128, and store the high 16 bits of the results in xmm1.
+  VEX.128.66.0F.WIG E4 /r VPMULHUW xmm1, xmm2, xmm3/m128            B       V/V                      AVX                  Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1.
+  VEX.256.66.0F.WIG E4 /r VPMULHUW ymm1, ymm2, ymm3/m256            B       V/V                      AVX2                 Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1.
   EVEX.128.66.0F.WIG E4 /r VPMULHUW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.
   EVEX.256.66.0F.WIG E4 /r VPMULHUW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.
   EVEX.512.66.0F.WIG E4 /r VPMULHUW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply the packed unsigned word integers in zmm2 and zmm3/m512, and store the high 16 bits of the results in zmm1 under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
-
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   C       Full Mem     ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -69,12 +64,10 @@ register. The second source operand can be a ZMM/YMM/XMM register, a
 512/256/128-bit memory location. The destination operand is a
 ZMM/YMM/XMM register conditionally updated with writemask k1.
 
-SRC X3 X2 X1 X0 DEST Y3 Y2 Y1 Y0 Z3 = X3 ∗ Y3 Z2 = X2 ∗ Y2 Z1 = X1 ∗ Y1
-Z0 = X0 ∗ Y0 TEMP DEST Z3[31:16] Z2[31:16] Z1[31:16] Z0[31:16]
+[]
 
 Figure 4-12. PMULHUW and PMULHW Instruction Operation Using 64-bit
 Operands
-
 
 Operation ¶
 
@@ -208,7 +201,6 @@ PMULHUW (EVEX encoded versions) ¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMULHUW __m512i _mm512_mulhi_epu16(__m512i a, __m512i b);
@@ -231,16 +223,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPMULHUW:__m256i _mm256_mulhi_epu16 ( __m256i a, __m256i b)
 
-
 Flags Affected ¶
 
 None.
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

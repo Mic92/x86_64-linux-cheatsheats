@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+PHMINPOSUW — Packed Horizontal Word Minimum
 
-
-PHMINPOSUW — PACKED HORIZONTAL WORD MINIMUM
-
-
-  Opcode/Instruction                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 41 /r PHMINPOSUW _xmm1, xmm2/m128_               RM      V/V                      SSE4_1               Find the minimum unsigned word in _xmm2/m128_ and place its value in the low word of _xmm1_ and its index in the second-lowest word of _xmm1_.
-  VEX.128.66.0F38.WIG 41 /r VPHMINPOSUW _xmm1, xmm2/m128_   RM      V/V                      AVX                  Find the minimum unsigned word in _xmm2/m128_ and place its value in the low word of xmm1 and its index in the second-lowest word of _xmm1_.
-
+  Opcode/Instruction                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 41 /r PHMINPOSUW xmm1, xmm2/m128               RM      V/V                      SSE4_1               Find the minimum unsigned word in xmm2/m128 and place its value in the low word of xmm1 and its index in the second-lowest word of xmm1.
+  VEX.128.66.0F38.WIG 41 /r VPHMINPOSUW xmm1, xmm2/m128   RM      V/V                      AVX                  Find the minimum unsigned word in xmm2/m128 and place its value in the low word of xmm1 and its index in the second-lowest word of xmm1.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -34,7 +29,6 @@ destination register remain unchanged.
 VEX.128 encoded version: Bits (MAXVL-1:128) of the destination XMM
 register are zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must
 be 0, otherwise the instruction will #UD.
-
 
 Operation ¶
 
@@ -66,31 +60,26 @@ VPHMINPOSUW (VEX.128 encoded version) ¶
     DEST[127:19] ← 0000000000000000000000000000H
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PHMINPOSUW: __m128i _mm_minpos_epu16( __m128i packed_words);
-
 
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 
 See Exceptions Type 4; additionally
 
-#UD
-
-If VEX.L = 1.
-
-If VEX.vvvv ≠ 1111B.
+  ----- ----------------------
+  #UD   If VEX.L = 1.
+        If VEX.vvvv ≠ 1111B.
+  ----- ----------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

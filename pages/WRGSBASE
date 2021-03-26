@@ -1,61 +1,14 @@
 -   Index
 -   May 2019
 
+WRFSBASE/WRGSBASE — Write FS/GS Segment Base
 
-
-WRFSBASE/WRGSBASE — WRITE FS/GS SEGMENT BASE
-
-
-Opcode/Instruction
-
-Op/En
-
-64/32-bit Mode
-
-CPUID Feature Flag
-
-Description
-
-F3 0F AE /2 WRFSBASE _r32_
-
-M
-
-V/I
-
-FSGSBASE
-
-Load the FS base address with the 32-bit value in the source register.
-
-F3 REX.W 0F AE /2 WRFSBASE _r64_
-
-M
-
-V/I
-
-FSGSBASE
-
-Load the FS base address with the 64-bit value in the source register.
-
-F3 0F AE /3 WRGSBASE _r32_
-
-M
-
-V/I
-
-FSGSBASE
-
-Load the GS base address with the 32-bit value in the source register.
-
-F3 REX.W 0F AE /3 WRGSBASE _r64_
-
-M
-
-V/I
-
-FSGSBASE
-
-Load the GS base address with the 64-bit value in the source register.
-
+  Opcode/Instruction                  Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  -------------------------------- -- ------- ---------------- -------------------- ------------------------------------------------------------------------
+  F3 0F AE /2 WRFSBASE r32            M       V/I              FSGSBASE             Load the FS base address with the 32-bit value in the source register.
+  F3 REX.W 0F AE /2 WRFSBASE r64      M       V/I              FSGSBASE             Load the FS base address with the 64-bit value in the source register.
+  F3 0F AE /3 WRGSBASE r32            M       V/I              FSGSBASE             Load the GS base address with the 32-bit value in the source register.
+  F3 REX.W 0F AE /3 WRGSBASE r64      M       V/I              FSGSBASE             Load the GS base address with the 64-bit value in the source register.
 
 Instruction Operand Encoding ¶
 
@@ -63,7 +16,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (r)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -78,16 +30,13 @@ the source register are ignored and upper 32 bits of the base address
 
 This instruction is supported only in 64-bit mode.
 
-
 Operation ¶
 
     FS/GS segment base address ← SRC;
 
-
 Flags Affected ¶
 
 None
-
 
 C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -99,13 +48,11 @@ C/C++ Compiler Intrinsic Equivalent ¶
 
     WRGSBASE: _writegsbase_u64( unsigned __int64 );
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------------------
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in protected mode.
   ----- ------------------------------------------------------------------------------
-
 
 Real-Address Mode Exceptions ¶
 
@@ -113,13 +60,11 @@ Real-Address Mode Exceptions ¶
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in real-address mode.
   ----- ---------------------------------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in virtual-8086 mode.
   ----- ---------------------------------------------------------------------------------
-
 
 Compatibility Mode Exceptions ¶
 
@@ -127,20 +72,14 @@ Compatibility Mode Exceptions ¶
   #UD   The WRFSBASE and WRGSBASE instructions are not recognized in compatibility mode.
   ----- ----------------------------------------------------------------------------------
 
-
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CR4.FSGSBASE[bit 16] = 0.
-
-If CPUID.07H.0H:EBX.FSGSBASE[bit 0] = 0
-
-#GP(0)
-
-If the source register contains a non-canonical address.
+  -------- ----------------------------------------------------------
+  #UD      If the LOCK prefix is used.
+           If CR4.FSGSBASE[bit 16] = 0.
+           If CPUID.07H.0H:EBX.FSGSBASE[bit 0] = 0
+  #GP(0)   If the source register contains a non-canonical address.
+  -------- ----------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

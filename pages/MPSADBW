@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+MPSADBW — Compute Multiple Packed Sums of Absolute Difference
 
-
-MPSADBW — COMPUTE MULTIPLE PACKED SUMS OF ABSOLUTE DIFFERENCE
-
-
-  Opcode/Instruction                                                    Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  --------------------------------------------------------------------- ------- ---------------- -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 42 /r ib MPSADBW _xmm1, xmm2/m128, imm8_                     RMI     V/V              SSE4_1               Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm1_ and _xmm2/m128_ and writes the results in _xmm1_. Starting offsets within _xmm1_ and _xmm2/m128_ are determined by _imm8_.
-  VEX.128.66.0F3A.WIG 42 /r ib VMPSADBW _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V              AVX                  Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm2_ and _xmm3/m128_ and writes the results in _xmm1_. Starting offsets within _xmm2_ and _xmm3/m128_ are determined by _imm8_.
-  VEX.256.66.0F3A.WIG 42 /r ib VMPSADBW _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V              AVX2                 Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in _xmm2_ and _ymm3/m128_ and writes the results in _ymm1_. Starting offsets within _ymm2_ and _xmm3/m128_ are determined by _imm8_.
-
+  Opcode/Instruction                                                  Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  ------------------------------------------------------------------- ------- ---------------- -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 42 /r ib MPSADBW xmm1, xmm2/m128, imm8                     RMI     V/V              SSE4_1               Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in xmm1 and xmm2/m128 and writes the results in xmm1. Starting offsets within xmm1 and xmm2/m128 are determined by imm8.
+  VEX.128.66.0F3A.WIG 42 /r ib VMPSADBW xmm1, xmm2, xmm3/m128, imm8   RVMI    V/V              AVX                  Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in xmm2 and xmm3/m128 and writes the results in xmm1. Starting offsets within xmm2 and xmm3/m128 are determined by imm8.
+  VEX.256.66.0F3A.WIG 42 /r ib VMPSADBW ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V              AVX2                 Sums absolute 8-bit integer difference of adjacent groups of 4 byte integers in xmm2 and ymm3/m128 and writes the results in ymm1. Starting offsets within ymm2 and xmm3/m128 are determined by imm8.
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RMI     ModRM:reg (r, w)   ModRM:r/m (r)   imm8            NA
   RVMI    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -76,12 +71,9 @@ operand is a YMM register. Bits 7:6 of the immediate byte are ignored.
 Note: If VMPSADBW is encoded with VEX.L= 1, an attempt to execute the
 instruction encoded with VEX.L= 1 will cause an #UD exception.
 
-Imm[4:3]*32+128 128 255 224 192 Src2 Abs. Diff. Imm[5]*32+128 Src1 Sum
-14 41 2 28 55 Destination Imm[1:0]*32 0 127 96 64 Src2 Abs. Diff.
-Imm[2]*32 Src1 Sum 16 0 1 Destination
+[]
 
 Figure 4-5. 256-bit VMPSADBW Operation
-
 
 Operation ¶
 
@@ -324,18 +316,15 @@ MPSADBW (128-bit Legacy SSE version) ¶
     DEST[127:112]←TEMP0 + TEMP1 + TEMP2 + TEMP3
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)MPSADBW: __m128i _mm_mpsadbw_epu8 (__m128i s1, __m128i s2, const int mask);
 
     VMPSADBW: __m256i _mm256_mpsadbw_epu8 (__m256i s1, __m256i s2, const int mask);
 
-
 Flags Affected ¶
 
 None
-
 
 Other Exceptions ¶
 

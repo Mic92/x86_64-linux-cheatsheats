@@ -1,39 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-EACCEPTCOPY — INITIALIZE A PENDING PAGE
-
+EACCEPTCOPY — Initialize a Pending Page
 
   Opcode/Instruction             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------ ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------
   EAX = 07H ENCLU[EACCEPTCOPY]   IR      V/V                      SGX2                 This leaf function initializes a dynamically allocated EPC page from another page in the EPC.
 
-
 Instruction Operand Encoding ¶
 
-Op/En
-
-EAX
-
-RBX
-
-RCX
-
-RDX
-
-IR
-
-EACCEPTCOPY (In)
-
-Return Error Code (Out)
-
-Address of a SECINFO (In)
-
-Address of the destination EPC page (In)
-
-Address of the source EPC page (In)
+  ------- ------------------ ------------------------- --------------------------- ------------------------------------------ -------------------------------------
+  Op/En   EAX                                          RBX                         RCX                                        RDX
+  IR      EACCEPTCOPY (In)   Return Error Code (Out)   Address of a SECINFO (In)   Address of the destination EPC page (In)   Address of the source EPC page (In)
+  ------- ------------------ ------------------------- --------------------------- ------------------------------------------ -------------------------------------
 
 Description ¶
 
@@ -48,7 +27,6 @@ RDX each contain the effective address of an EPC page. The table below
 provides additional information on the memory parameter of the
 EACCEPTCOPY leaf function.
 
-
 EACCEPTCOPY Memory Parameter Semantics ¶
 
   -------------------------------------- ---------------------------------------- ----------------------------------
@@ -57,7 +35,6 @@ EACCEPTCOPY Memory Parameter Semantics ¶
   -------------------------------------- ---------------------------------------- ----------------------------------
 
 The instruction faults if any of the following:
-
 
 EACCEPTCOPY Faulting Conditions ¶
 
@@ -79,90 +56,26 @@ Table 40-57. EACCEPTCOPY Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EACCEPTCOPY
-
-Target [DS:RCX]
-
-Concurrent
-
-Source [DS:RDX]
-
-Concurrent
-
-SECINFO [DS:RBX]
-
-Concurrent
+  Leaf          Parameter          Base Concurrency Restrictions           
+  ------------- ------------------ ------------------------------------ -- --
+  Access        On Conflict        SGX_CONFLICT VM Exit Qualification      
+  EACCEPTCOPY   Target [DS:RCX]    Concurrent                              
+                Source [DS:RDX]    Concurrent                              
+                SECINFO [DS:RBX]   Concurrent                              
 
 Table 40-58. Base Concurrency Restrictions of EACCEPTCOPY
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EACCEPTCOPY
-
-Target [DS:RCX]
-
-Exclusive
-
-#GP
-
-Concurrent
-
-Concurrent
-
-Source [DS:RDX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-SECINFO [DS:RBX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter          Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ------------------ ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                      vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict        Access                                On Conflict   Access                On Conflict                
+  EACCEPTCOPY                                       Target [DS:RCX]    Exclusive                             #GP           Concurrent                          Concurrent   
+                                                    Source [DS:RDX]    Concurrent                                          Concurrent                          Concurrent   
+                                                    SECINFO [DS:RBX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-59. Additional Concurrency Restrictions of EACCEPTCOPY
 
 Operation ¶
-
 
 Temp Variables in EACCEPTCOPY Operational Flow ¶
 
@@ -307,43 +220,27 @@ OF, SF
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is locked.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
-
-If EPC page has incorrect page type or security attributes.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If a memory operand is locked.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+              If EPC page has incorrect page type or security attributes.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is locked.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
-
-If EPC page has incorrect page type or security attributes.
+  ----------- -------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If a memory operand is locked.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+              If EPC page has incorrect page type or security attributes.
+  ----------- -------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

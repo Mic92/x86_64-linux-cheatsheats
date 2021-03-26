@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+RSQRTPS — Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values
 
-
-RSQRTPS — COMPUTE RECIPROCALS OF SQUARE ROOTS OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
-
-  Opcode*/Instruction                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 52 /_r_ RSQRTPS _xmm1_, _xmm2/m128_         RM      V/V                      SSE                  Computes the approximate reciprocals of the square roots of the packed single-precision floating-point values in _xmm2/m128_ and stores the results in _xmm1_.
-  VEX.128.0F.WIG 52 /r VRSQRTPS _xmm1, xmm2/m128_   RM      V/V                      AVX                  Computes the approximate reciprocals of the square roots of packed single-precision values in _xmm2/mem_ and stores the results in _xmm1_.
-  VEX.256.0F.WIG 52 /r VRSQRTPS _ymm1, ymm2/m256_   RM      V/V                      AVX                  Computes the approximate reciprocals of the square roots of packed single-precision values in _ymm2/mem_ and stores the results in _ymm1_.
-
+  Opcode*/Instruction                             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 52 /r RSQRTPS xmm1, xmm2/m128             RM      V/V                      SSE                  Computes the approximate reciprocals of the square roots of the packed single-precision floating-point values in xmm2/m128 and stores the results in xmm1.
+  VEX.128.0F.WIG 52 /r VRSQRTPS xmm1, xmm2/m128   RM      V/V                      AVX                  Computes the approximate reciprocals of the square roots of packed single-precision values in xmm2/mem and stores the results in xmm1.
+  VEX.256.0F.WIG 52 /r VRSQRTPS ymm1, ymm2/m256   RM      V/V                      AVX                  Computes the approximate reciprocals of the square roots of packed single-precision values in ymm2/mem and stores the results in ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-
 Description ¶
 
 Performs a SIMD computation of the approximate reciprocals of the square
@@ -28,9 +23,9 @@ roots of the four packed single-precision floating-point values in the
 source operand (second operand) and stores the packed single-precision
 floating-point results in the destination operand. The source operand
 can be an XMM register or a 128-bit memory location. The destination
-operand is an XMM register. See Figure 10-5 in the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 1_, for an
-illustration of a SIMD single-precision floating-point operation.
+operand is an XMM register. See Figure 10-5 in the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 1, for an illustration
+of a SIMD single-precision floating-point operation.
 
 The relative error for this approximation is:
 
@@ -64,7 +59,6 @@ location. The destination operand is a YMM register.
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
 
-
 Operation ¶
 
 RSQRTPS (128-bit Legacy SSE version) ¶
@@ -94,18 +88,15 @@ VRSQRTPS (VEX.256 encoded version) ¶
     DEST[223:192] ← APPROXIMATE(1/SQRT(SRC2[223:192]))
     DEST[255:224] ← APPROXIMATE(1/SQRT(SRC2[255:224]))
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RSQRTPS: __m128 _mm_rsqrt_ps(__m128 a)
 
     RSQRTPS: __m256 _mm256_rsqrt_ps (__m256 a);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

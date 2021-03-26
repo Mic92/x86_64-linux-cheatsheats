@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VZEROALL — ZERO ALL YMM REGISTERS
-
+VZEROALL — Zero All YMM Registers
 
   Opcode/Instruction           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------- ------- ------------------------ -------------------- -------------------------
   VEX.256.0F.WIG 77 VZEROALL   ZO      V/V                      AVX                  Zero all YMM registers.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
 
-
 Description ¶
 
 The instruction zeros contents of all XMM or YMM registers.
@@ -26,7 +21,6 @@ The instruction zeros contents of all XMM or YMM registers.
 Note: VEX.vvvv is reserved and must be 1111b, otherwise instructions
 will #UD. In Compatibility and legacy 32-bit mode only the lower 8
 registers are modified.
-
 
 Operation ¶
 
@@ -44,16 +38,13 @@ VZEROALL (VEX.256 encoded version) ¶
     FOR i in 0 .. limit:
         simd_reg_file[i][MAXVL-1:0] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VZEROALL: _mm256_zeroall()
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

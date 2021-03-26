@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VSCALEFSD — SCALE SCALAR FLOAT64 VALUES WITH FLOAT64 VALUES
-
+VSCALEFSD — Scale Scalar Float64 Values With Float64 Values
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W1 2D /r VSCALEFSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   A       V/V                      AVX512F              Scale the scalar double-precision floating-point values in xmm2 using the value from xmm3/m64. Under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

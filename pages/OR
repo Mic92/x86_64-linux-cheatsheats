@@ -1,39 +1,35 @@
 -   Index
 -   May 2019
 
+OR — Logical Inclusive OR
 
-
-OR — LOGICAL INCLUSIVE OR
-
-
-  Opcode               Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------- ------------------- ------- ------------- ----------------- -------------------------------------
-  0C _ib_              OR AL, i_mm8_       I       Valid         Valid             AL OR _imm8._
-  0D _iw_              OR AX, i_mm16_      I       Valid         Valid             AX OR _imm16._
-  0D _id_              OR EAX, i_mm32_     I       Valid         Valid             EAX OR _imm32._
-  REX.W + 0D _id_      OR RAX, i_mm32_     I       Valid         N.E.              RAX OR _imm32 (sign-extended)._
-  80 /1 _ib_           OR _r/m8, imm8_     MI      Valid         Valid             _r/m8_ OR _imm8._
-  REX + 80 /1 _ib_     OR _r/m8*, imm8_    MI      Valid         N.E.              _r/m8_ OR _imm8._
-  81 /1 _iw_           OR _r/m16, imm16_   MI      Valid         Valid             _r/m16_ OR _imm16._
-  81 /1 _id_           OR _r/m32, imm32_   MI      Valid         Valid             _r/m32_ OR _imm32._
-  REX.W + 81 /1 _id_   OR _r/m64, imm32_   MI      Valid         N.E.              _r/m64_ OR _imm32 (sign-extended)._
-  83 /1 _ib_           OR _r/m16, imm8_    MI      Valid         Valid             _r/m16_ OR _imm8 (sign-extended)._
-  83 /1 _ib_           OR _r/m32, imm8_    MI      Valid         Valid             _r/m32_ OR _imm8 (sign-extended)._
-  REX.W + 83 /1 _ib_   OR _r/m64, imm8_    MI      Valid         N.E.              _r/m64_ OR _imm8 (sign-extended)._
-  08 /_r_              OR _r/m8, r8_       MR      Valid         Valid             _r/m8_ OR _r8._
-  REX + 08 /_r_        OR _r/m8*, r8*_     MR      Valid         N.E.              _r/m8_ OR _r8._
-  09 /_r_              OR _r/m16, r16_     MR      Valid         Valid             _r/m16_ OR _r16._
-  09 /_r_              OR _r/m32, r32_     MR      Valid         Valid             _r/m32_ OR _r32._
-  REX.W + 09 /_r_      OR _r/m64, r64_     MR      Valid         N.E.              _r/m64_ OR _r64._
-  0A /_r_              OR _r8, r/m8_       RM      Valid         Valid             _r8_ OR _r/m8._
-  REX + 0A /_r_        OR _r8*, r/m8*_     RM      Valid         N.E.              _r8_ OR _r/m8._
-  0B /_r_              OR _r16, r/m16_     RM      Valid         Valid             _r16_ OR _r/m16._
-  0B /_r_              OR _r32, r/m32_     RM      Valid         Valid             _r32_ OR _r/m32._
-  REX.W + 0B /_r_      OR _r64, r/m64_     RM      Valid         N.E.              _r64_ OR _r/m64._
+  Opcode             Instruction       Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------ ----------------- ------- ------------- ----------------- ---------------------------------
+  0C ib              OR AL, imm8       I       Valid         Valid             AL OR imm8.
+  0D iw              OR AX, imm16      I       Valid         Valid             AX OR imm16.
+  0D id              OR EAX, imm32     I       Valid         Valid             EAX OR imm32.
+  REX.W + 0D id      OR RAX, imm32     I       Valid         N.E.              RAX OR imm32 (sign-extended).
+  80 /1 ib           OR r/m8, imm8     MI      Valid         Valid             r/m8 OR imm8.
+  REX + 80 /1 ib     OR r/m8*, imm8    MI      Valid         N.E.              r/m8 OR imm8.
+  81 /1 iw           OR r/m16, imm16   MI      Valid         Valid             r/m16 OR imm16.
+  81 /1 id           OR r/m32, imm32   MI      Valid         Valid             r/m32 OR imm32.
+  REX.W + 81 /1 id   OR r/m64, imm32   MI      Valid         N.E.              r/m64 OR imm32 (sign-extended).
+  83 /1 ib           OR r/m16, imm8    MI      Valid         Valid             r/m16 OR imm8 (sign-extended).
+  83 /1 ib           OR r/m32, imm8    MI      Valid         Valid             r/m32 OR imm8 (sign-extended).
+  REX.W + 83 /1 ib   OR r/m64, imm8    MI      Valid         N.E.              r/m64 OR imm8 (sign-extended).
+  08 /r              OR r/m8, r8       MR      Valid         Valid             r/m8 OR r8.
+  REX + 08 /r        OR r/m8*, r8*     MR      Valid         N.E.              r/m8 OR r8.
+  09 /r              OR r/m16, r16     MR      Valid         Valid             r/m16 OR r16.
+  09 /r              OR r/m32, r32     MR      Valid         Valid             r/m32 OR r32.
+  REX.W + 09 /r      OR r/m64, r64     MR      Valid         N.E.              r/m64 OR r64.
+  0A /r              OR r8, r/m8       RM      Valid         Valid             r8 OR r/m8.
+  REX + 0A /r        OR r8*, r/m8*     RM      Valid         N.E.              r8 OR r/m8.
+  0B /r              OR r16, r/m16     RM      Valid         Valid             r16 OR r/m16.
+  0B /r              OR r32, r/m32     RM      Valid         Valid             r32 OR r/m32.
+  REX.W + 0B /r      OR r64, r/m64     RM      Valid         N.E.              r64 OR r/m64.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -44,7 +40,6 @@ Instruction Operand Encoding ¶
   MR      ModRM:r/m (r, w)   ModRM:reg (r)   NA          NA
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -66,46 +61,26 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
-
 Operation ¶
 
     DEST ← DEST OR SRC;
-
 
 Flags Affected ¶
 
 The OF and CF flags are cleared; the SF, ZF, and PF flags are set
 according to the result. The state of the AF flag is undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination operand points to a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination operand points to a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -114,7 +89,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -126,11 +100,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same as for protected mode exceptions.
-
 
 64-Bit Mode Exceptions ¶
 

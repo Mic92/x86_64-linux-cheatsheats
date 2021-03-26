@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+BOUND — Check Array Index Against Bounds
 
-
-BOUND — CHECK ARRAY INDEX AGAINST BOUNDS
-
-
-  Opcode   Instruction           Op/En   64-bit Mode   Compat/Leg Mode   Description
-  -------- --------------------- ------- ------------- ----------------- ----------------------------------------------------------------------
-  62 /r    BOUND _r16, m16&16_   RM      Invalid       Valid             Check if _r16_ (array index) is within bounds specified by _m16&16._
-  62 /r    BOUND _r32, m32&32_   RM      Invalid       Valid             Check if _r32_ (array index) is within bounds specified by _m32&32._
-
+  Opcode   Instruction         Op/En   64-bit Mode   Compat/Leg Mode   Description
+  -------- ------------------- ------- ------------- ----------------- ------------------------------------------------------------------
+  62 /r    BOUND r16, m16&16   RM      Invalid       Valid             Check if r16 (array index) is within bounds specified by m16&16.
+  62 /r    BOUND r32, m32&32   RM      Invalid       Valid             Check if r32 (array index) is within bounds specified by m32&32.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -46,7 +41,6 @@ obtain the effective address of the array bounds.
 This instruction executes as described in compatibility mode and legacy
 mode. It is not valid in 64-bit mode.
 
-
 Operation ¶
 
     IF 64bit Mode
@@ -60,102 +54,48 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 None.
 
-
 Protected Mode Exceptions ¶
 
-#BR
-
-If the bounds test fails.
-
-#UD
-
-If second operand is not a memory location.
-
-If the LOCK prefix is used.
-
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #BR               If the bounds test fails.
+  #UD               If second operand is not a memory location.
+                    If the LOCK prefix is used.
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#BR
-
-If the bounds test fails.
-
-#UD
-
-If second operand is not a memory location.
-
-If the LOCK prefix is used.
-
-#GP
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS
-
-If a memory operand effective address is outside the SS segment limit.
-
+  ----- -------------------------------------------------------------------------------------------
+  #BR   If the bounds test fails.
+  #UD   If second operand is not a memory location.
+        If the LOCK prefix is used.
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  ----- -------------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#BR
-
-If the bounds test fails.
-
-#UD
-
-If second operand is not a memory location.
-
-If the LOCK prefix is used.
-
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made.
-
+  ----------------- -------------------------------------------------------------------------------------------
+  #BR               If the bounds test fails.
+  #UD               If second operand is not a memory location.
+                    If the LOCK prefix is used.
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  ----------------- -------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

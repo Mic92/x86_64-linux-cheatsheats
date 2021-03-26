@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VRANGEPD — RANGE RESTRICTION CALCULATION FOR PACKED PAIRS OF FLOAT64 VALUES
-
+VRANGEPD — Range Restriction Calculation For Packed Pairs of Float64 Values
 
   Opcode/Instruction                                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W1 50 /r ib VRANGEPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Calculate two RANGE operation output value from 2 pairs of double-precision floating-point values in xmm2 and xmm3/m128/m32bcst, store the results to xmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
   EVEX.256.66.0F3A.W1 50 /r ib VRANGEPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Calculate four RANGE operation output value from 4pairs of double-precision floating-point values in ymm2 and ymm3/m256/m32bcst, store the results to ymm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
   EVEX.512.66.0F3A.W1 50 /r ib VRANGEPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8   A       V/V                      AVX512DQ             Calculate eight RANGE operation output value from 8 pairs of double-precision floating-point values in zmm2 and zmm3/m512/m32bcst, store the results to zmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.
-
 
 Instruction Operand Encoding ¶
 
@@ -43,11 +39,7 @@ within imm8[3:0]:
 
 The encodings of Imm8[1:0] and Imm8[3:2] are shown in Figure 5-27.
 
-0 imm8 Must Be Zero Sign Control (SC) Compare Operation Select Imm8[1:0]
-= 00b : Select Min value Imm8[3:2] = 00b : Select sign(SRC1) Imm8[1:0] =
-01b : Select Max value Imm8[3:2] = 01b : Select sign(Compare_Result)
-Imm8[1:0] = 10b : Select Min-Abs value Imm8[3:2] = 10b : Set sign to 0
-Imm8[1:0] = 11b : Select Max-Abs value Imm8[3:2] = 11b : Set sign to 1
+[]
 
 Figure 5-27. Imm8 Controls for VRANGEPD/SD/PS/SS
 
@@ -82,88 +74,20 @@ Table 5-21.
 Table 5-19. Signaling of Comparison Operation of One or More NaN Input
 Values and Effect of Imm8[3:2]
 
-MIN and MIN_ABS
-
-MAX and MAX_ABS
-
-Src1
-
-Src2
-
-Result
-
-Src1
-
-Src2
-
-Result
-
-+0
-
--0
-
--0
-
-+0
-
--0
-
-+0
-
--0
-
-+0
-
--0
-
--0
-
-+0
-
-+0
+  MIN and MIN_ABS                   MAX and MAX_ABS          
+  ----------------- ------ -------- ----------------- ------ --------
+  Src1              Src2   Result   Src1              Src2   Result
+  +0                -0     -0       +0                -0     +0
+  -0                +0     -0       -0                +0     +0
 
 Table 5-20. Comparison Result for Opposite-Signed Zero Cases for MIN,
 MIN_ABS and MAX, MAX_ABS
 
-MIN_ABS (|a| = |b|, a>0, b<0)
-
-MAX_ABS (|a| = |b|, a>0, b<0)
-
-Src1
-
-Src2
-
-Result
-
-Src1
-
-Src2
-
-Result
-
-a
-
-b
-
-b
-
-a
-
-b
-
-a
-
-b
-
-a
-
-b
-
-b
-
-a
-
-a
+  MIN_ABS (|a| = |b|, a>0, b<0)                   MAX_ABS (|a| = |b|, a>0, b<0)          
+  ------------------------------- ------ -------- ------------------------------- ------ --------
+  Src1                            Src2   Result   Src1                            Src2   Result
+  a                               b      b        a                               b      a
+  b                               a      b        b                               a      a
 
 Table 5-21. Comparison Result of Equal-Magnitude Input Cases for MIN_ABS
 and MAX_ABS, (|a| = |b|, a>0, b<0)

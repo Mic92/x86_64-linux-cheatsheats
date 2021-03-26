@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EDBGRD — READ FROM A DEBUG ENCLAVE
-
+EDBGRD — Read From a Debug Enclave
 
   Opcode/Instruction        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------
   EAX = 04H ENCLS[EDBGRD]   IR      V/V                      SGX1                 This leaf function reads a dword/quadword from a debug enclave.
-
 
 Instruction Operand Encoding ¶
 
@@ -27,7 +23,6 @@ data read cannot be overridden.
 
 The effective address of the source location inside the EPC is provided
 in the register RCX.
-
 
 EDBGRD Memory Parameter Semantics ¶
 
@@ -47,7 +42,6 @@ Table 40-17. EDBGRD Return Value in RAX
 
 The instruction faults if any of the following:
 
-
 EDBGRD Faulting Conditions ¶
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,66 +54,22 @@ result in a #GP.
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EDBGRD
-
-Target [DS:RCX]
-
-Shared
-
-#GP
+  Leaf     Parameter         Base Concurrency Restrictions              
+  -------- ----------------- ------------------------------------ ----- --
+  Access   On Conflict       SGX_CONFLICT VM Exit Qualification         
+  EDBGRD   Target [DS:RCX]   Shared                               #GP   
 
 Table 40-18. Base Concurrency Restrictions of EDBGRD
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EDBGRD
-
-Target [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter         Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ----------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                     vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict       Access                                On Conflict   Access                On Conflict                
+  EDBGRD                                            Target [DS:RCX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-19. Additional Concurrency Restrictions of EDBGRD
 
 Operation ¶
-
 
 Temp Variables in EDBGRD Operational Flow ¶
 
@@ -245,53 +195,30 @@ None
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the address in RCS violates DS limit or access rights.
-
-If DS segment is unusable.
-
-If RCX points to a memory location not 4Byte-aligned.
-
-If the address in RCX points to a page belonging to a non-debug enclave.
-
-If the address in RCX points to a page which is not PT_TCS, PT_REG or
-PT_VA.
-
-If the address in RCX points to a location inside TCS that is beyond
-SGX_TCS_LIMIT.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the address in RCX points to a non-EPC page.
-
-If the address in RCX points to an invalid EPC page.
+  ----------- -------------------------------------------------------------------------------------
+  #GP(0)      If the address in RCS violates DS limit or access rights.
+              If DS segment is unusable.
+              If RCX points to a memory location not 4Byte-aligned.
+              If the address in RCX points to a page belonging to a non-debug enclave.
+              If the address in RCX points to a page which is not PT_TCS, PT_REG or PT_VA.
+              If the address in RCX points to a location inside TCS that is beyond SGX_TCS_LIMIT.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the address in RCX points to a non-EPC page.
+              If the address in RCX points to an invalid EPC page.
+  ----------- -------------------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If RCX is non-canonical form.
-
-If RCX points to a memory location not 8Byte-aligned.
-
-If the address in RCX points to a page belonging to a non-debug enclave.
-
-If the address in RCX points to a page which is not PT_TCS, PT_REG or
-PT_VA.
-
-If the address in RCX points to a location inside TCS that is beyond
-SGX_TCS_LIMIT.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the address in RCX points to a non-EPC page.
-
-If the address in RCX points to an invalid EPC page.
+  ----------- -------------------------------------------------------------------------------------
+  #GP(0)      If RCX is non-canonical form.
+              If RCX points to a memory location not 8Byte-aligned.
+              If the address in RCX points to a page belonging to a non-debug enclave.
+              If the address in RCX points to a page which is not PT_TCS, PT_REG or PT_VA.
+              If the address in RCX points to a location inside TCS that is beyond SGX_TCS_LIMIT.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the address in RCX points to a non-EPC page.
+              If the address in RCX points to an invalid EPC page.
+  ----------- -------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

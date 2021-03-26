@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-SHUFPD — PACKED INTERLEAVE SHUFFLE OF PAIRS OF DOUBLE-PRECISION FLOATING-POINT VALUES
-
+SHUFPD — Packed Interleave Shuffle of Pairs of Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                              Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ SHUFPD — PACKED INTERLEAVE SHUFFLE OF PAIRS OF DOUBLE-PRECISION FLOATING-POINT
   EVEX.128.66.0F.W1 C6 /r ib VSHUFPD xmm1{k1}{z}, xmm2, xmm3/m128/m64bcst, imm8   C         V/V                      AVX512VL AVX512F     Shuffle two paris of double-precision floating-point values from xmm2 and xmm3/m128/m64bcst using imm8 to select from each pair. store interleaved results in xmm1 subject to writemask k1.
   EVEX.256.66.0F.W1 C6 /r ib VSHUFPD ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst, imm8   C         V/V                      AVX512VL AVX512F     Shuffle four paris of double-precision floating-point values from ymm2 and ymm3/m256/m64bcst using imm8 to select from each pair. store interleaved results in ymm1 subject to writemask k1.
   EVEX.512.66.0F.W1 C6 /r ib VSHUFPD zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst, imm8   C         V/V                      AVX512F              Shuffle eight paris of double-precision floating-point values from zmm2 and zmm3/m512/m64bcst using imm8 to select from each pair. store interleaved results in zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -61,7 +57,7 @@ operand is the same and is an XMM register. The upper bits (MAXVL-1:128)
 of the corresponding ZMM register destination are unmodified. The select
 controls are the bit 1:0 of the imm8 byte, imm8[7:2) are ignored.
 
-X3 X2 X1 X0 SRC1 Y2 Y1 Y0 SRC2 DEST Y2 or Y3 X2 or X3 Y0 or Y1 X0 or X1
+[]
 
 Figure 4-25. 256-bit VSHUFPD Operation of Four Pairs of DP FP Values
 

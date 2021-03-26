@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VSCALEFSS — SCALE SCALAR FLOAT32 VALUE WITH FLOAT32 VALUE
-
+VSCALEFSS — Scale Scalar Float32 Value With Float32 Value
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W0 2D /r VSCALEFSS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   A       V/V                      AVX512F              Scale the scalar single-precision floating-point value in xmm2 using floating-point value from xmm3/m32. Under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CVTTSD2SI — CONVERT WITH TRUNCATION SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE TO SIGNED INTEGER
-
+CVTTSD2SI — Convert with Truncation Scalar Double-Precision Floating-Point Value to Signed Integer
 
   Opcode/Instruction                                      Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------- --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +19,6 @@ CVTTSD2SI — CONVERT WITH TRUNCATION SCALAR DOUBLE-PRECISION FLOATING-POINT VAL
   2. For this specific instruction, VEX.W/EVEX.W in non-64 bit is
   ignored; the instructions behaves as if the W0 version is used.
 
-
 Instruction Operand Encoding ¶
 
   ------- -------------- --------------- --------------- ----------- -----------
@@ -30,7 +26,6 @@ Instruction Operand Encoding ¶
   A       NA             ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   B       Tuple1 Fixed   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- -------------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -69,7 +64,6 @@ Software should ensure VCVTTSD2SI is encoded with VEX.L=0. Encoding
 VCVTTSD2SI with VEX.L=1 may encounter unpredictable behavior across
 different processor generations.
 
-
 Operation ¶
 
 (V)CVTTSD2SI (All versions) ¶
@@ -80,7 +74,6 @@ Operation ¶
     ELSE
         DEST[31:0] ← Convert_Double_Precision_Floating_Point_To_Integer_Truncate(SRC[63:0]);
     FI;
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -96,11 +89,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTTSD2SI __int64 _mm_cvttsd_si64( __m128d a);
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
-
 
 Other Exceptions ¶
 

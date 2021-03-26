@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-BNDSTX — STORE EXTENDED BOUNDS USING ADDRESS TRANSLATION
-
+BNDSTX — Store Extended Bounds Using Address Translation
 
   Opcode/Instruction            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 1B /r BNDSTX mib, bnd   MR      V/V                      MPX                  Store the bounds in bnd and the pointer value in the index register of mib to a bound table entry (BTE) with address translation using the base of mib.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1                                       Operand 2       Operand 3
   MR      SIB.base (r): Address of pointer SIB.index(r)   ModRM:reg (r)   NA
   ------- ----------------------------------------------- --------------- -----------
-
 
 Description ¶
 
@@ -50,7 +45,6 @@ is ignored.
 
 The bound register may be partially updated on memory faults. The order
 in which memory operands are loaded is implementation specific.
-
 
 Operation ¶
 
@@ -86,114 +80,65 @@ In 64-bit mode ¶
   1. If CPL < 3, the supervisor MAWA (MAWAS) is used; this value is 0.
   If CPL = 3, the user MAWA (MAWAU) is used; this value is enumerated in
   CPUID.(EAX=07H,ECX=0H):ECX.MAWAU[bits 21:17]. See Section 17.3.1 of
-  _Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume
-  1_.
-
+  Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume
+  1.
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BNDSTX: _bnd_store_ptr_bounds(const void **ptr_addr, const void *ptr_val);
 
-
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#BR
-
-If the bound directory entry is invalid.
-
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
-
-If 67H prefix is not used and CS.D=0.
-
-If 67H prefix is used and CS.D=1.
-
-#GP(0)
-
-If a destination effective address of the Bound Table entry is outside
-the DS segment limit.
-
-If DS register contains a NULL segment selector.
-
-If the destination operand points to a non-writable segment
-
-#PF(fault
-
-code) If a page fault occurs.
-
+  ----------- ----------------------------------------------------------------------------------------------
+  #BR         If the bound directory entry is invalid.
+  #UD         If the LOCK prefix is used.
+              If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
+              If 67H prefix is not used and CS.D=0.
+              If 67H prefix is used and CS.D=1.
+  #GP(0)      If a destination effective address of the Bound Table entry is outside the DS segment limit.
+              If DS register contains a NULL segment selector.
+              If the destination operand points to a non-writable segment
+  #PF(fault   code) If a page fault occurs.
+  ----------- ----------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
-
-If 16-bit addressing is used.
-
-#GP(0)
-
-If a destination effective address of the Bound Table entry is outside
-the DS segment limit.
-
+  -------- ----------------------------------------------------------------------------------------------
+  #UD      If the LOCK prefix is used.
+           If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
+           If 16-bit addressing is used.
+  #GP(0)   If a destination effective address of the Bound Table entry is outside the DS segment limit.
+  -------- ----------------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
-
-If 16-bit addressing is used.
-
-#GP(0)
-
-If a destination effective address of the Bound Table entry is outside
-the DS segment limit.
-
-#PF(fault
-
-code) If a page fault occurs.
-
+  ----------- ----------------------------------------------------------------------------------------------
+  #UD         If the LOCK prefix is used.
+              If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
+              If 16-bit addressing is used.
+  #GP(0)      If a destination effective address of the Bound Table entry is outside the DS segment limit.
+  #PF(fault   code) If a page fault occurs.
+  ----------- ----------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#BR
-
-If the bound directory entry is invalid.
-
-#UD
-
-If ModRM is RIP relative.
-
-If the LOCK prefix is used.
-
-If ModRM.r/m and REX encodes BND4-BND15 when Intel MPX is enabled.
-
-#GP(0)
-
-If the memory address (A_BDE or A_BTE) is in a non-canonical form.
-
-If the destination operand points to a non-writable segment
-
-#PF(fault
-
-code) If a page fault occurs.
+  ----------- --------------------------------------------------------------------
+  #BR         If the bound directory entry is invalid.
+  #UD         If ModRM is RIP relative.
+              If the LOCK prefix is used.
+              If ModRM.r/m and REX encodes BND4-BND15 when Intel MPX is enabled.
+  #GP(0)      If the memory address (A_BDE or A_BTE) is in a non-canonical form.
+              If the destination operand points to a non-writable segment
+  #PF(fault   code) If a page fault occurs.
+  ----------- --------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

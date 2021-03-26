@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CVTTPS2DQ — CONVERT WITH TRUNCATION PACKED SINGLE-PRECISION FLOATING-POINT VALUES TO PACKED SIGNED DOUBLEWORD INTEGER VALUES
-
+CVTTPS2DQ — Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Signed Doubleword Integer Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ CVTTPS2DQ — CONVERT WITH TRUNCATION PACKED SINGLE-PRECISION FLOATING-POINT VAL
   EVEX.256.F3.0F.W0 5B /r VCVTTPS2DQ ymm1 {k1}{z}, ymm2/m256/m32bcst         B       V/V                      AVX512VL AVX512F     Convert eight packed single precision floating-point values from ymm2/m256/m32bcst to eight packed signed doubleword values in ymm1 using truncation subject to writemask k1.
   EVEX.512.F3.0F.W0 5B /r VCVTTPS2DQ zmm1 {k1}{z}, zmm2/m512/m32bcst {sae}   B       V/V                      AVX512F              Convert sixteen packed single-precision floating-point values from zmm2/m512/m32bcst to sixteen packed signed doubleword values in zmm1 using truncation subject to writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   A       NA           ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   B       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -59,7 +54,6 @@ destination are unmodified.
 
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
-
 
 Operation ¶
 
@@ -133,7 +127,6 @@ CVTTPS2DQ (128-bit Legacy SSE version) ¶
     DEST[127:96] ←Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[127:96])
     DEST[MAXVL-1:128] (unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTTPS2DQ __m512i _mm512_cvttps_epi32( __m512 a);
@@ -160,11 +153,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTTPS2DQ __m128i _mm_cvttps_epi32 (__m128 a)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
-
 
 Other Exceptions ¶
 

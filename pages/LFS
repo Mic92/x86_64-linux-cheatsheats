@@ -1,27 +1,23 @@
 -   Index
 -   May 2019
 
+LDS/LES/LFS/LGS/LSS — Load Far Pointer
 
-
-LDS/LES/LFS/LGS/LSS — LOAD FAR POINTER
-
-
-  Opcode             Instruction        Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ------------------ ------------------ ------- ------------- ----------------- ---------------------------------------------
-  C5 /_r_            LDS _r16,m16:16_   RM      Invalid       Valid             Load DS:_r16_ with far pointer from memory.
-  C5 /_r_            LDS _r32,m16:32_   RM      Invalid       Valid             Load DS:_r32_ with far pointer from memory.
-  0F B2 /_r_         LSS _r16,m16:16_   RM      Valid         Valid             Load SS:_r16_ with far pointer from memory.
-  0F B2 /_r_         LSS _r32,m16:32_   RM      Valid         Valid             Load SS:_r32_ with far pointer from memory.
-  REX + 0F B2 /_r_   LSS _r64,m16:64_   RM      Valid         N.E.              Load SS:_r64_ with far pointer from memory.
-  C4 /_r_            LES _r16,m16:16_   RM      Invalid       Valid             Load ES:_r16_ with far pointer from memory.
-  C4 /_r_            LES _r32,m16:32_   RM      Invalid       Valid             Load ES:_r32_ with far pointer from memory.
-  0F B4 /_r_         LFS _r16,m16:16_   RM      Valid         Valid             Load FS:_r16_ with far pointer from memory.
-  0F B4 /_r_         LFS _r32,m16:32_   RM      Valid         Valid             Load FS:_r32_ with far pointer from memory.
-  REX + 0F B4 /_r_   LFS _r64,m16:64_   RM      Valid         N.E.              Load FS:_r64_ with far pointer from memory.
-  0F B5 /_r_         LGS _r16,m16:16_   RM      Valid         Valid             Load GS:_r16_ with far pointer from memory.
-  0F B5 /_r_         LGS _r32,m16:32_   RM      Valid         Valid             Load GS:_r32_ with far pointer from memory.
-  REX + 0F B5 /_r_   LGS _r64,m16:64_   RM      Valid         N.E.              Load GS:_r64_ with far pointer from memory.
-
+  Opcode           Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ---------------- ---------------- ------- ------------- ----------------- -------------------------------------------
+  C5 /r            LDS r16,m16:16   RM      Invalid       Valid             Load DS:r16 with far pointer from memory.
+  C5 /r            LDS r32,m16:32   RM      Invalid       Valid             Load DS:r32 with far pointer from memory.
+  0F B2 /r         LSS r16,m16:16   RM      Valid         Valid             Load SS:r16 with far pointer from memory.
+  0F B2 /r         LSS r32,m16:32   RM      Valid         Valid             Load SS:r32 with far pointer from memory.
+  REX + 0F B2 /r   LSS r64,m16:64   RM      Valid         N.E.              Load SS:r64 with far pointer from memory.
+  C4 /r            LES r16,m16:16   RM      Invalid       Valid             Load ES:r16 with far pointer from memory.
+  C4 /r            LES r32,m16:32   RM      Invalid       Valid             Load ES:r32 with far pointer from memory.
+  0F B4 /r         LFS r16,m16:16   RM      Valid         Valid             Load FS:r16 with far pointer from memory.
+  0F B4 /r         LFS r32,m16:32   RM      Valid         Valid             Load FS:r32 with far pointer from memory.
+  REX + 0F B4 /r   LFS r64,m16:64   RM      Valid         N.E.              Load FS:r64 with far pointer from memory.
+  0F B5 /r         LGS r16,m16:16   RM      Valid         Valid             Load GS:r16 with far pointer from memory.
+  0F B5 /r         LGS r32,m16:32   RM      Valid         Valid             Load GS:r32 with far pointer from memory.
+  REX + 0F B5 /r   LGS r64,m16:64   RM      Valid         N.E.              Load GS:r64 with far pointer from memory.
 
 Instruction Operand Encoding ¶
 
@@ -29,7 +25,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -62,7 +57,6 @@ source operand referencing an 80-bit pointer (16-bit selector, 64-bit
 offset) in memory. Using a REX prefix in the form of REX.R permits
 access to additional registers (R8-R15). See the summary chart at the
 beginning of this section for encoding data and limits.
-
 
 Operation ¶
 
@@ -143,175 +137,68 @@ Operation ¶
         SegmentRegister ← SegmentSelector(SRC); FI;
         DEST ← Offset(SRC);
 
-
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If source operand is not a memory location.
-
-If the LOCK prefix is used.
-
-#GP(0)
-
-If a NULL selector is loaded into the SS register.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL segment selector.
-
-#GP(selector)
-
-If the SS register is being loaded and any of the following is true: the
-segment selector index is not within the descriptor table limits, the
-segment selector RPL is not equal to CPL, the segment is a non-writable
-data segment, or DPL is not equal to CPL.
-
-If the DS, ES, FS, or GS register is being loaded with a non-NULL
-segment selector and any of the following is true: the segment selector
-index is not within descriptor table limits, the segment is neither a
-data nor a readable code segment, or the segment is a data or
-nonconforming-code segment and both RPL and CPL are greater than DPL.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#SS(selector)
-
-If the SS register is being loaded and the segment is marked not
-present.
-
-#NP(selector)
-
-If DS, ES, FS, or GS register is being loaded with a non-NULL segment
-selector and the segment is marked not present.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
+  ----------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #UD               If source operand is not a memory location.
+                    If the LOCK prefix is used.
+  #GP(0)            If a NULL selector is loaded into the SS register.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
+  #GP(selector)     If the SS register is being loaded and any of the following is true: the segment selector index is not within the descriptor table limits, the segment selector RPL is not equal to CPL, the segment is a non-writable data segment, or DPL is not equal to CPL.
+                    If the DS, ES, FS, or GS register is being loaded with a non-NULL segment selector and any of the following is true: the segment selector index is not within descriptor table limits, the segment is neither a data nor a readable code segment, or the segment is a data or nonconforming-code segment and both RPL and CPL are greater than DPL.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #SS(selector)     If the SS register is being loaded and the segment is marked not present.
+  #NP(selector)     If DS, ES, FS, or GS register is being loaded with a non-NULL segment selector and the segment is marked not present.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS
-
-If a memory operand effective address is outside the SS segment limit.
-
-#UD
-
-If source operand is not a memory location.
-
-If the LOCK prefix is used.
-
+  ----- -------------------------------------------------------------------------------------------
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If source operand is not a memory location.
+        If the LOCK prefix is used.
+  ----- -------------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If source operand is not a memory location.
-
-If the LOCK prefix is used.
-
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made.
-
+  ----------------- -------------------------------------------------------------------------------------------
+  #UD               If source operand is not a memory location.
+                    If the LOCK prefix is used.
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  ----------------- -------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If the memory address is in a non-canonical form.
-
-If a NULL selector is attempted to be loaded into the SS register in
-compatibility mode.
-
-If a NULL selector is attempted to be loaded into the SS register in
-CPL3 and 64-bit mode.
-
-If a NULL selector is attempted to be loaded into the SS register in
-non-CPL3 and 64-bit mode where its RPL is not equal to CPL.
-
-#GP(Selector)
-
-If the FS, or GS register is being loaded with a non-NULL segment
-selector and any of the following is true: the segment selector index is
-not within descriptor table limits, the memory address of the descriptor
-is non-canonical, the segment is neither a data nor a readable code
-segment, or the segment is a data or nonconforming-code segment and both
-RPL and CPL are greater than DPL.
-
-If the SS register is being loaded and any of the following is true: the
-segment selector index is not within the descriptor table limits, the
-memory address of the descriptor is non-canonical, the segment selector
-RPL is not equal to CPL, the segment is a nonwritable data segment, or
-DPL is not equal to CPL.
-
-#SS(0)
-
-If a memory operand effective address is non-canonical
-
-#SS(Selector)
-
-If the SS register is being loaded and the segment is marked not
-present.
-
-#NP(selector)
-
-If FS, or GS register is being loaded with a non-NULL segment selector
-and the segment is marked not present.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If source operand is not a memory location.
-
-If the LOCK prefix is used.
+  ----------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the memory address is in a non-canonical form.
+                    If a NULL selector is attempted to be loaded into the SS register in compatibility mode.
+                    If a NULL selector is attempted to be loaded into the SS register in CPL3 and 64-bit mode.
+                    If a NULL selector is attempted to be loaded into the SS register in non-CPL3 and 64-bit mode where its RPL is not equal to CPL.
+  #GP(Selector)     If the FS, or GS register is being loaded with a non-NULL segment selector and any of the following is true: the segment selector index is not within descriptor table limits, the memory address of the descriptor is non-canonical, the segment is neither a data nor a readable code segment, or the segment is a data or nonconforming-code segment and both RPL and CPL are greater than DPL.
+                    If the SS register is being loaded and any of the following is true: the segment selector index is not within the descriptor table limits, the memory address of the descriptor is non-canonical, the segment selector RPL is not equal to CPL, the segment is a nonwritable data segment, or DPL is not equal to CPL.
+  #SS(0)            If a memory operand effective address is non-canonical
+  #SS(Selector)     If the SS register is being loaded and the segment is marked not present.
+  #NP(selector)     If FS, or GS register is being loaded with a non-NULL segment selector and the segment is marked not present.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If source operand is not a memory location.
+                    If the LOCK prefix is used.
+  ----------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

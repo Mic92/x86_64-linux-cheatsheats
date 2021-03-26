@@ -1,23 +1,19 @@
 -   Index
 -   May 2019
 
+VPMOVQW/VPMOVSQW/VPMOVUSQW — Down Convert QWord to Word
 
-
-VPMOVQW/VPMOVSQW/VPMOVUSQW — DOWN CONVERT QWORD TO WORD
-
-
-  Opcode/Instruction                                                Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.128.F3.0F38.W0 34 /_r_ VPMOVQW _xmm1/m32 {k1}{z}, xmm2_      A         V/V                      AVX512VL AVX512F     Converts 2 packed quad-word integers from _xmm2_ into 2 packed word integers in _xmm1/m32_ with truncation under writemask k1.
-  EVEX.128.F3.0F38.W0 24 /_r_ VPMOVSQW _xmm1/m32 {k1}{z}, xmm2_     A         V/V                      AVX512VL AVX512F     Converts 8 packed signed quad-word integers from _zmm2_ into 8 packed signed word integers in _xmm1/m32_ using signed saturation under writemask k1.
-  EVEX.128.F3.0F38.W0 14 /_r_ VPMOVUSQW _xmm1/m32 {k1}{z}, xmm2_    A         V/V                      AVX512VL AVX512F     Converts 2 packed unsigned quad-word integers from _xmm2_ into 2 packed unsigned word integers in _xmm1/m32_ using unsigned saturation under writemask k1.
-  EVEX.256.F3.0F38.W0 34 /_r_ VPMOVQW _xmm1/m64 {k1}{z}, ymm2_      A         V/V                      AVX512VL AVX512F     Converts 4 packed quad-word integers from _ymm2_ into 4 packed word integers in _xmm1/m64_ with truncation under writemask k1.
-  EVEX.256.F3.0F38.W0 24 /_r_ VPMOVSQW _xmm1/m64 {k1}{z}, ymm2_     A         V/V                      AVX512VL AVX512F     Converts 4 packed signed quad-word integers from _ymm2_ into 4 packed signed word integers in _xmm1/m64_ using signed saturation under writemask k1.
-  EVEX.256.F3.0F38.W0 14 /_r_ VPMOVUSQW _xmm1/m64 {k1}{z}, ymm2_    A         V/V                      AVX512VL AVX512F     Converts 4 packed unsigned quad-word integers from _ymm2_ into 4 packed unsigned word integers in _xmm1/m64_ using unsigned saturation under writemask k1.
-  EVEX.512.F3.0F38.W0 34 /_r_ VPMOVQW _xmm1/m128 {k1}{z}, zmm2_     A         V/V                      AVX512F              Converts 8 packed quad-word integers from _zmm2_ into 8 packed word integers in _xmm1/m128_ with truncation under writemask k1.
-  EVEX.512.F3.0F38.W0 24 /_r_ VPMOVSQW _xmm1/m128 {k1}{z}, zmm2_    A         V/V                      AVX512F              Converts 8 packed signed quad-word integers from _zmm2_ into 8 packed signed word integers in _xmm1/m128_ using signed saturation under writemask k1.
-  EVEX.512.F3.0F38.W0 14 /_r_ VPMOVUSQW _xmm1/m128 {k1}{z}, zmm2_   A         V/V                      AVX512F              Converts 8 packed unsigned quad-word integers from _zmm2_ into 8 packed unsigned word integers in _xmm1/m128_ using unsigned saturation under writemask k1.
-
+  Opcode/Instruction                                            Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------- --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.F3.0F38.W0 34 /r VPMOVQW xmm1/m32 {k1}{z}, xmm2      A         V/V                      AVX512VL AVX512F     Converts 2 packed quad-word integers from xmm2 into 2 packed word integers in xmm1/m32 with truncation under writemask k1.
+  EVEX.128.F3.0F38.W0 24 /r VPMOVSQW xmm1/m32 {k1}{z}, xmm2     A         V/V                      AVX512VL AVX512F     Converts 8 packed signed quad-word integers from zmm2 into 8 packed signed word integers in xmm1/m32 using signed saturation under writemask k1.
+  EVEX.128.F3.0F38.W0 14 /r VPMOVUSQW xmm1/m32 {k1}{z}, xmm2    A         V/V                      AVX512VL AVX512F     Converts 2 packed unsigned quad-word integers from xmm2 into 2 packed unsigned word integers in xmm1/m32 using unsigned saturation under writemask k1.
+  EVEX.256.F3.0F38.W0 34 /r VPMOVQW xmm1/m64 {k1}{z}, ymm2      A         V/V                      AVX512VL AVX512F     Converts 4 packed quad-word integers from ymm2 into 4 packed word integers in xmm1/m64 with truncation under writemask k1.
+  EVEX.256.F3.0F38.W0 24 /r VPMOVSQW xmm1/m64 {k1}{z}, ymm2     A         V/V                      AVX512VL AVX512F     Converts 4 packed signed quad-word integers from ymm2 into 4 packed signed word integers in xmm1/m64 using signed saturation under writemask k1.
+  EVEX.256.F3.0F38.W0 14 /r VPMOVUSQW xmm1/m64 {k1}{z}, ymm2    A         V/V                      AVX512VL AVX512F     Converts 4 packed unsigned quad-word integers from ymm2 into 4 packed unsigned word integers in xmm1/m64 using unsigned saturation under writemask k1.
+  EVEX.512.F3.0F38.W0 34 /r VPMOVQW xmm1/m128 {k1}{z}, zmm2     A         V/V                      AVX512F              Converts 8 packed quad-word integers from zmm2 into 8 packed word integers in xmm1/m128 with truncation under writemask k1.
+  EVEX.512.F3.0F38.W0 24 /r VPMOVSQW xmm1/m128 {k1}{z}, zmm2    A         V/V                      AVX512F              Converts 8 packed signed quad-word integers from zmm2 into 8 packed signed word integers in xmm1/m128 using signed saturation under writemask k1.
+  EVEX.512.F3.0F38.W0 14 /r VPMOVUSQW xmm1/m128 {k1}{z}, zmm2   A         V/V                      AVX512F              Converts 8 packed unsigned quad-word integers from zmm2 into 8 packed unsigned word integers in xmm1/m128 using unsigned saturation under writemask k1.
 
 Instruction Operand Encoding ¶
 

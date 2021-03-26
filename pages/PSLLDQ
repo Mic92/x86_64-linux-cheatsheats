@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
-
-
-PSLLDQ — SHIFT DOUBLE QUADWORD LEFT LOGICAL
-
+PSLLDQ — Shift Double Quadword Left Logical
 
   Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
-  66 0F 73 /7 ib PSLLDQ _xmm1_, _imm8_                        A       V/V                      SSE2                 Shift _xmm1_ left by _imm8_ bytes while shifting in 0s.
-  VEX.128.66.0F.WIG 73 /7 ib VPSLLDQ _xmm1, xmm2, imm8_       B       V/V                      AVX                  Shift _xmm2_ left by _imm8_ bytes while shifting in 0s and store result in _xmm1_.
-  VEX.256.66.0F.WIG 73 /7 ib VPSLLDQ _ymm1, ymm2, imm8_       B       V/V                      AVX2                 Shift _ymm2_ left by _imm8_ bytes while shifting in 0s and store result in _ymm1_.
+  ----------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------
+  66 0F 73 /7 ib PSLLDQ xmm1, imm8                            A       V/V                      SSE2                 Shift xmm1 left by imm8 bytes while shifting in 0s.
+  VEX.128.66.0F.WIG 73 /7 ib VPSLLDQ xmm1, xmm2, imm8         B       V/V                      AVX                  Shift xmm2 left by imm8 bytes while shifting in 0s and store result in xmm1.
+  VEX.256.66.0F.WIG 73 /7 ib VPSLLDQ ymm1, ymm2, imm8         B       V/V                      AVX2                 Shift ymm2 left by imm8 bytes while shifting in 0s and store result in ymm1.
   EVEX.128.66.0F.WIG 73 /7 ib VPSLLDQ xmm1,xmm2/ m128, imm8   C       V/V                      AVX512VL AVX512BW    Shift xmm2/m128 left by imm8 bytes while shifting in 0s and store result in xmm1.
   EVEX.256.66.0F.WIG 73 /7 ib VPSLLDQ ymm1, ymm2/m256, imm8   C       V/V                      AVX512VL AVX512BW    Shift ymm2/m256 left by imm8 bytes while shifting in 0s and store result in ymm1.
   EVEX.512.66.0F.WIG 73 /7 ib VPSLLDQ zmm1, zmm2/m512, imm8   C       V/V                      AVX512BW             Shift zmm2/m512 left by imm8 bytes while shifting in 0s and store result in zmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           VEX.vvvv (w)       ModRM:r/m (r)   imm8        NA
   C       Full Mem     EVEX.vvvv (w)      ModRM:r/m (R)   Imm8        NA
   ------- ------------ ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -50,7 +45,6 @@ the low and high 128-bit lanes.
 EVEX encoded versions: The source operand is a ZMM/YMM/XMM register or a
 512/256/128-bit memory location. The destination operand is a
 ZMM/YMM/XMM register. The count operand applies to each 128-bit lanes.
-
 
 Operation ¶
 
@@ -86,7 +80,6 @@ PSLLDQ(128-bit Legacy SSE version) ¶
     DEST←DEST << (TEMP * 8)
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)PSLLDQ:__m128i _mm_slli_si128 ( __m128i a, int imm)
@@ -95,16 +88,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSLLDQ __m512i _mm512_bslli_epi128 ( __m512i a, const int imm)
 
-
 Flags Affected ¶
 
 None.
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-KTESTW/KTESTB/KTESTQ/KTESTD — PACKED BIT TEST MASKS AND SET FLAGS
-
+KTESTW/KTESTB/KTESTQ/KTESTD — Packed Bit Test Masks and Set Flags
 
   Opcode/Instruction                    Op En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
@@ -13,14 +10,12 @@ KTESTW/KTESTB/KTESTQ/KTESTD — PACKED BIT TEST MASKS AND SET FLAGS
   VEX.L0.0F.W1 99 /r KTESTQ k1, k2      RR      V/V                      AVX512BW             Set ZF and CF depending on sign bit AND and ANDN of 64 bits mask register sources.
   VEX.L0.66.0F.W1 99 /r KTESTD k1, k2   RR      V/V                      AVX512BW             Set ZF and CF depending on sign bit AND and ANDN of 32 bits mask register sources.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- ----------------------------------------
   Op/En   Operand 1       Operand2
   RR      ModRM:reg (r)   ModRM:r/m (r, ModRM:[7:6] must be 11b)
   ------- --------------- ----------------------------------------
-
 
 Description ¶
 
@@ -33,7 +28,6 @@ clear. Only the EFLAGS register is updated.
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -93,14 +87,11 @@ KTESTD ¶
     FI;
     AF←OF←PF←SF←0;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
-
 
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

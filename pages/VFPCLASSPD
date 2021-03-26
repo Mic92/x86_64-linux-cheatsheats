@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VFPCLASSPD — TESTS TYPES OF A PACKED FLOAT64 VALUES
-
+VFPCLASSPD — Tests Types Of a Packed Float64 Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W1 66 /r ib VFPCLASSPD k2 {k1}, xmm2/m128/m64bcst, imm8   A       V/V                      AVX512VL AVX512DQ    Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
   EVEX.256.66.0F3A.W1 66 /r ib VFPCLASSPD k2 {k1}, ymm2/m256/m64bcst, imm8   A       V/V                      AVX512VL AVX512DQ    Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
   EVEX.512.66.0F3A.W1 66 /r ib VFPCLASSPD k2 {k1}, zmm2/m512/m64bcst, imm8   A       V/V                      AVX512DQ             Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
-
 
 Instruction Operand Encoding ¶
 
@@ -45,7 +41,7 @@ VFPCLASSPD/SD/PS/SS
 
 Table 5-13. Classifier Operations for VFPCLASSPD/SD/PS/SS
 
-BITS IMM8[0] IMM8[1] IMM8[2] IMM8[3] IMM8[4] IMM8[5] IMM8[6] IMM8[7]
+Bits Imm8[0] Imm8[1] Imm8[2] Imm8[3] Imm8[4] Imm8[5] Imm8[6] Imm8[7]
 
 Category QNAN PosZero NegZero PosINF NegINF Denormal Negative SNAN
 

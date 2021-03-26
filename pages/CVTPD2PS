@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CVTPD2PS — CONVERT PACKED DOUBLE-PRECISION FLOATING-POINT VALUES TO PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+CVTPD2PS — Convert Packed Double-Precision Floating-Point Values to Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ CVTPD2PS — CONVERT PACKED DOUBLE-PRECISION FLOATING-POINT VALUES TO PACKED SIN
   EVEX.256.66.0F.W1 5A /r VCVTPD2PS xmm1 {k1}{z}, ymm2/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Convert four packed double-precision floating-point values in ymm2/m256/m64bcst to four single-precision floating-point values in xmm1with writemask k1.
   EVEX.512.66.0F.W1 5A /r VCVTPD2PS ymm1 {k1}{z}, zmm2/m512/m64bcst{er}   B       V/V                      AVX512F              Convert eight packed double-precision floating-point values in zmm2/m512/m64bcst to eight single-precision floating-point values in ymm1with writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   A       NA           ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   B       Full         ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- ------------ --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -62,10 +57,9 @@ are unmodified.
 VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-X1 X0 X3 X2 SRC DEST 0 X3 X2 X1 X0
+[]
 
 Figure 3-13. VCVTPD2PS (VEX.256 encoded version)
-
 
 Operation ¶
 
@@ -139,7 +133,6 @@ CVTPD2PS (128-bit Legacy SSE version) ¶
     DEST[127:64] ← 0
     DEST[MAXVL-1:128] (unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCVTPD2PS __m256 _mm512_cvtpd_ps( __m512d a);
@@ -166,11 +159,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTPD2PS __m128 _mm_cvtpd_ps (__m128d a)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision, Underflow, Overflow, Denormal
-
 
 Other Exceptions ¶
 

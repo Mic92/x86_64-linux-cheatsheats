@@ -1,17 +1,14 @@
 -   Index
 -   May 2019
 
-
-
-POR — BITWISE LOGICAL OR
-
+POR — Bitwise Logical OR
 
   Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
-  NP 0F EB /_r_¹ POR _mm, mm/m64_                                       A       V/V                      MMX                  Bitwise OR of _mm/m64_ and _mm_.
-  66 0F EB /_r_ POR _xmm1_, _xmm2/m128_                                 A       V/V                      SSE2                 Bitwise OR of _xmm2/m128_ and _xmm1_.
-  VEX.128.66.0F.WIG EB /r VPOR _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Bitwise OR of _xmm2/m128_ and _xmm3_.
-  VEX.256.66.0F.WIG EB /r VPOR _ymm1, ymm2, ymm3/m256_                  B       V/V                      AVX2                 Bitwise OR of _ymm2/m256_ and _ymm3_.
+  NP 0F EB /r¹ POR mm, mm/m64                                           A       V/V                      MMX                  Bitwise OR of mm/m64 and mm.
+  66 0F EB /r POR xmm1, xmm2/m128                                       A       V/V                      SSE2                 Bitwise OR of xmm2/m128 and xmm1.
+  VEX.128.66.0F.WIG EB /r VPOR xmm1, xmm2, xmm3/m128                    B       V/V                      AVX                  Bitwise OR of xmm2/m128 and xmm3.
+  VEX.256.66.0F.WIG EB /r VPOR ymm1, ymm2, ymm3/m256                    B       V/V                      AVX2                 Bitwise OR of ymm2/m256 and ymm3.
   EVEX.128.66.0F.W0 EB /r VPORD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed doubleword integers in xmm2 and xmm3/m128/m32bcst using writemask k1.
   EVEX.256.66.0F.W0 EB /r VPORD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise OR of packed doubleword integers in ymm2 and ymm3/m256/m32bcst using writemask k1.
   EVEX.512.66.0F.W0 EB /r VPORD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise OR of packed doubleword integers in zmm2 and zmm3/m512/m32bcst using writemask k1.
@@ -20,12 +17,11 @@ POR — BITWISE LOGICAL OR
   EVEX.512.66.0F.W1 EB /r VPORQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise OR of packed quadword integers in zmm2 and zmm3/m512/m64bcst using writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
-
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
 Instruction Operand Encoding ¶
 
@@ -35,7 +31,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -73,7 +68,6 @@ register. The second source operand can be a ZMM/YMM/XMM register, a
 from a 32/64-bit memory location. The destination operand is a
 ZMM/YMM/XMM register conditionally updated with writemask k1 at
 32/64-bit granularity.
-
 
 Operation ¶
 
@@ -116,7 +110,6 @@ VPORD (EVEX encoded versions) ¶
         FI;
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -162,16 +155,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPOR: __m256i _mm256_or_si256 ( __m256i a, __m256i b)
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

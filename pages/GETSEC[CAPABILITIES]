@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GETSEC[CAPABILITIES] — REPORT THE SMX CAPABILITIES
-
+GETSEC[CAPABILITIES] — Report the SMX Capabilities
 
   Opcode               Instruction            Description
   -------------------- ---------------------- ------------------------------------------------------------------------------------------------------
   NP 0F 37 (EAX = 0)   GETSEC[CAPABILITIES]   Report the SMX capabilities. The capabilities index is input in EBX with the result returned in EAX.
-
 
 Description ¶
 
@@ -55,7 +51,6 @@ in EAX returning zero.
 
 Table 6-3. GETSEC Capability Result Encoding (EBX = 0)
 
-
 Operation ¶
 
     IF (CR4.SMXE=0)
@@ -85,11 +80,9 @@ Operation ¶
         EAX← 0;
     END;;
 
-
 Flags Affected ¶
 
 None
-
 
 Use of Prefixes ¶
 
@@ -107,13 +100,11 @@ Address size Ignored.
 
 REX Ignored.
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------
   #UD   IF CR4.SMXE = 0.
   ----- ------------------
-
 
 Real-Address Mode Exceptions ¶
 
@@ -121,13 +112,11 @@ Real-Address Mode Exceptions ¶
   #UD   IF CR4.SMXE = 0.
   ----- ------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
   ----- ------------------
   #UD   IF CR4.SMXE = 0.
   ----- ------------------
-
 
 Compatibility Mode Exceptions ¶
 
@@ -135,13 +124,11 @@ Compatibility Mode Exceptions ¶
   #UD   IF CR4.SMXE = 0.
   ----- ------------------
 
-
 64-Bit Mode Exceptions ¶
 
   ----- ------------------
   #UD   IF CR4.SMXE = 0.
   ----- ------------------
-
 
 VM-exit Condition ¶
 

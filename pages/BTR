@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
+BTR — Bit Test and Reset
 
-
-BTR — BIT TEST AND RESET
-
-
-  Opcode                  Instruction         Op/En   64-bit Mode   Compat/Leg Mode   Description
-  ----------------------- ------------------- ------- ------------- ----------------- ------------------------------------------
-  0F B3 /r                BTR _r/m16, r16_    MR      Valid         Valid             Store selected bit in CF flag and clear.
-  0F B3 /r                BTR _r/m32, r32_    MR      Valid         Valid             Store selected bit in CF flag and clear.
-  REX.W + 0F B3 /r        BTR _r/m64, r64_    MR      Valid         N.E.              Store selected bit in CF flag and clear.
-  0F BA /6 _ib_           BTR _r/m16, imm8_   MI      Valid         Valid             Store selected bit in CF flag and clear.
-  0F BA /6 _ib_           BTR _r/m32, imm8_   MI      Valid         Valid             Store selected bit in CF flag and clear.
-  REX.W + 0F BA /6 _ib_   BTR _r/m64, imm8_   MI      Valid         N.E.              Store selected bit in CF flag and clear.
-
+  Opcode                Instruction       Op/En   64-bit Mode   Compat/Leg Mode   Description
+  --------------------- ----------------- ------- ------------- ----------------- ------------------------------------------
+  0F B3 /r              BTR r/m16, r16    MR      Valid         Valid             Store selected bit in CF flag and clear.
+  0F B3 /r              BTR r/m32, r32    MR      Valid         Valid             Store selected bit in CF flag and clear.
+  REX.W + 0F B3 /r      BTR r/m64, r64    MR      Valid         N.E.              Store selected bit in CF flag and clear.
+  0F BA /6 ib           BTR r/m16, imm8   MI      Valid         Valid             Store selected bit in CF flag and clear.
+  0F BA /6 ib           BTR r/m32, imm8   MI      Valid         Valid             Store selected bit in CF flag and clear.
+  REX.W + 0F BA /6 ib   BTR r/m64, imm8   MI      Valid         N.E.              Store selected bit in CF flag and clear.
 
 Instruction Operand Encoding ¶
 
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   MR      ModRM:r/m (r, w)   ModRM:reg (r)   NA          NA
   MI      ModRM:r/m (r, w)   imm8            NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -44,7 +39,7 @@ register or an immediate value:
     the bit position that can be referenced by the offset operand
     depends on the operand size.
 
-See also: BIT(BITBASE, BITOFFSET) on page 3-11.
+See also: Bit(BitBase, BitOffset) on page 3-11.
 
 Some assemblers support immediate bit offsets larger than 31 by using
 the immediate bit offset field in combination with the displacement
@@ -60,47 +55,27 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
-
 Operation ¶
 
     CF ← Bit(BitBase, BitOffset);
     Bit(BitBase, BitOffset) ← 0;
-
 
 Flags Affected ¶
 
 The CF flag contains the value of the selected bit before it is cleared.
 The ZF flag is unaffected. The OF, SF, AF, and PF flags are undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination operand points to a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination operand points to a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -109,7 +84,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -121,11 +95,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

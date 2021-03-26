@@ -1,39 +1,35 @@
 -   Index
 -   May 2019
 
+XOR — Logical Exclusive OR
 
-
-XOR — LOGICAL EXCLUSIVE OR
-
-
-  Opcode               Instruction          Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------- -------------------- ------- ------------- ----------------- --------------------------------------
-  34 _ib_              XOR AL, i_mm8_       I       Valid         Valid             AL XOR _imm8._
-  35 _iw_              XOR AX, i_mm16_      I       Valid         Valid             AX XOR _imm16._
-  35 _id_              XOR EAX, i_mm32_     I       Valid         Valid             EAX XOR _imm32._
-  REX.W + 35 _id_      XOR RAX, i_mm32_     I       Valid         N.E.              RAX XOR _imm32 (sign-extended)._
-  80 /6 _ib_           XOR _r/m8, imm8_     MI      Valid         Valid             _r/m8_ XOR _imm8._
-  REX + 80 /6 _ib_     XOR _r/m8*, imm8_    MI      Valid         N.E.              _r/m8_ XOR _imm8._
-  81 /6 _iw_           XOR _r/m16, imm16_   MI      Valid         Valid             _r/m16_ XOR _imm16._
-  81 /6 _id_           XOR _r/m32, imm32_   MI      Valid         Valid             _r/m32_ XOR _imm32._
-  REX.W + 81 /6 _id_   XOR _r/m64, imm32_   MI      Valid         N.E.              _r/m64_ XOR _imm32 (sign-extended)._
-  83 /6 _ib_           XOR _r/m16, imm8_    MI      Valid         Valid             _r/m16_ XOR _imm8 (sign-extended)._
-  83 /6 _ib_           XOR _r/m32, imm8_    MI      Valid         Valid             _r/m32_ XOR _imm8 (sign-extended)._
-  REX.W + 83 /6 _ib_   XOR _r/m64, imm8_    MI      Valid         N.E.              _r/m64_ XOR _imm8 (sign-extended)._
-  30 /_r_              XOR _r/m8, r8_       MR      Valid         Valid             _r/m8_ XOR _r8._
-  REX + 30 /_r_        XOR _r/m8*, r8*_     MR      Valid         N.E.              _r/m8_ XOR _r8._
-  31 /_r_              XOR _r/m16, r16_     MR      Valid         Valid             _r/m16_ XOR _r16._
-  31 /_r_              XOR _r/m32, r32_     MR      Valid         Valid             _r/m32_ XOR _r32._
-  REX.W + 31 /_r_      XOR _r/m64, r64_     MR      Valid         N.E.              _r/m64_ XOR _r64._
-  32 /_r_              XOR _r8, r/m8_       RM      Valid         Valid             _r8_ XOR _r/m8._
-  REX + 32 /_r_        XOR _r8*, r/m8*_     RM      Valid         N.E.              _r8_ XOR _r/m8._
-  33 /_r_              XOR _r16, r/m16_     RM      Valid         Valid             _r16_ XOR _r/m16._
-  33 /_r_              XOR _r32, r/m32_     RM      Valid         Valid             _r32_ XOR _r/m32._
-  REX.W + 33 /_r_      XOR _r64, r/m64_     RM      Valid         N.E.              _r64_ XOR _r/m64._
+  Opcode             Instruction        Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------ ------------------ ------- ------------- ----------------- ----------------------------------
+  34 ib              XOR AL, imm8       I       Valid         Valid             AL XOR imm8.
+  35 iw              XOR AX, imm16      I       Valid         Valid             AX XOR imm16.
+  35 id              XOR EAX, imm32     I       Valid         Valid             EAX XOR imm32.
+  REX.W + 35 id      XOR RAX, imm32     I       Valid         N.E.              RAX XOR imm32 (sign-extended).
+  80 /6 ib           XOR r/m8, imm8     MI      Valid         Valid             r/m8 XOR imm8.
+  REX + 80 /6 ib     XOR r/m8*, imm8    MI      Valid         N.E.              r/m8 XOR imm8.
+  81 /6 iw           XOR r/m16, imm16   MI      Valid         Valid             r/m16 XOR imm16.
+  81 /6 id           XOR r/m32, imm32   MI      Valid         Valid             r/m32 XOR imm32.
+  REX.W + 81 /6 id   XOR r/m64, imm32   MI      Valid         N.E.              r/m64 XOR imm32 (sign-extended).
+  83 /6 ib           XOR r/m16, imm8    MI      Valid         Valid             r/m16 XOR imm8 (sign-extended).
+  83 /6 ib           XOR r/m32, imm8    MI      Valid         Valid             r/m32 XOR imm8 (sign-extended).
+  REX.W + 83 /6 ib   XOR r/m64, imm8    MI      Valid         N.E.              r/m64 XOR imm8 (sign-extended).
+  30 /r              XOR r/m8, r8       MR      Valid         Valid             r/m8 XOR r8.
+  REX + 30 /r        XOR r/m8*, r8*     MR      Valid         N.E.              r/m8 XOR r8.
+  31 /r              XOR r/m16, r16     MR      Valid         Valid             r/m16 XOR r16.
+  31 /r              XOR r/m32, r32     MR      Valid         Valid             r/m32 XOR r32.
+  REX.W + 31 /r      XOR r/m64, r64     MR      Valid         N.E.              r/m64 XOR r64.
+  32 /r              XOR r8, r/m8       RM      Valid         Valid             r8 XOR r/m8.
+  REX + 32 /r        XOR r8*, r/m8*     RM      Valid         N.E.              r8 XOR r/m8.
+  33 /r              XOR r16, r/m16     RM      Valid         Valid             r16 XOR r/m16.
+  33 /r              XOR r32, r/m32     RM      Valid         Valid             r32 XOR r/m32.
+  REX.W + 33 /r      XOR r64, r/m64     RM      Valid         N.E.              r64 XOR r/m64.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -44,7 +40,6 @@ Instruction Operand Encoding ¶
   MR      ModRM:r/m (r, w)   ModRM:reg (r)   NA          NA
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -65,46 +60,26 @@ to additional registers (R8-R15). Using a REX prefix in the form of
 REX.W promotes operation to 64 bits. See the summary chart at the
 beginning of this section for encoding data and limits.
 
-
 Operation ¶
 
     DEST ← DEST XOR SRC;
-
 
 Flags Affected ¶
 
 The OF and CF flags are cleared; the SF, ZF, and PF flags are set
 according to the result. The state of the AF flag is undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination operand points to a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination operand points to a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -113,7 +88,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -125,11 +99,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

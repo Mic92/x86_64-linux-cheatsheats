@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GF2P8AFFINEINVQB — GALOIS FIELD AFFINE TRANSFORMATION INVERSE
-
+GF2P8AFFINEINVQB — Galois Field Affine Transformation Inverse
 
   Opcode/Instruction                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------
   66 0F3A CF /r /ib GF2P8AFFINEINVQB xmm1, xmm2/m128, imm8   A       V/V                      GFNI                 Computes inverse affine transformation in the finite field GF(2^8).
-
 
 Instruction Operand Encoding ¶
 

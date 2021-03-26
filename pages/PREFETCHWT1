@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-PREFETCHWT1 — PREFETCH VECTOR DATA INTO CACHES WITH INTENT TO WRITE AND T1 HINT
-
+PREFETCHWT1 — Prefetch Vector Data Into Caches with Intent to Write and T1 Hint
 
   Opcode/Instruction        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------
   0F 0D /2 PREFETCHWT1 m8   M       V/V                      PREFETCHWT1          Move data from m8 closer to the processor using T1 hint with intent to write.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (r)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -64,7 +59,6 @@ MOV CR.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     PREFETCH(mem, Level, State) Prefetches a byte memory location pointed by ‘mem’ into the cache level specified by ‘Level’; a request
@@ -72,16 +66,13 @@ Operation ¶
     hint for the processor and may be skipped depending on implementation.
     Prefetch (m8, Level = 1, EXCLUSIVE=1);
 
-
 Flags Affected ¶
 
 All flags are affected
 
-
 C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_prefetch( char const *, int hint= _MM_HINT_ET1);
-
 
 Protected Mode Exceptions ¶
 
@@ -89,13 +80,11 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -103,13 +92,11 @@ Virtual-8086 Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 64-Bit Mode Exceptions ¶
 

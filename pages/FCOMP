@@ -1,23 +1,19 @@
 -   Index
 -   May 2019
 
+FCOM/FCOMP/FCOMPP — Compare Floating Point Values
 
-
-FCOM/FCOMP/FCOMPP — COMPARE FLOATING POINT VALUES
-
-
-  Opcode    Instruction     64-Bit Mode   Compat/Leg Mode   Description
-  --------- --------------- ------------- ----------------- --------------------------------------------------------
-  D8 /2     FCOM _m32fp_    Valid         Valid             Compare ST(0) with _m32fp_.
-  DC /2     FCOM _m64fp_    Valid         Valid             Compare ST(0) with _m64fp_.
-  D8 D0+i   FCOM ST(i)      Valid         Valid             Compare ST(0) with ST(i).
-  D8 D1     FCOM            Valid         Valid             Compare ST(0) with ST(1).
-  D8 /3     FCOMP _m32fp_   Valid         Valid             Compare ST(0) with _m32fp_ and pop register stack.
-  DC /3     FCOMP _m64fp_   Valid         Valid             Compare ST(0) with m64fp and pop register stack.
-  D8 D8+i   FCOMP ST(i)     Valid         Valid             Compare ST(0) with ST(i) and pop register stack.
-  D8 D9     FCOMP           Valid         Valid             Compare ST(0) with ST(1) and pop register stack.
-  DE D9     FCOMPP          Valid         Valid             Compare ST(0) with ST(1) and pop register stack twice.
-
+  Opcode    Instruction   64-Bit Mode   Compat/Leg Mode   Description
+  --------- ------------- ------------- ----------------- --------------------------------------------------------
+  D8 /2     FCOM m32fp    Valid         Valid             Compare ST(0) with m32fp.
+  DC /2     FCOM m64fp    Valid         Valid             Compare ST(0) with m64fp.
+  D8 D0+i   FCOM ST(i)    Valid         Valid             Compare ST(0) with ST(i).
+  D8 D1     FCOM          Valid         Valid             Compare ST(0) with ST(1).
+  D8 /3     FCOMP m32fp   Valid         Valid             Compare ST(0) with m32fp and pop register stack.
+  DC /3     FCOMP m64fp   Valid         Valid             Compare ST(0) with m64fp and pop register stack.
+  D8 D8+i   FCOMP ST(i)   Valid         Valid             Compare ST(0) with ST(i) and pop register stack.
+  D8 D9     FCOMP         Valid         Valid             Compare ST(0) with ST(1) and pop register stack.
+  DE D9     FCOMPP        Valid         Valid             Compare ST(0) with ST(1) and pop register stack twice.
 
 Description ¶
 
@@ -64,7 +60,6 @@ invalid-arithmetic-operand exception for QNaNs.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     CASE (relation of operands) OF
@@ -93,7 +88,6 @@ Operation ¶
             PopRegisterStack;
     FI;
 
-
 FPU Flags Affected ¶
 
   ------------ -----------------------------
@@ -101,54 +95,26 @@ FPU Flags Affected ¶
   C0, C2, C3   See table on previous page.
   ------------ -----------------------------
 
-
 Floating-Point Exceptions ¶
 
-#IS
-
-Stack underflow occurred.
-
-#IA
-
-One or both operands are NaN values or have unsupported formats.
-
-Register is marked empty.
-
-#D
-
-One or both operands are denormal values.
-
+  ----- ------------------------------------------------------------------
+  #IS   Stack underflow occurred.
+  #IA   One or both operands are NaN values or have unsupported formats.
+        Register is marked empty.
+  #D    One or both operands are denormal values.
+  ----- ------------------------------------------------------------------
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#NM
-
-CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #NM               CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -158,7 +124,6 @@ Real-Address Mode Exceptions ¶
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -171,11 +136,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

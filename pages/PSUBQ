@@ -1,28 +1,24 @@
 -   Index
 -   May 2019
 
-
-
-PSUBQ — SUBTRACT PACKED QUADWORD INTEGERS
-
+PSUBQ — Subtract Packed Quadword Integers
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------
-  NP 0F FB /_r_¹ PSUBQ _mm1_, _mm2/m64_                                  A       V/V                      SSE2                 Subtract quadword integer in _mm1_ from _mm2 /m64_.
-  66 0F FB /_r_ PSUBQ _xmm1_, _xmm2/m128_                                A       V/V                      SSE2                 Subtract packed quadword integers in _xmm1_ from _xmm2 /m128_.
-  VEX.128.66.0F.WIG FB/r VPSUBQ _xmm1, xmm2, xmm3/m128_                  B       V/V                      AVX                  Subtract packed quadword integers in _xmm3/m128_ from _xmm2_.
-  VEX.256.66.0F.WIG FB /r VPSUBQ _ymm1, ymm2, ymm3/m256_                 B       V/V                      AVX2                 Subtract packed quadword integers in _ymm3/m256_ from _ymm2._
+  NP 0F FB /r¹ PSUBQ mm1, mm2/m64                                        A       V/V                      SSE2                 Subtract quadword integer in mm1 from mm2 /m64.
+  66 0F FB /r PSUBQ xmm1, xmm2/m128                                      A       V/V                      SSE2                 Subtract packed quadword integers in xmm1 from xmm2 /m128.
+  VEX.128.66.0F.WIG FB/r VPSUBQ xmm1, xmm2, xmm3/m128                    B       V/V                      AVX                  Subtract packed quadword integers in xmm3/m128 from xmm2.
+  VEX.256.66.0F.WIG FB /r VPSUBQ ymm1, ymm2, ymm3/m256                   B       V/V                      AVX2                 Subtract packed quadword integers in ymm3/m256 from ymm2.
   EVEX.128.66.0F.W1 FB /r VPSUBQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Subtract packed quadword integers in xmm3/m128/m64bcst from xmm2 and store in xmm1 using writemask k1.
   EVEX.256.66.0F.W1 FB /r VPSUBQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Subtract packed quadword integers in ymm3/m256/m64bcst from ymm2 and store in ymm1 using writemask k1.
   EVEX.512.66.0F.W1 FB/r VPSUBQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst    C       V/V                      AVX512F              Subtract packed quadword integers in zmm3/m512/m64bcst from zmm2 and store in zmm1 using writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
-
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -77,7 +72,6 @@ register, a 512/256/128-bit memory location or a 512/256/128-bit vector
 broadcasted from a 32/64-bit memory location. The first source operand
 and destination operands are ZMM/YMM/XMM registers. The destination is
 conditionally updated with writemask k1.
-
 
 Operation ¶
 
@@ -125,7 +119,6 @@ VPSUBQ (EVEX encoded versions) ¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPSUBQ __m512i _mm512_sub_epi64(__m512i a, __m512i b);
@@ -148,16 +141,13 @@ Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPSUBQ:__m256i _mm256_sub_epi64(__m256i m1, __m256i m2)
 
-
 Flags Affected ¶
 
 None.
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

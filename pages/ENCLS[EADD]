@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EADD — ADD A PAGE TO AN UNINITIALIZED ENCLAVE
-
+EADD — Add a Page to an Uninitialized Enclave
 
   Opcode/Instruction      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------- ------- ------------------------ -------------------- -------------------------------------------------------------
   EAX = 01H ENCLS[EADD]   IR      V/V                      SGX1                 This leaf function adds a page to an uninitialized enclave.
-
 
 Instruction Operand Encoding ¶
 
@@ -31,7 +27,6 @@ RBX contains the effective address of a PAGEINFO structure while RCX
 contains the effective address of an EPC page. The table below provides
 additional information on the memory parameter of EADD leaf function.
 
-
 EADD Memory Parameter Semantics ¶
 
   -------------------------------------- ---------------------------------------- -------------------------------------- -------------------------------------- -----------------------------------
@@ -40,7 +35,6 @@ EADD Memory Parameter Semantics ¶
   -------------------------------------- ---------------------------------------- -------------------------------------- -------------------------------------- -----------------------------------
 
 The instruction faults if any of the following:
-
 
 EADD Faulting Conditions ¶
 
@@ -54,84 +48,24 @@ EADD Faulting Conditions ¶
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EADD
-
-Target [DS:RCX]
-
-Exclusive
-
-#GP
-
-EPC_PAGE_CONFLICT_EXCEPTION
-
-SECS [DS:RBX]PAGEINFO.SECS
-
-Shared
-
-#GP
+  Leaf     Parameter                    Base Concurrency Restrictions              
+  -------- ---------------------------- ------------------------------------ ----- -----------------------------
+  Access   On Conflict                  SGX_CONFLICT VM Exit Qualification         
+  EADD     Target [DS:RCX]              Exclusive                            #GP   EPC_PAGE_CONFLICT_EXCEPTION
+           SECS [DS:RBX]PAGEINFO.SECS   Shared                               #GP   
 
 Table 40-8. Base Concurrency Restrictions of EADD
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EADD
-
-Target [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-SECS [DS:RBX]PAGEINFO.SECS
-
-Concurrent
-
-Exclusive
-
-#GP
-
-Concurrent
+  Leaf                                              Parameter                    Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ---------------------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                                vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict                  Access                                On Conflict   Access                On Conflict                
+  EADD                                              Target [DS:RCX]              Concurrent                                          Concurrent                          Concurrent   
+                                                    SECS [DS:RBX]PAGEINFO.SECS   Concurrent                                          Exclusive             #GP           Concurrent   
 
 Table 40-9. Additional Concurrency Restrictions of EADD
 
 Operation ¶
-
 
 Temp Variables in EADD Operational Flow ¶
 
@@ -347,55 +281,33 @@ None
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If an enclave memory operand is outside of the EPC.
-
-If an enclave memory operand is the wrong type.
-
-If a memory operand is locked.
-
-If the enclave is initialized.
-
-If the enclave's MRENCLAVE is locked.
-
-If the TCS page reserved bits are set.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the EPC page is valid.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If an enclave memory operand is outside of the EPC.
+              If an enclave memory operand is the wrong type.
+              If a memory operand is locked.
+              If the enclave is initialized.
+              If the enclave's MRENCLAVE is locked.
+              If the TCS page reserved bits are set.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the EPC page is valid.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If an enclave memory operand is outside of the EPC.
-
-If an enclave memory operand is the wrong type.
-
-If a memory operand is locked.
-
-If the enclave is initialized.
-
-If the enclave's MRENCLAVE is locked.
-
-If the TCS page reserved bits are set.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the EPC page is valid.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If an enclave memory operand is outside of the EPC.
+              If an enclave memory operand is the wrong type.
+              If a memory operand is locked.
+              If the enclave is initialized.
+              If the enclave's MRENCLAVE is locked.
+              If the TCS page reserved bits are set.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the EPC page is valid.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

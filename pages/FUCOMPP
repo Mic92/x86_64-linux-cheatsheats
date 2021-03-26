@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-FUCOM/FUCOMP/FUCOMPP — UNORDERED COMPARE FLOATING POINT VALUES
-
+FUCOM/FUCOMP/FUCOMPP — Unordered Compare Floating Point Values
 
   Opcode    Instruction    64-Bit Mode   Compat/Leg Mode   Description
   --------- -------------- ------------- ----------------- --------------------------------------------------------
@@ -13,7 +10,6 @@ FUCOM/FUCOMP/FUCOMPP — UNORDERED COMPARE FLOATING POINT VALUES
   DD E8+i   FUCOMP ST(i)   Valid         Valid             Compare ST(0) with ST(i) and pop register stack.
   DD E9     FUCOMP         Valid         Valid             Compare ST(0) with ST(1) and pop register stack.
   DA E9     FUCOMPP        Valid         Valid             Compare ST(0) with ST(1) and pop register stack twice.
-
 
 Description ¶
 
@@ -60,7 +56,6 @@ pointer (TOP) by 1.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     CASE (relation of operands) OF
@@ -90,14 +85,12 @@ Operation ¶
             PopRegisterStack;
     FI;
 
-
 FPU Flags Affected ¶
 
   ------------ ---------------------------------------
   C1           Set to 0 if stack underflow occurred.
   C0, C2, C3   See Table 3-41.
   ------------ ---------------------------------------
-
 
 Floating-Point Exceptions ¶
 
@@ -107,7 +100,6 @@ Floating-Point Exceptions ¶
   #D    One or both operands are denormal values.
   ----- -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
@@ -116,21 +108,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVNTPD — STORE PACKED DOUBLE-PRECISION FLOATING-POINT VALUES USING NON-TEMPORAL HINT
-
+MOVNTPD — Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint
 
   Opcode/Instruction                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVNTPD — STORE PACKED DOUBLE-PRECISION FLOATING-POINT VALUES USING NON-TEMPOR
   EVEX.128.66.0F.W1 2B /r VMOVNTPD m128, xmm1   B       V/V                      AVX512VL AVX512F     Move packed double-precision values in xmm1 to m128 using non-temporal hint.
   EVEX.256.66.0F.W1 2B /r VMOVNTPD m256, ymm1   B       V/V                      AVX512VL AVX512F     Move packed double-precision values in ymm1 to m256 using non-temporal hint.
   EVEX.512.66.0F.W1 2B /r VMOVNTPD m512, zmm1   B       V/V                      AVX512F              Move packed double-precision values in zmm1 to m512 using non-temporal hint.
-
 
 Instruction Operand Encoding¹ ¶
 

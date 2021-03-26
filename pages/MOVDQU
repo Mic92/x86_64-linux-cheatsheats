@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVDQU/VMOVDQU8/VMOVDQU16/VMOVDQU32/VMOVDQU64 — MOVE UNALIGNED PACKED INTEGER VALUES
-
+MOVDQU/VMOVDQU8/VMOVDQU16/VMOVDQU32/VMOVDQU64 — Move Unaligned Packed Integer Values
 
   Opcode/Instruction                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------ ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
@@ -39,7 +36,6 @@ MOVDQU/VMOVDQU8/VMOVDQU16/VMOVDQU32/VMOVDQU64 — MOVE UNALIGNED PACKED INTEGER 
   EVEX.256.F3.0F.W1 7F /r VMOVDQU64 ymm2/m256 {k1}{z}, ymm1    D       V/V                      AVX512VL AVX512F     Move unaligned packed quadword integer values from ymm1 to ymm2/m256 using writemask k1.
   EVEX.512.F3.0F.W1 7F /r VMOVDQU64 zmm2/m512 {k1}{z}, zmm1    D       V/V                      AVX512F              Move unaligned packed quadword integer values from zmm1 to zmm2/m512 using writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
@@ -55,7 +51,7 @@ Description ¶
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-EVEX ENCODED VERSIONS:
+EVEX encoded versions:
 
 Moves 128, 256 or 512 bits of packed byte/word/doubleword/quadword
 integer values from the source operand (the second operand) to the
@@ -68,7 +64,7 @@ The destination operand is updated at 8-bit (VMOVDQU8), 16-bit
 (VMOVDQU16), 32-bit (VMOVDQU32), or 64-bit (VMOVDQU64) granularity
 according to the writemask.
 
-VEX.256 ENCODED VERSION:
+VEX.256 encoded version:
 
 Moves 256 bits of packed integer values from the source operand (second
 operand) to the destination operand (first operand). This instruction
@@ -86,14 +82,14 @@ can be used to load an XMM register from a 128-bit memory location, to
 store the contents of an XMM register into a 128-bit memory location, or
 to move data between two XMM registers.
 
-128-BIT LEGACY SSE VERSION: Bits (MAXVL-1:128) of the corresponding
+128-bit Legacy SSE version: Bits (MAXVL-1:128) of the corresponding
 destination register remain unchanged.
 
 When the source or destination operand is a memory operand, the operand
 may be unaligned to any alignment without causing a general-protection
 exception (#GP) to be generated
 
-VEX.128 ENCODED VERSION: Bits (MAXVL-1:128) of the destination register
+VEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
 are zeroed.
 
 Operation ¶

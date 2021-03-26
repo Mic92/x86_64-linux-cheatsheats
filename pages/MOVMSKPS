@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+MOVMSKPS — Extract Packed Single-Precision Floating-Point Sign Mask
 
-
-MOVMSKPS — EXTRACT PACKED SINGLE-PRECISION FLOATING-POINT SIGN MASK
-
-
-  Opcode/Instruction                           Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  -------------------------------------------- ------- ---------------- -------------------- ----------------------------------------------------------------------------------------------------------------
-  NP 0F 50 /_r_ MOVMSKPS _reg_, _xmm_          RM      V/V              SSE                  Extract 4-bit sign mask from _xmm_ and store in _reg_. The upper bits of _r32_ or _r64_ are filled with zeros.
-  VEX.128.0F.WIG 50 /r VMOVMSKPS _reg, xmm2_   RM      V/V              AVX                  Extract 4-bit sign mask from _xmm2_ and store in reg. The upper bits of _r32_ or _r64_ are zeroed.
-  VEX.256.0F.WIG 50 /r VMOVMSKPS _reg, ymm2_   RM      V/V              AVX                  Extract 8-bit sign mask from ymm2 and store in reg. The upper bits of _r32_ or _r64_ are zeroed.
-
+  Opcode/Instruction                         Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  ------------------------------------------ ------- ---------------- -------------------- --------------------------------------------------------------------------------------------------------
+  NP 0F 50 /r MOVMSKPS reg, xmm              RM      V/V              SSE                  Extract 4-bit sign mask from xmm and store in reg. The upper bits of r32 or r64 are filled with zeros.
+  VEX.128.0F.WIG 50 /r VMOVMSKPS reg, xmm2   RM      V/V              AVX                  Extract 4-bit sign mask from xmm2 and store in reg. The upper bits of r32 or r64 are zeroed.
+  VEX.256.0F.WIG 50 /r VMOVMSKPS reg, ymm2   RM      V/V              AVX                  Extract 8-bit sign mask from ymm2 and store in reg. The upper bits of r32 or r64 are zeroed.
 
 Instruction Operand Encoding¹ ¶
 
@@ -21,7 +17,6 @@ Instruction Operand Encoding¹ ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -45,7 +40,6 @@ destination operand is a general purpose register.
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -84,18 +78,15 @@ VMOVMSKPS (VEX.256 encoded version) ¶
         ELSE DEST[63:8]←0;
     FI
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     int _mm_movemask_ps(__m128 a)
 
     int _mm256_movemask_ps(__m256 a)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

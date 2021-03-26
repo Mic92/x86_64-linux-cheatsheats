@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+ROUNDPS — Round Packed Single Precision Floating-Point Values
 
-
-ROUNDPS — ROUND PACKED SINGLE PRECISION FLOATING-POINT VALUES
-
-
-  Opcode*/Instruction                                             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 08 /r ib ROUNDPS _xmm1, xmm2/m128, imm8_               RMI     V/V                      SSE4_1               Round packed single precision floating-point values in _xmm2/m128_ and place the result in _xmm1_. The rounding mode is determined by _imm8_.
-  VEX.128.66.0F3A.WIG 08 /r ib VROUNDPS _xmm1, xmm2/m128, imm8_   RMI     V/V                      AVX                  Round packed single-precision floating-point values in _xmm2/m128_ and place the result in xmm1. The rounding mode is determined by _imm8_.
-  VEX.256.66.0F3A.WIG 08 /r ib VROUNDPS _ymm1, ymm2/m256, imm8_   RMI     V/V                      AVX                  Round packed single-precision floating-point values in _ymm2/m256_ and place the result in ymm1. The rounding mode is determined by _imm8_.
-
+  Opcode*/Instruction                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 08 /r ib ROUNDPS xmm1, xmm2/m128, imm8               RMI     V/V                      SSE4_1               Round packed single precision floating-point values in xmm2/m128 and place the result in xmm1. The rounding mode is determined by imm8.
+  VEX.128.66.0F3A.WIG 08 /r ib VROUNDPS xmm1, xmm2/m128, imm8   RMI     V/V                      AVX                  Round packed single-precision floating-point values in xmm2/m128 and place the result in xmm1. The rounding mode is determined by imm8.
+  VEX.256.66.0F3A.WIG 08 /r ib VROUNDPS ymm1, ymm2/m256, imm8   RMI     V/V                      AVX                  Round packed single-precision floating-point values in ymm2/m256 and place the result in ymm1. The rounding mode is determined by imm8.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RMI     ModRM:reg (w)   ModRM:r/m (r)   imm8        NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -57,7 +52,6 @@ VEX.256 encoded version: The source operand is a YMM register or a
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -101,7 +95,6 @@ VROUNDPS (VEX.256 encoded version) ¶
     DEST[223:192]←RoundToInteger(SRC[223:192] ], ROUND_CONTROL)
     DEST[255:224]←RoundToInteger(SRC[255:224] ], ROUND_CONTROL)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     __m128 _mm_round_ps(__m128 s1, int iRoundMode);
@@ -116,7 +109,6 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     __m256 _mm256_ceil_ps(__m256 s1)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid (signaled only if SRC = SNaN)
@@ -126,7 +118,6 @@ Precision Mask in the MXSCSR is ignored and precision exception is not
 signaled.)
 
 Note that Denormal is not signaled by ROUNDPS.
-
 
 Other Exceptions ¶
 

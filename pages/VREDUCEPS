@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VREDUCEPS — PERFORM REDUCTION TRANSFORMATION ON PACKED FLOAT32 VALUES
-
+VREDUCEPS — Perform Reduction Transformation on Packed Float32 Values
 
   Opcode/Instruction                                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W0 56 /r ib VREDUCEPS xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Perform reduction transformation on packed single-precision floating point values in xmm2/m128/m32bcst by subtracting a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register under writemask k1.
   EVEX.256.66.0F3A.W0 56 /r ib VREDUCEPS ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8        A       V/V                      AVX512VL AVX512DQ    Perform reduction transformation on packed single-precision floating point values in ymm2/m256/m32bcst by subtracting a number of fraction bits specified by the imm8 field. Stores the result in ymm1 register under writemask k1.
   EVEX.512.66.0F3A.W0 56 /r ib VREDUCEPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}, imm8   A       V/V                      AVX512DQ             Perform reduction transformation on packed single-precision floating point values in zmm2/m512/m32bcst by subtracting a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

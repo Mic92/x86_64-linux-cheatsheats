@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VP4DPWSSD — DOT PRODUCT OF SIGNED WORDS WITH DWORD ACCUMULATION (4-ITERATIONS)
-
+VP4DPWSSD — Dot Product of Signed Words with Dword Accumulation (4-iterations)
 
   Opcode/Instruction                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.512.F2.0F38.W0 52 /r VP4DPWSSD zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4VNNIW        Multiply signed words from source register block indicated by zmm2 by signed words from m128 and accumulate resulting signed dwords in zmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -37,8 +33,7 @@ operand is loaded if any bit of the lowest 16-bits of the mask is set to
 The tuple type Tuple1_4X implies that four 32-bit elements (16 bytes)
 are referenced by the memory operation portion of this instruction.
 
-16 16 16 16b a a a a0 b b b b0 32 32b c c0 c1=c1+a2*b0+a3*b1
-c0=c0+a0*b0+a1*b1 32 32b
+[]
 
 Figure 7-1. Register Source-Block Dot Product of Two Signed Word
 Operands with Doubleword Accumulation¹

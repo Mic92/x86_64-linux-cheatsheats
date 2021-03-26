@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-INVD — INVALIDATE INTERNAL CACHES
-
+INVD — Invalidate Internal Caches
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- --------------------------------------------------------------
@@ -12,14 +9,12 @@ INVD — INVALIDATE INTERNAL CACHES
 
   * SeetheIA-32ArchitectureCompatibilitysectionbelow.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -55,7 +50,6 @@ instruction.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 IA-32 Architecture Compatibility ¶
 
 The INVD instruction is implementation dependent; it may be implemented
@@ -63,31 +57,23 @@ differently on different families of Intel 64 or IA-32 processors. This
 instruction is not supported on IA-32 processors earlier than the
 Intel486 processor.
 
-
 Operation ¶
 
     Flush(InternalCaches);
     SignalFlush(ExternalCaches);
     Continue (* Continue execution *)
 
-
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the current privilege level is not 0.
-
-If the processor reserved memory protections are activated.
-
-#UD
-
-If the LOCK prefix is used.
-
+  -------- -------------------------------------------------------------
+  #GP(0)   If the current privilege level is not 0.
+           If the processor reserved memory protections are activated.
+  #UD      If the LOCK prefix is used.
+  -------- -------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -95,18 +81,15 @@ Real-Address Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
   -------- ---------------------------------------------------------------
   #GP(0)   The INVD instruction cannot be executed in virtual-8086 mode.
   -------- ---------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

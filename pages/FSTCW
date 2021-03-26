@@ -1,18 +1,14 @@
 -   Index
 -   May 2019
 
+FSTCW/FNSTCW — Store x87 FPU Control Word
 
-
-FSTCW/FNSTCW — STORE X87 FPU CONTROL WORD
-
-
-  Opcode     Instruction           64-Bit Mode   Compat/Leg Mode   Description
-  ---------- --------------------- ------------- ----------------- -----------------------------------------------------------------------------------------------------
-  9B D9 /7   FSTCW _m2byte_        Valid         Valid             Store FPU control word to _m2byte_ after checking for pending unmasked floating-point exceptions.
-  D9 /7      FNSTCW^(*) _m2byte_   Valid         Valid             Store FPU control word to _m2byte_ without checking for pending unmasked floating-point exceptions.
+  Opcode     Instruction         64-Bit Mode   Compat/Leg Mode   Description
+  ---------- ------------------- ------------- ----------------- ---------------------------------------------------------------------------------------------------
+  9B D9 /7   FSTCW m2byte        Valid         Valid             Store FPU control word to m2byte after checking for pending unmasked floating-point exceptions.
+  D9 /7      FNSTCW^(*) m2byte   Valid         Valid             Store FPU control word to m2byte without checking for pending unmasked floating-point exceptions.
 
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
-
 
 Description ¶
 
@@ -30,68 +26,42 @@ instruction that caused the exception.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 IA-32 Architecture Compatibility ¶
 
 When operating a Pentium or Intel486 processor in MS-DOS compatibility
 mode, it is possible (under unusual circumstances) for an FNSTCW
 instruction to be interrupted prior to being executed to handle a
 pending FPU exception. See the section titled “No-Wait FPU Instructions
-Can Get FPU Interrupt in Window” in Appendix D of the _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 1_, for a
+Can Get FPU Interrupt in Window” in Appendix D of the Intel® 64 and
+IA-32 Architectures Software Developer’s Manual, Volume 1, for a
 description of these circumstances. An FNSTCW instruction cannot be
 interrupted in this way on later Intel processors, except for the Intel
 Quark^(TM) X1000 processor.
-
 
 Operation ¶
 
     DEST ← FPUControlWord;
 
-
 FPU Flags Affected ¶
 
 The C0, C1, C2, and C3 flags are undefined.
-
 
 Floating-Point Exceptions ¶
 
 None.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#NM
-
-CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #NM               CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -101,7 +71,6 @@ Real-Address Mode Exceptions ¶
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -114,11 +83,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VP4DPWSSDS — DOT PRODUCT OF SIGNED WORDS WITH DWORD ACCUMULATION AND SATURATION (4-ITERATIONS)
-
+VP4DPWSSDS — Dot Product of Signed Words with Dword Accumulation and Saturation (4-iterations)
 
   Opcode/Instruction                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.512.F2.0F38.W0 53 /r VP4DPWSSDS zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4VNNIW        Multiply signed words from source register block indicated by zmm2 by signed words from m128 and accumulate the resulting dword results with signed saturation in zmm1.
-
 
 Instruction Operand Encoding ¶
 

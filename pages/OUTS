@@ -1,19 +1,16 @@
 -   Index
 -   May 2019
 
+OUTS/OUTSB/OUTSW/OUTSD — Output String to Port
 
-
-OUTS/OUTSB/OUTSW/OUTSD — OUTPUT STRING TO PORT
-
-
-  Opcode*   Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------- ---------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------------------
-  6E        OUTS DX, _m8_    ZO      Valid         Valid             Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
-  6F        OUTS DX, _m16_   ZO      Valid         Valid             Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
-  6F        OUTS DX, _m32_   ZO      Valid         Valid             Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
-  6E        OUTSB            ZO      Valid         Valid             Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
-  6F        OUTSW            ZO      Valid         Valid             Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
-  6F        OUTSD            ZO      Valid         Valid             Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
+  Opcode*   Instruction    Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------- -------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------------------
+  6E        OUTS DX, m8    ZO      Valid         Valid             Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
+  6F        OUTS DX, m16   ZO      Valid         Valid             Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
+  6F        OUTS DX, m32   ZO      Valid         Valid             Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
+  6E        OUTSB          ZO      Valid         Valid             Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
+  6F        OUTSW          ZO      Valid         Valid             Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
+  6F        OUTSD          ZO      Valid         Valid             Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX**.
 
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
@@ -21,14 +18,12 @@ OUTS/OUTSB/OUTSW/OUTSD — OUTPUT STRING TO PORT
   are supported. In non-64-bit mode, only 32-bit (ESI) and 16-bit (SI)
   address sizes are supported.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -52,9 +47,9 @@ source operand should be a symbol that indicates the size of the I/O
 port and the source address, and the destination operand must be DX.
 This explicit-operands form is provided to allow documentation; however,
 note that the documentation provided by this form can be misleading.
-That is, the source operand symbol must specify the correct TYPE (size)
+That is, the source operand symbol must specify the correct type (size)
 of the operand (byte, word, or doubleword), but it does not have to
-specify the correct LOCATION. The location is always specified by the
+specify the correct location. The location is always specified by the
 DS:(E)SI or RSI registers, which must be loaded correctly before the
 OUTS instruction is executed.
 
@@ -78,8 +73,8 @@ REP prefix for block input of ECX bytes, words, or doublewords. See
 “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation Prefix” in this
 chapter for a description of the REP prefix. This instruction is only
 useful for accessing I/O ports located in the processor’s I/O address
-space. See Chapter 18, “Input/Output,” in the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 1_, for more
+space. See Chapter 18, “Input/Output,” in the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 1, for more
 information on accessing I/O ports in the I/O address space.
 
 In 64-bit mode, the default operand size is 32 bits; operand size is not
@@ -87,7 +82,6 @@ promoted by the use of REX.W. In 64-bit mode, the default address size
 is 64 bits, and 64-bit address is specified using RSI by default. 32-bit
 address using ESI is support using the prefix 67H, but 16-bit address is
 not supported in 64-bit mode.
-
 
 IA-32 Architecture Compatibility ¶
 
@@ -102,7 +96,6 @@ For the Pentium 4, Intel^(®) Xeon^(®), and P6 processor family, upon
 execution of an OUTS, OUTSB, OUTSW, or OUTSD instruction, the processor
 will not execute the next instruction until the data phase of the
 transaction is complete.
-
 
 Operation ¶
 
@@ -181,38 +174,20 @@ Operation ¶
                 FI;
         FI;
 
-
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the CPL is greater than (has less privilege) the I/O privilege level
-(IOPL) and any of the corresponding I/O permission bits in TSS for the
-I/O port being accessed is 1.
-
-If a memory operand effective address is outside the limit of the CS,
-DS, ES, FS, or GS segment.
-
-If the segment register contains a NULL segment selector.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the CPL is greater than (has less privilege) the I/O privilege level (IOPL) and any of the corresponding I/O permission bits in TSS for the I/O port being accessed is 1.
+                    If a memory operand effective address is outside the limit of the CS, DS, ES, FS, or GS segment.
+                    If the segment register contains a NULL segment selector.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -221,7 +196,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -232,39 +206,20 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- ------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same as for protected mode exceptions.
 
-
 64-Bit Mode Exceptions ¶
 
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the CPL is greater than (has less privilege) the I/O privilege level
-(IOPL) and any of the corresponding I/O permission bits in TSS for the
-I/O port being accessed is 1.
-
-If the memory address is in a non-canonical form.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the CPL is greater than (has less privilege) the I/O privilege level (IOPL) and any of the corresponding I/O permission bits in TSS for the I/O port being accessed is 1.
+                    If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

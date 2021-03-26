@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFNMSUB132PS/VFNMSUB213PS/VFNMSUB231PS — FUSED NEGATIVE MULTIPLY-SUBTRACT OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+VFNMSUB132PS/VFNMSUB213PS/VFNMSUB231PS — Fused Negative Multiply-Subtract of Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +20,6 @@ VFNMSUB132PS/VFNMSUB213PS/VFNMSUB231PS — FUSED NEGATIVE MULTIPLY-SUBTRACT OF P
   EVEX.512.66.0F38.W0 9E /r VFNMSUB132PS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   B       V/V                      AVX512F              Multiply packed single-precision floating-point values from zmm1 and zmm3/m512/m32bcst, negate the multiplication result and subtract zmm2 and put result in zmm1.
   EVEX.512.66.0F38.W0 AE /r VFNMSUB213PS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   B       V/V                      AVX512F              Multiply packed single-precision floating-point values from zmm1 and zmm2, negate the multiplication result and subtract zmm3/m512/m32bcst and put result in zmm1.
   EVEX.512.66.0F38.W0 BE /r VFNMSUB231PS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   B       V/V                      AVX512F              Multiply packed single-precision floating-point values from zmm2 and zmm3/m512/m32bcst, negate the multiplication result subtract add to zmm1 and put result in zmm1.
-
 
 Instruction Operand Encoding ¶
 

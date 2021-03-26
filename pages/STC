@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-STC — SET CARRY FLAG
-
+STC — Set Carry Flag
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- --------------
   F9       STC           ZO      Valid         Valid             Set CF flag.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,22 +14,18 @@ Instruction Operand Encoding ¶
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
 
-
 Description ¶
 
 Sets the CF flag in the EFLAGS register. Operation is the same in all
 modes.
 
-
 Operation ¶
 
     CF ← 1;
 
-
 Flags Affected ¶
 
 The CF flag is set. The OF, ZF, SF, AF, and PF flags are unaffected.
-
 
 Exceptions (All Operating Modes) ¶
 

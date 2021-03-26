@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-POPF/POPFD/POPFQ — POP STACK INTO EFLAGS REGISTER
-
+POPF/POPFD/POPFQ — Pop Stack into EFLAGS Register
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- ------------------------------------------------
@@ -12,14 +9,12 @@ POPF/POPFD/POPFQ — POP STACK INTO EFLAGS REGISTER
   9D       POPFD         ZO      N.E.          Valid             Pop top of stack into EFLAGS.
   9D       POPFQ         ZO      Valid         N.E.              Pop top of stack and zero-extend into RFLAGS.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -75,745 +70,30 @@ In 64-bit mode, the mnemonic assigned is POPFQ (note that the 32-bit
 operand is not encodable). POPFQ pops 64 bits from the stack. Reserved
 bits of RFLAGS (including the upper 32 bits of RFLAGS) are not affected.
 
-See Chapter 3 of the _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 1_, for more information about the EFLAGS
+See Chapter 3 of the Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 1, for more information about the EFLAGS
 registers.
 
-Mode
-
-Operand Size
-
-CPL
-
-IOPL
-
-Flags
-
-Notes
-
-21
-
-20
-
-19
-
-18
-
-17
-
-16
-
-14
-
-13:12
-
-11
-
-10
-
-9
-
-8
-
-7
-
-6
-
-4
-
-2
-
-0
-
-ID
-
-VIP
-
-VIF
-
-AC
-
-VM
-
-RF
-
-NT
-
-IOPL
-
-OF
-
-DF
-
-IF
-
-TF
-
-SF
-
-ZF
-
-AF
-
-PF
-
-CF
-
-REAL-ADDRESS MODE (CR0.PE = 0)
-
-16
-
-0
-
-0-3
-
-N
-
-N
-
-N
-
-N
-
-N
-
-0
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-32
-
-0
-
-0-3
-
-S
-
-N
-
-N
-
-S
-
-N
-
-0
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-PROTECTED, COMPATIBILITY, AND 64-BIT MODES (CR0.PE = 1 EFLAGS.VM = 0)
-
-16
-
-0
-
-0-3
-
-N
-
-N
-
-N
-
-N
-
-N
-
-0
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-16
-
-1-3
-
-<CPL
-
-N
-
-N
-
-N
-
-N
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-16
-
-1-3
-
-≥CPL
-
-N
-
-N
-
-N
-
-N
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-32, 64
-
-0
-
-0-3
-
-S
-
-N
-
-N
-
-S
-
-N
-
-0
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-32, 64
-
-1-3
-
-<CPL
-
-S
-
-N
-
-N
-
-S
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-32, 64
-
-1-3
-
-≥CPL
-
-S
-
-N
-
-N
-
-S
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-VIRTUAL-8086 (CR0.PE = 1 EFLAGS.VM = 1 CR4.VME = 0)
-
-16
-
-3
-
-0-2
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-1
-
-16
-
-3
-
-3
-
-N
-
-N
-
-N
-
-N
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-32
-
-3
-
-0-2
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-1
-
-32
-
-3
-
-3
-
-S
-
-N
-
-N
-
-S
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-VME (CR0.PE = 1 EFLAGS.VM = 1 CR4.VME = 1)
-
-16
-
-3
-
-0-2
-
-N/X
-
-N/X
-
-SV/X
-
-N/X
-
-N/X
-
-0/X
-
-S/X
-
-N/X
-
-S/X
-
-S/X
-
-N/X
-
-S/X
-
-S/X
-
-S/X
-
-S/X
-
-S/X
-
-S/X
-
-2,3
-
-16
-
-3
-
-3
-
-N
-
-N
-
-N
-
-N
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-32
-
-3
-
-0-2
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-X
-
-1
-
-32
-
-3
-
-3
-
-S
-
-N
-
-N
-
-S
-
-N
-
-0
-
-S
-
-N
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
-
-S
+  Mode                                                                    Operand Size   CPL   IOPL   Flags                                                                                                      Notes
+  ----------------------------------------------------------------------- -------------- ----- ------ ------- ----- ------ ------- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -------
+  21                                                                      20             19    18     17      16    14     13:12   11    10    9     8     7     6     4     2     0                             
+  ID                                                                      VIP            VIF   AC     VM      RF    NT     IOPL    OF    DF    IF    TF    SF    ZF    AF    PF    CF                            
+  Real-Address Mode (CR0.PE = 0)                                          16             0     0-3    N       N     N      N       N     0     S     S     S     S     S     S     S     S     S     S     S     
+                                                                          32             0     0-3    S       N     N      S       N     0     S     S     S     S     S     S     S     S     S     S     S     
+  Protected, Compatibility, and 64-Bit Modes (CR0.PE = 1 EFLAGS.VM = 0)   16             0     0-3    N       N     N      N       N     0     S     S     S     S     S     S     S     S     S     S     S     
+                                                                          16             1-3   <CPL   N       N     N      N       N     0     S     N     S     S     N     S     S     S     S     S     S     
+                                                                          16             1-3   ≥CPL   N       N     N      N       N     0     S     N     S     S     S     S     S     S     S     S     S     
+                                                                          32, 64         0     0-3    S       N     N      S       N     0     S     S     S     S     S     S     S     S     S     S     S     
+                                                                          32, 64         1-3   <CPL   S       N     N      S       N     0     S     N     S     S     N     S     S     S     S     S     S     
+                                                                          32, 64         1-3   ≥CPL   S       N     N      S       N     0     S     N     S     S     S     S     S     S     S     S     S     
+  Virtual-8086 (CR0.PE = 1 EFLAGS.VM = 1 CR4.VME = 0)                     16             3     0-2    X       X     X      X       X     X     X     X     X     X     X     X     X     X     X     X     X     1
+                                                                          16             3     3      N       N     N      N       N     0     S     N     S     S     S     S     S     S     S     S     S     
+                                                                          32             3     0-2    X       X     X      X       X     X     X     X     X     X     X     X     X     X     X     X     X     1
+                                                                          32             3     3      S       N     N      S       N     0     S     N     S     S     S     S     S     S     S     S     S     
+  VME (CR0.PE = 1 EFLAGS.VM = 1 CR4.VME = 1)                              16             3     0-2    N/X     N/X   SV/X   N/X     N/X   0/X   S/X   N/X   S/X   S/X   N/X   S/X   S/X   S/X   S/X   S/X   S/X   2,3
+                                                                          16             3     3      N       N     N      N       N     0     S     N     S     S     S     S     S     S     S     S     S     
+                                                                          32             3     0-2    X       X     X      X       X     X     X     X     X     X     X     X     X     X     X     X     X     1
+                                                                          32             3     3      S       N     N      S       N     0     S     N     S     S     S     S     S     S     S     S     S     
 
 Table 4-15. Effect of POPF/POPFD on the EFLAGS Register
 
@@ -824,28 +104,13 @@ Table 4-15. Effect of POPF/POPFD on the EFLAGS Register
 
   3. #GP fault with no flag update if TF=1 in FLAGS value on stack
 
-Key
-
-S
-
-Updated from stack
-
-SV
-
-Updated from IF (bit 9) in FLAGS value on stack
-
-N
-
-No change in value
-
-X
-
-No EFLAGS update
-
-0
-
-Value is cleared
-
+  Key   
+  ----- -------------------------------------------------
+  S     Updated from stack
+  SV    Updated from IF (bit 9) in FLAGS value on stack
+  N     No change in value
+  X     No EFLAGS update
+  0     Value is cleared
 
 Operation ¶
 
@@ -924,11 +189,9 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 All flags may be affected; see the Operation section for details.
-
 
 Protected Mode Exceptions ¶
 
@@ -939,7 +202,6 @@ Protected Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- ------------------------------------------------------
@@ -947,45 +209,23 @@ Real-Address Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
-#GP(0)
-
-If IOPL < 3 and VME is not enabled.
-
-If IOPL < 3 and the 32-bit operand size is used.
-
-If IOPL < 3, EFLAGS.VIP = 1, and bit 9 (IF) is set in the FLAGS value on
-the stack.
-
-If IOPL < 3 and bit 8 (TF) is set in the FLAGS value on the stack.
-
-If an attempt is made to execute the POPF/POPFD instruction with an
-operand-size override prefix.
-
-#SS(0)
-
-If the top of stack is not within the stack segment.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If an unaligned memory reference is made while alignment checking is
-enabled.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- ---------------------------------------------------------------------------------------------------
+  #GP(0)            If IOPL < 3 and VME is not enabled.
+                    If IOPL < 3 and the 32-bit operand size is used.
+                    If IOPL < 3, EFLAGS.VIP = 1, and bit 9 (IF) is set in the FLAGS value on the stack.
+                    If IOPL < 3 and bit 8 (TF) is set in the FLAGS value on the stack.
+                    If an attempt is made to execute the POPF/POPFD instruction with an operand-size override prefix.
+  #SS(0)            If the top of stack is not within the stack segment.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If an unaligned memory reference is made while alignment checking is enabled.
+  #UD               If the LOCK prefix is used.
+  ----------------- ---------------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same as for protected mode exceptions.
-
 
 64-Bit Mode Exceptions ¶
 

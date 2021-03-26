@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VFIXUPIMMPD — FIX UP SPECIAL PACKED FLOAT64 VALUES
-
+VFIXUPIMMPD — Fix Up Special Packed Float64 Values
 
   Opcode/Instruction                                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W1 54 /r ib VFIXUPIMMPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Fix up special numbers in float64 vector xmm1, float64 vector xmm2 and int64 vector xmm3/m128/m64bcst and store the result in xmm1, under writemask.
   EVEX.256.66.0F3A.W1 54 /r ib VFIXUPIMMPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Fix up special numbers in float64 vector ymm1, float64 vector ymm2 and int64 vector ymm3/m256/m64bcst and store the result in ymm1, under writemask.
   EVEX.512.66.0F3A.W1 54 /r ib VFIXUPIMMPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Fix up elements of float64 vector in zmm2 using int64 vector table in zmm3/m512/m64bcst, combine with preserved elements from zmm1, and store the result in zmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -159,8 +155,7 @@ VFIXUPIMMPD ¶
     DEST[MAXVL-1:VL] ← 0
     Immediate Control Description:
 
-7 6 5 4 3 2 1 0 +INF #IE -VE #IE -INF #IE SNaN #IE ONE #IE ONE #ZE
-ZERO #IE ZERO #ZE
+[]
 
 Figure 5-9. VFIXUPIMMPD Immediate Control Description
 

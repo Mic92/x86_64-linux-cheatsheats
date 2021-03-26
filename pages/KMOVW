@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-KMOVW/KMOVB/KMOVQ/KMOVD — MOVE FROM AND TO MASK REGISTERS
-
+KMOVW/KMOVB/KMOVQ/KMOVD — Move from and to Mask Registers
 
   Opcode/Instruction                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------
@@ -25,7 +22,6 @@ KMOVW/KMOVB/KMOVQ/KMOVD — MOVE FROM AND TO MASK REGISTERS
   VEX.L0.F2.0F.W1 93 /r KMOVQ r64, k1      RR      V/I                      AVX512BW             Move 64 bits mask from k1 to r64.
   VEX.L0.F2.0F.W0 93 /r KMOVD r32, k1      RR      V/V                      AVX512BW             Move 32 bits mask from k1 to r32.
 
-
 Instruction Operand Encoding ¶
 
   ------- -------------------------------------------- ----------------------------------------
@@ -34,7 +30,6 @@ Instruction Operand Encoding ¶
   MR      ModRM:r/m (w, ModRM:[7:6] must not be 11b)   ModRM:reg (r)
   RR      ModRM:reg (w)                                ModRM:r/m (r, ModRM:[7:6] must be 11b)
   ------- -------------------------------------------- ----------------------------------------
-
 
 Description ¶
 
@@ -51,7 +46,6 @@ destination. In 32-bit mode, the default GPR destination’s size is 32
 bits. In 64-bit mode, the default GPR destination’s size is 64 bits.
 Note that VEX.W can only be used to modify the size of the GPR operand
 in 64b mode.
-
 
 Operation ¶
 
@@ -83,21 +77,17 @@ KMOVD ¶
     IF *destination is a mask register or a GPR *
         DEST ← ZeroExtension(SRC[31:0])
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     KMOVW __mmask16 _mm512_kmov(__mmask16 a);
-
 
 Flags Affected ¶
 
 None
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

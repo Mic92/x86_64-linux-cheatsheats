@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VMFUNC — INVOKE VM FUNCTION
-
+VMFUNC — Invoke VM function
 
   Opcode/Instruction   Op/En   Description
   -------------------- ------- --------------------------------------
   NP 0F 01 D4 VMFUNC   ZO      Invoke VM function specified in EAX.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -29,17 +24,14 @@ function being invoked.
 The behavior of each VM function (including any additional fault
 checking) is specified in Section 25.5.5, “VM Functions”.
 
-
 Operation ¶
 
     Perform functionality of the VM function specified in EAX;
-
 
 Flags Affected ¶
 
 Depends on the VM function specified in EAX. See Section 25.5.5, “VM
 Functions”.
-
 
 Protected Mode Exceptions (not including those defined by specific VM functions) ¶
 
@@ -49,21 +41,17 @@ If “enable VM functions” VM-execution control is 0.
 
 If EAX ≥ 64.
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD — FUSED NEGATIVE MULTIPLY-SUBTRACT OF SCALAR DOUBLE-PRECISION FLOATING-POINT VALUES
-
+VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD — Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD — FUSED NEGATIVE MULTIPLY-SUBTRACT OF S
   EVEX.LIG.66.0F38.W1 9F /r VFNMSUB132SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B       V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm1 and xmm3/m64, negate the multiplication result and subtract xmm2 and put result in xmm1.
   EVEX.LIG.66.0F38.W1 AF /r VFNMSUB213SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B       V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm1 and xmm2, negate the multiplication result and subtract xmm3/m64 and put result in xmm1.
   EVEX.LIG.66.0F38.W1 BF /r VFNMSUB231SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B       V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm2 and xmm3/m64, negate the multiplication result and subtract xmm1 and put result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

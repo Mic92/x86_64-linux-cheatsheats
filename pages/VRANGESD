@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRANGESD — RANGE RESTRICTION CALCULATION FROM A PAIR OF SCALAR FLOAT64 VALUES
-
+VRANGESD — Range Restriction Calculation From a pair of Scalar Float64 Values
 
   Opcode/Instruction                                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W1 51 /r VRANGESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512DQ             Calculate a RANGE operation output value from 2 double-precision floating-point values in xmm2 and xmm3/m64, store the output to xmm1 under writemask. Imm8 specifies the comparison and sign of the range operation.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EREPORT — CREATE A CRYPTOGRAPHIC REPORT OF THE ENCLAVE
-
+EREPORT — Create a Cryptographic Report of the Enclave
 
   Opcode/Instruction         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------
   EAX = 00H ENCLU[EREPORT]   IR      V/V                      SGX1                 This leaf function creates a cryptographic report of the enclave.
-
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ of a 64-byte REPORTDATA structure, which allows the caller of the
 instruction to associate data with the enclave from which the
 instruction is called. RDX contains the address where the REPORT will be
 output by the instruction.
-
 
 EREPORT Memory Parameter Semantics ¶
 
@@ -66,7 +61,6 @@ entity within the SGX TCB.
 
 The instruction faults if any of the following:
 
-
 EREPORT Faulting Conditions ¶
 
   -------------------------------------------- ----------------------------------------------------
@@ -77,88 +71,26 @@ EREPORT Faulting Conditions ¶
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EREPORT
-
-TARGETINFO [DS:RBX]
-
-Concurrent
-
-REPORTDATA [DS:RCX]
-
-Concurrent
-
-OUTPUTDATA [DS:RDX]
-
-Concurrent
+  Leaf      Parameter             Base Concurrency Restrictions           
+  --------- --------------------- ------------------------------------ -- --
+  Access    On Conflict           SGX_CONFLICT VM Exit Qualification      
+  EREPORT   TARGETINFO [DS:RBX]   Concurrent                              
+            REPORTDATA [DS:RCX]   Concurrent                              
+            OUTPUTDATA [DS:RDX]   Concurrent                              
 
 Table 40-70. Base Concurrency Restrictions of EREPORT
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EREPORT
-
-TARGETINFO [DS:RBX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-REPORTDATA [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-OUTPUTDATA [DS:RDX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter             Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- --------------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                         vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict           Access                                On Conflict   Access                On Conflict                
+  EREPORT                                           TARGETINFO [DS:RBX]   Concurrent                                          Concurrent                          Concurrent   
+                                                    REPORTDATA [DS:RCX]   Concurrent                                          Concurrent                          Concurrent   
+                                                    OUTPUTDATA [DS:RDX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-71. Additional Concurrency Restrictions of EREPORT
 
 Operation ¶
-
 
 Temp Variables in EREPORT Operational Flow ¶
 
@@ -352,35 +284,23 @@ None
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If the address in RCS is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is not in the current enclave.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If the address in RCS is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If a memory operand is not in the current enclave.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If RCX is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is not in the current enclave.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If RCX is non-canonical form.
+              If a memory operand is not properly aligned.
+              If a memory operand is not in the current enclave.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

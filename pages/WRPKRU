@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-WRPKRU — WRITE DATA TO USER PAGE KEY REGISTER
-
+WRPKRU — Write Data to User Page Key Register
 
   Opcode*       Instruction   Op/En   64/32bit Mode Support   CPUID Feature Flag   Description
   ------------- ------------- ------- ----------------------- -------------------- -----------------------
   NP 0F 01 EF   WRPKRU        ZO      V/V                     OSPKE                Writes EAX into PKRU.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -31,7 +26,6 @@ examining CPUID.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
 On processors that support the Intel 64 Architecture, the high-order
 32-bits of RCX, RDX and RAX are ignored.
 
-
 Operation ¶
 
     IF (ECX = 0 AND EDX = 0)
@@ -39,46 +33,34 @@ Operation ¶
         ELSE #GP(0);
     FI;
 
-
 Flags Affected ¶
 
 None.
-
 
 C/C++ Compiler Intrinsic Equivalent ¶
 
     WRPKRU: void _wrpkru(uint32_t);
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If ECX ≠ 0.
-
-If EDX ≠ 0.
-
-#UD
-
-If the LOCK prefix is used.
-
-If CR4.PKE = 0.
-
+  -------- -----------------------------
+  #GP(0)   If ECX ≠ 0.
+           If EDX ≠ 0.
+  #UD      If the LOCK prefix is used.
+           If CR4.PKE = 0.
+  -------- -----------------------------
 
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

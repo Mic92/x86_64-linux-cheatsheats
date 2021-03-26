@@ -1,23 +1,19 @@
 -   Index
 -   May 2019
 
+VPMOVWB/VPMOVSWB/VPMOVUSWB — Down Convert Word to Byte
 
-
-VPMOVWB/VPMOVSWB/VPMOVUSWB — DOWN CONVERT WORD TO BYTE
-
-
-  Opcode/Instruction                                                Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.128.F3.0F38.W0 30 /_r_ VPMOVWB _xmm1/m64 {k1}{z}, xmm2_      A         V/V                      AVX512VL AVX512BW    Converts 8 packed word integers from _xmm2_ into 8 packed bytes in _xmm1/m64_ with truncation under writemask k1.
-  EVEX.128.F3.0F38.W0 20 /_r_ VPMOVSWB _xmm1/m64 {k1}{z}, xmm2_     A         V/V                      AVX512VL AVX512BW    Converts 8 packed signed word integers from _xmm2_ into 8 packed signed bytes in _xmm1/m64_ using signed saturation under writemask k1.
-  EVEX.128.F3.0F38.W0 10 /_r_ VPMOVUSWB _xmm1/m64 {k1}{z}, xmm2_    A         V/V                      AVX512VL AVX512BW    Converts 8 packed unsigned word integers from _xmm2_ into 8 packed unsigned bytes in _8mm1/m64_ using unsigned saturation under writemask k1.
-  EVEX.256.F3.0F38.W0 30 /_r_ VPMOVWB _xmm1/m128 {k1}{z}, ymm2_     A         V/V                      AVX512VL AVX512BW    Converts 16 packed word integers from _ymm2_ into 16 packed bytes in _xmm1/m128_ with truncation under writemask k1.
-  EVEX.256.F3.0F38.W0 20 /_r_ VPMOVSWB _xmm1/m128 {k1}{z}, ymm2_    A         V/V                      AVX512VL AVX512BW    Converts 16 packed signed word integers from _ymm2_ into 16 packed signed bytes in _xmm1/m128_ using signed saturation under writemask k1.
-  EVEX.256.F3.0F38.W0 10 /_r_ VPMOVUSWB _xmm1/m128 {k1}{z}, ymm2_   A         V/V                      AVX512VL AVX512BW    Converts 16 packed unsigned word integers from _ymm2_ into 16 packed unsigned bytes in _xmm1/m128_ using unsigned saturation under writemask k1.
-  EVEX.512.F3.0F38.W0 30 /_r_ VPMOVWB _ymm1/m256 {k1}{z}, zmm2_     A         V/V                      AVX512BW             Converts 32 packed word integers from _zmm2_ into 32 packed bytes in _ymm1/m256_ with truncation under writemask k1.
-  EVEX.512.F3.0F38.W0 20 /_r_ VPMOVSWB _ymm1/m256 {k1}{z}, zmm2_    A         V/V                      AVX512BW             Converts 32 packed signed word integers from _zmm2_ into 32 packed signed bytes in _ymm1/m256_ using signed saturation under writemask k1.
-  EVEX.512.F3.0F38.W0 10 /_r_ VPMOVUSWB _ymm1/m256 {k1}{z}, zmm2_   A         V/V                      AVX512BW             Converts 32 packed unsigned word integers from _zmm2_ into 32 packed unsigned bytes in _ymm1/m256_ using unsigned saturation under writemask k1.
-
+  Opcode/Instruction                                            Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------- --------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.F3.0F38.W0 30 /r VPMOVWB xmm1/m64 {k1}{z}, xmm2      A         V/V                      AVX512VL AVX512BW    Converts 8 packed word integers from xmm2 into 8 packed bytes in xmm1/m64 with truncation under writemask k1.
+  EVEX.128.F3.0F38.W0 20 /r VPMOVSWB xmm1/m64 {k1}{z}, xmm2     A         V/V                      AVX512VL AVX512BW    Converts 8 packed signed word integers from xmm2 into 8 packed signed bytes in xmm1/m64 using signed saturation under writemask k1.
+  EVEX.128.F3.0F38.W0 10 /r VPMOVUSWB xmm1/m64 {k1}{z}, xmm2    A         V/V                      AVX512VL AVX512BW    Converts 8 packed unsigned word integers from xmm2 into 8 packed unsigned bytes in 8mm1/m64 using unsigned saturation under writemask k1.
+  EVEX.256.F3.0F38.W0 30 /r VPMOVWB xmm1/m128 {k1}{z}, ymm2     A         V/V                      AVX512VL AVX512BW    Converts 16 packed word integers from ymm2 into 16 packed bytes in xmm1/m128 with truncation under writemask k1.
+  EVEX.256.F3.0F38.W0 20 /r VPMOVSWB xmm1/m128 {k1}{z}, ymm2    A         V/V                      AVX512VL AVX512BW    Converts 16 packed signed word integers from ymm2 into 16 packed signed bytes in xmm1/m128 using signed saturation under writemask k1.
+  EVEX.256.F3.0F38.W0 10 /r VPMOVUSWB xmm1/m128 {k1}{z}, ymm2   A         V/V                      AVX512VL AVX512BW    Converts 16 packed unsigned word integers from ymm2 into 16 packed unsigned bytes in xmm1/m128 using unsigned saturation under writemask k1.
+  EVEX.512.F3.0F38.W0 30 /r VPMOVWB ymm1/m256 {k1}{z}, zmm2     A         V/V                      AVX512BW             Converts 32 packed word integers from zmm2 into 32 packed bytes in ymm1/m256 with truncation under writemask k1.
+  EVEX.512.F3.0F38.W0 20 /r VPMOVSWB ymm1/m256 {k1}{z}, zmm2    A         V/V                      AVX512BW             Converts 32 packed signed word integers from zmm2 into 32 packed signed bytes in ymm1/m256 using signed saturation under writemask k1.
+  EVEX.512.F3.0F38.W0 10 /r VPMOVUSWB ymm1/m256 {k1}{z}, zmm2   A         V/V                      AVX512BW             Converts 32 packed unsigned word integers from zmm2 into 32 packed unsigned bytes in ymm1/m256 using unsigned saturation under writemask k1.
 
 Instruction Operand Encoding ¶
 

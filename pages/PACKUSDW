@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
+PACKUSDW — Pack with Unsigned Saturation
 
-
-PACKUSDW — PACK WITH UNSIGNED SATURATION
-
-
-  Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 2B /r PACKUSDW _xmm1, xmm2/m128_                                    A         V/V                      SSE4_1               Convert 4 packed signed doubleword integers from _xmm1_ and 4 packed signed doubleword integers from _xmm2/m128_ into 8 packed unsigned word integers in _xmm1_ using unsigned saturation.
-  VEX.128.66.0F38 2B /r VPACKUSDW _xmm1,xmm2, xmm3/m128_                       B         V/V                      AVX                  Convert 4 packed signed doubleword integers from _xmm2_ and 4 packed signed doubleword integers from _xmm3/m128_ into 8 packed unsigned word integers in _xmm1_ using unsigned saturation.
-  VEX.256.66.0F38 2B /r VPACKUSDW _ymm1, ymm2, ymm3/m256_                      B         V/V                      AVX2                 Convert 8 packed signed doubleword integers from _ymm2_ and 8 packed signed doubleword integers from _ymm3/m256_ into 16 packed unsigned word integers in _ymm1_ using unsigned saturation.
-  EVEX.128.66.0F38.W0 2B /r VPACKUSDW _xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst_   C         V/V                      AVX512VL AVX512BW    Convert packed signed doubleword integers from xmm2 and packed signed doubleword integers from xmm3/m128/m32bcst into packed unsigned word integers in xmm1 using unsigned saturation under writemask k1.
-  EVEX.256.66.0F38.W0 2B /r VPACKUSDW _ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst_   C         V/V                      AVX512VL AVX512BW    Convert packed signed doubleword integers from ymm2 and packed signed doubleword integers from ymm3/m256/m32bcst into packed unsigned word integers in ymm1 using unsigned saturation under writemask k1.
-  EVEX.512.66.0F38.W0 2B /r VPACKUSDW _zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst_   C         V/V                      AVX512BW             Convert packed signed doubleword integers from _zmm2_ and packed signed doubleword integers from _zmm3/m512/m32bcst_ into packed unsigned word integers in _zmm1_ using unsigned saturation under writemask k1.
-
+  Opcode/Instruction                                                         Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  -------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 38 2B /r PACKUSDW xmm1, xmm2/m128                                    A         V/V                      SSE4_1               Convert 4 packed signed doubleword integers from xmm1 and 4 packed signed doubleword integers from xmm2/m128 into 8 packed unsigned word integers in xmm1 using unsigned saturation.
+  VEX.128.66.0F38 2B /r VPACKUSDW xmm1,xmm2, xmm3/m128                       B         V/V                      AVX                  Convert 4 packed signed doubleword integers from xmm2 and 4 packed signed doubleword integers from xmm3/m128 into 8 packed unsigned word integers in xmm1 using unsigned saturation.
+  VEX.256.66.0F38 2B /r VPACKUSDW ymm1, ymm2, ymm3/m256                      B         V/V                      AVX2                 Convert 8 packed signed doubleword integers from ymm2 and 8 packed signed doubleword integers from ymm3/m256 into 16 packed unsigned word integers in ymm1 using unsigned saturation.
+  EVEX.128.66.0F38.W0 2B /r VPACKUSDW xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst   C         V/V                      AVX512VL AVX512BW    Convert packed signed doubleword integers from xmm2 and packed signed doubleword integers from xmm3/m128/m32bcst into packed unsigned word integers in xmm1 using unsigned saturation under writemask k1.
+  EVEX.256.66.0F38.W0 2B /r VPACKUSDW ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst   C         V/V                      AVX512VL AVX512BW    Convert packed signed doubleword integers from ymm2 and packed signed doubleword integers from ymm3/m256/m32bcst into packed unsigned word integers in ymm1 using unsigned saturation under writemask k1.
+  EVEX.512.66.0F38.W0 2B /r VPACKUSDW zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst   C         V/V                      AVX512BW             Convert packed signed doubleword integers from zmm2 and packed signed doubleword integers from zmm3/m512/m32bcst into packed unsigned word integers in zmm1 using unsigned saturation under writemask k1.
 
 Instruction Operand Encoding ¶
 

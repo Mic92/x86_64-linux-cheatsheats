@@ -1,31 +1,27 @@
 -   Index
 -   May 2019
 
-
-
-PEXTRW — EXTRACT WORD
-
+PEXTRW — Extract Word
 
   Opcode/Instruction                                          Op/ En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------- -------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F C5 /_r_ ib¹ PEXTRW _reg_, _mm_, _imm8_                A        V/V                      SSE                  Extract the word specified by _imm8_ from _mm_ and move it to _reg_, bits 15-0. The upper bits of r32 or r64 is zeroed.
-  66 0F C5 /_r_ ib PEXTRW _reg_, _xmm_, _imm8_                A        V/V                      SSE2                 Extract the word specified by _imm8_ from _xmm_ and move it to _reg_, bits 15-0. The upper bits of r32 or r64 is zeroed.
-  66 0F 3A 15 /r ib PEXTRW _reg/m16, xmm, imm8_               B        V/V                      SSE4_1               Extract the word specified by _imm8_ from _xmm_ and copy it to lowest 16 bits of _reg or m16_. Zero-extend the result in the destination, r32 or r64.
-  VEX.128.66.0F.W0 C5 /r ib VPEXTRW _reg, xmm1, imm8_         A        V²/V                     AVX                  Extract the word specified by _imm8_ from _xmm1_ and move it to reg, bits 15:0. Zero-extend the result. The upper bits of r64/r32 is filled with zeros.
-  VEX.128.66.0F3A.W0 15 /r ib VPEXTRW _reg/m16, xmm2, imm8_   B        V/V                      AVX                  Extract a word integer value from _xmm2_ at the source word offset specified by _imm8_ into _reg_ or _m16_. The upper bits of r64/r32 is filled with zeros.
+  ----------------------------------------------------------- -------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F C5 /r ib¹ PEXTRW reg, mm, imm8                        A        V/V                      SSE                  Extract the word specified by imm8 from mm and move it to reg, bits 15-0. The upper bits of r32 or r64 is zeroed.
+  66 0F C5 /r ib PEXTRW reg, xmm, imm8                        A        V/V                      SSE2                 Extract the word specified by imm8 from xmm and move it to reg, bits 15-0. The upper bits of r32 or r64 is zeroed.
+  66 0F 3A 15 /r ib PEXTRW reg/m16, xmm, imm8                 B        V/V                      SSE4_1               Extract the word specified by imm8 from xmm and copy it to lowest 16 bits of reg or m16. Zero-extend the result in the destination, r32 or r64.
+  VEX.128.66.0F.W0 C5 /r ib VPEXTRW reg, xmm1, imm8           A        V²/V                     AVX                  Extract the word specified by imm8 from xmm1 and move it to reg, bits 15:0. Zero-extend the result. The upper bits of r64/r32 is filled with zeros.
+  VEX.128.66.0F3A.W0 15 /r ib VPEXTRW reg/m16, xmm2, imm8     B        V/V                      AVX                  Extract a word integer value from xmm2 at the source word offset specified by imm8 into reg or m16. The upper bits of r64/r32 is filled with zeros.
   EVEX.128.66.0F.WIG C5 /r ib VPEXTRW reg, xmm1, imm8         A        V/V                      AVX512B W            Extract the word specified by imm8 from xmm1 and move it to reg, bits 15:0. Zero-extend the result. The upper bits of r64/r32 is filled with zeros.
   EVEX.128.66.0F3A.WIG 15 /r ib VPEXTRW reg/m16, xmm2, imm8   C        V/V                      AVX512B W            Extract a word integer value from xmm2 at the source word offset specified by imm8 into reg or m16. The upper bits of r64/r32 is filled with zeros.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
   2. In 64-bit mode, VEX.W1 is ignored for VPEXTRW (similar to legacy
   REX.W=1 prefix in PEXTRW).
-
 
 Instruction Operand Encoding ¶
 
@@ -35,7 +31,6 @@ Instruction Operand Encoding ¶
   B       NA              ModRM:r/m (w)   ModRM:reg (r)   imm8        NA
   C       Tuple1 Scalar   ModRM:r/m (w)   ModRM:reg (r)   imm8        NA
   ------- --------------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -62,7 +57,6 @@ be 0, otherwise the instruction will #UD. If the destination operand is
 a register, the default operand size in 64-bit mode for VPEXTRW is 64
 bits, the bits above the least significant byte/word/dword data are
 filled with zeros.
-
 
 Operation ¶
 
@@ -115,23 +109,19 @@ VPEXTRW ( dest=reg) ¶
         DEST[31:16] ← ZERO_FILL;
     FI
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PEXTRW: int _mm_extract_pi16 (__m64 a, int n)
 
     PEXTRW: int _mm_extract_epi16 ( __m128i a, int imm)
 
-
 Flags Affected ¶
 
 None.
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 
@@ -139,11 +129,10 @@ Non-EVEX-encoded instruction, see Exceptions Type 5;
 
 EVEX-encoded instruction, see Exceptions Type E9NF.
 
-#UD
-
-If VEX.L = 1 or EVEX.L’L > 0.
-
-If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+  ----- ---------------------------------------------
+  #UD   If VEX.L = 1 or EVEX.L’L > 0.
+        If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+  ----- ---------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

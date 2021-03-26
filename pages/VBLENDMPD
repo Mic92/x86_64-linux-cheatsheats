@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VBLENDMPD/VBLENDMPS — BLEND FLOAT64/FLOAT32 VECTORS USING AN OPMASK CONTROL
-
+VBLENDMPD/VBLENDMPS — Blend Float64/Float32 Vectors Using an OpMask Control
 
   Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VBLENDMPD/VBLENDMPS — BLEND FLOAT64/FLOAT32 VECTORS USING AN OPMASK CONTROL
   EVEX.128.66.0F38.W0 65 /r VBLENDMPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   A       V/V                      AVX512VL AVX512F     Blend single-precision vector xmm2 and single-precision vector xmm3/m128/m32bcst and store the result in xmm1, under control mask.
   EVEX.256.66.0F38.W0 65 /r VBLENDMPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   A       V/V                      AVX512VL AVX512F     Blend single-precision vector ymm2 and single-precision vector ymm3/m256/m32bcst and store the result in ymm1, under control mask.
   EVEX.512.66.0F38.W0 65 /r VBLENDMPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   A       V/V                      AVX512F              Blend single-precision vector zmm2 and single-precision vector zmm3/m512/m32bcst using k1 as select control and store the result in zmm1.
-
 
 Instruction Operand Encoding ¶
 

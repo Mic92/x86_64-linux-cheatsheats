@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPTESTNMB/VPTESTNMW/VPTESTNMD/VPTESTNMQ — LOGICAL NAND AND SET
-
+VPTESTNMB/VPTESTNMW/VPTESTNMD/VPTESTNMQ — Logical NAND and Set
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID               Description
   ---------------------------------------------------------------------- ------- ------------------------ ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +17,6 @@ VPTESTNMB/VPTESTNMW/VPTESTNMD/VPTESTNMQ — LOGICAL NAND AND SET
   EVEX.128.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, xmm2, xmm3/m128/m64bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed quadword integers in xmm2 and xmm3/m128/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
   EVEX.256.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, ymm2, ymm3/m256/m64bcst   B       V/V                      AVX512VL AVX512F    Bitwise NAND of packed quadword integers in ymm2 and ymm3/m256/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
   EVEX.512.F3.0F38.W1 27 /r VPTESTNMQ k2 {k1}, zmm2, zmm3/m512/m64bcst   B       V/V                      AVX512F             Bitwise NAND of packed quadword integers in zmm2 and zmm3/m512/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

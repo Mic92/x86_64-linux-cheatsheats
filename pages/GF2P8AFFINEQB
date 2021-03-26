@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GF2P8AFFINEQB — GALOIS FIELD AFFINE TRANSFORMATION
-
+GF2P8AFFINEQB — Galois Field Affine Transformation
 
   Opcode/Instruction                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------
   66 0F3A CE /r /ib GF2P8AFFINEQB xmm1, xmm2/m128, imm8   A       V/V                      GFNI                 Computes affine transformation in the finite field GF(2^8).
-
 
 Instruction Operand Encoding ¶
 

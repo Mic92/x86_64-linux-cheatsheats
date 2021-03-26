@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFMADDSUB132PD/VFMADDSUB213PD/VFMADDSUB231PD — FUSED MULTIPLY-ALTERNATING ADD/SUBTRACT OF PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+VFMADDSUB132PD/VFMADDSUB213PD/VFMADDSUB231PD — Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------------ ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +20,6 @@ VFMADDSUB132PD/VFMADDSUB213PD/VFMADDSUB231PD — FUSED MULTIPLY-ALTERNATING ADD/
   EVEX.512.66.0F38.W1 A6 /r VFMADDSUB213PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1and zmm2, add/subtract elements in zmm3/m512/m64bcst and put result in zmm1 subject to writemask k1.
   EVEX.512.66.0F38.W1 B6 /r VFMADDSUB231PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm2 and zmm3/m512/m64bcst, add/subtract elements in zmm1 and put result in zmm1 subject to writemask k1.
   EVEX.512.66.0F38.W1 96 /r VFMADDSUB132PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm3/m512/m64bcst, add/subtract elements in zmm2 and put result in zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

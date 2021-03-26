@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPROLD/VPROLVD/VPROLQ/VPROLVQ — BIT ROTATE LEFT
-
+VPROLD/VPROLVD/VPROLQ/VPROLVQ — Bit Rotate Left
 
   Opcode/Instruction                                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +17,6 @@ VPROLD/VPROLVD/VPROLQ/VPROLVQ — BIT ROTATE LEFT
   EVEX.512.66.0F.W0 72 /1 ib VPROLD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   A         V/V                      AVX512F              Rotate left of doublewords in zmm3/m512/m32bcst by imm8. Result written to zmm1 using writemask k1.
   EVEX.512.66.0F38.W1 15 /r VPROLVQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   B         V/V                      AVX512F              Rotate quadwords in zmm2 left by count in the corresponding element of zmm3/m512/m64bcst. Result written to zmm1under writemask k1.
   EVEX.512.66.0F.W1 72 /1 ib VPROLQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   A         V/V                      AVX512F              Rotate quadwords in zmm2/m512/m64bcst left by imm8. Result written to zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

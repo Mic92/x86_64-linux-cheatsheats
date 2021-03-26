@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-DAA — DECIMAL ADJUST AL AFTER ADDITION
-
+DAA — Decimal Adjust AL after Addition
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- -----------------------------------
   27       DAA           ZO      Invalid       Valid             Decimal adjust AL after addition.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -31,7 +26,6 @@ a decimal carry is detected, the CF and AF flags are set accordingly.
 
 This instruction executes as described above in compatibility mode and
 legacy mode. It is not valid in 64-bit mode.
-
 
 Operation ¶
 
@@ -59,7 +53,6 @@ Operation ¶
             FI;
     FI;
 
-
 Example ¶
 
 ADD AL, BL Before: AL=79H BL=35H EFLAGS(OSZAPC)=XXXXXX After: AL=AEH
@@ -68,7 +61,6 @@ EFLAGS(OSZAPC)=110000 After: AL=14H BL=35H EFLAGS(0SZAPC)=X00111 DAA
 Before: AL=2EH BL=35H EFLAGS(OSZAPC)=110000 After: AL=34H BL=35H
 EFLAGS(0SZAPC)=X00101
 
-
 Flags Affected ¶
 
 The CF and AF flags are set if the adjustment of the value results in a
@@ -76,13 +68,11 @@ decimal carry in either digit of the result (see the “Operation” section
 above). The SF, ZF, and PF flags are set according to the result. The OF
 flag is undefined.
 
-
 Protected Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 Real-Address Mode Exceptions ¶
 
@@ -90,20 +80,17 @@ Real-Address Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 64-Bit Mode Exceptions ¶
 

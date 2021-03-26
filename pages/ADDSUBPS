@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-ADDSUBPS — PACKED SINGLE-FP ADD/SUBTRACT
-
+ADDSUBPS — Packed Single-FP Add/Subtract
 
   Opcode/Instruction                                        Op/En   64/32-bit Mode   CPUID Feature Flag   Description
   --------------------------------------------------------- ------- ---------------- -------------------- --------------------------------------------------------------------------------------------------------
-  F2 0F D0 /r ADDSUBPS _xmm1_, _xmm2/m128_                  RM      V/V              SSE3                 Add/subtract single-precision floating-point values from _xmm2/m128_ to _xmm1_.
+  F2 0F D0 /r ADDSUBPS xmm1, xmm2/m128                      RM      V/V              SSE3                 Add/subtract single-precision floating-point values from xmm2/m128 to xmm1.
   VEX.128.F2.0F.WIG D0 /r VADDSUBPS xmm1, xmm2, xmm3/m128   RVM     V/V              AVX                  Add/subtract single-precision floating-point values from xmm3/mem to xmm2 and stores result in xmm1.
   VEX.256.F2.0F.WIG D0 /r VADDSUBPS ymm1, ymm2, ymm3/m256   RVM     V/V              AVX                  Add / subtract single-precision floating-point values from ymm3/mem to ymm2 and stores result in ymm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
   RVM     ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -51,13 +46,9 @@ VEX.256 encoded version: The first source operand is a YMM register. The
 second source operand can be a YMM register or a 256-bit memory
 location. The destination operand is a YMM register.
 
-ADDSUBPS xmm1, xmm2/m128 xmm2/ [127:96] [95:64] [63:32] [31:0] m128
-RESULT: xmm1[127:96] + xmm1[95:64] - xmm2/ xmm1[63:32] + xmm1[31:0] -
-xmm1 xmm2/m128[127:96] m128[95:64] xmm2/m128[63:32] xmm2/m128[31:0]
-[127:96] [95:64] [63:32] [31:0]
+[]
 
 Figure 3-4. ADDSUBPS—Packed Single-FP Add/Subtract
-
 
 Operation ¶
 
@@ -88,13 +79,11 @@ VADDSUBPS (VEX.256 encoded version) ¶
     DEST[223:192]←SRC1[223:192] - SRC2[223:192]
     DEST[255:224]←SRC1[255:224] + SRC2[255:224].
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ADDSUBPS: __m128 _mm_addsub_ps(__m128 a, __m128 b)
 
     VADDSUBPS: __m256 _mm256_addsub_ps (__m256 a, __m256 b)
-
 
 Exceptions ¶
 
@@ -102,11 +91,9 @@ When the source operand is a memory operand, the operand must be aligned
 on a 16-byte boundary or a general-protection exception (#GP) will be
 generated.
 
-
 SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal.
-
 
 Other Exceptions ¶
 

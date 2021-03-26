@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-MOVLHPS — MOVE PACKED SINGLE-PRECISION FLOATING-POINT VALUES LOW TO HIGH
-
+MOVLHPS — Move Packed Single-Precision Floating-Point Values Low to High
 
   Opcode/Instruction                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------
   NP 0F 16 /r MOVLHPS xmm1, xmm2                   RM      V/V                      SSE                  Move two packed single-precision floating-point values from low quadword of xmm2 to high quadword of xmm1.
   VEX.128.0F.WIG 16 /r VMOVLHPS xmm1, xmm2, xmm3   RVM     V/V                      AVX                  Merge two packed single-precision floating-point values from low quadword of xmm3 and low quadword of xmm2.
   EVEX.128.0F.W0 16 /r VMOVLHPS xmm1, xmm2, xmm3   RVM     V/V                      AVX512F              Merge two packed single-precision floating-point values from low quadword of xmm3 and low quadword of xmm2.
-
 
 Instruction Operand Encoding¹ ¶
 
@@ -27,7 +23,7 @@ Description ¶
 
 This instruction cannot be used for memory to register moves.
 
-128-BIT TWO-ARGUMENT FORM:
+128-bit two-argument form:
 
 Moves two packed single-precision floating-point values from the low
 quadword of the second XMM argument (second operand) to the high
@@ -35,7 +31,7 @@ quadword of the first XMM register (first argument). The low quadword of
 the destination operand is left unchanged. Bits (MAXVL-1:128) of the
 corresponding destination register are unmodified.
 
-128-BIT THREE-ARGUMENT FORMS:
+128-bit three-argument forms:
 
 Moves two packed single-precision floating-point values from the low
 quadword of the third XMM argument (third operand) to the high quadword

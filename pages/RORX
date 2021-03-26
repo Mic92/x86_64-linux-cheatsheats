@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+RORX — Rotate Right Logical Without Affecting Flags
 
-
-RORX — ROTATE RIGHT LOGICAL WITHOUT AFFECTING FLAGS
-
-
-  Opcode/Instruction                                   Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  ---------------------------------------------------- ------- ----------------- -------------------- ------------------------------------------------------------------------------
-  VEX.LZ.F2.0F3A.W0 F0 /r ib RORX r32, _r/m32, imm8_   RMI     V/V               BMI2                 Rotate 32-bit _r/m32_ right _imm8_ times without affecting arithmetic flags.
-  VEX.LZ.F2.0F3A.W1 F0 /r ib RORX r64, _r/m64, imm8_   RMI     V/N.E.            BMI2                 Rotate 64-bit _r/m64_ right _imm8_ times without affecting arithmetic flags.
-
+  Opcode/Instruction                                 Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  -------------------------------------------------- ------- ----------------- -------------------- --------------------------------------------------------------------------
+  VEX.LZ.F2.0F3A.W0 F0 /r ib RORX r32, r/m32, imm8   RMI     V/V               BMI2                 Rotate 32-bit r/m32 right imm8 times without affecting arithmetic flags.
+  VEX.LZ.F2.0F3A.W1 F0 /r ib RORX r64, r/m64, imm8   RMI     V/N.E.            BMI2                 Rotate 64-bit r/m64 right imm8 times without affecting arithmetic flags.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RMI     ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -32,7 +27,6 @@ operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes.
 An attempt to execute this instruction with VEX.L not equal to 0 will
 cause #UD.
 
-
 Operation ¶
 
     IF (OperandSize = 32)
@@ -43,21 +37,17 @@ Operation ¶
         DEST ← (SRC >> y) | (SRC << (64-y));
     ENDIF
 
-
 Flags Affected ¶
 
 None
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     Auto-generated from high-level language.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

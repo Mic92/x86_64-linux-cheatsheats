@@ -1,23 +1,19 @@
 -   Index
 -   May 2019
 
+UD — Undefined Instruction
 
-
-UD — UNDEFINED INSTRUCTION
-
-
-  Opcode     Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ---------- ------------------- ------- ------------- ----------------- ---------------------------------
-  0F FF /r   UD0¹ _r32, r/m32_   RM      Valid         Valid             Raise invalid opcode exception.
-  0F B9 /r   UD1 _r32, r/m32_    RM      Valid         Valid             Raise invalid opcode exception.
-  0F 0B      UD2                 ZO      Valid         Valid             Raise invalid opcode exception.
+  Opcode     Instruction       Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ---------- ----------------- ------- ------------- ----------------- ---------------------------------
+  0F FF /r   UD0¹ r32, r/m32   RM      Valid         Valid             Raise invalid opcode exception.
+  0F B9 /r   UD1 r32, r/m32    RM      Valid         Valid             Raise invalid opcode exception.
+  0F 0B      UD2               ZO      Valid         Valid             Raise invalid opcode exception.
 
   1. Some older processors decode the UD0 instruction without a ModR/M
   byte. As a result, those processors would deliver an invalid-opcode
   exception instead of a fault on instruction fetch when the instruction
   with a ModR/M byte (and any implied bytes) would cross a page or
   segment boundary.
-
 
 Instruction Operand Encoding ¶
 
@@ -26,7 +22,6 @@ Instruction Operand Encoding ¶
   ZO      NA              NA              NA          NA
   RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -45,16 +40,13 @@ instruction).
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     #UD (* Generates invalid opcode exception *);
 
-
 Flags Affected ¶
 
 None.
-
 
 Exceptions (All Operating Modes) ¶
 

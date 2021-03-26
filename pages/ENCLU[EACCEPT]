@@ -1,35 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-EACCEPT — ACCEPT CHANGES TO AN EPC PAGE
-
+EACCEPT — Accept Changes to an EPC Page
 
   Opcode/Instruction         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------
   EAX = 05H ENCLU[EACCEPT]   IR      V/V                      SGX2                 This leaf function accepts changes made by system software to an EPC page in the running enclave.
 
-
 Instruction Operand Encoding ¶
 
-Op/En
-
-EAX
-
-RBX
-
-RCX
-
-IR
-
-EACCEPT (In)
-
-Return Error Code (Out)
-
-Address of a SECINFO (In)
-
-Address of the destination EPC page (In)
+  ------- -------------- ------------------------- --------------------------- ------------------------------------------
+  Op/En   EAX                                      RBX                         RCX
+  IR      EACCEPT (In)   Return Error Code (Out)   Address of a SECINFO (In)   Address of the destination EPC page (In)
+  ------- -------------- ------------------------- --------------------------- ------------------------------------------
 
 Description ¶
 
@@ -43,7 +26,6 @@ contains the effective address of an EPC page. The table below provides
 additional information on the memory parameter of the EACCEPT leaf
 function.
 
-
 EACCEPT Memory Parameter Semantics ¶
 
   -------------------------------------- ----------------------------------
@@ -52,7 +34,6 @@ EACCEPT Memory Parameter Semantics ¶
   -------------------------------------- ----------------------------------
 
 The instruction faults if any of the following:
-
 
 EACCEPT Faulting Conditions ¶
 
@@ -76,80 +57,24 @@ Table 40-54. EACCEPT Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EACCEPT
-
-Target [DS:RCX]
-
-Shared
-
-#GP
-
-SECINFO [DS:RBX]
-
-Concurrent
+  Leaf      Parameter          Base Concurrency Restrictions              
+  --------- ------------------ ------------------------------------ ----- --
+  Access    On Conflict        SGX_CONFLICT VM Exit Qualification         
+  EACCEPT   Target [DS:RCX]    Shared                               #GP   
+            SECINFO [DS:RBX]   Concurrent                                 
 
 Table 40-55. Base Concurrency Restrictions of EACCEPT
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EACCEPT
-
-Target [DS:RCX]
-
-Exclusive
-
-#GP
-
-Concurrent
-
-Concurrent
-
-SECINFO [DS:RBX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter          Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ------------------ ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                      vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict        Access                                On Conflict   Access                On Conflict                
+  EACCEPT                                           Target [DS:RCX]    Exclusive                             #GP           Concurrent                          Concurrent   
+                                                    SECINFO [DS:RBX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-56. Additional Concurrency Restrictions of EACCEPT
 
 Operation ¶
-
 
 Temp Variables in EACCEPT Operational Flow ¶
 
@@ -336,43 +261,27 @@ AF, OF, SF
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is locked.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
-
-If EPC page has incorrect page type or security attributes.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If a memory operand is locked.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+              If EPC page has incorrect page type or security attributes.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is locked.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
-
-If EPC page has incorrect page type or security attributes.
+  ----------- -------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If a memory operand is locked.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+              If EPC page has incorrect page type or security attributes.
+  ----------- -------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

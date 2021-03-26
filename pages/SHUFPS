@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-SHUFPS — PACKED INTERLEAVE SHUFFLE OF QUADRUPLETS OF SINGLE-PRECISION FLOATING-POINT VALUES
-
+SHUFPS — Packed Interleave Shuffle of Quadruplets of Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ SHUFPS — PACKED INTERLEAVE SHUFFLE OF QUADRUPLETS OF SINGLE-PRECISION FLOATING
   EVEX.128.0F.W0 C6 /r ib VSHUFPS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst, imm8   C         V/V                      AVX512VL AVX512F     Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1, subject to writemask k1.
   EVEX.256.0F.W0 C6 /r ib VSHUFPS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst, imm8   C         V/V                      AVX512VL AVX512F     Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1, subject to writemask k1.
   EVEX.512.0F.W0 C6 /r ib VSHUFPS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst, imm8   C         V/V                      AVX512F              Select from quadruplet of single-precision floating-point values in zmm2 and zmm3/m512 using imm8, interleaved result pairs are stored in zmm1, subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -65,8 +61,7 @@ source XMM register and the upper bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified. Imm8[7:0]
 provides 4 select controls for each element of the destination.
 
-X7 X6 X5 X4 X3 X2 X1 X0 SRC1 Y7 Y6 Y5 Y4 Y3 Y2 Y1 Y0 SRC2 Y3 ..Y0 Y3
-..Y0 DEST Y7 .. Y4 Y7 .. Y4 X7 .. X4 X7 .. X4 X3 .. X0 X3 .. X0
+[]
 
 Figure 4-26. 256-bit VSHUFPS Operation of Selection from Input
 Quadruplet and Pair-wise Interleaved Result

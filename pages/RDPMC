@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-RDPMC — READ PERFORMANCE-MONITORING COUNTERS
-
+RDPMC — Read Performance-Monitoring Counters
 
   Opcode*   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   --------- ------------- ------- ------------- ----------------- --------------------------------------------------------------------
   0F 33     RDPMC         ZO      Valid         Valid             Read performance-monitoring counter specified by ECX into EDX:EAX.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -45,13 +40,13 @@ read mode if supported. The two counter types are:
     availability of special-purpose counters, as well as the number of
     general-purpose counters if the processor does not support
     architectural performance monitoring, is model specific; see Chapter
-    18, “Performance Monitoring” of _Intel® 64 and IA-32 Architectures
-    Software Developer’s Manual,_ _Volume 3B_.
+    18, “Performance Monitoring” of Intel® 64 and IA-32 Architectures
+    Software Developer’s Manual, Volume 3B.
 -   Fixed-function performance counters are specified with ECX[30] = 1.
     The number fixed-function performance counters is enumerated by
-    CPUID 0AH leaf. See Chapter 18, “Performance Monitoring” of _Intel®
-    64 and IA-32_ _Architectures Software Developer’s Manual, Volume
-    3B_. This counter type is selected if ECX[30] is set.
+    CPUID 0AH leaf. See Chapter 18, “Performance Monitoring” of Intel®
+    64 and IA-32 Architectures Software Developer’s Manual, Volume 3B.
+    This counter type is selected if ECX[30] is set.
 
 The width of fixed-function performance counters and general-purpose
 performance counters on processors supporting architectural performance
@@ -73,8 +68,8 @@ instruction, when executing at privilege level 0.
 The performance-monitoring counters are event counters that can be
 programmed to count events such as the number of instructions decoded,
 number of interrupts received, or number of cache loads. Chapter 19,
-“Performance Monitoring Events,” in the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 3B_, lists the events
+“Performance Monitoring Events,” in the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 3B, lists the events
 that can be counted for various processors in the Intel 64 and IA-32
 architecture families.
 
@@ -98,7 +93,6 @@ processor with MMX technology. The earlier Pentium processors have
 performance-monitoring counters, but they must be read with the RDMSR
 instruction.
 
-
 Operation ¶
 
     MSCB = Most Significant Counter Bit (* Model-specific *)
@@ -110,25 +104,17 @@ Operation ¶
             #GP(0);
     FI;
 
-
 Flags Affected ¶
 
 None.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the current privilege level is not 0 and the PCE flag in the CR4
-register is clear.
-
-If an invalid performance counter index is specified.
-
-#UD
-
-If the LOCK prefix is used.
-
+  -------- ----------------------------------------------------------------------------------------
+  #GP(0)   If the current privilege level is not 0 and the PCE flag in the CR4 register is clear.
+           If an invalid performance counter index is specified.
+  #UD      If the LOCK prefix is used.
+  -------- ----------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -137,37 +123,25 @@ Real-Address Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
-#GP(0)
-
-If the PCE flag in the CR4 register is clear.
-
-If an invalid performance counter index is specified.
-
-#UD
-
-If the LOCK prefix is used.
-
+  -------- -------------------------------------------------------
+  #GP(0)   If the PCE flag in the CR4 register is clear.
+           If an invalid performance counter index is specified.
+  #UD      If the LOCK prefix is used.
+  -------- -------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If the current privilege level is not 0 and the PCE flag in the CR4
-register is clear.
-
-If an invalid performance counter index is specified.
-
-#UD
-
-If the LOCK prefix is used.
+  -------- ----------------------------------------------------------------------------------------
+  #GP(0)   If the current privilege level is not 0 and the PCE flag in the CR4 register is clear.
+           If an invalid performance counter index is specified.
+  #UD      If the LOCK prefix is used.
+  -------- ----------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

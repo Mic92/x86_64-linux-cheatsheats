@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPTERNLOGD/VPTERNLOGQ — BITWISE TERNARY LOGIC
-
+VPTERNLOGD/VPTERNLOGQ — Bitwise Ternary Logic
 
   Opcode/Instruction                                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPTERNLOGD/VPTERNLOGQ — BITWISE TERNARY LOGIC
   EVEX.128.66.0F3A.W1 25 /r ib VPTERNLOGQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8   A       V/V                      AVX512VL AVX512F     Bitwise ternary logic taking xmm1, xmm2 and xmm3/m128/m64bcst as source operands and writing the result to xmm1 under writemask k1 with qword granularity. The immediate value determines the specific binary function being implemented.
   EVEX.256.66.0F3A.W1 25 /r ib VPTERNLOGQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8   A       V/V                      AVX512VL AVX512F     Bitwise ternary logic taking ymm1, ymm2 and ymm3/m256/m64bcst as source operands and writing the result to ymm1 under writemask k1 with qword granularity. The immediate value determines the specific binary function being implemented.
   EVEX.512.66.0F3A.W1 25 /r ib VPTERNLOGQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst, imm8   A       V/V                      AVX512F              Bitwise ternary logic taking zmm1, zmm2 and zmm3/m512/m64bcst as source operands and writing the result to zmm1 under writemask k1 with qword granularity. The immediate value determines the specific binary function being implemented.
-
 
 Instruction Operand Encoding ¶
 
@@ -46,153 +42,17 @@ immediate values 0xE2 and 0xE4, with the look up result listed in the
 fourth column following the three columns containing all possible values
 of the 3-bit index.
 
-VPTERNLOGD reg1, reg2, src3, 0xE2
-
-Bit Result with Imm8=0xE2
-
-VPTERNLOGD reg1, reg2, src3, 0xE4
-
-Bit Result with Imm8=0xE4
-
-Bit(reg1)
-
-Bit(reg2)
-
-Bit(src3)
-
-Bit(reg1)
-
-Bit(reg2)
-
-Bit(src3)
-
-0
-
-0
-
-0
-
-0
-
-0
-
-0
-
-0
-
-0
-
-0
-
-0
-
-1
-
-1
-
-0
-
-0
-
-1
-
-0
-
-0
-
-1
-
-0
-
-0
-
-0
-
-1
-
-0
-
-1
-
-0
-
-1
-
-1
-
-0
-
-0
-
-1
-
-1
-
-0
-
-1
-
-0
-
-0
-
-0
-
-1
-
-0
-
-0
-
-0
-
-1
-
-0
-
-1
-
-1
-
-1
-
-0
-
-1
-
-1
-
-1
-
-1
-
-0
-
-1
-
-1
-
-1
-
-0
-
-1
-
-1
-
-1
-
-1
-
-1
-
-1
-
-1
-
-1
-
-1
+  VPTERNLOGD reg1, reg2, src3, 0xE2                           Bit Result with Imm8=0xE2   VPTERNLOGD reg1, reg2, src3, 0xE4                   Bit Result with Imm8=0xE4
+  ----------------------------------- ----------- ----------- --------------------------- ----------------------------------- ----------- --- ---------------------------
+  Bit(reg1)                           Bit(reg2)   Bit(src3)   Bit(reg1)                   Bit(reg2)                           Bit(src3)       
+  0                                   0           0           0                           0                                   0           0   0
+  0                                   0           1           1                           0                                   0           1   0
+  0                                   1           0           0                           0                                   1           0   1
+  0                                   1           1           0                           0                                   1           1   0
+  1                                   0           0           0                           1                                   0           0   0
+  1                                   0           1           1                           1                                   0           1   1
+  1                                   1           0           1                           1                                   1           0   1
+  1                                   1           1           1                           1                                   1           1   1
 
 Table 5-18. Examples of VPTERNLOGD/Q Imm8 Boolean Function and Input
 Index Values

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VCVTTSD2USI — CONVERT WITH TRUNCATION SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE TO UNSIGNED INTEGER
-
+VCVTTSD2USI — Convert with Truncation Scalar Double-Precision Floating-Point Value to Unsigned Integer
 
   Opcode/Instruction                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------
@@ -13,7 +10,6 @@ VCVTTSD2USI — CONVERT WITH TRUNCATION SCALAR DOUBLE-PRECISION FLOATING-POINT V
 
   1. For this specific instruction, EVEX.W in non-64 bit is ignored; the
   instructions behaves as if the W0 version is used.
-
 
 Instruction Operand Encoding ¶
 

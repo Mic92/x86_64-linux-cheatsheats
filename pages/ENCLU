@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-ENCLU — EXECUTE AN ENCLAVE USER FUNCTION OF SPECIFIED LEAF NUMBER
-
+ENCLU — Execute an Enclave User Function of Specified Leaf Number
 
   Opcode/Instruction   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------
   NP 0F 01 D7 ENCLU    NP      V/V                      NA                   This instruction is used to execute non-privileged Intel SGX leaf functions.
-
 
 Instruction Operand Encoding ¶
 
@@ -77,38 +73,21 @@ See individual leaf functions
 
 Protected Mode Exceptions ¶
 
-#UD
-
-If any of the LOCK/OSIZE/REP/VEX prefix is used.
-
-If current privilege level is not 3.
-
-If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
-
-If logical processor is in SMM.
-
-#GP(0)
-
-If IA32_FEATURE_CONTROL.LOCK = 0.
-
-If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
-
-If input value in EAX encodes an unsupported leaf.
-
-If input value in EAX encodes EENTER/ERESUME and ENCLAVE_MODE = 1.
-
-If input value in EAX encodes
-EGETKEY/EREPORT/EEXIT/EACCEPT/EACCEPTCOPY/EMODPE and ENCLAVE_MODE = 0.
-
-If operating in 16-bit mode.
-
-If data segment is in 16-bit mode.
-
-If CR0.PG = 0 or CR0.NE= 0.
-
-#NM
-
-If CR0.TS = 1.
+  -------- ------------------------------------------------------------------------------------------------------
+  #UD      If any of the LOCK/OSIZE/REP/VEX prefix is used.
+           If current privilege level is not 3.
+           If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
+           If logical processor is in SMM.
+  #GP(0)   If IA32_FEATURE_CONTROL.LOCK = 0.
+           If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
+           If input value in EAX encodes an unsupported leaf.
+           If input value in EAX encodes EENTER/ERESUME and ENCLAVE_MODE = 1.
+           If input value in EAX encodes EGETKEY/EREPORT/EEXIT/EACCEPT/EACCEPTCOPY/EMODPE and ENCLAVE_MODE = 0.
+           If operating in 16-bit mode.
+           If data segment is in 16-bit mode.
+           If CR0.PG = 0 or CR0.NE= 0.
+  #NM      If CR0.TS = 1.
+  -------- ------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -128,34 +107,19 @@ Same exceptions as in protected mode.
 
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If any of the LOCK/OSIZE/REP/VEX prefix is used.
-
-If current privilege level is not 3.
-
-If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
-
-If logical processor is in SMM.
-
-#GP(0)
-
-If IA32_FEATURE_CONTROL.LOCK = 0.
-
-If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
-
-If input value in EAX encodes an unsupported leaf.
-
-If input value in EAX encodes EENTER/ERESUME and ENCLAVE_MODE = 1.
-
-If input value in EAX encodes
-EGETKEY/EREPORT/EEXIT/EACCEPT/EACCEPTCOPY/EMODPE and ENCLAVE_MODE = 0.
-
-If CR0.NE= 0.
-
-#NM
-
-If CR0.TS = 1.
+  -------- ------------------------------------------------------------------------------------------------------
+  #UD      If any of the LOCK/OSIZE/REP/VEX prefix is used.
+           If current privilege level is not 3.
+           If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
+           If logical processor is in SMM.
+  #GP(0)   If IA32_FEATURE_CONTROL.LOCK = 0.
+           If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
+           If input value in EAX encodes an unsupported leaf.
+           If input value in EAX encodes EENTER/ERESUME and ENCLAVE_MODE = 1.
+           If input value in EAX encodes EGETKEY/EREPORT/EEXIT/EACCEPT/EACCEPTCOPY/EMODPE and ENCLAVE_MODE = 0.
+           If CR0.NE= 0.
+  #NM      If CR0.TS = 1.
+  -------- ------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

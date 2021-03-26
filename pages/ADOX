@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-ADOX — UNSIGNED INTEGER ADDITION OF TWO OPERANDS WITH OVERFLOW FLAG
-
+ADOX — Unsigned Integer Addition of Two Operands with Overflow Flag
 
   Opcode/Instruction                     Op/En   64/32bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------- ------- ----------------------- -------------------- ------------------------------------------------------------
   F3 0F 38 F6 /r ADOX r32, r/m32         RM      V/V                     ADX                  Unsigned addition of r32 with OF, r/m32 to r32, writes OF.
   F3 REX.w 0F 38 F6 /r ADOX r64, r/m64   RM      V/NE                    ADX                  Unsigned addition of r64 with OF, r/m64 to r64, writes OF.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1          Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -46,9 +41,8 @@ Prefix in the form of REX.R permits access to additional registers
 ADOX executes normally either inside or outside a transaction region.
 
 Note: ADOX defines the CF and OF flags differently than the ADD/ADC
-instructions as defined in _Intel^(®) 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 2A_.
-
+instructions as defined in Intel^(®) 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 2A.
 
 Operation ¶
 
@@ -57,12 +51,10 @@ Operation ¶
         ELSE OF:DEST[31:0] ← DEST[31:0] + SRC[31:0] + OF;
     FI;
 
-
 Flags Affected ¶
 
 OF is updated based on result. CF, SF, ZF, AF and PF flags are
 unmodified.
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -70,117 +62,56 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     unsigned char _addcarryx_u64 (unsigned char c_in, unsigned __int64 src1, unsigned __int64 src2, unsigned __int64 *sum_out);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
-
-#SS(0)
-
-For an illegal address in the SS segment.
-
-#GP(0)
-
-For an illegal memory operand effective address in the CS, DS, ES, FS or
-GS segments.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a null segment selector.
-
-#PF(fault-code)
-
-For a page fault.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #UD               If the LOCK prefix is used.
+                    If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
+  #SS(0)            For an illegal address in the SS segment.
+  #GP(0)            For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a null segment selector.
+  #PF(fault-code)   For a page fault.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
-
-#SS(0)
-
-For an illegal address in the SS segment.
-
-#GP(0)
-
-If any part of the operand lies outside the effective address space from
-0 to FFFFH.
-
+  -------- --------------------------------------------------------------------------------------
+  #UD      If the LOCK prefix is used.
+           If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
+  #SS(0)   For an illegal address in the SS segment.
+  #GP(0)   If any part of the operand lies outside the effective address space from 0 to FFFFH.
+  -------- --------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
-
-#SS(0)
-
-For an illegal address in the SS segment.
-
-#GP(0)
-
-If any part of the operand lies outside the effective address space from
-0 to FFFFH.
-
-#PF(fault-code)
-
-For a page fault.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #UD               If the LOCK prefix is used.
+                    If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
+  #SS(0)            For an illegal address in the SS segment.
+  #GP(0)            If any part of the operand lies outside the effective address space from 0 to FFFFH.
+  #PF(fault-code)   For a page fault.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
-
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the memory address is in a non-canonical form.
-
-#PF(fault-code)
-
-For a page fault.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #UD               If the LOCK prefix is used.
+                    If CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] = 0.
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   For a page fault.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

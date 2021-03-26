@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVDQA/VMOVDQA32/VMOVDQA64 — MOVE ALIGNED PACKED INTEGER VALUES
-
+MOVDQA/VMOVDQA32/VMOVDQA64 — Move Aligned Packed Integer Values
 
   Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------
@@ -26,7 +23,6 @@ MOVDQA/VMOVDQA32/VMOVDQA64 — MOVE ALIGNED PACKED INTEGER VALUES
   EVEX.128.66.0F.W1 7F /r VMOVDQA64 xmm2/m128 {k1}{z}, xmm1   D       V/V                      AVX512VL AVX512F     Move aligned packed quadword integer values from xmm1 to xmm2/m128 using writemask k1.
   EVEX.256.66.0F.W1 7F /r VMOVDQA64 ymm2/m256 {k1}{z}, ymm1   D       V/V                      AVX512VL AVX512F     Move aligned packed quadword integer values from ymm1 to ymm2/m256 using writemask k1.
   EVEX.512.66.0F.W1 7F /r VMOVDQA64 zmm2/m512 {k1}{z}, zmm1   D       V/V                      AVX512F              Move aligned packed quadword integer values from zmm1 to zmm2/m512 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

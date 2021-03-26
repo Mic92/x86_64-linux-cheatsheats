@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VGETMANTPS — EXTRACT FLOAT32 VECTOR OF NORMALIZED MANTISSAS FROM FLOAT32 VECTOR
-
+VGETMANTPS — Extract Float32 Vector of Normalized Mantissas from Float32 Vector
 
   Opcode/Instruction                                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W0 26 /r ib VGETMANTPS xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8        A       V/V                      AVX512VL AVX512F     Get normalized mantissa from float32 vector xmm2/m128/m32bcst and store the result in xmm1, using imm8 for sign control and mantissa interval normalization, under writemask.
   EVEX.256.66.0F3A.W0 26 /r ib VGETMANTPS ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8        A       V/V                      AVX512VL AVX512F     Get normalized mantissa from float32 vector ymm2/m256/m32bcst and store the result in ymm1, using imm8 for sign control and mantissa interval normalization, under writemask.
   EVEX.512.66.0F3A.W0 26 /r ib VGETMANTPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}, imm8   A       V/V                      AVX512F              Get normalized mantissa from float32 vector zmm2/m512/m32bcst and store the result in zmm1, using imm8 for sign control and mantissa interval normalization, under writemask.
-
 
 Instruction Operand Encoding ¶
 
@@ -37,11 +33,11 @@ from a 32-bit memory location.
 
 For each input SP FP value x, The conversion operation is:
 
-_GetMant_(_x_) = _±_2_^(k)|x.significand|_
+GetMant(x) = ±2^(k)|x.significand|
 
 where:
 
-1 _<_= _|x.significand| <_ 2
+1 <= |x.significand| < 2
 
 Unbiased exponent k depends on the interval range defined by interv and
 whether the exponent of the source is even or odd. The sign of the final

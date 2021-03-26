@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-ESETCONTEXT — SET THE ENCLAVECONTEXT FIELD IN SECS
-
+ESETCONTEXT — Set the ENCLAVECONTEXT Field in SECS
 
   Opcode/Instruction             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------ ------- ------------------------ -------------------- -----------------------------------------------------------
   EAX = 02H ENCLV[ESETCONTEXT]   IR      V/V                      EAX[5]               This leaf function sets the ENCLAVECONTEXT field in SECS.
-
 
 Instruction Operand Encoding ¶
 
@@ -37,7 +33,6 @@ The instruction fails if:
 -   The operand is not properly aligned.
 -   RCX does not refer to an SECS page.
 
-
 ESETCONTEXT Memory Parameter Semantics ¶
 
   ---------------------------------- --------------------------------------------
@@ -46,7 +41,6 @@ ESETCONTEXT Memory Parameter Semantics ¶
   ---------------------------------- --------------------------------------------
 
 The instruction faults if any of the following:
-
 
 ESETCONTEXT Faulting Conditions ¶
 
@@ -58,66 +52,22 @@ ESETCONTEXT Faulting Conditions ¶
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-ESETCONTEXT
-
-SECS [DS:RCX]
-
-Shared
-
-SGX_EPC_PAGE_ CONFLICT
+  Leaf          Parameter       Base Concurrency Restrictions                                 
+  ------------- --------------- ------------------------------------ ------------------------ --
+  Access        On Conflict     SGX_CONFLICT VM Exit Qualification                            
+  ESETCONTEXT   SECS [DS:RCX]   Shared                               SGX_EPC_PAGE_ CONFLICT   
 
 Table 40-78. Base Concurrency Restrictions of ESETCONTEXT
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-ESETCONTEXT
-
-SECS [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter       Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- --------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                   vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict     Access                                On Conflict   Access                On Conflict                
+  ESETCONTEXT                                       SECS [DS:RCX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-79. Additional Concurrency Restrictions of ESETCONTEXT
 
 Operation ¶
-
 
 Temp Variables in ESETCONTEXT Operational Flow ¶
 
@@ -125,7 +75,6 @@ Temp Variables in ESETCONTEXT Operational Flow ¶
   ------------- ------------------ ------------- ----------------------------------------------------------
   TMP_SECS      Physical Address   64            Physical address of the SECS of the page being modified.
   TMP_CONTEXT   CONTEXT            64            Data Value of CONTEXT.
-
 
 ESETCONTEXT Return Value in RAX ¶
 
@@ -209,29 +158,20 @@ CF, PF, AF, OF and SF are cleared.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If DS segment is unusable.
-
-If a memory operand is not properly aligned.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If DS segment is unusable.
+              If a memory operand is not properly aligned.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory address is in a non-canonical form.
-
-If a memory operand is not properly aligned.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If a memory address is in a non-canonical form.
+              If a memory operand is not properly aligned.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

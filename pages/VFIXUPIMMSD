@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VFIXUPIMMSD — FIX UP SPECIAL SCALAR FLOAT64 VALUE
-
+VFIXUPIMMSD — Fix Up Special Scalar Float64 Value
 
   Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W1 55 /r ib VFIXUPIMMSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512F              Fix up a float64 number in the low quadword element of xmm2 using scalar int32 table in xmm3/m64 and store the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -141,8 +137,7 @@ VFIXUPIMMSD (EVEX encoded version) ¶
     DEST[MAXVL-1:128] ← 0
     Immediate Control Description:
 
-7 6 5 4 3 2 1 0 +INF #IE -VE #IE -INF #IE SNaN #IE ONE #IE ONE #ZE
-ZERO #IE ZERO #ZE
+[]
 
 Figure 5-11. VFIXUPIMMSD Immediate Control Description
 

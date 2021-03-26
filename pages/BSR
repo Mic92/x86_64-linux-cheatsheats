@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+BSR — Bit Scan Reverse
 
-
-BSR — BIT SCAN REVERSE
-
-
-  Opcode             Instruction        Op/En   64-bit Mode   Compat/Leg Mode   Description
-  ------------------ ------------------ ------- ------------- ----------------- ------------------------------
-  0F BD /r           BSR _r16, r/m16_   RM      Valid         Valid             Bit scan reverse on _r/m16._
-  0F BD /r           BSR _r32, r/m32_   RM      Valid         Valid             Bit scan reverse on _r/m32._
-  REX.W + 0F BD /r   BSR _r64, r/m64_   RM      Valid         N.E.              Bit scan reverse on _r/m64._
-
+  Opcode             Instruction      Op/En   64-bit Mode   Compat/Leg Mode   Description
+  ------------------ ---------------- ------- ------------- ----------------- ----------------------------
+  0F BD /r           BSR r16, r/m16   RM      Valid         Valid             Bit scan reverse on r/m16.
+  0F BD /r           BSR r32, r/m32   RM      Valid         Valid             Bit scan reverse on r/m32.
+  REX.W + 0F BD /r   BSR r64, r/m64   RM      Valid         N.E.              Bit scan reverse on r/m64.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -37,7 +32,6 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
-
 Operation ¶
 
     IF SRC = 0
@@ -54,39 +48,21 @@ Operation ¶
             DEST ← temp;
     FI;
 
-
 Flags Affected ¶
 
 The ZF flag is set to 1 if the source operand is 0; otherwise, the ZF
 flag is cleared. The CF, OF, SF, AF, and PF flags are undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -95,7 +71,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -107,11 +82,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

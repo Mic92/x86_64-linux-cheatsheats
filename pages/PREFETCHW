@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-PREFETCHW — PREFETCH DATA INTO CACHES IN ANTICIPATION OF A WRITE
-
+PREFETCHW — Prefetch Data into Caches in Anticipation of a Write
 
   Opcode/Instruction      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------
   0F 0D /1 PREFETCHW m8   A       V/V                      PREFETCHW            Move data from m8 closer to the processor in anticipation of a write.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (r)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -40,8 +35,8 @@ implementation-dependent, and can be overloaded or ignored by a
 processor implementation. The amount of data prefetched is also
 processor implementation-dependent. It will, however, be a minimum of 32
 bytes. Additional details of the implementation-dependent locality hints
-are described in Section 7.4 of _Intel® 64 and IA-32 Architectures
-Optimization Reference Manual_.
+are described in Section 7.4 of Intel® 64 and IA-32 Architectures
+Optimization Reference Manual.
 
 It should be noted that processors are free to speculatively fetch and
 cache data with exclusive ownership from system memory regions that
@@ -60,21 +55,17 @@ WRMSR, OUT, and MOV CR.
 This instruction's operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     FETCH_WITH_EXCLUSIVE_OWNERSHIP (m8);
-
 
 Flags Affected ¶
 
 All flags are affected.
 
-
 C/C++ Compiler Intrinsic Equivalent ¶
 
     void _m_prefetchw( void * );
-
 
 Protected Mode Exceptions ¶
 
@@ -82,13 +73,11 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -96,13 +85,11 @@ Virtual-8086 Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 64-Bit Mode Exceptions ¶
 

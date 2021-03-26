@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPTESTMB/VPTESTMW/VPTESTMD/VPTESTMQ — LOGICAL AND AND SET MASK
-
+VPTESTMB/VPTESTMW/VPTESTMD/VPTESTMQ — Logical AND and Set Mask
 
   Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +17,6 @@ VPTESTMB/VPTESTMW/VPTESTMD/VPTESTMQ — LOGICAL AND AND SET MASK
   EVEX.128.66.0F38.W1 27 /r VPTESTMQ k2 {k1}, xmm2, xmm3/m128/m64bcst   B       V/V                      AVX512VL AVX512F     Bitwise AND of packed quadword integers in xmm2 and xmm3/m128/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
   EVEX.256.66.0F38.W1 27 /r VPTESTMQ k2 {k1}, ymm2, ymm3/m256/m64bcst   B       V/V                      AVX512VL AVX512F     Bitwise AND of packed quadword integers in ymm2 and ymm3/m256/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
   EVEX.512.66.0F38.W1 27 /r VPTESTMQ k2 {k1}, zmm2, zmm3/m512/m64bcst   B       V/V                      AVX512F              Bitwise AND of packed quadword integers in zmm2 and zmm3/m512/m64bcst and set mask k2 to reflect the zero/non-zero status of each element of the result, under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

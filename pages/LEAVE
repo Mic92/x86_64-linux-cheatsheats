@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-LEAVE — HIGH LEVEL PROCEDURE EXIT
-
+LEAVE — High Level Procedure Exit
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- -------------------------------
@@ -12,14 +9,12 @@ LEAVE — HIGH LEVEL PROCEDURE EXIT
   C9       LEAVE         ZO      N.E.          Valid             Set ESP to EBP, then pop EBP.
   C9       LEAVE         ZO      Valid         N.E.              Set RSP to RBP, then pop RBP.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -35,14 +30,12 @@ A RET instruction is commonly executed following a LEAVE instruction to
 return program control to the calling procedure.
 
 See “Procedure Calls for Block-Structured Languages” in Chapter 7 of the
-_Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume
-1_, for detailed information on the use of the ENTER and LEAVE
-instructions.
+Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1,
+for detailed information on the use of the ENTER and LEAVE instructions.
 
 In 64-bit mode, the instruction’s default operation size is 64 bits;
 32-bit operation cannot be encoded. See the summary chart at the
 beginning of this section for encoding data and limits.
-
 
 Operation ¶
 
@@ -62,11 +55,9 @@ Operation ¶
             THEN BP ← Pop(); FI;
     FI;
 
-
 Flags Affected ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -77,14 +68,12 @@ Protected Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- --------------------------------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- --------------------------------------------------------------------------------------------------
   #GP   If the EBP register points to a location outside of the effective address space from 0 to FFFFH.
   #UD   If the LOCK prefix is used.
   ----- --------------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -95,11 +84,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- --------------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

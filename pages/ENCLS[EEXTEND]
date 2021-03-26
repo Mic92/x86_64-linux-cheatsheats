@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EEXTEND — EXTEND UNINITIALIZED ENCLAVE MEASUREMENT BY 256 BYTES
-
+EEXTEND — Extend Uninitialized Enclave Measurement by 256 Bytes
 
   Opcode/Instruction         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------
   EAX = 06H ENCLS[EEXTEND]   IR      V/V                      SGX1                 This leaf function measures 256 bytes of an uninitialized enclave page.
-
 
 Instruction Operand Encoding ¶
 
@@ -34,7 +30,6 @@ RCX contains the effective address of the 256 byte region of an EPC page
 to be measured. The DS segment is used to create linear addresses.
 Segment override is not supported.
 
-
 EEXTEND Memory Parameter Semantics ¶
 
   ------------------------
@@ -43,7 +38,6 @@ EEXTEND Memory Parameter Semantics ¶
   ------------------------
 
 The instruction faults if any of the following:
-
 
 EEXTEND Faulting Conditions ¶
 
@@ -58,80 +52,24 @@ EEXTEND Faulting Conditions ¶
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EEXTEND
-
-Target [DS:RCX]
-
-Shared
-
-#GP
-
-SECS [DS:RBX]
-
-Concurrent
+  Leaf      Parameter         Base Concurrency Restrictions              
+  --------- ----------------- ------------------------------------ ----- --
+  Access    On Conflict       SGX_CONFLICT VM Exit Qualification         
+  EEXTEND   Target [DS:RCX]   Shared                               #GP   
+            SECS [DS:RBX]     Concurrent                                 
 
 Table 40-23. Base Concurrency Restrictions of EEXTEND
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EEXTEND
-
-Target [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-SECS [DS:RBX]
-
-Concurrent
-
-Exclusive
-
-#GP
-
-Concurrent
+  Leaf                                              Parameter         Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ----------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                     vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict       Access                                On Conflict   Access                On Conflict                
+  EEXTEND                                           Target [DS:RCX]   Concurrent                                          Concurrent                          Concurrent   
+                                                    SECS [DS:RBX]     Concurrent                                          Exclusive             #GP           Concurrent   
 
 Table 40-24. Additional Concurrency Restrictions of EEXTEND
 
 Operation ¶
-
 
 Temp Variables in EEXTEND Operational Flow ¶
 
@@ -227,63 +165,37 @@ None
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the address in RBX is outside the DS segment limit.
-
-If RBX points to an SECS page which is not the SECS of the data chunk.
-
-If the address in RCX is outside the DS segment limit.
-
-If RCX points to a memory location not 256Byte-aligned.
-
-If another instruction is accessing MRENCLAVE.
-
-If another instruction is checking or updating the SECS.
-
-If the enclave is already initialized.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the address in RBX points to a non-EPC page.
-
-If the address in RCX points to a page which is not PT_TCS or PT_REG.
-
-If the address in RCX points to a non-EPC page.
-
-If the address in RCX points to an invalid EPC page.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If the address in RBX is outside the DS segment limit.
+              If RBX points to an SECS page which is not the SECS of the data chunk.
+              If the address in RCX is outside the DS segment limit.
+              If RCX points to a memory location not 256Byte-aligned.
+              If another instruction is accessing MRENCLAVE.
+              If another instruction is checking or updating the SECS.
+              If the enclave is already initialized.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the address in RBX points to a non-EPC page.
+              If the address in RCX points to a page which is not PT_TCS or PT_REG.
+              If the address in RCX points to a non-EPC page.
+              If the address in RCX points to an invalid EPC page.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If RBX is non-canonical form.
-
-If RBX points to an SECS page which is not the SECS of the data chunk.
-
-If RCX is non-canonical form.
-
-If RCX points to a memory location not 256 Byte-aligned.
-
-If another instruction is accessing MRENCLAVE.
-
-If another instruction is checking or updating the SECS.
-
-If the enclave is already initialized.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the address in RBX points to a non-EPC page.
-
-If the address in RCX points to a page which is not PT_TCS or PT_REG.
-
-If the address in RCX points to a non-EPC page.
-
-If the address in RCX points to an invalid EPC page.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If RBX is non-canonical form.
+              If RBX points to an SECS page which is not the SECS of the data chunk.
+              If RCX is non-canonical form.
+              If RCX points to a memory location not 256 Byte-aligned.
+              If another instruction is accessing MRENCLAVE.
+              If another instruction is checking or updating the SECS.
+              If the enclave is already initialized.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the address in RBX points to a non-EPC page.
+              If the address in RCX points to a page which is not PT_TCS or PT_REG.
+              If the address in RCX points to a non-EPC page.
+              If the address in RCX points to an invalid EPC page.
+  ----------- ------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

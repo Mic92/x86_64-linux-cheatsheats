@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VALIGND/VALIGNQ — ALIGN DOUBLEWORD/QUADWORD VECTORS
-
+VALIGND/VALIGNQ — Align Doubleword/Quadword Vectors
 
   Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VALIGND/VALIGNQ — ALIGN DOUBLEWORD/QUADWORD VECTORS
   EVEX.256.66.0F3A.W1 03 /r ib VALIGNQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8   A       V/V                      AVX512VL AVX512F     Shift right and merge vectors ymm2 and ymm3/m256/m64bcst with quad-word granularity using imm8 as number of elements to shift, and store the final result in ymm1, under writemask.
   EVEX.512.66.0F3A.W0 03 /r ib VALIGND zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst, imm8   A       V/V                      AVX512F              Shift right and merge vectors zmm2 and zmm3/m512/m32bcst with double-word granularity using imm8 as number of elements to shift, and store the final result in zmm1, under writemask.
   EVEX.512.66.0F3A.W1 03 /r ib VALIGNQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst, imm8   A       V/V                      AVX512F              Shift right and merge vectors zmm2 and zmm3/m512/m64bcst with quad-word granularity using imm8 as number of elements to shift, and store the final result in zmm1, under writemask.
-
 
 Instruction Operand Encoding ¶
 

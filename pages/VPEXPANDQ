@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VPEXPANDQ — LOAD SPARSE PACKED QUADWORD INTEGER VALUES FROM DENSE MEMORY / REGISTER
-
+VPEXPANDQ — Load Sparse Packed Quadword Integer Values from Dense Memory / Register
 
   Opcode/Instruction                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------
   EVEX.128.66.0F38.W1 89 /r VPEXPANDQ xmm1 {k1}{z}, xmm2/m128   A       V/V                      AVX512VL AVX512F     Expand packed quad-word integer values from xmm2/m128 to xmm1 using writemask k1.
   EVEX.256.66.0F38.W1 89 /r VPEXPANDQ ymm1 {k1}{z}, ymm2/m256   A       V/V                      AVX512VL AVX512F     Expand packed quad-word integer values from ymm2/m256 to ymm1 using writemask k1.
   EVEX.512.66.0F38.W1 89 /r VPEXPANDQ zmm1 {k1}{z}, zmm2/m512   A       V/V                      AVX512F              Expand packed quad-word integer values from zmm2/m512 to zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

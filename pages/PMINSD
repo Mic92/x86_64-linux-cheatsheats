@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-PMINSD/PMINSQ — MINIMUM OF PACKED SIGNED INTEGERS
-
+PMINSD/PMINSQ — Minimum of Packed Signed Integers
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------
@@ -17,7 +14,6 @@ PMINSD/PMINSQ — MINIMUM OF PACKED SIGNED INTEGERS
   EVEX.128.66.0F38.W1 39 /r VPMINSQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Compare packed signed qword integers in xmm2 and xmm3/m128 and store packed minimum values in xmm1 under writemask k1.
   EVEX.256.66.0F38.W1 39 /r VPMINSQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Compare packed signed qword integers in ymm2 and ymm3/m256 and store packed minimum values in ymm1 under writemask k1.
   EVEX.512.66.0F38.W1 39 /r VPMINSQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Compare packed signed qword integers in zmm2 and zmm3/m512/m64bcst and store packed minimum values in zmm1 under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

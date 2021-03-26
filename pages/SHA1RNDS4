@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SHA1RNDS4 — PERFORM FOUR ROUNDS OF SHA1 OPERATION
-
+SHA1RNDS4 — Perform Four Rounds of SHA1 Operation
 
   Opcode/Instruction                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 3A CC /r ib SHA1RNDS4 xmm1, xmm2/m128, imm8   RMI     V/V                      SHA                  Performs four rounds of SHA1 operation operating on SHA1 state (A,B,C,D) from xmm1, with a pre-computed sum of the next 4 round message dwords and state variable E from xmm2/m128. The immediate byte controls logic functions and round constants.
-
 
 Instruction Operand Encoding ¶
 

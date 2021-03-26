@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CMPPD — COMPARE PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+CMPPD — Compare Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                              Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ CMPPD — COMPARE PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.256.66.0F.W1 C2 /r ib VCMPPD k1 {k2}, ymm2, ymm3/m256/m64bcst, imm8        C         V/V                      AVX512VL AVX512F     Compare packed double-precision floating-point values in ymm3/m256/m64bcst and ymm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
   EVEX.512.66.0F.W1 C2 /r ib VCMPPD k1 {k2}, zmm2, zmm3/m512/m64bcst{sae}, imm8   C         V/V                      AVX512F              Compare packed double-precision floating-point values in zmm3/m512/m64bcst and zmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   Imm8
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   Imm8
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -73,535 +68,41 @@ The comparison predicate operand is an 8-bit immediate:
     define the type of comparison to be made (see the first 8 rows of
     Table 3-1). Bits 3 through 7 of the immediate are reserved.
 
-Predicate
-
-imm8 Value
-
-Description
-
-Result: A Is 1st Operand, B Is 2nd Operand
-
-Signals #IA on QNAN
-
-A >B
-
-A<B
-
-A=B
-
-Unordered¹
-
-EQ_OQ (EQ)
-
-0H
-
-Equal (ordered, non-signaling)
-
-False
-
-False
-
-True
-
-False
-
-No
-
-LT_OS (LT)
-
-1H
-
-Less-than (ordered, signaling)
-
-False
-
-True
-
-False
-
-False
-
-Yes
-
-LE_OS (LE)
-
-2H
-
-Less-than-or-equal (ordered, signaling)
-
-False
-
-True
-
-True
-
-False
-
-Yes
-
-UNORD_Q (UNORD)
-
-3H
-
-Unordered (non-signaling)
-
-False
-
-False
-
-False
-
-True
-
-No
-
-NEQ_UQ (NEQ)
-
-4H
-
-Not-equal (unordered, non-signaling)
-
-True
-
-True
-
-False
-
-True
-
-No
-
-NLT_US (NLT)
-
-5H
-
-Not-less-than (unordered, signaling)
-
-True
-
-False
-
-True
-
-True
-
-Yes
-
-NLE_US (NLE)
-
-6H
-
-Not-less-than-or-equal (unordered, signaling)
-
-True
-
-False
-
-False
-
-True
-
-Yes
-
-ORD_Q (ORD)
-
-7H
-
-Ordered (non-signaling)
-
-True
-
-True
-
-True
-
-False
-
-No
-
-EQ_UQ
-
-8H
-
-Equal (unordered, non-signaling)
-
-False
-
-False
-
-True
-
-True
-
-No
-
-NGE_US (NGE)
-
-9H
-
-Not-greater-than-or-equal (unordered, signaling)
-
-False
-
-True
-
-False
-
-True
-
-Yes
-
-NGT_US (NGT)
-
-AH
-
-Not-greater-than (unordered, signaling)
-
-False
-
-True
-
-True
-
-True
-
-Yes
-
-FALSE_OQ(FALSE)
-
-BH
-
-False (ordered, non-signaling)
-
-False
-
-False
-
-False
-
-False
-
-No
-
-NEQ_OQ
-
-CH
-
-Not-equal (ordered, non-signaling)
-
-True
-
-True
-
-False
-
-False
-
-No
-
-GE_OS (GE)
-
-DH
-
-Greater-than-or-equal (ordered, signaling)
-
-True
-
-False
-
-True
-
-False
-
-Yes
-
-GT_OS (GT)
-
-EH
-
-Greater-than (ordered, signaling)
-
-True
-
-False
-
-False
-
-False
-
-Yes
-
-TRUE_UQ(TRUE)
-
-FH
-
-True (unordered, non-signaling)
-
-True
-
-True
-
-True
-
-True
-
-No
-
-EQ_OS
-
-10H
-
-Equal (ordered, signaling)
-
-False
-
-False
-
-True
-
-False
-
-Yes
-
-LT_OQ
-
-11H
-
-Less-than (ordered, nonsignaling)
-
-False
-
-True
-
-False
-
-False
-
-No
-
-LE_OQ
-
-12H
-
-Less-than-or-equal (ordered, nonsignaling)
-
-False
-
-True
-
-True
-
-False
-
-No
-
-UNORD_S
-
-13H
-
-Unordered (signaling)
-
-False
-
-False
-
-False
-
-True
-
-Yes
-
-NEQ_US
-
-14H
-
-Not-equal (unordered, signaling)
-
-True
-
-True
-
-False
-
-True
-
-Yes
-
-NLT_UQ
-
-15H
-
-Not-less-than (unordered, nonsignaling)
-
-True
-
-False
-
-True
-
-True
-
-No
-
-NLE_UQ
-
-16H
-
-Not-less-than-or-equal (unordered, nonsignaling)
-
-True
-
-False
-
-False
-
-True
-
-No
-
-ORD_S
-
-17H
-
-Ordered (signaling)
-
-True
-
-True
-
-True
-
-False
-
-Yes
-
-EQ_US
-
-18H
-
-Equal (unordered, signaling)
-
-False
-
-False
-
-True
-
-True
-
-Yes
-
-NGE_UQ
-
-19H
-
-Not-greater-than-or-equal (unordered, non-signaling)
-
-False
-
-True
-
-False
-
-True
-
-No
-
-NGT_UQ
-
-1AH
-
-Not-greater-than (unordered, nonsignaling)
-
-False
-
-True
-
-True
-
-True
-
-No
-
-FALSE_OS
-
-1BH
-
-False (ordered, signaling)
-
-False
-
-False
-
-False
-
-False
-
-Yes
-
-NEQ_OS
-
-1CH
-
-Not-equal (ordered, signaling)
-
-True
-
-True
-
-False
-
-False
-
-Yes
-
-GE_OQ
-
-1DH
-
-Greater-than-or-equal (ordered, nonsignaling)
-
-True
-
-False
-
-True
-
-False
-
-No
-
-GT_OQ
-
-1EH
-
-Greater-than (ordered, nonsignaling)
-
-True
-
-False
-
-False
-
-False
-
-No
-
-TRUE_US
-
-1FH
-
-True (unordered, signaling)
-
-True
-
-True
-
-True
-
-True
-
-Yes
+  Predicate         imm8 Value   Description                                            Result: A Is 1st Operand, B Is 2nd Operand                           Signals #IA on QNAN
+  ----------------- ------------ ------------------------------------------------------ -------------------------------------------- ------- ------- ------- ---------------------
+  A >B              A<B          A=B                                                    Unordered¹                                                           
+  EQ_OQ (EQ)        0H           Equal (ordered, non-signaling)                         False                                        False   True    False   No
+  LT_OS (LT)        1H           Less-than (ordered, signaling)                         False                                        True    False   False   Yes
+  LE_OS (LE)        2H           Less-than-or-equal (ordered, signaling)                False                                        True    True    False   Yes
+  UNORD_Q (UNORD)   3H           Unordered (non-signaling)                              False                                        False   False   True    No
+  NEQ_UQ (NEQ)      4H           Not-equal (unordered, non-signaling)                   True                                         True    False   True    No
+  NLT_US (NLT)      5H           Not-less-than (unordered, signaling)                   True                                         False   True    True    Yes
+  NLE_US (NLE)      6H           Not-less-than-or-equal (unordered, signaling)          True                                         False   False   True    Yes
+  ORD_Q (ORD)       7H           Ordered (non-signaling)                                True                                         True    True    False   No
+  EQ_UQ             8H           Equal (unordered, non-signaling)                       False                                        False   True    True    No
+  NGE_US (NGE)      9H           Not-greater-than-or-equal (unordered, signaling)       False                                        True    False   True    Yes
+  NGT_US (NGT)      AH           Not-greater-than (unordered, signaling)                False                                        True    True    True    Yes
+  FALSE_OQ(FALSE)   BH           False (ordered, non-signaling)                         False                                        False   False   False   No
+  NEQ_OQ            CH           Not-equal (ordered, non-signaling)                     True                                         True    False   False   No
+  GE_OS (GE)        DH           Greater-than-or-equal (ordered, signaling)             True                                         False   True    False   Yes
+  GT_OS (GT)        EH           Greater-than (ordered, signaling)                      True                                         False   False   False   Yes
+  TRUE_UQ(TRUE)     FH           True (unordered, non-signaling)                        True                                         True    True    True    No
+  EQ_OS             10H          Equal (ordered, signaling)                             False                                        False   True    False   Yes
+  LT_OQ             11H          Less-than (ordered, nonsignaling)                      False                                        True    False   False   No
+  LE_OQ             12H          Less-than-or-equal (ordered, nonsignaling)             False                                        True    True    False   No
+  UNORD_S           13H          Unordered (signaling)                                  False                                        False   False   True    Yes
+  NEQ_US            14H          Not-equal (unordered, signaling)                       True                                         True    False   True    Yes
+  NLT_UQ            15H          Not-less-than (unordered, nonsignaling)                True                                         False   True    True    No
+  NLE_UQ            16H          Not-less-than-or-equal (unordered, nonsignaling)       True                                         False   False   True    No
+  ORD_S             17H          Ordered (signaling)                                    True                                         True    True    False   Yes
+  EQ_US             18H          Equal (unordered, signaling)                           False                                        False   True    True    Yes
+  NGE_UQ            19H          Not-greater-than-or-equal (unordered, non-signaling)   False                                        True    False   True    No
+  NGT_UQ            1AH          Not-greater-than (unordered, nonsignaling)             False                                        True    True    True    No
+  FALSE_OS          1BH          False (ordered, signaling)                             False                                        False   False   False   Yes
+  NEQ_OS            1CH          Not-equal (ordered, signaling)                         True                                         True    False   False   Yes
+  GE_OQ             1DH          Greater-than-or-equal (ordered, nonsignaling)          True                                         False   True    False   No
+  GT_OQ             1EH          Greater-than (ordered, nonsignaling)                   True                                         False   False   False   No
+  TRUE_US           1FH          True (unordered, signaling)                            True                                         True    True    True    Yes
 
 Table 3-1. Comparison Predicate for CMPPD and CMPPS Instructions
 
@@ -625,8 +126,8 @@ using software emulation. When using software emulation, the program
 must swap the operands (copying registers when necessary to protect the
 data that will now be in the destination), and then perform the compare
 using a different predicate. The predicate to be used for these
-emulations is listed in the first 8 rows of Table 3-7 (_Intel 64 and
-IA-32 Architectures Software Developer’s Manual Volume 2A_) under the
+emulations is listed in the first 8 rows of Table 3-7 (Intel 64 and
+IA-32 Architectures Software Developer’s Manual Volume 2A) under the
 heading Emulation.
 
 Compilers and assemblers may implement the following two-operand
@@ -634,16 +135,16 @@ pseudo-ops in addition to the three-operand CMPPD instruction, for
 processors with “CPUID.1H:ECX.AVX =0”. See Table 3-2. Compiler should
 treat reserved Imm8 values as illegal syntax.
 
-  Pseudo-Op                 CMPPD Implementation
-  ------------------------- -----------------------
-  CMPEQPD _xmm1, xmm2_      CMPPD _xmm1, xmm2, 0_
-  CMPLTPD _xmm1, xmm2_      CMPPD _xmm1, xmm2, 1_
-  CMPLEPD _xmm1, xmm2_      CMPPD _xmm1, xmm2, 2_
-  CMPUNORDPD _xmm1, xmm2_   CMPPD _xmm1, xmm2, 3_
-  CMPNEQPD _xmm1, xmm2_     CMPPD _xmm1, xmm2, 4_
-  CMPNLTPD _xmm1, xmm2_     CMPPD _xmm1, xmm2, 5_
-  CMPNLEPD _xmm1, xmm2_     CMPPD _xmm1, xmm2, 6_
-  CMPORDPD _xmm1, xmm2_     CMPPD _xmm1, xmm2, 7_
+  Pseudo-Op               CMPPD Implementation
+  ----------------------- ----------------------
+  CMPEQPD xmm1, xmm2      CMPPD xmm1, xmm2, 0
+  CMPLTPD xmm1, xmm2      CMPPD xmm1, xmm2, 1
+  CMPLEPD xmm1, xmm2      CMPPD xmm1, xmm2, 2
+  CMPUNORDPD xmm1, xmm2   CMPPD xmm1, xmm2, 3
+  CMPNEQPD xmm1, xmm2     CMPPD xmm1, xmm2, 4
+  CMPNLTPD xmm1, xmm2     CMPPD xmm1, xmm2, 5
+  CMPNLEPD xmm1, xmm2     CMPPD xmm1, xmm2, 6
+  CMPORDPD xmm1, xmm2     CMPPD xmm1, xmm2, 7
 
 Table 3-2. Pseudo-Op and CMPPD Implementation
 
@@ -668,43 +169,42 @@ assemblers may implement three-operand pseudo-ops for EVEX encoded
 VCMPPD instructions in a similar fashion by extending the syntax listed
 in Table 3-3.
 
-  Pseudo-Op                           CMPPD Implementation
-  ----------------------------------- --------------------------------
-  VCMPEQPD _reg1, reg2, reg3_         VCMPPD _reg1, reg2, reg3, 0_
-  VCMPLTPD _reg1, reg2, reg3_         VCMPPD _reg1, reg2, reg3, 1_
-  VCMPLEPD _reg1, reg2, reg3_         VCMPPD _reg1, reg2, reg3, 2_
-  VCMPUNORDPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 3_
-  VCMPNEQPD _reg1, reg2, reg3_        VCMPPD _reg1, reg2, reg3, 4_
-  VCMPNLTPD _reg1, reg2, reg3_        VCMPPD _reg1, reg2, reg3, 5_
-  VCMPNLEPD _reg1, reg2, reg3_        VCMPPD _reg1, reg2, reg3, 6_
-  VCMPORDPD _reg1, reg2, reg3_        VCMPPD _reg1, reg2, reg3, 7_
-  VCMPEQ_UQPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 8_
-  VCMPNGEPD _reg1, reg2, reg3_        VCMPPD _reg1, reg2, reg3, 9_
-  VCMPNGTPD _reg1, reg2, reg3_        VCMPPD _reg1, reg2, reg3, 0AH_
-  VCMPFALSEPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 0BH_
-  VCMPNEQ_OQPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 0CH_
-  VCMPGEPD _reg1, reg2, reg3_         VCMPPD _reg1, reg2, reg3, 0DH_
-  VCMPGTPD _reg1, reg2, reg3_         VCMPPD _reg1, reg2, reg3, 0EH_
-  VCMPTRUEPD _reg1, reg2, reg3_       VCMPPD _reg1, reg2, reg3, 0FH_
-  VCMPEQ_OSPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 10H_
-  VCMPLT_OQPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 11H_
-  VCMPLE_OQPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 12H_
-  VCMPUNORD_SPD _reg1, reg2, reg3_    VCMPPD _reg1, reg2, reg3, 13H_
-  VCMPNEQ_USPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 14H_
-  VCMPNLT_UQPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 15H_
-  VCMPNLE_UQPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 16H_
-  VCMPORD_SPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 17H_
-  VCMPEQ_USPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 18H_
-  VCMPNGE_UQPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 19H_
-  VCMPNGT_UQPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 1AH_
-  VCMPFALSE_OSPD _reg1, reg2, reg3_   VCMPPD _reg1, reg2, reg3, 1BH_
-  VCMPNEQ_OSPD _reg1, reg2, reg3_     VCMPPD _reg1, reg2, reg3, 1CH_
-  VCMPGE_OQPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 1DH_
-  VCMPGT_OQPD _reg1, reg2, reg3_      VCMPPD _reg1, reg2, reg3, 1EH_
-  VCMPTRUE_USPD _reg1, reg2, reg3_    VCMPPD _reg1, reg2, reg3, 1FH_
+  Pseudo-Op                         CMPPD Implementation
+  --------------------------------- ------------------------------
+  VCMPEQPD reg1, reg2, reg3         VCMPPD reg1, reg2, reg3, 0
+  VCMPLTPD reg1, reg2, reg3         VCMPPD reg1, reg2, reg3, 1
+  VCMPLEPD reg1, reg2, reg3         VCMPPD reg1, reg2, reg3, 2
+  VCMPUNORDPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 3
+  VCMPNEQPD reg1, reg2, reg3        VCMPPD reg1, reg2, reg3, 4
+  VCMPNLTPD reg1, reg2, reg3        VCMPPD reg1, reg2, reg3, 5
+  VCMPNLEPD reg1, reg2, reg3        VCMPPD reg1, reg2, reg3, 6
+  VCMPORDPD reg1, reg2, reg3        VCMPPD reg1, reg2, reg3, 7
+  VCMPEQ_UQPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 8
+  VCMPNGEPD reg1, reg2, reg3        VCMPPD reg1, reg2, reg3, 9
+  VCMPNGTPD reg1, reg2, reg3        VCMPPD reg1, reg2, reg3, 0AH
+  VCMPFALSEPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 0BH
+  VCMPNEQ_OQPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 0CH
+  VCMPGEPD reg1, reg2, reg3         VCMPPD reg1, reg2, reg3, 0DH
+  VCMPGTPD reg1, reg2, reg3         VCMPPD reg1, reg2, reg3, 0EH
+  VCMPTRUEPD reg1, reg2, reg3       VCMPPD reg1, reg2, reg3, 0FH
+  VCMPEQ_OSPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 10H
+  VCMPLT_OQPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 11H
+  VCMPLE_OQPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 12H
+  VCMPUNORD_SPD reg1, reg2, reg3    VCMPPD reg1, reg2, reg3, 13H
+  VCMPNEQ_USPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 14H
+  VCMPNLT_UQPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 15H
+  VCMPNLE_UQPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 16H
+  VCMPORD_SPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 17H
+  VCMPEQ_USPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 18H
+  VCMPNGE_UQPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 19H
+  VCMPNGT_UQPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 1AH
+  VCMPFALSE_OSPD reg1, reg2, reg3   VCMPPD reg1, reg2, reg3, 1BH
+  VCMPNEQ_OSPD reg1, reg2, reg3     VCMPPD reg1, reg2, reg3, 1CH
+  VCMPGE_OQPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 1DH
+  VCMPGT_OQPD reg1, reg2, reg3      VCMPPD reg1, reg2, reg3, 1EH
+  VCMPTRUE_USPD reg1, reg2, reg3    VCMPPD reg1, reg2, reg3, 1FH
 
 Table 3-3. Pseudo-Op and VCMPPD Implementation
-
 
 Operation ¶
 
@@ -810,7 +310,6 @@ CMPPD (128-bit Legacy SSE version) ¶
         ELSE DEST[127:64]←0000000000000000H; FI;
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCMPPD __mmask8 _mm512_cmp_pd_mask( __m512d a, __m512d b, int imm);
@@ -833,14 +332,12 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)CMPPD __m128 _mm_cmp_pd(__m128d a, __m128d b, int imm)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid if SNaN operand and invalid if QNaN and predicate as listed in
 Table 3-1.
 
 Denormal
-
 
 Other Exceptions ¶
 

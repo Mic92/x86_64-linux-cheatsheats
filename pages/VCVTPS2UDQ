@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VCVTPS2UDQ — CONVERT PACKED SINGLE-PRECISION FLOATING-POINT VALUES TO PACKED UNSIGNED DOUBLEWORD INTEGER VALUES
-
+VCVTPS2UDQ — Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
 
   Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.0F.W0 79 /r VCVTPS2UDQ xmm1 {k1}{z}, xmm2/m128/m32bcst       A       V/V                      AVX512VL AVX512F     Convert four packed single precision floating-point values from xmm2/m128/m32bcst to four packed unsigned doubleword values in xmm1 subject to writemask k1.
   EVEX.256.0F.W0 79 /r VCVTPS2UDQ ymm1 {k1}{z}, ymm2/m256/m32bcst       A       V/V                      AVX512VL AVX512F     Convert eight packed single precision floating-point values from ymm2/m256/m32bcst to eight packed unsigned doubleword values in ymm1 subject to writemask k1.
   EVEX.512.0F.W0 79 /r VCVTPS2UDQ zmm1 {k1}{z}, zmm2/m512/m32bcst{er}   A       V/V                      AVX512F              Convert sixteen packed single-precision floating-point values from zmm2/m512/m32bcst to sixteen packed unsigned doubleword values in zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

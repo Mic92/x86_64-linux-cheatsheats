@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-UCOMISS — UNORDERED COMPARE SCALAR SINGLE-PRECISION FLOATING-POINT VALUES AND SET EFLAGS
-
+UCOMISS — Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS
 
   Opcode/Instruction                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
   NP 0F 2E /r UCOMISS xmm1, xmm2/m32                  A       V/V                      SSE                  Compare low single-precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.
   VEX.LIG.0F.WIG 2E /r VUCOMISS xmm1, xmm2/m32        A       V/V                      AVX                  Compare low single-precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.
   EVEX.LIG.0F.W0 2E /r VUCOMISS xmm1, xmm2/m32{sae}   B       V/V                      AVX512F              Compare low single-precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.
-
 
 Instruction Operand Encoding ¶
 

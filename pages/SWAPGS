@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SWAPGS — SWAP GS BASE REGISTER
-
+SWAPGS — Swap GS Base Register
 
   Opcode     Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   ---------- ------------- ------- ------------- ----------------- -------------------------------------------------------------------------------------------------
   0F 01 F8   SWAPGS        ZO      Valid         Invalid           Exchanges the current GS base register value with the value contained in MSR address C0000102H.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -46,7 +41,6 @@ instructions. Those instructions are only accessible at privilege level
 0. The WRMSR instruction ensures that the IA32_KERNEL_GS_BASE MSR
 contains a canonical address.
 
-
 Operation ¶
 
     IF CS.L ≠ 1 (* Not in 64-Bit Mode *)
@@ -58,11 +52,9 @@ Operation ¶
     GS.base ← IA32_KERNEL_GS_BASE;
     IA32_KERNEL_GS_BASE ← tmp;
 
-
 Flags Affected ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -70,13 +62,11 @@ Protected Mode Exceptions ¶
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- -------------------
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -84,13 +74,11 @@ Virtual-8086 Mode Exceptions ¶
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- -------------------
   #UD   If Mode ≠ 64-Bit.
   ----- -------------------
-
 
 64-Bit Mode Exceptions ¶
 

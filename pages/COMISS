@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-COMISS — COMPARE SCALAR ORDERED SINGLE-PRECISION FLOATING-POINT VALUES AND SET EFLAGS
-
+COMISS — Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS
 
   Opcode/Instruction                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
   NP 0F 2F /r COMISS xmm1, xmm2/m32                  A       V/V                      SSE                  Compare low single-precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.
   VEX.LIG.0F.WIG 2F /r VCOMISS xmm1, xmm2/m32        A       V/V                      AVX                  Compare low single-precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.
   EVEX.LIG.0F.W0 2F /r VCOMISS xmm1, xmm2/m32{sae}   B       V/V                      AVX512F              Compare low single-precision floating-point values in xmm1 and xmm2/mem32 and set the EFLAGS flags accordingly.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   A       NA              ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   B       Tuple1 Scalar   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -49,7 +44,6 @@ Software should ensure VCOMISS is encoded with VEX.L=0. Encoding VCOMISS
 with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
 
-
 Operation ¶
 
 COMISS (all versions) ¶
@@ -62,7 +56,6 @@ COMISS (all versions) ¶
         EQUAL: ZF,PF,CF←100;
     ESAC;
     OF, AF, SF←0; }
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -80,11 +73,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCOMISS int _mm_comineq_ss (__m128 a, __m128 b)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid (if SNaN or QNaN operands), Denormal.
-
 
 Other Exceptions ¶
 

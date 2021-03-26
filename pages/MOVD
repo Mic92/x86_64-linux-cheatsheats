@@ -1,33 +1,29 @@
 -   Index
 -   May 2019
 
+MOVD/MOVQ — Move Doubleword/Move Quadword
 
-
-MOVD/MOVQ — MOVE DOUBLEWORD/MOVE QUADWORD
-
-
-  Opcode/Instruction                             Op/ En   64/32-bit Mode   CPUID Feature Flag   Description
-  ---------------------------------------------- -------- ---------------- -------------------- --------------------------------------------------
-  NP 0F 6E /_r_ MOVD _mm, r/m32_                 A        V/V              MMX                  Move doubleword from _r/m32_ to _mm_.
-  NP REX.W + 0F 6E /_r_ MOVQ _mm, r/m64_         A        V/N.E.           MMX                  Move quadword from _r/m64_ to _mm_.
-  NP 0F 7E /_r_ MOVD _r/m32, mm_                 B        V/V              MMX                  Move doubleword from _mm_ to _r/m32_.
-  NP REX.W + 0F 7E /_r_ MOVQ _r/m64, mm_         B        V/N.E.           MMX                  Move quadword from _mm_ to _r/m64_.
-  66 0F 6E /_r_ MOVD _xmm_, _r/m32_              A        V/V              SSE2                 Move doubleword from _r/m32_ to _xmm_.
-  66 REX.W 0F 6E /_r_ MOVQ _xmm_, _r/m64_        A        V/N.E.           SSE2                 Move quadword from _r/m64_ to _xmm_.
-  66 0F 7E /_r_ MOVD _r/m32_, _xmm_              B        V/V              SSE2                 Move doubleword from _xmm_ register to _r/m32_.
-  66 REX.W 0F 7E /_r_ MOVQ _r/m64_, _xmm_        B        V/N.E.           SSE2                 Move quadword from _xmm_ register to _r/m64_.
-  VEX.128.66.0F.W0 6E / VMOVD _xmm1, r32/m32_    A        V/V              AVX                  Move doubleword from _r/m32_ to _xmm1_.
-  VEX.128.66.0F.W1 6E /r VMOVQ _xmm1, r64/m64_   A        V/N.E¹.          AVX                  Move quadword from _r/m64_ to _xmm1_.
-  VEX.128.66.0F.W0 7E /r VMOVD _r32/m32, xmm1_   B        V/V              AVX                  Move doubleword from _xmm1_ register to _r/m32_.
-  VEX.128.66.0F.W1 7E /r VMOVQ _r64/m64, xmm1_   B        V/N.E¹.          AVX                  Move quadword from _xmm1_ register to _r/m64_.
-  EVEX.128.66.0F.W0 6E /r VMOVD xmm1, r32/m32    C        V/V              AVX512F              Move doubleword from r/m32 to xmm1.
-  EVEX.128.66.0F.W1 6E /r VMOVQ xmm1, r64/m64    C        V/N.E.¹          AVX512F              Move quadword from r/m64 to xmm1.
-  EVEX.128.66.0F.W0 7E /r VMOVD r32/m32, xmm1    D        V/V              AVX512F              Move doubleword from xmm1 register to r/m32.
-  EVEX.128.66.0F.W1 7E /r VMOVQ r64/m64, xmm1    D        V/N.E.¹          AVX512F              Move quadword from xmm1 register to r/m64.
+  Opcode/Instruction                            Op/ En   64/32-bit Mode   CPUID Feature Flag   Description
+  --------------------------------------------- -------- ---------------- -------------------- ----------------------------------------------
+  NP 0F 6E /r MOVD mm, r/m32                    A        V/V              MMX                  Move doubleword from r/m32 to mm.
+  NP REX.W + 0F 6E /r MOVQ mm, r/m64            A        V/N.E.           MMX                  Move quadword from r/m64 to mm.
+  NP 0F 7E /r MOVD r/m32, mm                    B        V/V              MMX                  Move doubleword from mm to r/m32.
+  NP REX.W + 0F 7E /r MOVQ r/m64, mm            B        V/N.E.           MMX                  Move quadword from mm to r/m64.
+  66 0F 6E /r MOVD xmm, r/m32                   A        V/V              SSE2                 Move doubleword from r/m32 to xmm.
+  66 REX.W 0F 6E /r MOVQ xmm, r/m64             A        V/N.E.           SSE2                 Move quadword from r/m64 to xmm.
+  66 0F 7E /r MOVD r/m32, xmm                   B        V/V              SSE2                 Move doubleword from xmm register to r/m32.
+  66 REX.W 0F 7E /r MOVQ r/m64, xmm             B        V/N.E.           SSE2                 Move quadword from xmm register to r/m64.
+  VEX.128.66.0F.W0 6E / VMOVD xmm1, r32/m32     A        V/V              AVX                  Move doubleword from r/m32 to xmm1.
+  VEX.128.66.0F.W1 6E /r VMOVQ xmm1, r64/m64    A        V/N.E¹.          AVX                  Move quadword from r/m64 to xmm1.
+  VEX.128.66.0F.W0 7E /r VMOVD r32/m32, xmm1    B        V/V              AVX                  Move doubleword from xmm1 register to r/m32.
+  VEX.128.66.0F.W1 7E /r VMOVQ r64/m64, xmm1    B        V/N.E¹.          AVX                  Move quadword from xmm1 register to r/m64.
+  EVEX.128.66.0F.W0 6E /r VMOVD xmm1, r32/m32   C        V/V              AVX512F              Move doubleword from r/m32 to xmm1.
+  EVEX.128.66.0F.W1 6E /r VMOVQ xmm1, r64/m64   C        V/N.E.¹          AVX512F              Move quadword from r/m64 to xmm1.
+  EVEX.128.66.0F.W0 7E /r VMOVD r32/m32, xmm1   D        V/V              AVX512F              Move doubleword from xmm1 register to r/m32.
+  EVEX.128.66.0F.W1 7E /r VMOVQ r64/m64, xmm1   D        V/N.E.¹          AVX512F              Move quadword from xmm1 register to r/m64.
 
   1. For this specific instruction, VEX.W/EVEX.W in non-64 bit is
   ignored; the instructions behaves as if the W0 version is used.
-
 
 Instruction Operand Encoding ¶
 
@@ -38,7 +34,6 @@ Instruction Operand Encoding ¶
   C       Tuple1 Scalar   ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   D       Tuple1 Scalar   ModRM:r/m (w)   ModRM:reg (r)   NA          NA
   ------- --------------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -93,7 +88,6 @@ instructions will #UD.
 If VMOVD or VMOVQ is encoded with VEX.L= 1, an attempt to execute the
 instruction encoded with VEX.L= 1 will cause an #UD exception.
 
-
 Operation ¶
 
 MOVD (when destination operand is MMX technology register) ¶
@@ -145,7 +139,6 @@ VMOVQ (EVEX-encoded version when destination is an XMM register) ¶
     DEST[63:0] ← SRC[63:0]
     DEST[MAXVL-1:64] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MOVD: __m64 _mm_cvtsi32_si64 (int i )
@@ -172,16 +165,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VMOVQ void _mm_storel_epi64( __m128i * d, __m128i s);
 
-
 Flags Affected ¶
 
 None
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 
@@ -189,11 +179,10 @@ Non-EVEX-encoded instruction, see Exceptions Type 5.
 
 EVEX-encoded instruction, see Exceptions Type E9NF.
 
-#UD
-
-If VEX.L = 1.
-
-If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+  ----- ---------------------------------------------
+  #UD   If VEX.L = 1.
+        If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+  ----- ---------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

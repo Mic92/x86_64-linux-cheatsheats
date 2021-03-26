@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-ADDSD — ADD SCALAR DOUBLE-PRECISION FLOATING-POINT VALUES
-
+ADDSD — Add Scalar Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------
   F2 0F 58 /r ADDSD xmm1, xmm2/m64                                  A       V/V                      SSE2                 Add the low double-precision floating-point value from xmm2/mem to xmm1 and store the result in xmm1.
   VEX.LIG.F2.0F.WIG 58 /r VADDSD xmm1, xmm2, xmm3/m64               B       V/V                      AVX                  Add the low double-precision floating-point value from xmm3/mem to xmm2 and store the result in xmm1.
   EVEX.LIG.F2.0F.W1 58 /r VADDSD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   C       V/V                      AVX512F              Add the low double-precision floating-point value from xmm3/m64 to xmm2 and store the result in xmm1 with writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -21,7 +17,6 @@ Instruction Operand Encoding ¶
   B       NA              ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
   C       Tuple1 Scalar   ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- --------------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -47,7 +42,6 @@ according to the writemask.
 Software should ensure VADDSD is encoded with VEX.L=0. Encoding VADDSD
 with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
-
 
 Operation ¶
 
@@ -82,7 +76,6 @@ ADDSD (128-bit Legacy SSE version) ¶
     DEST[63:0]←DEST[63:0] + SRC[63:0]
     DEST[MAXVL-1:64] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VADDSD __m128d _mm_mask_add_sd (__m128d s, __mmask8 k, __m128d a, __m128d b);
@@ -97,11 +90,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ADDSD __m128d _mm_add_sd (__m128d a, __m128d b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
-
 
 Other Exceptions ¶
 

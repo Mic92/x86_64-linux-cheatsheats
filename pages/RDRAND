@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-RDRAND — READ RANDOM NUMBER
-
+RDRAND — Read Random Number
 
   Opcode*/Instruction               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------
@@ -12,14 +9,12 @@ RDRAND — READ RANDOM NUMBER
   NFx 0F C7 /6 RDRAND r32           M       V/V                      RDRAND               Read a 32-bit random number and store in the destination register.
   NFx REX.W + 0F C7 /6 RDRAND r64   M       V/I                      RDRAND               Read a 64-bit random number and store in the destination register.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (w)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -32,8 +27,8 @@ the data in the destination operand will be returned as zeros for the
 specified width. All other flags are forced to 0 in either situation.
 Software must check the state of CF=1 for determining if a valid random
 value has been returned, otherwise it is expected to loop and retry
-execution of RDRAND (see _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 1_, Section 7.3.17, “Random Number Generator
+execution of RDRAND (see Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 1, Section 7.3.17, “Random Number Generator
 Instructions”).
 
 This instruction is available at all privilege levels.
@@ -43,7 +38,6 @@ Using a REX prefix in the form of REX.B permits access to additional
 registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bit operands. See the summary chart at the beginning of
 this section for encoding data and limits.
-
 
 Operation ¶
 
@@ -65,12 +59,10 @@ Operation ¶
     FI
     OF, SF, ZF, AF, PF ← 0;
 
-
 Flags Affected ¶
 
 The CF flag is set according to the result (see the “Operation” section
 above). The OF, SF, ZF, AF, and PF flags are set to 0.
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -80,30 +72,24 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RDRAND: int _rdrand64_step( unsigned __int64 *);
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.01H:ECX.RDRAND[bit 30] = 0.
-
+  ----- --------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.01H:ECX.RDRAND[bit 30] = 0.
+  ----- --------------------------------------
 
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

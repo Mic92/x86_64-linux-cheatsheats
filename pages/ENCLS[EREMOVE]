@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EREMOVE — REMOVE A PAGE FROM THE EPC
-
+EREMOVE — Remove a page from the EPC
 
   Opcode/Instruction         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------- ------- ------------------------ -------------------- -------------------------------------------------
   EAX = 03H ENCLS[EREMOVE]   IR      V/V                      SGX1                 This leaf function removes a page from the EPC.
-
 
 Instruction Operand Encoding ¶
 
@@ -34,7 +30,6 @@ threads are running in the enclave to which the page belongs. In
 addition the instruction fails if the operand refers to an SECS with
 associations.
 
-
 EREMOVE Memory Parameter Semantics ¶
 
   -----------------------------------
@@ -43,7 +38,6 @@ EREMOVE Memory Parameter Semantics ¶
   -----------------------------------
 
 The instruction faults if any of the following:
-
 
 EREMOVE Faulting Conditions ¶
 
@@ -66,68 +60,22 @@ Table 40-42. EREMOVE Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EREMOVE
-
-Target [DS:RCX]
-
-Exclusive
-
-#GP
-
-EPC_PAGE_CONFLICT_EXCEPTION
+  Leaf      Parameter         Base Concurrency Restrictions              
+  --------- ----------------- ------------------------------------ ----- -----------------------------
+  Access    On Conflict       SGX_CONFLICT VM Exit Qualification         
+  EREMOVE   Target [DS:RCX]   Exclusive                            #GP   EPC_PAGE_CONFLICT_EXCEPTION
 
 Table 40-43. Base Concurrency Restrictions of EREMOVE
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EREMOVE
-
-Target [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter         Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ----------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                     vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict       Access                                On Conflict   Access                On Conflict                
+  EREMOVE                                           Target [DS:RCX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-44. Additional Concurrency Restrictions of EREMOVE
 
 Operation ¶
-
 
 Temp Variables in EREMOVE Operational Flow ¶
 
@@ -278,35 +226,23 @@ Clears CF, PF, AF, OF, SF.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If another Intel SGX instruction is accessing the page.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If another Intel SGX instruction is accessing the page.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If the memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If another Intel SGX instruction is accessing the page.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If the memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If the memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If another Intel SGX instruction is accessing the page.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If the memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

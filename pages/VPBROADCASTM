@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPBROADCASTM — BROADCAST MASK TO VECTOR REGISTER
-
+VPBROADCASTM — Broadcast Mask to Vector Register
 
   Opcode/Instruction                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------
@@ -14,7 +11,6 @@ VPBROADCASTM — BROADCAST MASK TO VECTOR REGISTER
   EVEX.128.F3.0F38.W0 3A /r VPBROADCASTMW2D xmm1, k1   RM      V/V                      AVX512VL AVX512CD    Broadcast low word value in k1 to four locations in xmm1.
   EVEX.256.F3.0F38.W0 3A /r VPBROADCASTMW2D ymm1, k1   RM      V/V                      AVX512VL AVX512CD    Broadcast low word value in k1 to eight locations in ymm1.
   EVEX.512.F3.0F38.W0 3A /r VPBROADCASTMW2D zmm1, k1   RM      V/V                      AVX512CD             Broadcast low word value in k1 to sixteen locations in zmm1.
-
 
 Instruction Operand Encoding ¶
 

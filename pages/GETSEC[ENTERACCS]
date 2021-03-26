@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GETSEC[ENTERACCS] — EXECUTE AUTHENTICATED CHIPSET CODE
-
+GETSEC[ENTERACCS] — Execute Authenticated Chipset Code
 
   Opcode               Instruction         Description
   -------------------- ------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 37 (EAX = 2)   GETSEC[ENTERACCS]   Enter authenticated code execution mode. EBX holds the authenticated code module physical base address. ECX holds the authenticated code module size (bytes).
-
 
 Description ¶
 
@@ -297,7 +293,6 @@ and enable NMI by execution of IRET. This presumes that it has
 re-established interrupt handling support through initialization of the
 IDT, GDT, and corresponding interrupt handling code.
 
-
 Operation in a Uni-Processor Platform ¶
 
 (* The state of the internal flag ACMODEFLAG persists across instruction
@@ -448,11 +443,9 @@ SignalTXTMsg(OpenLocality3);
 
 EIP← ACEntryPoint; END;
 
-
 Flags Affected ¶
 
 All flags are cleared.
-
 
 Use of Prefixes ¶
 
@@ -470,74 +463,40 @@ Address size Ignored.
 
 REX Ignored.
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[ENTERACCS] is not reported as supported by
-GETSEC[CAPABILITIES].
-
-#GP(0)
-
-IfCR0.CD=1orCR0.NW=1orCR0.NE=0orCR0.PE=0orCPL>0orEFLAGS.VM=1.
-
-If a Intel® TXT-capable chipset is not present.
-
-If in VMX root operation.
-
-If the initiating processor is not designated as the bootstrap processor
-via the MSR bit IA32_APIC_BASE.BSP.
-
-If the processor is already in authenticated code execution mode.
-
-If the processor is in SMM.
-
-If a valid uncorrectable machine check error is logged in
-IA32_MC[I]_STATUS.
-
-If the authenticated code base is not on a 4096 byte boundary.
-
-If the authenticated code size > processor internal authenticated code
-area capacity.
-
-If the authenticated code size is not modulo 64.
-
-If other enabled logical processor(s) of the same package CR0.CD = 1.
-
-If other enabled logical processor(s) of the same package are not in the
-wait-for-SIPI or SENTER sleep state.
-
+  -------- ---------------------------------------------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[ENTERACCS] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   IfCR0.CD=1orCR0.NW=1orCR0.NE=0orCR0.PE=0orCPL>0orEFLAGS.VM=1.
+           If a Intel® TXT-capable chipset is not present.
+           If in VMX root operation.
+           If the initiating processor is not designated as the bootstrap processor via the MSR bit IA32_APIC_BASE.BSP.
+           If the processor is already in authenticated code execution mode.
+           If the processor is in SMM.
+           If a valid uncorrectable machine check error is logged in IA32_MC[I]_STATUS.
+           If the authenticated code base is not on a 4096 byte boundary.
+           If the authenticated code size > processor internal authenticated code area capacity.
+           If the authenticated code size is not modulo 64.
+           If other enabled logical processor(s) of the same package CR0.CD = 1.
+           If other enabled logical processor(s) of the same package are not in the wait-for-SIPI or SENTER sleep state.
+  -------- ---------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[ENTERACCS] is not reported as supported by
-GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[ENTERACCS] is not recognized in real-address mode.
-
+  -------- ----------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[ENTERACCS] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[ENTERACCS] is not recognized in real-address mode.
+  -------- ----------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[ENTERACCS] is not reported as supported by
-GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[ENTERACCS] is not recognized in virtual-8086 mode.
-
+  -------- ----------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[ENTERACCS] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[ENTERACCS] is not recognized in virtual-8086 mode.
+  -------- ----------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
@@ -547,7 +506,6 @@ All protected mode exceptions apply.
   #GP   IF AC code module does not reside in physical address below 2^32 -1.
   ----- ----------------------------------------------------------------------
 
-
 64-Bit Mode Exceptions ¶
 
 All protected mode exceptions apply.
@@ -555,7 +513,6 @@ All protected mode exceptions apply.
   ----- ----------------------------------------------------------------------
   #GP   IF AC code module does not reside in physical address below 2^32 -1.
   ----- ----------------------------------------------------------------------
-
 
 VM-exit Condition ¶
 

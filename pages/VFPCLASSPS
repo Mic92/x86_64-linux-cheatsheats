@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VFPCLASSPS — TESTS TYPES OF A PACKED FLOAT32 VALUES
-
+VFPCLASSPS — Tests Types Of a Packed Float32 Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W0 66 /r ib VFPCLASSPS k2 {k1}, xmm2/m128/m32bcst, imm8   A       V/V                      AVX512VL AVX512DQ    Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
   EVEX.256.66.0F3A.W0 66 /r ib VFPCLASSPS k2 {k1}, ymm2/m256/m32bcst, imm8   A       V/V                      AVX512VL AVX512DQ    Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
   EVEX.512.66.0F3A.W0 66 /r ib VFPCLASSPS k2 {k1}, zmm2/m512/m32bcst, imm8   A       V/V                      AVX512DQ             Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.
-
 
 Instruction Operand Encoding ¶
 

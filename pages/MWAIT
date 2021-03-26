@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-MWAIT — MONITOR WAIT
-
+MWAIT — Monitor Wait
 
   Opcode     Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   ---------- ------------- ------- ------------- ----------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------
   0F 01 C9   MWAIT         ZO      Valid         Valid             A hint that allows the processor to stop instruction execution and enter an implementation-dependent optimized state until occurrence of a class of events.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -44,7 +39,6 @@ value for EAX and ECX. Later processors allowed setting ECX[0] to enable
 masked interrupts as break events for MWAIT (see below). Software can
 use the CPUID instruction to determine the extensions and hints
 supported by the processor.
-
 
 MWAIT for Address Range Monitoring ¶
 
@@ -84,7 +78,6 @@ range or if the MONITOR instruction has not been executed prior to
 executing MWAIT, then the processor will not enter the
 implementation-dependent-optimized state. Execution will resume at the
 instruction following the MWAIT.
-
 
 MWAIT for Power Management ¶
 
@@ -130,9 +123,8 @@ non-processor agent might not cause the processor to exit MWAIT in such
 cases.
 
 For additional details of MWAIT extensions, see Chapter 14, “Power and
-Thermal Management,” of _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 3A_.
-
+Thermal Management,” of Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 3A.
 
 Operation ¶
 
@@ -144,11 +136,9 @@ Operation ¶
     Set the state of Monitor Hardware as triggered;
     }
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MWAIT: void _mm_mwait(unsigned extensions, unsigned hints)
-
 
 Example ¶
 
@@ -184,39 +174,26 @@ monitor instruction. Without the second check that triggering store
 would go un-noticed. Typical usage of MONITOR and MWAIT would have the
 above code sequence within a loop.
 
-
 Numeric Exceptions ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If ECX[31:1] ≠ 0.
-
-If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
-
-#UD
-
-If CPUID.01H:ECX.MONITOR[bit 3] = 0.
-
-If current privilege level is not 0.
-
+  -------- ---------------------------------------------
+  #GP(0)   If ECX[31:1] ≠ 0.
+           If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
+  #UD      If CPUID.01H:ECX.MONITOR[bit 3] = 0.
+           If current privilege level is not 0.
+  -------- ---------------------------------------------
 
 Real Address Mode Exceptions ¶
 
-#GP
-
-If ECX[31:1] ≠ 0.
-
-If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
-
-#UD
-
-If CPUID.01H:ECX.MONITOR[bit 3] = 0.
-
+  ----- ---------------------------------------------
+  #GP   If ECX[31:1] ≠ 0.
+        If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
+  #UD   If CPUID.01H:ECX.MONITOR[bit 3] = 0.
+  ----- ---------------------------------------------
 
 Virtual 8086 Mode Exceptions ¶
 
@@ -224,25 +201,18 @@ Virtual 8086 Mode Exceptions ¶
   #UD   The MWAIT instruction is not recognized in virtual-8086 mode (even if CPUID.01H:ECX.MONITOR[bit 3] = 1).
   ----- ----------------------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If RCX[63:1] ≠ 0.
-
-If RCX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
-
-#UD
-
-If the current privilege level is not 0.
-
-If CPUID.01H:ECX.MONITOR[bit 3] = 0.
+  -------- ---------------------------------------------
+  #GP(0)   If RCX[63:1] ≠ 0.
+           If RCX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
+  #UD      If the current privilege level is not 0.
+           If CPUID.01H:ECX.MONITOR[bit 3] = 0.
+  -------- ---------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

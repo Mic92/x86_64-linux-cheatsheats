@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+PCLMULQDQ — Carry-Less Multiplication Quadword
 
-
-PCLMULQDQ — CARRY-LESS MULTIPLICATION QUADWORD
-
-
-  Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag             Description
-  ----------------------------------------------------------------------- ------- ------------------------ ------------------------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 44 /r ib PCLMULQDQ _xmm1, xmm2/m128, imm8_                     RMI     V/V                      PCLMULQDQ                      Carry-less multiplication of one quadword of xmm1 by one quadword of _xmm2/m128_, stores the 128-bit result in _xmm1_. The immediate is used to determine which quadwords of _xmm1_ and _xmm2/m128_ should be used.
-  VEX.128.66.0F3A.WIG 44 /r ib VPCLMULQDQ _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V                      Both PCLMULQDQ and AVX flags   Carry-less multiplication of one quadword of _xmm2_ by one quadword of _xmm3/m128_, stores the 128-bit result in _xmm1_. The immediate is used to determine which quadwords of _xmm2_ and _xmm3/m128_ should be used.
-
+  Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag             Description
+  --------------------------------------------------------------------- ------- ------------------------ ------------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 44 /r ib PCLMULQDQ xmm1, xmm2/m128, imm8                     RMI     V/V                      PCLMULQDQ                      Carry-less multiplication of one quadword of xmm1 by one quadword of xmm2/m128, stores the 128-bit result in xmm1. The immediate is used to determine which quadwords of xmm1 and xmm2/m128 should be used.
+  VEX.128.66.0F3A.WIG 44 /r ib VPCLMULQDQ xmm1, xmm2, xmm3/m128, imm8   RVMI    V/V                      Both PCLMULQDQ and AVX flags   Carry-less multiplication of one quadword of xmm2 by one quadword of xmm3/m128, stores the 128-bit result in xmm1. The immediate is used to determine which quadwords of xmm2 and xmm3/m128 should be used.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   RMI     ModRM:reg (r, w)   ModRM:r/m (r)   imm8            NA
   RVMI    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- ------------------ --------------- --------------- ----------
-
 
 Description ¶
 
@@ -49,15 +44,14 @@ corresponding YMM destination register remain unchanged.
 Compilers and assemblers may implement the following pseudo-op syntax to
 simply programming and emit the required encoding for Imm8.
 
-  Pseudo-Op                   Imm8 Encoding
-  --------------------------- ---------------
-  PCLMULLQLQDQ _xmm1, xmm2_   0000_0000B
-  PCLMULHQLQDQ _xmm1, xmm2_   0000_0001B
-  PCLMULLQHQDQ _xmm1, xmm2_   0001_0000B
-  PCLMULHQHQDQ _xmm1, xmm2_   0001_0001B
+  Pseudo-Op                 Imm8 Encoding
+  ------------------------- ---------------
+  PCLMULLQLQDQ xmm1, xmm2   0000_0000B
+  PCLMULHQLQDQ xmm1, xmm2   0000_0001B
+  PCLMULLQHQDQ xmm1, xmm2   0001_0000B
+  PCLMULHQHQDQ xmm1, xmm2   0001_0001B
 
 Table 4-14. Pseudo-Op and PCLMULQDQ Implementation
-
 
 Operation ¶
 
@@ -122,16 +116,13 @@ VPCLMULQDQ ¶
     }
     DEST[MAXVL-1:127] ← 0;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)PCLMULQDQ: __m128i _mm_clmulepi64_si128 (__m128i, __m128i, const int)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

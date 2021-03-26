@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-CLDEMOTE — CACHE LINE DEMOTE
-
+CLDEMOTE — Cache Line Demote
 
   Opcode/Instruction        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------
   NP 0F 1C /0 CLDEMOTE m8   A       V/V                      CLDEMOTE             Hint to hardware to move the cache line containing m8 to a more distant level of the cache without writing back to memory.
-
 
 Instruction Operand Encoding¹ ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding¹ ¶
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   ------- --------------- ----------- ----------- -----------
   A       ModRM:r/m (w)   NA          NA          NA
-
 
 Description ¶
 
@@ -77,21 +72,17 @@ transactional abort with Transactional Synchronization Extensions (TSX).
 However, programmers must not rely on CLDEMOTE instruction to force a
 transactional abort.
 
-
 Operation ¶
 
     Cache_Line_Demote(m8);
-
 
 Flags Affected ¶
 
 None.
 
-
 C/C++ Compiler Intrinsic Equivalent ¶
 
     CLDEMOTE void _cldemote(const void*);
-
 
 Protected Mode Exceptions ¶
 
@@ -99,23 +90,19 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

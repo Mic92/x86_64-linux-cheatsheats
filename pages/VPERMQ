@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPERMQ — QWORDS ELEMENT PERMUTATION
-
+VPERMQ — Qwords Element Permutation
 
   Opcode/Instruction                                                          Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------
@@ -13,7 +10,6 @@ VPERMQ — QWORDS ELEMENT PERMUTATION
   EVEX.512.66.0F3A.W1 00 /r ib VPERMQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8   B         V/V                      AVX512F              Permute qwords in zmm2/m512/m64bcst using indices in imm8 and store the result in zmm1.
   EVEX.256.66.0F38.W1 36 /r VPERMQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst      C         V/V                      AVX512VL AVX512F     Permute qwords in ymm3/m256/m64bcst using indexes in ymm2 and store the result in ymm1.
   EVEX.512.66.0F38.W1 36 /r VPERMQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst      C         V/V                      AVX512F              Permute qwords in zmm3/m512/m64bcst using indices in zmm2 and store the result in zmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -183,19 +179,17 @@ Other Exceptions ¶
 
 Non-EVEX-encoded instruction, see Exceptions Type 4; additionally
 
-#UD
-
-If VEX.L = 0.
-
-If VEX.vvvv != 1111B.
+  ----- -----------------------
+  #UD   If VEX.L = 0.
+        If VEX.vvvv != 1111B.
+  ----- -----------------------
 
 EVEX-encoded instruction, see Exceptions Type E4NF.
 
-#UD
-
-If encoded with EVEX.128.
-
-If EVEX.vvvv != 1111B and with imm8.
+  ----- --------------------------------------
+  #UD   If encoded with EVEX.128.
+        If EVEX.vvvv != 1111B and with imm8.
+  ----- --------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

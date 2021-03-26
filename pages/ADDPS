@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ADDPS — ADD PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+ADDPS — Add Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                       Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------ --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ ADDPS — ADD PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   EVEX.256.0F.W0 58 /r VADDPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst        C         V/V                      AVX512VL AVX512F     Add packed single-precision floating-point values from ymm3/m256/m32bcst to ymm2 and store result in ymm1 with writemask k1.
   EVEX.512.0F.W0 58 /r VADDPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst {er}   C         V/V                      AVX512F              Add packed single-precision floating-point values from zmm3/m512/m32bcst to zmm2 and store result in zmm1 with writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -53,7 +48,6 @@ the corresponding ZMM register destination are zeroed.
 an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper Bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
-
 
 Operation ¶
 
@@ -129,7 +123,6 @@ VADDPS (VEX.128 encoded version) ¶
     DEST[127:96]←SRC1[127:96] + SRC2[127:96]
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VADDPS __m512 _mm512_add_ps (__m512 a, __m512 b);
@@ -156,11 +149,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ADDPS __m128 _mm_add_ps (__m128 a, __m128 b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
-
 
 Other Exceptions ¶
 

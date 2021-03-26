@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VCVTPH2PS — CONVERT 16-BIT FP VALUES TO SINGLE-PRECISION FP VALUES
-
+VCVTPH2PS — Convert 16-bit FP values to Single-Precision FP values
 
   Opcode/Instruction                                                  Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------- --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -13,7 +10,6 @@ VCVTPH2PS — CONVERT 16-BIT FP VALUES TO SINGLE-PRECISION FP VALUES
   EVEX.128.66.0F38.W0 13 /r VCVTPH2PS xmm1 {k1}{z}, xmm2/m64          B         V/V                      AVX512VL AVX512F     Convert four packed half precision (16-bit) floating-point values in xmm2/m64 to packed single-precision floating-point values in xmm1.
   EVEX.256.66.0F38.W0 13 /r VCVTPH2PS ymm1 {k1}{z}, xmm2/m128         B         V/V                      AVX512VL AVX512F     Convert eight packed half precision (16-bit) floating-point values in xmm2/m128 to packed single-precision floating-point values in ymm1.
   EVEX.512.66.0F38.W0 13 /r VCVTPH2PS zmm1 {k1}{z}, ymm2/m256 {sae}   B         V/V                      AVX512F              Convert sixteen packed half precision (16-bit) floating-point values in ymm2/m256 to packed single-precision floating-point values in zmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -52,13 +48,11 @@ values.
 
 Note: VEX.vvvv and EVEX.vvvv are reserved (must be 1111b).
 
-VCVTPH2PS_xmm1,xmm2/mem64, imm8_ 127 96 95 64 63 48 47 32 31 16 15 0
-
-xmm2/mem64 VH3 VH2 VH1 VH0
-
-convert convert convert convert 127 96 95 64 63 32 31 0
-
-VS3 VS2 VS1 VS0 xmm1
+  --------------------------------------------------------------------
+  VCVTPH2PSxmm1,xmm2/mem64, imm8 127 96 95 64 63 48 47 32 31 16 15 0
+  xmm2/mem64 VH3 VH2 VH1 VH0
+  convert convert convert convert 127 96 95 64 63 32 31 0
+  --------------------------------------------------------------------
 
 Figure 5-6. VCVTPH2PS (128-bit Version)
 

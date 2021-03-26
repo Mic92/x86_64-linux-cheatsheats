@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-DPPD — DOT PRODUCT OF PACKED DOUBLE PRECISION FLOATING-POINT VALUES
-
+DPPD — Dot Product of Packed Double Precision Floating-Point Values
 
   Opcode/Instruction                                              Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  --------------------------------------------------------------- ------- ---------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 41 /r ib DPPD _xmm1, xmm2/m128, imm8_                  RMI     V/V              SSE4_1               Selectively multiply packed DP floating-point values from _xmm1_ with packed DP floating-point values from _xmm2_, add and selectively store the packed DP floating-point values to _xmm1_.
+  --------------------------------------------------------------- ------- ---------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 41 /r ib DPPD xmm1, xmm2/m128, imm8                    RMI     V/V              SSE4_1               Selectively multiply packed DP floating-point values from xmm1 with packed DP floating-point values from xmm2, add and selectively store the packed DP floating-point values to xmm1.
   VEX.128.66.0F3A.WIG 41 /r ib VDPPD xmm1,xmm2, xmm3/m128, imm8   RVMI    V/V              AVX                  Selectively multiply packed DP floating-point values from xmm2 with packed DP floating-point values from xmm3, add and selectively store the packed DP floating-point values to xmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RVMI    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- ------------------ --------------- --------------- -----------
 
-
 Description ¶
 
 Conditionally multiplies the packed double-precision floating-point
@@ -29,8 +24,8 @@ double-precision floating-point values in the source (second operand)
 depending on a mask extracted from bits [5:4] of the immediate operand
 (third operand). If a condition mask bit is zero, the corresponding
 multiplication is replaced by a value of 0.0 in the manner described by
-Section 12.8.4 of _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 1_.
+Section 12.8.4 of Intel® 64 and IA-32 Architectures Software Developer’s
+Manual, Volume 1.
 
 The two resulting double-precision values are summed into an
 intermediate result. The intermediate result is conditionally
@@ -62,7 +57,6 @@ are zeroed.
 If VDPPD is encoded with VEX.L= 1, an attempt to execute the instruction
 encoded with VEX.L= 1 will cause an #UD exception.
 
-
 Operation ¶
 
 DP_primitive (SRC1, SRC2) ¶
@@ -93,16 +87,13 @@ VDPPD (VEX.128 encoded version) ¶
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[MAXVL-1:128] ← 0
 
-
 Flags Affected ¶
 
 None
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     DPPD: __m128d _mm_dp_pd ( __m128d a, __m128d b, const int mask);
-
 
 SIMD Floating-Point Exceptions ¶
 
@@ -110,7 +101,6 @@ Overflow, Underflow, Invalid, Precision, Denormal
 
 Exceptions are determined separately for each add and multiply
 operation. Unmasked exceptions will leave the destination untouched.
-
 
 Other Exceptions ¶
 

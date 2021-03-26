@@ -1,22 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-FDIV/FDIVP/FIDIV — DIVIDE
-
+FDIV/FDIVP/FIDIV — Divide
 
   Opcode    Instruction          64-Bit Mode   Compat/Leg Mode   Description
   --------- -------------------- ------------- ----------------- ---------------------------------------------------------------------------
-  D8 /6     FDIV _m32fp_         Valid         Valid             Divide ST(0) by _m32fp_ and store result in ST(0).
-  DC /6     FDIV _m64fp_         Valid         Valid             Divide ST(0) by _m64fp_ and store result in ST(0).
+  D8 /6     FDIV m32fp           Valid         Valid             Divide ST(0) by m32fp and store result in ST(0).
+  DC /6     FDIV m64fp           Valid         Valid             Divide ST(0) by m64fp and store result in ST(0).
   D8 F0+i   FDIV ST(0), ST(i)    Valid         Valid             Divide ST(0) by ST(i) and store result in ST(0).
   DC F8+i   FDIV ST(i), ST(0)    Valid         Valid             Divide ST(i) by ST(0) and store result in ST(i).
   DE F8+i   FDIVP ST(i), ST(0)   Valid         Valid             Divide ST(i) by ST(0), store result in ST(i), and pop the register stack.
   DE F9     FDIVP                Valid         Valid             Divide ST(1) by ST(0), store result in ST(1), and pop the register stack.
-  DA /6     FIDIV _m32int_       Valid         Valid             Divide ST(0) by _m32int_ and store result in ST(0).
-  DE /6     FIDIV _m16int_       Valid         Valid             Divide ST(0) by _m16int_ and store result in ST(0).
-
+  DA /6     FIDIV m32int         Valid         Valid             Divide ST(0) by m32int and store result in ST(0).
+  DE /6     FIDIV m16int         Valid         Valid             Divide ST(0) by m16int and store result in ST(0).
 
 Description ¶
 
@@ -52,167 +48,18 @@ stored in the destination operand.
 The following table shows the results obtained when dividing various
 classes of numbers, assuming that neither overflow nor underflow occurs.
 
-DEST
-
-SRC
-
-−∞
-
-−F
-
-−0
-
-+0
-
-+F
-
-+∞
-
-NaN
-
-−∞
-
-*
-
-+0
-
-+0
-
-−0
-
-−0
-
-*
-
-NaN
-
-−F
-
-+∞
-
-+F
-
-+0
-
-−0
-
-−F
-
-−∞
-
-NaN
-
-−I
-
-+∞
-
-+F
-
-+0
-
-−0
-
-−F
-
-−∞
-
-NaN
-
-−0
-
-+∞
-
-**
-
-*
-
-*
-
-**
-
-−∞
-
-NaN
-
-+0
-
-−∞
-
-**
-
-*
-
-*
-
-**
-
-+∞
-
-NaN
-
-+I
-
-−∞
-
-−F
-
-−0
-
-+0
-
-+F
-
-+∞
-
-NaN
-
-+F
-
-−∞
-
-−F
-
-−0
-
-+0
-
-+F
-
-+∞
-
-NaN
-
-+∞
-
-*
-
-−0
-
-−0
-
-+0
-
-+0
-
-*
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
+  DEST                                             
+  ------ ----- ----- ----- ----- ----- ----- ----- -----
+  SRC          −∞    −F    −0    +0    +F    +∞    NaN
+         −∞    *     +0    +0    −0    −0    *     NaN
+         −F    +∞    +F    +0    −0    −F    −∞    NaN
+         −I    +∞    +F    +0    −0    −F    −∞    NaN
+         −0    +∞    **    *     *     **    −∞    NaN
+         +0    −∞    **    *     *     **    +∞    NaN
+         +I    −∞    −F    −0    +0    +F    +∞    NaN
+         +F    −∞    −F    −0    +0    +F    +∞    NaN
+         +∞    *     −0    −0    +0    +0    *     NaN
+         NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN
 
 Table 3-24. FDIV/FDIVP/FIDIV Results
 
@@ -226,7 +73,6 @@ Table 3-24. FDIV/FDIVP/FIDIV Results
 
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
-
 
 Operation ¶
 
@@ -246,83 +92,38 @@ Operation ¶
             PopRegisterStack;
     FI;
 
-
 FPU Flags Affected ¶
 
-C1
-
-Set to 0 if stack underflow occurred.
-
-Set if result was rounded up; cleared otherwise.
-
-C0, C2, C3
-
-Undefined.
-
+  ------------ --------------------------------------------------
+  C1           Set to 0 if stack underflow occurred.
+               Set if result was rounded up; cleared otherwise.
+  C0, C2, C3   Undefined.
+  ------------ --------------------------------------------------
 
 Floating-Point Exceptions ¶
 
-#IS
-
-Stack underflow occurred.
-
-#IA
-
-Operand is an SNaN value or unsupported format.
-
-±∞ / ±∞; ±0 / ±0
-
-#D
-
-Source is a denormal value.
-
-#Z
-
-DEST / ±0, where DEST is not equal to ±0.
-
-#U
-
-Result is too small for destination format.
-
-#O
-
-Result is too large for destination format.
-
-#P
-
-Value cannot be represented exactly in destination format.
-
+  ----- ------------------------------------------------------------
+  #IS   Stack underflow occurred.
+  #IA   Operand is an SNaN value or unsupported format.
+        ±∞ / ±∞; ±0 / ±0
+  #D    Source is a denormal value.
+  #Z    DEST / ±0, where DEST is not equal to ±0.
+  #U    Result is too small for destination format.
+  #O    Result is too large for destination format.
+  #P    Value cannot be represented exactly in destination format.
+  ----- ------------------------------------------------------------
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#NM
-
-CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #NM               CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -332,7 +133,6 @@ Real-Address Mode Exceptions ¶
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -345,11 +145,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

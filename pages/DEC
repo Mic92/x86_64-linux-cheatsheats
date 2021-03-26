@@ -1,24 +1,20 @@
 -   Index
 -   May 2019
 
+DEC — Decrement by 1
 
-
-DEC — DECREMENT BY 1
-
-
-  Opcode          Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------------- ---------------- ------- ------------- ----------------- -------------------------
-  FE /1           DEC _r/m8_       M       Valid         Valid             Decrement _r/m8_ by 1.
-  REX + FE /1     DEC _r/m8_^(*)   M       Valid         N.E.              Decrement _r/m8_ by 1.
-  FF /1           DEC _r/m16_      M       Valid         Valid             Decrement _r/m16_ by 1.
-  FF /1           DEC _r/m32_      M       Valid         Valid             Decrement _r/m32_ by 1.
-  REX.W + FF /1   DEC _r/m64_      M       Valid         N.E.              Decrement _r/m64_ by 1.
-  48+rw           DEC _r16_        O       N.E.          Valid             Decrement _r16_ by 1.
-  48+rd           DEC _r32_        O       N.E.          Valid             Decrement _r32_ by 1.
+  Opcode          Instruction    Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------- -------------- ------- ------------- ----------------- -----------------------
+  FE /1           DEC r/m8       M       Valid         Valid             Decrement r/m8 by 1.
+  REX + FE /1     DEC r/m8^(*)   M       Valid         N.E.              Decrement r/m8 by 1.
+  FF /1           DEC r/m16      M       Valid         Valid             Decrement r/m16 by 1.
+  FF /1           DEC r/m32      M       Valid         Valid             Decrement r/m32 by 1.
+  REX.W + FF /1   DEC r/m64      M       Valid         N.E.              Decrement r/m64 by 1.
+  48+rw           DEC r16        O       N.E.          Valid             Decrement r16 by 1.
+  48+rd           DEC r32        O       N.E.          Valid             Decrement r32 by 1.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -27,7 +23,6 @@ Instruction Operand Encoding ¶
   M       ModRM:r/m (r, w)     NA          NA          NA
   O       opcode + rd (r, w)   NA          NA          NA
   ------- -------------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -49,46 +44,26 @@ promotes operation to 64 bits.
 See the summary chart at the beginning of this section for encoding data
 and limits.
 
-
 Operation ¶
 
     DEST ← DEST – 1;
-
 
 Flags Affected ¶
 
 The CF flag is not affected. The OF, SF, ZF, AF, and PF flags are set
 according to the result.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination operand is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination operand is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -97,7 +72,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -109,11 +83,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

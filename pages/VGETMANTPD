@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VGETMANTPD — EXTRACT FLOAT64 VECTOR OF NORMALIZED MANTISSAS FROM FLOAT64 VECTOR
-
+VGETMANTPD — Extract Float64 Vector of Normalized Mantissas from Float64 Vector
 
   Opcode/Instruction                                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------------------ ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.128.66.0F3A.W1 26 /r ib VGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
-  EVEX.256.66.0F3A.W1 26 /r ib VGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
-  EVEX.512.66.0F3A.W1 26 /r ib VGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using _imm_8 for sign control and mantissa interval normalization, under writemask.
-
+  ------------------------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.128.66.0F3A.W1 26 /r ib VGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using imm8 for sign control and mantissa interval normalization, under writemask.
+  EVEX.256.66.0F3A.W1 26 /r ib VGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using imm8 for sign control and mantissa interval normalization, under writemask.
+  EVEX.512.66.0F3A.W1 26 /r ib VGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using imm8 for sign control and mantissa interval normalization, under writemask.
 
 Instruction Operand Encoding ¶
 
@@ -35,21 +31,17 @@ writemask. The source operand can be a ZMM/YMM/XMM register, a
 512/256/128-bit memory location, or a 512/256/128-bit vector broadcasted
 from a 64-bit memory location.
 
-0 imm8 Must Be Zero Sign Control (SC) Normaiization Interval Imm8[1:0] =
-00b : Interval is [ 1, 2) Imm8[3:2] = 00b : sign(SRC) Imm8[1:0] = 01b :
-Interval is [1/2, 2) Imm8[3:2] = 01b : 0 Imm8[1:0] = 10b : Interval is [
-1/2, 1) Imm8[3] = 1b : qNan_Indefinite if sign(SRC) != 0, regardless of
-imm8[2]. Imm8[1:0] = 11b : Interval is [3/4, 3/2)
+[]
 
 Figure 5-15. Imm8 Controls for VGETMANTPD/SD/PS/SS
 
 For each input DP FP value x, The conversion operation is:
 
-_GetMant_(_x_) = _±_2_^(k)|x.significand|_
+GetMant(x) = ±2^(k)|x.significand|
 
 where:
 
-1 _<_= _|x.significand| <_ 2
+1 <= |x.significand| < 2
 
 Unbiased exponent k depends on the interval range defined by interv and
 whether the exponent of the source is even or odd. The sign of the final
@@ -76,12 +68,12 @@ Note: EVEX.vvvv is reserved and must be 1111b; otherwise instructions
 will #UD.
 
   Input      Result                                                                    Exceptions / Comments
-  ---------- ------------------------------------------------------------------------- ------------------------------------------
-  NaN        QNaN(SRC)                                                                 Ignore _interv_ If (SRC = SNaN) then #IE
-  +∞         1.0                                                                       Ignore _interv_
-  +0         1.0                                                                       Ignore _interv_
-  -0         IF (SC[0]) THEN +1.0 ELSE -1.0                                            Ignore _interv_
-  -∞         IF (SC[1]) THEN {QNaN_Indefinite} ELSE { IF (SC[0]) THEN +1.0 ELSE -1.0   Ignore _interv_ If (SC[1]) then #IE
+  ---------- ------------------------------------------------------------------------- ----------------------------------------
+  NaN        QNaN(SRC)                                                                 Ignore interv If (SRC = SNaN) then #IE
+  +∞         1.0                                                                       Ignore interv
+  +0         1.0                                                                       Ignore interv
+  -0         IF (SC[0]) THEN +1.0 ELSE -1.0                                            Ignore interv
+  -∞         IF (SC[1]) THEN {QNaN_Indefinite} ELSE { IF (SC[0]) THEN +1.0 ELSE -1.0   Ignore interv If (SC[1]) then #IE
   negative   SC[1] ? QNaN_Indefinite : Getmant(SRC)                                    If (SC[1]) then #IE
 
 Table 5-16. GetMant() Special Float Values Behavior

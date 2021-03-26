@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GETSEC[PARAMETERS] — REPORT THE SMX PARAMETERS
-
+GETSEC[PARAMETERS] — Report the SMX Parameters
 
   Opcode             Instruction          Description
   ------------------ -------------------- ----------------------------------------------------------------------------------------------------------------
   NP 0F 37 (EAX=6)   GETSEC[PARAMETERS]   Report the SMX parameters. The parameters index is input in EBX with the result returned in EAX, EBX, and ECX.
-
 
 Description ¶
 
@@ -135,7 +131,6 @@ assumed. These are defined in Table 6-10.
 
 Table 6-10. Default Parameter Values
 
-
 Operation ¶
 
     (* example of a processor supporting only a 0.0 HeaderVersion, 32K ACRAM size, memory types UC and WC *)
@@ -162,11 +157,9 @@ Operation ¶
         EAX ̈ 00000000h;
     END;
 
-
 Flags Affected ¶
 
 None.
-
 
 Use of Prefixes ¶
 
@@ -184,46 +177,34 @@ Address size Ignored.
 
 REX Ignored.
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[PARAMETERS] is not reported as supported by
-GETSEC[CAPABILITIES].
-
+  ----- -----------------------------------------------------------------------------
+  #UD   If CR4.SMXE = 0.
+        If GETSEC[PARAMETERS] is not reported as supported by GETSEC[CAPABILITIES].
+  ----- -----------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[PARAMETERS] is not reported as supported by
-GETSEC[CAPABILITIES].
-
+  ----- -----------------------------------------------------------------------------
+  #UD   If CR4.SMXE = 0.
+        If GETSEC[PARAMETERS] is not reported as supported by GETSEC[CAPABILITIES].
+  ----- -----------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[PARAMETERS] is not reported as supported by
-GETSEC[CAPABILITIES].
-
+  ----- -----------------------------------------------------------------------------
+  #UD   If CR4.SMXE = 0.
+        If GETSEC[PARAMETERS] is not reported as supported by GETSEC[CAPABILITIES].
+  ----- -----------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 All protected mode exceptions apply.
 
-
 64-Bit Mode Exceptions ¶
 
 All protected mode exceptions apply.
-
 
 VM-Exit Condition ¶
 

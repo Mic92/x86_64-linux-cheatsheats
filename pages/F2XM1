@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-F2XM1 — COMPUTE 2X–1
-
+F2XM1 — Compute 2x–1
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- -------------------------------------
   D9 F0    F2XM1         Valid         Valid             Replace ST(0) with (2^(ST(0)) – 1).
-
 
 Description ¶
 
@@ -34,29 +30,22 @@ Table 3-16. Results Obtained from F2XM1
 
 Values other than 2 can be exponentiated using the following formula:
 
-_(x)y _(←\ 2)(y ∗ log₂x)
+_(x)y _(← 2)(y ∗ log₂x)
 
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
-
 
 Operation ¶
 
     ST(0) ← (2ST(0) − 1);
 
-
 FPU Flags Affected ¶
 
-C1
-
-Set to 0 if stack underflow occurred.
-
-Set if result was rounded up; cleared otherwise.
-
-C0, C2, C3
-
-Undefined.
-
+  ------------ --------------------------------------------------
+  C1           Set to 0 if stack underflow occurred.
+               Set if result was rounded up; cleared otherwise.
+  C0, C2, C3   Undefined.
+  ------------ --------------------------------------------------
 
 Floating-Point Exceptions ¶
 
@@ -68,7 +57,6 @@ Floating-Point Exceptions ¶
   #P    Value cannot be represented exactly in destination format.
   ----- ------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
   ----- -------------------------------------
@@ -76,21 +64,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

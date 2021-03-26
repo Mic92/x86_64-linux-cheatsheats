@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVNTDQA — LOAD DOUBLE QUADWORD NON-TEMPORAL ALIGNED HINT
-
+MOVNTDQA — Load Double Quadword Non-Temporal Aligned Hint
 
   Opcode/Instruction                               Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------ --------- ------------------------ -------------------- -----------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVNTDQA — LOAD DOUBLE QUADWORD NON-TEMPORAL ALIGNED HINT
   EVEX.128.66.0F38.W0 2A /r VMOVNTDQA xmm1, m128   B         V/V                      AVX512VL AVX512F     Move 128-bit data from m128 to xmm using non-temporal hint if WC memory type.
   EVEX.256.66.0F38.W0 2A /r VMOVNTDQA ymm1, m256   B         V/V                      AVX512VL AVX512F     Move 256-bit data from m256 to ymm using non-temporal hint if WC memory type.
   EVEX.512.66.0F38.W0 2A /r VMOVNTDQA zmm1, m512   B         V/V                      AVX512F              Move 512-bit data from m512 to zmm using non-temporal hint if WC memory type.
-
 
 Instruction Operand Encoding¹ ¶
 

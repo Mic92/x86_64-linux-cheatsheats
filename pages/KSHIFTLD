@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-KSHIFTLW/KSHIFTLB/KSHIFTLQ/KSHIFTLD — SHIFT LEFT MASK REGISTERS
-
+KSHIFTLW/KSHIFTLB/KSHIFTLQ/KSHIFTLD — Shift Left Mask Registers
 
   Opcode/Instruction                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------
@@ -13,14 +10,12 @@ KSHIFTLW/KSHIFTLB/KSHIFTLQ/KSHIFTLD — SHIFT LEFT MASK REGISTERS
   VEX.L0.66.0F3A.W1 33 /r KSHIFTLQ k1, k2, imm8   RRI     V/V                      AVX512BW             Shift left 64 bits in k2 by immediate and write result in k1.
   VEX.L0.66.0F3A.W0 33 /r KSHIFTLD k1, k2, imm8   RRI     V/V                      AVX512BW             Shift left 32 bits in k2 by immediate and write result in k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- ---------------------------------------- -----------
   Op/En   Operand 1       Operand 2                                Operand 3
   RRI     ModRM:reg (w)   ModRM:r/m (r, ModRM:[7:6] must be 11b)   Imm8
   ------- --------------- ---------------------------------------- -----------
-
 
 Description ¶
 
@@ -30,7 +25,6 @@ the count specified in immediate byte and place the least significant
 bits of the destination are zero-extended. The destination is set to
 zero if the count value is greater than 7 (for byte shift), 15 (for word
 shift), 31 (for doubleword shift) or 63 (for quadword shift).
-
 
 Operation ¶
 
@@ -66,21 +60,17 @@ KSHIFTLD ¶
         THEN DEST[31:0] ← SRC1[31:0] << COUNT;
     FI;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     Compiler auto generates KSHIFTLW when needed.
-
 
 Flags Affected ¶
 
 None
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

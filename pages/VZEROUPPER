@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VZEROUPPER — ZERO UPPER BITS OF YMM REGISTERS
-
+VZEROUPPER — Zero Upper Bits of YMM Registers
 
   Opcode/Instruction             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------ ------- ------------------------ -------------------- -------------------------------------------
   VEX.128.0F.WIG 77 VZEROUPPER   ZO      V/V                      AVX                  Zero upper 128 bits of all YMM registers.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -32,7 +27,6 @@ false dependencies.
 Note: VEX.vvvv is reserved and must be 1111b otherwise instructions will
 #UD. In Compatibility and legacy 32-bit mode only the lower 8 registers
 are modified.
-
 
 Operation ¶
 
@@ -50,16 +44,13 @@ VZEROUPPER ¶
     FOR i in 0 .. limit:
         simd_reg_file[i][MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VZEROUPPER: _mm256_zeroupper()
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

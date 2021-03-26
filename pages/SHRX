@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
+SARX/SHLX/SHRX — Shift Without Affecting Flags
 
-
-SARX/SHLX/SHRX — SHIFT WITHOUT AFFECTING FLAGS
-
-
-  Opcode/Instruction                                 Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  -------------------------------------------------- ------- ----------------- -------------------- --------------------------------------------------------------------
-  VEX.LZ.F3.0F38.W0 F7 /r SARX _r32a, r/m32, r32b_   RMV     V/V               BMI2                 Shift _r/m32_ arithmetically right with count specified in _r32b._
-  VEX.LZ.66.0F38.W0 F7 /r SHLX _r32a, r/m32, r32b_   RMV     V/V               BMI2                 Shift _r/m32_ logically left with count specified in _r32b_.
-  VEX.LZ.F2.0F38.W0 F7 /r SHRX _r32a, r/m32, r32b_   RMV     V/V               BMI2                 Shift _r/m32_ logically right with count specified in _r32b_.
-  VEX.LZ.F3.0F38.W1 F7 /r SARX _r64a, r/m64, r64b_   RMV     V/N.E.            BMI2                 Shift _r/m64_ arithmetically right with count specified in _r64b_.
-  VEX.LZ.66.0F38.W1 F7 /r SHLX _r64a, r/m64, r64b_   RMV     V/N.E.            BMI2                 Shift _r/m64_ logically left with count specified in _r64b_.
-  VEX.LZ.F2.0F38.W1 F7 /r SHRX _r64a, r/m64, r64b_   RMV     V/N.E.            BMI2                 Shift _r/m64_ logically right with count specified in _r64b_.
-
+  Opcode/Instruction                               Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  ------------------------------------------------ ------- ----------------- -------------------- ----------------------------------------------------------------
+  VEX.LZ.F3.0F38.W0 F7 /r SARX r32a, r/m32, r32b   RMV     V/V               BMI2                 Shift r/m32 arithmetically right with count specified in r32b.
+  VEX.LZ.66.0F38.W0 F7 /r SHLX r32a, r/m32, r32b   RMV     V/V               BMI2                 Shift r/m32 logically left with count specified in r32b.
+  VEX.LZ.F2.0F38.W0 F7 /r SHRX r32a, r/m32, r32b   RMV     V/V               BMI2                 Shift r/m32 logically right with count specified in r32b.
+  VEX.LZ.F3.0F38.W1 F7 /r SARX r64a, r/m64, r64b   RMV     V/N.E.            BMI2                 Shift r/m64 arithmetically right with count specified in r64b.
+  VEX.LZ.66.0F38.W1 F7 /r SHLX r64a, r/m64, r64b   RMV     V/N.E.            BMI2                 Shift r/m64 logically left with count specified in r64b.
+  VEX.LZ.F2.0F38.W1 F7 /r SHRX r64a, r/m64, r64b   RMV     V/N.E.            BMI2                 Shift r/m64 logically right with count specified in r64b.
 
 Instruction Operand Encoding ¶
 
@@ -22,7 +18,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3      Operand 4
   RMV     ModRM:reg (w)   ModRM:r/m (r)   VEX.vvvv (r)   NA
   ------- --------------- --------------- -------------- -----------
-
 
 Description ¶
 
@@ -50,7 +45,6 @@ If the value specified in the first source operand exceeds OperandSize
 
 SARX,SHRX, and SHLX instructions do not update flags.
 
-
 Operation ¶
 
     TEMP ← SRC1;
@@ -74,21 +68,17 @@ Operation ¶
         COUNT ← COUNT - 1;
     OD
 
-
 Flags Affected ¶
 
 None.
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     Auto-generated from high-level language.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

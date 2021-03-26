@@ -1,22 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-NEG — TWO'S COMPLEMENT NEGATION
-
+NEG — Two's Complement Negation
 
   Opcode          Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------------- ------------- ------- ------------- ----------------- ----------------------------------
-  F6 /3           NEG _r/m8_    M       Valid         Valid             Two's complement negate _r/m8._
-  REX + F6 /3     NEG _r/m8*_   M       Valid         N.E.              Two's complement negate _r/m8._
-  F7 /3           NEG _r/m16_   M       Valid         Valid             Two's complement negate _r/m16._
-  F7 /3           NEG _r/m32_   M       Valid         Valid             Two's complement negate _r/m32._
-  REX.W + F7 /3   NEG _r/m64_   M       Valid         N.E.              Two's complement negate _r/m64._
+  --------------- ------------- ------- ------------- ----------------- --------------------------------
+  F6 /3           NEG r/m8      M       Valid         Valid             Two's complement negate r/m8.
+  REX + F6 /3     NEG r/m8*     M       Valid         N.E.              Two's complement negate r/m8.
+  F7 /3           NEG r/m16     M       Valid         Valid             Two's complement negate r/m16.
+  F7 /3           NEG r/m32     M       Valid         Valid             Two's complement negate r/m32.
+  REX.W + F7 /3   NEG r/m64     M       Valid         N.E.              Two's complement negate r/m64.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1          Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (r, w)   NA          NA          NA
   ------- ------------------ ----------- ----------- -----------
-
 
 Description ¶
 
@@ -42,7 +37,6 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
-
 Operation ¶
 
     IF DEST = 0
@@ -51,41 +45,22 @@ Operation ¶
     FI;
     DEST ← [– (DEST)]
 
-
 Flags Affected ¶
 
 The CF flag set to 0 if the source operand is 0; otherwise it is set to
 1. The OF, SF, ZF, AF, and PF flags are set according to the result.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -94,7 +69,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -106,11 +80,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same as for protected mode exceptions.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFMADD132PD/VFMADD213PD/VFMADD231PD — FUSED MULTIPLY-ADD OF PACKED DOUBLE- PRECISION FLOATING-POINT VALUES
-
+VFMADD132PD/VFMADD213PD/VFMADD231PD — Fused Multiply-Add of Packed Double- Precision Floating-Point Values
 
   Opcode/Instruction                                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +20,6 @@ VFMADD132PD/VFMADD213PD/VFMADD231PD — FUSED MULTIPLY-ADD OF PACKED DOUBLE- PRE
   EVEX.512.66.0F38.W1 98 /r VFMADD132PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm3/m512/m64bcst, add to zmm2 and put result in zmm1.
   EVEX.512.66.0F38.W1 A8 /r VFMADD213PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm1 and zmm2, add to zmm3/m512/m64bcst and put result in zmm1.
   EVEX.512.66.0F38.W1 B8 /r VFMADD231PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   B       V/V                      AVX512F              Multiply packed double-precision floating-point values from zmm2 and zmm3/m512/m64bcst, add to zmm1 and put result in zmm1.
-
 
 Instruction Operand Encoding ¶
 

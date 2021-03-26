@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
-
-
-PSHUFD — SHUFFLE PACKED DOUBLEWORDS
-
+PSHUFD — Shuffle Packed Doublewords
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------
-  66 0F 70 /_r_ ib PSHUFD _xmm1_, _xmm2/m128_, _imm8_                        A       V/V                      SSE2                 Shuffle the doublewords in _xmm2/m128_ based on the encoding in _imm8_ and store the result in _xmm1_.
-  VEX.128.66.0F.WIG 70 /r ib VPSHUFD _xmm1, xmm2/m128, imm8_                 A       V/V                      AVX                  Shuffle the doublewords in _xmm2/m128_ based on the encoding in _imm8_ and store the result in _xmm1_.
-  VEX.256.66.0F.WIG 70 /r ib VPSHUFD _ymm1, ymm2/m256, imm8_                 A       V/V                      AVX2                 Shuffle the doublewords in _ymm2/m256_ based on the encoding in _imm8_ and store the result in _ymm1_.
+  66 0F 70 /r ib PSHUFD xmm1, xmm2/m128, imm8                                A       V/V                      SSE2                 Shuffle the doublewords in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.
+  VEX.128.66.0F.WIG 70 /r ib VPSHUFD xmm1, xmm2/m128, imm8                   A       V/V                      AVX                  Shuffle the doublewords in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.
+  VEX.256.66.0F.WIG 70 /r ib VPSHUFD ymm1, ymm2/m256, imm8                   A       V/V                      AVX2                 Shuffle the doublewords in ymm2/m256 based on the encoding in imm8 and store the result in ymm1.
   EVEX.128.66.0F.W0 70 /r ib VPSHUFD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8   B       V/V                      AVX512VL AVX512F     Shuffle the doublewords in xmm2/m128/m32bcst based on the encoding in imm8 and store the result in xmm1 using writemask k1.
   EVEX.256.66.0F.W0 70 /r ib VPSHUFD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8   B       V/V                      AVX512VL AVX512F     Shuffle the doublewords in ymm2/m256/m32bcst based on the encoding in imm8 and store the result in ymm1 using writemask k1.
   EVEX.512.66.0F.W0 70 /r ib VPSHUFD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8   B       V/V                      AVX512F              Shuffle the doublewords in zmm2/m512/m32bcst based on the encoding in imm8 and store the result in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   A       NA           ModRM:reg (w)   ModRM:r/m (r)   imm8        NA
   B       Full         ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -48,9 +43,7 @@ immediate. Note that this instruction permits a doubleword in the source
 operand to be copied to more than one doubleword location in the
 destination operand.
 
-SRC X7 X6 X5 X4 X3 X2 X1 X0 DEST Y7 Y6 Y5 Y4 Y3 Y2 Y1 Y0 00B - X4
-Encoding 00B - X0 Encoding 01B - X5 of Fields in ORDER 01B - X1 of
-Fields in 10B - X6 ORDER
+[]
 
 10B - X2 ORDER Operand 11B-X7 7 6 5 4 3 2 1 0 Operand 11B-X3
 
@@ -90,7 +83,6 @@ order operand.
 
 Note: EVEX.vvvv and VEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
-
 
 Operation ¶
 
@@ -170,7 +162,6 @@ VPSHUFD (EVEX encoded versions) ¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSHUFD __m512i _mm512_shuffle_epi32(__m512i a, int n );
@@ -191,16 +182,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSHUFD:__m256i _mm256_shuffle_epi32(__m256i a, const int n)
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

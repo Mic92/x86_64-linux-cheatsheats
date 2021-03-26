@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ELDB/ELDU/ELDBC/ELBUC — LOAD AN EPC PAGE AND MARK ITS STATE
-
+ELDB/ELDU/ELDBC/ELBUC — Load an EPC Page and Mark its State
 
   Opcode/Instruction       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------ ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------
@@ -13,30 +10,12 @@ ELDB/ELDU/ELDBC/ELBUC — LOAD AN EPC PAGE AND MARK ITS STATE
   EAX = 12H ENCLS[ELDBC]   IR      V/V                      EAX[5]               This leaf function behaves lie ELDB but with improved conflict handling for oversubscription.
   EAX = 13H ENCLS[ELDBC]   IR      V/V                      EAX[5]               This leaf function behaves like ELDU but with improved conflict handling for oversubscription.
 
-
 Instruction Operand Encoding ¶
 
-Op/En
-
-EAX
-
-RBX
-
-RCX
-
-RDX
-
-IR
-
-ELDB/ELDU (In)
-
-Return error code (Out)
-
-Address of the PAGEINFO (In)
-
-Address of the EPC page (In)
-
-Address of the version-array slot (In)
+  ------- ---------------- ------------------------- ------------------------------ ------------------------------ ----------------------------------------
+  Op/En   EAX                                        RBX                            RCX                            RDX
+  IR      ELDB/ELDU (In)   Return error code (Out)   Address of the PAGEINFO (In)   Address of the EPC page (In)   Address of the version-array slot (In)
+  ------- ---------------- ------------------------- ------------------------------ ------------------------------ ----------------------------------------
 
 Description ¶
 
@@ -62,7 +41,6 @@ to acquire a lock. These include the destination, SECS, and VA slot.
 The table below provides additional information on the memory parameter
 of ELDB/ELDU leaf functions.
 
-
 ELDB/ELDU/ELDBC/ELBUC Memory Parameter Semantics ¶
 
   ------------------------- ------------------------- ------------------------- --------------------------- ---------------------------------------- ----------------------------------------
@@ -81,145 +59,33 @@ Table 40-28. ELDB/ELDU/ELDBC/ELBUC Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-ELDB/ELDU/
-
-Target [DS:RCX]
-
-Exclusive
-
-#GP
-
-EPC_PAGE_CONFLICT_EXCEPTION
-
-VA [DS:RDX]
-
-Shared
-
-#GP
-
-SECS [DS:RBX]PAGEINFO.SECS
-
-Shared
-
-#GP
-
-ELDBC/ELBUC
-
-Target [DS:RCX]
-
-Exclusive
-
-SGX_EPC_PAGE_ CONFLICT
-
-EPC_PAGE_CONFLICT_ERROR
-
-VA [DS:RDX]
-
-Shared
-
-SGX_EPC_PAGE_ CONFLICT
-
-SECS [DS:RBX]PAGEINFO.SECS
-
-Shared
-
-SGX_EPC_PAGE_ CONFLICT
+  Leaf          Parameter                    Base Concurrency Restrictions                                 
+  ------------- ---------------------------- ------------------------------------ ------------------------ -----------------------------
+  Access        On Conflict                  SGX_CONFLICT VM Exit Qualification                            
+  ELDB/ELDU/    Target [DS:RCX]              Exclusive                            #GP                      EPC_PAGE_CONFLICT_EXCEPTION
+                VA [DS:RDX]                  Shared                               #GP                      
+                SECS [DS:RBX]PAGEINFO.SECS   Shared                               #GP                      
+  ELDBC/ELBUC   Target [DS:RCX]              Exclusive                            SGX_EPC_PAGE_ CONFLICT   EPC_PAGE_CONFLICT_ERROR
+                VA [DS:RDX]                  Shared                               SGX_EPC_PAGE_ CONFLICT   
+                SECS [DS:RBX]PAGEINFO.SECS   Shared                               SGX_EPC_PAGE_ CONFLICT   
 
 Table 40-29. Base Concurrency Restrictions of ELDB/ELDU/ELDBC/ELBUC
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-ELDB/ELDU/
-
-Target [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-VA [DS:RDX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-SECS [DS:RBX]PAGEINFO.SECS
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-ELDBC/ELBUC
-
-Target [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-VA [DS:RDX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-SECS [DS:RBX]PAGEINFO.SECS
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter                    Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- ---------------------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                                vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict                  Access                                On Conflict   Access                On Conflict                
+  ELDB/ELDU/                                        Target [DS:RCX]              Concurrent                                          Concurrent                          Concurrent   
+                                                    VA [DS:RDX]                  Concurrent                                          Concurrent                          Concurrent   
+                                                    SECS [DS:RBX]PAGEINFO.SECS   Concurrent                                          Concurrent                          Concurrent   
+  ELDBC/ELBUC                                       Target [DS:RCX]              Concurrent                                          Concurrent                          Concurrent   
+                                                    VA [DS:RDX]                  Concurrent                                          Concurrent                          Concurrent   
+                                                    SECS [DS:RBX]PAGEINFO.SECS   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-30. Additional Concurrency Restrictions of
 ELDB/ELDU/ELDBC/ELBUC
 
 Operation ¶
-
 
 Temp Variables in ELDB/ELDU/ELDBC/ELBUC Operational Flow ¶
 
@@ -538,57 +404,33 @@ Clears CF, PF, AF, OF, SF.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If the instruction’s EPC resource is in use by others.
-
-If the instruction fails to verify MAC.
-
-If the version-array slot is in use.
-
-If the parameters fail consistency checks.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand expected to be in EPC does not resolve to an EPC
-page.
-
-If one of the EPC memory operands has incorrect page type.
-
-If the destination EPC page is already valid.
+  ----------- ----------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If the instruction’s EPC resource is in use by others.
+              If the instruction fails to verify MAC.
+              If the version-array slot is in use.
+              If the parameters fail consistency checks.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand expected to be in EPC does not resolve to an EPC page.
+              If one of the EPC memory operands has incorrect page type.
+              If the destination EPC page is already valid.
+  ----------- ----------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If the instruction’s EPC resource is in use by others.
-
-If the instruction fails to verify MAC.
-
-If the version-array slot is in use.
-
-If the parameters fail consistency checks.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand expected to be in EPC does not resolve to an EPC
-page.
-
-If one of the EPC memory operands has incorrect page type.
-
-If the destination EPC page is already valid.
+  ----------- ----------------------------------------------------------------------------
+  #GP(0)      If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If the instruction’s EPC resource is in use by others.
+              If the instruction fails to verify MAC.
+              If the version-array slot is in use.
+              If the parameters fail consistency checks.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand expected to be in EPC does not resolve to an EPC page.
+              If one of the EPC memory operands has incorrect page type.
+              If the destination EPC page is already valid.
+  ----------- ----------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

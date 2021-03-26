@@ -1,28 +1,24 @@
 -   Index
 -   May 2019
 
-
-
-PMADDUBSW — MULTIPLY AND ADD PACKED SIGNED AND UNSIGNED BYTES
-
+PMADDUBSW — Multiply and Add Packed Signed and Unsigned Bytes
 
   Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 38 04 /r¹ PMADDUBSW _mm1, mm2/m64_                              A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _mm1_.
-  66 0F 38 04 /r PMADDUBSW _xmm1, xmm2/m128_                            A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _xmm1_.
-  VEX.128.66.0F38.WIG 04 /r VPMADDUBSW _xmm1, xmm2, xmm3/m128_          B       V/V                      AVX                  Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _xmm1_.
-  VEX.256.66.0F38.WIG 04 /r VPMADDUBSW _ymm1, ymm2, ymm3/m256_          B       V/V                      AVX2                 Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to _ymm1._
+  NP 0F 38 04 /r¹ PMADDUBSW mm1, mm2/m64                                A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to mm1.
+  66 0F 38 04 /r PMADDUBSW xmm1, xmm2/m128                              A       V/V                      SSSE3                Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to xmm1.
+  VEX.128.66.0F38.WIG 04 /r VPMADDUBSW xmm1, xmm2, xmm3/m128            B       V/V                      AVX                  Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to xmm1.
+  VEX.256.66.0F38.WIG 04 /r VPMADDUBSW ymm1, ymm2, ymm3/m256            B       V/V                      AVX2                 Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to ymm1.
   EVEX.128.66.0F38.WIG 04 /r VPMADDUBSW xmm1 {k1}{z}, xmm2, xmm3/m128   C       V/V                      AVX512VL AVX512BW    Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to xmm1 under writemask k1.
   EVEX.256.66.0F38.WIG 04 /r VPMADDUBSW ymm1 {k1}{z}, ymm2, ymm3/m256   C       V/V                      AVX512VL AVX512BW    Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to ymm1 under writemask k1.
   EVEX.512.66.0F38.WIG 04 /r VPMADDUBSW zmm1 {k1}{z}, zmm2, zmm3/m512   C       V/V                      AVX512BW             Multiply signed and unsigned bytes, add horizontal pair of signed words, pack saturated signed-words to zmm1 under writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
-
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   C       Full Mem     ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -72,7 +67,6 @@ corresponding ZMM register are zeroed.
 EVEX.512 encoded version: The second source operand can be an ZMM
 register or a 512-bit memory location. The first source and destination
 operands are ZMM registers.
-
 
 Operation ¶
 
@@ -121,7 +115,6 @@ VPMADDUBSW (EVEX encoded versions) ¶
     ENDFOR;
     DEST[MAXVL-1:VL] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMADDUBSW __m512i _mm512_maddubs_epi16( __m512i a, __m512i b);
@@ -144,11 +137,9 @@ Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPMADDUBSW: __m256i _mm256_maddubs_epi16 (__m256i a, __m256i b)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

@@ -1,19 +1,16 @@
 -   Index
 -   May 2019
 
-
-
-PINSRB/PINSRD/PINSRQ — INSERT BYTE/DWORD/QWORD
-
+PINSRB/PINSRD/PINSRQ — Insert Byte/Dword/Qword
 
   Opcode/Instruction                                               Op/ En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ---------------------------------------------------------------- -------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
-  66 0F 3A 20 /r ib PINSRB _xmm1, r32/m8, imm8_                    A        V/V                      SSE4_1               Insert a byte integer value from _r32/m8_ into _xmm1_ at the destination element in _xmm1_ specified by _imm8._
-  66 0F 3A 22 /r ib PINSRD _xmm1, r/m32, imm8_                     A        V/V                      SSE4_1               Insert a dword integer value from _r/m32_ into the _xmm1_ at the destination element specified by _imm8._
-  66 REX.W 0F 3A 22 /r ib PINSRQ _xmm1, r/m64, imm8_               A        V/N. E.                  SSE4_1               Insert a qword integer value from _r/m64 i_nto the _xmm1_ at the destination element specified by _imm8._
-  VEX.128.66.0F3A.W0 20 /r ib VPINSRB _xmm1, xmm2, r32/m8, imm8_   B        V¹/V                     AVX                  Merge a byte integer value from _r32/m8_ and rest from _xmm2_ into _xmm1_ at the byte offset in _imm8_.
-  VEX.128.66.0F3A.W0 22 /r ib VPINSRD _xmm1, xmm2, r/m32, imm8_    B        V/V                      AVX                  Insert a dword integer value from _r32/m32_ and rest from _xmm2_ into _xmm1_ at the dword offset in _imm8_.
-  VEX.128.66.0F3A.W1 22 /r ib VPINSRQ _xmm1, xmm2, r/m64, imm8_    B        V/I²                     AVX                  Insert a qword integer value from _r64/m64_ and rest from _xmm2_ into _xmm1_ at the qword offset in _imm8_.
+  ---------------------------------------------------------------- -------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------
+  66 0F 3A 20 /r ib PINSRB xmm1, r32/m8, imm8                      A        V/V                      SSE4_1               Insert a byte integer value from r32/m8 into xmm1 at the destination element in xmm1 specified by imm8.
+  66 0F 3A 22 /r ib PINSRD xmm1, r/m32, imm8                       A        V/V                      SSE4_1               Insert a dword integer value from r/m32 into the xmm1 at the destination element specified by imm8.
+  66 REX.W 0F 3A 22 /r ib PINSRQ xmm1, r/m64, imm8                 A        V/N. E.                  SSE4_1               Insert a qword integer value from r/m64 into the xmm1 at the destination element specified by imm8.
+  VEX.128.66.0F3A.W0 20 /r ib VPINSRB xmm1, xmm2, r32/m8, imm8     B        V¹/V                     AVX                  Merge a byte integer value from r32/m8 and rest from xmm2 into xmm1 at the byte offset in imm8.
+  VEX.128.66.0F3A.W0 22 /r ib VPINSRD xmm1, xmm2, r/m32, imm8      B        V/V                      AVX                  Insert a dword integer value from r32/m32 and rest from xmm2 into xmm1 at the dword offset in imm8.
+  VEX.128.66.0F3A.W1 22 /r ib VPINSRQ xmm1, xmm2, r/m64, imm8      B        V/I²                     AVX                  Insert a qword integer value from r64/m64 and rest from xmm2 into xmm1 at the qword offset in imm8.
   EVEX.128.66.0F3A.WIG 20 /r ib VPINSRB xmm1, xmm2, r32/m8, imm8   C        V/V                      AVX512BW             Merge a byte integer value from r32/m8 and rest from xmm2 into xmm1 at the byte offset in imm8.
   EVEX.128.66.0F3A.W0 22 /r ib VPINSRD xmm1, xmm2, r32/m32, imm8   C        V/V                      AVX512DQ             Insert a dword integer value from r32/m32 and rest from xmm2 into xmm1 at the dword offset in imm8.
   EVEX.128.66.0F3A.W1 22 /r ib VPINSRQ xmm1, xmm2, r64/m64, imm8   C        V/N.E.²                  AVX512DQ             Insert a qword integer value from r64/m64 and rest from xmm2 into xmm1 at the qword offset in imm8.
@@ -24,7 +21,6 @@ PINSRB/PINSRD/PINSRQ — INSERT BYTE/DWORD/QWORD
   2. VEX.W/EVEX.W in non-64 bit is ignored; the instructions behaves as
   if the W0 version is used.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- --------------- --------------- --------------- -----------
@@ -33,7 +29,6 @@ Instruction Operand Encoding ¶
   B       NA              ModRM:reg (w)   VEX.vvvv (r)    ModRM:r/m (r)   imm8
   C       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   Imm8
   ------- --------------- --------------- --------------- --------------- -----------
-
 
 Description ¶
 
@@ -62,7 +57,6 @@ to execute VPINSRQ in non-64-bit mode will cause #UD.
 
 EVEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
 are zeroed. EVEX.L’L must be 0, otherwise the instruction will #UD.
-
 
 Operation ¶
 
@@ -97,7 +91,6 @@ VPINSRQ (VEX/EVEX encoded version) ¶
     DEST[127:0]←write_q_element(SEL, SRC2, SRC1)
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PINSRB: __m128i _mm_insert_epi8 (__m128i s1, int s2, const int ndx);
@@ -106,16 +99,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PINSRQ: __m128i _mm_insert_epi64(__m128i s2, __int64 s, const int ndx);
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

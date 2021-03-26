@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+PCMPESTRM — Packed Compare Explicit Length Strings, Return Mask
 
-
-PCMPESTRM — PACKED COMPARE EXPLICIT LENGTH STRINGS, RETURN MASK
-
-
-  Opcode/Instruction                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 60 /r imm8 PCMPESTRM _xmm1, xmm2/m128, imm8_         RMI     V/V                      SSE4_2               Perform a packed comparison of string data with explicit lengths, generating a mask, and storing the result in _XMM0._
-  VEX.128.66.0F3A 60 /r ib VPCMPESTRM _xmm1, xmm2/m128, imm8_   RMI     V/V                      AVX                  Perform a packed comparison of string data with explicit lengths, generating a mask, and storing the result in _XMM0_.
-
+  Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 60 /r imm8 PCMPESTRM xmm1, xmm2/m128, imm8         RMI     V/V                      SSE4_2               Perform a packed comparison of string data with explicit lengths, generating a mask, and storing the result in XMM0.
+  VEX.128.66.0F3A 60 /r ib VPCMPESTRM xmm1, xmm2/m128, imm8   RMI     V/V                      AVX                  Perform a packed comparison of string data with explicit lengths, generating a mask, and storing the result in XMM0.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RMI     ModRM:reg (r)   ModRM:r/m (r)   imm8        NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -65,7 +60,6 @@ Note: In VEX.128 encoded versions, bits (MAXVL-1:128) of XMM0 are
 zeroed. VEX.vvvv is reserved and must be 1111b, VEX.L must be 0,
 otherwise the instruction will #UD.
 
-
 Effective Operand Size ¶
 
   Operating mode/size   Operand1   Operand 2   Length1   Length2   Result
@@ -75,12 +69,10 @@ Effective Operand Size ¶
   64 bit                xmm        xmm/m128    EAX       EDX       XMM0
   64 bit + REX.W        xmm        xmm/m128    RAX       RDX       XMM0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent For Returning Mask ¶
 
 __m128i _mm_cmpestrm (__m128i a, int la, __m128i b, int lb, const int
 mode);
-
 
 Intel C/C++ Compiler Intrinsics For Reading EFlag Results ¶
 
@@ -94,22 +86,19 @@ int _mm_cmpestrs (__m128i a, int la, __m128i b, int lb, const int mode);
 
 int _mm_cmpestrz (__m128i a, int la, __m128i b, int lb, const int mode);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 
 See Exceptions Type 4; additionally, this instruction does not cause #GP
 if the memory operand is not aligned to 16 Byte boundary, and
 
-#UD
-
-If VEX.L = 1.
-
-If VEX.vvvv ≠ 1111B.
+  ----- ----------------------
+  #UD   If VEX.L = 1.
+        If VEX.vvvv ≠ 1111B.
+  ----- ----------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-PMOVZX — PACKED MOVE WITH ZERO EXTEND
-
+PMOVZX — Packed Move with Zero Extend
 
   Opcode/Instruction                                             Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------- --------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
@@ -44,7 +41,6 @@ PMOVZX — PACKED MOVE WITH ZERO EXTEND
   EVEX.128.66.0F38.W0 35 /r VPMOVZXDQ xmm1 {k1}{z}, xmm2/m64     B         V/V                      AVX512VL AVX512F     Zero extend 2 packed 32-bit integers in the low 8 bytes of xmm2/m64 to 2 packed 64-bit integers in zmm1 using writemask k1.
   EVEX.256.66.0F38.W0 35 /r VPMOVZXDQ ymm1 {k1}{z}, xmm2/m128    B         V/V                      AVX512VL AVX512F     Zero extend 4 packed 32-bit integers in xmm2/m128 to 4 packed 64-bit integers in zmm1 using writemask k1.
   EVEX.512.66.0F38.W0 35 /r VPMOVZXDQ zmm1 {k1}{z}, ymm2/m256    B         V/V                      AVX512F              Zero extend 8 packed 32-bit integers in ymm2/m256 to 8 packed 64-bit integers in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

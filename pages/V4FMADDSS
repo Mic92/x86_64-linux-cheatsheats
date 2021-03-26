@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-V4FMADDSS/V4FNMADDSS — SCALAR SINGLE-PRECISION FLOATING-POINT FUSED MULTIPLY-ADD (4-ITERATIONS)
-
+V4FMADDSS/V4FNMADDSS — Scalar Single-Precision Floating-Point Fused Multiply-Add (4-iterations)
 
   Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LLIG.F2.0F38.W0 9B /r V4FMADDSS xmm1{k1}{z}, xmm2+3, m128    A       V/V                      AVX512_4FMAPS        Multiply scalar single-precision floating-point values from source register block indicated by xmm2 by values from m128 and accumulate the result in xmm1.
   EVEX.LLIG.F2.0F38.W0 AB /r V4FNMADDSS xmm1{k1}{z}, xmm2+3, m128   A       V/V                      AVX512_4FMAPS        Multiply and negate scalar single-precision floating-point values from source register block indicated by xmm2 by values from m128 and accumulate the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

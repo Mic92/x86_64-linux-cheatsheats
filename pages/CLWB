@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-CLWB — CACHE LINE WRITE BACK
-
+CLWB — Cache Line Write Back
 
   Opcode/Instruction    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------
   66 0F AE /6 CLWB m8   M       V/V                      CLWB                 Writes back modified cache line containing m8, and may retain the line in cache hierarchy in non-modified state.
-
 
 Instruction Operand Encoding¹ ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding¹ ¶
   Op/En Operand 1 Operand 2 Operand 3 Operand 4
   M ModRM:r/m (w) NA NA NA
   -----------------------------------------------
-
 
 Description ¶
 
@@ -77,57 +72,35 @@ transactional regions. However, programmers must not rely on CLWB
 instruction to force a transactional abort, since whether they cause
 transactional abort is implementation dependent.
 
-
 Operation ¶
 
     Cache_Line_Write_Back(m8);
-
 
 Flags Affected ¶
 
 None.
 
-
 C/C++ Compiler Intrinsic Equivalent ¶
 
     CLWB void _mm_clwb(void const *p);
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 0.
-
-#GP(0)
-
-For an illegal memory operand effective address in the CS, DS, ES, FS or
-GS segments.
-
-#SS(0)
-
-For an illegal address in the SS segment.
-
-#PF(fault-code)
-
-For a page fault.
-
+  ----------------- ---------------------------------------------------------------------------------------
+  #UD               If the LOCK prefix is used.
+                    If CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 0.
+  #GP(0)            For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments.
+  #SS(0)            For an illegal address in the SS segment.
+  #PF(fault-code)   For a page fault.
+  ----------------- ---------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 0.
-
-#GP
-
-If any part of the operand lies outside the effective address space from
-0 to FFFFH.
-
+  ----- --------------------------------------------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 0.
+  #GP   If any part of the operand lies outside the effective address space from 0 to FFFFH.
+  ----- --------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -137,32 +110,19 @@ Same exceptions as in real address mode.
   #PF(fault-code)   For a page fault.
   ----------------- -------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 0.
-
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the memory address is in a non-canonical form.
-
-#PF(fault-code)
-
-For a page fault.
+  ----------------- ----------------------------------------------------------------------------
+  #UD               If the LOCK prefix is used.
+                    If CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 0.
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #PF(fault-code)   For a page fault.
+  ----------------- ----------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

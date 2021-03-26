@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VGETMANTSS — EXTRACT FLOAT32 VECTOR OF NORMALIZED MANTISSA FROM FLOAT32 VECTOR
-
+VGETMANTSS — Extract Float32 Vector of Normalized Mantissa from Float32 Vector
 
   Opcode/Instruction                                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W0 27 /r ib VGETMANTSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512F              Extract the normalized mantissa from the low float32 element of xmm3/m32 using imm8 for sign control and mantissa interval normalization, store the mantissa to xmm1 under the writemask k1 and merge with the other elements of xmm2.
-
 
 Instruction Operand Encoding ¶
 
@@ -32,11 +28,11 @@ specified by bits 3:2 of the immediate byte.
 
 The conversion operation is:
 
-_GetMant_(_x_) = _±_2_^(k)|x.significand|_
+GetMant(x) = ±2^(k)|x.significand|
 
 where:
 
-1 _<_= _|x.significand| <_ 2
+1 <= |x.significand| < 2
 
 Unbiased exponent k depends on the interval range defined by interv and
 whether the exponent of the source is even or odd. The sign of the final

@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VREDUCESD — PERFORM A REDUCTION TRANSFORMATION ON A SCALAR FLOAT64 VALUE
-
+VREDUCESD — Perform a Reduction Transformation on a Scalar Float64 Value
 
   Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W1 57 VREDUCESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8/r   A         V/V                      AVX512D Q            Perform a reduction transformation on a scalar double-precision floating point value in xmm3/m64 by subtracting a number of fraction bits specified by the imm8 field. Also, upper double precision floating-point value (bits[127:64]) from xmm2 are copied to xmm1[127:64]. Stores the result in xmm1 register.
-
 
 Instruction Operand Encoding ¶
 

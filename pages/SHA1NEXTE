@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SHA1NEXTE — CALCULATE SHA1 STATE VARIABLE E AFTER FOUR ROUNDS
-
+SHA1NEXTE — Calculate SHA1 State Variable E after Four Rounds
 
   Opcode/Instruction                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------ ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 38 C8 /r SHA1NEXTE xmm1, xmm2/m128   RM      V/V                      SHA                  Calculates SHA1 state variable E after four rounds of operation from the current SHA1 state variable A in xmm1. The calculated value of the SHA1 state variable E is added to the scheduled dwords in xmm2/m128, and stored with some of the scheduled dwords in xmm1.
-
 
 Instruction Operand Encoding ¶
 

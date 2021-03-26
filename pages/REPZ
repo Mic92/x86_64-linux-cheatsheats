@@ -1,566 +1,56 @@
 -   Index
 -   May 2019
 
-
-
-REP/REPE/REPZ/REPNE/REPNZ — REPEAT STRING OPERATION PREFIX
-
-
-Opcode
-
-Instruction
-
-Op/En
-
-64-Bit Mode
-
-Compat/Leg Mode
-
-Description
-
-F3 6C
-
-REP INS _m8_, DX
-
-ZO
-
-Valid
-
-Valid
-
-Input (E)CX bytes from port DX into ES:[(E)DI].
-
-F3 6C
-
-REP INS _m8_, DX
-
-ZO
-
-Valid
-
-N.E.
-
-Input RCX bytes from port DX into [RDI].
-
-F3 6D
-
-REP INS _m16_, DX
-
-ZO
-
-Valid
-
-Valid
-
-Input (E)CX words from port DX into ES:[(E)DI.]
-
-F3 6D
-
-REP INS _m32_, DX
-
-ZO
-
-Valid
-
-Valid
-
-Input (E)CX doublewords from port DX into ES:[(E)DI].
-
-F3 6D
-
-REP INS _r/m32_, DX
-
-ZO
-
-Valid
-
-N.E.
-
-Input RCX default size from port DX into [RDI].
-
-F3 A4
-
-REP MOVS _m8, m8_
-
-ZO
-
-Valid
-
-Valid
-
-Move (E)CX bytes from DS:[(E)SI] to ES:[(E)DI].
-
-F3 REX.W A4
-
-REP MOVS _m8, m8_
-
-ZO
-
-Valid
-
-N.E.
-
-Move RCX bytes from [RSI] to [RDI].
-
-F3 A5
-
-REP MOVS _m16, m16_
-
-ZO
-
-Valid
-
-Valid
-
-Move (E)CX words from DS:[(E)SI] to ES:[(E)DI].
-
-F3 A5
-
-REP MOVS _m32, m32_
-
-ZO
-
-Valid
-
-Valid
-
-Move (E)CX doublewords from DS:[(E)SI] to ES:[(E)DI].
-
-F3 REX.W A5
-
-REP MOVS _m64, m64_
-
-ZO
-
-Valid
-
-N.E.
-
-Move RCX quadwords from [RSI] to [RDI].
-
-F3 6E
-
-REP OUTS DX, _r/m8_
-
-ZO
-
-Valid
-
-Valid
-
-Output (E)CX bytes from DS:[(E)SI] to port DX.
-
-F3 REX.W 6E
-
-REP OUTS DX, _r/m8*_
-
-ZO
-
-Valid
-
-N.E.
-
-Output RCX bytes from [RSI] to port DX.
-
-F3 6F
-
-REP OUTS DX, _r/m16_
-
-ZO
-
-Valid
-
-Valid
-
-Output (E)CX words from DS:[(E)SI] to port DX.
-
-F3 6F
-
-REP OUTS DX, _r/m32_
-
-ZO
-
-Valid
-
-Valid
-
-Output (E)CX doublewords from DS:[(E)SI] to port DX.
-
-F3 REX.W 6F
-
-REP OUTS DX, _r/m32_
-
-ZO
-
-Valid
-
-N.E.
-
-Output RCX default size from [RSI] to port DX.
-
-F3 AC
-
-REP LODS AL
-
-ZO
-
-Valid
-
-Valid
-
-Load (E)CX bytes from DS:[(E)SI] to AL.
-
-F3 REX.W AC
-
-REP LODS AL
-
-ZO
-
-Valid
-
-N.E.
-
-Load RCX bytes from [RSI] to AL.
-
-F3 AD
-
-REP LODS AX
-
-ZO
-
-Valid
-
-Valid
-
-Load (E)CX words from DS:[(E)SI] to AX.
-
-F3 AD
-
-REP LODS EAX
-
-ZO
-
-Valid
-
-Valid
-
-Load (E)CX doublewords from DS:[(E)SI] to EAX.
-
-F3 REX.W AD
-
-REP LODS RAX
-
-ZO
-
-Valid
-
-N.E.
-
-Load RCX quadwords from [RSI] to RAX.
-
-F3 AA
-
-REP STOS _m8_
-
-ZO
-
-Valid
-
-Valid
-
-Fill (E)CX bytes at ES:[(E)DI] with AL.
-
-F3 REX.W AA
-
-REP STOS _m8_
-
-ZO
-
-Valid
-
-N.E.
-
-Fill RCX bytes at [RDI] with AL.
-
-F3 AB
-
-REP STOS _m16_
-
-ZO
-
-Valid
-
-Valid
-
-Fill (E)CX words at ES:[(E)DI] with AX.
-
-F3 AB
-
-REP STOS _m32_
-
-ZO
-
-Valid
-
-Valid
-
-Fill (E)CX doublewords at ES:[(E)DI] with EAX.
-
-F3 REX.W AB
-
-REP STOS _m64_
-
-ZO
-
-Valid
-
-N.E.
-
-Fill RCX quadwords at [RDI] with RAX.
-
-F3 A6
-
-REPE CMPS _m8, m8_
-
-ZO
-
-Valid
-
-Valid
-
-Find nonmatching bytes in ES:[(E)DI] and DS:[(E)SI].
-
-F3 REX.W A6
-
-REPE CMPS _m8, m8_
-
-ZO
-
-Valid
-
-N.E.
-
-Find non-matching bytes in [RDI] and [RSI].
-
-F3 A7
-
-REPE CMPS _m16, m16_
-
-ZO
-
-Valid
-
-Valid
-
-Find nonmatching words in ES:[(E)DI] and DS:[(E)SI].
-
-F3 A7
-
-REPE CMPS _m32, m32_
-
-ZO
-
-Valid
-
-Valid
-
-Find nonmatching doublewords in ES:[(E)DI] and DS:[(E)SI].
-
-F3 REX.W A7
-
-REPE CMPS _m64, m64_
-
-ZO
-
-Valid
-
-N.E.
-
-Find non-matching quadwords in [RDI] and [RSI].
-
-F3 AE
-
-REPE SCAS _m8_
-
-ZO
-
-Valid
-
-Valid
-
-Find non-AL byte starting at ES:[(E)DI].
-
-F3 REX.W AE
-
-REPE SCAS _m8_
-
-ZO
-
-Valid
-
-N.E.
-
-Find non-AL byte starting at [RDI].
-
-F3 AF
-
-REPE SCAS _m16_
-
-ZO
-
-Valid
-
-Valid
-
-Find non-AX word starting at ES:[(E)DI].
-
-F3 AF
-
-REPE SCAS _m32_
-
-ZO
-
-Valid
-
-Valid
-
-Find non-EAX doubleword starting at ES:[(E)DI].
-
-F3 REX.W AF
-
-REPE SCAS _m64_
-
-ZO
-
-Valid
-
-N.E.
-
-Find non-RAX quadword starting at [RDI].
-
-F2 A6
-
-REPNE CMPS _m8, m8_
-
-ZO
-
-Valid
-
-Valid
-
-Find matching bytes in ES:[(E)DI] and DS:[(E)SI].
-
-F2 REX.W A6
-
-REPNE CMPS _m8, m8_
-
-ZO
-
-Valid
-
-N.E.
-
-Find matching bytes in [RDI] and [RSI].
-
-F2 A7
-
-REPNE CMPS _m16, m16_
-
-ZO
-
-Valid
-
-Valid
-
-Find matching words in ES:[(E)DI] and DS:[(E)SI].
-
-F2 A7
-
-REPNE CMPS _m32, m32_
-
-ZO
-
-Valid
-
-Valid
-
-Find matching doublewords in ES:[(E)DI] and DS:[(E)SI].
-
-F2 REX.W A7
-
-REPNE CMPS _m64, m64_
-
-ZO
-
-Valid
-
-N.E.
-
-Find matching doublewords in [RDI] and [RSI].
-
-F2 AE
-
-REPNE SCAS _m8_
-
-ZO
-
-Valid
-
-Valid
-
-Find AL, starting at ES:[(E)DI].
-
-F2 REX.W AE
-
-REPNE SCAS _m8_
-
-ZO
-
-Valid
-
-N.E.
-
-Find AL, starting at [RDI].
-
-F2 AF
-
-REPNE SCAS _m16_
-
-ZO
-
-Valid
-
-Valid
-
-Find AX, starting at ES:[(E)DI].
-
-F2 AF
-
-REPNE SCAS _m32_
-
-ZO
-
-Valid
-
-Valid
-
-Find EAX, starting at ES:[(E)DI].
-
-F2 REX.W AF
-
-REPNE SCAS _m64_
-
-ZO
-
-Valid
-
-N.E.
-
-Find RAX, starting at [RDI].
-
-NOTES: *
-In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
+REP/REPE/REPZ/REPNE/REPNZ — Repeat String Operation Prefix
+
+  Opcode                                                                                                      Instruction           Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ----------------------------------------------------------------------------------------------------------- --------------------- ------- ------------- ----------------- ------------------------------------------------------------
+  F3 6C                                                                                                       REP INS m8, DX        ZO      Valid         Valid             Input (E)CX bytes from port DX into ES:[(E)DI].
+  F3 6C                                                                                                       REP INS m8, DX        ZO      Valid         N.E.              Input RCX bytes from port DX into [RDI].
+  F3 6D                                                                                                       REP INS m16, DX       ZO      Valid         Valid             Input (E)CX words from port DX into ES:[(E)DI.]
+  F3 6D                                                                                                       REP INS m32, DX       ZO      Valid         Valid             Input (E)CX doublewords from port DX into ES:[(E)DI].
+  F3 6D                                                                                                       REP INS r/m32, DX     ZO      Valid         N.E.              Input RCX default size from port DX into [RDI].
+  F3 A4                                                                                                       REP MOVS m8, m8       ZO      Valid         Valid             Move (E)CX bytes from DS:[(E)SI] to ES:[(E)DI].
+  F3 REX.W A4                                                                                                 REP MOVS m8, m8       ZO      Valid         N.E.              Move RCX bytes from [RSI] to [RDI].
+  F3 A5                                                                                                       REP MOVS m16, m16     ZO      Valid         Valid             Move (E)CX words from DS:[(E)SI] to ES:[(E)DI].
+  F3 A5                                                                                                       REP MOVS m32, m32     ZO      Valid         Valid             Move (E)CX doublewords from DS:[(E)SI] to ES:[(E)DI].
+  F3 REX.W A5                                                                                                 REP MOVS m64, m64     ZO      Valid         N.E.              Move RCX quadwords from [RSI] to [RDI].
+  F3 6E                                                                                                       REP OUTS DX, r/m8     ZO      Valid         Valid             Output (E)CX bytes from DS:[(E)SI] to port DX.
+  F3 REX.W 6E                                                                                                 REP OUTS DX, r/m8*    ZO      Valid         N.E.              Output RCX bytes from [RSI] to port DX.
+  F3 6F                                                                                                       REP OUTS DX, r/m16    ZO      Valid         Valid             Output (E)CX words from DS:[(E)SI] to port DX.
+  F3 6F                                                                                                       REP OUTS DX, r/m32    ZO      Valid         Valid             Output (E)CX doublewords from DS:[(E)SI] to port DX.
+  F3 REX.W 6F                                                                                                 REP OUTS DX, r/m32    ZO      Valid         N.E.              Output RCX default size from [RSI] to port DX.
+  F3 AC                                                                                                       REP LODS AL           ZO      Valid         Valid             Load (E)CX bytes from DS:[(E)SI] to AL.
+  F3 REX.W AC                                                                                                 REP LODS AL           ZO      Valid         N.E.              Load RCX bytes from [RSI] to AL.
+  F3 AD                                                                                                       REP LODS AX           ZO      Valid         Valid             Load (E)CX words from DS:[(E)SI] to AX.
+  F3 AD                                                                                                       REP LODS EAX          ZO      Valid         Valid             Load (E)CX doublewords from DS:[(E)SI] to EAX.
+  F3 REX.W AD                                                                                                 REP LODS RAX          ZO      Valid         N.E.              Load RCX quadwords from [RSI] to RAX.
+  F3 AA                                                                                                       REP STOS m8           ZO      Valid         Valid             Fill (E)CX bytes at ES:[(E)DI] with AL.
+  F3 REX.W AA                                                                                                 REP STOS m8           ZO      Valid         N.E.              Fill RCX bytes at [RDI] with AL.
+  F3 AB                                                                                                       REP STOS m16          ZO      Valid         Valid             Fill (E)CX words at ES:[(E)DI] with AX.
+  F3 AB                                                                                                       REP STOS m32          ZO      Valid         Valid             Fill (E)CX doublewords at ES:[(E)DI] with EAX.
+  F3 REX.W AB                                                                                                 REP STOS m64          ZO      Valid         N.E.              Fill RCX quadwords at [RDI] with RAX.
+  F3 A6                                                                                                       REPE CMPS m8, m8      ZO      Valid         Valid             Find nonmatching bytes in ES:[(E)DI] and DS:[(E)SI].
+  F3 REX.W A6                                                                                                 REPE CMPS m8, m8      ZO      Valid         N.E.              Find non-matching bytes in [RDI] and [RSI].
+  F3 A7                                                                                                       REPE CMPS m16, m16    ZO      Valid         Valid             Find nonmatching words in ES:[(E)DI] and DS:[(E)SI].
+  F3 A7                                                                                                       REPE CMPS m32, m32    ZO      Valid         Valid             Find nonmatching doublewords in ES:[(E)DI] and DS:[(E)SI].
+  F3 REX.W A7                                                                                                 REPE CMPS m64, m64    ZO      Valid         N.E.              Find non-matching quadwords in [RDI] and [RSI].
+  F3 AE                                                                                                       REPE SCAS m8          ZO      Valid         Valid             Find non-AL byte starting at ES:[(E)DI].
+  F3 REX.W AE                                                                                                 REPE SCAS m8          ZO      Valid         N.E.              Find non-AL byte starting at [RDI].
+  F3 AF                                                                                                       REPE SCAS m16         ZO      Valid         Valid             Find non-AX word starting at ES:[(E)DI].
+  F3 AF                                                                                                       REPE SCAS m32         ZO      Valid         Valid             Find non-EAX doubleword starting at ES:[(E)DI].
+  F3 REX.W AF                                                                                                 REPE SCAS m64         ZO      Valid         N.E.              Find non-RAX quadword starting at [RDI].
+  F2 A6                                                                                                       REPNE CMPS m8, m8     ZO      Valid         Valid             Find matching bytes in ES:[(E)DI] and DS:[(E)SI].
+  F2 REX.W A6                                                                                                 REPNE CMPS m8, m8     ZO      Valid         N.E.              Find matching bytes in [RDI] and [RSI].
+  F2 A7                                                                                                       REPNE CMPS m16, m16   ZO      Valid         Valid             Find matching words in ES:[(E)DI] and DS:[(E)SI].
+  F2 A7                                                                                                       REPNE CMPS m32, m32   ZO      Valid         Valid             Find matching doublewords in ES:[(E)DI] and DS:[(E)SI].
+  F2 REX.W A7                                                                                                 REPNE CMPS m64, m64   ZO      Valid         N.E.              Find matching doublewords in [RDI] and [RSI].
+  F2 AE                                                                                                       REPNE SCAS m8         ZO      Valid         Valid             Find AL, starting at ES:[(E)DI].
+  F2 REX.W AE                                                                                                 REPNE SCAS m8         ZO      Valid         N.E.              Find AL, starting at [RDI].
+  F2 AF                                                                                                       REPNE SCAS m16        ZO      Valid         Valid             Find AX, starting at ES:[(E)DI].
+  F2 AF                                                                                                       REPNE SCAS m32        ZO      Valid         Valid             Find EAX, starting at ES:[(E)DI].
+  F2 REX.W AF                                                                                                 REPNE SCAS m64        ZO      Valid         N.E.              Find RAX, starting at [RDI].
+  NOTES: * In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.                                                                 
 
 Instruction Operand Encoding ¶
 
@@ -568,7 +58,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -651,7 +140,6 @@ If this would be problematic, for example because the I/O port read has
 side-effects, software should ensure the write to the memory location
 does not cause an exception or VM exit.
 
-
 Operation ¶
 
     IF AddressSize = 16
@@ -677,18 +165,15 @@ Operation ¶
                         THEN exit WHILE loop; FI;
             OD;
 
-
 Flags Affected ¶
 
 None; however, the CMPS and SCAS instructions do set the status flags in
 the EFLAGS register.
 
-
 Exceptions (All Operating Modes) ¶
 
 Exceptions may be generated by an instruction associated with the
 prefix.
-
 
 64-Bit Mode Exceptions ¶
 

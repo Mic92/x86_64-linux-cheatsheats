@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-FDECSTP — DECREMENT STACK-TOP POINTER
-
+FDECSTP — Decrement Stack-Top Pointer
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- -----------------------------------------
   D9 F6    FDECSTP       Valid         Valid             Decrement TOP field in FPU status word.
-
 
 Description ¶
 
@@ -22,7 +18,6 @@ affected.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     IF TOP = 0
@@ -30,16 +25,13 @@ Operation ¶
         ELSE TOP ← TOP – 1;
     FI;
 
-
 FPU Flags Affected ¶
 
 The C1 flag is set to 0. The C0, C2, and C3 flags are undefined.
 
-
 Floating-Point Exceptions ¶
 
 None.
-
 
 Protected Mode Exceptions ¶
 
@@ -49,21 +41,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-POPA/POPAD — POP ALL GENERAL-PURPOSE REGISTERS
-
+POPA/POPAD — Pop All General-Purpose Registers
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- --------------------------------------------
   61       POPA          ZO      Invalid       Valid             Pop DI, SI, BP, BX, DX, CX, and AX.
   61       POPAD         ZO      Invalid       Valid             Pop EDI, ESI, EBP, EBX, EDX, ECX, and EAX.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -45,7 +40,6 @@ attribute.)
 
 This instruction executes as described in non-64-bit modes. It is not
 valid in 64-bit mode.
-
 
 Operation ¶
 
@@ -75,11 +69,9 @@ Operation ¶
         FI;
     FI;
 
-
 Flags Affected ¶
 
 None.
-
 
 Protected Mode Exceptions ¶
 
@@ -90,14 +82,12 @@ Protected Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- --------------------------------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- --------------------------------------------------------------------------
   #SS   If the starting or ending stack address is not within the stack segment.
   #UD   If the LOCK prefix is used.
   ----- --------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -108,11 +98,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same as for protected mode exceptions.
-
 
 64-Bit Mode Exceptions ¶
 

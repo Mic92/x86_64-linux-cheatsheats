@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRSQRT28SS — APPROXIMATION TO THE RECIPROCAL SQUARE ROOT OF SCALAR SINGLE-PRECISION FLOATING- POINT VALUE WITH LESS THAN 2^-28 RELATIVE ERROR
-
+VRSQRT28SS — Approximation to the Reciprocal Square Root of Scalar Single-Precision Floating- Point Value with Less Than 2^-28 Relative Error
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W0 CD /r VRSQRT28SS xmm1 {k1}{z}, xmm2, xmm3/m32 {sae}   A       V/V                      AVX512ER             Computes approximate reciprocal square root (<2^-28 relative error) of the scalar single-precision floating-point value from xmm3/m32 and stores result in xmm1with writemask k1. Also, upper 3 single-precision floating-point value (bits[127:32]) from xmm2 is copied to xmm1[127:32].
-
 
 Instruction Operand Encoding ¶
 

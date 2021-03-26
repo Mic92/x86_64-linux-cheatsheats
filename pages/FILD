@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+FILD — Load Integer
 
-
-FILD — LOAD INTEGER
-
-
-  Opcode   Instruction     64-Bit Mode   Compat/Leg Mode   Description
-  -------- --------------- ------------- ----------------- --------------------------------------------
-  DF /0    FILD _m16int_   Valid         Valid             Push _m16int_ onto the FPU register stack.
-  DB /0    FILD _m32int_   Valid         Valid             Push _m32int_ onto the FPU register stack.
-  DF /5    FILD _m64int_   Valid         Valid             Push _m64int_ onto the FPU register stack.
-
+  Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
+  -------- ------------- ------------- ----------------- ------------------------------------------
+  DF /0    FILD m16int   Valid         Valid             Push m16int onto the FPU register stack.
+  DB /0    FILD m32int   Valid         Valid             Push m32int onto the FPU register stack.
+  DF /5    FILD m64int   Valid         Valid             Push m64int onto the FPU register stack.
 
 Description ¶
 
@@ -24,12 +20,10 @@ source operand is preserved.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     TOP ← TOP − 1;
     ST(0) ← ConvertToDoubleExtendedPrecisionFP(SRC);
-
 
 FPU Flags Affected ¶
 
@@ -38,44 +32,23 @@ FPU Flags Affected ¶
   C0, C2, C3   Undefined.
   ------------ ----------------------------------------------------------
 
-
 Floating-Point Exceptions ¶
 
   ----- --------------------------
   #IS   Stack overflow occurred.
   ----- --------------------------
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#NM
-
-CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #NM               CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -85,7 +58,6 @@ Real-Address Mode Exceptions ¶
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -98,11 +70,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

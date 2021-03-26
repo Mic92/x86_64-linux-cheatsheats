@@ -1,76 +1,73 @@
 -   Index
 -   May 2019
 
+SAL/SAR/SHL/SHR — Shift
 
+  Opcode***          Instruction        Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------ ------------------ ------- ------------- ----------------- ----------------------------------------
+  D0 /4              SAL r/m8, 1        M1      Valid         Valid             Multiply r/m8 by 2, once.
+  REX + D0 /4        SAL r/m8**, 1      M1      Valid         N.E.              Multiply r/m8 by 2, once.
+  D2 /4              SAL r/m8, CL       MC      Valid         Valid             Multiply r/m8 by 2, CL times.
+  REX + D2 /4        SAL r/m8**, CL     MC      Valid         N.E.              Multiply r/m8 by 2, CL times.
+  C0 /4 ib           SAL r/m8, imm8     MI      Valid         Valid             Multiply r/m8 by 2, imm8 times.
+  REX + C0 /4 ib     SAL r/m8**, imm8   MI      Valid         N.E.              Multiply r/m8 by 2, imm8 times.
+  D1 /4              SAL r/m16, 1       M1      Valid         Valid             Multiply r/m16 by 2, once.
+  D3 /4              SAL r/m16, CL      MC      Valid         Valid             Multiply r/m16 by 2, CL times.
+  C1 /4 ib           SAL r/m16, imm8    MI      Valid         Valid             Multiply r/m16 by 2, imm8 times.
+  D1 /4              SAL r/m32, 1       M1      Valid         Valid             Multiply r/m32 by 2, once.
+  REX.W + D1 /4      SAL r/m64, 1       M1      Valid         N.E.              Multiply r/m64 by 2, once.
+  D3 /4              SAL r/m32, CL      MC      Valid         Valid             Multiply r/m32 by 2, CL times.
+  REX.W + D3 /4      SAL r/m64, CL      MC      Valid         N.E.              Multiply r/m64 by 2, CL times.
+  C1 /4 ib           SAL r/m32, imm8    MI      Valid         Valid             Multiply r/m32 by 2, imm8 times.
+  REX.W + C1 /4 ib   SAL r/m64, imm8    MI      Valid         N.E.              Multiply r/m64 by 2, imm8 times.
+  D0 /7              SAR r/m8, 1        M1      Valid         Valid             Signed divide* r/m8 by 2, once.
+  REX + D0 /7        SAR r/m8**, 1      M1      Valid         N.E.              Signed divide* r/m8 by 2, once.
+  D2 /7              SAR r/m8, CL       MC      Valid         Valid             Signed divide* r/m8 by 2, CL times.
+  REX + D2 /7        SAR r/m8**, CL     MC      Valid         N.E.              Signed divide* r/m8 by 2, CL times.
+  C0 /7 ib           SAR r/m8, imm8     MI      Valid         Valid             Signed divide* r/m8 by 2, imm8 time.
+  REX + C0 /7 ib     SAR r/m8**, imm8   MI      Valid         N.E.              Signed divide* r/m8 by 2, imm8 times.
+  D1 /7              SAR r/m16,1        M1      Valid         Valid             Signed divide* r/m16 by 2, once.
+  D3 /7              SAR r/m16, CL      MC      Valid         Valid             Signed divide* r/m16 by 2, CL times.
+  C1 /7 ib           SAR r/m16, imm8    MI      Valid         Valid             Signed divide* r/m16 by 2, imm8 times.
+  D1 /7              SAR r/m32, 1       M1      Valid         Valid             Signed divide* r/m32 by 2, once.
+  REX.W + D1 /7      SAR r/m64, 1       M1      Valid         N.E.              Signed divide* r/m64 by 2, once.
+  D3 /7              SAR r/m32, CL      MC      Valid         Valid             Signed divide* r/m32 by 2, CL times.
+  REX.W + D3 /7      SAR r/m64, CL      MC      Valid         N.E.              Signed divide* r/m64 by 2, CL times.
+  C1 /7 ib           SAR r/m32, imm8    MI      Valid         Valid             Signed divide* r/m32 by 2, imm8 times.
+  REX.W + C1 /7 ib   SAR r/m64, imm8    MI      Valid         N.E.              Signed divide* r/m64 by 2, imm8 times
+  D0 /4              SHL r/m8, 1        M1      Valid         Valid             Multiply r/m8 by 2, once.
+  REX + D0 /4        SHL r/m8**, 1      M1      Valid         N.E.              Multiply r/m8 by 2, once.
+  D2 /4              SHL r/m8, CL       MC      Valid         Valid             Multiply r/m8 by 2, CL times.
+  REX + D2 /4        SHL r/m8**, CL     MC      Valid         N.E.              Multiply r/m8 by 2, CL times.
+  C0 /4 ib           SHL r/m8, imm8     MI      Valid         Valid             Multiply r/m8 by 2, imm8 times.
+  REX + C0 /4 ib     SHL r/m8**, imm8   MI      Valid         N.E.              Multiply r/m8 by 2, imm8 times.
+  D1 /4              SHL r/m16,1        M1      Valid         Valid             Multiply r/m16 by 2, once.
+  D3 /4              SHL r/m16, CL      MC      Valid         Valid             Multiply r/m16 by 2, CL times.
+  C1 /4 ib           SHL r/m16, imm8    MI      Valid         Valid             Multiply r/m16 by 2, imm8 times.
+  D1 /4              SHL r/m32,1        M1      Valid         Valid             Multiply r/m32 by 2, once.
 
-SAL/SAR/SHL/SHR — SHIFT
-
-
-  Opcode***            Instruction          Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------- -------------------- ------- ------------- ----------------- --------------------------------------------
-  D0 /4                SAL _r/m8_, 1        M1      Valid         Valid             Multiply _r/m8_ by 2, once.
-  REX + D0 /4          SAL _r/m8**_, 1      M1      Valid         N.E.              Multiply _r/m8_ by 2, once.
-  D2 /4                SAL _r/m8_, CL       MC      Valid         Valid             Multiply _r/m8_ by 2, CL times.
-  REX + D2 /4          SAL _r/m8**_, CL     MC      Valid         N.E.              Multiply _r/m8_ by 2, CL times.
-  C0 /4 _ib_           SAL _r/m8, imm8_     MI      Valid         Valid             Multiply _r/m8_ by 2, _imm8_ times.
-  REX + C0 /4 _ib_     SAL _r/m8**, imm8_   MI      Valid         N.E.              Multiply _r/m8_ by 2, _imm8_ times.
-  D1 /4                SAL _r/m16_, 1       M1      Valid         Valid             Multiply _r/m16_ by 2, once.
-  D3 /4                SAL _r/m16_, CL      MC      Valid         Valid             Multiply _r/m16_ by 2, CL times.
-  C1 /4 _ib_           SAL _r/m16, imm8_    MI      Valid         Valid             Multiply _r/m16_ by 2, _imm8_ times.
-  D1 /4                SAL _r/m32_, 1       M1      Valid         Valid             Multiply _r/m32_ by 2, once.
-  REX.W + D1 /4        SAL _r/m64_, 1       M1      Valid         N.E.              Multiply _r/m64_ by 2, once.
-  D3 /4                SAL _r/m32_, CL      MC      Valid         Valid             Multiply _r/m32_ by 2, CL times.
-  REX.W + D3 /4        SAL _r/m64_, CL      MC      Valid         N.E.              Multiply _r/m64_ by 2, CL times.
-  C1 /4 _ib_           SAL _r/m32, imm8_    MI      Valid         Valid             Multiply _r/m32_ by 2, _imm8_ times.
-  REX.W + C1 /4 _ib_   SAL _r/m64, imm8_    MI      Valid         N.E.              Multiply _r/m64_ by 2, _imm8_ times.
-  D0 /7                SAR _r/m8_, 1        M1      Valid         Valid             Signed divide* _r/m8_ by 2, once.
-  REX + D0 /7          SAR _r/m8**_, 1      M1      Valid         N.E.              Signed divide* _r/m8_ by 2, once.
-  D2 /7                SAR _r/m8_, CL       MC      Valid         Valid             Signed divide* _r/m8_ by 2, CL times.
-  REX + D2 /7          SAR _r/m8**_, CL     MC      Valid         N.E.              Signed divide* _r/m8_ by 2, CL times.
-  C0 /7 _ib_           SAR _r/m8, imm8_     MI      Valid         Valid             Signed divide* _r/m8_ by 2, _imm8_ time.
-  REX + C0 /7 _ib_     SAR _r/m8**, imm8_   MI      Valid         N.E.              Signed divide* _r/m8_ by 2, _imm8_ times.
-  D1 /7                SAR _r/m16_,1        M1      Valid         Valid             Signed divide* _r/m16_ by 2, once.
-  D3 /7                SAR _r/m16_, CL      MC      Valid         Valid             Signed divide* _r/m16_ by 2, CL times.
-  C1 /7 _ib_           SAR _r/m16, imm8_    MI      Valid         Valid             Signed divide* _r/m16_ by 2, _imm8_ times.
-  D1 /7                SAR _r/m32_, 1       M1      Valid         Valid             Signed divide* _r/m32_ by 2, once.
-  REX.W + D1 /7        SAR _r/m64_, 1       M1      Valid         N.E.              Signed divide* _r/m64_ by 2, once.
-  D3 /7                SAR _r/m32_, CL      MC      Valid         Valid             Signed divide* _r/m32_ by 2, CL times.
-  REX.W + D3 /7        SAR _r/m64_, CL      MC      Valid         N.E.              Signed divide* _r/m64_ by 2, CL times.
-  C1 /7 _ib_           SAR _r/m32, imm8_    MI      Valid         Valid             Signed divide* _r/m32_ by 2, _imm8_ times.
-  REX.W + C1 /7 _ib_   SAR _r/m64, imm8_    MI      Valid         N.E.              Signed divide* _r/m64_ by 2, _imm8_ times
-  D0 /4                SHL _r/m8_, 1        M1      Valid         Valid             Multiply _r/m8_ by 2, once.
-  REX + D0 /4          SHL _r/m8**_, 1      M1      Valid         N.E.              Multiply _r/m8_ by 2, once.
-  D2 /4                SHL _r/m8_, CL       MC      Valid         Valid             Multiply _r/m8_ by 2, CL times.
-  REX + D2 /4          SHL _r/m8**_, CL     MC      Valid         N.E.              Multiply _r/m8_ by 2, CL times.
-  C0 /4 _ib_           SHL _r/m8, imm8_     MI      Valid         Valid             Multiply _r/m8_ by 2, _imm8_ times.
-  REX + C0 /4 _ib_     SHL _r/m8**, imm8_   MI      Valid         N.E.              Multiply _r/m8_ by 2, _imm8_ times.
-  D1 /4                SHL _r/m16_,1        M1      Valid         Valid             Multiply _r/m16_ by 2, once.
-  D3 /4                SHL _r/m16_, CL      MC      Valid         Valid             Multiply _r/m16_ by 2, CL times.
-  C1 /4 _ib_           SHL _r/m16, imm8_    MI      Valid         Valid             Multiply _r/m16_ by 2, _imm8_ times.
-  D1 /4                SHL _r/m32_,1        M1      Valid         Valid             Multiply _r/m32_ by 2, once.
-
-  Opcode               Instruction          Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------- -------------------- ------- ------------- ----------------- ---------------------------------------------
-  REX.W + D1 /4        SHL _r/m64_,1        M1      Valid         N.E.              Multiply _r/m64_ by 2, once.
-  D3 /4                SHL _r/m32_, CL      MC      Valid         Valid             Multiply _r/m32_ by 2, CL times.
-  REX.W + D3 /4        SHL _r/m64_, CL      MC      Valid         N.E.              Multiply _r/m64_ by 2, CL times.
-  C1 /4 _ib_           SHL _r/m32, imm8_    MI      Valid         Valid             Multiply _r/m32_ by 2, _imm8_ times.
-  REX.W + C1 /4 _ib_   SHL _r/m64, imm8_    MI      Valid         N.E.              Multiply _r/m64_ by 2, _imm8_ times.
-  D0 /5                SHR _r/m8_,1         M1      Valid         Valid             Unsigned divide _r/m8_ by 2, once.
-  REX + D0 /5          SHR _r/m8**_, 1      M1      Valid         N.E.              Unsigned divide _r/m8_ by 2, once.
-  D2 /5                SHR _r/m8_, CL       MC      Valid         Valid             Unsigned divide _r/m8_ by 2, CL times.
-  REX + D2 /5          SHR _r/m8**_, CL     MC      Valid         N.E.              Unsigned divide _r/m8_ by 2, CL times.
-  C0 /5 _ib_           SHR _r/m8, imm8_     MI      Valid         Valid             Unsigned divide _r/m8_ by 2, _imm8_ times.
-  REX + C0 /5 _ib_     SHR _r/m8**, imm8_   MI      Valid         N.E.              Unsigned divide _r/m8_ by 2, _imm8_ times.
-  D1 /5                SHR _r/m16_, 1       M1      Valid         Valid             Unsigned divide _r/m16_ by 2, once.
-  D3 /5                SHR _r/m16_, CL      MC      Valid         Valid             Unsigned divide _r/m16_ by 2, CL times
-  C1 /5 _ib_           SHR _r/m16, imm8_    MI      Valid         Valid             Unsigned divide _r/m16_ by 2, _imm8_ times.
-  D1 /5                SHR _r/m32_, 1       M1      Valid         Valid             Unsigned divide _r/m32_ by 2, once.
-  REX.W + D1 /5        SHR _r/m64_, 1       M1      Valid         N.E.              Unsigned divide _r/m64_ by 2, once.
-  D3 /5                SHR _r/m32_, CL      MC      Valid         Valid             Unsigned divide _r/m32_ by 2, CL times.
-  REX.W + D3 /5        SHR _r/m64_, CL      MC      Valid         N.E.              Unsigned divide _r/m64_ by 2, CL times.
-  C1 /5 _ib_           SHR _r/m32, imm8_    MI      Valid         Valid             Unsigned divide _r/m32_ by 2, _imm8_ times.
-  REX.W + C1 /5 _ib_   SHR _r/m64, imm8_    MI      Valid         N.E.              Unsigned divide _r/m64_ by 2, _imm8_ times.
+  Opcode             Instruction        Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------ ------------------ ------- ------------- ----------------- -----------------------------------------
+  REX.W + D1 /4      SHL r/m64,1        M1      Valid         N.E.              Multiply r/m64 by 2, once.
+  D3 /4              SHL r/m32, CL      MC      Valid         Valid             Multiply r/m32 by 2, CL times.
+  REX.W + D3 /4      SHL r/m64, CL      MC      Valid         N.E.              Multiply r/m64 by 2, CL times.
+  C1 /4 ib           SHL r/m32, imm8    MI      Valid         Valid             Multiply r/m32 by 2, imm8 times.
+  REX.W + C1 /4 ib   SHL r/m64, imm8    MI      Valid         N.E.              Multiply r/m64 by 2, imm8 times.
+  D0 /5              SHR r/m8,1         M1      Valid         Valid             Unsigned divide r/m8 by 2, once.
+  REX + D0 /5        SHR r/m8**, 1      M1      Valid         N.E.              Unsigned divide r/m8 by 2, once.
+  D2 /5              SHR r/m8, CL       MC      Valid         Valid             Unsigned divide r/m8 by 2, CL times.
+  REX + D2 /5        SHR r/m8**, CL     MC      Valid         N.E.              Unsigned divide r/m8 by 2, CL times.
+  C0 /5 ib           SHR r/m8, imm8     MI      Valid         Valid             Unsigned divide r/m8 by 2, imm8 times.
+  REX + C0 /5 ib     SHR r/m8**, imm8   MI      Valid         N.E.              Unsigned divide r/m8 by 2, imm8 times.
+  D1 /5              SHR r/m16, 1       M1      Valid         Valid             Unsigned divide r/m16 by 2, once.
+  D3 /5              SHR r/m16, CL      MC      Valid         Valid             Unsigned divide r/m16 by 2, CL times
+  C1 /5 ib           SHR r/m16, imm8    MI      Valid         Valid             Unsigned divide r/m16 by 2, imm8 times.
+  D1 /5              SHR r/m32, 1       M1      Valid         Valid             Unsigned divide r/m32 by 2, once.
+  REX.W + D1 /5      SHR r/m64, 1       M1      Valid         N.E.              Unsigned divide r/m64 by 2, once.
+  D3 /5              SHR r/m32, CL      MC      Valid         Valid             Unsigned divide r/m32 by 2, CL times.
+  REX.W + D3 /5      SHR r/m64, CL      MC      Valid         N.E.              Unsigned divide r/m64 by 2, CL times.
+  C1 /5 ib           SHR r/m32, imm8    MI      Valid         Valid             Unsigned divide r/m32 by 2, imm8 times.
+  REX.W + C1 /5 ib   SHR r/m64, imm8    MI      Valid         N.E.              Unsigned divide r/m64 by 2, imm8 times.
 
   * NotthesameformofdivisionasIDIV;roundingistowardnegativeinfinity.
 
@@ -78,7 +75,6 @@ SAL/SAR/SHL/SHR — SHIFT
   byte registers if a REX prefix is used: AH, BH, CH, DH.
 
   ***See IA-32 Architecture Compatibility section below.
-
 
 Instruction Operand Encoding ¶
 
@@ -88,7 +84,6 @@ Instruction Operand Encoding ¶
   MC      ModRM:r/m (r, w)   CL          NA          NA
   MI      ModRM:r/m (r, w)   imm8        NA          NA
   ------- ------------------ ----------- ----------- -----------
-
 
 Description ¶
 
@@ -110,8 +105,8 @@ instructions perform the same operation; they shift the bits in the
 destination operand to the left (toward more significant bit locations).
 For each shift count, the most significant bit of the destination
 operand is shifted into the CF flag, and the least significant bit is
-cleared (see Figure 7-7 in the _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 1_).
+cleared (see Figure 7-7 in the Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 1).
 
 The shift arithmetic right (SAR) and shift logical right (SHR)
 instructions shift the bits of the destination operand to the right
@@ -119,13 +114,13 @@ instructions shift the bits of the destination operand to the right
 significant bit of the destination operand is shifted into the CF flag,
 and the most significant bit is either set or cleared depending on the
 instruction type. The SHR instruction clears the most significant bit
-(see Figure 7-8 in the _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 1_); the SAR instruction sets or clears the
+(see Figure 7-8 in the Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 1); the SAR instruction sets or clears the
 most significant bit to correspond to the sign (most significant bit) of
 the original value in the destination operand. In effect, the SAR
 instruction fills the empty bit position’s shifted value with the sign
-of the unshifted value (see Figure 7-9 in the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 1_).
+of the unshifted value (see Figure 7-9 in the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 1).
 
 The SAR and SHR instructions can be used to perform signed or unsigned
 division, respectively, of the destination operand by powers of 2. For
@@ -156,7 +151,6 @@ the form of REX.W promotes operation to 64-bits and sets the mask width
 for CL to 6 bits. See the summary chart at the beginning of this section
 for encoding data and limits.
 
-
 IA-32 Architecture Compatibility ¶
 
 The 8086 does not mask the shift count. However, all other IA-32
@@ -164,7 +158,6 @@ processors (starting with the Intel 286 processor) do mask the shift
 count to 5 bits, resulting in a maximum count of 31. This masking is
 done in all operating modes (including the virtual-8086 mode) to reduce
 the maximum execution time of the instructions.
-
 
 Operation ¶
 
@@ -219,7 +212,6 @@ Operation ¶
         FI;
     FI;
 
-
 Flags Affected ¶
 
 The CF flag contains the value of the last bit shifted out of the
@@ -230,35 +222,17 @@ destination operand. The OF flag is affected only for 1-bit shifts (see
 flags are set according to the result. If the count is 0, the flags are
 not affected. For a non-zero count, the AF flag is undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -267,7 +241,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -279,11 +252,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

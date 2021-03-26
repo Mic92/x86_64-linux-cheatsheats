@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+VPBLENDD — Blend Packed Dwords
 
-
-VPBLENDD — BLEND PACKED DWORDS
-
-
-  Opcode/Instruction                                                   Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  -------------------------------------------------------------------- ------- ----------------- -------------------- -----------------------------------------------------------------------------------------------------------
-  VEX.128.66.0F3A.W0 02 /r ib VPBLENDD _xmm1, xmm2, xmm3/m128, imm8_   RVMI    V/V               AVX2                 Select dwords from _xmm2_ and _xmm3/m128_ from mask specified in _imm8_ and store the values into _xmm1_.
-  VEX.256.66.0F3A.W0 02 /r ib VPBLENDD _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V               AVX2                 Select dwords from _ymm2_ and _ymm3/m256_ from mask specified in _imm8_ and store the values into _ymm1_.
-
+  Opcode/Instruction                                                 Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  ------------------------------------------------------------------ ------- ----------------- -------------------- ---------------------------------------------------------------------------------------------------
+  VEX.128.66.0F3A.W0 02 /r ib VPBLENDD xmm1, xmm2, xmm3/m128, imm8   RVMI    V/V               AVX2                 Select dwords from xmm2 and xmm3/m128 from mask specified in imm8 and store the values into xmm1.
+  VEX.256.66.0F3A.W0 02 /r ib VPBLENDD ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V               AVX2                 Select dwords from ymm2 and ymm3/m256 from mask specified in imm8 and store the values into ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3       Operand 4
   RVMI    ModRM:reg (w)   VEX.vvvv    ModRM:r/m (r)   Imm8
   ------- --------------- ----------- --------------- -----------
-
 
 Description ¶
 
@@ -38,7 +33,6 @@ register are zeroed.
 VEX.256 encoded version: The first source operand is a YMM register. The
 second source operand is a YMM register or a 256-bit memory location.
 The destination operand is a YMM register.
-
 
 Operation ¶
 
@@ -73,18 +67,15 @@ VPBLENDD (VEX.128 encoded version) ¶
     ELSE DEST[127:96]←SRC1[127:96]
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPBLENDD: __m128i _mm_blend_epi32 (__m128i v1, __m128i v2, const int mask)
 
     VPBLENDD: __m256i _mm256_blend_epi32 (__m256i v1, __m256i v2, const int mask)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-HLT — HALT
-
+HLT — Halt
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- -------------
   F4       HLT           ZO      Valid         Valid             Halt
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -41,16 +36,13 @@ program or procedure must be 0 to execute the HLT instruction.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     Enter Halt state;
 
-
 Flags Affected ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -59,21 +51,17 @@ Protected Mode Exceptions ¶
   #UD      If the LOCK prefix is used.
   -------- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 None.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

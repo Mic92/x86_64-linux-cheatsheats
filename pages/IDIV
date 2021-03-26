@@ -1,22 +1,18 @@
 -   Index
 -   May 2019
 
+IDIV — Signed Divide
 
-
-IDIV — SIGNED DIVIDE
-
-
-  Opcode          Instruction    Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------------- -------------- ------- ------------- ----------------- ------------------------------------------------------------------------------------------
-  F6 /7           IDIV _r/m8_    M       Valid         Valid             Signed divide AX by _r/m_8, with result stored in: AL ← Quotient, AH ← Remainder.
-  REX + F6 /7     IDIV _r/m8*_   M       Valid         N.E.              Signed divide AX by _r/m_8, with result stored in AL ← Quotient, AH ← Remainder.
-  F7 /7           IDIV _r/m16_   M       Valid         Valid             Signed divide DX:AX by _r/m16_, with result stored in AX ← Quotient, DX ← Remainder.
-  F7 /7           IDIV _r/m32_   M       Valid         Valid             Signed divide EDX:EAX by _r/m32_, with result stored in EAX ← Quotient, EDX ← Remainder.
-  REX.W + F7 /7   IDIV _r/m64_   M       Valid         N.E.              Signed divide RDX:RAX by _r/m64_, with result stored in RAX ← Quotient, RDX ← Remainder.
+  Opcode          Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------- ------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------
+  F6 /7           IDIV r/m8     M       Valid         Valid             Signed divide AX by r/m8, with result stored in: AL ← Quotient, AH ← Remainder.
+  REX + F6 /7     IDIV r/m8*    M       Valid         N.E.              Signed divide AX by r/m8, with result stored in AL ← Quotient, AH ← Remainder.
+  F7 /7           IDIV r/m16    M       Valid         Valid             Signed divide DX:AX by r/m16, with result stored in AX ← Quotient, DX ← Remainder.
+  F7 /7           IDIV r/m32    M       Valid         Valid             Signed divide EDX:EAX by r/m32, with result stored in EAX ← Quotient, EDX ← Remainder.
+  REX.W + F7 /7   IDIV r/m64    M       Valid         N.E.              Signed divide RDX:RAX by r/m64, with result stored in RAX ← Quotient, RDX ← Remainder.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (r)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -53,7 +48,6 @@ and limits. See Table 3-51.
   Word/byte Doubleword/word Quadword/doubleword Doublequadword/ quadword   AX DX:AX EDX:EAX RDX:RAX   r/m8 r/m16 r/m32 r/m64   AL AX EAX RAX   AH DX EDX RDX   −128 to +127 −32,768 to +32,767 −2³¹ to 2³¹ − 1 −2⁶³ to 2⁶³ − 1
 
 Table 3-51. IDIV Results
-
 
 Operation ¶
 
@@ -109,133 +103,60 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 The CF, OF, SF, ZF, AF, and PF flags are undefined.
 
-
 Protected Mode Exceptions ¶
 
-#DE
-
-If the source operand (divisor) is 0.
-
-The signed result (quotient) is too large for the destination.
-
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #DE               If the source operand (divisor) is 0.
+                    The signed result (quotient) is too large for the destination.
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#DE
-
-If the source operand (divisor) is 0.
-
-The signed result (quotient) is too large for the destination.
-
-#GP
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS
-
-If a memory operand effective address is outside the SS segment limit.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----- -------------------------------------------------------------------------------------------
+  #DE   If the source operand (divisor) is 0.
+        The signed result (quotient) is too large for the destination.
+  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS   If a memory operand effective address is outside the SS segment limit.
+  #UD   If the LOCK prefix is used.
+  ----- -------------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#DE
-
-If the source operand (divisor) is 0.
-
-The signed result (quotient) is too large for the destination.
-
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- -------------------------------------------------------------------------------------------
+  #DE               If the source operand (divisor) is 0.
+                    The signed result (quotient) is too large for the destination.
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
+  #UD               If the LOCK prefix is used.
+  ----------------- -------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the memory address is in a non-canonical form.
-
-#DE
-
-If the source operand (divisor) is 0
-
-If the quotient is too large for the designated register.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the memory address is in a non-canonical form.
+  #DE               If the source operand (divisor) is 0
+                    If the quotient is too large for the designated register.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ANDNPS — BITWISE LOGICAL AND NOT OF PACKED SINGLE PRECISION FLOATING-POINT VALUES
-
+ANDNPS — Bitwise Logical AND NOT of Packed Single Precision Floating-Point Values
 
   Opcode/Instruction                                                   Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------- --------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ ANDNPS — BITWISE LOGICAL AND NOT OF PACKED SINGLE PRECISION FLOATING-POINT VAL
   EVEX.256.0F.W0 55 /r VANDNPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C         V/V                      AVX512VL AVX512DQ    Return the bitwise logical AND of packed single-precision floating-point values in ymm2 and ymm3/m256/m32bcst subject to writemask k1.
   EVEX.512.0F.W0 55 /r VANDNPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C         V/V                      AVX512DQ             Return the bitwise logical AND of packed single-precision floating-point values in zmm2 and zmm3/m512/m32bcst subject to writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -53,7 +48,6 @@ of the corresponding ZMM register destination are zeroed.
 an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
-
 
 Operation ¶
 
@@ -107,7 +101,6 @@ ANDNPS (128-bit Legacy SSE version) ¶
     DEST[127:96]←(NOT(DEST[127:96])) BITWISE AND SRC[127:96]
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VANDNPS __m512 _mm512_andnot_ps (__m512 a, __m512 b);
@@ -128,11 +121,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ANDNPS __m128 _mm_andnot_ps (__m128 a, __m128 b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

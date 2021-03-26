@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-V4FMADDPS/V4FNMADDPS — PACKED SINGLE-PRECISION FLOATING-POINT FUSED MULTIPLY-ADD (4-ITERATIONS)
-
+V4FMADDPS/V4FNMADDPS — Packed Single-Precision Floating-Point Fused Multiply-Add (4-iterations)
 
   Opcode/Instruction                                               Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.512.F2.0F38.W0 9A /r V4FMADDPS zmm1{k1}{z}, zmm2+3, m128    A       V/V                      AVX512_4FMAPS        Multiply packed single-precision floating-point values from source register block indicated by zmm2 by values from m128 and accumulate the result in zmm1.
   EVEX.512.F2.0F38.W0 AA /r V4FNMADDPS zmm1{k1}{z}, zmm2+3, m128   A       V/V                      AVX512_4FMAPS        Multiply and negate packed single-precision floating-point values from source register block indicated by zmm2 by values from m128 and accumulate the result in zmm1.
-
 
 Instruction Operand Encoding ¶
 

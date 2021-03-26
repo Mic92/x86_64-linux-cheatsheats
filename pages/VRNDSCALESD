@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRNDSCALESD — ROUND SCALAR FLOAT64 VALUE TO INCLUDE A GIVEN NUMBER OF FRACTION BITS
-
+VRNDSCALESD — Round Scalar Float64 Value To Include A Given Number Of Fraction Bits
 
   Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W1 0B /r ib VRNDSCALESD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512F              Rounds scalar double-precision floating-point value in xmm3/m64 to a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register.
-
 
 Instruction Operand Encoding ¶
 

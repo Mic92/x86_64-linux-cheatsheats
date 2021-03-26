@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
+VPERM2I128 — Permute Integer Values
 
-
-VPERM2I128 — PERMUTE INTEGER VALUES
-
-
-  Opcode/Instruction                                                     Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
-  ---------------------------------------------------------------------- ------- ----------------- -------------------- --------------------------------------------------------------------------------------------------------------
-  VEX.256.66.0F3A.W0 46 /r ib VPERM2I128 _ymm1, ymm2, ymm3/m256, imm8_   RVMI    V/V               AVX2                 Permute 128-bit integer data in _ymm2_ and _ymm3/mem_ using controls from _imm8_ and store result in _ymm1_.
-
+  Opcode/Instruction                                                   Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
+  -------------------------------------------------------------------- ------- ----------------- -------------------- ------------------------------------------------------------------------------------------------------
+  VEX.256.66.0F3A.W0 46 /r ib VPERM2I128 ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V               AVX2                 Permute 128-bit integer data in ymm2 and ymm3/mem using controls from imm8 and store result in ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2   Operand 3       Operand 4
   RVMI    ModRM:reg (w)   VEX.vvvv    ModRM:r/m (r)   Imm8
   ------- --------------- ----------- --------------- -----------
-
 
 Description ¶
 
@@ -28,7 +23,7 @@ operand). The first source operand is a YMM register, the second source
 operand is a YMM register or a 256-bit memory location, and the
 destination operand is a YMM register.
 
-Y1 Y0 SRC2 X1 X0 SRC1 X0, X1, Y0, or Y1 DEST X0, X1, Y0, or Y1
+[]
 
 Figure 5-22. VPERM2I128 Operation
 
@@ -38,7 +33,6 @@ is set, the low 128-bit field is zeroed. If imm8[7] is set, the high
 128-bit field is zeroed.
 
 VEX.L must be 1, otherwise the instruction will #UD.
-
 
 Operation ¶
 
@@ -63,26 +57,22 @@ VPERM2I128 ¶
     DEST[255:128] ← 0
     FI
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)
-
 
 SIMD Floating-Point Exceptions ¶
 
 None
 
-
 Other Exceptions ¶
 
 See Exceptions Type 6; additionally
 
-#UD
-
-If VEX.L = 0,
-
-If VEX.W = 1.
+  ----- ---------------
+  #UD   If VEX.L = 0,
+        If VEX.W = 1.
+  ----- ---------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

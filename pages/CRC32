@@ -1,23 +1,19 @@
 -   Index
 -   May 2019
 
+CRC32 — Accumulate CRC32 Value
 
-
-CRC32 — ACCUMULATE CRC32 VALUE
-
-
-  Opcode/Instruction                          Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ------------------------------------------- ------- ------------- ----------------- ------------------------------
-  F2 0F 38 F0 _/r_ CRC32 _r32, r/m8_          RM      Valid         Valid             Accumulate CRC32 on _r/m8_.
-  F2 REX 0F 38 F0 _/r_ CRC32 _r32, r/m8*_     RM      Valid         N.E.              Accumulate CRC32 on _r/m8._
-  F2 0F 38 F1 _/r_ CRC32 _r32, r/m16_         RM      Valid         Valid             Accumulate CRC32 on _r/m16_.
-  F2 0F 38 F1 _/r_ CRC32 _r32, r/m32_         RM      Valid         Valid             Accumulate CRC32 on _r/m32._
-  F2 REX.W 0F 38 F0 _/r_ CRC32 _r64, r/m8_    RM      Valid         N.E.              Accumulate CRC32 on _r/m8._
-  F2 REX.W 0F 38 F1 _/r_ CRC32 _r64, r/m64_   RM      Valid         N.E.              Accumulate CRC32 on _r/m64._
+  Opcode/Instruction                      Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------------------------------- ------- ------------- ----------------- ----------------------------
+  F2 0F 38 F0 /r CRC32 r32, r/m8          RM      Valid         Valid             Accumulate CRC32 on r/m8.
+  F2 REX 0F 38 F0 /r CRC32 r32, r/m8*     RM      Valid         N.E.              Accumulate CRC32 on r/m8.
+  F2 0F 38 F1 /r CRC32 r32, r/m16         RM      Valid         Valid             Accumulate CRC32 on r/m16.
+  F2 0F 38 F1 /r CRC32 r32, r/m32         RM      Valid         Valid             Accumulate CRC32 on r/m32.
+  F2 REX.W 0F 38 F0 /r CRC32 r64, r/m8    RM      Valid         N.E.              Accumulate CRC32 on r/m8.
+  F2 REX.W 0F 38 F1 /r CRC32 r64, r/m64   RM      Valid         N.E.              Accumulate CRC32 on r/m64.
 
   *In 64-bit mode, r/m8 can not be encoded to access the following byte
   registers if a REX prefix is used: AH, BH, CH, DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -25,7 +21,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1          Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA          NA
   ------- ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -51,7 +46,6 @@ of the CRC operation is stored in the destination operand in reflected
 bit order. This means that the most significant bit of the resulting CRC
 (bit 31) is stored in the least significant bit of the destination
 operand (bit 0), and so on, for all the bits of the CRC.
-
 
 Operation ¶
 
@@ -108,11 +102,9 @@ Operation ¶
         TEMP6[31-0]←TEMP5[39-0] MOD2 11EDC6F41H
         DEST[31-0]←BIT_REFLECT (TEMP6[31-0])
 
-
 Flags Affected ¶
 
 None
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -124,114 +116,55 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     unsinged __int64 _mm_crc32_u64( unsinged __int64 crc, unsigned __int64 data )
 
-
 SIMD Floating Point Exceptions ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS or
-GS segments.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF
-
-(fault-code) For a page fault.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
-
-If LOCK prefix is used.
-
+  -------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)   If a memory operand effective address is outside the CS, DS, ES, FS or GS segments.
+  #SS(0)   If a memory operand effective address is outside the SS segment limit.
+  #PF      (fault-code) For a page fault.
+  #AC(0)   If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD      If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
+           If LOCK prefix is used.
+  -------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP(0)
-
-If any part of the operand lies outside of the effective address space
-from 0 to 0FFFFH.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#UD
-
-If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
-
-If LOCK prefix is used.
-
+  -------- ------------------------------------------------------------------------------------------
+  #GP(0)   If any part of the operand lies outside of the effective address space from 0 to 0FFFFH.
+  #SS(0)   If a memory operand effective address is outside the SS segment limit.
+  #UD      If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
+           If LOCK prefix is used.
+  -------- ------------------------------------------------------------------------------------------
 
 Virtual 8086 Mode Exceptions ¶
 
-#GP(0)
-
-If any part of the operand lies outside of the effective address space
-from 0 to 0FFFFH.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF
-
-(fault-code) For a page fault.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made.
-
-#UD
-
-If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
-
-If LOCK prefix is used.
-
+  -------- ------------------------------------------------------------------------------------------
+  #GP(0)   If any part of the operand lies outside of the effective address space from 0 to 0FFFFH.
+  #SS(0)   If a memory operand effective address is outside the SS segment limit.
+  #PF      (fault-code) For a page fault.
+  #AC(0)   If alignment checking is enabled and an unaligned memory reference is made.
+  #UD      If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
+           If LOCK prefix is used.
+  -------- ------------------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in Protected Mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If the memory address is in a non-canonical form.
-
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#PF
-
-(fault-code) For a page fault.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
-
-If LOCK prefix is used.
+  -------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)   If the memory address is in a non-canonical form.
+  #SS(0)   If a memory address referencing the SS segment is in a non-canonical form.
+  #PF      (fault-code) For a page fault.
+  #AC(0)   If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD      If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
+           If LOCK prefix is used.
+  -------- --------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

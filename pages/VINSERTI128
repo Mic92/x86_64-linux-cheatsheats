@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VINSERTI128/VINSERTI32X4/VINSERTI64X2/VINSERTI32X8/VINSERTI64X4 — INSERT PACKED INTEGER VALUES
-
+VINSERTI128/VINSERTI32x4/VINSERTI64x2/VINSERTI32x8/VINSERTI64x4 — Insert Packed Integer Values
 
   Opcode/Instruction                                                              Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ VINSERTI128/VINSERTI32X4/VINSERTI64X2/VINSERTI32X8/VINSERTI64X4 — INSERT PACKE
   EVEX.512.66.0F3A.W1 38 /r ib VINSERTI64X2 zmm1 {k1}{z}, zmm2, xmm3/m128, imm8   B         V/V                      AVX512DQ             Insert 128 bits of packed quadword integer values from xmm3/m128 and the remaining values from zmm2 into zmm1 under writemask k1.
   EVEX.512.66.0F3A.W0 3A /r ib VINSERTI32X8 zmm1 {k1}{z}, zmm2, ymm3/m256, imm8   D         V/V                      AVX512DQ             Insert 256 bits of packed doubleword integer values from ymm3/m256 and the remaining values from zmm2 into zmm1 under writemask k1.
   EVEX.512.66.0F3A.W1 3A /r ib VINSERTI64X4 zmm1 {k1}{z}, zmm2, ymm3/m256, imm8   C         V/V                      AVX512F              Insert 256 bits of packed quadword integer values from ymm3/m256 and the remaining values from zmm2 into zmm1 under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

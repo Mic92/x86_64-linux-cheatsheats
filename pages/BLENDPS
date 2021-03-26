@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-BLENDPS — BLEND PACKED SINGLE PRECISION FLOATING-POINT VALUES
-
+BLENDPS — Blend Packed Single Precision Floating-Point Values
 
   Opcode/Instruction                                                  Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ------------------------------------------------------------------- ------- ---------------- -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 0C /r ib BLENDPS xmm1, xmm2/m128, imm8                     RMI     V/V              SSE4_1               Select packed single precision floating-point values from _xmm1_ and _xmm2/m128_ from mask specified in _imm8_ and store the values into _xmm1._
+  ------------------------------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 0C /r ib BLENDPS xmm1, xmm2/m128, imm8                     RMI     V/V              SSE4_1               Select packed single precision floating-point values from xmm1 and xmm2/m128 from mask specified in imm8 and store the values into xmm1.
   VEX.128.66.0F3A.WIG 0C /r ib VBLENDPS xmm1, xmm2, xmm3/m128, imm8   RVMI    V/V              AVX                  Select packed single-precision floating-point values from xmm2 and xmm3/m128 from mask in imm8 and store the values in xmm1.
   VEX.256.66.0F3A.WIG 0C /r ib VBLENDPS ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V              AVX                  Select packed single-precision floating-point values from ymm2 and ymm3/m256 from mask in imm8 and store the values in ymm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RMI     ModRM:reg (r, w)   ModRM:r/m (r)   imm8            NA
   RVMI    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -47,7 +42,6 @@ the corresponding YMM register destination are zeroed.
 VEX.256 encoded version: The first source operand is a YMM register. The
 second source operand can be a YMM register or a 256-bit memory
 location. The destination operand is a YMM register.
-
 
 Operation ¶
 
@@ -94,18 +88,15 @@ VBLENDPS (VEX.256 encoded version) ¶
     IF (IMM8[7] = 0) THEN DEST[255:224]←SRC1[255:224]
         ELSE DEST [255:224]←SRC2[255:224] FI.
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BLENDPS: __m128 _mm_blend_ps (__m128 v1, __m128 v2, const int mask);
 
     VBLENDPS: __m256 _mm256_blend_ps (__m256 a, __m256 b, const int mask);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

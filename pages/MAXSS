@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-MAXSS — RETURN MAXIMUM SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
-
+MAXSS — Return Maximum Scalar Single-Precision Floating-Point Value
 
   Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------ ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
   F3 0F 5F /r MAXSS xmm1, xmm2/m32                                   A       V/V                      SSE                  Return the maximum scalar single-precision floating-point value between xmm2/m32 and xmm1.
   VEX.LIG.F3.0F.WIG 5F /r VMAXSS xmm1, xmm2, xmm3/m32                B       V/V                      AVX                  Return the maximum scalar single-precision floating-point value between xmm3/m32 and xmm2.
   EVEX.LIG.F3.0F.W0 5F /r VMAXSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   C       V/V                      AVX512F              Return the maximum scalar single-precision floating-point value between xmm3/m32 and xmm2.
-
 
 Instruction Operand Encoding ¶
 

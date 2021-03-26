@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+ENTER — Make Stack Frame for Procedure Parameters
 
-
-ENTER — MAKE STACK FRAME FOR PROCEDURE PARAMETERS
-
-
-  Opcode       Instruction           Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ------------ --------------------- ------- ------------- ----------------- -------------------------------------------------------------
-  C8 _iw_ 00   ENTER _imm16_, 0      II      Valid         Valid             Create a stack frame for a procedure.
-  C8 _iw_ 01   ENTER _imm16_,1       II      Valid         Valid             Create a stack frame with a nested pointer for a procedure.
-  C8 _iw_ ib   ENTER _imm16, imm8_   II      Valid         Valid             Create a stack frame with nested pointers for a procedure.
-
+  Opcode     Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ---------- ------------------- ------- ------------- ----------------- -------------------------------------------------------------
+  C8 iw 00   ENTER imm16, 0      II      Valid         Valid             Create a stack frame for a procedure.
+  C8 iw 01   ENTER imm16,1       II      Valid         Valid             Create a stack frame with a nested pointer for a procedure.
+  C8 iw ib   ENTER imm16, imm8   II      Valid         Valid             Create a stack frame with nested pointers for a procedure.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   II      iw          imm8        NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -54,8 +49,8 @@ in the size operand. For nesting levels of 1 or greater, the processor
 pushes additional frame pointers on the stack before adjusting the stack
 pointer. These additional frame pointers provide the called procedure
 with access points to other nested frames on the stack. See “Procedure
-Calls for Block-Structured Languages” in Chapter 6 of the _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 1_, for more
+Calls for Block-Structured Languages” in Chapter 6 of the Intel® 64 and
+IA-32 Architectures Software Developer’s Manual, Volume 1, for more
 information about the actions of the ENTER instruction.
 
 The ENTER instruction causes a page fault whenever a write using the
@@ -75,7 +70,6 @@ less than the StackAddrSize, software is responsible for the following:
     (RSP/ESP), such that the value of RBP/EBP after “66H ENTER” remains
     a valid address in the stack. This ensures “66H LEAVE” can restore
     16-bits of data from the stack.
-
 
 Operation ¶
 
@@ -149,11 +143,9 @@ Operation ¶
     FI;
     END;
 
-
 Flags Affected ¶
 
 None.
-
 
 Protected Mode Exceptions ¶
 
@@ -163,14 +155,12 @@ Protected Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- ----------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- --------------------------------------------------------------------------------
   #SS   If the new value of the SP or ESP register is outside the stack segment limit.
   #UD   If the LOCK prefix is used.
   ----- --------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -180,11 +170,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- ----------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

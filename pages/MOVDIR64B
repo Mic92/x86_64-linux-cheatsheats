@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-MOVDIR64B — MOVE 64 BYTES AS DIRECT STORE
-
+MOVDIR64B — Move 64 Bytes as Direct Store
 
   Opcode/Instruction                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   66 0F 38 F8 /r MOVDIR64B r16/r32/r64, m512   A       V/V                      MOVDIR64B            Move 64-bytes as direct-store with guaranteed 64-byte write atomicity from the source memory operand address to destination memory address specified as offset to ES segment in the register operand.
-
 
 Instruction Operand Encoding¹ ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding¹ ¶
   Op/En   Tuple   Operand 1       Operand 2       Operand 3   Operand 4
   ------- ------- --------------- --------------- ----------- -----------
   A       NA      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
-
 
 Description ¶
 
@@ -66,9 +61,8 @@ transaction.
 
 Availability of the MOVDIR64B instruction is indicated by the presence
 of the CPUID feature flag MOVDIR64B (bit 28 of the ECX register in leaf
-07H, see “CPUID—CPU Identification” in the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 2A_).
-
+07H, see “CPUID—CPU Identification” in the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 2A).
 
 Operation ¶
 
@@ -78,48 +72,25 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     MOVDIR64B void _movdir64b(void *dst, const void* src)
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-For an illegal memory operand effective address in the CS, DS, ES, FS or
-GS segments.
-
-If address in destination (register) operand is not aligned to a 64-byte
-boundary.
-
-#SS(0)
-
-For an illegal address in the SS segment.
-
-#PF
-
-(fault-code) For a page fault.
-
-#UD
-
-If CPUID.07H.0H:ECX.MOVDIR64B[bit 28] = 0.
-
-If LOCK prefix is used.
-
+  -------- ---------------------------------------------------------------------------------------
+  #GP(0)   For an illegal memory operand effective address in the CS, DS, ES, FS or GS segments.
+           If address in destination (register) operand is not aligned to a 64-byte boundary.
+  #SS(0)   For an illegal address in the SS segment.
+  #PF      (fault-code) For a page fault.
+  #UD      If CPUID.07H.0H:ECX.MOVDIR64B[bit 28] = 0.
+           If LOCK prefix is used.
+  -------- ---------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP
-
-If any part of the operand lies outside the effective address space from
-0 to FFFFH.
-
-If address in destination (register) operand is not aligned to a 64-byte
-boundary.
-
-#UD
-
-If CPUID.07H.0H:ECX.MOVDIR64B[bit 28] = 0.
-
-If LOCK prefix is used.
-
+  ----- --------------------------------------------------------------------------------------
+  #GP   If any part of the operand lies outside the effective address space from 0 to FFFFH.
+        If address in destination (register) operand is not aligned to a 64-byte boundary.
+  #UD   If CPUID.07H.0H:ECX.MOVDIR64B[bit 28] = 0.
+        If LOCK prefix is used.
+  ----- --------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -129,34 +100,20 @@ Same exceptions as in real address mode.
   #PF   (fault-code) For a page fault.
   ----- --------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#SS(0)
-
-If memory address referencing the SS segment is in non-canonical form.
-
-#GP(0)
-
-If the memory address is in non-canonical form.
-
-If address in destination (register) operand is not aligned to a 64-byte
-boundary.
-
-#PF
-
-(fault-code) For a page fault.
-
-#UD
-
-If CPUID.07H.0H:ECX.MOVDIR64B[bit 28] = 0.
-
-If LOCK prefix is used.
+  -------- ------------------------------------------------------------------------------------
+  #SS(0)   If memory address referencing the SS segment is in non-canonical form.
+  #GP(0)   If the memory address is in non-canonical form.
+           If address in destination (register) operand is not aligned to a 64-byte boundary.
+  #PF      (fault-code) For a page fault.
+  #UD      If CPUID.07H.0H:ECX.MOVDIR64B[bit 28] = 0.
+           If LOCK prefix is used.
+  -------- ------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

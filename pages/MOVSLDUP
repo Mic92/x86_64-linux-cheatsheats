@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVSLDUP — REPLICATE SINGLE FP VALUES
-
+MOVSLDUP — Replicate Single FP Values
 
   Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVSLDUP — REPLICATE SINGLE FP VALUES
   EVEX.128.F3.0F.W0 12 /r VMOVSLDUP xmm1 {k1}{z}, xmm2/m128   B       V/V                      AVX512VL AVX512F     Move even index single-precision floating-point values from xmm2/m128 and duplicate each element into xmm1 under writemask.
   EVEX.256.F3.0F.W0 12 /r VMOVSLDUP ymm1 {k1}{z}, ymm2/m256   B       V/V                      AVX512VL AVX512F     Move even index single-precision floating-point values from ymm2/m256 and duplicate each element into ymm1 under writemask.
   EVEX.512.F3.0F.W0 12 /r VMOVSLDUP zmm1 {k1}{z}, zmm2/m512   B       V/V                      AVX512F              Move even index single-precision floating-point values from zmm2/m512 and duplicate each element into zmm1 under writemask.
-
 
 Instruction Operand Encoding ¶
 
@@ -46,7 +42,7 @@ granularity according to the writemask.
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise
 instructions will #UD.
 
-X7 X6 X5 X4 X3 X2 X1 X0 SRC X6 X6 X4 X4 X2 X2 X0 X0 DEST
+[]
 
 Figure 4-4. MOVSLDUP Operation
 

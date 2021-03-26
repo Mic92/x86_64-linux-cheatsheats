@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VCVTUQQ2PD — CONVERT PACKED UNSIGNED QUADWORD INTEGERS TO PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+VCVTUQQ2PD — Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------ ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.F3.0F.W1 7A /r VCVTUQQ2PD xmm1 {k1}{z}, xmm2/m128/m64bcst       A       V/V                      AVX512VL AVX512DQ    Convert two packed unsigned quadword integers from xmm2/m128/m64bcst to two packed double-precision floating-point values in xmm1 with writemask k1.
   EVEX.256.F3.0F.W1 7A /r VCVTUQQ2PD ymm1 {k1}{z}, ymm2/m256/m64bcst       A       V/V                      AVX512VL AVX512DQ    Convert four packed unsigned quadword integers from ymm2/m256/m64bcst to packed double-precision floating-point values in ymm1 with writemask k1.
   EVEX.512.F3.0F.W1 7A /r VCVTUQQ2PD zmm1 {k1}{z}, zmm2/m512/m64bcst{er}   A       V/V                      AVX512DQ             Convert eight packed unsigned quadword integers from zmm2/m512/m64bcst to eight packed double-precision floating-point values in zmm1 with writemask k1.
-
 
 Instruction Operand Encoding ¶
 

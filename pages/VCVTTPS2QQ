@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VCVTTPS2QQ — CONVERT WITH TRUNCATION PACKED SINGLE PRECISION FLOATING-POINT VALUES TO PACKED SINGED QUADWORD INTEGER VALUES
-
+VCVTTPS2QQ — Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F.W0 7A /r VCVTTPS2QQ xmm1 {k1}{z}, xmm2/m64/m32bcst         A       V/V                      AVX512VL AVX512DQ    Convert two packed single precision floating-point values from xmm2/m64/m32bcst to two packed signed quadword values in xmm1 using truncation subject to writemask k1.
   EVEX.256.66.0F.W0 7A /r VCVTTPS2QQ ymm1 {k1}{z}, xmm2/m128/m32bcst        A       V/V                      AVX512VL AVX512DQ    Convert four packed single precision floating-point values from xmm2/m128/m32bcst to four packed signed quadword values in ymm1 using truncation subject to writemask k1.
   EVEX.512.66.0F.W0 7A /r VCVTTPS2QQ zmm1 {k1}{z}, ymm2/m256/m32bcst{sae}   A       V/V                      AVX512DQ             Convert eight packed single precision floating-point values from ymm2/m256/m32bcst to eight packed signed quadword values in zmm1 using truncation subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

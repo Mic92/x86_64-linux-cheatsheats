@@ -1,22 +1,18 @@
 -   Index
 -   May 2019
 
+VMASKMOV — Conditional SIMD Packed Loads and Stores
 
-
-VMASKMOV — CONDITIONAL SIMD PACKED LOADS AND STORES
-
-
-  Opcode/Instruction                                       Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  -------------------------------------------------------- ------- ---------------- -------------------- ---------------------------------------------------------------------------------------------------------
-  VEX.128.66.0F38.W0 2C /r VMASKMOVPS _xmm1, xmm2, m128_   RVM     V/V              AVX                  Conditionally load packed single-precision values from _m128_ using mask in _xmm2_ and store in _xmm1_.
-  VEX.256.66.0F38.W0 2C /r VMASKMOVPS _ymm1, ymm2, m256_   RVM     V/V              AVX                  Conditionally load packed single-precision values from _m256_ using mask in _ymm2_ and store in _ymm1_.
-  VEX.128.66.0F38.W0 2D /r VMASKMOVPD _xmm1, xmm2, m128_   RVM     V/V              AVX                  Conditionally load packed double-precision values from _m128_ using mask in _xmm2_ and store in _xmm1_.
-  VEX.256.66.0F38.W0 2D /r VMASKMOVPD _ymm1, ymm2, m256_   RVM     V/V              AVX                  Conditionally load packed double-precision values from _m256_ using mask in _ymm2_ and store in _ymm1_.
-  VEX.128.66.0F38.W0 2E /r VMASKMOVPS _m128, xmm1, xmm2_   MVR     V/V              AVX                  Conditionally store packed single-precision values from _xmm2_ using mask in _xmm1_.
-  VEX.256.66.0F38.W0 2E /r VMASKMOVPS _m256, ymm1, ymm2_   MVR     V/V              AVX                  Conditionally store packed single-precision values from _ymm2_ using mask in _ymm1_.
-  VEX.128.66.0F38.W0 2F /r VMASKMOVPD _m128, xmm1, xmm2_   MVR     V/V              AVX                  Conditionally store packed double-precision values from _xmm2_ using mask in _xmm1_.
-  VEX.256.66.0F38.W0 2F /r VMASKMOVPD _m256, ymm1, ymm2_   MVR     V/V              AVX                  Conditionally store packed double-precision values from _ymm2_ using mask in _ymm1_.
-
+  Opcode/Instruction                                     Op/En   64/32-bit Mode   CPUID Feature Flag   Description
+  ------------------------------------------------------ ------- ---------------- -------------------- ---------------------------------------------------------------------------------------------------
+  VEX.128.66.0F38.W0 2C /r VMASKMOVPS xmm1, xmm2, m128   RVM     V/V              AVX                  Conditionally load packed single-precision values from m128 using mask in xmm2 and store in xmm1.
+  VEX.256.66.0F38.W0 2C /r VMASKMOVPS ymm1, ymm2, m256   RVM     V/V              AVX                  Conditionally load packed single-precision values from m256 using mask in ymm2 and store in ymm1.
+  VEX.128.66.0F38.W0 2D /r VMASKMOVPD xmm1, xmm2, m128   RVM     V/V              AVX                  Conditionally load packed double-precision values from m128 using mask in xmm2 and store in xmm1.
+  VEX.256.66.0F38.W0 2D /r VMASKMOVPD ymm1, ymm2, m256   RVM     V/V              AVX                  Conditionally load packed double-precision values from m256 using mask in ymm2 and store in ymm1.
+  VEX.128.66.0F38.W0 2E /r VMASKMOVPS m128, xmm1, xmm2   MVR     V/V              AVX                  Conditionally store packed single-precision values from xmm2 using mask in xmm1.
+  VEX.256.66.0F38.W0 2E /r VMASKMOVPS m256, ymm1, ymm2   MVR     V/V              AVX                  Conditionally store packed single-precision values from ymm2 using mask in ymm1.
+  VEX.128.66.0F38.W0 2F /r VMASKMOVPD m128, xmm1, xmm2   MVR     V/V              AVX                  Conditionally store packed double-precision values from xmm2 using mask in xmm1.
+  VEX.256.66.0F38.W0 2F /r VMASKMOVPD m256, ymm1, ymm2   MVR     V/V              AVX                  Conditionally store packed double-precision values from ymm2 using mask in ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -25,7 +21,6 @@ Instruction Operand Encoding ¶
   RVM     ModRM:reg (w)   VEX.vvvv (r)   ModRM:r/m (r)   NA
   MVR     ModRM:r/m (w)   VEX.vvvv (r)   ModRM:reg (r)   NA
   ------- --------------- -------------- --------------- -----------
-
 
 Description ¶
 
@@ -73,7 +68,6 @@ register is encoded in reg_field.
 Note: for store forms, the first source (the mask) is encoded in
 VEX.vvvv; the second source register is encoded in reg_field, and the
 destination memory location is encoded in rm_field.
-
 
 Operation ¶
 
@@ -139,7 +133,6 @@ VMASKMOVPD - 256-bit store ¶
     IF (SRC1[191]) DEST[191:128]←SRC2[191:128]
     IF (SRC1[255]) DEST[255:192]←SRC2[255:192]
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     __m256 _mm256_maskload_ps(float const *a, __m256i mask)
@@ -158,11 +151,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     void _mm_maskstore_pd(double *a, __m128i mask, __m128d b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

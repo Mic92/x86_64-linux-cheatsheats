@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VSCALEFPD — SCALE PACKED FLOAT64 VALUES WITH FLOAT64 VALUES
-
+VSCALEFPD — Scale Packed Float64 Values With Float64 Values
 
   Opcode/Instruction                                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W1 2C /r VSCALEFPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       A       V/V                      AVX512VL AVX512F     Scale the packed double-precision floating-point values in xmm2 using values from xmm3/m128/m64bcst. Under writemask k1.
   EVEX.256.66.0F38.W1 2C /r VSCALEFPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       A       V/V                      AVX512VL AVX512F     Scale the packed double-precision floating-point values in ymm2 using values from ymm3/m256/m64bcst. Under writemask k1.
   EVEX.512.66.0F38.W1 2C /r VSCALEFPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   A       V/V                      AVX512F              Scale the packed double-precision floating-point values in zmm2 using values from zmm3/m512/m64bcst. Under writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -49,79 +45,14 @@ writemask k1.
 Handling of special-case input values are listed in Table 5-30 and Table
 5-31.
 
-Src2
-
-Set IE
-
-±NaN
-
-+Inf
-
--Inf
-
-0/Denorm/Norm
-
-SRC1
-
-±QNaN
-
-QNaN(Src1)
-
-+INF
-
-+0
-
-QNaN(Src1)
-
-IF either source is SNAN
-
-±SNaN
-
-QNaN(Src1)
-
-QNaN(Src1)
-
-QNaN(Src1)
-
-QNaN(Src1)
-
-YES
-
-±Inf
-
-QNaN(Src2)
-
-Src1
-
-QNaN_Indefinite
-
-Src1
-
-IF Src2 is SNAN or -INF
-
-±0
-
-QNaN(Src2)
-
-QNaN_Indefinite
-
-Src1
-
-Src1
-
-IF Src2 is SNAN or +INF
-
-Denorm/Norm
-
-QNaN(Src2)
-
-±INF (Src1 sign)
-
-±0 (Src1 sign)
-
-Compute Result
-
-IF Src2 is SNAN
+                       Src2                                                               Set IE
+  ------ ------------- ------------ ------------------ ----------------- ---------------- --------------------------
+                       ±NaN         +Inf               -Inf              0/Denorm/Norm    
+  Src1   ±QNaN         QNaN(Src1)   +INF               +0                QNaN(Src1)       IF either source is SNAN
+         ±SNaN         QNaN(Src1)   QNaN(Src1)         QNaN(Src1)        QNaN(Src1)       YES
+         ±Inf          QNaN(Src2)   Src1               QNaN_Indefinite   Src1             IF Src2 is SNAN or -INF
+         ±0            QNaN(Src2)   QNaN_Indefinite    Src1              Src1             IF Src2 is SNAN or +INF
+         Denorm/Norm   QNaN(Src2)   ±INF (Src1 sign)   ±0 (Src1 sign)    Compute Result   IF Src2 is SNAN
 
 Table 5-30. \VSCALEFPD/SD/PS/SS Special Cases
 

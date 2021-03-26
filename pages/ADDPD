@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ADDPD — ADD PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+ADDPD — Add Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                         Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ ADDPD — ADD PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.256.66.0F.W1 58 /r VADDPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       C         V/V                      AVX512VL AVX512F     Add packed double-precision floating-point values from ymm3/m256/m64bcst to ymm2 and store result in ymm1 with writemask k1.
   EVEX.512.66.0F.W1 58 /r VADDPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   C         V/V                      AVX512F              Add packed double-precision floating-point values from zmm3/m512/m64bcst to zmm2 and store result in zmm1 with writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -53,7 +48,6 @@ the corresponding ZMM register destination are zeroed.
 an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper Bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
-
 
 Operation ¶
 
@@ -124,7 +118,6 @@ ADDPD (128-bit Legacy SSE version) ¶
     DEST[127:64]←DEST[127:64] + SRC[127:64]
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VADDPD __m512d _mm512_add_pd (__m512d a, __m512d b);
@@ -151,11 +144,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ADDPD __m128d _mm_add_pd (__m128d a, __m128d b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Precision, Denormal
-
 
 Other Exceptions ¶
 

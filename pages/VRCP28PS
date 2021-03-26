@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRCP28PS — APPROXIMATION TO THE RECIPROCAL OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES WITH LESS THAN 2^-28 RELATIVE ERROR
-
+VRCP28PS — Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.512.66.0F38.W0 CA /r VRCP28PS zmm1 {k1}{z}, zmm2/m512/m32bcst {sae}   A       V/V                      AVX512ER             Computes the approximate reciprocals ( < 2^-28 relative error) of the packed single-precision floating-point values in zmm2/m512/m32bcst and stores the results in zmm1. Under writemask.
-
 
 Instruction Operand Encoding ¶
 
@@ -68,17 +64,17 @@ VRCP28PS (EVEX encoded versions) ¶
         FI;
     ENDFOR;
 
-  Input value            Result value   Comments
-  ---------------------- -------------- --------------------------------------------------
-  NAN                    QNAN(input)    If (SRC = SNaN) then #I
-  _(0\ ≤\ X\ <\ 2)⁻¹²⁶   INF            Positive input denormal or zero; #Z
-  -2⁻¹²⁶ < X ≤ -0        -INF           Negative input denormal or zero; #Z
-  X > 2¹²⁶               +0.0f          
-  X < -2¹²⁶              -0.0f          
-  X = +∞                 +0.0f          
-  X = -∞                 -0.0f          
-  _(X\ =\ 2)-n           ₂^(n)          Exact result (unless input/output is a denormal)
-  X = -2^(-n)            -2^(n)         Exact result (unless input/output is a denormal)
+  Input value        Result value   Comments
+  ------------------ -------------- --------------------------------------------------
+  NAN                QNAN(input)    If (SRC = SNaN) then #I
+  _(0 ≤ X < 2)⁻¹²⁶   INF            Positive input denormal or zero; #Z
+  -2⁻¹²⁶ < X ≤ -0    -INF           Negative input denormal or zero; #Z
+  X > 2¹²⁶           +0.0f          
+  X < -2¹²⁶          -0.0f          
+  X = +∞             +0.0f          
+  X = -∞             -0.0f          
+  _(X = 2)-n         ₂^(n)          Exact result (unless input/output is a denormal)
+  X = -2^(-n)        -2^(n)         Exact result (unless input/output is a denormal)
 
 Table 6-37. VRCP28PS Special Cases
 

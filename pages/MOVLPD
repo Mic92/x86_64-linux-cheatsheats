@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVLPD — MOVE LOW PACKED DOUBLE-PRECISION FLOATING-POINT VALUE
-
+MOVLPD — Move Low Packed Double-Precision Floating-Point Value
 
   Opcode/Instruction                                Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVLPD — MOVE LOW PACKED DOUBLE-PRECISION FLOATING-POINT VALUE
   66 0F 13/r MOVLPD m64, xmm1                       C         V/V                      SSE2                 Move double-precision floating-point value from low quadword of xmm1 to m64.
   VEX.128.66.0F.WIG 13/r VMOVLPD m64, xmm1          C         V/V                      AVX                  Move double-precision floating-point value from low quadword of xmm1 to m64.
   EVEX.128.66.0F.W1 13/r VMOVLPD m64, xmm1          E         V/V                      AVX512F              Move double-precision floating-point value from low quadword of xmm1 to m64.
-
 
 Instruction Operand Encoding ¶
 
@@ -32,14 +28,14 @@ Description ¶
 This instruction cannot be used for register to register or memory to
 memory moves.
 
-128-BIT LEGACY SSE LOAD:
+128-bit Legacy SSE load:
 
 Moves a double-precision floating-point value from the source 64-bit
 memory operand and stores it in the low 64-bits of the destination XMM
 register. The upper 64bits of the XMM register are preserved. Bits
 (MAXVL-1:128) of the corresponding destination register are preserved.
 
-VEX.128 & EVEX ENCODED LOAD:
+VEX.128 & EVEX encoded load:
 
 Loads a double-precision floating-point value from the source 64-bit
 memory operand (third operand), merges it with the upper 64-bits of the
@@ -47,7 +43,7 @@ first source XMM register (second operand), and stores it in the low
 128-bits of the destination XMM register (first operand). Bits
 (MAXVL-1:128) of the corresponding destination register are zeroed.
 
-128-BIT STORE:
+128-bit store:
 
 Stores a double-precision floating-point value from the low 64-bits of
 the XMM register source (second operand) to the 64-bit memory location

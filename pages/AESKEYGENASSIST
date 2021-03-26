@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-AESKEYGENASSIST — AES ROUND KEY GENERATION ASSIST
-
+AESKEYGENASSIST — AES Round Key Generation Assist
 
   Opcode/Instruction                                                    Op/En   64/32-bit Mode   CPUID Feature Flag       Description
   --------------------------------------------------------------------- ------- ---------------- ------------------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   66 0F 3A DF /r ib AESKEYGENASSIST xmm1, xmm2/m128, imm8               RMI     V/V              AES                      Assist in AES round key generation using an 8 bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.
   VEX.128.66.0F3A.WIG DF /r ib VAESKEYGENASSIST xmm1, xmm2/m128, imm8   RMI     V/V              Both AES and AVX flags   Assist in AES round key generation using 8 bits Round Constant (RCON) specified in the immediate byte, operating on 128 bits of data specified in xmm2/m128 and stores the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand2        Operand3   Operand4
   RMI     ModRM:reg (w)   ModRM:r/m (r)   imm8       NA
   ------- --------------- --------------- ---------- ----------
-
 
 Description ¶
 
@@ -38,7 +33,6 @@ register are zeroed.
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -68,16 +62,13 @@ VAESKEYGENASSIST ¶
     DEST[127:96]←RotWord( SubWord(X3) ) XOR RCON;
     DEST[MAXVL-1:128] ← 0;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)AESKEYGENASSIST: __m128i _mm_aeskeygenassist (__m128i, const int)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

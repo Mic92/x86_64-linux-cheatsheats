@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-UCOMISD — UNORDERED COMPARE SCALAR DOUBLE-PRECISION FLOATING-POINT VALUES AND SET EFLAGS
-
+UCOMISD — Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS
 
   Opcode/Instruction                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------ ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
   66 0F 2E /r UCOMISD xmm1, xmm2/m64                     A       V/V                      SSE2                 Compare low double-precision floating-point values in xmm1 and xmm2/mem64 and set the EFLAGS flags accordingly.
   VEX.LIG.66.0F.WIG 2E /r VUCOMISD xmm1, xmm2/m64        A       V/V                      AVX                  Compare low double-precision floating-point values in xmm1 and xmm2/mem64 and set the EFLAGS flags accordingly.
   EVEX.LIG.66.0F.W1 2E /r VUCOMISD xmm1, xmm2/m64{sae}   B       V/V                      AVX512F              Compare low double-precision floating-point values in xmm1 and xmm2/m64 and set the EFLAGS flags accordingly.
-
 
 Instruction Operand Encoding ¶
 

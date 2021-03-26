@@ -1,37 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-EENTER — ENTERS AN ENCLAVE
-
+EENTER — Enters an Enclave
 
   Opcode/Instruction        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------- ------- ------------------------ -------------------- -------------------------------------------------
   EAX = 02H ENCLU[EENTER]   IR      V/V                      SGX1                 This leaf function is used to enter an enclave.
 
-
 Instruction Operand Encoding ¶
 
-Op/En
-
-EAX
-
-RBX
-
-RCX
-
-IR
-
-EENTER (In)
-
-Content of RBX.CSSA (Out)
-
-Address of a TCS (In)
-
-Address of AEP (In)
-
-Address of IP following EENTER (Out)
+  ------- ------------- --------------------------- ----------------------- --------------------- --------------------------------------
+  Op/En   EAX                                       RBX                     RCX                   
+  IR      EENTER (In)   Content of RBX.CSSA (Out)   Address of a TCS (In)   Address of AEP (In)   Address of IP following EENTER (Out)
+  ------- ------------- --------------------------- ----------------------- --------------------- --------------------------------------
 
 Description ¶
 
@@ -40,7 +21,6 @@ end of the instruction, the logical processor is executing in enclave
 mode at the RIP computed as EnclaveBase + TCS.OENTRY. If the target
 address is not within the CS segment (32-bit) or is not canonical
 (64-bit), a #GP(0) results.
-
 
 EENTER Memory Parameter Semantics ¶
 
@@ -110,66 +90,22 @@ The following operations are performed by EENTER:
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EENTER
-
-TCS [DS:RBX]
-
-Shared
-
-#GP
+  Leaf     Parameter      Base Concurrency Restrictions              
+  -------- -------------- ------------------------------------ ----- --
+  Access   On Conflict    SGX_CONFLICT VM Exit Qualification         
+  EENTER   TCS [DS:RBX]   Shared                               #GP   
 
 Table 40-60. Base Concurrency Restrictions of EENTER
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EENTER
-
-TCS [DS:RBX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter      Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- -------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                  vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict    Access                                On Conflict   Access                On Conflict                
+  EENTER                                            TCS [DS:RBX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-61. Additional Concurrency Restrictions of EENTER
 
 Operation ¶
-
 
 Temp Variables in EENTER Operational Flow ¶
 
@@ -620,73 +556,40 @@ RFLAGS.TF is cleared on opt-out entry
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If DS:RBX is not page aligned.
-
-If the enclave is not initialized.
-
-If part or all of the FS or GS segment specified by TCS is outside the
-DS segment or not properly aligned.
-
-If the thread is not in the INACTIVE state.
-
-If CS, DS, ES or SS bases are not all zero.
-
-If executed in enclave mode.
-
-If any reserved field in the TCS FLAG is set.
-
-If the target address is not within the CS segment.
-
-If CR4.OSFXSR = 0.
-
-If CR4.OSXSAVE = 0 and SECS.ATTRIBUTES.XFRM ≠ 3.
-
-If CR4.OSXSAVE = 1and SECS.ATTRIBUTES.XFRM is not a subset of XCR0.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory.
-
-If DS:RBX does not point to a valid TCS.
-
-If one or more pages of the current SSA frame are not readable/writable,
-or do not resolve to a valid PT_REG EPC page.
+  ----------- ------------------------------------------------------------------------------------------------------------------------
+  #GP(0)      If DS:RBX is not page aligned.
+              If the enclave is not initialized.
+              If part or all of the FS or GS segment specified by TCS is outside the DS segment or not properly aligned.
+              If the thread is not in the INACTIVE state.
+              If CS, DS, ES or SS bases are not all zero.
+              If executed in enclave mode.
+              If any reserved field in the TCS FLAG is set.
+              If the target address is not within the CS segment.
+              If CR4.OSFXSR = 0.
+              If CR4.OSXSAVE = 0 and SECS.ATTRIBUTES.XFRM ≠ 3.
+              If CR4.OSXSAVE = 1and SECS.ATTRIBUTES.XFRM is not a subset of XCR0.
+  #PF(error   code) If a page fault occurs in accessing memory.
+              If DS:RBX does not point to a valid TCS.
+              If one or more pages of the current SSA frame are not readable/writable, or do not resolve to a valid PT_REG EPC page.
+  ----------- ------------------------------------------------------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If DS:RBX is not page aligned.
-
-If the enclave is not initialized.
-
-If the thread is not in the INACTIVE state.
-
-If CS, DS, ES or SS bases are not all zero.
-
-If executed in enclave mode.
-
-If part or all of the FS or GS segment specified by TCS is outside the
-DS segment or not properly aligned.
-
-If the target address is not canonical.
-
-If CR4.OSFXSR = 0.
-
-If CR4.OSXSAVE = 0 and SECS.ATTRIBUTES.XFRM ≠ 3.
-
-If CR4.OSXSAVE = 1and SECS.ATTRIBUTES.XFRM is not a subset of XCR0.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If DS:RBX does not point to a valid TCS.
-
-If one or more pages of the current SSA frame are not readable/writable,
-or do not resolve to a valid PT_REG EPC page.
+  ----------- ------------------------------------------------------------------------------------------------------------------------
+  #GP(0)      If DS:RBX is not page aligned.
+              If the enclave is not initialized.
+              If the thread is not in the INACTIVE state.
+              If CS, DS, ES or SS bases are not all zero.
+              If executed in enclave mode.
+              If part or all of the FS or GS segment specified by TCS is outside the DS segment or not properly aligned.
+              If the target address is not canonical.
+              If CR4.OSFXSR = 0.
+              If CR4.OSXSAVE = 0 and SECS.ATTRIBUTES.XFRM ≠ 3.
+              If CR4.OSXSAVE = 1and SECS.ATTRIBUTES.XFRM is not a subset of XCR0.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If DS:RBX does not point to a valid TCS.
+              If one or more pages of the current SSA frame are not readable/writable, or do not resolve to a valid PT_REG EPC page.
+  ----------- ------------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

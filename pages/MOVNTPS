@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVNTPS — STORE PACKED SINGLE-PRECISION FLOATING-POINT VALUES USING NON-TEMPORAL HINT
-
+MOVNTPS — Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint
 
   Opcode/Instruction                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------ ------- ------------------------ -------------------- ------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MOVNTPS — STORE PACKED SINGLE-PRECISION FLOATING-POINT VALUES USING NON-TEMPOR
   EVEX.128.0F.W0 2B /r VMOVNTPS m128, xmm1   B       V/V                      AVX512VL AVX512F     Move packed single-precision values in xmm1 to m128 using non-temporal hint.
   EVEX.256.0F.W0 2B /r VMOVNTPS m256, ymm1   B       V/V                      AVX512VL AVX512F     Move packed single-precision values in ymm1 to m256 using non-temporal hint.
   EVEX.512.0F.W0 2B /r VMOVNTPS m512, zmm1   B       V/V                      AVX512F              Move packed single-precision values in zmm1 to m512 using non-temporal hint.
-
 
 Instruction Operand Encoding¹ ¶
 

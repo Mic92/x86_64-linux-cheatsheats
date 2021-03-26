@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVUPD — MOVE UNALIGNED PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+MOVUPD — Move Unaligned Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------- --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------
@@ -21,7 +18,6 @@ MOVUPD — MOVE UNALIGNED PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.512.66.0F.W1 10 /r VMOVUPD zmm1 {k1}{z}, zmm2/m512   C         V/V                      AVX512F              Move unaligned packed double-precision floating-point values from zmm2/m512 to zmm1 using writemask k1.
   EVEX.512.66.0F.W1 11 /r VMOVUPD zmm2/m512 {k1}{z}, zmm1   D         V/V                      AVX512F              Move unaligned packed double-precision floating-point values from zmm1 to zmm2/m512 using writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ --------------- --------------- ----------- -----------
@@ -37,7 +33,7 @@ Description ¶
 Note: VEX.vvvv and EVEX.vvvv is reserved and must be 1111b otherwise
 instructions will #UD.
 
-EVEX.512 ENCODED VERSION:
+EVEX.512 encoded version:
 
 Moves 512 bits of packed double-precision floating-point values from the
 source operand (second operand) to the destination operand (first
@@ -45,7 +41,7 @@ operand). This instruction can be used to load a ZMM register from a
 float64 memory location, to store the contents of a ZMM register into a
 memory. The destination operand is updated according to the writemask.
 
-VEX.256 ENCODED VERSION:
+VEX.256 encoded version:
 
 Moves 256 bits of packed double-precision floating-point values from the
 source operand (second operand) to the destination operand (first
@@ -62,14 +58,14 @@ operand). This instruction can be used to load an XMM register from a
 128-bit memory location, to store the contents of an XMM register into a
 128-bit memory location, or to move data between two XMM registers.
 
-128-BIT LEGACY SSE VERSION: Bits (MAXVL-1:128) of the corresponding
+128-bit Legacy SSE version: Bits (MAXVL-1:128) of the corresponding
 destination register remain unchanged.
 
 When the source or destination operand is a memory operand, the operand
 may be unaligned on a 16-byte boundary without causing a
 general-protection exception (#GP) to be generated
 
-VEX.128 AND EVEX.128 ENCODED VERSIONS: Bits (MAXVL-1:128) of the
+VEX.128 and EVEX.128 encoded versions: Bits (MAXVL-1:128) of the
 destination register are zeroed.
 
 Operation ¶

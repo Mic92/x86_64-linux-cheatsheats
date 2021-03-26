@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-BLENDVPD — VARIABLE BLEND PACKED DOUBLE PRECISION FLOATING-POINT VALUES
-
+BLENDVPD — Variable Blend Packed Double Precision Floating-Point Values
 
   Opcode/Instruction                                                    Op/En   64/32-bit Mode   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ---------------- -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 38 15 /r BLENDVPD xmm1, xmm2/m128 , <XMM0>                      RM0     V/V              SSE4_1               Select packed DP FP values from _xmm1_ and _xmm2_ from mask specified in _XMM0_ and store the values in _xmm1_.
+  66 0F 38 15 /r BLENDVPD xmm1, xmm2/m128 , <XMM0>                      RM0     V/V              SSE4_1               Select packed DP FP values from xmm1 and xmm2 from mask specified in XMM0 and store the values in xmm1.
   VEX.128.66.0F3A.W0 4B /r /is4 VBLENDVPD xmm1, xmm2, xmm3/m128, xmm4   RVMR    V/V              AVX                  Conditionally copy double-precision floating-point values from xmm2 or xmm3/m128 to xmm1, based on mask bits in the mask operand, xmm4.
   VEX.256.66.0F3A.W0 4B /r /is4 VBLENDVPD ymm1, ymm2, ymm3/m256, ymm4   RVMR    V/V              AVX                  Conditionally copy double-precision floating-point values from ymm2 or ymm3/m256 to ymm1, based on mask bits in the mask operand, ymm4.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RM0     ModRM:reg (r, w)   ModRM:r/m (r)   implicit XMM0   NA
   RVMR    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8[7:4]
   ------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -66,7 +61,6 @@ VBLENDVPD permits the mask to be any XMM or YMM register. In contrast,
 BLENDVPD treats XMM0 implicitly as the mask and do not support
 non-destructive destination operation.
 
-
 Operation ¶
 
 BLENDVPD (128-bit Legacy SSE version) ¶
@@ -99,7 +93,6 @@ VBLENDVPD (VEX.256 encoded version) ¶
     IF (MASK[255] = 0) THEN DEST[255:192]←SRC1[255:192]
         ELSE DEST [255:192]←SRC2[255:192] FI
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BLENDVPD: __m128d _mm_blendv_pd(__m128d v1, __m128d v2, __m128d v3);
@@ -108,11 +101,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VBLENDVPD: __m256 _mm256_blendv_pd (__m256d a, __m256d b, __m256d mask);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VSHUFF32X4/VSHUFF64X2/VSHUFI32X4/VSHUFI64X2 — SHUFFLE PACKED VALUES AT 128-BIT GRANULARITY
-
+VSHUFF32x4/VSHUFF64x2/VSHUFI32x4/VSHUFI64x2 — Shuffle Packed Values at 128-bit Granularity
 
   Opcode/Instruction                                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -16,7 +13,6 @@ VSHUFF32X4/VSHUFF64X2/VSHUFI32X4/VSHUFI64X2 — SHUFFLE PACKED VALUES AT 128-BIT
   EVEX.512.66.0F3A.W0 43 /r ib VSHUFI32x4 zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst, imm8   A       V/V                      AVX512F              Shuffle 128-bit packed double-word values selected by imm8 from zmm2 and zmm3/m512/m32bcst and place results in zmm1 subject to writemask k1.
   EVEX.256.66.0F3A.W1 43 /r ib VSHUFI64X2 ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst, imm8   A       V/V                      AVX512VL AVX512F     Shuffle 128-bit packed quad-word values selected by imm8 from ymm2 and ymm3/m256/m64bcst and place results in ymm1 subject to writemask k1.
   EVEX.512.66.0F3A.W1 43 /r ib VSHUFI64x2 zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst, imm8   A       V/V                      AVX512F              Shuffle 128-bit packed quad-word values selected by imm8 from zmm2 and zmm3/m512/m64bcst and place results in zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,29 +1,25 @@
 -   Index
 -   May 2019
 
+PEXTRB/PEXTRD/PEXTRQ — Extract Byte/Dword/Qword
 
-
-PEXTRB/PEXTRD/PEXTRQ — EXTRACT BYTE/DWORD/QWORD
-
-
-  Opcode/Instruction                                          Op/ En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------------------- -------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 14 /r ib PEXTRB _reg/m8, xmm2, imm8_               A        V/V                      SSE4_1               Extract a byte integer value from _xmm2_ at the source byte offset specified by _imm8_ into _reg or m8._ The upper bits of r32 or r64 are zeroed.
-  66 0F 3A 16 /r ib PEXTRD _r/m32, xmm2, imm8_                A        V/V                      SSE4_1               Extract a dword integer value from _xmm2_ at the source dword offset specified by _imm8_ into _r/m32_.
-  66 REX.W 0F 3A 16 /r ib PEXTRQ _r/m64, xmm2, imm8_          A        V/N.E.                   SSE4_1               Extract a qword integer value from _xmm2_ at the source qword offset specified by _imm8_ into _r/m64_.
-  VEX.128.66.0F3A.W0 14 /r ib VPEXTRB _reg/m8, xmm2, imm8_    A        V¹/V                     AVX                  Extract a byte integer value from _xmm2_ at the source byte offset specified by _imm8_ into _reg_ or _m8_. The upper bits of r64/r32 is filled with zeros.
-  VEX.128.66.0F3A.W0 16 /r ib VPEXTRD _r32/m32, xmm2, imm8_   A        V/V                      AVX                  Extract a dword integer value from _xmm2_ at the source dword offset specified by _imm8_ into _r32/m32_.
-  VEX.128.66.0F3A.W1 16 /r ib VPEXTRQ _r64/m64, xmm2, imm8_   A        V/I²                     AVX                  Extract a qword integer value from _xmm2_ at the source dword offset specified by _imm8_ into _r64/m64_.
-  EVEX.128.66.0F3A.WIG 14 /r ib VPEXTRB reg/m8, xmm2, imm8    B        V/V                      AVX512BW             Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r64/r32 is filled with zeros.
-  EVEX.128.66.0F3A.W0 16 /r ib VPEXTRD r32/m32, xmm2, imm8    B        V/V                      AVX512DQ             Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r32/m32.
-  EVEX.128.66.0F3A.W1 16 /r ib VPEXTRQ r64/m64, xmm2, imm8    B        V/N.E.²                  AVX512DQ             Extract a qword integer value from xmm2 at the source dword offset specified by imm8 into r64/m64.
+  Opcode/Instruction                                         Op/ En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------- -------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 14 /r ib PEXTRB reg/m8, xmm2, imm8                A        V/V                      SSE4_1               Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r32 or r64 are zeroed.
+  66 0F 3A 16 /r ib PEXTRD r/m32, xmm2, imm8                 A        V/V                      SSE4_1               Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r/m32.
+  66 REX.W 0F 3A 16 /r ib PEXTRQ r/m64, xmm2, imm8           A        V/N.E.                   SSE4_1               Extract a qword integer value from xmm2 at the source qword offset specified by imm8 into r/m64.
+  VEX.128.66.0F3A.W0 14 /r ib VPEXTRB reg/m8, xmm2, imm8     A        V¹/V                     AVX                  Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r64/r32 is filled with zeros.
+  VEX.128.66.0F3A.W0 16 /r ib VPEXTRD r32/m32, xmm2, imm8    A        V/V                      AVX                  Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r32/m32.
+  VEX.128.66.0F3A.W1 16 /r ib VPEXTRQ r64/m64, xmm2, imm8    A        V/I²                     AVX                  Extract a qword integer value from xmm2 at the source dword offset specified by imm8 into r64/m64.
+  EVEX.128.66.0F3A.WIG 14 /r ib VPEXTRB reg/m8, xmm2, imm8   B        V/V                      AVX512BW             Extract a byte integer value from xmm2 at the source byte offset specified by imm8 into reg or m8. The upper bits of r64/r32 is filled with zeros.
+  EVEX.128.66.0F3A.W0 16 /r ib VPEXTRD r32/m32, xmm2, imm8   B        V/V                      AVX512DQ             Extract a dword integer value from xmm2 at the source dword offset specified by imm8 into r32/m32.
+  EVEX.128.66.0F3A.W1 16 /r ib VPEXTRQ r64/m64, xmm2, imm8   B        V/N.E.²                  AVX512DQ             Extract a qword integer value from xmm2 at the source dword offset specified by imm8 into r64/m64.
 
   1. In 64-bit mode, VEX.W1 is ignored for VPEXTRB (similar to legacy
   REX.W=1 prefix in PEXTRB).
 
   2. VEX.W/EVEX.W in non-64 bit is ignored; the instructions behaves as
   if the W0 version is used.
-
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ Instruction Operand Encoding ¶
   A       NA              ModRM:r/m (w)   ModRM:reg (r)   imm8        NA
   B       Tuple1 Scalar   ModRM:r/m (w)   ModRM:reg (r)   imm8        NA
   ------- --------------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -56,7 +51,6 @@ be
 register, the default operand size in 64-bit mode for VPEXTRB/VPEXTRD is
 64 bits, the bits above the least significant byte/word/dword data are
 filled with zeros.
-
 
 Operation ¶
 
@@ -111,7 +105,6 @@ VPEXTRB ( dest=reg) ¶
         DEST[31:8] ← ZERO_FILL;
     FI
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PEXTRB: int _mm_extract_epi8 (__m128i src, const int ndx);
@@ -120,16 +113,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PEXTRQ: __int64 _mm_extract_epi64 (__m128i src, const int ndx);
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 
@@ -137,11 +127,10 @@ Non-EVEX-encoded instruction, see Exceptions Type 5;
 
 EVEX-encoded instruction, see Exceptions Type E9NF.
 
-#UD
-
-If VEX.L = 1 or EVEX.L’L > 0.
-
-If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+  ----- ---------------------------------------------
+  #UD   If VEX.L = 1 or EVEX.L’L > 0.
+        If VEX.vvvv != 1111B or EVEX.vvvv != 1111B.
+  ----- ---------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

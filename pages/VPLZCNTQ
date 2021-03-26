@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPLZCNTD/VPLZCNTQ — COUNT THE NUMBER OF LEADING ZERO BITS FOR PACKED DWORD, PACKED QWORD VALUES
-
+VPLZCNTD/VPLZCNTQ — Count the Number of Leading Zero Bits for Packed Dword, Packed Qword Values
 
   Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPLZCNTD/VPLZCNTQ — COUNT THE NUMBER OF LEADING ZERO BITS FOR PACKED DWORD, PA
   EVEX.128.66.0F38.W1 44 /r VPLZCNTQ xmm1 {k1}{z}, xmm2/m128/m64bcst   A       V/V                      AVX512VL AVX512CD    Count the number of leading zero bits in each qword element of xmm2/m128/m64bcst using writemask k1.
   EVEX.256.66.0F38.W1 44 /r VPLZCNTQ ymm1 {k1}{z}, ymm2/m256/m64bcst   A       V/V                      AVX512VL AVX512CD    Count the number of leading zero bits in each qword element of ymm2/m256/m64bcst using writemask k1.
   EVEX.512.66.0F38.W1 44 /r VPLZCNTQ zmm1 {k1}{z}, zmm2/m512/m64bcst   A       V/V                      AVX512CD             Count the number of leading zero bits in each qword element of zmm2/m512/m64bcst using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

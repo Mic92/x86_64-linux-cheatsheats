@@ -1,21 +1,17 @@
 -   Index
 -   May 2019
 
-
-
-FPREM — PARTIAL REMAINDER
-
+FPREM — Partial Remainder
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- -------------------------------------------------------------------------
   D9 F8    FPREM         Valid         Valid             Replace ST(0) with the remainder obtained from dividing ST(0) by ST(1).
 
-
 Description ¶
 
 Computes the remainder obtained from dividing the value in the ST(0)
 register (the dividend) by the value in the ST(1) register (the divisor
-or MODULUS), and stores the result in ST(0). The remainder represents
+or modulus), and stores the result in ST(0). The remainder represents
 the following value:
 
 Remainder ← ST(0) − (Q ∗ ST(1))
@@ -31,135 +27,16 @@ does not occur and the rounding control has no effect. The following
 table shows the results obtained when computing the remainder of various
 classes of numbers, assuming that underflow does not occur.
 
-ST(1)
-
-ST(0)
-
--∞
-
--F
-
--0
-
-+0
-
-+F
-
-+∞
-
-NaN
-
--∞
-
-*
-
-*
-
-*
-
-*
-
-*
-
-*
-
-NaN
-
--F
-
-ST(0)
-
--F or -0
-
-**
-
-**
-
--F or -0
-
-ST(0)
-
-NaN
-
--0
-
--0
-
--0
-
-*
-
-*
-
--0
-
--0
-
-NaN
-
-+0
-
-+0
-
-+0
-
-*
-
-*
-
-+0
-
-+0
-
-NaN
-
-+F
-
-ST(0)
-
-+F or +0
-
-**
-
-**
-
-+F or +0
-
-ST(0)
-
-NaN
-
-+∞
-
-*
-
-*
-
-*
-
-*
-
-*
-
-*
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
+  ST(1)                                                           
+  ------- ----- ------- ---------- ----- ----- ---------- ------- -----
+  ST(0)         -∞      -F         -0    +0    +F         +∞      NaN
+          -∞    *       *          *     *     *          *       NaN
+          -F    ST(0)   -F or -0   **    **    -F or -0   ST(0)   NaN
+          -0    -0      -0         *     *     -0         -0      NaN
+          +0    +0      +0         *     *     +0         +0      NaN
+          +F    ST(0)   +F or +0   **    **    +F or +0   ST(0)   NaN
+          +∞    *       *          *     *     *          *       NaN
+          NaN   NaN     NaN        NaN   NaN   NaN        NaN     NaN
 
 Table 3-31. FPREM Results
 
@@ -184,7 +61,7 @@ ST(0) by no more than 63 in one execution of the instruction. If the
 instruction succeeds in producing a remainder that is less than the
 modulus, the operation is complete and the C2 flag in the FPU status
 word is cleared. Otherwise, C2 is set, and the result in ST(0) is called
-the PARTIAL REMAINDER. The exponent of the partial remainder will be
+the partial remainder. The exponent of the partial remainder will be
 less than the exponent of the original dividend by at least 32. Software
 can re-execute the instruction (using the partial remainder in ST(0) as
 the dividend) until C2 is cleared. (Note that while executing such a
@@ -204,7 +81,6 @@ original angle in the correct one of eight sectors of the unit circle.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     D ← exponent(ST(0)) – exponent(ST(1));
@@ -221,7 +97,6 @@ Operation ¶
             ST(0) ← ST(0) – (ST(1) ∗ QQ ∗ 2(D − N));
     FI;
 
-
 FPU Flags Affected ¶
 
   ---- -------------------------------------------------------------------------------------------------
@@ -230,7 +105,6 @@ FPU Flags Affected ¶
   C2   Set to 0 if reduction complete; set to 1 if incomplete.
   C3   Set to bit 1 (Q1) of the quotient.
   ---- -------------------------------------------------------------------------------------------------
-
 
 Floating-Point Exceptions ¶
 
@@ -241,7 +115,6 @@ Floating-Point Exceptions ¶
   #U    Result is too small for destination format.
   ----- --------------------------------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
@@ -250,21 +123,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
+CVTPS2PI — Convert Packed Single-Precision FP Values to Packed Dword Integers
 
-
-CVTPS2PI — CONVERT PACKED SINGLE-PRECISION FP VALUES TO PACKED DWORD INTEGERS
-
-
-  Opcode/Instruction                     Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------------------------- ------- ------------- ----------------- ------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 2D /_r_ CVTPS2PI _mm, xmm/m64_   RM      Valid         Valid             Convert two packed single-precision floating-point values from _xmm_/_m64_ to two packed signed doubleword integers in _mm_.
-
+  Opcode/Instruction                 Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ---------------------------------- ------- ------------- ----------------- ------------------------------------------------------------------------------------------------------------------------
+  NP 0F 2D /r CVTPS2PI mm, xmm/m64   RM      Valid         Valid             Convert two packed single-precision floating-point values from xmm/m64 to two packed signed doubleword integers in mm.
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -44,28 +39,24 @@ handled before the CVTPS2PI instruction is executed.
 In 64-bit mode, use of the REX.R prefix permits this instruction to
 access additional registers (XMM8-XMM15).
 
-
 Operation ¶
 
     DEST[31:0] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[31:0]);
     DEST[63:32] ← Convert_Single_Precision_Floating_Point_To_Integer(SRC[63:32]);
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CVTPS2PI: __m64 _mm_cvtps_pi32(__m128 a)
-
 
 SIMD Floating-Point Exceptions ¶
 
 Invalid, Precision
 
-
 Other Exceptions ¶
 
 See Table 22-5, “Exception Conditions for Legacy SIMD/MMX Instructions
-with XMM and FP Exception,” in the _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 3B_.
+with XMM and FP Exception,” in the Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 3B.
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

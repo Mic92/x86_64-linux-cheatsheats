@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPBROADCAST — LOAD INTEGER AND BROADCAST
-
+VPBROADCAST — Load Integer and Broadcast
 
   Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------
@@ -38,7 +35,6 @@ VPBROADCAST — LOAD INTEGER AND BROADCAST
   EVEX.512.66.0F38.W1 5A /r VBROADCASTI64X2 zmm1 {k1}{z}, m128       C       V/V                      AVX512DQ             Broadcast 128 bits of 2 quadword integer data in mem to locations in zmm1 using writemask k1.
   EVEX.512.66.0F38.W0 5B /r VBROADCASTI32X8 zmm1 {k1}{z}, m256       E       V/V                      AVX512DQ             Broadcast 256 bits of 8 doubleword integer data in mem to locations in zmm1 using writemask k1.
   EVEX.512.66.0F38.W1 5B /r VBROADCASTI64X4 zmm1 {k1}{z}, m256       D       V/V                      AVX512F              Broadcast 256 bits of 4 quadword integer data in mem to locations in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -80,23 +76,23 @@ instructions will #UD.
 If VPBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the
 instruction encoded with VEX.L= 0 will cause an #UD exception.
 
-X0 m32 DEST X0 X0 X0 X0 X0 X0 X0 X0
+[]
 
 Figure 5-16. VPBROADCASTD Operation (VEX.256 encoded version)
 
-X0 m32 DEST 0 0 0 0 X0 X0 X0 X0
+[]
 
 Figure 5-17. VPBROADCASTD Operation (128-bit version)
 
-m64 X0 DEST X0 X0 X0
+[]
 
 Figure 5-18. VPBROADCASTQ Operation (256-bit version)
 
-m128 X0 DEST X0 X0
+[]
 
 Figure 5-19. VBROADCASTI128 Operation (256-bit version)
 
-m256 X0 DEST X0 X0
+[]
 
 Figure 5-20. VBROADCASTI256 Operation (512-bit version)
 
@@ -444,13 +440,11 @@ EVEX-encoded instructions, see Exceptions Type 6;
 EVEX-encoded instructions, syntax with reg/mem operand, see Exceptions
 Type E6.
 
-#UD
-
-If VEX.L = 0 for VPBROADCASTQ, VPBROADCASTI128.
-
-If EVEX.L’L = 0 for VBROADCASTI32X4/VBROADCASTI64X2.
-
-If EVEX.L’L < 10b for VBROADCASTI32X8/VBROADCASTI64X4.
+  ----- --------------------------------------------------------
+  #UD   If VEX.L = 0 for VPBROADCASTQ, VPBROADCASTI128.
+        If EVEX.L’L = 0 for VBROADCASTI32X4/VBROADCASTI64X2.
+        If EVEX.L’L < 10b for VBROADCASTI32X8/VBROADCASTI64X4.
+  ----- --------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

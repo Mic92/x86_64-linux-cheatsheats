@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VPCOMPRESSD — STORE SPARSE PACKED DOUBLEWORD INTEGER VALUES INTO DENSE MEMORY/REGISTER
-
+VPCOMPRESSD — Store Sparse Packed Doubleword Integer Values into Dense Memory/Register
 
   Opcode/Instruction                                              Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W0 8B /r VPCOMPRESSD xmm1/m128 {k1}{z}, xmm2   A       V/V                      AVX512VL AVX512F     Compress packed doubleword integer values from xmm2 to xmm1/m128 using controlmask k1.
   EVEX.256.66.0F38.W0 8B /r VPCOMPRESSD ymm1/m256 {k1}{z}, ymm2   A       V/V                      AVX512VL AVX512F     Compress packed doubleword integer values from ymm2 to ymm1/m256 using controlmask k1.
   EVEX.512.66.0F38.W0 8B /r VPCOMPRESSD zmm1/m512 {k1}{z}, zmm2   A       V/V                      AVX512F              Compress packed doubleword integer values from zmm2 to zmm1/m512 using controlmask k1.
-
 
 Instruction Operand Encoding ¶
 

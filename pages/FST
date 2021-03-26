@@ -1,21 +1,17 @@
 -   Index
 -   May 2019
 
+FST/FSTP — Store Floating Point Value
 
-
-FST/FSTP — STORE FLOATING POINT VALUE
-
-
-  Opcode    Instruction    64-Bit Mode   Compat/Leg Mode   Description
-  --------- -------------- ------------- ----------------- -----------------------------------------------
-  D9 /2     FST _m32fp_    Valid         Valid             Copy ST(0) to _m32fp_.
-  DD /2     FST _m64fp_    Valid         Valid             Copy ST(0) to _m64fp._
-  DD D0+i   FST ST(i)      Valid         Valid             Copy ST(0) to ST(i).
-  D9 /3     FSTP _m32fp_   Valid         Valid             Copy ST(0) to _m32fp_ and pop register stack.
-  DD /3     FSTP _m64fp_   Valid         Valid             Copy ST(0) to _m64fp_ and pop register stack.
-  DB /7     FSTP _m80fp_   Valid         Valid             Copy ST(0) to _m80fp_ and pop register stack.
-  DD D8+i   FSTP ST(i)     Valid         Valid             Copy ST(0) to ST(i) and pop register stack.
-
+  Opcode    Instruction   64-Bit Mode   Compat/Leg Mode   Description
+  --------- ------------- ------------- ----------------- ---------------------------------------------
+  D9 /2     FST m32fp     Valid         Valid             Copy ST(0) to m32fp.
+  DD /2     FST m64fp     Valid         Valid             Copy ST(0) to m64fp.
+  DD D0+i   FST ST(i)     Valid         Valid             Copy ST(0) to ST(i).
+  D9 /3     FSTP m32fp    Valid         Valid             Copy ST(0) to m32fp and pop register stack.
+  DD /3     FSTP m64fp    Valid         Valid             Copy ST(0) to m64fp and pop register stack.
+  DB /7     FSTP m80fp    Valid         Valid             Copy ST(0) to m80fp and pop register stack.
+  DD D8+i   FSTP ST(i)    Valid         Valid             Copy ST(0) to ST(i) and pop register stack.
 
 Description ¶
 
@@ -58,7 +54,6 @@ invalid-operation exception is not generated.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     DEST ← ST(0);
@@ -67,20 +62,13 @@ Operation ¶
             PopRegisterStack;
     FI;
 
-
 FPU Flags Affected ¶
 
-C1
-
-Set to 0 if stack underflow occurred.
-
-Indicates rounding direction of if the floating-point inexact exception
-(#P) is generated: 0 ← not roundup; 1 ← roundup.
-
-C0, C2, C3
-
-Undefined.
-
+  ------------ --------------------------------------------------------------------------------------------------------------------------
+  C1           Set to 0 if stack underflow occurred.
+               Indicates rounding direction of if the floating-point inexact exception (#P) is generated: 0 ← not roundup; 1 ← roundup.
+  C0, C2, C3   Undefined.
+  ------------ --------------------------------------------------------------------------------------------------------------------------
 
 Floating-Point Exceptions ¶
 
@@ -92,40 +80,18 @@ Floating-Point Exceptions ¶
   #P    Value cannot be represented exactly in destination format.
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#NM
-
-CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #NM               CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -135,7 +101,6 @@ Real-Address Mode Exceptions ¶
   #NM   CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -148,11 +113,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

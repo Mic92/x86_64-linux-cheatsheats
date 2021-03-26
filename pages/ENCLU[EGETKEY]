@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-EGETKEY — RETRIEVES A CRYPTOGRAPHIC KEY
-
+EGETKEY — Retrieves a Cryptographic Key
 
   Opcode/Instruction         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------- ------- ------------------------ -------------------- ---------------------------------------------------
   EAX = 01H ENCLU[EGETKEY]   IR      V/V                      SGX1                 This leaf function retrieves a cryptographic key.
-
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ enclave.
 EGETKEY derives keys using a processor unique value to create a specific
 key based on a number of possible inputs. This instruction leaf can only
 be executed inside an enclave.
-
 
 EEGETKEY Memory Parameter Semantics ¶
 
@@ -66,13 +61,13 @@ ZF flag is set and the corresponding error bit (SGX_INVALID_SVN,
 SGX_INVALID_ATTRIBUTE, SGX_INVALID_KEYNAME) is set in RAX and the data
 at the address specified by RCX is unmodified.
 
-REQUESTING KEYS
+Requesting Keys
 
 The KEYREQUEST structure (see Section 37.17.1) identifies the key to be
 provided. The Keyrequest.KeyName field identifies which type of key is
 requested.
 
-DERIVING KEYS
+Deriving Keys
 
 Key derivation is based on a combination of the enclave specific values
 (see Table 40-64) and a processor key. Depending on the key being
@@ -82,203 +77,15 @@ value for the field is included from its default location, identified in
 the source row, and a “request” indicates the values for the field is
 included from its corresponding KeyRequest field.
 
-Key Name
-
-Attributes
-
-Owner Epoch
-
-CPU SVN
-
-ISV SVN
-
-ISV PRODID
-
-ISVEXT PRODID
-
-ISVFAM ILYID
-
-MRENCLAVE
-
-MRSIGNER
-
-CONFIG ID
-
-CONFIGS VN
-
-RAND
-
-SOURCE
-
-Key Dependent Constant
-
-Y← SECS.ATTRIBUTES and SECS.MISCSELECT;
-
-CR_SGX OWNER EPOCH
-
-Y← CPUSVN Register;
-
-R← Req.ISV SVN;
-
-SECS. ISVID
-
-SECS.IS VEXTPR ODID
-
-SECS.IS VFAMIL YID
-
-SECS. MRENCLAVE
-
-SECS. MRSIGNER
-
-SECS.CO NFIGID
-
-SECS.CO NFIGSVN
-
-Req. KEYID
-
-R←AttribMask & SECS.ATTRIBUTES and SECS.MISCSELECT;
-
-R← Req.CPU SVN;
-
-EINITTOKEN
-
-Yes
-
-Request
-
-Yes
-
-Request
-
-Request
-
-Yes
-
-No
-
-No
-
-No
-
-Yes
-
-No
-
-No
-
-Request
-
-Report
-
-Yes
-
-Yes
-
-Yes
-
-Yes
-
-No
-
-No
-
-No
-
-No
-
-Yes
-
-No
-
-Yes
-
-Yes
-
-Request
-
-Seal
-
-Yes
-
-Request
-
-Yes
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-Provisioning
-
-Yes
-
-Request
-
-No
-
-Request
-
-Request
-
-Yes
-
-No
-
-No
-
-No
-
-Yes
-
-No
-
-No
-
-Yes
-
-Provisioning Seal
-
-Yes
-
-Request
-
-No
-
-Request
-
-Request
-
-Request
-
-Request
-
-Request
-
-No
-
-Yes
-
-Request
-
-Request
-
-Yes
+                      Key Name                 Attributes                                            Owner Epoch          CPU SVN               ISV SVN           ISV PRODID    ISVEXT PRODID         ISVFAM ILYID         MRENCLAVE         MRSIGNER         CONFIG ID        CONFIGS VN        RAND
+  ------------------- ------------------------ ----------------------------------------------------- -------------------- --------------------- ----------------- ------------- --------------------- -------------------- ----------------- ---------------- ---------------- ----------------- ------------
+  Source              Key Dependent Constant   Y← SECS.ATTRIBUTES and SECS.MISCSELECT;               CR_SGX OWNER EPOCH   Y← CPUSVN Register;   R← Req.ISV SVN;   SECS. ISVID   SECS.IS VEXTPR ODID   SECS.IS VFAMIL YID   SECS. MRENCLAVE   SECS. MRSIGNER   SECS.CO NFIGID   SECS.CO NFIGSVN   Req. KEYID
+                                               R←AttribMask & SECS.ATTRIBUTES and SECS.MISCSELECT;                        R← Req.CPU SVN;                                                                                                                                                        
+  EINITTOKEN          Yes                      Request                                               Yes                  Request               Request           Yes           No                    No                   No                Yes              No               No                Request
+  Report              Yes                      Yes                                                   Yes                  Yes                   No                No            No                    No                   Yes               No               Yes              Yes               Request
+  Seal                Yes                      Request                                               Yes                  Request               Request           Request       Request               Request              Request           Request          Request          Request           Request
+  Provisioning        Yes                      Request                                               No                   Request               Request           Yes           No                    No                   No                Yes              No               No                Yes
+  Provisioning Seal   Yes                      Request                                               No                   Request               Request           Request       Request               Request              No                Yes              Request          Request           Yes
 
 Table 40-64. Key Derivation
 
@@ -317,76 +124,24 @@ Table 40-65. EGETKEY Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EGETKEY
-
-KEYREQUEST [DS:RBX]
-
-Concurrent
-
-OUTPUTDATA [DS:RCX]
-
-Concurrent
+  Leaf      Parameter             Base Concurrency Restrictions           
+  --------- --------------------- ------------------------------------ -- --
+  Access    On Conflict           SGX_CONFLICT VM Exit Qualification      
+  EGETKEY   KEYREQUEST [DS:RBX]   Concurrent                              
+            OUTPUTDATA [DS:RCX]   Concurrent                              
 
 Table 40-66. Base Concurrency Restrictions of EGETKEY
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EGETKEY
-
-KEYREQUEST [DS:RBX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
-
-OUTPUTDATA [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter             Additional Concurrency Restrictions                                                                  
+  ------------------------------------------------- --------------------- ------------------------------------- ------------- --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                         vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict           Access                                On Conflict   Access                On Conflict                
+  EGETKEY                                           KEYREQUEST [DS:RBX]   Concurrent                                          Concurrent                          Concurrent   
+                                                    OUTPUTDATA [DS:RCX]   Concurrent                                          Concurrent                          Concurrent   
 
 Table 40-67. Additional Concurrency Restrictions of EGETKEY
 
 Operation ¶
-
 
 Temp Variables in EGETKEY Operational Flow ¶
 
@@ -1010,39 +765,25 @@ cleared.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If a memory operand effective address is outside the current enclave.
-
-If an effective address is not properly aligned.
-
-If an effective address is outside the DS segment limit.
-
-If KEYREQUEST format is invalid.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory.
+  ----------- -----------------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If a memory operand effective address is outside the current enclave.
+              If an effective address is not properly aligned.
+              If an effective address is outside the DS segment limit.
+              If KEYREQUEST format is invalid.
+  #PF(error   code) If a page fault occurs in accessing memory.
+  ----------- -----------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If executed outside an enclave.
-
-If a memory operand effective address is outside the current enclave.
-
-If an effective address is not properly aligned.
-
-If an effective address is not canonical.
-
-If KEYREQUEST format is invalid.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
+  ----------- -----------------------------------------------------------------------
+  #GP(0)      If executed outside an enclave.
+              If a memory operand effective address is outside the current enclave.
+              If an effective address is not properly aligned.
+              If an effective address is not canonical.
+              If KEYREQUEST format is invalid.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+  ----------- -----------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

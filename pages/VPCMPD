@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPCMPD/VPCMPUD — COMPARE PACKED INTEGER VALUES INTO MASK
-
+VPCMPD/VPCMPUD — Compare Packed Integer Values into Mask
 
   Opcode/Instruction                                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPCMPD/VPCMPUD — COMPARE PACKED INTEGER VALUES INTO MASK
   EVEX.128.66.0F3A.W0 1E /r ib VPCMPUD k1 {k2}, xmm2, xmm3/m128/m32bcst, imm8   A       V/V                      AVX512VL AVX512F     Compare packed unsigned doubleword integer values in xmm3/m128/m32bcst and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
   EVEX.256.66.0F3A.W0 1E /r ib VPCMPUD k1 {k2}, ymm2, ymm3/m256/m32bcst, imm8   A       V/V                      AVX512VL AVX512F     Compare packed unsigned doubleword integer values in ymm3/m256/m32bcst and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
   EVEX.512.66.0F3A.W0 1E /r ib VPCMPUD k1 {k2}, zmm2, zmm3/m512/m32bcst, imm8   A       V/V                      AVX512F              Compare packed unsigned doubleword integer values in zmm2 and zmm3/m512/m32bcst using bits 2:0 of imm8 as a comparison predicate. The comparison results are written to the destination k1 under writemask k2.
-
 
 Instruction Operand Encoding ¶
 

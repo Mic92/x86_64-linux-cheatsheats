@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRCP28SD — APPROXIMATION TO THE RECIPROCAL OF SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE WITH LESS THAN 2^-28 RELATIVE ERROR
-
+VRCP28SD — Approximation to the Reciprocal of Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error
 
   Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W1 CB /r VRCP28SD xmm1 {k1}{z}, xmm2, xmm3/m64 {sae}   A       V/V                      AVX512ER             Computes the approximate reciprocal ( < 2^-28 relative error) of the scalar double-precision floating-point value in xmm3/m64 and stores the results in xmm1. Under writemask. Also, upper double-precision floating-point value (bits[127:64]) from xmm2 is copied to xmm1[127:64].
-
 
 Instruction Operand Encoding ¶
 
@@ -63,17 +59,17 @@ VRCP28SD ((EVEX encoded versions) ¶
     DEST[127:64]←SRC1[127: 64]
     DEST[MAXVL-1:128] ← 0
 
-  Input value             Result value   Comments
-  ----------------------- -------------- --------------------------------------------------
-  NAN                     QNAN(input)    If (SRC = SNaN) then #I
-  _(0\ ≤\ X\ <\ 2)⁻¹⁰²²   INF            Positive input denormal or zero; #Z
-  -2⁻¹⁰²² < X ≤ -0        -INF           Negative input denormal or zero; #Z
-  _(X\ >\ 2)1022          +0.0f          
-  _(X\ <\ -2)¹⁰²²         -0.0f          
-  X = +∞                  +0.0f          
-  X = -∞                  -0.0f          
-  _(X\ =\ 2)-n            ₂^(n)          Exact result (unless input/output is a denormal)
-  X = -2^(-n)             -2^(n)         Exact result (unless input/output is a denormal)
+  Input value         Result value   Comments
+  ------------------- -------------- --------------------------------------------------
+  NAN                 QNAN(input)    If (SRC = SNaN) then #I
+  _(0 ≤ X < 2)⁻¹⁰²²   INF            Positive input denormal or zero; #Z
+  -2⁻¹⁰²² < X ≤ -0    -INF           Negative input denormal or zero; #Z
+  _(X > 2)1022        +0.0f          
+  _(X < -2)¹⁰²²       -0.0f          
+  X = +∞              +0.0f          
+  X = -∞              -0.0f          
+  _(X = 2)-n          ₂^(n)          Exact result (unless input/output is a denormal)
+  X = -2^(-n)         -2^(n)         Exact result (unless input/output is a denormal)
 
 Table 6-36. VRCP28SD Special Cases
 

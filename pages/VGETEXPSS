@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VGETEXPSS — CONVERT EXPONENTS OF SCALAR SP FP VALUES TO SP FP VALUE
-
+VGETEXPSS — Convert Exponents of Scalar SP FP Values to SP FP Value
 
   Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W0 43 /r VGETEXPSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   A       V/V                      AVX512F              Convert the biased exponent (bits 30:23) of the low single-precision floating-point value in xmm3/m32 to a SP FP value representing unbiased integer exponent. Stores the result to xmm1 under the writemask k1 and merge with the other elements of xmm2.
-
 
 Instruction Operand Encoding ¶
 
@@ -41,7 +37,7 @@ The formula is:
 
 GETEXP(x) = floor(log₂(|x|))
 
-Notation FLOOR(X) stands for maximal integer not exceeding real number
+Notation floor(x) stands for maximal integer not exceeding real number
 x.
 
 Software usage of VGETEXPxx and VGETMANTxx instructions generally

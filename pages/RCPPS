@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+RCPPS — Compute Reciprocals of Packed Single-Precision Floating-Point Values
 
-
-RCPPS — COMPUTE RECIPROCALS OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
-
-  Opcode*/Instruction                             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ----------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------
-  NP 0F 53 /_r_ RCPPS _xmm1_, _xmm2/m128_         RM      V/V                      SSE                  Computes the approximate reciprocals of the packed single-precision floating-point values in _xmm2/m128_ and stores the results in _xmm1_.
-  VEX.128.0F.WIG 53 /r VRCPPS _xmm1, xmm2/m128_   RM      V/V                      AVX                  Computes the approximate reciprocals of packed single-precision values in _xmm2/mem_ and stores the results in _xmm1_.
-  VEX.256.0F.WIG 53 /r VRCPPS _ymm1, ymm2/m256_   RM      V/V                      AVX                  Computes the approximate reciprocals of packed single-precision values in _ymm2/mem_ and stores the results in _ymm1_.
-
+  Opcode*/Instruction                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------
+  NP 0F 53 /r RCPPS xmm1, xmm2/m128             RM      V/V                      SSE                  Computes the approximate reciprocals of the packed single-precision floating-point values in xmm2/m128 and stores the results in xmm1.
+  VEX.128.0F.WIG 53 /r VRCPPS xmm1, xmm2/m128   RM      V/V                      AVX                  Computes the approximate reciprocals of packed single-precision values in xmm2/mem and stores the results in xmm1.
+  VEX.256.0F.WIG 53 /r VRCPPS ymm1, ymm2/m256   RM      V/V                      AVX                  Computes the approximate reciprocals of packed single-precision values in ymm2/mem and stores the results in ymm1.
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-
 Description ¶
 
 Performs a SIMD computation of the approximate reciprocals of the four
@@ -28,8 +23,8 @@ packed single-precision floating-point values in the source operand
 (second operand) stores the packed single-precision floating-point
 results in the destination operand. The source operand can be an XMM
 register or a 128-bit memory location. The destination operand is an XMM
-register. See Figure 10-5 in the _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 1_, for an illustration of a SIMD
+register. See Figure 10-5 in the Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 1, for an illustration of a SIMD
 single-precision floating-point operation.
 
 The relative error for this approximation is:
@@ -40,8 +35,8 @@ The RCPPS instruction is not affected by the rounding control bits in
 the MXCSR register. When a source value is a 0.0, an ∞ of the sign of
 the source value is returned. A denormal source value is treated as a
 0.0 (of the same sign). Tiny results (see Section 4.9.1.5, “Numeric
-Underflow Exception (#U)” in _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 1_) are always flushed to 0.0, with the sign
+Underflow Exception (#U)” in Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 1) are always flushed to 0.0, with the sign
 of the operand. (Input values greater than or equal to
 |1.11111111110100000000000B∗2¹²⁵| are guaranteed to not produce tiny
 results; input values less than or equal to
@@ -70,7 +65,6 @@ location. The destination operand is a YMM register.
 
 Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -101,18 +95,15 @@ VRCPPS (VEX.256 encoded version) ¶
     DEST[223:192] ← APPROXIMATE(1/SRC[223:192])
     DEST[255:224] ← APPROXIMATE(1/SRC[255:224])
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RCCPS: __m128 _mm_rcp_ps(__m128 a)
 
     RCPPS: __m256 _mm256_rcp_ps (__m256 a);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

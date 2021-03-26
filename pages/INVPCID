@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-INVPCID — INVALIDATE PROCESS-CONTEXT IDENTIFIER
-
+INVPCID — Invalidate Process-Context Identifier
 
   Opcode/Instruction                 Op/En   64/32-bit Mode   CPUID Feature Flag   Description
   ---------------------------------- ------- ---------------- -------------------- -----------------------------------------------------------------------------------------------------------------------
   66 0F 38 82 /r INVPCID r32, m128   RM      NE/V             INVPCID              Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r32 and descriptor in m128.
   66 0F 38 82 /r INVPCID r64, m128   RM      V/NE             INVPCID              Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r64 and descriptor in m128.
-
 
 Instruction Operand Encoding ¶
 
@@ -19,13 +15,12 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (r)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-
 Description ¶
 
 Invalidates mappings in the translation lookaside buffers (TLBs) and
 paging-structure caches based on process-context identifier (PCID). (See
-Section 4.10, “Caching Translation Information,” in _Intel 64 and IA-32
-Architecture Software Developer’s Manual, Volume 3A_.) Invalidation is
+Section 4.10, “Caching Translation Information,” in Intel 64 and IA-32
+Architecture Software Developer’s Manual, Volume 3A.) Invalidation is
 based on the INVPCID type specified in the register operand and the
 INVPCID descriptor specified in the memory operand.
 
@@ -55,16 +50,16 @@ There are four INVPCID types currently defined:
 
   1. If the paging structures map the linear address using a page larger
   than 4 KBytes and there are multiple TLB entries for that page (see
-  Section 4.10.2.3, “Details of TLB Use,” in the _Intel® 64 and IA-32
-  Architectures Software Developer’s Manual, Volume 3A_), the
-  instruction invalidates all of them.
+  Section 4.10.2.3, “Details of TLB Use,” in the Intel® 64 and IA-32
+  Architectures Software Developer’s Manual, Volume 3A), the instruction
+  invalidates all of them.
 
 The INVPCID descriptor comprises 128 bits and consists of a PCID and a
 linear address as shown in Figure 3-24. For INVPCID type 0, the
 processor uses the full 64 bits of the linear address even outside
 64-bit mode; the linear address is not used for other INVPCID types.
 
-127 6463 1211 0 Linear Address Reserved (must be zero) PCID
+[]
 
 Figure 3-24. INVPCID Descriptor
 
@@ -73,9 +68,8 @@ PCID other than 000H. In this case, executions with INVPCID types 0 and
 1 are allowed only if the PCID specified in the INVPCID descriptor is
 000H; executions with INVPCID types 2 and 3 invalidate mappings only for
 PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see
-Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the _Intel® 64
-and IA-32 Architectures Software Developer’s Manual, Volume 3A_).
-
+Chapter 4.10.1, “Process-Context Identifiers (PCIDs)‚” of the Intel® 64
+and IA-32 Architectures Software Developer’s Manual, Volume 3A).
 
 Operation ¶
 
@@ -103,77 +97,42 @@ Operation ¶
             BREAK;
     ESAC;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     INVPCID: void _invpcid(unsigned __int32 type, void * descriptor);
-
 
 SIMD Floating-Point Exceptions ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the current privilege level is not 0.
-
-If the memory operand effective address is outside the CS, DS, ES, FS,
-or GS segment limit.
-
-If the DS, ES, FS, or GS register contains an unusable segment.
-
-If the source operand is located in an execute-only code segment.
-
-If an invalid type is specified in the register operand, i.e.,
-INVPCID_TYPE > 3.
-
-If bits 63:12 of INVPCID_DESC are not all zero.
-
-If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero.
-
-If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is
-not canonical.
-
-#PF(fault-code)
-
-If a page fault occurs in accessing the memory operand.
-
-#SS(0)
-
-If the memory operand effective address is outside the SS segment limit.
-
-If the SS register contains an unusable segment.
-
-#UD
-
-If if CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
-
-If the LOCK prefix is used.
-
+  ----------------- ---------------------------------------------------------------------------------------------
+  #GP(0)            If the current privilege level is not 0.
+                    If the memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains an unusable segment.
+                    If the source operand is located in an execute-only code segment.
+                    If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3.
+                    If bits 63:12 of INVPCID_DESC are not all zero.
+                    If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero.
+                    If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.
+  #PF(fault-code)   If a page fault occurs in accessing the memory operand.
+  #SS(0)            If the memory operand effective address is outside the SS segment limit.
+                    If the SS register contains an unusable segment.
+  #UD               If if CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
+                    If the LOCK prefix is used.
+  ----------------- ---------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP
-
-If an invalid type is specified in the register operand, i.e.,
-INVPCID_TYPE > 3.
-
-If bits 63:12 of INVPCID_DESC are not all zero.
-
-If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero.
-
-If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is
-not canonical.
-
-#UD
-
-If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
-
-If the LOCK prefix is used.
-
+  ----- ---------------------------------------------------------------------------------------
+  #GP   If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3.
+        If bits 63:12 of INVPCID_DESC are not all zero.
+        If INVPCID_TYPE is either 0 or 1 and INVPCID_DESC[11:0] is not zero.
+        If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.
+  #UD   If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
+        If the LOCK prefix is used.
+  ----- ---------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -181,46 +140,24 @@ Virtual-8086 Mode Exceptions ¶
   #GP(0)   The INVPCID instruction is not recognized in virtual-8086 mode.
   -------- -----------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If the current privilege level is not 0.
-
-If the memory operand is in the CS, DS, ES, FS, or GS segments and the
-memory address is in a non-canonical form.
-
-If an invalid type is specified in the register operand, i.e.,
-INVPCID_TYPE > 3.
-
-If bits 63:12 of INVPCID_DESC are not all zero.
-
-If CR4.PCIDE=0, INVPCID_TYPE is either 0 or 1, and INVPCID_DESC[11:0] is
-not zero.
-
-If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is
-not canonical.
-
-#PF(fault-code)
-
-If a page fault occurs in accessing the memory operand.
-
-#SS(0)
-
-If the memory destination operand is in the SS segment and the memory
-address is in a non-canonical form.
-
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
+  ----------------- -------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the current privilege level is not 0.
+                    If the memory operand is in the CS, DS, ES, FS, or GS segments and the memory address is in a non-canonical form.
+                    If an invalid type is specified in the register operand, i.e., INVPCID_TYPE > 3.
+                    If bits 63:12 of INVPCID_DESC are not all zero.
+                    If CR4.PCIDE=0, INVPCID_TYPE is either 0 or 1, and INVPCID_DESC[11:0] is not zero.
+                    If INVPCID_TYPE is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.
+  #PF(fault-code)   If a page fault occurs in accessing the memory operand.
+  #SS(0)            If the memory destination operand is in the SS segment and the memory address is in a non-canonical form.
+  #UD               If the LOCK prefix is used.
+                    If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID (bit 10) = 0.
+  ----------------- -------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

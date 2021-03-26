@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-ANDN — LOGICAL AND NOT
-
+ANDN — Logical AND NOT
 
   Opcode/Instruction                             Op/En   64/32 -bit Mode   CPUID Feature Flag   Description
   ---------------------------------------------- ------- ----------------- -------------------- ----------------------------------------------------------------
   VEX.LZ.0F38.W0 F2 /r ANDN r32a, r32b, r/m32    RVM     V/V               BMI1                 Bitwise AND of inverted r32b with r/m32, store result in r32a.
   VEX.LZ. 0F38.W1 F2 /r ANDN r64a, r64b, r/m64   RVM     V/NE              BMI1                 Bitwise AND of inverted r64b with r/m64, store result in r64a.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2      Operand 3       Operand 4
   RVM     ModRM:reg (w)   VEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- --------------- -------------- --------------- -----------
-
 
 Description ¶
 
@@ -34,29 +29,24 @@ operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes.
 An attempt to execute this instruction with VEX.L not equal to 0 will
 cause #UD.
 
-
 Operation ¶
 
     DEST ← (NOT SRC1) bitwiseAND SRC2;
     SF ← DEST[OperandSize -1];
     ZF ← (DEST = 0);
 
-
 Flags Affected ¶
 
 SF and ZF are updated based on result. OF and CF flags are cleared. AF
 and PF flags are undefined.
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     Auto-generated from high-level language.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VGATHERPF0DPS/VGATHERPF0QPS/VGATHERPF0DPD/VGATHERPF0QPD — SPARSE PREFETCH PACKED SP/DP DATA VALUES WITH SIGNED DWORD, SIGNED QWORD INDICES USING T0 HINT
-
+VGATHERPF0DPS/VGATHERPF0QPS/VGATHERPF0DPD/VGATHERPF0QPD — Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T0 Hint
 
   Opcode/Instruction                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------
@@ -12,7 +9,6 @@ VGATHERPF0DPS/VGATHERPF0QPS/VGATHERPF0DPD/VGATHERPF0QPD — SPARSE PREFETCH PACK
   EVEX.512.66.0F38.W0 C7 /1 /vsib VGATHERPF0QPS vm64z {k1}   A       V/V                      AVX512PF             Using signed qword indices, prefetch sparse byte memory locations containing single-precision data using opmask k1 and T0 hint.
   EVEX.512.66.0F38.W1 C6 /1 /vsib VGATHERPF0DPD vm32y {k1}   A       V/V                      AVX512PF             Using signed dword indices, prefetch sparse byte memory locations containing double-precision data using opmask k1 and T0 hint.
   EVEX.512.66.0F38.W1 C7 /1 /vsib VGATHERPF0QPD vm64z {k1}   A       V/V                      AVX512PF             Using signed qword indices, prefetch sparse byte memory locations containing double-precision data using opmask k1 and T0 hint.
-
 
 Instruction Operand Encoding ¶
 

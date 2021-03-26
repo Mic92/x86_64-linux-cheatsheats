@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPCONFLICTD/VPCONFLICTQ — DETECT CONFLICTS WITHIN A VECTOR OF PACKED DWORD/QWORD VALUES INTO DENSE MEMORY/ REGISTER
-
+VPCONFLICTD/VPCONFLICTQ — Detect Conflicts Within a Vector of Packed Dword/Qword Values into Dense Memory/ Register
 
   Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPCONFLICTD/VPCONFLICTQ — DETECT CONFLICTS WITHIN A VECTOR OF PACKED DWORD/QWO
   EVEX.128.66.0F38.W1 C4 /r VPCONFLICTQ xmm1 {k1}{z}, xmm2/m128/m64bcst   A       V/V                      AVX512VL AVX512CD    Detect duplicate quad-word values in xmm2/m128/m64bcst using writemask k1.
   EVEX.256.66.0F38.W1 C4 /r VPCONFLICTQ ymm1 {k1}{z}, ymm2/m256/m64bcst   A       V/V                      AVX512VL AVX512CD    Detect duplicate quad-word values in ymm2/m256/m64bcst using writemask k1.
   EVEX.512.66.0F38.W1 C4 /r VPCONFLICTQ zmm1 {k1}{z}, zmm2/m512/m64bcst   A       V/V                      AVX512CD             Detect duplicate quad-word values in zmm2/m512/m64bcst using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VRCP14PS — COMPUTE APPROXIMATE RECIPROCALS OF PACKED FLOAT32 VALUES
-
+VRCP14PS — Compute Approximate Reciprocals of Packed Float32 Values
 
   Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W0 4C /r VRCP14PS xmm1 {k1}{z}, xmm2/m128/m32bcst   A       V/V                      AVX512VL AVX512F     Computes the approximate reciprocals of the packed single-precision floating-point values in xmm2/m128/m32bcst and stores the results in xmm1. Under writemask.
   EVEX.256.66.0F38.W0 4C /r VRCP14PS ymm1 {k1}{z}, ymm2/m256/m32bcst   A       V/V                      AVX512VL AVX512F     Computes the approximate reciprocals of the packed single-precision floating-point values in ymm2/m256/m32bcst and stores the results in ymm1. Under writemask.
   EVEX.512.66.0F38.W0 4C /r VRCP14PS zmm1 {k1}{z}, zmm2/m512/m32bcst   A       V/V                      AVX512F              Computes the approximate reciprocals of the packed single-precision floating-point values in zmm2/m512/m32bcst and stores the results in zmm1. Under writemask.
-
 
 Instruction Operand Encoding ¶
 
@@ -49,14 +45,14 @@ EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 MXCSR exception flags are not affected by this instruction and
 floating-point exceptions are not reported.
 
-  Input value            Result value   Comments
-  ---------------------- -------------- ------------------------------------------
-  _(0\ ≤\ X\ ≤\ 2)⁻¹²⁸   INF            Very small denormal
-  -2⁻¹²⁸ ≤ X ≤ -0        -INF           Very small denormal
-  X > 2¹²⁶               Underflow      Up to 18 bits of fractions are returned*
-  X < -2¹²⁶              -Underflow     Up to 18 bits of fractions are returned*
-  _(X\ =\ 2)-n           ₂^(n)          
-  X = -2^(-n)            -2^(n)         
+  Input value        Result value   Comments
+  ------------------ -------------- ------------------------------------------
+  _(0 ≤ X ≤ 2)⁻¹²⁸   INF            Very small denormal
+  -2⁻¹²⁸ ≤ X ≤ -0    -INF           Very small denormal
+  X > 2¹²⁶           Underflow      Up to 18 bits of fractions are returned*
+  X < -2¹²⁶          -Underflow     Up to 18 bits of fractions are returned*
+  _(X = 2)-n         ₂^(n)          
+  X = -2^(-n)        -2^(n)         
 
 Table 5-23. VRCP14PS/VRCP14SS Special Cases
 

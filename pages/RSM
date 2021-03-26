@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-RSM — RESUME FROM SYSTEM MANAGEMENT MODE
-
+RSM — Resume from System Management Mode
 
   Opcode*   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   --------- ------------- ------- ------------- ----------------- ------------------------------------------
   0F AA     RSM           ZO      Valid         Valid             Resume operation of interrupted program.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -41,10 +36,9 @@ return from SMM.
 The SMM state map used by RSM supports resuming processor context for
 non-64-bit modes and 64-bit mode.
 
-See Chapter 34, “System Management Mode,” in the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 3C_, for more
+See Chapter 34, “System Management Mode,” in the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 3C, for more
 information about SMM and the behavior of the RSM instruction.
-
 
 Operation ¶
 
@@ -56,36 +50,28 @@ Operation ¶
             ProcessorState ← Restore(SMMDump(Non-32-Bit-Mode SMM STATE MAP));
     FI
 
-
 Flags Affected ¶
 
 All.
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If an attempt is made to execute this instruction when the processor is
-not in SMM.
-
-If the LOCK prefix is used.
-
+  ----- -------------------------------------------------------------------------------------
+  #UD   If an attempt is made to execute this instruction when the processor is not in SMM.
+        If the LOCK prefix is used.
+  ----- -------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

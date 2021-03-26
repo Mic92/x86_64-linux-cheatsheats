@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GETSEC[SMCTRL] — SMX MODE CONTROL
-
+GETSEC[SMCTRL] — SMX Mode Control
 
   Opcode               Instruction      Description
   -------------------- ---------------- --------------------------------------------------------------------
   NP 0F 37 (EAX = 7)   GETSEC[SMCTRL]   Perform specified SMX mode control as selected with the input EBX.
-
 
 Description ¶
 
@@ -37,8 +33,8 @@ The VM monitor can choose two approaches:
 
 -   In a dual monitor approach, the executive software will set up an
     SMM monitor in parallel to the executive VMM (i.e. the MVMM), see
-    Chapter 34, “System Management Mode” of _Intel® 64 and IA-32
-    Architectures Software_ _Developer’s Manual, Volume 3C_. The SMM
+    Chapter 34, “System Management Mode” of Intel® 64 and IA-32
+    Architectures Software Developer’s Manual, Volume 3C. The SMM
     monitor is dedicated to handling SMI events without compromising the
     security of the MVMM. This usage model of handling SMI while a
     measured environment is active does not require the use of
@@ -65,7 +61,6 @@ unmasked are dependent upon the currently operating processor context.
 
 Table 6-11. Supported Actions for GETSEC[SMCTRL(0)]
 
-
 Operation ¶
 
     (* The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary *)
@@ -84,11 +79,9 @@ Operation ¶
         #GP(0);
     END
 
-
 Flags Affected ¶
 
 None.
-
 
 Use of Prefixes ¶
 
@@ -106,64 +99,41 @@ Address size Ignored.
 
 REX Ignored.
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[SMCTRL] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-IfCR0.PE=0orCPL>0orEFLAGS.VM=1.
-
-If in VMX root operation.
-
-If a protected partition is not already active or the processor is
-currently in authenticated code mode.
-
-If the processor is in SMM.
-
-If the SMM monitor is not configured.
-
+  -------- ----------------------------------------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[SMCTRL] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   IfCR0.PE=0orCPL>0orEFLAGS.VM=1.
+           If in VMX root operation.
+           If a protected partition is not already active or the processor is currently in authenticated code mode.
+           If the processor is in SMM.
+           If the SMM monitor is not configured.
+  -------- ----------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[SMCTRL] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[SMCTRL] is not recognized in real-address mode.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[SMCTRL] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[SMCTRL] is not recognized in real-address mode.
+  -------- -------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[SMCTRL] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[SMCTRL] is not recognized in virtual-8086 mode.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[SMCTRL] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[SMCTRL] is not recognized in virtual-8086 mode.
+  -------- -------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 All protected mode exceptions apply.
 
-
 64-Bit Mode Exceptions ¶
 
 All protected mode exceptions apply.
-
 
 VM-exit Condition ¶
 

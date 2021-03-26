@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-AAS — ASCII ADJUST AL AFTER SUBTRACTION
-
+AAS — ASCII Adjust AL After Subtraction
 
   Opcode   Instruction   Op/En   64-bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- ------------------------------------
   3F       AAS           ZO      Invalid       Valid             ASCII adjust AL after subtraction.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -36,7 +31,6 @@ case, the AL register is left with its top four bits set to 0.
 
 This instruction executes as described in compatibility mode and legacy
 mode. It is not valid in 64-bit mode.
-
 
 Operation ¶
 
@@ -58,13 +52,11 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 The AF and CF flags are set to 1 if there is a decimal borrow;
 otherwise, they are cleared to 0. The OF, SF, ZF, and PF flags are
 undefined.
-
 
 Protected Mode Exceptions ¶
 
@@ -72,21 +64,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

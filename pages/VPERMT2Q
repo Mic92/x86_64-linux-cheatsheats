@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPERMT2W/VPERMT2D/VPERMT2Q/VPERMT2PS/VPERMT2PD — FULL PERMUTE FROM TWO TABLES OVERWRITING ONE TABLE
-
+VPERMT2W/VPERMT2D/VPERMT2Q/VPERMT2PS/VPERMT2PD — Full Permute from Two Tables Overwriting one Table
 
   Opcode/Instruction                                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +20,6 @@ VPERMT2W/VPERMT2D/VPERMT2Q/VPERMT2PS/VPERMT2PD — FULL PERMUTE FROM TWO TABLES 
   EVEX.128.66.0F38.W1 7F /r VPERMT2PD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   B       V/V                      AVX512VL AVX512F     Permute double-precision FP values from two tables in xmm3/m128/m64bcst and xmm1 using indexes in xmm2 and store the result in xmm1 using writemask k1.
   EVEX.256.66.0F38.W1 7F /r VPERMT2PD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   B       V/V                      AVX512VL AVX512F     Permute double-precision FP values from two tables in ymm3/m256/m64bcst and ymm1 using indexes in ymm2 and store the result in ymm1 using writemask k1.
   EVEX.512.66.0F38.W1 7F /r VPERMT2PD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   B       V/V                      AVX512F              Permute double-precision FP values from two tables in zmm3/m512/m64bcst and zmm1 using indices in zmm2 and store the result in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

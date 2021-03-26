@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CBW/CWDE/CDQE — CONVERT BYTE TO WORD/CONVERT WORD TO DOUBLEWORD/CONVERT DOUBLEWORD TO QUADWORD
-
+CBW/CWDE/CDQE — Convert Byte to Word/Convert Word to Doubleword/Convert Doubleword to Quadword
 
   Opcode       Instruction   Op/En   64-bit Mode   Compat/Leg Mode   Description
   ------------ ------------- ------- ------------- ----------------- ---------------------------
@@ -12,14 +9,12 @@ CBW/CWDE/CDQE — CONVERT BYTE TO WORD/CONVERT WORD TO DOUBLEWORD/CONVERT DOUBLE
   98           CWDE          ZO      Valid         Valid             EAX ← sign-extend of AX.
   REX.W + 98   CDQE          ZO      Valid         N.E.              RAX ← sign-extend of EAX.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -42,7 +37,6 @@ destination register. Use of the REX.W prefix promotes this instruction
 copies the sign (bit 31) of the doubleword in the EAX register into the
 high 32 bits of RAX.
 
-
 Operation ¶
 
     IF OperandSize = 16 (* Instruction = CBW *)
@@ -54,11 +48,9 @@ Operation ¶
             RAX ← SignExtend(EAX);
     FI;
 
-
 Flags Affected ¶
 
 None.
-
 
 Exceptions (All Operating Modes) ¶
 

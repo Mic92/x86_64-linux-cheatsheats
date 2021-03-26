@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SHA256RNDS2 — PERFORM TWO ROUNDS OF SHA256 OPERATION
-
+SHA256RNDS2 — Perform Two Rounds of SHA256 Operation
 
   Opcode/Instruction                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 38 CB /r SHA256RNDS2 xmm1, xmm2/m128, <XMM0>   RM0     V/V                      SHA                  Perform 2 rounds of SHA256 operation using an initial SHA256 state (C,D,G,H) from xmm1, an initial SHA256 state (A,B,E,F) from xmm2/m128, and a pre-computed sum of the next 2 round message dwords and the corresponding round constants from the implicit operand XMM0, storing the updated SHA256 state (A,B,E,F) result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

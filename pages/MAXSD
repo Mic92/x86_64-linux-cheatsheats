@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-MAXSD — RETURN MAXIMUM SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE
-
+MAXSD — Return Maximum Scalar Double-Precision Floating-Point Value
 
   Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------ ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
   F2 0F 5F /r MAXSD xmm1, xmm2/m64                                   A       V/V                      SSE2                 Return the maximum scalar double-precision floating-point value between xmm2/m64 and xmm1.
   VEX.LIG.F2.0F.WIG 5F /r VMAXSD xmm1, xmm2, xmm3/m64                B       V/V                      AVX                  Return the maximum scalar double-precision floating-point value between xmm3/m64 and xmm2.
   EVEX.LIG.F2.0F.W1 5F /r VMAXSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}   C       V/V                      AVX512F              Return the maximum scalar double-precision floating-point value between xmm3/m64 and xmm2.
-
 
 Instruction Operand Encoding ¶
 

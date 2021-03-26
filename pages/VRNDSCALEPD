@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VRNDSCALEPD — ROUND PACKED FLOAT64 VALUES TO INCLUDE A GIVEN NUMBER OF FRACTION BITS
-
+VRNDSCALEPD — Round Packed Float64 Values To Include A Given Number Of Fraction Bits
 
   Opcode/Instruction                                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F3A.W1 09 /r ib VRNDSCALEPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Rounds packed double-precision floating point values in xmm2/m128/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register. Under writemask.
   EVEX.256.66.0F3A.W1 09 /r ib VRNDSCALEPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8        A       V/V                      AVX512VL AVX512F     Rounds packed double-precision floating point values in ymm2/m256/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in ymm1 register. Under writemask.
   EVEX.512.66.0F3A.W1 09 /r ib VRNDSCALEPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8   A       V/V                      AVX512F              Rounds packed double-precision floating-point values in zmm2/m512/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register using writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -78,12 +74,7 @@ round_ctrl = imm[3:0];
 Note: EVEX.vvvv is reserved and must be 1111b, otherwise instructions
 will #UD.
 
-0 imm8 SPE RS Fixed point length Round Control Override Suppress
-Precision Exception: Imm8[3] Imm8[1:0] = 00b : Round nearest even Round
-Select: Imm8[2] Imm8[3] = 0b : Use MXCSR exception mask Imm8[7:4] :
-Number of fixed points to preserve Imm8[1:0] = 01b : Round down Imm8[2]
-= 0b : Use Imm8[1:0] Imm8[3] = 1b : Suppress Imm8[1:0] = 10b : Round up
-Imm8[2] = 1b : Use MXCSR Imm8[1:0] = 11b : Truncate
+[]
 
 Figure 5-29. Imm8 Controls for VRNDSCALEPD/SD/PS/SS
 
@@ -91,9 +82,9 @@ Handling of special case of input values are listed in Table 5-25.
 
               Returned value
   ----------- ------------------------
-  SRC1=±INF   Src1
-  SRC1=±NAN   Src1 converted to QNAN
-  SRC1=±0     Src1
+  Src1=±inf   Src1
+  Src1=±NAN   Src1 converted to QNAN
+  Src1=±0     Src1
 
 Table 5-25. VRNDSCALEPD/SD/PS/SS Special Cases
 

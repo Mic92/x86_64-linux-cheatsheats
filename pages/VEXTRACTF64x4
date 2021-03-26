@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VEXTRACTF128/VEXTRACTF32X4/VEXTRACTF64X2/VEXTRACTF32X8/VEXTRACTF64X4 — EXTRA CT PACKED FLOATING-POINT VALUES
-
+VEXTRACTF128/VEXTRACTF32x4/VEXTRACTF64x2/VEXTRACTF32x8/VEXTRACTF64x4 — Extra ct Packed Floating-Point Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ VEXTRACTF128/VEXTRACTF32X4/VEXTRACTF64X2/VEXTRACTF32X8/VEXTRACTF64X4 — EXTRA C
   EVEX.512.66.0F3A.W1 19 /r ib VEXTRACTF64X2 xmm1/m128 {k1}{z}, zmm2, imm8   B       V/V                      AVX512DQ             Extract 128 bits of packed double-precision floating-point values from zmm2 and store results in xmm1/m128 subject to writemask k1.
   EVEX.512.66.0F3A.W0 1B /r ib VEXTRACTF32X8 ymm1/m256 {k1}{z}, zmm2, imm8   D       V/V                      AVX512DQ             Extract 256 bits of packed single-precision floating-point values from zmm2 and store results in ymm1/m256 subject to writemask k1.
   EVEX.512.66.0F3A.W1 1B /r ib VEXTRACTF64x4 ymm1/m256 {k1}{z}, zmm2, imm8   C       V/V                      AVX512F              Extract 256 bits of packed double-precision floating-point values from zmm2 and store results in ymm1/m256 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

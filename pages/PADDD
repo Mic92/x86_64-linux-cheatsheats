@@ -1,322 +1,39 @@
 -   Index
 -   May 2019
 
-
-
-PADDB/PADDW/PADDD/PADDQ — ADD PACKED INTEGERS
-
-
-Opcode/Instruction
-
-Op/En
-
-64/32 bit Mode Support
-
-CPUID Feature Flag
-
-Description
-
-NP 0F FC /_r_¹ PADDB _mm, mm/m64_
-
-A
-
-V/V
-
-MMX
-
-Add packed byte integers from _mm/m64_ and _mm_.
-
-NP 0F FD /_r_¹ PADDW _mm, mm/m64_
-
-A
-
-V/V
-
-MMX
-
-Add packed word integers from _mm/m64_ and _mm_.
-
-NP 0F FE /_r_¹ PADDD _mm, mm/m64_
-
-A
-
-V/V
-
-MMX
-
-Add packed doubleword integers from _mm/m64_ and _mm_.
-
-NP 0F D4 /_r_¹ PADDQ _mm, mm/m64_
-
-A
-
-V/V
-
-MMX
-
-Add packed quadword integers from _mm/m64_ and _mm_.
-
-66 0F FC /_r_ PADDB _xmm1, xmm2/m128_
-
-A
-
-V/V
-
-SSE2
-
-Add packed byte integers from _xmm2/m128_ and _xmm1_.
-
-66 0F FD /_r_ PADDW _xmm1, xmm2/m128_
-
-A
-
-V/V
-
-SSE2
-
-Add packed word integers from _xmm2/m128_ and _xmm1_.
-
-66 0F FE /_r_ PADDD _xmm1, xmm2/m128_
-
-A
-
-V/V
-
-SSE2
-
-Add packed doubleword integers from _xmm2/m128_ and _xmm1_.
-
-66 0F D4 /_r_ PADDQ _xmm1, xmm2/m128_
-
-A
-
-V/V
-
-SSE2
-
-Add packed quadword integers from _xmm2/m128_ and _xmm1_.
-
-VEX.128.66.0F.WIG FC /_r_ VPADDB _xmm1, xmm2, xmm3/m128_
-
-B
-
-V/V
-
-AVX
-
-Add packed byte integers from _xmm2, and xmm3/m128_ and store in _xmm1_.
-
-VEX.128.66.0F.WIG FD /_r_ VPADDW _xmm1, xmm2, xmm3/m128_
-
-B
-
-V/V
-
-AVX
-
-Add packed word integers from _xmm2, xmm3/m128_ and _store in xmm1_.
-
-VEX.128.66.0F.WIG FE /_r_ VPADDD _xmm1, xmm2, xmm3/m128_
-
-B
-
-V/V
-
-AVX
-
-Add packed doubleword integers from _xmm2, xmm3/m128_ and store in
-_xmm1_.
-
-VEX.128.66.0F.WIG D4 /_r_ VPADDQ _xmm1, xmm2, xmm3/m128_
-
-B
-
-V/V
-
-AVX
-
-Add packed quadword integers from _xmm2, xmm3/m128_ and store in _xmm1_.
-
-VEX.256.66.0F.WIG FC /_r_ VPADDB _ymm1, ymm2, ymm3/m256_
-
-B
-
-V/V
-
-AVX2
-
-Add packed byte integers from _ymm2, and ymm3/m256_ and store in _ymm1_.
-
-VEX.256.66.0F.WIG FD /_r_ VPADDW _ymm1, ymm2, ymm3/m256_
-
-B
-
-V/V
-
-AVX2
-
-Add packed word integers from _ymm2, ymm3/m256_ and _store in ymm1_.
-
-VEX.256.66.0F.WIG FE /_r_ VPADDD _ymm1, ymm2, ymm3/m256_
-
-B
-
-V/V
-
-AVX2
-
-Add packed doubleword integers from _ymm2, ymm3/m256_ and _store in
-ymm1_.
-
-VEX.256.66.0F.WIG D4 /_r_ VPADDQ _ymm1, ymm2, ymm3/m256_
-
-B
-
-V/V
-
-AVX2
-
-Add packed quadword integers from _ymm2, ymm3/m256_ and store in _ymm1_.
-
-EVEX.128.66.0F.WIG FC /r VPADDB _xmm1 {k1}{z}, xmm2, xmm3/m128_
-
-C
-
-V/V
-
-AVX512VL AVX512BW
-
-Add packed byte integers from _xmm2, and xmm3/m128_ and store in _xmm1_
-using writemask k1.
-
-EVEX.128.66.0F.WIG FD /r VPADDW _xmm1 {k1}{z}, xmm2, xmm3/m128_
-
-C
-
-V/V
-
-AVX512VL AVX512BW
-
-Add packed word integers from _xmm2, and xmm3/m128_ and store in _xmm1_
-using writemask k1.
-
-EVEX.128.66.0F.W0 FE /r VPADDD _xmm1 {k1}{z}, xmm2,_ xmm3/m128/m32bcst
-
-D
-
-V/V
-
-AVX512VL AVX512F
-
-Add packed doubleword integers from _xmm2, and xmm3/m128/m32bcst_ and
-store in _xmm1_ using writemask k1.
-
-EVEX.128.66.0F.W1 D4 /r VPADDQ _xmm1 {k1}{z}, xmm2,_ xmm3/m128/m64bcst
-
-D
-
-V/V
-
-AVX512VL AVX512F
-
-Add packed quadword integers from _xmm2, and xmm3/m128/m64bcst_ and
-store in _xmm1_ using writemask k1.
-
-EVEX.256.66.0F.WIG FC /r VPADDB _ymm1 {k1}{z}, ymm2, ymm3/m256_
-
-C
-
-V/V
-
-AVX512VL AVX512BW
-
-Add packed byte integers from _ymm2, and ymm3/m256_ and store in _ymm1_
-using writemask k1.
-
-EVEX.256.66.0F.WIG FD /r VPADDW _ymm1 {k1}{z}, ymm2, ymm3/m256_
-
-C
-
-V/V
-
-AVX512VL AVX512BW
-
-Add packed word integers from _ymm2, and ymm3/m256_ and store in _ymm1_
-using writemask k1.
-
-EVEX.256.66.0F.W0 FE /r VPADDD _ymm1 {k1}{z}, ymm2,_ ymm3/m256/m32bcst
-
-D
-
-V/V
-
-AVX512VL AVX512F
-
-Add packed doubleword integers from _ymm2, ymm3/m256/m32bcst_ and store
-in _ymm1_ using writemask k1.
-
-EVEX.256.66.0F.W1 D4 /r VPADDQ _ymm1 {k1}{z}, ymm2,_ ymm3/m256/m64bcst
-
-D
-
-V/V
-
-AVX512VL AVX512F
-
-Add packed quadword integers from _ymm2, ymm3/m256/m64bcst_ and store in
-_ymm1_ using writemask k1.
-
-EVEX.512.66.0F.WIG FC /r VPADDB _zmm1 {k1}{z}, zmm2, zmm3/m512_
-
-C
-
-V/V
-
-AVX512BW
-
-Add packed byte integers from _zmm2, and zmm3/m512_ and store in _zmm1_
-using writemask k1.
-
-EVEX.512.66.0F.WIG FD /r VPADDW _zmm1 {k1}{z}, zmm2, zmm3/m512_
-
-C
-
-V/V
-
-AVX512BW
-
-Add packed word integers from _zmm2, and zmm3/m512_ and store in _zmm1_
-using writemask k1.
-
-EVEX.512.66.0F.W0 FE /_r_ VPADDD _zmm1 {k1}{z}, zmm2,_ zmm3/m512/m32bcst
-
-D
-
-V/V
-
-AVX512F
-
-Add packed doubleword integers from _zmm2, zmm3/m512/m32bcst_ and store
-in _zmm1_ using writemask k1.
-
-EVEX.512.66.0F.W1 D4 /_r_ VPADDQ _zmm1 {k1}{z}, zmm2,_ zmm3/m512/m64bcst
-
-D
-
-V/V
-
-AVX512F
-
-Add packed quadword integers from _zmm2, zmm3/m512/m64bcst_ and store in
-_zmm1_ using writemask k1.
-
-NOTES: 1. See note in Section 2.4, “AVX and SSE Instruction Exception
-Specification” in the _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
-Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_.
-
+PADDB/PADDW/PADDD/PADDQ — Add Packed Integers
+
+  Opcode/Instruction                                                                                                                                                                                                                                                                                                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------
+  NP 0F FC /r¹ PADDB mm, mm/m64                                                                                                                                                                                                                                                                                                                              A       V/V                      MMX                  Add packed byte integers from mm/m64 and mm.
+  NP 0F FD /r¹ PADDW mm, mm/m64                                                                                                                                                                                                                                                                                                                              A       V/V                      MMX                  Add packed word integers from mm/m64 and mm.
+  NP 0F FE /r¹ PADDD mm, mm/m64                                                                                                                                                                                                                                                                                                                              A       V/V                      MMX                  Add packed doubleword integers from mm/m64 and mm.
+  NP 0F D4 /r¹ PADDQ mm, mm/m64                                                                                                                                                                                                                                                                                                                              A       V/V                      MMX                  Add packed quadword integers from mm/m64 and mm.
+  66 0F FC /r PADDB xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                          A       V/V                      SSE2                 Add packed byte integers from xmm2/m128 and xmm1.
+  66 0F FD /r PADDW xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                          A       V/V                      SSE2                 Add packed word integers from xmm2/m128 and xmm1.
+  66 0F FE /r PADDD xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                          A       V/V                      SSE2                 Add packed doubleword integers from xmm2/m128 and xmm1.
+  66 0F D4 /r PADDQ xmm1, xmm2/m128                                                                                                                                                                                                                                                                                                                          A       V/V                      SSE2                 Add packed quadword integers from xmm2/m128 and xmm1.
+  VEX.128.66.0F.WIG FC /r VPADDB xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                       B       V/V                      AVX                  Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1.
+  VEX.128.66.0F.WIG FD /r VPADDW xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                       B       V/V                      AVX                  Add packed word integers from xmm2, xmm3/m128 and store in xmm1.
+  VEX.128.66.0F.WIG FE /r VPADDD xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                       B       V/V                      AVX                  Add packed doubleword integers from xmm2, xmm3/m128 and store in xmm1.
+  VEX.128.66.0F.WIG D4 /r VPADDQ xmm1, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                                       B       V/V                      AVX                  Add packed quadword integers from xmm2, xmm3/m128 and store in xmm1.
+  VEX.256.66.0F.WIG FC /r VPADDB ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                       B       V/V                      AVX2                 Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1.
+  VEX.256.66.0F.WIG FD /r VPADDW ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                       B       V/V                      AVX2                 Add packed word integers from ymm2, ymm3/m256 and store in ymm1.
+  VEX.256.66.0F.WIG FE /r VPADDD ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                       B       V/V                      AVX2                 Add packed doubleword integers from ymm2, ymm3/m256 and store in ymm1.
+  VEX.256.66.0F.WIG D4 /r VPADDQ ymm1, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                                       B       V/V                      AVX2                 Add packed quadword integers from ymm2, ymm3/m256 and store in ymm1.
+  EVEX.128.66.0F.WIG FC /r VPADDB xmm1 {k1}{z}, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                              C       V/V                      AVX512VL AVX512BW    Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.
+  EVEX.128.66.0F.WIG FD /r VPADDW xmm1 {k1}{z}, xmm2, xmm3/m128                                                                                                                                                                                                                                                                                              C       V/V                      AVX512VL AVX512BW    Add packed word integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.
+  EVEX.128.66.0F.W0 FE /r VPADDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst                                                                                                                                                                                                                                                                                       D       V/V                      AVX512VL AVX512F     Add packed doubleword integers from xmm2, and xmm3/m128/m32bcst and store in xmm1 using writemask k1.
+  EVEX.128.66.0F.W1 D4 /r VPADDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst                                                                                                                                                                                                                                                                                       D       V/V                      AVX512VL AVX512F     Add packed quadword integers from xmm2, and xmm3/m128/m64bcst and store in xmm1 using writemask k1.
+  EVEX.256.66.0F.WIG FC /r VPADDB ymm1 {k1}{z}, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                              C       V/V                      AVX512VL AVX512BW    Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.
+  EVEX.256.66.0F.WIG FD /r VPADDW ymm1 {k1}{z}, ymm2, ymm3/m256                                                                                                                                                                                                                                                                                              C       V/V                      AVX512VL AVX512BW    Add packed word integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.
+  EVEX.256.66.0F.W0 FE /r VPADDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst                                                                                                                                                                                                                                                                                       D       V/V                      AVX512VL AVX512F     Add packed doubleword integers from ymm2, ymm3/m256/m32bcst and store in ymm1 using writemask k1.
+  EVEX.256.66.0F.W1 D4 /r VPADDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst                                                                                                                                                                                                                                                                                       D       V/V                      AVX512VL AVX512F     Add packed quadword integers from ymm2, ymm3/m256/m64bcst and store in ymm1 using writemask k1.
+  EVEX.512.66.0F.WIG FC /r VPADDB zmm1 {k1}{z}, zmm2, zmm3/m512                                                                                                                                                                                                                                                                                              C       V/V                      AVX512BW             Add packed byte integers from zmm2, and zmm3/m512 and store in zmm1 using writemask k1.
+  EVEX.512.66.0F.WIG FD /r VPADDW zmm1 {k1}{z}, zmm2, zmm3/m512                                                                                                                                                                                                                                                                                              C       V/V                      AVX512BW             Add packed word integers from zmm2, and zmm3/m512 and store in zmm1 using writemask k1.
+  EVEX.512.66.0F.W0 FE /r VPADDD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst                                                                                                                                                                                                                                                                                       D       V/V                      AVX512F              Add packed doubleword integers from zmm2, zmm3/m512/m32bcst and store in zmm1 using writemask k1.
+  EVEX.512.66.0F.W1 D4 /r VPADDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst                                                                                                                                                                                                                                                                                       D       V/V                      AVX512F              Add packed quadword integers from zmm2, zmm3/m512/m64bcst and store in zmm1 using writemask k1.
+  NOTES: 1. See note in Section 2.4, “AVX and SSE Instruction Exception Specification” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.                                                         
 
 Instruction Operand Encoding ¶
 
@@ -333,8 +50,8 @@ Description ¶
 Performs a SIMD add of the packed integers from the source operand
 (second operand) and the destination operand (first operand), and stores
 the packed integer results in the destination operand. See Figure 9-4 in
-the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 1_, for an illustration of a SIMD operation. Overflow is handled
+the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 1, for an illustration of a SIMD operation. Overflow is handled
 with wraparound, as described in the following paragraphs.
 
 The PADDB and VPADDB instructions add packed byte integers from the

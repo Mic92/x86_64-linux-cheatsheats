@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+RCPSS — Compute Reciprocal of Scalar Single-Precision Floating-Point Values
 
-
-RCPSS — COMPUTE RECIPROCAL OF SCALAR SINGLE-PRECISION FLOATING-POINT VALUES
-
-
-  Opcode*/Instruction                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  F3 0F 53 /_r_ RCPSS _xmm1_, xmm2/m32                    RM      V/V                      SSE                  Computes the approximate reciprocal of the scalar single-precision floating-point value in _xmm2/m32_ and stores the result in _xmm1_.
-  VEX.LIG.F3.0F.WIG 53 /r VRCPSS _xmm1, xmm2, xmm3/m32_   RVM     V/V                      AVX                  Computes the approximate reciprocal of the scalar single-precision floating-point value in _xmm3/m32_ and stores the result in _xmm1_. Also, upper single precision floating-point values (bits[127:32]) from _xmm2_ are copied to _xmm1_[127:32].
-
+  Opcode*/Instruction                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  F3 0F 53 /r RCPSS xmm1, xmm2/m32                      RM      V/V                      SSE                  Computes the approximate reciprocal of the scalar single-precision floating-point value in xmm2/m32 and stores the result in xmm1.
+  VEX.LIG.F3.0F.WIG 53 /r VRCPSS xmm1, xmm2, xmm3/m32   RVM     V/V                      AVX                  Computes the approximate reciprocal of the scalar single-precision floating-point value in xmm3/m32 and stores the result in xmm1. Also, upper single precision floating-point values (bits[127:32]) from xmm2 are copied to xmm1[127:32].
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   RVM     ModRM:reg (w)   VEX.vvvv (r)    ModRM:r/m (r)   NA
   ------- --------------- --------------- --------------- -----------
 
-
 Description ¶
 
 Computes of an approximate reciprocal of the low single-precision
@@ -29,8 +24,8 @@ the single-precision floating-point result in the destination operand.
 The source operand can be an XMM register or a 32-bit memory location.
 The destination operand is an XMM register. The three high-order
 doublewords of the destination operand remain unchanged. See Figure 10-6
-in the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 1_, for an illustration of a scalar single-precision
+in the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 1, for an illustration of a scalar single-precision
 floating-point operation.
 
 The relative error for this approximation is:
@@ -41,8 +36,8 @@ The RCPSS instruction is not affected by the rounding control bits in
 the MXCSR register. When a source value is a 0.0, an ∞ of the sign of
 the source value is returned. A denormal source value is treated as a
 0.0 (of the same sign). Tiny results (see Section 4.9.1.5, “Numeric
-Underflow Exception (#U)” in _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 1_) are always flushed to 0.0, with the sign
+Underflow Exception (#U)” in Intel® 64 and IA-32 Architectures Software
+Developer’s Manual, Volume 1) are always flushed to 0.0, with the sign
 of the operand. (Input values greater than or equal to
 |1.11111111110100000000000B∗2¹²⁵| are guaranteed to not produce tiny
 results; input values less than or equal to
@@ -62,7 +57,6 @@ destination register remain unchanged.
 VEX.128 encoded version: Bits (MAXVL-1:128) of the destination YMM
 register are zeroed.
 
-
 Operation ¶
 
 RCPSS (128-bit Legacy SSE version) ¶
@@ -76,16 +70,13 @@ VRCPSS (VEX.128 encoded version) ¶
     DEST[127:32] ← SRC1[127:32]
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     RCPSS: __m128 _mm_rcp_ss(__m128 a)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

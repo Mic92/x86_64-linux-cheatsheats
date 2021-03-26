@@ -1,33 +1,29 @@
 -   Index
 -   May 2019
 
+XCHG — Exchange Register/Memory with Register
 
-
-XCHG — EXCHANGE REGISTER/MEMORY WITH REGISTER
-
-
-  Opcode            Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ----------------- ------------------- ------- ------------- ----------------- ------------------------------------------------------
-  90+_rw_           XCHG AX, _r16_      O       Valid         Valid             Exchange _r16_ with AX.
-  90+_rw_           XCHG _r16_, AX      O       Valid         Valid             Exchange AX with _r16._
-  90+_rd_           XCHG EAX, _r32_     O       Valid         Valid             Exchange _r32_ with EAX.
-  REX.W + 90+_rd_   XCHG RAX, _r64_     O       Valid         N.E.              Exchange _r64_ with RAX.
-  90+_rd_           XCHG _r32_, EAX     O       Valid         Valid             Exchange EAX with _r32._
-  REX.W + 90+_rd_   XCHG _r64_, RAX     O       Valid         N.E.              Exchange RAX with _r64._
-  86 /_r_           XCHG _r/m8, r8_     MR      Valid         Valid             Exchange _r8_ (byte register) with byte from _r/m8._
-  REX + 86 /_r_     XCHG _r/m8*, r8*_   MR      Valid         N.E.              Exchange _r8_ (byte register) with byte from _r/m8._
-  86 /_r_           XCHG _r8, r/m8_     RM      Valid         Valid             Exchange byte from _r/m8_ with _r8_ (byte register).
-  REX + 86 /_r_     XCHG _r8*, r/m8*_   RM      Valid         N.E.              Exchange byte from _r/m8_ with _r8_ (byte register).
-  87 /_r_           XCHG _r/m16, r16_   MR      Valid         Valid             Exchange _r16_ with word from _r/m16._
-  87 /_r_           XCHG _r16, r/m16_   RM      Valid         Valid             Exchange word from _r/m16_ with _r16._
-  87 /_r_           XCHG _r/m32, r32_   MR      Valid         Valid             Exchange _r32_ with doubleword from _r/m32._
-  REX.W + 87 /_r_   XCHG _r/m64, r64_   MR      Valid         N.E.              Exchange _r64_ with quadword from _r/m64._
-  87 /_r_           XCHG _r32, r/m32_   RM      Valid         Valid             Exchange doubleword from _r/m32_ with _r32._
-  REX.W + 87 /_r_   XCHG _r64, r/m64_   RM      Valid         N.E.              Exchange quadword from _r/m64_ with _r64._
+  Opcode          Instruction       Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------- ----------------- ------- ------------- ----------------- --------------------------------------------------
+  90+rw           XCHG AX, r16      O       Valid         Valid             Exchange r16 with AX.
+  90+rw           XCHG r16, AX      O       Valid         Valid             Exchange AX with r16.
+  90+rd           XCHG EAX, r32     O       Valid         Valid             Exchange r32 with EAX.
+  REX.W + 90+rd   XCHG RAX, r64     O       Valid         N.E.              Exchange r64 with RAX.
+  90+rd           XCHG r32, EAX     O       Valid         Valid             Exchange EAX with r32.
+  REX.W + 90+rd   XCHG r64, RAX     O       Valid         N.E.              Exchange RAX with r64.
+  86 /r           XCHG r/m8, r8     MR      Valid         Valid             Exchange r8 (byte register) with byte from r/m8.
+  REX + 86 /r     XCHG r/m8*, r8*   MR      Valid         N.E.              Exchange r8 (byte register) with byte from r/m8.
+  86 /r           XCHG r8, r/m8     RM      Valid         Valid             Exchange byte from r/m8 with r8 (byte register).
+  REX + 86 /r     XCHG r8*, r/m8*   RM      Valid         N.E.              Exchange byte from r/m8 with r8 (byte register).
+  87 /r           XCHG r/m16, r16   MR      Valid         Valid             Exchange r16 with word from r/m16.
+  87 /r           XCHG r16, r/m16   RM      Valid         Valid             Exchange word from r/m16 with r16.
+  87 /r           XCHG r/m32, r32   MR      Valid         Valid             Exchange r32 with doubleword from r/m32.
+  REX.W + 87 /r   XCHG r/m64, r64   MR      Valid         N.E.              Exchange r64 with quadword from r/m64.
+  87 /r           XCHG r32, r/m32   RM      Valid         Valid             Exchange doubleword from r/m32 with r32.
+  REX.W + 87 /r   XCHG r64, r/m64   RM      Valid         N.E.              Exchange quadword from r/m64 with r64.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
-
 
 Instruction Operand Encoding ¶
 
@@ -38,7 +34,6 @@ Instruction Operand Encoding ¶
   MR      ModRM:r/m (r, w)     ModRM:reg (r)        NA          NA
   RM      ModRM:reg (w)        ModRM:r/m (r)        NA          NA
   ------- -------------------- -------------------- ----------- -----------
-
 
 Description ¶
 
@@ -53,8 +48,8 @@ protocol.)
 
 This instruction is useful for implementing semaphores or similar data
 structures for process synchronization. (See “Bus Locking” in Chapter 8
-of the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_, for more information on bus locking.)
+of the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 3A, for more information on bus locking.)
 
 The XCHG instruction can also be used instead of the BSWAP instruction
 for 16-bit operands.
@@ -68,47 +63,27 @@ section for encoding data and limits.
   XCHG (E)AX, (E)AX (encoded instruction byte is 90H) is an alias for
   NOP regardless of data size prefixes, including REX.W.
 
-
 Operation ¶
 
     TEMP ← DEST;
     DEST ← SRC;
     SRC ← TEMP;
 
-
 Flags Affected ¶
 
 None.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If either operand is in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If either operand is in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -117,7 +92,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -129,11 +103,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

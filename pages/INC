@@ -1,26 +1,22 @@
 -   Index
 -   May 2019
 
+INC — Increment by 1
 
-
-INC — INCREMENT BY 1
-
-
-  Opcode          Instruction      Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------------- ---------------- ------- ------------- ----------------- -------------------------------------
-  FE /0           INC _r/m8_       M       Valid         Valid             Increment _r/m_ byte by 1.
-  REX + FE /0     INC _r/m8_^(*)   M       Valid         N.E.              Increment _r/m_ byte by 1.
-  FF /0           INC _r/m16_      M       Valid         Valid             Increment _r/m_ word by 1.
-  FF /0           INC _r/m32_      M       Valid         Valid             Increment _r/m_ doubleword by 1.
-  REX.W + FF /0   INC _r/m64_      M       Valid         N.E.              Increment _r/m_ quadword by 1.
-  40+ _rw^(**)_   INC _r16_        O       N.E.          Valid             Increment word register by 1.
-  40+ _rd_        INC _r32_        O       N.E.          Valid             Increment doubleword register by 1.
+  Opcode          Instruction    Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------- -------------- ------- ------------- ----------------- -------------------------------------
+  FE /0           INC r/m8       M       Valid         Valid             Increment r/m byte by 1.
+  REX + FE /0     INC r/m8^(*)   M       Valid         N.E.              Increment r/m byte by 1.
+  FF /0           INC r/m16      M       Valid         Valid             Increment r/m word by 1.
+  FF /0           INC r/m32      M       Valid         Valid             Increment r/m doubleword by 1.
+  REX.W + FF /0   INC r/m64      M       Valid         N.E.              Increment r/m quadword by 1.
+  40+ rw^(**)     INC r16        O       N.E.          Valid             Increment word register by 1.
+  40+ rd          INC r32        O       N.E.          Valid             Increment doubleword register by 1.
 
   *
   In64-bitmode,r/m8cannotbeencodedtoaccessthefollowingbyteregistersifaREXprefixisused:AH,BH,CH,DH.
 
   ** 40H through 47H are REX prefixes in 64-bit mode.
-
 
 Instruction Operand Encoding ¶
 
@@ -29,7 +25,6 @@ Instruction Operand Encoding ¶
   M       ModRM:r/m (r, w)     NA          NA          NA
   O       opcode + rd (r, w)   NA          NA          NA
   ------- -------------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -48,47 +43,26 @@ mode default operation size is 32 bits. Use of the REX.R prefix permits
 access to additional registers (R8-R15). Use of the REX.W prefix
 promotes operation to 64 bits.
 
-
 Operation ¶
 
     DEST ← DEST + 1;
-
 
 AFlags Affected ¶
 
 The CF flag is not affected. The OF, SF, ZF, AF, and PF flags are set
 according to the result.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination operand is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register is used to access memory and it
-contains a NULLsegment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used but the destination is not a memory operand.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination operand is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register is used to access memory and it contains a NULLsegment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used but the destination is not a memory operand.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -97,7 +71,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used but the destination is not a memory operand.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -109,11 +82,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used but the destination is not a memory operand.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

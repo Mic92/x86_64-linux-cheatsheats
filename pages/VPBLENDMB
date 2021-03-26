@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPBLENDMB/VPBLENDMW — BLEND BYTE/WORD VECTORS USING AN OPMASK CONTROL
-
+VPBLENDMB/VPBLENDMW — Blend Byte/Word Vectors Using an Opmask Control
 
   Opcode/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPBLENDMB/VPBLENDMW — BLEND BYTE/WORD VECTORS USING AN OPMASK CONTROL
   EVEX.128.66.0F38.W1 66 /r VPBLENDMW xmm1 {k1}{z}, xmm2, xmm3/m128   A       V/V                      AVX512VL AVX512BW    Blend word integer vector xmm2 and word vector xmm3/m128 and store the result in xmm1, under control mask.
   EVEX.256.66.0F38.W1 66 /r VPBLENDMW ymm1 {k1}{z}, ymm2, ymm3/m256   A       V/V                      AVX512VL AVX512BW    Blend word integer vector ymm2 and word vector ymm3/m256 and store the result in ymm1, under control mask.
   EVEX.512.66.0F38.W1 66 /r VPBLENDMW zmm1 {k1}{z}, zmm2, zmm3/m512   A       V/V                      AVX512BW             Blend word integer vector zmm2 and word vector zmm3/m512 and store the result in zmm1, under control mask.
-
 
 Instruction Operand Encoding ¶
 

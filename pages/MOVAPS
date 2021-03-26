@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVAPS — MOVE ALIGNED PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+MOVAPS — Move Aligned Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------
@@ -20,7 +17,6 @@ MOVAPS — MOVE ALIGNED PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   EVEX.128.0F.W0 29 /r VMOVAPS xmm2/m128 {k1}{z}, xmm1   D       V/V                      AVX512VL AVX512F     Move aligned packed single-precision floating-point values from xmm1 to xmm2/m128 using writemask k1.
   EVEX.256.0F.W0 29 /r VMOVAPS ymm2/m256 {k1}{z}, ymm1   D       V/V                      AVX512VL AVX512F     Move aligned packed single-precision floating-point values from ymm1 to ymm2/m256 using writemask k1.
   EVEX.512.0F.W0 29 /r VMOVAPS zmm2/m512 {k1}{z}, zmm1   D       V/V                      AVX512F              Move aligned packed single-precision floating-point values from zmm1 to zmm2/m512 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

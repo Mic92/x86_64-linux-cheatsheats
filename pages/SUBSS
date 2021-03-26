@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-SUBSS — SUBTRACT SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
-
+SUBSS — Subtract Scalar Single-Precision Floating-Point Value
 
   Opcode/Instruction                                                Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------
   F3 0F 5C /r SUBSS xmm1, xmm2/m32                                  A         V/V                      SSE                  Subtract the low single-precision floating-point value in xmm2/m32 from xmm1 and store the result in xmm1.
   VEX.LIG.F3.0F.WIG 5C /r VSUBSS xmm1,xmm2, xmm3/m32                B         V/V                      AVX                  Subtract the low single-precision floating-point value in xmm3/m32 from xmm2 and store the result in xmm1.
   EVEX.LIG.F3.0F.W0 5C /r VSUBSS xmm1 {k1}{z}, xmm2, xmm3/m32{er}   C         V/V                      AVX512F              Subtract the low single-precision floating-point value in xmm3/m32 from xmm2 and store the result in xmm1 under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

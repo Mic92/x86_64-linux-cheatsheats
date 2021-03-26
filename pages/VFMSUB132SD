@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VFMSUB132SD/VFMSUB213SD/VFMSUB231SD — FUSED MULTIPLY-SUBTRACT OF SCALAR DOUBLE- PRECISION FLOATING-POINT VALUES
-
+VFMSUB132SD/VFMSUB213SD/VFMSUB231SD — Fused Multiply-Subtract of Scalar Double- Precision Floating-Point Values
 
   Opcode/Instruction                                                       Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------ --------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VFMSUB132SD/VFMSUB213SD/VFMSUB231SD — FUSED MULTIPLY-SUBTRACT OF SCALAR DOUBLE
   EVEX.LIG.66.0F38.W1 9B /r VFMSUB132SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B         V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm1 and xmm3/m64, subtract xmm2 and put result in xmm1.
   EVEX.LIG.66.0F38.W1 AB /r VFMSUB213SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B         V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm1 and xmm2, subtract xmm3/m64 and put result in xmm1.
   EVEX.LIG.66.0F38.W1 BB /r VFMSUB231SD xmm1 {k1}{z}, xmm2, xmm3/m64{er}   B         V/V                      AVX512F              Multiply scalar double-precision floating-point value from xmm2 and xmm3/m64, subtract xmm1 and put result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

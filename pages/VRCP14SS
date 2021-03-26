@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRCP14SS — COMPUTE APPROXIMATE RECIPROCAL OF SCALAR FLOAT32 VALUE
-
+VRCP14SS — Compute Approximate Reciprocal of Scalar Float32 Value
 
   Opcode/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W0 4D /r VRCP14SS xmm1 {k1}{z}, xmm2, xmm3/m32   A       V/V                      AVX512F              Computes the approximate reciprocal of the scalar single-precision floating-point value in xmm3/m32 and stores the results in xmm1 using writemask k1. Also, upper double-precision floating-point value (bits[127:32]) from xmm2 is copied to xmm1[127:32].
-
 
 Instruction Operand Encoding ¶
 

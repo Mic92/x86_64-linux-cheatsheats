@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
-
-
-PSHUFHW — SHUFFLE PACKED HIGH WORDS
-
+PSHUFHW — Shuffle Packed High Words
 
   Opcode/Instruction                                                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------
-  F3 0F 70 /_r_ ib PSHUFHW _xmm1_, _xmm2/m128_, _imm8_                 A       V/V                      SSE2                 Shuffle the high words in _xmm2/m128_ based on the encoding in _imm8_ and store the result in _xmm1_.
-  VEX.128.F3.0F.WIG 70 /r ib VPSHUFHW _xmm1, xmm2/m128, imm8_          A       V/V                      AVX                  Shuffle the high words in _xmm2/m128_ based on the encoding in _imm8_ and store the result in _xmm1_.
-  VEX.256.F3.0F.WIG 70 /r ib VPSHUFHW _ymm1, ymm2/m256, imm8_          A       V/V                      AVX2                 Shuffle the high words in _ymm2/m256_ based on the encoding in _imm8_ and store the result in _ymm1_.
+  F3 0F 70 /r ib PSHUFHW xmm1, xmm2/m128, imm8                         A       V/V                      SSE2                 Shuffle the high words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.
+  VEX.128.F3.0F.WIG 70 /r ib VPSHUFHW xmm1, xmm2/m128, imm8            A       V/V                      AVX                  Shuffle the high words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.
+  VEX.256.F3.0F.WIG 70 /r ib VPSHUFHW ymm1, ymm2/m256, imm8            A       V/V                      AVX2                 Shuffle the high words in ymm2/m256 based on the encoding in imm8 and store the result in ymm1.
   EVEX.128.F3.0F.WIG 70 /r ib VPSHUFHW xmm1 {k1}{z}, xmm2/m128, imm8   B       V/V                      AVX512VL AVX512BW    Shuffle the high words in xmm2/m128 based on the encoding in imm8 and store the result in xmm1 under write mask k1.
   EVEX.256.F3.0F.WIG 70 /r ib VPSHUFHW ymm1 {k1}{z}, ymm2/m256, imm8   B       V/V                      AVX512VL AVX512BW    Shuffle the high words in ymm2/m256 based on the encoding in imm8 and store the result in ymm1 under write mask k1.
   EVEX.512.F3.0F.WIG 70 /r ib VPSHUFHW zmm1 {k1}{z}, zmm2/m512, imm8   B       V/V                      AVX512BW             Shuffle the high words in zmm2/m512 based on the encoding in imm8 and store the result in zmm1 under write mask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   A       NA           ModRM:reg (w)   ModRM:r/m (r)   imm8        NA
   B       Full Mem     ModRM:reg (w)   ModRM:r/m (r)   Imm8        NA
   ------- ------------ --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -69,7 +64,6 @@ the writemask.
 
 Note: In VEX encoded versions, VEX.vvvv is reserved and must be 1111b
 otherwise instructions will #UD.
-
 
 Operation ¶
 
@@ -150,7 +144,6 @@ VPSHUFHW (EVEX encoded versions) ¶
     ENDFOR
     DEST[MAXVL-1:VL] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSHUFHW __m512i _mm512_shufflehi_epi16(__m512i a, int n);
@@ -171,16 +164,13 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VPSHUFHW:__m256i _mm256_shufflehi_epi16(__m256i a, const int n)
 
-
 Flags Affected ¶
 
 None.
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

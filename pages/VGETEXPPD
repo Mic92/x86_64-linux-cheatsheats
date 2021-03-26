@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VGETEXPPD — CONVERT EXPONENTS OF PACKED DP FP VALUES TO DP FP VALUES
-
+VGETEXPPD — Convert Exponents of Packed DP FP Values to DP FP Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W1 42 /r VGETEXPPD xmm1 {k1}{z}, xmm2/m128/m64bcst        A       V/V                      AVX512VL AVX512F     Convert the exponent of packed double-precision floating-point values in the source operand to DP FP results representing unbiased integer exponents and stores the results in the destination register.
   EVEX.256.66.0F38.W1 42 /r VGETEXPPD ymm1 {k1}{z}, ymm2/m256/m64bcst        A       V/V                      AVX512VL AVX512F     Convert the exponent of packed double-precision floating-point values in the source operand to DP FP results representing unbiased integer exponents and stores the results in the destination register.
   EVEX.512.66.0F38.W1 42 /r VGETEXPPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}   A       V/V                      AVX512F              Convert the exponent of packed double-precision floating-point values in the source operand to DP FP results representing unbiased integer exponents and stores the results in the destination under writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -46,32 +42,15 @@ The formula is:
 
 GETEXP(x) = floor(log₂(|x|))
 
-Notation FLOOR(X) stands for the greatest integer not exceeding real
+Notation floor(x) stands for the greatest integer not exceeding real
 number x.
 
-Input Operand
-
-Result
-
-Comments
-
-src1 = NaN
-
-QNaN(src1)
-
-If (SRC = SNaN) then #IE If (SRC = denormal) then #DE
-
-0 < |src1| < INF
-
-floor(log₂(|src1|))
-
-| src1| = +INF
-
-+INF
-
-| src1| = 0
-
--INF
+  Input Operand      Result       Comments
+  ------------------ ------------ -------------------------------------------------------
+  src1 = NaN         QNaN(src1)   If (SRC = SNaN) then #IE If (SRC = denormal) then #DE
+  0 < |src1| < INF                floor(log₂(|src1|))
+  | src1| = +INF                  +INF
+  | src1| = 0                     -INF
 
 Table 5-14. VGETEXPPD/SD Special Cases
 

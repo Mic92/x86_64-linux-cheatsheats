@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-XGETBV — GET VALUE OF EXTENDED CONTROL REGISTER
-
+XGETBV — Get Value of Extended Control Register
 
   Opcode        Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   ------------- ------------- ------- ------------- ----------------- ---------------------------------------------
   NP 0F 01 D0   XGETBV        ZO      Valid         Valid             Reads an XCR specified by ECX into EDX:EAX.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -36,69 +31,49 @@ If CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit 2] = 1, executing XGETBV with ECX =
 1 returns in EDX:EAX the logicalAND of XCR0 and the current value of the
 XINUSE state-component bitmap. This allows software to discover the
 state of the init optimization used by XSAVEOPT and XSAVES. See Chapter
-13, “Managing State Using the XSAVE Feature Set‚” in _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 1_.
+13, “Managing State Using the XSAVE Feature Set‚” in Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 1.
 
 Use of any other value for ECX results in a general-protection (#GP)
 exception.
-
 
 Operation ¶
 
     EDX:EAX ← XCR[ECX];
 
-
 Flags Affected ¶
 
 None.
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     XGETBV: unsigned __int64 _xgetbv( unsigned int);
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If an invalid XCR is specified in ECX (includes ECX = 1 if
-CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit 2] = 0).
-
-#UD
-
-If CPUID.01H:ECX.XSAVE[bit 26] = 0.
-
-If CR4.OSXSAVE[bit 18] = 0.
-
-If the LOCK prefix is used.
-
+  -------- -------------------------------------------------------------------------------------------------------
+  #GP(0)   If an invalid XCR is specified in ECX (includes ECX = 1 if CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit 2] = 0).
+  #UD      If CPUID.01H:ECX.XSAVE[bit 26] = 0.
+           If CR4.OSXSAVE[bit 18] = 0.
+           If the LOCK prefix is used.
+  -------- -------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP(0)
-
-If an invalid XCR is specified in ECX (includes ECX = 1 if
-CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit 2] = 0).
-
-#UD
-
-If CPUID.01H:ECX.XSAVE[bit 26] = 0.
-
-If CR4.OSXSAVE[bit 18] = 0.
-
-If the LOCK prefix is used.
-
+  -------- -------------------------------------------------------------------------------------------------------
+  #GP(0)   If an invalid XCR is specified in ECX (includes ECX = 1 if CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit 2] = 0).
+  #UD      If CPUID.01H:ECX.XSAVE[bit 26] = 0.
+           If CR4.OSXSAVE[bit 18] = 0.
+           If the LOCK prefix is used.
+  -------- -------------------------------------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

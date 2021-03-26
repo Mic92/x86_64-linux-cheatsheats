@@ -1,28 +1,24 @@
 -   Index
 -   May 2019
 
-
-
-PINSRW — INSERT WORD
-
+PINSRW — Insert Word
 
   Opcode/Instruction                                              Op/ En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------- -------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
-  NP 0F C4 /_r_ ib¹ PINSRW _mm_, _r32/m16, imm8_                  A        V/V                      SSE                  Insert the low word from _r32_ or from _m16_ into _mm_ at the word position specified by _imm8._
-  66 0F C4 /_r_ ib PINSRW _xmm, r32/m16, imm8_                    A        V/V                      SSE2                 Move the low word of _r32_ or from _m16_ into _xmm_ at the word position specified by _imm8_.
-  VEX.128.66.0F.W0 C4 /r ib VPINSRW _xmm1, xmm2, r32/m16, imm8_   B        V²/V                     AVX                  Insert a word integer value from _r32/m16_ and rest from _xmm2_ into _xmm1_ at the word offset in _imm8_.
+  --------------------------------------------------------------- -------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------
+  NP 0F C4 /r ib¹ PINSRW mm, r32/m16, imm8                        A        V/V                      SSE                  Insert the low word from r32 or from m16 into mm at the word position specified by imm8.
+  66 0F C4 /r ib PINSRW xmm, r32/m16, imm8                        A        V/V                      SSE2                 Move the low word of r32 or from m16 into xmm at the word position specified by imm8.
+  VEX.128.66.0F.W0 C4 /r ib VPINSRW xmm1, xmm2, r32/m16, imm8     B        V²/V                     AVX                  Insert a word integer value from r32/m16 and rest from xmm2 into xmm1 at the word offset in imm8.
   EVEX.128.66.0F.WIG C4 /r ib VPINSRW xmm1, xmm2, r32/m16, imm8   C        V/V                      AVX512BW             Insert a word integer value from r32/m16 and rest from xmm2 into xmm1 at the word offset in imm8.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
   2. In 64-bit mode, VEX.W1 is ignored for VPINSRW (similar to legacy
   REX.W=1 prefix in PINSRW).
-
 
 Instruction Operand Encoding ¶
 
@@ -32,7 +28,6 @@ Instruction Operand Encoding ¶
   B       NA              ModRM:reg (w)   VEX.vvvv (r)    ModRM:r/m (r)   imm8
   C       Tuple1 Scalar   ModRM:reg (w)   EVEX.vvvv (r)   ModRM:r/m (r)   Imm8
   ------- --------------- --------------- --------------- --------------- -----------
-
 
 Description ¶
 
@@ -61,7 +56,6 @@ register are zeroed. VEX.L must be 0, otherwise the instruction will
 
 EVEX.128 encoded version: Bits (MAXVL-1:128) of the destination register
 are zeroed. EVEX.L’L must be 0, otherwise the instruction will #UD.
-
 
 Operation ¶
 
@@ -107,23 +101,19 @@ VPINSRW (VEX/EVEX encoded version) ¶
     DEST[127:0]←write_w_element(SEL, SRC2, SRC1)
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     PINSRW: __m64 _mm_insert_pi16 (__m64 a, int d, int n)
 
     PINSRW: __m128i _mm_insert_epi16 ( __m128i a, int b, int imm)
 
-
 Flags Affected ¶
 
 None.
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

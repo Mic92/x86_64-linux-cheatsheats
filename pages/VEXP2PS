@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VEXP2PS — APPROXIMATION TO THE EXPONENTIAL 2^X OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES WITH LESS THAN 2^-23 RELATIVE ERROR
-
+VEXP2PS — Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.512.66.0F38.W0 C8 /r VEXP2PS zmm1 {k1}{z}, zmm2/m512/m32bcst {sae}   A       V/V                      AVX512ER             Computes approximations to the exponential 2^x (with less than 2^-23 of maximum relative error) of the packed single-precision floating-point values from zmm2/m512/m32bcst and stores the floating-point result in zmm1with writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -66,9 +62,9 @@ VEXP2PS ¶
   ------------------ ----------- -------------------------
   NaN                QNaN(src)   If (SRC = SNaN) then #I
   +∞                 +∞          
-  +/-0               1.0f        _Exact result_
+  +/-0               1.0f        Exact result
   -∞                 +0.0f       
-  Integral value N   2^ (N)      _Exact result_
+  Integral value N   2^ (N)      Exact result
 
 Table 6-34. Special Values Behavior
 

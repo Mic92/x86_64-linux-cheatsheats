@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MOVSS — MOVE OR MERGE SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
-
+MOVSS — Move or Merge Scalar Single-Precision Floating-Point Value
 
   Opcode/Instruction                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------
@@ -19,7 +16,6 @@ MOVSS — MOVE OR MERGE SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
   EVEX.LIG.F3.0F.W0 10 /r VMOVSS xmm1 {k1}{z}, m32          F         V/V                      AVX512F              Move scalar single-precision floating-point values from m32 to xmm1 under writemask k1.
   EVEX.LIG.F3.0F.W0 11 /r VMOVSS xmm1 {k1}{z}, xmm2, xmm3   E         V/V                      AVX512F              Move scalar single-precision floating-point value from xmm2 and xmm3 to xmm1 register under writemask k1.
   EVEX.LIG.F3.0F.W0 11 /r VMOVSS m32 {k1}, xmm1             G         V/V                      AVX512F              Move scalar single-precision floating-point values from xmm1 to m32 under writemask k1.
-
 
 Instruction Operand Encoding ¶
 

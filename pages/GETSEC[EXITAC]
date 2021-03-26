@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GETSEC[EXITAC] — EXIT AUTHENTICATED CODE EXECUTION MODE
-
+GETSEC[EXITAC] — Exit Authenticated Code Execution Mode
 
   Opcode             Instruction      Description
   ------------------ ---------------- ---------------------------------------------------------------------------------------------------------------------------------
   NP 0F 37 (EAX=3)   GETSEC[EXITAC]   Exit authenticated code execution mode. RBX holds the Near Absolute Indirect jump target and EDX hold the exit parameter flags.
-
 
 Description ¶
 
@@ -48,9 +44,9 @@ environment bring-up that makes use of VMX. In this envisioned security
 usage scenario, these events will remain masked until an appropriate
 virtual machine has been established in order to field servicing of
 these events in a safer manner. Details on when and how events are
-masked and unmasked in VMX operation are described in _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 3C_. It should
-be cautioned that if no VMX environment is to be activated following
+masked and unmasked in VMX operation are described in Intel® 64 and
+IA-32 Architectures Software Developer’s Manual, Volume 3C. It should be
+cautioned that if no VMX environment is to be activated following
 GETSEC[EXITAC], that these events will remain masked until the measured
 environment is exited with GETSEC[SEXIT]. If this is not desired then
 the GETSEC function SMCTRL(0) can be used for unmasking SMI# in this
@@ -98,7 +94,6 @@ authenticated RAM designated area by the authenticated code prior to
 EXITAC. Any data structure held within the authenticated RAM allocated
 area will no longer be accessible after completion by EXITAC.
 
-
 Operation ¶
 
     (* The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary *)
@@ -135,11 +130,9 @@ Operation ¶
     EIP← tempEIP;
     END;
 
-
 Flags Affected ¶
 
 None.
-
 
 Use of Prefixes ¶
 
@@ -157,58 +150,37 @@ Address size Ignored.
 
 REX.W Sets 64-bit mode Operand size attribute.
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[EXITAC] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-If CR0.PE = 0 or CPL>0 or EFLAGS.VM =1.
-
-If in VMX root operation.
-
-If the processor is not currently in authenticated code execution mode.
-
-If the processor is in SMM.
-
-If any reserved bit position is set in the EDX parameter register.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[EXITAC] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   If CR0.PE = 0 or CPL>0 or EFLAGS.VM =1.
+           If in VMX root operation.
+           If the processor is not currently in authenticated code execution mode.
+           If the processor is in SMM.
+           If any reserved bit position is set in the EDX parameter register.
+  -------- -------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[EXITAC] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[EXITAC] is not recognized in real-address mode.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[EXITAC] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[EXITAC] is not recognized in real-address mode.
+  -------- -------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[EXITAC] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[EXITAC] is not recognized in virtual-8086 mode.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[EXITAC] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[EXITAC] is not recognized in virtual-8086 mode.
+  -------- -------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 All protected mode exceptions apply.
-
 
 64-Bit Mode Exceptions ¶
 
@@ -217,7 +189,6 @@ All protected mode exceptions apply.
   -------- ----------------------------------------------------------
   #GP(0)   If the target address in RBX is not in a canonical form.
   -------- ----------------------------------------------------------
-
 
 VM-Exit Condition ¶
 

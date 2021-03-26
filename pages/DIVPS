@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-DIVPS — DIVIDE PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+DIVPS — Divide Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------- ------- ------------------------ -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ DIVPS — DIVIDE PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   EVEX.256.0F.W0 5E /r VDIVPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst       C       V/V                      AVX512VL AVX512F     Divide packed single-precision floating-point values in ymm2 by packed single-precision floating-point values in ymm3/m256/m32bcst and write results to ymm1 subject to writemask k1.
   EVEX.512.0F.W0 5E /r VDIVPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}   C       V/V                      AVX512F              Divide packed single-precision floating-point values in zmm2 by packed single-precision floating-point values in zmm3/m512/m32bcst and write results to zmm1 subject to writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -53,7 +48,6 @@ location. The destination operand is a XMM register. The upper bits
 an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper bits (MAXVL-1:128) of the
 corresponding ZMM register destination are unmodified.
-
 
 Operation ¶
 
@@ -114,7 +108,6 @@ DIVPS (128-bit Legacy SSE version) ¶
     DEST[127:96]←SRC1[127:96] / SRC2[127:96]
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VDIVPS __m512 _mm512_div_ps( __m512 a, __m512 b);
@@ -141,11 +134,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     DIVPS __m128 _mm_div_ps (__m128 a, __m128 b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 Overflow, Underflow, Invalid, Divide-by-Zero, Precision, Denormal
-
 
 Other Exceptions ¶
 

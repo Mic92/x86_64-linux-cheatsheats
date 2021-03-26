@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-FCMOVCC — FLOATING-POINT CONDITIONAL MOVE
-
+FCMOVcc — Floating-Point Conditional Move
 
   Opcode*   Instruction             64-Bit Mode   Compat/Leg Mode*   Description
   --------- ----------------------- ------------- ------------------ ---------------------------------------------
@@ -19,32 +16,30 @@ FCMOVCC — FLOATING-POINT CONDITIONAL MOVE
 
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
 
-
 Description ¶
 
 Tests the status flags in the EFLAGS register and moves the source
 operand (second operand) to the destination operand (first operand) if
 the given test condition is true. The condition for each mnemonic os
-given in the Description column above and in Chapter 8 in the _Intel® 64
-and IA-32 Architectures Software Developer’s Manual, Volume 1_. The
+given in the Description column above and in Chapter 8 in the Intel® 64
+and IA-32 Architectures Software Developer’s Manual, Volume 1. The
 source operand is always in the ST(i) register and the destination
 operand is always ST(0).
 
-The FCMOV_cc_ instructions are useful for optimizing small IF
+The FCMOVcc instructions are useful for optimizing small IF
 constructions. They also help eliminate branching overhead for IF
 operations and the possibility of branch mispredictions by the
 processor.
 
-A processor may not support the FCMOV_cc_ instructions. Software can
-check if the FCMOV_cc_ instructions are supported by checking the
-processor’s feature information with the CPUID instruction (see
-“COMISS—Compare Scalar Ordered Single-Precision Floating-Point Values
-and Set EFLAGS” in this chapter). If both the CMOV and FPU feature bits
-are set, the FCMOV_cc_ instructions are supported.
+A processor may not support the FCMOVcc instructions. Software can check
+if the FCMOVcc instructions are supported by checking the processor’s
+feature information with the CPUID instruction (see “COMISS—Compare
+Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS” in
+this chapter). If both the CMOV and FPU feature bits are set, the
+FCMOVcc instructions are supported.
 
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
-
 
 IA-32 Architecture Compatibility ¶
 
@@ -52,13 +47,11 @@ The FCMOVcc instructions were introduced to the IA-32 Architecture in
 the P6 family processors and are not available in earlier IA-32
 processors.
 
-
 Operation ¶
 
     IF condition TRUE
         THEN ST(0) ← ST(i);
     FI;
-
 
 FPU Flags Affected ¶
 
@@ -67,18 +60,15 @@ FPU Flags Affected ¶
   C0, C2, C3   Undefined.
   ------------ ---------------------------------------
 
-
 Floating-Point Exceptions ¶
 
   ----- ---------------------------
   #IS   Stack underflow occurred.
   ----- ---------------------------
 
-
 Integer Flags Affected ¶
 
 None.
-
 
 Protected Mode Exceptions ¶
 
@@ -87,21 +77,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

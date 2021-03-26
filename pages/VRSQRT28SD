@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VRSQRT28SD — APPROXIMATION TO THE RECIPROCAL SQUARE ROOT OF SCALAR DOUBLE-PRECISION FLOATING-POINT VALUE WITH LESS THAN 2^-28 RELATIVE ERROR
-
+VRSQRT28SD — Approximation to the Reciprocal Square Root of Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W1 CD /r VRSQRT28SD xmm1 {k1}{z}, xmm2, xmm3/m64 {sae}   A       V/V                      AVX512ER             Computes approximate reciprocal square root (<2^-28 relative error) of the scalar double-precision floating-point value from xmm3/m64 and stores result in xmm1with writemask k1. Also, upper double-precision floating-point value (bits[127:64]) from xmm2 is copied to xmm1[127:64].
-
 
 Instruction Operand Encoding ¶
 

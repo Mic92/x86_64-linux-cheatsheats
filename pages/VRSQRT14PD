@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VRSQRT14PD — COMPUTE APPROXIMATE RECIPROCALS OF SQUARE ROOTS OF PACKED FLOAT64 VALUES
-
+VRSQRT14PD — Compute Approximate Reciprocals of Square Roots of Packed Float64 Values
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W1 4E /r VRSQRT14PD xmm1 {k1}{z}, xmm2/m128/m64bcst   A       V/V                      AVX512VL AVX512F     Computes the approximate reciprocal square roots of the packed double-precision floating-point values in xmm2/m128/m64bcst and stores the results in xmm1. Under writemask.
   EVEX.256.66.0F38.W1 4E /r VRSQRT14PD ymm1 {k1}{z}, ymm2/m256/m64bcst   A       V/V                      AVX512VL AVX512F     Computes the approximate reciprocal square roots of the packed double-precision floating-point values in ymm2/m256/m64bcst and stores the results in ymm1. Under writemask.
   EVEX.512.66.0F38.W1 4E /r VRSQRT14PD zmm1 {k1}{z}, zmm2/m512/m64bcst   A       V/V                      AVX512F              Computes the approximate reciprocal square roots of the packed double-precision floating-point values in zmm2/m512/m64bcst and stores the results in zmm1 under writemask.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-IRET/IRETD — INTERRUPT RETURN
-
+IRET/IRETD — Interrupt Return
 
   Opcode       Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   ------------ ------------- ------- ------------- ----------------- -----------------------------------------
@@ -12,14 +9,12 @@ IRET/IRETD — INTERRUPT RETURN
   CF           IRETD         ZO      Valid         Valid             Interrupt return (32-bit operand size).
   REX.W + CF   IRETQ         ZO      Valid         N.E.              Interrupt return (64-bit operand size).
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -30,8 +25,8 @@ also used to perform a return from a nested task. (A nested task is
 created when a CALL instruction is used to initiate a task switch or
 when an interrupt or exception causes a task switch to an interrupt or
 exception handler.) See the section titled “Task Linking” in Chapter 7
-of the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_.
+of the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 3A.
 
 IRET and IRETD are mnemonics for the same opcode. The IRETD mnemonic
 (interrupt return double) is intended for use when returning from an
@@ -83,8 +78,8 @@ If the NT flag is set and the processor is in IA-32e mode, the IRET
 instruction causes a general protection exception.
 
 If nonmaskable interrupts (NMIs) are blocked (see Section 6.7.1,
-“Handling Multiple NMIs” in the _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 3A_), execution of the IRET
+“Handling Multiple NMIs” in the Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 3A), execution of the IRET
 instruction unblocks NMIs.
 
 This unblocking occurs even if the instruction causes a fault. In such a
@@ -95,15 +90,14 @@ of the REX.W prefix promotes operation to 64 bits (IRETQ). See the
 summary chart at the beginning of this section for encoding data and
 limits.
 
-INSTRUCTION ORDERING. IRET is a serializing instruction. See Section 8.3
-of the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 3A_.
+Instruction ordering. IRET is a serializing instruction. See Section 8.3
+of the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 3A.
 
 See “Changes to Instruction Behavior in VMX Non-Root Operation” in
-Chapter 25 of the _Intel® 64 and IA-32 Architectures Software
-Developer’s Manual, Volume 3C_, for more information about the behavior
-of this instruction in VMX non-root operation.
-
+Chapter 25 of the Intel® 64 and IA-32 Architectures Software Developer’s
+Manual, Volume 3C, for more information about the behavior of this
+instruction in VMX non-root operation.
 
 Operation ¶
 
@@ -299,7 +293,6 @@ Operation ¶
                     GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
     END;
 
-
 Flags Affected ¶
 
 All the flags and fields in the EFLAGS register are potentially
@@ -308,69 +301,29 @@ performing a return from a nested task to a previous task, the EFLAGS
 register will be modified according to the EFLAGS image stored in the
 previous task’s TSS.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the return code or stack segment selector is NULL.
-
-If the return instruction pointer is not within the return code segment
-limit.
-
-#GP(selector)
-
-If a segment selector index is outside its descriptor table limits.
-
-If the return code segment selector RPL is less than the CPL.
-
-If the DPL of a conforming-code segment is greater than the return code
-segment selector RPL.
-
-If the DPL for a nonconforming-code segment is not equal to the RPL of
-the code segment selector.
-
-If the stack segment descriptor DPL is not equal to the RPL of the
-return code segment selector.
-
-If the stack segment is not a writable data segment.
-
-If the stack segment selector RPL is not equal to the RPL of the return
-code segment selector.
-
-If the segment descriptor for a code segment does not indicate it is a
-code segment.
-
-If the segment selector for a TSS has its local/global bit set for
-local.
-
-If a TSS segment descriptor specifies that the TSS is not busy.
-
-If a TSS segment descriptor specifies that the TSS is not available.
-
-#SS(0)
-
-If the top bytes of stack are not within stack limits.
-
-If the return stack segment is not present.
-
-#NP
-
-(selector) If the return code segment is not present.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If an unaligned memory reference occurs when the CPL is 3 and alignment
-checking is enabled.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- ---------------------------------------------------------------------------------------------------
+  #GP(0)            If the return code or stack segment selector is NULL.
+                    If the return instruction pointer is not within the return code segment limit.
+  #GP(selector)     If a segment selector index is outside its descriptor table limits.
+                    If the return code segment selector RPL is less than the CPL.
+                    If the DPL of a conforming-code segment is greater than the return code segment selector RPL.
+                    If the DPL for a nonconforming-code segment is not equal to the RPL of the code segment selector.
+                    If the stack segment descriptor DPL is not equal to the RPL of the return code segment selector.
+                    If the stack segment is not a writable data segment.
+                    If the stack segment selector RPL is not equal to the RPL of the return code segment selector.
+                    If the segment descriptor for a code segment does not indicate it is a code segment.
+                    If the segment selector for a TSS has its local/global bit set for local.
+                    If a TSS segment descriptor specifies that the TSS is not busy.
+                    If a TSS segment descriptor specifies that the TSS is not available.
+  #SS(0)            If the top bytes of stack are not within stack limits.
+                    If the return stack segment is not present.
+  #NP               (selector) If the return code segment is not present.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If an unaligned memory reference occurs when the CPL is 3 and alignment checking is enabled.
+  #UD               If the LOCK prefix is used.
+  ----------------- ---------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -379,33 +332,16 @@ Real-Address Mode Exceptions ¶
   #SS   If the top bytes of stack are not within stack limits.
   ----- --------------------------------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
-#GP(0)
-
-If the return instruction pointer is not within the return code segment
-limit.
-
-IF IOPL not equal to 3.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#SS(0)
-
-If the top bytes of stack are not within stack limits.
-
-#AC(0)
-
-If an unaligned memory reference occurs and alignment checking is
-enabled.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------
+  #GP(0)            If the return instruction pointer is not within the return code segment limit.
+                    IF IOPL not equal to 3.
+  #PF(fault-code)   If a page fault occurs.
+  #SS(0)            If the top bytes of stack are not within stack limits.
+  #AC(0)            If an unaligned memory reference occurs and alignment checking is enabled.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
@@ -415,80 +351,34 @@ Compatibility Mode Exceptions ¶
 
 Other exceptions same as in Protected Mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If EFLAGS.NT[bit 14] = 1.
-
-If the return code segment selector is NULL.
-
-If the stack segment selector is NULL going back to compatibility mode.
-
-If the stack segment selector is NULL going back to CPL3 64-bit mode.
-
-If a NULL stack segment selector RPL is not equal to CPL going back to
-non-CPL3 64-bit mode.
-
-If the return instruction pointer is not within the return code segment
-limit.
-
-If the return instruction pointer is non-canonical.
-
-#GP(Selector)
-
-If a segment selector index is outside its descriptor table limits.
-
-If a segment descriptor memory address is non-canonical.
-
-If the segment descriptor for a code segment does not indicate it is a
-code segment.
-
-If the proposed new code segment descriptor has both the D-bit and L-bit
-set.
-
-If the DPL for a nonconforming-code segment is not equal to the RPL of
-the code segment selector.
-
-If CPL is greater than the RPL of the code segment selector.
-
-If the DPL of a conforming-code segment is greater than the return code
-segment selector RPL.
-
-If the stack segment is not a writable data segment.
-
-If the stack segment descriptor DPL is not equal to the RPL of the
-return code segment selector.
-
-If the stack segment selector RPL is not equal to the RPL of the return
-code segment selector.
-
-#SS(0)
-
-If an attempt to pop a value off the stack violates the SS limit.
-
-If an attempt to pop a value off the stack causes a non-canonical
-address to be referenced.
-
-If the return stack segment is not present.
-
-#NP
-
-(selector) If the return code segment is not present.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If an unaligned memory reference occurs when the CPL is 3 and alignment
-checking is enabled.
-
-#UD
-
-If the LOCK prefix is used.
+  ----------------- ---------------------------------------------------------------------------------------------------
+  #GP(0)            If EFLAGS.NT[bit 14] = 1.
+                    If the return code segment selector is NULL.
+                    If the stack segment selector is NULL going back to compatibility mode.
+                    If the stack segment selector is NULL going back to CPL3 64-bit mode.
+                    If a NULL stack segment selector RPL is not equal to CPL going back to non-CPL3 64-bit mode.
+                    If the return instruction pointer is not within the return code segment limit.
+                    If the return instruction pointer is non-canonical.
+  #GP(Selector)     If a segment selector index is outside its descriptor table limits.
+                    If a segment descriptor memory address is non-canonical.
+                    If the segment descriptor for a code segment does not indicate it is a code segment.
+                    If the proposed new code segment descriptor has both the D-bit and L-bit set.
+                    If the DPL for a nonconforming-code segment is not equal to the RPL of the code segment selector.
+                    If CPL is greater than the RPL of the code segment selector.
+                    If the DPL of a conforming-code segment is greater than the return code segment selector RPL.
+                    If the stack segment is not a writable data segment.
+                    If the stack segment descriptor DPL is not equal to the RPL of the return code segment selector.
+                    If the stack segment selector RPL is not equal to the RPL of the return code segment selector.
+  #SS(0)            If an attempt to pop a value off the stack violates the SS limit.
+                    If an attempt to pop a value off the stack causes a non-canonical address to be referenced.
+                    If the return stack segment is not present.
+  #NP               (selector) If the return code segment is not present.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If an unaligned memory reference occurs when the CPL is 3 and alignment checking is enabled.
+  #UD               If the LOCK prefix is used.
+  ----------------- ---------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

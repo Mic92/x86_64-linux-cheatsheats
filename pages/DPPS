@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-DPPS — DOT PRODUCT OF PACKED SINGLE PRECISION FLOATING-POINT VALUES
-
+DPPS — Dot Product of Packed Single Precision Floating-Point Values
 
   Opcode/Instruction                                               Op/En   64/32-bit Mode   CPUID Feature Flag   Description
-  ---------------------------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 40 /r ib DPPS _xmm1, xmm2/m128, imm8_                   RMI     V/V              SSE4_1               Selectively multiply packed SP floating-point values from _xmm1_ with packed SP floating-point values from _xmm2_, add and selectively store the packed SP floating-point values or zero values to _xmm1_.
+  ---------------------------------------------------------------- ------- ---------------- -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 40 /r ib DPPS xmm1, xmm2/m128, imm8                     RMI     V/V              SSE4_1               Selectively multiply packed SP floating-point values from xmm1 with packed SP floating-point values from xmm2, add and selectively store the packed SP floating-point values or zero values to xmm1.
   VEX.128.66.0F3A.WIG 40 /r ib VDPPS xmm1,xmm2, xmm3/m128, imm8    RVMI    V/V              AVX                  Multiply packed SP floating point values from xmm1 with packed SP floating point values from xmm2/mem selectively add and store to xmm1.
   VEX.256.66.0F3A.WIG 40 /r ib VDPPS ymm1, ymm2, ymm3/m256, imm8   RVMI    V/V              AVX                  Multiply packed single-precision floating-point values from ymm2 with packed SP floating point values from ymm3/mem, selectively add pairs of elements and store to ymm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -21,7 +17,6 @@ Instruction Operand Encoding ¶
   RVMI    ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- ------------------ --------------- --------------- -----------
 
-
 Description ¶
 
 Conditionally multiplies the packed single precision floating-point
@@ -30,8 +25,8 @@ single-precision floats in the source (second operand) depending on a
 mask extracted from the high 4 bits of the immediate byte (third
 operand). If a condition mask bit in Imm8[7:4] is zero, the
 corresponding multiplication is replaced by a value of 0.0 in the manner
-described by Section 12.8.4 of _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 1_.
+described by Section 12.8.4 of Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 1.
 
 The four resulting single-precision values are summed into an
 intermediate result. The intermediate result is conditionally
@@ -63,7 +58,6 @@ are zeroed.
 VEX.256 encoded version: The first source operand is a YMM register. The
 second source operand can be a YMM register or a 256-bit memory
 location. The destination operand is a YMM register.
-
 
 Operation ¶
 
@@ -115,18 +109,15 @@ VDPPS (VEX.256 encoded version) ¶
     DEST[127:0]←DP_Primitive(SRC1[127:0], SRC2[127:0]);
     DEST[255:128]←DP_Primitive(SRC1[255:128], SRC2[255:128]);
 
-
 Flags Affected ¶
 
 None
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)DPPS: __m128 _mm_dp_ps ( __m128 a, __m128 b, const int mask);
 
     VDPPS: __m256 _mm256_dp_ps ( __m256 a, __m256 b, const int mask);
-
 
 SIMD Floating-Point Exceptions ¶
 
@@ -135,7 +126,6 @@ Overflow, Underflow, Invalid, Precision, Denormal
 Exceptions are determined separately for each add and multiply
 operation, in the order of their execution. Unmasked exceptions will
 leave the destination operands unchanged.
-
 
 Other Exceptions ¶
 

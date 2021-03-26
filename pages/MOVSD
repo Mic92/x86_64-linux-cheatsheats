@@ -1,244 +1,170 @@
 -   Index
 -   May 2019
 
+MOVSD — Move or Merge Scalar Double-Precision Floating-Point Value
 
-
-MOVS/MOVSB/MOVSW/MOVSD/MOVSQ — MOVE DATA FROM STRING TO STRING
-
-
-\
-
-  Opcode       Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  ------------ ------------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------------------------------------------
-  A4           MOVS _m8_, _m8_     ZO      Valid         Valid             For legacy mode, Move byte from address DS:(E)SI to ES:(E)DI. For 64-bit mode move byte from address (R|E)SI to (R|E)DI.
-  A5           MOVS _m16_, _m16_   ZO      Valid         Valid             For legacy mode, move word from address DS:(E)SI to ES:(E)DI. For 64-bit mode move word at address (R|E)SI to (R|E)DI.
-  A5           MOVS _m32_, _m32_   ZO      Valid         Valid             For legacy mode, move dword from address DS:(E)SI to ES:(E)DI. For 64-bit mode move dword from address (R|E)SI to (R|E)DI.
-  REX.W + A5   MOVS _m64_, _m64_   ZO      Valid         N.E.              Move qword from address (R|E)SI to (R|E)DI.
-  A4           MOVSB               ZO      Valid         Valid             For legacy mode, Move byte from address DS:(E)SI to ES:(E)DI. For 64-bit mode move byte from address (R|E)SI to (R|E)DI.
-  A5           MOVSW               ZO      Valid         Valid             For legacy mode, move word from address DS:(E)SI to ES:(E)DI. For 64-bit mode move word at address (R|E)SI to (R|E)DI.
-  A5           MOVSD               ZO      Valid         Valid             For legacy mode, move dword from address DS:(E)SI to ES:(E)DI. For 64-bit mode move dword from address (R|E)SI to (R|E)DI.
-  REX.W + A5   MOVSQ               ZO      Valid         N.E.              Move qword from address (R|E)SI to (R|E)DI.
-
+  Opcode/Instruction                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  --------------------------------------------------------- --------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------
+  F2 0F 10 /r MOVSD xmm1, xmm2                              A         V/V                      SSE2                 Move scalar double-precision floating-point value from xmm2 to xmm1 register.
+  F2 0F 10 /r MOVSD xmm1, m64                               A         V/V                      SSE2                 Load scalar double-precision floating-point value from m64 to xmm1 register.
+  F2 0F 11 /r MOVSD xmm1/m64, xmm2                          C         V/V                      SSE2                 Move scalar double-precision floating-point value from xmm2 register to xmm1/m64.
+  VEX.LIG.F2.0F.WIG 10 /r VMOVSD xmm1, xmm2, xmm3           B         V/V                      AVX                  Merge scalar double-precision floating-point value from xmm2 and xmm3 to xmm1 register.
+  VEX.LIG.F2.0F.WIG 10 /r VMOVSD xmm1, m64                  D         V/V                      AVX                  Load scalar double-precision floating-point value from m64 to xmm1 register.
+  VEX.LIG.F2.0F.WIG 11 /r VMOVSD xmm1, xmm2, xmm3           E         V/V                      AVX                  Merge scalar double-precision floating-point value from xmm2 and xmm3 registers to xmm1.
+  VEX.LIG.F2.0F.WIG 11 /r VMOVSD m64, xmm1                  C         V/V                      AVX                  Store scalar double-precision floating-point value from xmm1 register to m64.
+  EVEX.LIG.F2.0F.W1 10 /r VMOVSD xmm1 {k1}{z}, xmm2, xmm3   B         V/V                      AVX512F              Merge scalar double-precision floating-point value from xmm2 and xmm3 registers to xmm1 under writemask k1.
+  EVEX.LIG.F2.0F.W1 10 /r VMOVSD xmm1 {k1}{z}, m64          F         V/V                      AVX512F              Load scalar double-precision floating-point value from m64 to xmm1 register under writemask k1.
+  EVEX.LIG.F2.0F.W1 11 /r VMOVSD xmm1 {k1}{z}, xmm2, xmm3   E         V/V                      AVX512F              Merge scalar double-precision floating-point value from xmm2 and xmm3 registers to xmm1 under writemask k1.
+  EVEX.LIG.F2.0F.W1 11 /r VMOVSD m64 {k1}, xmm1             G         V/V                      AVX512F              Store scalar double-precision floating-point value from xmm1 register to m64 under writemask k1.
 
 Instruction Operand Encoding ¶
 
-  ------- ----------- ----------- ----------- -----------
-  Op/En   Operand 1   Operand 2   Operand 3   Operand 4
-  ZO      NA          NA          NA          NA
-  ------- ----------- ----------- ----------- -----------
-
+  ------- --------------- ------------------ --------------- --------------- -----------
+  Op/En   Tuple Type      Operand 1          Operand 2       Operand 3       Operand 4
+  A       NA              ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
+  B       NA              ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
+  C       NA              ModRM:r/m (w)      ModRM:reg (r)   NA              NA
+  D       NA              ModRM:reg (w)      ModRM:r/m (r)   NA              NA
+  E       NA              ModRM:r/m (w)      vvvv (r)        ModRM:reg (r)   NA
+  F       Tuple1 Scalar   ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
+  G       Tuple1 Scalar   ModRM:r/m (w)      ModRM:reg (r)   NA              NA
+  ------- --------------- ------------------ --------------- --------------- -----------
 
 Description ¶
 
-Moves the byte, word, or doubleword specified with the second operand
-(source operand) to the location specified with the first operand
-(destination operand). Both the source and destination operands are
-located in memory. The address of the source operand is read from the
-DS:ESI or the DS:SI registers (depending on the address-size attribute
-of the instruction, 32 or 16, respectively). The address of the
-destination operand is read from the ES:EDI or the ES:DI registers
-(again depending on the address-size attribute of the instruction). The
-DS segment may be overridden with a segment override prefix, but the ES
-segment cannot be overridden.
+Moves a scalar double-precision floating-point value from the source
+operand (second operand) to the destination operand (first operand). The
+source and destination operands can be XMM registers or 64-bit memory
+locations. This instruction can be used to move a double-precision
+floating-point value to and from the low quadword of an XMM register and
+a 64-bit memory location, or to move a double-precision floating-point
+value between the low quadwords of two XMM registers. The instruction
+cannot be used to transfer data between memory locations.
 
-At the assembly-code level, two forms of this instruction are allowed:
-the “explicit-operands” form and the “no-operands” form. The
-explicit-operands form (specified with the MOVS mnemonic) allows the
-source and destination operands to be specified explicitly. Here, the
-source and destination operands should be symbols that indicate the size
-and location of the source value and the destination, respectively. This
-explicit-operands form is provided to allow documentation; however, note
-that the documentation provided by this form can be misleading. That is,
-the source and destination operand symbols must specify the correct TYPE
-(size) of the operands (bytes, words, or doublewords), but they do not
-have to specify the correct LOCATION. The locations of the source and
-destination operands are always specified by the DS:(E)SI and ES:(E)DI
-registers, which must be loaded correctly before the move string
-instruction is executed.
+Legacy version: When the source and destination operands are XMM
+registers, bits MAXVL:64 of the destination operand remains unchanged.
+When the source operand is a memory location and destination operand is
+an XMM registers, the quadword at bits 127:64 of the destination operand
+is cleared to all 0s, bits MAXVL:128 of the destination operand remains
+unchanged.
 
-The no-operands form provides “short forms” of the byte, word, and
-doubleword versions of the MOVS instructions. Here also DS:(E)SI and
-ES:(E)DI are assumed to be the source and destination operands,
-respectively. The size of the source and destination operands is
-selected with the mnemonic: MOVSB (byte move), MOVSW (word move), or
-MOVSD (doubleword move).
+VEX and EVEX encoded register-register syntax: Moves a scalar
+double-precision floating-point value from the second source operand
+(the third operand) to the low quadword element of the destination
+operand (the first operand). Bits 127:64 of the destination operand are
+copied from the first source operand (the second operand). Bits
+(MAXVL-1:128) of the corresponding destination register are zeroed.
 
-After the move operation, the (E)SI and (E)DI registers are incremented
-or decremented automatically according to the setting of the DF flag in
-the EFLAGS register. (If the DF flag is 0, the (E)SI and (E)DI register
-are incre-
+VEX and EVEX encoded memory store syntax: When the source operand is a
+memory location and destination operand is an XMM registers, bits
+MAXVL:64 of the destination operand is cleared to all 0s.
 
-mented; if the DF flag is 1, the (E)SI and (E)DI registers are
-decremented.) The registers are incremented or decremented by 1 for byte
-operations, by 2 for word operations, or by 4 for doubleword operations.
+EVEX encoded versions: The low quadword of the destination is updated
+according to the writemask.
 
-  To improve performance, more recent processors support modifications
-  to the processor’s operation during the string store operations
-  initiated with MOVS and MOVSB. See Section 7.3.9.3 in the _Intel® 64
-  and IA-32 Architectures Software Developer’s Manual, Volume 1_ for
-  additional information on fast-string operation.
-
-  The MOVS, MOVSB, MOVSW, and MOVSD instructions can be preceded by the
-  REP prefix (see “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation
-  Prefix” for a description of the REP prefix) for block moves of ECX
-  bytes, words, or doublewords.
-
-  In 64-bit mode, the instruction’s default address size is 64 bits,
-  32-bit address size is supported using the prefix 67H. The 64-bit
-  addresses are specified by RSI and RDI; 32-bit address are specified
-  by ESI and EDI. Use of the REX.W prefix promotes doubleword operation
-  to 64 bits. See the summary chart at the beginning of this section for
-  encoding data and limits.
-
+Note: For VMOVSD (memory store and load forms), VEX.vvvv and EVEX.vvvv
+are reserved and must be 1111b, otherwise instruction will #UD.
 
 Operation ¶
 
-    DEST ← SRC;
-    Non-64-bit Mode:
-    IF (Byte move)
-        THEN IF DF = 0
-            THEN
-                (E)SI ← (E)SI + 1;
-                (E)DI ← (E)DI + 1;
-            ELSE
-                (E)SI ← (E)SI – 1;
-                (E)DI ← (E)DI – 1;
-            FI;
-        ELSE IF (Word move)
-            THEN IF DF = 0
-                (E)SI ← (E)SI + 2;
-                (E)DI ← (E)DI + 2;
-                FI;
-            ELSE
-                (E)SI ← (E)SI – 2;
-                (E)DI ← (E)DI – 2;
-            FI;
-        ELSE IF (Doubleword move)
-            THEN IF DF = 0
-                (E)SI ← (E)SI + 4;
-                (E)DI ← (E)DI + 4;
-                FI;
-            ELSE
-                (E)SI ← (E)SI – 4;
-                (E)DI ← (E)DI – 4;
+VMOVSD (EVEX.LIG.F2.0F 10 /r: VMOVSD xmm1, m64 with support for 32 registers) ¶
+
+    IF k1[0] or *no writemask*
+        THEN DEST[63:0] ← SRC[63:0]
+        ELSE
+            IF *merging-masking* ; merging-masking
+                THEN *DEST[63:0] remains unchanged*
+                ELSE ; zeroing-masking
+                    THEN DEST[63:0]←0
             FI;
     FI;
-    64-bit Mode:
-    IF (Byte move)
-        THEN IF DF = 0
-            THEN
-                (R|E)SI ← (R|E)SI + 1;
-                (R|E)DI ← (R|E)DI + 1;
-            ELSE
-                (R|E)SI ← (R|E)SI – 1;
-                (R|E)DI ← (R|E)DI – 1;
-            FI;
-        ELSE IF (Word move)
-            THEN IF DF = 0
-                (R|E)SI ← (R|E)SI + 2;
-                (R|E)DI ← (R|E)DI + 2;
-                FI;
-            ELSE
-                (R|E)SI ← (R|E)SI – 2;
-                (R|E)DI ← (R|E)DI – 2;
-            FI;
-        ELSE IF (Doubleword move)
-            THEN IF DF = 0
-                (R|E)SI ← (R|E)SI
-                    + 4;
-                (R|E)DI ← (R|E)DI
-                    + 4;
-                FI;
-            ELSE
-                (R|E)SI ← (R|E)SI
-                    – 4;
-                (R|E)DI ← (R|E)DI
-                    – 4;
-            FI;
-        ELSE IF (Quadword move)
-            THENIFDF =0
-                (R|E)SI ← (R|E)SI
-                    + 8;
-                (R|E)DI ← (R|E)DI
-                    + 8;
-                FI;
-            ELSE
-                (R|E)SI ← (R|E)SI
-                    – 8;
-                (R|E)DI ← (R|E)DI
-                    – 8;
-            FI;
+    DEST[MAXVL-1:64] ← 0
+
+VMOVSD (EVEX.LIG.F2.0F 11 /r: VMOVSD m64, xmm1 with support for 32 registers) ¶
+
+    IF k1[0] or *no writemask*
+        THEN DEST[63:0] ← SRC[63:0]
+        ELSE *DEST[63:0] remains unchanged* ; merging-masking
     FI;
 
+VMOVSD (EVEX.LIG.F2.0F 11 /r: VMOVSD xmm1, xmm2, xmm3) ¶
 
-Flags Affected ¶
+    IF k1[0] or *no writemask*
+        THEN DEST[63:0] ← SRC2[63:0]
+        ELSE
+            IF *merging-masking* ; merging-masking
+                THEN *DEST[63:0] remains unchanged*
+                ELSE
+                        ; zeroing-masking
+                    THEN DEST[63:0]←0
+            FI;
+    FI;
+    DEST[127:64] ← SRC1[127:64]
+    DEST[MAXVL-1:128] ← 0
+
+MOVSD (128-bit Legacy SSE version: MOVSD XMM1, XMM2) ¶
+
+    DEST[63:0] ←SRC[63:0]
+    DEST[MAXVL-1:64] (Unmodified)
+
+VMOVSD (VEX.128.F2.0F 11 /r: VMOVSD xmm1, xmm2, xmm3) ¶
+
+    DEST[63:0] ←SRC2[63:0]
+    DEST[127:64] ←SRC1[127:64]
+    DEST[MAXVL-1:128] ←0
+
+VMOVSD (VEX.128.F2.0F 10 /r: VMOVSD xmm1, xmm2, xmm3) ¶
+
+    DEST[63:0] ←SRC2[63:0]
+    DEST[127:64] ←SRC1[127:64]
+    DEST[MAXVL-1:128] ←0
+
+VMOVSD (VEX.128.F2.0F 10 /r: VMOVSD xmm1, m64) ¶
+
+    DEST[63:0] ←SRC[63:0]
+    DEST[MAXVL-1:64] ←0
+
+MOVSD/VMOVSD (128-bit versions: MOVSD m64, xmm1 or VMOVSD m64, xmm1) ¶
+
+    DEST[63:0] ←SRC[63:0]
+
+MOVSD (128-bit Legacy SSE version: MOVSD XMM1, m64) ¶
+
+    DEST[63:0] ←SRC[63:0]
+    DEST[127:64] ←0
+    DEST[MAXVL-1:128] (Unmodified)
+
+Intel C/C++ Compiler Intrinsic Equivalent ¶
+
+    VMOVSD __m128d _mm_mask_load_sd(__m128d s, __mmask8 k, double * p);
+
+    VMOVSD __m128d _mm_maskz_load_sd( __mmask8 k, double * p);
+
+    VMOVSD __m128d _mm_mask_move_sd(__m128d sh, __mmask8 k, __m128d sl, __m128d a);
+
+    VMOVSD __m128d _mm_maskz_move_sd( __mmask8 k, __m128d s, __m128d a);
+
+    VMOVSD void _mm_mask_store_sd(double * p, __mmask8 k, __m128d s);
+
+    MOVSD __m128d _mm_load_sd (double *p)
+
+    MOVSD void _mm_store_sd (double *p, __m128d a)
+
+    MOVSD __m128d _mm_move_sd ( __m128d a, __m128d b)
+
+SIMD Floating-Point Exceptions ¶
 
 None
 
+Other Exceptions ¶
 
-Protected Mode Exceptions ¶
+Non-EVEX-encoded instruction, see Exceptions Type 5; additionally
 
-#GP(0)
+  ----- -----------------------
+  #UD   If VEX.vvvv != 1111B.
+  ----- -----------------------
 
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
-
-Real-Address Mode Exceptions ¶
-
-  ----- -------------------------------------------------------------------------------------------
-  #GP   If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
-  #SS   If a memory operand effective address is outside the SS segment limit.
-  #UD   If the LOCK prefix is used.
-  ----- -------------------------------------------------------------------------------------------
-
-
-Virtual-8086 Mode Exceptions ¶
-
-  ----------------- -------------------------------------------------------------------------------------------
-  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
-  #SS(0)            If a memory operand effective address is outside the SS segment limit.
-  #PF(fault-code)   If a page fault occurs.
-  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made.
-  #UD               If the LOCK prefix is used.
-  ----------------- -------------------------------------------------------------------------------------------
-
-
-Compatibility Mode Exceptions ¶
-
-Same exceptions as in protected mode.
-
-
-64-Bit Mode Exceptions ¶
-
-  ----------------- --------------------------------------------------------------------------------------------------------------------
-  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
-  #GP(0)            If the memory address is in a non-canonical form.
-  #PF(fault-code)   If a page fault occurs.
-  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
-  #UD               If the LOCK prefix is used.
-  ----------------- --------------------------------------------------------------------------------------------------------------------
+EVEX-encoded instruction, see Exceptions Type E10.
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

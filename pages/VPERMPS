@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VPERMPS — PERMUTE SINGLE-PRECISION FLOATING-POINT ELEMENTS
-
+VPERMPS — Permute Single-Precision Floating-Point Elements
 
   Opcode/Instruction                                                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------
   VEX.256.66.0F38.W0 16 /r VPERMPS ymm1, ymm2, ymm3/m256                    A       V/V                      AVX2                 Permute single-precision floating-point elements in ymm3/m256 using indices in ymm2 and store the result in ymm1.
   EVEX.256.66.0F38.W0 16 /r VPERMPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   B       V/V                      AVX512VL AVX512F     Permute single-precision floating-point elements in ymm3/m256/m32bcst using indexes in ymm2 and store the result in ymm1 subject to write mask k1.
   EVEX.512.66.0F38.W0 16 /r VPERMPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   B       V/V                      AVX512F              Permute single-precision floating-point values in zmm3/m512/m32bcst using indices in zmm2 and store the result in zmm1 subject to write mask k1.
-
 
 Instruction Operand Encoding ¶
 

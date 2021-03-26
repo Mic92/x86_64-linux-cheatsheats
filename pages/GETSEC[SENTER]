@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GETSEC[SENTER] — ENTER A MEASURED ENVIRONMENT
-
+GETSEC[SENTER] — Enter a Measured Environment
 
   Opcode             Instruction      Description
   ------------------ ---------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 37 (EAX=4)   GETSEC[SENTER]   Launch a measured environment. EBX holds the SINIT authenticated code module physical base address. ECX holds the SINIT authenticated code module size (bytes). EDX controls the level of functionality supported by the measured environment launch.
-
 
 Description ¶
 
@@ -156,8 +152,8 @@ protected handler has been put in place to directly handle these events.
 Masked external pin events may be unmasked conditionally or
 unconditionally via the GETSEC[EXITAC], GETSEC[SEXIT], GETSEC[SMCTRL] or
 for specific VMX related operations such as a VM entry or the VMXOFF
-instruction (see respective GETSEC leaves and _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 3C_ for more details).
+instruction (see respective GETSEC leaves and Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 3C for more details).
 The state of the A20M pin is masked and forced internally to a
 de-asserted state so that external assertion is not recognized. A20M
 masking as set by
@@ -273,8 +269,8 @@ signaled by execution of the GETSEC[WAKEUP] function by the ILP.
 Table 6-6. Register State Initialization after GETSEC[SENTER] and
 GETSEC[WAKEUP]
 
-  1. See _Intel® Trusted Execution Technology Measured Launched
-  Environment Programming Guide_ for MLE header format.
+  1. See Intel® Trusted Execution Technology Measured Launched
+  Environment Programming Guide for MLE header format.
 
   Segmentation related processor state that has not been initialized by
   GETSEC[SENTER] requires appropriate initialization before use. Since a
@@ -326,7 +322,7 @@ consistent environment for the execution of authenticated code modules.
 Among the impact of initializing this MSR, any previous condition
 established by the MONITOR instruction will be cleared.
 
-EFFECT OF MSR IA32_FEATURE_CONTROL MSR
+Effect of MSR IA32_FEATURE_CONTROL MSR
 
 Bits 15:8 of the IA32_FEATURE_CONTROL MSR affect the execution of
 GETSEC[SENTER]. These bits consist of two fields:
@@ -347,18 +343,17 @@ accordance to the intended usage at platform initialization. Note that
 this MSR is only available on SMX or VMX enabled processors. Otherwise,
 IA32_FEATURE_CONTROL is treated as reserved.
 
-The _Intel® Trusted Execution Technology Measured Launched Environment
-Programming Guide_ provides additional details and requirements for
+The Intel® Trusted Execution Technology Measured Launched Environment
+Programming Guide provides additional details and requirements for
 programming measured environment software to launch in an Intel TXT
 platform.
-
 
 Operation in a Uni-Processor Platform ¶
 
 (* The state of the internal flag ACMODEFLAG and SENTERFLAG persist
 across instruction boundary *)
 
-GETSEC[SENTER] (ILP ONLY):
+GETSEC[SENTER] (ILP only):
 
 IF (CR4.SMXE=0)
 
@@ -590,7 +585,7 @@ SignalTXTMsg(OpenLocality3);
 
 EIP← ACEntryPoint; END;
 
-RLP_SENTER_ROUTINE: (RLP ONLY)
+RLP_SENTER_ROUTINE: (RLP only)
 
 Mask SMI, INIT, A20M, and NMI external pin events
 
@@ -602,11 +597,9 @@ IA32_APIC_BASE.BSP← 0; GOTO SENTER sleep state;
 
 END;
 
-
 Flags Affected ¶
 
 All flags are cleared.
-
 
 Use of Prefixes ¶
 
@@ -624,70 +617,39 @@ Address size Ignored.
 
 REX Ignored.
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[SENTER] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-IfCR0.CD=1orCR0.NW=1orCR0.NE=0orCR0.PE=0orCPL>0orEFLAGS.VM=1.
-
-If in VMX root operation.
-
-If the initiating processor is not designated as the bootstrap processor
-via the MSR bit IA32_APIC_BASE.BSP.
-
-If an Intel® TXT-capable chipset is not present.
-
-If an Intel® TXT-capable chipset interface to TPM is not detected as
-present.
-
-If a protected partition is already active or the processor is already
-in authenticated code mode.
-
-If the processor is in SMM.
-
-If a valid uncorrectable machine check error is logged in
-IA32_MC[I]_STATUS.
-
-If the authenticated code base is not on a 4096 byte boundary.
-
-If the authenticated code size > processor's authenticated code
-execution area storage capacity.
-
-If the authenticated code size is not modulo 64.
-
+  -------- --------------------------------------------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[SENTER] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   IfCR0.CD=1orCR0.NW=1orCR0.NE=0orCR0.PE=0orCPL>0orEFLAGS.VM=1.
+           If in VMX root operation.
+           If the initiating processor is not designated as the bootstrap processor via the MSR bit IA32_APIC_BASE.BSP.
+           If an Intel® TXT-capable chipset is not present.
+           If an Intel® TXT-capable chipset interface to TPM is not detected as present.
+           If a protected partition is already active or the processor is already in authenticated code mode.
+           If the processor is in SMM.
+           If a valid uncorrectable machine check error is logged in IA32_MC[I]_STATUS.
+           If the authenticated code base is not on a 4096 byte boundary.
+           If the authenticated code size > processor's authenticated code execution area storage capacity.
+           If the authenticated code size is not modulo 64.
+  -------- --------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[SENTER] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[SENTER] is not recognized in real-address mode.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[SENTER] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[SENTER] is not recognized in real-address mode.
+  -------- -------------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If CR4.SMXE = 0.
-
-If GETSEC[SENTER] is not reported as supported by GETSEC[CAPABILITIES].
-
-#GP(0)
-
-GETSEC[SENTER] is not recognized in virtual-8086 mode.
-
+  -------- -------------------------------------------------------------------------
+  #UD      If CR4.SMXE = 0.
+           If GETSEC[SENTER] is not reported as supported by GETSEC[CAPABILITIES].
+  #GP(0)   GETSEC[SENTER] is not recognized in virtual-8086 mode.
+  -------- -------------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
@@ -697,7 +659,6 @@ All protected mode exceptions apply.
   #GP   IF AC code module does not reside in physical address below 2^32 -1.
   ----- ----------------------------------------------------------------------
 
-
 64-Bit Mode Exceptions ¶
 
 All protected mode exceptions apply.
@@ -705,7 +666,6 @@ All protected mode exceptions apply.
   ----- ----------------------------------------------------------------------
   #GP   IF AC code module does not reside in physical address below 2^32 -1.
   ----- ----------------------------------------------------------------------
-
 
 VM-Exit Condition ¶
 

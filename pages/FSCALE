@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-FSCALE — SCALE
-
+FSCALE — Scale
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- -----------------------
   D9 FD    FSCALE        Valid         Valid             Scale ST(0) by ST(1).
-
 
 Description ¶
 
@@ -21,133 +17,16 @@ multiplication or division by integral powers of 2. The following table
 shows the results obtained when scaling various classes of numbers,
 assuming that neither overflow nor underflow occurs.
 
-ST(1)
-
-ST(0)
-
-−∞
-
-−F
-
-−0
-
-+0
-
-+F
-
-+∞
-
-NaN
-
-NaN
-
-−∞
-
-−∞
-
-−∞
-
-−∞
-
-−∞
-
-NaN
-
-−F
-
-−0
-
-−F
-
-−F
-
-−F
-
-−F
-
-−∞
-
-NaN
-
-−0
-
-−0
-
-−0
-
-−0
-
-−0
-
-−0
-
-NaN
-
-NaN
-
-+0
-
-+0
-
-+0
-
-+0
-
-+0
-
-+0
-
-NaN
-
-NaN
-
-+F
-
-+0
-
-+F
-
-+F
-
-+F
-
-+F
-
-+∞
-
-NaN
-
-+∞
-
-NaN
-
-+∞
-
-+∞
-
-+∞
-
-+∞
-
-+∞
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
-
-NaN
+  ST(1)                                             
+  ------- ----- ----- ----- ----- ----- ----- ----- -----
+  ST(0)         −∞    −F    −0    +0    +F    +∞    NaN
+                NaN   −∞    −∞    −∞    −∞    −∞    NaN
+          −F    −0    −F    −F    −F    −F    −∞    NaN
+          −0    −0    −0    −0    −0    −0    NaN   NaN
+          +0    +0    +0    +0    +0    +0    NaN   NaN
+          +F    +0    +F    +F    +F    +F    +∞    NaN
+          +∞    NaN   +∞    +∞    +∞    +∞    +∞    NaN
+          NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN
 
 Table 3-34. FSCALE Results
 
@@ -181,24 +60,17 @@ register [ST(0)] occupied.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     ST(0) ← ST(0) ∗ 2RoundTowardZero(ST(1));
 
-
 FPU Flags Affected ¶
 
-C1
-
-Set to 0 if stack underflow occurred.
-
-Set if result was rounded up; cleared otherwise.
-
-C0, C2, C3
-
-Undefined.
-
+  ------------ --------------------------------------------------
+  C1           Set to 0 if stack underflow occurred.
+               Set if result was rounded up; cleared otherwise.
+  C0, C2, C3   Undefined.
+  ------------ --------------------------------------------------
 
 Floating-Point Exceptions ¶
 
@@ -211,7 +83,6 @@ Floating-Point Exceptions ¶
   #P    Value cannot be represented exactly in destination format.
   ----- ------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
@@ -220,21 +91,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

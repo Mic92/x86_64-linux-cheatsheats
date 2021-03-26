@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-VPERMI2B — FULL PERMUTE OF BYTES FROM TWO TABLES OVERWRITING THE INDEX
-
+VPERMI2B — Full Permute of Bytes from Two Tables Overwriting the Index
 
   Opcode/Instruction                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag     Description
   ------------------------------------------------------------------ ------- ------------------------ ---------------------- -----------------------------------------------------------------------------------------------------------------------
   EVEX.128.66.0F38.W0 75 /r VPERMI2B xmm1 {k1}{z}, xmm2, xmm3/m128   A       V/V                      AVX512VL AVX512_VBMI   Permute bytes in xmm3/m128 and xmm2 using byte indexes in xmm1 and store the byte results in xmm1 using writemask k1.
   EVEX.256.66.0F38.W0 75 /r VPERMI2B ymm1 {k1}{z}, ymm2, ymm3/m256   A       V/V                      AVX512VL AVX512_VBMI   Permute bytes in ymm3/m256 and ymm2 using byte indexes in ymm1 and store the byte results in ymm1 using writemask k1.
   EVEX.512.66.0F38.W0 75 /r VPERMI2B zmm1 {k1}{z}, zmm2, zmm3/m512   A       V/V                      AVX512_VBMI            Permute bytes in zmm3/m512 and zmm2 using byte indexes in zmm1 and store the byte results in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-XACQUIRE/XRELEASE — HARDWARE LOCK ELISION PREFIX HINTS
-
+XACQUIRE/XRELEASE — Hardware Lock Elision Prefix Hints
 
   Opcode/Instruction   64/32bit Mode Support   CPUID Feature Flag   Description
   -------------------- ----------------------- -------------------- ---------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ XACQUIRE/XRELEASE — HARDWARE LOCK ELISION PREFIX HINTS
   1. Software is not required to check the HLE feature flag to use
   XACQUIRE or XRELEASE, as they are treated as regular prefix if HLE
   feature flag reports 0.
-
 
 Description ¶
 
@@ -47,8 +43,8 @@ XRELEASE prefix):
     C6H/C7H) instructions. In these cases, the XRELEASE is recognized
     without the presence of the LOCK prefix.
 
-The lock variables must satisfy the guidelines described in _Intel® 64
-and IA-32 Architectures Software Developer’s Manual, Volume 1_, Section
+The lock variables must satisfy the guidelines described in Intel® 64
+and IA-32 Architectures Software Developer’s Manual, Volume 1, Section
 16.3.3, for elision to be successful, otherwise an HLE abort may be
 signaled.
 
@@ -61,7 +57,7 @@ Similarly, an F2F3F0 prefixed instruction will be treated as a
 XRELEASE-enabled instruction since F3H (XRELEASE) is closest to the
 instruction opcode.
 
-INTEL 64 AND IA-32 COMPATIBILITY
+Intel 64 and IA-32 Compatibility
 
 The effect of the XACQUIRE/XRELEASE prefix hint is the same in
 non-64-bit modes and in 64-bit mode.
@@ -83,7 +79,6 @@ the F3H prefix behaves the same way as in prior hardware, according to
     register
 -   Cause #UD if prepending the VEX prefix.
 -   Undefined for non-string instructions or other situations.
-
 
 Operation ¶
 
@@ -167,11 +162,9 @@ XRELEASE ¶
         Execute and retire instruction at RIP (or EIP) and ignore any HLE hint
     END
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

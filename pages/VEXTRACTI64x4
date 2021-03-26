@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VEXTRACTI128/VEXTRACTI32X4/VEXTRACTI64X2/VEXTRACTI32X8/VEXTRACTI64X4 — EXTRACT PACKED INTEGER VALUES
-
+VEXTRACTI128/VEXTRACTI32x4/VEXTRACTI64x2/VEXTRACTI32x8/VEXTRACTI64x4 — Extract packed Integer Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ VEXTRACTI128/VEXTRACTI32X4/VEXTRACTI64X2/VEXTRACTI32X8/VEXTRACTI64X4 — EXTRACT
   EVEX.512.66.0F3A.W1 39 /r ib VEXTRACTI64X2 xmm1/m128 {k1}{z}, zmm2, imm8   B       V/V                      AVX512DQ             Extract 128 bits of quad-word integer values from zmm2 and store results in xmm1/m128 subject to writemask k1.
   EVEX.512.66.0F3A.W0 3B /r ib VEXTRACTI32X8 ymm1/m256 {k1}{z}, zmm2, imm8   D       V/V                      AVX512DQ             Extract 256 bits of double-word integer values from zmm2 and store results in ymm1/m256 subject to writemask k1.
   EVEX.512.66.0F3A.W1 3B /r ib VEXTRACTI64x4 ymm1/m256 {k1}{z}, zmm2, imm8   C       V/V                      AVX512F              Extract 256 bits of quad-word integer values from zmm2 and store results in ymm1/m256 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

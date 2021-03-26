@@ -1,26 +1,22 @@
 -   Index
 -   May 2019
 
+MOVSX/MOVSXD — Move with Sign-Extension
 
-
-MOVSX/MOVSXD — MOVE WITH SIGN-EXTENSION
-
-
-  Opcode               Instruction           Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------------------- --------------------- ------- ------------- ----------------- ----------------------------------------------------
-  0F BE /_r_           MOVSX _r16, r/m8_     RM      Valid         Valid             Move byte to word with sign-extension.
-  0F BE /_r_           MOVSX _r32, r/m8_     RM      Valid         Valid             Move byte to doubleword with sign-extension.
-  REX.W + 0F BE /_r_   MOVSX _r64, r/m8_     RM      Valid         N.E.              Move byte to quadword with sign-extension.
-  0F BF /_r_           MOVSX _r32, r/m16_    RM      Valid         Valid             Move word to doubleword, with sign-extension.
-  REX.W + 0F BF /_r_   MOVSX _r64, r/m16_    RM      Valid         N.E.              Move word to quadword with sign-extension.
-  63 /_r*_             MOVSXD _r16, r/m16_   RM      Valid         Valid             Move word to word with sign-extension.
-  63 /_r*_             MOVSXD _r32, r/m32_   RM      Valid         Valid             Move doubleword to doubleword with sign-extension.
-  REX.W + 63 /_r_      MOVSXD _r64, r/m32_   RM      Valid         N.E.              Move doubleword to quadword with sign-extension.
+  Opcode             Instruction         Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  ------------------ ------------------- ------- ------------- ----------------- ----------------------------------------------------
+  0F BE /r           MOVSX r16, r/m8     RM      Valid         Valid             Move byte to word with sign-extension.
+  0F BE /r           MOVSX r32, r/m8     RM      Valid         Valid             Move byte to doubleword with sign-extension.
+  REX.W + 0F BE /r   MOVSX r64, r/m8     RM      Valid         N.E.              Move byte to quadword with sign-extension.
+  0F BF /r           MOVSX r32, r/m16    RM      Valid         Valid             Move word to doubleword, with sign-extension.
+  REX.W + 0F BF /r   MOVSX r64, r/m16    RM      Valid         N.E.              Move word to quadword with sign-extension.
+  63 /r*             MOVSXD r16, r/m16   RM      Valid         Valid             Move word to word with sign-extension.
+  63 /r*             MOVSXD r32, r/m32   RM      Valid         Valid             Move doubleword to doubleword with sign-extension.
+  REX.W + 63 /r      MOVSXD r64, r/m32   RM      Valid         N.E.              Move doubleword to quadword with sign-extension.
 
   *
   TheuseofMOVSXDwithoutREX.Win64-bitmodeisdiscouraged.RegularMOVshouldbeusedinsteadofusingMOVSXDwithout
   REX.W.
-
 
 Instruction Operand Encoding ¶
 
@@ -29,13 +25,12 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA          NA
   ------- --------------- --------------- ----------- -----------
 
-
 Description ¶
 
 Copies the contents of the source operand (register or memory location)
 to the destination operand (register) and sign extends the value to 16
-or 32 bits (see Figure 7-6 in the _Intel® 64 and IA-32 Architectures
-Software Developer’s Manual, Volume 1_). The size of the converted value
+or 32 bits (see Figure 7-6 in the Intel® 64 and IA-32 Architectures
+Software Developer’s Manual, Volume 1). The size of the converted value
 depends on the operand-size attribute.
 
 In 64-bit mode, the instruction’s default operation size is 32 bits. Use
@@ -43,43 +38,24 @@ of the REX.R prefix permits access to additional registers (R8-R15). Use
 of the REX.W prefix promotes operation to 64 bits. See the summary chart
 at the beginning of this section for encoding data and limits.
 
-
 Operation ¶
 
     DEST ← SignExtend(SRC);
-
 
 Flags Affected ¶
 
 None.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -88,7 +64,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -99,11 +74,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

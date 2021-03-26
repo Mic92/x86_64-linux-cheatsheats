@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-SUBPD — SUBTRACT PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
-
+SUBPD — Subtract Packed Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                         Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ SUBPD — SUBTRACT PACKED DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.128.66.0F.W1 5C /r VSUBPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst       C       V/V                      AVX512VL AVX512F     Subtract packed double-precision floating-point values from xmm3/m128/m64bcst to xmm2 and store result in xmm1 with writemask k1.
   EVEX.256.66.0F.W1 5C /r VSUBPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst       C       V/V                      AVX512VL AVX512F     Subtract packed double-precision floating-point values from ymm3/m256/m64bcst to ymm2 and store result in ymm1 with writemask k1.
   EVEX.512.66.0F.W1 5C /r VSUBPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{er}   C       V/V                      AVX512F              Subtract packed double-precision floating-point values from zmm3/m512/m64bcst to zmm2 and store result in zmm1 with writemask k1.
-
 
 Instruction Operand Encoding ¶
 

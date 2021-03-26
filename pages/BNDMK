@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-BNDMK — MAKE BOUNDS
-
+BNDMK — Make Bounds
 
   Opcode/Instruction           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------
   F3 0F 1B /r BNDMK bnd, m32   RM      NE/V                     MPX                  Make lower and upper bounds from m32 and store them in bnd.
   F3 0F 1B /r BNDMK bnd, m64   RM      V/NE                     MPX                  Make lower and upper bounds from m64 and store them in bnd.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3
   RM      ModRM:reg (w)   ModRM:r/m (r)   NA
   ------- --------------- --------------- -----------
-
 
 Description ¶
 
@@ -39,7 +34,6 @@ be zero. The reg-reg form of this instruction retains legacy behavior
 The instruction causes an invalid-opcode exception (#UD) if executed in
 64-bit mode with RIP-relative addressing.
 
-
 Operation ¶
 
     BND.LB ← SRCMEM.base;
@@ -49,75 +43,52 @@ Operation ¶
         BND.UB ← Zero_Extend.64_bits(NOT(LEA.32_bits(SRCMEM)));
     FI;
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     BNDMKvoid * _bnd_set_ptr_bounds(const void * q, size_t size);
-
 
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
-
-If 67H prefix is not used and CS.D=0.
-
-If 67H prefix is used and CS.D=1.
-
+  ----- -----------------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
+        If 67H prefix is not used and CS.D=0.
+        If 67H prefix is used and CS.D=1.
+  ----- -----------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
-
-If 16-bit addressing is used.
-
+  ----- -----------------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
+        If 16-bit addressing is used.
+  ----- -----------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
-
-If 16-bit addressing is used.
-
+  ----- -----------------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If ModRM.r/m encodes BND4-BND7 when Intel MPX is enabled.
+        If 16-bit addressing is used.
+  ----- -----------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If ModRM.r/m and REX encodes BND4-BND15 when Intel MPX is enabled.
-
-If RIP-relative addressing is used.
-
-#SS(0)
-
-If the memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the memory address is in a non-canonical form.
+  -------- ------------------------------------------------------------------------------
+  #UD      If the LOCK prefix is used.
+           If ModRM.r/m and REX encodes BND4-BND15 when Intel MPX is enabled.
+           If RIP-relative addressing is used.
+  #SS(0)   If the memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)   If the memory address is in a non-canonical form.
+  -------- ------------------------------------------------------------------------------
 
 Same exceptions as in protected mode.
 

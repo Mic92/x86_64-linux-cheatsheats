@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VFIXUPIMMSS — FIX UP SPECIAL SCALAR FLOAT32 VALUE
-
+VFIXUPIMMSS — Fix Up Special Scalar Float32 Value
 
   Opcode/Instruction                                                                 Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W0 55 /r ib VFIXUPIMMSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512F              Fix up a float32 number in the low doubleword element in xmm2 using scalar int32 table in xmm3/m32 and store the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -140,8 +136,7 @@ VFIXUPIMMSS (EVEX encoded version) ¶
     DEST[MAXVL-1:128] ← 0
     Immediate Control Description:
 
-7 6 5 4 3 2 1 0 +INF #IE -VE #IE -INF #IE SNaN #IE ONE #IE ONE #ZE
-ZERO #IE ZERO #ZE
+[]
 
 Figure 5-12. VFIXUPIMMSS Immediate Control Description
 

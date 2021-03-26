@@ -1,31 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-ETRACK — ACTIVATES EBLOCK CHECKS
-
+ETRACK — Activates EBLOCK Checks
 
   Opcode/Instruction        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------- ------- ------------------------ -------------------- ---------------------------------------------
   EAX = 0CH ENCLS[ETRACK]   IR      V/V                      SGX1                 This leaf function activates EBLOCK checks.
 
-
 Instruction Operand Encoding ¶
 
-Op/En
-
-EAX
-
-RCX
-
-IR
-
-ETRACK (In)
-
-Return error code (Out)
-
-Pointer to the SECS of the EPC page (In)
+  ------- ------------- ------------------------- ------------------------------------------
+  Op/En   EAX                                     RCX
+  IR      ETRACK (In)   Return error code (Out)   Pointer to the SECS of the EPC page (In)
+  ------- ------------- ------------------------- ------------------------------------------
 
 Description ¶
 
@@ -37,7 +24,6 @@ The content of RCX is an effective address of an EPC page.
 
 The table below provides additional information on the memory parameter
 of ETRACK leaf function.
-
 
 ETRACK Memory Parameter Semantics ¶
 
@@ -57,63 +43,18 @@ Table 40-45. ETRACK Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-ETRACK
-
-SECS [DS:RCX]
-
-Shared
-
-#GP
+  Leaf     Parameter       Base Concurrency Restrictions              
+  -------- --------------- ------------------------------------ ----- --
+  Access   On Conflict     SGX_CONFLICT VM Exit Qualification         
+  ETRACK   SECS [DS:RCX]   Shared                               #GP   
 
 Table 40-46. Base Concurrency Restrictions of ETRACK
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-ETRACK
-
-SECS [DS:RCX]
-
-Concurrent
-
-Concurrent
-
-Exclusive
-
-SGX_EPC_PAGE _CONFLICT
+  Leaf                                              Parameter       Additional Concurrency Restrictions                                                                 
+  ------------------------------------------------- --------------- ------------------------------------- ------------- --------------------- ------------- ----------- ------------------------
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                   vs. EADD, EEXTEND, EINIT                            vs. ETRACK, ETRACKC                             
+  Access                                            On Conflict     Access                                On Conflict   Access                On Conflict               
+  ETRACK                                            SECS [DS:RCX]   Concurrent                                          Concurrent                          Exclusive   SGX_EPC_PAGE _CONFLICT
 
 Table 40-47. Additional Concurrency Restrictions of ETRACK
 
@@ -171,36 +112,23 @@ AF, OF, SF.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If another thread is concurrently using the tracking facility on this
-SECS.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
+  ----------- -----------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If another thread is concurrently using the tracking facility on this SECS.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+  ----------- -----------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If the specified EPC resource is in use.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If the specified EPC resource is in use.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

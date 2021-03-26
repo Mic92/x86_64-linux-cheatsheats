@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-UNPCKHPS — UNPACK AND INTERLEAVE HIGH PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+UNPCKHPS — Unpack and Interleave High Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ UNPCKHPS — UNPACK AND INTERLEAVE HIGH PACKED SINGLE-PRECISION FLOATING-POINT V
   EVEX.128.0F.W0 15 /r VUNPCKHPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves single-precision floating-point values from high quadwords of xmm2 and xmm3/m128/m32bcst and write result to xmm1 subject to writemask k1.
   EVEX.256.0F.W0 15 /r VUNPCKHPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Unpacks and Interleaves single-precision floating-point values from high quadwords of ymm2 and ymm3/m256/m32bcst and write result to ymm1 subject to writemask k1.
   EVEX.512.0F.W0 15 /r VUNPCKHPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Unpacks and Interleaves single-precision floating-point values from high quadwords of zmm2 and zmm3/m512/m32bcst and write result to zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -48,8 +44,7 @@ VEX.256 encoded version: The second source operand is an YMM register or
 an 256-bit memory location. The first source operand and destination
 operands are YMM registers.
 
-X7 X6 X5 X4 X3 X2 X1 X0 SRC1 SRC2 Y7 Y6 Y5 Y4 Y3 Y2 Y1 Y0 DEST Y7 X7 Y6
-X6 Y3 X3 Y2 X2
+[]
 
 Figure 4-27. VUNPCKHPS Operation
 

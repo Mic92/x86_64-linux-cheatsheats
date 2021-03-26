@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPERMD/VPERMW — PERMUTE PACKED DOUBLEWORDS/WORDS ELEMENTS
-
+VPERMD/VPERMW — Permute Packed Doublewords/Words Elements
 
   Opcode/Instruction                                                       Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------ --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPERMD/VPERMW — PERMUTE PACKED DOUBLEWORDS/WORDS ELEMENTS
   EVEX.128.66.0F38.W1 8D /r VPERMW xmm1 {k1}{z}, xmm2, xmm3/m128           C         V/V                      AVX512VL AVX512BW    Permute word integers in xmm3/m128 using indexes in xmm2 and store the result in xmm1 using writemask k1.
   EVEX.256.66.0F38.W1 8D /r VPERMW ymm1 {k1}{z}, ymm2, ymm3/m256           C         V/V                      AVX512VL AVX512BW    Permute word integers in ymm3/m256 using indexes in ymm2 and store the result in ymm1 using writemask k1.
   EVEX.512.66.0F38.W1 8D /r VPERMW zmm1 {k1}{z}, zmm2, zmm3/m512           C         V/V                      AVX512BW             Permute word integers in zmm3/m512 using indexes in zmm2 and store the result in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -153,11 +149,10 @@ EVEX-encoded VPERMD, see Exceptions Type E4NF.
 
 EVEX-encoded VPERMW, see Exceptions Type E4NF.nb.
 
-#UD
-
-If VEX.L = 0.
-
-If EVEX.L’L = 0 for VPERMD.
+  ----- -----------------------------
+  #UD   If VEX.L = 0.
+        If EVEX.L’L = 0 for VPERMD.
+  ----- -----------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

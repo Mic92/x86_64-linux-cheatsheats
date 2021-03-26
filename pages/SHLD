@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
+SHLD — Double Precision Shift Left
 
-
-SHLD — DOUBLE PRECISION SHIFT LEFT
-
-
-  Opcode*               Instruction               Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------------------- ------------------------- ------- ------------- ----------------- ---------------------------------------------------------------------------------------
-  0F A4 /r ib           SHLD _r/m16, r16, imm8_   MRI     Valid         Valid             Shift _r/m16_ to left _imm8_ places while shifting bits from _r16_ in from the right.
-  0F A5 /r              SHLD _r/m16, r16_, CL     MRC     Valid         Valid             Shift _r/m16_ to left CL places while shifting bits from _r16_ in from the right.
-  0F A4 /r ib           SHLD _r/m32, r32, imm8_   MRI     Valid         Valid             Shift _r/m32_ to left _imm8_ places while shifting bits from _r32_ in from the right.
-  REX.W + 0F A4 /r ib   SHLD _r/m64, r64, imm8_   MRI     Valid         N.E.              Shift _r/m64_ to left _imm8_ places while shifting bits from _r64_ in from the right.
-  0F A5 /r              SHLD _r/m32, r32_, CL     MRC     Valid         Valid             Shift _r/m32_ to left CL places while shifting bits from _r32_ in from the right.
-  REX.W + 0F A5 /r      SHLD _r/m64, r64_, CL     MRC     Valid         N.E.              Shift _r/m64_ to left CL places while shifting bits from _r64_ in from the right.
-
+  Opcode*               Instruction             Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  --------------------- ----------------------- ------- ------------- ----------------- ---------------------------------------------------------------------------------
+  0F A4 /r ib           SHLD r/m16, r16, imm8   MRI     Valid         Valid             Shift r/m16 to left imm8 places while shifting bits from r16 in from the right.
+  0F A5 /r              SHLD r/m16, r16, CL     MRC     Valid         Valid             Shift r/m16 to left CL places while shifting bits from r16 in from the right.
+  0F A4 /r ib           SHLD r/m32, r32, imm8   MRI     Valid         Valid             Shift r/m32 to left imm8 places while shifting bits from r32 in from the right.
+  REX.W + 0F A4 /r ib   SHLD r/m64, r64, imm8   MRI     Valid         N.E.              Shift r/m64 to left imm8 places while shifting bits from r64 in from the right.
+  0F A5 /r              SHLD r/m32, r32, CL     MRC     Valid         Valid             Shift r/m32 to left CL places while shifting bits from r32 in from the right.
+  REX.W + 0F A5 /r      SHLD r/m64, r64, CL     MRC     Valid         N.E.              Shift r/m64 to left CL places while shifting bits from r64 in from the right.
 
 Instruction Operand Encoding ¶
 
@@ -23,7 +19,6 @@ Instruction Operand Encoding ¶
   MRI     ModRM:r/m (w)   ModRM:reg (r)   imm8        NA
   MRC     ModRM:r/m (w)   ModRM:reg (r)   CL          NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -56,7 +51,6 @@ operation to 64 bits (upgrading the count mask to 6 bits). See the
 summary chart at the beginning of this section for encoding data and
 limits.
 
-
 Operation ¶
 
     IF (In 64-Bit Mode and REX.W = 1)
@@ -86,7 +80,6 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 If the count is 1 or greater, the CF flag is filled with the last bit
@@ -98,35 +91,17 @@ flag is undefined. If the count operand is 0, the flags are not
 affected. If the count is greater than the operand size, the flags are
 undefined.
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the destination is located in a non-writable segment.
-
-If a memory operand effective address is outside the CS, DS, ES, FS, or
-GS segment limit.
-
-If the DS, ES, FS, or GS register contains a NULL segment selector.
-
-#SS(0)
-
-If a memory operand effective address is outside the SS segment limit.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- --------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the destination is located in a non-writable segment.
+                    If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
+                    If the DS, ES, FS, or GS register contains a NULL segment selector.
+  #SS(0)            If a memory operand effective address is outside the SS segment limit.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- --------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -135,7 +110,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -147,11 +121,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

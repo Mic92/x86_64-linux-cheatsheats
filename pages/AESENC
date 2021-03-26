@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-AESENC — PERFORM ONE ROUND OF AN AES ENCRYPTION FLOW
-
+AESENC — Perform One Round of an AES Encryption Flow
 
   Opcode/Instruction                                        Op/En   64/32-bit Mode   CPUID Feature Flag       Description
   --------------------------------------------------------- ------- ---------------- ------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------
   66 0F 38 DC /r AESENC xmm1, xmm2/m128                     RM      V/V              AES                      Perform one round of an AES encryption flow, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.
   VEX.128.66.0F38.WIG DC /r VAESENC xmm1, xmm2, xmm3/m128   RVM     V/V              Both AES and AVX flags   Perform one round of an AES encryption flow, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from the xmm3/m128; store the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   RM      ModRM:reg (r, w)   ModRM:r/m (r)   NA              NA
   RVM     ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   ------- ------------------ --------------- --------------- ----------
-
 
 Description ¶
 
@@ -41,7 +36,6 @@ VEX.128 encoded version: The first source operand and the destination
 operand are XMM registers. The second source operand can be an XMM
 register or a 128-bit memory location. Bits (MAXVL-1:128) of the
 destination YMM register are zeroed.
-
 
 Operation ¶
 
@@ -65,16 +59,13 @@ VAESENC ¶
     DEST[127:0]←STATE XOR RoundKey;
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)AESENC: __m128i _mm_aesenc (__m128i, __m128i)
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

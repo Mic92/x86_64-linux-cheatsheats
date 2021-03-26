@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VGETMANTSD — EXTRACT FLOAT64 OF NORMALIZED MANTISSAS FROM FLOAT64 SCALAR
-
+VGETMANTSD — Extract Float64 of Normalized Mantissas from Float64 Scalar
 
   Opcode/Instruction                                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  EVEX.LIG.66.0F3A.W1 27 /r ib VGETMANTSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512F              Extract the normalized mantissa of the low float64 element in xmm3/m64 using _imm_8 for sign control and mantissa interval normalization. Store the mantissa to xmm1 under the writemask k1 and merge with the other elements of xmm2.
-
+  --------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EVEX.LIG.66.0F3A.W1 27 /r ib VGETMANTSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}, imm8   A       V/V                      AVX512F              Extract the normalized mantissa of the low float64 element in xmm3/m64 using imm8 for sign control and mantissa interval normalization. Store the mantissa to xmm1 under the writemask k1 and merge with the other elements of xmm2.
 
 Instruction Operand Encoding ¶
 
@@ -32,11 +28,11 @@ of the immediate byte.
 
 The conversion operation is:
 
-_GetMant_(_x_) = _±_2_^(k)|x.significand|_
+GetMant(x) = ±2^(k)|x.significand|
 
 where:
 
-1 _<_= _|x.significand| <_ 2
+1 <= |x.significand| < 2
 
 Unbiased exponent k depends on the interval range defined by interv and
 whether the exponent of the source is even or odd. The sign of the final

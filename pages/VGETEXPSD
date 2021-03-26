@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VGETEXPSD — CONVERT EXPONENTS OF SCALAR DP FP VALUES TO DP FP VALUE
-
+VGETEXPSD — Convert Exponents of Scalar DP FP Values to DP FP Value
 
   Opcode/Instruction                                                      Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F38.W1 43 /r VGETEXPSD xmm1 {k1}{z}, xmm2, xmm3/m64{sae}   A       V/V                      AVX512F              Convert the biased exponent (bits 62:52) of the low double-precision floating-point value in xmm3/m64 to a DP FP value representing unbiased integer exponent. Stores the result to the low 64-bit of xmm1 under the writemask k1 and merge with the other elements of xmm2.
-
 
 Instruction Operand Encoding ¶
 
@@ -41,7 +37,7 @@ The formula is:
 
 GETEXP(x) = floor(log₂(|x|))
 
-Notation FLOOR(X) stands for maximal integer not exceeding real number
+Notation floor(x) stands for maximal integer not exceeding real number
 x.
 
 Operation ¶

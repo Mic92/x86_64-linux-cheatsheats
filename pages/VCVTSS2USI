@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VCVTSS2USI — CONVERT SCALAR SINGLE-PRECISION FLOATING-POINT VALUE TO UNSIGNED DOUBLEWORD INTEGER
-
+VCVTSS2USI — Convert Scalar Single-Precision Floating-Point Value to Unsigned Doubleword Integer
 
   Opcode/Instruction                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------ ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------
@@ -13,7 +10,6 @@ VCVTSS2USI — CONVERT SCALAR SINGLE-PRECISION FLOATING-POINT VALUE TO UNSIGNED 
 
   1. EVEX.W1 in non-64 bit is ignored; the instructions behaves as if
   the W0 version is used.
-
 
 Instruction Operand Encoding ¶
 

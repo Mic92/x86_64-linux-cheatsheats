@@ -1,35 +1,18 @@
 -   Index
 -   May 2019
 
-
-
-EMODT — CHANGE THE TYPE OF AN EPC PAGE
-
+EMODT — Change the Type of an EPC Page
 
   Opcode/Instruction       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------ ------- ------------------------ -------------------- --------------------------------------------------------------
   EAX = 0FH ENCLS[EMODT]   IR      V/V                      SGX2                 This leaf function changes the type of an existing EPC page.
 
-
 Instruction Operand Encoding ¶
 
-Op/En
-
-EAX
-
-RBX
-
-RCX
-
-IR
-
-EMODT (In)
-
-Return Error Code (Out)
-
-Address of a SECINFO (In)
-
-Address of the destination EPC page (In)
+  ------- ------------ ------------------------- --------------------------- ------------------------------------------
+  Op/En   EAX                                    RBX                         RCX
+  IR      EMODT (In)   Return Error Code (Out)   Address of a SECINFO (In)   Address of the destination EPC page (In)
+  ------- ------------ ------------------------- --------------------------- ------------------------------------------
 
 Description ¶
 
@@ -44,7 +27,6 @@ contains the effective address of an EPC page. The table below provides
 additional information on the memory parameter of the EMODT leaf
 function.
 
-
 EMODT Memory Parameter Semantics ¶
 
   -------------------------------------- ----------------------------------------
@@ -53,7 +35,6 @@ EMODT Memory Parameter Semantics ¶
   -------------------------------------- ----------------------------------------
 
 The instruction faults if any of the following:
-
 
 EMODT Faulting Conditions ¶
 
@@ -76,70 +57,22 @@ Table 40-34. EMODT Return Value in RAX
 
 Concurrency Restrictions ¶
 
-Leaf
-
-Parameter
-
-Base Concurrency Restrictions
-
-Access
-
-On Conflict
-
-SGX_CONFLICT VM Exit Qualification
-
-EMODT
-
-Target [DS:RCX]
-
-Exclusive
-
-SGX_EPC_PAGE_ CONFLICT
-
-EPC_PAGE_CONFLICT_ERROR
+  Leaf     Parameter         Base Concurrency Restrictions                                 
+  -------- ----------------- ------------------------------------ ------------------------ -------------------------
+  Access   On Conflict       SGX_CONFLICT VM Exit Qualification                            
+  EMODT    Target [DS:RCX]   Exclusive                            SGX_EPC_PAGE_ CONFLICT   EPC_PAGE_CONFLICT_ERROR
 
 Table 40-35. Base Concurrency Restrictions of EMODT
 
-Leaf
-
-Parameter
-
-Additional Concurrency Restrictions
-
-vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT
-
-vs. EADD, EEXTEND, EINIT
-
-vs. ETRACK, ETRACKC
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-Access
-
-On Conflict
-
-EMODT
-
-Target [DS:RCX]
-
-Exclusive
-
-SGX_EPC_PAGE _CONFLICT
-
-Concurrent
-
-Concurrent
+  Leaf                                              Parameter         Additional Concurrency Restrictions                                                                             
+  ------------------------------------------------- ----------------- ------------------------------------- ------------------------ --------------------- ------------- ------------ --
+  vs. EACCEPT, EACCEPTCOPY, EMODPE, EMODPR, EMODT                     vs. EADD, EEXTEND, EINIT                                       vs. ETRACK, ETRACKC                              
+  Access                                            On Conflict       Access                                On Conflict              Access                On Conflict                
+  EMODT                                             Target [DS:RCX]   Exclusive                             SGX_EPC_PAGE _CONFLICT   Concurrent                          Concurrent   
 
 Table 40-36. Additional Concurrency Restrictions of EMODT
 
 Operation ¶
-
 
 Temp Variables in EMODT Operational Flow ¶
 
@@ -256,35 +189,23 @@ executing concurrently, otherwise cleared. Clears CF, PF, AF, OF, SF.
 
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand effective address is outside the DS segment limit.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is locked.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------------------
+  #GP(0)      If a memory operand effective address is outside the DS segment limit.
+              If a memory operand is not properly aligned.
+              If a memory operand is locked.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#GP(0)
-
-If a memory operand is non-canonical form.
-
-If a memory operand is not properly aligned.
-
-If a memory operand is locked.
-
-#PF(error
-
-code) If a page fault occurs in accessing memory operands.
-
-If a memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------
+  #GP(0)      If a memory operand is non-canonical form.
+              If a memory operand is not properly aligned.
+              If a memory operand is locked.
+  #PF(error   code) If a page fault occurs in accessing memory operands.
+              If a memory operand is not an EPC page.
+  ----------- ------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

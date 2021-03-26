@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SYSENTER — FAST SYSTEM CALL
-
+SYSENTER — Fast System Call
 
   Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------- ------------- ----------------- ---------------------------------------------------
   0F 34    SYSENTER      ZO      Valid         Valid             Fast call to privilege level 0 system procedures.
-
 
 Instruction Operand Encoding ¶
 
@@ -17,7 +13,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -55,7 +50,7 @@ instruction ensures that the IA32_SYSENTER_EIP and IA32_SYSENTER_ESP
 MSRs always contain canonical addresses.
 
 While SYSENTER loads the CS and SS selectors with values derived from
-the IA32_SYSENTER_CS MSR, the CS and SS descriptor caches are NOT loaded
+the IA32_SYSENTER_CS MSR, the CS and SS descriptor caches are not loaded
 from the descriptors (in GDT or LDT) referenced by those selectors.
 Instead, the descriptor caches are loaded with fixed values. See the
 Operation section for details. It is the responsibility of OS software
@@ -114,13 +109,12 @@ When the CPUID instruction is executed on the Pentium Pro processor
 (model 1), the processor returns a the SEP flag as set, but does not
 support the SYSENTER/SYSEXIT instructions.
 
-INSTRUCTION ORDERING. Instructions following a SYSENTER may be fetched
+Instruction ordering. Instructions following a SYSENTER may be fetched
 from memory before earlier instructions complete execution, but they
 will not execute (even speculatively) until all instructions prior to
 the SYSENTER have completed execution (the later instructions may
 execute before data stored by the earlier instructions have become
 globally visible).
-
 
 Operation ¶
 
@@ -180,11 +174,9 @@ Operation ¶
     SS.G ← 1;
                 (* 4-KByte granularity *)
 
-
 Flags Affected ¶
 
 VM, IF (see Operation above)
-
 
 Protected Mode Exceptions ¶
 
@@ -193,7 +185,6 @@ Protected Mode Exceptions ¶
   #UD      If the LOCK prefix is used.
   -------- --------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- ------------------------------------------------------------------
@@ -201,16 +192,13 @@ Real-Address Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

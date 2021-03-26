@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+ROUNDPD — Round Packed Double Precision Floating-Point Values
 
-
-ROUNDPD — ROUND PACKED DOUBLE PRECISION FLOATING-POINT VALUES
-
-
-  Opcode*/Instruction                                             Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  --------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 09 /r ib ROUNDPD _xmm1, xmm2/m128, imm8_               RMI     V/V                      SSE4_1               Round packed double precision floating-point values in _xmm2/m128_ and place the result in _xmm1_. The rounding mode is determined by _imm8._
-  VEX.128.66.0F3A.WIG 09 /r ib VROUNDPD _xmm1, xmm2/m128, imm8_   RMI     V/V                      AVX                  Round packed double-precision floating-point values in _xmm2/m128_ and place the result in _xmm1_. The rounding mode is determined by _imm8_.
-  VEX.256.66.0F3A.WIG 09 /r ib VROUNDPD _ymm1, ymm2/m256, imm8_   RMI     V/V                      AVX                  Round packed double-precision floating-point values in _ymm2/m256_ and place the result in _ymm1_. The rounding mode is determined by _imm8_.
-
+  Opcode*/Instruction                                           Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 09 /r ib ROUNDPD xmm1, xmm2/m128, imm8               RMI     V/V                      SSE4_1               Round packed double precision floating-point values in xmm2/m128 and place the result in xmm1. The rounding mode is determined by imm8.
+  VEX.128.66.0F3A.WIG 09 /r ib VROUNDPD xmm1, xmm2/m128, imm8   RMI     V/V                      AVX                  Round packed double-precision floating-point values in xmm2/m128 and place the result in xmm1. The rounding mode is determined by imm8.
+  VEX.256.66.0F3A.WIG 09 /r ib VROUNDPD ymm1, ymm2/m256, imm8   RMI     V/V                      AVX                  Round packed double-precision floating-point values in ymm2/m256 and place the result in ymm1. The rounding mode is determined by imm8.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RMI     ModRM:reg (w)   ModRM:r/m (r)   imm8        NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -71,7 +66,7 @@ Instruction
 
 Table 4-17. Rounding Modes and Encoding of Rounding Control (RC) Field
 
-ROUNDING RC FIELD DESCRIPTION MODE SETTING
+Rounding RC Field Description Mode Setting
 
 Round to 00B Rounded result is the closest to the infinitely precise
 result. If two values are equally close, the result is nearest (even)
@@ -86,7 +81,6 @@ infinitely precise result. (toward +∞)
 
 Round toward 11B Rounded result is closest to but no greater in absolute
 value than the infinitely precise result. zero (Truncate)
-
 
 Operation ¶
 
@@ -118,7 +112,6 @@ VROUNDPD (VEX.256 encoded version) ¶
     DEST[191:128]←RoundToInteger(SRC[191:128]], ROUND_CONTROL)
     DEST[255:192]←RoundToInteger(SRC[255:192] ], ROUND_CONTROL)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     __m128 _mm_round_pd(__m128d s1, int iRoundMode);
@@ -133,7 +126,6 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     __m256 _mm256_ceil_pd(__m256d s1)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid (signaled only if SRC = SNaN)
@@ -143,7 +135,6 @@ Precision Mask in the MXSCSR is ignored and precision exception is not
 signaled.)
 
 Note that Denormal is not signaled by ROUNDPD.
-
 
 Other Exceptions ¶
 

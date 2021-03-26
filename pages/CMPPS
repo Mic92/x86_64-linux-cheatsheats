@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CMPPS — COMPARE PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+CMPPS — Compare Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                           Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ CMPPS — COMPARE PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   EVEX.256.0F.W0 C2 /r ib VCMPPS k1 {k2}, ymm2, ymm3/m256/m32bcst, imm8        C         V/V                      AVX512VL AVX512F     Compare packed single-precision floating-point values in ymm3/m256/m32bcst and ymm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
   EVEX.512.0F.W0 C2 /r ib VCMPPS k1 {k2}, zmm2, zmm3/m512/m32bcst{sae}, imm8   C         V/V                      AVX512F              Compare packed single-precision floating-point values in zmm3/m512/m32bcst and zmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   Imm8
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   Imm8
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -92,8 +87,8 @@ using software emulation. When using software emulation, the program
 must swap the operands (copying registers when necessary to protect the
 data that will now be in the destination), and then perform the compare
 using a different predicate. The predicate to be used for these
-emulations is listed in the first 8 rows of Table 3-7 (_Intel 64 and
-IA-32 Architectures Software Developer’s Manual Volume 2A_) under the
+emulations is listed in the first 8 rows of Table 3-7 (Intel 64 and
+IA-32 Architectures Software Developer’s Manual Volume 2A) under the
 heading Emulation.
 
 Compilers and assemblers may implement the following two-operand
@@ -101,16 +96,16 @@ pseudo-ops in addition to the three-operand CMPPS instruction, for
 processors with “CPUID.1H:ECX.AVX =0”. See Table 3-4. Compiler should
 treat reserved Imm8 values as illegal syntax.
 
-  Pseudo-Op                 CMPPS Implementation
-  ------------------------- -----------------------
-  CMPEQPS x_mm1, xmm2_      CMPPS _xmm1, xmm2, 0_
-  CMPLTPS x_mm1, xmm2_      CMPPS _xmm1, xmm2, 1_
-  CMPLEPS x_mm1, xmm2_      CMPPS _xmm1, xmm2, 2_
-  CMPUNORDPS x_mm1, xmm2_   CMPPS _xmm1, xmm2, 3_
-  CMPNEQPS x_mm1, xmm2_     CMPPS _xmm1, xmm2, 4_
-  CMPNLTPS x_mm1, xmm2_     CMPPS _xmm1, xmm2, 5_
-  CMPNLEPS x_mm1, xmm2_     CMPPS _xmm1, xmm2, 6_
-  CMPORDPS x_mm1, xmm2_     CMPPS _xmm1, xmm2, 7_
+  Pseudo-Op               CMPPS Implementation
+  ----------------------- ----------------------
+  CMPEQPS xmm1, xmm2      CMPPS xmm1, xmm2, 0
+  CMPLTPS xmm1, xmm2      CMPPS xmm1, xmm2, 1
+  CMPLEPS xmm1, xmm2      CMPPS xmm1, xmm2, 2
+  CMPUNORDPS xmm1, xmm2   CMPPS xmm1, xmm2, 3
+  CMPNEQPS xmm1, xmm2     CMPPS xmm1, xmm2, 4
+  CMPNLTPS xmm1, xmm2     CMPPS xmm1, xmm2, 5
+  CMPNLEPS xmm1, xmm2     CMPPS xmm1, xmm2, 6
+  CMPORDPS xmm1, xmm2     CMPPS xmm1, xmm2, 7
 
 Table 3-4. Pseudo-Op and CMPPS Implementation
 
@@ -135,43 +130,42 @@ extending the syntax listed in Table 3-5.
 
 :
 
-  Pseudo-Op                           CMPPS Implementation
-  ----------------------------------- --------------------------------
-  VCMPEQPS r_eg1, reg2, reg3_         VCMPPS r_eg1, reg2, reg3, 0_
-  VCMPLTPS r_eg1, reg2, reg3_         VCMPPS r_eg1, reg2, reg3, 1_
-  VCMPLEPS r_eg1, reg2, reg3_         VCMPPS r_eg1, reg2, reg3, 2_
-  VCMPUNORDPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 3_
-  VCMPNEQPS r_eg1, reg2, reg3_        VCMPPS r_eg1, reg2, reg3, 4_
-  VCMPNLTPS r_eg1, reg2, reg3_        VCMPPS r_eg1, reg2, reg3, 5_
-  VCMPNLEPS r_eg1, reg2, reg3_        VCMPPS r_eg1, reg2, reg3, 6_
-  VCMPORDPS r_eg1, reg2, reg3_        VCMPPS r_eg1, reg2, reg3, 7_
-  VCMPEQ_UQPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 8_
-  VCMPNGEPS r_eg1, reg2, reg3_        VCMPPS r_eg1, reg2, reg3, 9_
-  VCMPNGTPS r_eg1, reg2, reg3_        VCMPPS r_eg1, reg2, reg3, 0AH_
-  VCMPFALSEPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 0BH_
-  VCMPNEQ_OQPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 0CH_
-  VCMPGEPS r_eg1, reg2, reg3_         VCMPPS r_eg1, reg2, reg3, 0DH_
-  VCMPGTPS r_eg1, reg2, reg3_         VCMPPS r_eg1, reg2, reg3, 0EH_
-  VCMPTRUEPS r_eg1, reg2, reg3_       VCMPPS r_eg1, reg2, reg3, 0FH_
-  VCMPEQ_OSPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 10H_
-  VCMPLT_OQPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 11H_
-  VCMPLE_OQPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 12H_
-  VCMPUNORD_SPS r_eg1, reg2, reg3_    VCMPPS r_eg1, reg2, reg3, 13H_
-  VCMPNEQ_USPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 14H_
-  VCMPNLT_UQPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 15H_
-  VCMPNLE_UQPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 16H_
-  VCMPORD_SPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 17H_
-  VCMPEQ_USPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 18H_
-  VCMPNGE_UQPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 19H_
-  VCMPNGT_UQPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 1AH_
-  VCMPFALSE_OSPS r_eg1, reg2, reg3_   VCMPPS r_eg1, reg2, reg3, 1BH_
-  VCMPNEQ_OSPS r_eg1, reg2, reg3_     VCMPPS r_eg1, reg2, reg3, 1CH_
-  VCMPGE_OQPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 1DH_
-  VCMPGT_OQPS r_eg1, reg2, reg3_      VCMPPS r_eg1, reg2, reg3, 1EH_
-  VCMPTRUE_USPS r_eg1, reg2, reg3_    VCMPPS r_eg1, reg2, reg3, 1FH_
+  Pseudo-Op                         CMPPS Implementation
+  --------------------------------- ------------------------------
+  VCMPEQPS reg1, reg2, reg3         VCMPPS reg1, reg2, reg3, 0
+  VCMPLTPS reg1, reg2, reg3         VCMPPS reg1, reg2, reg3, 1
+  VCMPLEPS reg1, reg2, reg3         VCMPPS reg1, reg2, reg3, 2
+  VCMPUNORDPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 3
+  VCMPNEQPS reg1, reg2, reg3        VCMPPS reg1, reg2, reg3, 4
+  VCMPNLTPS reg1, reg2, reg3        VCMPPS reg1, reg2, reg3, 5
+  VCMPNLEPS reg1, reg2, reg3        VCMPPS reg1, reg2, reg3, 6
+  VCMPORDPS reg1, reg2, reg3        VCMPPS reg1, reg2, reg3, 7
+  VCMPEQ_UQPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 8
+  VCMPNGEPS reg1, reg2, reg3        VCMPPS reg1, reg2, reg3, 9
+  VCMPNGTPS reg1, reg2, reg3        VCMPPS reg1, reg2, reg3, 0AH
+  VCMPFALSEPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 0BH
+  VCMPNEQ_OQPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 0CH
+  VCMPGEPS reg1, reg2, reg3         VCMPPS reg1, reg2, reg3, 0DH
+  VCMPGTPS reg1, reg2, reg3         VCMPPS reg1, reg2, reg3, 0EH
+  VCMPTRUEPS reg1, reg2, reg3       VCMPPS reg1, reg2, reg3, 0FH
+  VCMPEQ_OSPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 10H
+  VCMPLT_OQPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 11H
+  VCMPLE_OQPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 12H
+  VCMPUNORD_SPS reg1, reg2, reg3    VCMPPS reg1, reg2, reg3, 13H
+  VCMPNEQ_USPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 14H
+  VCMPNLT_UQPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 15H
+  VCMPNLE_UQPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 16H
+  VCMPORD_SPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 17H
+  VCMPEQ_USPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 18H
+  VCMPNGE_UQPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 19H
+  VCMPNGT_UQPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 1AH
+  VCMPFALSE_OSPS reg1, reg2, reg3   VCMPPS reg1, reg2, reg3, 1BH
+  VCMPNEQ_OSPS reg1, reg2, reg3     VCMPPS reg1, reg2, reg3, 1CH
+  VCMPGE_OQPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 1DH
+  VCMPGT_OQPS reg1, reg2, reg3      VCMPPS reg1, reg2, reg3, 1EH
+  VCMPTRUE_USPS reg1, reg2, reg3    VCMPPS reg1, reg2, reg3, 1FH
 
 Table 3-5. Pseudo-Op and VCMPPS Implementation
-
 
 Operation ¶
 
@@ -309,7 +303,6 @@ CMPPS (128-bit Legacy SSE version) ¶
         ELSE DEST[127:96]←000000000H; FI;
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCMPPS __mmask16 _mm512_cmp_ps_mask( __m512 a, __m512 b, int imm);
@@ -332,14 +325,12 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     CMPPS __m128 _mm_cmp_ps(__m128 a, __m128 b, int imm)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid if SNaN operand and invalid if QNaN and predicate as listed in
 Table 3-1.
 
 Denormal
-
 
 Other Exceptions ¶
 

@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
+LOOP/LOOPcc — Loop According to ECX Counter
 
-
-LOOP/LOOPCC — LOOP ACCORDING TO ECX COUNTER
-
-
-  Opcode    Instruction     Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  --------- --------------- ------- ------------- ----------------- ------------------------------------------------------
-  E2 _cb_   LOOP _rel8_     D       Valid         Valid             Decrement count; jump short if count ≠ 0.
-  E1 _cb_   LOOPE _rel8_    D       Valid         Valid             Decrement count; jump short if count ≠ 0 and ZF = 1.
-  E0 _cb_   LOOPNE _rel8_   D       Valid         Valid             Decrement count; jump short if count ≠ 0 and ZF = 0.
-
+  Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  -------- ------------- ------- ------------- ----------------- ------------------------------------------------------
+  E2 cb    LOOP rel8     D       Valid         Valid             Decrement count; jump short if count ≠ 0.
+  E1 cb    LOOPE rel8    D       Valid         Valid             Decrement count; jump short if count ≠ 0 and ZF = 1.
+  E0 cb    LOOPNE rel8   D       Valid         Valid             Decrement count; jump short if count ≠ 0 and ZF = 0.
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   D       Offset      NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -42,13 +37,12 @@ assembly code, but at the machine code level, it is encoded as a signed,
 8-bit immediate value, which is added to the instruction pointer.
 Offsets of –128 to +127 are allowed with this instruction.
 
-Some forms of the loop instruction (LOOP_cc_) also accept the ZF flag as
-a condition for terminating the loop before the count reaches zero. With
-these forms of the instruction, a condition code (_cc_) is associated
-with each instruction to indicate the condition being tested for. Here,
-the LOOP_cc_ instruction itself does not affect the state of the ZF
-flag; the ZF flag is changed by other instructions in the loop.
-
+Some forms of the loop instruction (LOOPcc) also accept the ZF flag as a
+condition for terminating the loop before the count reaches zero. With
+these forms of the instruction, a condition code (cc) is associated with
+each instruction to indicate the condition being tested for. Here, the
+LOOPcc instruction itself does not affect the state of the ZF flag; the
+ZF flag is changed by other instructions in the loop.
 
 Operation ¶
 
@@ -98,11 +92,9 @@ Operation ¶
             Terminate loop and continue program execution at (R/E)IP;
     FI;
 
-
 Flags Affected ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -111,7 +103,6 @@ Protected Mode Exceptions ¶
   #UD      If the LOCK prefix is used.
   -------- -----------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -119,16 +110,13 @@ Real-Address Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in real address mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

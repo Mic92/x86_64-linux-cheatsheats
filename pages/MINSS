@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-MINSS — RETURN MINIMUM SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
-
+MINSS — Return Minimum Scalar Single-Precision Floating-Point Value
 
   Opcode/Instruction                                                 Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------ --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------
   F3 0F 5D /r MINSS xmm1,xmm2/m32                                    A         V/V                      SSE                  Return the minimum scalar single-precision floating-point value between xmm2/m32 and xmm1.
   VEX.LIG.F3.0F.WIG 5D /r VMINSS xmm1,xmm2, xmm3/m32                 B         V/V                      AVX                  Return the minimum scalar single-precision floating-point value between xmm3/m32 and xmm2.
   EVEX.LIG.F3.0F.W0 5D /r VMINSS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}   C         V/V                      AVX512F              Return the minimum scalar single-precision floating-point value between xmm3/m32 and xmm2.
-
 
 Instruction Operand Encoding ¶
 

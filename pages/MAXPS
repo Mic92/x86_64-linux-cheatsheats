@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-MAXPS — MAXIMUM OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES
-
+MAXPS — Maximum of Packed Single-Precision Floating-Point Values
 
   Opcode/Instruction                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------ ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ MAXPS — MAXIMUM OF PACKED SINGLE-PRECISION FLOATING-POINT VALUES
   EVEX.128.0F.W0 5F /r VMAXPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst        C       V/V                      AVX512VL AVX512F     Return the maximum packed single-precision floating-point values between xmm2 and xmm3/m128/m32bcst and store result in xmm1 subject to writemask k1.
   EVEX.256.0F.W0 5F /r VMAXPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst        C       V/V                      AVX512VL AVX512F     Return the maximum packed single-precision floating-point values between ymm2 and ymm3/m256/m32bcst and store result in ymm1 subject to writemask k1.
   EVEX.512.0F.W0 5F /r VMAXPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{sae}   C       V/V                      AVX512F              Return the maximum packed single-precision floating-point values between zmm2 and zmm3/m512/m32bcst and store result in zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

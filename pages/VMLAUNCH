@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-VMLAUNCH/VMRESUME — LAUNCH/RESUME VIRTUAL MACHINE
-
+VMLAUNCH/VMRESUME — Launch/Resume Virtual Machine
 
   Opcode/Instruction   Op/En   Description
-  -------------------- ------- ---------------------------------------------------
-  0F 01 C2 VMLAUNCH    ZO      Launch virtual machine managed by current VMCS_._
-  0F 01 C3 VMRESUME    ZO      Resume virtual machine managed by current VMCS_._
-
+  -------------------- ------- -------------------------------------------------
+  0F 01 C2 VMLAUNCH    ZO      Launch virtual machine managed by current VMCS.
+  0F 01 C3 VMRESUME    ZO      Resume virtual machine managed by current VMCS.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -42,7 +37,6 @@ area.
 VM entry is not allowed when events are blocked by MOV SS or POP SS.
 Neither VMLAUNCH nor VMRESUME should be used immediately after either
 MOV to SS or POP to SS.
-
 
 Operation ¶
 
@@ -107,11 +101,9 @@ Operation ¶
     FI;
     Further details of the operation of the VM-entry appear in Chapter 26.
 
-
 Flags Affected ¶
 
 See the operation section and Section 30.2.
-
 
 Protected Mode Exceptions ¶
 
@@ -120,13 +112,11 @@ Protected Mode Exceptions ¶
   #UD      If executed outside VMX operation.
   -------- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- ---------------------------------------------------------------------------------
   #UD   The VMLAUNCH and VMRESUME instructions are not recognized in real-address mode.
   ----- ---------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -134,13 +124,11 @@ Virtual-8086 Mode Exceptions ¶
   #UD   The VMLAUNCH and VMRESUME instructions are not recognized in virtual-8086 mode.
   ----- ---------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
   ----- ----------------------------------------------------------------------------------
   #UD   The VMLAUNCH and VMRESUME instructions are not recognized in compatibility mode.
   ----- ----------------------------------------------------------------------------------
-
 
 64-Bit Mode Exceptions ¶
 

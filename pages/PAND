@@ -1,31 +1,27 @@
 -   Index
 -   May 2019
 
+PAND — Logical AND
 
-
-PAND — LOGICAL AND
-
-
-  Opcode/Instruction                                                       Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------------------ ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------
-  NP 0F DB /_r_¹ PAND _mm, mm/m64_                                         A       V/V                      MMX                  Bitwise AND _mm/m64_ and _mm_.
-  66 0F DB /_r_ PAND _xmm1_, _xmm2/m128_                                   A       V/V                      SSE2                 Bitwise AND of _xmm2/m128_ and _xmm1_.
-  VEX.128.66.0F.WIG DB /r VPAND _xmm1, xmm2, xmm3/m128_                    B       V/V                      AVX                  Bitwise AND of _xmm3/m128_ and _xmm_.
-  VEX.256.66.0F.WIG DB /r VPAND _ymm1, ymm2, ymm3/.m256_                   B       V/V                      AVX2                 Bitwise AND of _ymm2_, and _ymm3/m256_ and store result in _ymm1_.
-  EVEX.128.66.0F.W0 DB /r VPANDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst     C       V/V                      AVX512VL AVX512F     Bitwise AND of packed doubleword integers in xmm2 and xmm3/m128/m32bcst and store result in xmm1 using writemask k1.
-  EVEX.256.66.0F.W0 DB /r VPANDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst     C       V/V                      AVX512VL AVX512F     Bitwise AND of packed doubleword integers in ymm2 and ymm3/m256/m32bcst and store result in ymm1 using writemask k1.
-  EVEX.512.66.0F.W0 DB /_r_ VPANDD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise AND of packed doubleword integers in zmm2 and zmm3/m512/m32bcst and store result in zmm1 using writemask k1.
-  EVEX.128.66.0F.W1 DB /r VPANDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst     C       V/V                      AVX512VL AVX512F     Bitwise AND of packed quadword integers in xmm2 and xmm3/m128/m64bcst and store result in xmm1 using writemask k1.
-  EVEX.256.66.0F.W1 DB /r VPANDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst     C       V/V                      AVX512VL AVX512F     Bitwise AND of packed quadword integers in ymm2 and ymm3/m256/m64bcst and store result in ymm1 using writemask k1.
-  EVEX.512.66.0F.W1 DB /_r_ VPANDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise AND of packed quadword integers in zmm2 and zmm3/m512/m64bcst and store result in zmm1 using writemask k1.
+  Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ---------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------
+  NP 0F DB /r¹ PAND mm, mm/m64                                           A       V/V                      MMX                  Bitwise AND mm/m64 and mm.
+  66 0F DB /r PAND xmm1, xmm2/m128                                       A       V/V                      SSE2                 Bitwise AND of xmm2/m128 and xmm1.
+  VEX.128.66.0F.WIG DB /r VPAND xmm1, xmm2, xmm3/m128                    B       V/V                      AVX                  Bitwise AND of xmm3/m128 and xmm.
+  VEX.256.66.0F.WIG DB /r VPAND ymm1, ymm2, ymm3/.m256                   B       V/V                      AVX2                 Bitwise AND of ymm2, and ymm3/m256 and store result in ymm1.
+  EVEX.128.66.0F.W0 DB /r VPANDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND of packed doubleword integers in xmm2 and xmm3/m128/m32bcst and store result in xmm1 using writemask k1.
+  EVEX.256.66.0F.W0 DB /r VPANDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND of packed doubleword integers in ymm2 and ymm3/m256/m32bcst and store result in ymm1 using writemask k1.
+  EVEX.512.66.0F.W0 DB /r VPANDD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst   C       V/V                      AVX512F              Bitwise AND of packed doubleword integers in zmm2 and zmm3/m512/m32bcst and store result in zmm1 using writemask k1.
+  EVEX.128.66.0F.W1 DB /r VPANDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND of packed quadword integers in xmm2 and xmm3/m128/m64bcst and store result in xmm1 using writemask k1.
+  EVEX.256.66.0F.W1 DB /r VPANDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512F     Bitwise AND of packed quadword integers in ymm2 and ymm3/m256/m64bcst and store result in ymm1 using writemask k1.
+  EVEX.512.66.0F.W1 DB /r VPANDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512F              Bitwise AND of packed quadword integers in zmm2 and zmm3/m512/m64bcst and store result in zmm1 using writemask k1.
 
   1. See note in Section 2.4, “AVX and SSE Instruction Exception
-  Specification” in the _Intel® 64 and IA-32 Architectures Software
-  Developer’s Manual, Volume 2A_ and Section 22.25.3, “Exception
+  Specification” in the Intel® 64 and IA-32 Architectures Software
+  Developer’s Manual, Volume 2A and Section 22.25.3, “Exception
   Conditions of Legacy SIMD Instructions Operating on MMX Registers” in
-  the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-  Volume 3A_.
-
+  the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+  Volume 3A.
 
 Instruction Operand Encoding ¶
 
@@ -35,7 +31,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv (r)    ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv (r)   ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -74,7 +69,6 @@ VEX.128 encoded versions: The first source operand is an XMM register.
 The second source operand is an XMM register or 128-bit memory location.
 The destination operand is an XMM register. The upper bits (MAXVL-1:128)
 of the corresponding ZMM register destination are zeroed.
-
 
 Operation ¶
 
@@ -176,16 +170,13 @@ Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPAND: __m256i _mm256_and_si256 ( __m256i a, __m256i b)
 
-
 Flags Affected ¶
 
 None.
 
-
 Numeric Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 

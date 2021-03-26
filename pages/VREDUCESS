@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-VREDUCESS — PERFORM A REDUCTION TRANSFORMATION ON A SCALAR FLOAT32 VALUE
-
+VREDUCESS — Perform a Reduction Transformation on a Scalar Float32 Value
 
   Opcode/Instruction                                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   EVEX.LIG.66.0F3A.W0 57 /r /ib VREDUCESS xmm1 {k1}{z}, xmm2, xmm3/m32{sae}, imm8   A       V/V                      AVX512DQ             Perform a reduction transformation on a scalar single-precision floating point value in xmm3/m32 by subtracting a number of fraction bits specified by the imm8 field. Also, upper single precision floating-point values (bits[127:32]) from xmm2 are copied to xmm1[127:32]. Stores the result in xmm1 register.
-
 
 Instruction Operand Encoding ¶
 

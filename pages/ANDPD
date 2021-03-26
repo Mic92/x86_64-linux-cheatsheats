@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-ANDPD — BITWISE LOGICAL AND OF PACKED DOUBLE PRECISION FLOATING-POINT VALUES
-
+ANDPD — Bitwise Logical AND of Packed Double Precision Floating-Point Values
 
   Opcode/Instruction                                                     Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +12,6 @@ ANDPD — BITWISE LOGICAL AND OF PACKED DOUBLE PRECISION FLOATING-POINT VALUES
   EVEX.256.66.0F.W1 54 /r VANDPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C       V/V                      AVX512VL AVX512DQ    Return the bitwise logical AND of packed double-precision floating-point values in ymm2 and ymm3/m256/m64bcst subject to writemask k1.
   EVEX.512.66.0F.W1 54 /r VANDPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C       V/V                      AVX512DQ             Return the bitwise logical AND of packed double-precision floating-point values in zmm2 and zmm3/m512/m64bcst subject to writemask k1.
 
-
 Instruction Operand Encoding ¶
 
   ------- ------------ ------------------ --------------- --------------- -----------
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   NA
   C       Full         ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   NA
   ------- ------------ ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -53,7 +48,6 @@ of the corresponding ZMM register destination are zeroed.
 an 128-bit memory location. The destination is not distinct from the
 first source XMM register and the upper bits (MAXVL-1:128) of the
 corresponding register destination are unmodified.
-
 
 Operation ¶
 
@@ -100,7 +94,6 @@ ANDPD (128-bit Legacy SSE version) ¶
     DEST[127:64]←DEST[127:64] BITWISE AND SRC[127:64]
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VANDPD __m512d _mm512_and_pd (__m512d a, __m512d b);
@@ -121,11 +114,9 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ANDPD __m128d _mm_and_pd (__m128d a, __m128d b);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 

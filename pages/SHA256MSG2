@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SHA256MSG2 — PERFORM A FINAL CALCULATION FOR THE NEXT FOUR SHA256 MESSAGE DWORDS
-
+SHA256MSG2 — Perform a Final Calculation for the Next Four SHA256 Message Dwords
 
   Opcode/Instruction                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 38 CD /r SHA256MSG2 xmm1, xmm2/m128   RM      V/V                      SHA                  Performs the final calculation for the next four SHA256 message dwords using previous message dwords from xmm1 and xmm2/m128, storing the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

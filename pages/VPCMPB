@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPCMPB/VPCMPUB — COMPARE PACKED BYTE VALUES INTO MASK
-
+VPCMPB/VPCMPUB — Compare Packed Byte Values Into Mask
 
   Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ VPCMPB/VPCMPUB — COMPARE PACKED BYTE VALUES INTO MASK
   EVEX.128.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, xmm2, xmm3/m128, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned byte values in xmm3/m128 and xmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
   EVEX.256.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, ymm2, ymm3/m256, imm8   A       V/V                      AVX512VL AVX512BW    Compare packed unsigned byte values in ymm3/m256 and ymm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
   EVEX.512.66.0F3A.W0 3E /r ib VPCMPUB k1 {k2}, zmm2, zmm3/m512, imm8   A       V/V                      AVX512BW             Compare packed unsigned byte values in zmm3/m512 and zmm2 using bits 2:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -48,14 +44,14 @@ the type of comparison to be performed. Bits 3 through 7 of the
 immediate are reserved. Compiler can implement the pseudo-op mnemonic
 listed in Table 5-17.
 
-  Pseudo-Op                       PCMPM Implementation
-  ------------------------------- ------------------------------
-  VPCMPEQ* _reg1, reg2, reg3_     VPCMP* _reg1, reg2, reg3, 0_
-  VPCMPLT* _reg1, reg2, reg3_     VPCMP*_reg1, reg2, reg3, 1_
-  VPCMPLE* _reg1, reg2, reg3_     VPCMP* _reg1, reg2, reg3, 2_
-  VPCMPNEQ* _reg1, reg2, reg3_    VPCMP* _reg1, reg2, reg3, 4_
-  VPPCMPNLT* _reg1, reg2, reg3_   VPCMP* _reg1, reg2, reg3, 5_
-  VPCMPNLE* _reg1, reg2, reg3_    VPCMP* _reg1, reg2, reg3, 6_
+  Pseudo-Op                     PCMPM Implementation
+  ----------------------------- ----------------------------
+  VPCMPEQ* reg1, reg2, reg3     VPCMP* reg1, reg2, reg3, 0
+  VPCMPLT* reg1, reg2, reg3     VPCMP*reg1, reg2, reg3, 1
+  VPCMPLE* reg1, reg2, reg3     VPCMP* reg1, reg2, reg3, 2
+  VPCMPNEQ* reg1, reg2, reg3    VPCMP* reg1, reg2, reg3, 4
+  VPPCMPNLT* reg1, reg2, reg3   VPCMP* reg1, reg2, reg3, 5
+  VPCMPNLE* reg1, reg2, reg3    VPCMP* reg1, reg2, reg3, 6
 
 Table 5-17. Pseudo-Op and VPCMP* Implementation
 

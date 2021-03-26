@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-UMWAIT — USER LEVEL MONITOR WAIT
-
+UMWAIT — User Level Monitor Wait
 
   Opcode / Instruction                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------------------------- ------- ------------------------ -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------
   F2 0F AE /6 UMWAIT r32, <edx>, <eax>   A       V/V                      WAITPKG              A hint that allows the processor to stop instruction execution and enter an implementation-dependent optimized state until occurrence of a class of events.
-
 
 Instruction Operand Encoding¹ ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding¹ ¶
   Op/En   Tuple   Operand 1       Operand 2   Operand 3   Operand 4
   ------- ------- --------------- ----------- ----------- -----------
   A       NA      ModRM:r/m (r)   NA          NA          NA
-
 
 Description ¶
 
@@ -114,7 +109,6 @@ cause the processor to exit UMWAIT if either the store was originated by
 other processor agents or the store was originated by a non-processor
 agent.
 
-
 Operation ¶
 
     os_deadline ← TSC+(IA32_MWAIT_CONTROL[31:2]<<2)
@@ -133,16 +127,13 @@ Operation ¶
         RFLAGS.CF ← 0
     RFLAGS.AF,PF,SF,ZF,OF ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     UMWAIT uint8_t _umwait(uint32_t control, uint64_t counter);
 
-
 Numeric Exceptions ¶
 
 None
-
 
 Exceptions (All Operating Modes) ¶
 

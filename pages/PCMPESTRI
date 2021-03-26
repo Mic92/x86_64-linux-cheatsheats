@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+PCMPESTRI — Packed Compare Explicit Length Strings, Return Index
 
-
-PCMPESTRI — PACKED COMPARE EXPLICIT LENGTH STRINGS, RETURN INDEX
-
-
-  Opcode/Instruction                                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  ------------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 61 _/r imm8_ PCMPESTRI _xmm1, xmm2/m128, imm8_       RMI     V/V                      SSE4_2               Perform a packed comparison of string data with explicit lengths, generating an index, and storing the result in ECX.
-  VEX.128.66.0F3A 61 /r ib VPCMPESTRI _xmm1, xmm2/m128, imm8_   RMI     V/V                      AVX                  Perform a packed comparison of string data with explicit lengths, generating an index, and storing the result in ECX.
-
+  Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ----------------------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 61 /r imm8 PCMPESTRI xmm1, xmm2/m128, imm8         RMI     V/V                      SSE4_2               Perform a packed comparison of string data with explicit lengths, generating an index, and storing the result in ECX.
+  VEX.128.66.0F3A 61 /r ib VPCMPESTRI xmm1, xmm2/m128, imm8   RMI     V/V                      AVX                  Perform a packed comparison of string data with explicit lengths, generating an index, and storing the result in ECX.
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1       Operand 2       Operand 3   Operand 4
   RMI     ModRM:reg (r)   ModRM:r/m (r)   imm8        NA
   ------- --------------- --------------- ----------- -----------
-
 
 Description ¶
 
@@ -61,7 +56,6 @@ AFlag – Reset
 
 PFlag – Reset
 
-
 Effective Operand Size ¶
 
   Operating mode/size   Operand 1   Operand 2   Length 1   Length 2   Result
@@ -71,11 +65,9 @@ Effective Operand Size ¶
   64 bit                xmm         xmm/m128    EAX        EDX        ECX
   64 bit + REX.W        xmm         xmm/m128    RAX        RDX        ECX
 
-
 Intel C/C++ Compiler Intrinsic Equivalent For Returning Index ¶
 
 int _mm_cmpestri (__m128i a, int la, __m128i b, int lb, const int mode);
-
 
 Intel C/C++ Compiler Intrinsics For Reading EFlag Results ¶
 
@@ -89,22 +81,19 @@ int _mm_cmpestrs (__m128i a, int la, __m128i b, int lb, const int mode);
 
 int _mm_cmpestrz (__m128i a, int la, __m128i b, int lb, const int mode);
 
-
 SIMD Floating-Point Exceptions ¶
 
 None.
-
 
 Other Exceptions ¶
 
 See Exceptions Type 4; additionally, this instruction does not cause #GP
 if the memory operand is not aligned to 16 Byte boundary, and
 
-#UD
-
-If VEX.L = 1.
-
-If VEX.vvvv ≠ 1111B.
+  ----- ----------------------
+  #UD   If VEX.L = 1.
+        If VEX.vvvv ≠ 1111B.
+  ----- ----------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

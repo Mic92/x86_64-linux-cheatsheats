@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VPMOVB2M/VPMOVW2M/VPMOVD2M/VPMOVQ2M — CONVERT A VECTOR REGISTER TO A MASK
-
+VPMOVB2M/VPMOVW2M/VPMOVD2M/VPMOVQ2M — Convert a Vector Register to a Mask
 
   Opcode/Instruction                            Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------
@@ -20,7 +17,6 @@ VPMOVB2M/VPMOVW2M/VPMOVD2M/VPMOVQ2M — CONVERT A VECTOR REGISTER TO A MASK
   EVEX.128.F3.0F38.W1 39 /r VPMOVQ2M k1, xmm1   RM      V/V                      AVX512VL AVX512DQ    Sets each bit in k1 to 1 or 0 based on the value of the most significant bit of the corresponding quadword in XMM1.
   EVEX.256.F3.0F38.W1 39 /r VPMOVQ2M k1, ymm1   RM      V/V                      AVX512VL AVX512DQ    Sets each bit in k1 to 1 or 0 based on the value of the most significant bit of the corresponding quadword in YMM1.
   EVEX.512.F3.0F38.W1 39 /r VPMOVQ2M k1, zmm1   RM      V/V                      AVX512DQ             Sets each bit in k1 to 1 or 0 based on the value of the most significant bit of the corresponding quadword in ZMM1.
-
 
 Instruction Operand Encoding ¶
 

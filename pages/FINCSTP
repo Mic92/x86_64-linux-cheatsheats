@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-FINCSTP — INCREMENT STACK-TOP POINTER
-
+FINCSTP — Increment Stack-Top Pointer
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- -----------------------------------------------------
   D9 F7    FINCSTP       Valid         Valid             Increment the TOP field in the FPU status register.
-
 
 Description ¶
 
@@ -23,7 +19,6 @@ the tag for the previous top-of-stack register is not marked empty.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     IF TOP = 7
@@ -31,16 +26,13 @@ Operation ¶
         ELSE TOP ← TOP + 1;
     FI;
 
-
 FPU Flags Affected ¶
 
 The C1 flag is set to 0. The C0, C2, and C3 flags are undefined.
 
-
 Floating-Point Exceptions ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -50,21 +42,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

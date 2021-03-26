@@ -1,17 +1,13 @@
 -   Index
 -   May 2019
 
-
-
-CMPSS — COMPARE SCALAR SINGLE-PRECISION FLOATING-POINT VALUE
-
+CMPSS — Compare Scalar Single-Precision Floating-Point Value
 
   Opcode/Instruction                                                     Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ---------------------------------------------------------------------- --------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   F3 0F C2 /r ib CMPSS xmm1, xmm2/m32, imm8                              A         V/V                      SSE                  Compare low single-precision floating-point value in xmm2/m32 and xmm1 using bits 2:0 of imm8 as comparison predicate.
   VEX.LIG.F3.0F.WIG C2 /r ib VCMPSS xmm1, xmm2, xmm3/m32, imm8           B         V/V                      AVX                  Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate.
   EVEX.LIG.F3.0F.W0 C2 /r ib VCMPSS k1 {k2}, xmm2, xmm3/m32{sae}, imm8   C         V/V                      AVX512F              Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate with writemask k2 and leave the result in mask register k1.
-
 
 Instruction Operand Encoding ¶
 
@@ -21,7 +17,6 @@ Instruction Operand Encoding ¶
   B       NA              ModRM:reg (w)      VEX.vvvv        ModRM:r/m (r)   Imm8
   C       Tuple1 Scalar   ModRM:reg (w)      EVEX.vvvv       ModRM:r/m (r)   Imm8
   ------- --------------- ------------------ --------------- --------------- -----------
-
 
 Description ¶
 
@@ -83,8 +78,8 @@ using software emulation. When using software emulation, the program
 must swap the operands (copying registers when necessary to protect the
 data that will now be in the destination), and then perform the compare
 using a different predicate. The predicate to be used for these
-emulations is listed in the first 8 rows of Table 3-7 (_Intel 64 and
-IA-32 Architectures Software Developer’s Manual Volume 2A_) under the
+emulations is listed in the first 8 rows of Table 3-7 (Intel 64 and
+IA-32 Architectures Software Developer’s Manual Volume 2A) under the
 heading Emulation.
 
 Compilers and assemblers may implement the following two-operand
@@ -92,16 +87,16 @@ pseudo-ops in addition to the three-operand CMPSS instruction, for
 processors with “CPUID.1H:ECX.AVX =0”. See Table 3-8. Compiler should
 treat reserved Imm8 values as illegal syntax.
 
-  Pseudo-Op                 CMPSS Implementation
-  ------------------------- -----------------------
-  CMPEQSS x_mm1, xmm2_      CMPSS x_mm1, xmm2, 0_
-  CMPLTSS x_mm1, xmm2_      CMPSS x_mm1, xmm2, 1_
-  CMPLESS x_mm1, xmm2_      CMPSS x_mm1, xmm2, 2_
-  CMPUNORDSS x_mm1, xmm2_   CMPSS x_mm1, xmm2, 3_
-  CMPNEQSS x_mm1, xmm2_     CMPSS x_mm1, xmm2, 4_
-  CMPNLTSS x_mm1, xmm2_     CMPSS x_mm1, xmm2, 5_
-  CMPNLESS x_mm1, xmm2_     CMPSS x_mm1, xmm2, 6_
-  CMPORDSS x_mm1, xmm2_     CMPSS x_mm1, xmm2, 7_
+  Pseudo-Op               CMPSS Implementation
+  ----------------------- ----------------------
+  CMPEQSS xmm1, xmm2      CMPSS xmm1, xmm2, 0
+  CMPLTSS xmm1, xmm2      CMPSS xmm1, xmm2, 1
+  CMPLESS xmm1, xmm2      CMPSS xmm1, xmm2, 2
+  CMPUNORDSS xmm1, xmm2   CMPSS xmm1, xmm2, 3
+  CMPNEQSS xmm1, xmm2     CMPSS xmm1, xmm2, 4
+  CMPNLTSS xmm1, xmm2     CMPSS xmm1, xmm2, 5
+  CMPNLESS xmm1, xmm2     CMPSS xmm1, xmm2, 6
+  CMPORDSS xmm1, xmm2     CMPSS xmm1, xmm2, 7
 
 Table 3-8. Pseudo-Op and CMPSS Implementation
 
@@ -124,52 +119,51 @@ interface. Compilers and assemblers may implement three-operand
 pseudo-ops for EVEX encoded VCMPSS instructions in a similar fashion by
 extending the syntax listed in Table 3-9.
 
-  Pseudo-Op                         CMPSS Implementation
-  --------------------------------- --------------------------------
-  VCMPEQSS r_eg1, reg2, reg3_       VCMPSS r_eg1, reg2, reg3, 0_
-  VCMPLTSS r_eg1, reg2, reg3_       VCMPSS r_eg1, reg2, reg3, 1_
-  VCMPLESS r_eg1, reg2, reg3_       VCMPSS r_eg1, reg2, reg3, 2_
-  VCMPUNORDSS r_eg1, reg2, reg3_    VCMPSS r_eg1, reg2, reg3, 3_
-  VCMPNEQSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 4_
-  VCMPNLTSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 5_
-  VCMPNLESS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 6_
-  VCMPORDSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 7_
-  VCMPEQ_UQSS r_eg1, reg2, reg3_    VCMPSS r_eg1, reg2, reg3, 8_
-  VCMPNGESS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 9_
-  VCMPNGTSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 0AH_
-  VCMPFALSESS r_eg1, reg2, reg3_    VCMPSS r_eg1, reg2, reg3, 0BH_
-  VCMPNEQ_OQSS r_eg1, reg2, reg3_   VCMPSS r_eg1, reg2, reg3, 0CH_
-  VCMPGESS r_eg1, reg2, reg3_       VCMPSS r_eg1, reg2, reg3, 0DH_
+  Pseudo-Op                       CMPSS Implementation
+  ------------------------------- ------------------------------
+  VCMPEQSS reg1, reg2, reg3       VCMPSS reg1, reg2, reg3, 0
+  VCMPLTSS reg1, reg2, reg3       VCMPSS reg1, reg2, reg3, 1
+  VCMPLESS reg1, reg2, reg3       VCMPSS reg1, reg2, reg3, 2
+  VCMPUNORDSS reg1, reg2, reg3    VCMPSS reg1, reg2, reg3, 3
+  VCMPNEQSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 4
+  VCMPNLTSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 5
+  VCMPNLESS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 6
+  VCMPORDSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 7
+  VCMPEQ_UQSS reg1, reg2, reg3    VCMPSS reg1, reg2, reg3, 8
+  VCMPNGESS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 9
+  VCMPNGTSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 0AH
+  VCMPFALSESS reg1, reg2, reg3    VCMPSS reg1, reg2, reg3, 0BH
+  VCMPNEQ_OQSS reg1, reg2, reg3   VCMPSS reg1, reg2, reg3, 0CH
+  VCMPGESS reg1, reg2, reg3       VCMPSS reg1, reg2, reg3, 0DH
 
 Table 3-9. Pseudo-Op and VCMPSS Implementation
 
-  Pseudo-Op                           CMPSS Implementation
-  ----------------------------------- --------------------------------
-  VCMPGTSS r_eg1, reg2, reg3_         VCMPSS r_eg1, reg2, reg3, 0EH_
-  VCMPTRUESS r_eg1, reg2, reg3_       VCMPSS r_eg1, reg2, reg3, 0FH_
-  VCMPEQ_OSSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 10H_
-  VCMPLT_OQSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 11H_
-  VCMPLE_OQSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 12H_
-  VCMPUNORD_SSS r_eg1, reg2, reg3_    VCMPSS r_eg1, reg2, reg3, 13H_
-  VCMPNEQ_USSS r_eg1, reg2, reg3_     VCMPSS r_eg1, reg2, reg3, 14H_
-  VCMPNLT_UQSS r_eg1, reg2, reg3_     VCMPSS r_eg1, reg2, reg3, 15H_
-  VCMPNLE_UQSS r_eg1, reg2, reg3_     VCMPSS r_eg1, reg2, reg3, 16H_
-  VCMPORD_SSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 17H_
-  VCMPEQ_USSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 18H_
-  VCMPNGE_UQSS r_eg1, reg2, reg3_     VCMPSS r_eg1, reg2, reg3, 19H_
-  VCMPNGT_UQSS r_eg1, reg2, reg3_     VCMPSS r_eg1, reg2, reg3, 1AH_
-  VCMPFALSE_OSSS r_eg1, reg2, reg3_   VCMPSS r_eg1, reg2, reg3, 1BH_
-  VCMPNEQ_OSSS r_eg1, reg2, reg3_     VCMPSS r_eg1, reg2, reg3, 1CH_
-  VCMPGE_OQSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 1DH_
-  VCMPGT_OQSS r_eg1, reg2, reg3_      VCMPSS r_eg1, reg2, reg3, 1EH_
-  VCMPTRUE_USSS r_eg1, reg2, reg3_    VCMPSS r_eg1, reg2, reg3, 1FH_
+  Pseudo-Op                         CMPSS Implementation
+  --------------------------------- ------------------------------
+  VCMPGTSS reg1, reg2, reg3         VCMPSS reg1, reg2, reg3, 0EH
+  VCMPTRUESS reg1, reg2, reg3       VCMPSS reg1, reg2, reg3, 0FH
+  VCMPEQ_OSSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 10H
+  VCMPLT_OQSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 11H
+  VCMPLE_OQSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 12H
+  VCMPUNORD_SSS reg1, reg2, reg3    VCMPSS reg1, reg2, reg3, 13H
+  VCMPNEQ_USSS reg1, reg2, reg3     VCMPSS reg1, reg2, reg3, 14H
+  VCMPNLT_UQSS reg1, reg2, reg3     VCMPSS reg1, reg2, reg3, 15H
+  VCMPNLE_UQSS reg1, reg2, reg3     VCMPSS reg1, reg2, reg3, 16H
+  VCMPORD_SSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 17H
+  VCMPEQ_USSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 18H
+  VCMPNGE_UQSS reg1, reg2, reg3     VCMPSS reg1, reg2, reg3, 19H
+  VCMPNGT_UQSS reg1, reg2, reg3     VCMPSS reg1, reg2, reg3, 1AH
+  VCMPFALSE_OSSS reg1, reg2, reg3   VCMPSS reg1, reg2, reg3, 1BH
+  VCMPNEQ_OSSS reg1, reg2, reg3     VCMPSS reg1, reg2, reg3, 1CH
+  VCMPGE_OQSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 1DH
+  VCMPGT_OQSS reg1, reg2, reg3      VCMPSS reg1, reg2, reg3, 1EH
+  VCMPTRUE_USSS reg1, reg2, reg3    VCMPSS reg1, reg2, reg3, 1FH
 
 Table 3-9. Pseudo-Op and VCMPSS Implementation
 
 Software should ensure VCMPSS is encoded with VEX.L=0. Encoding VCMPSS
 with VEX.L=1 may encounter unpredictable behavior across different
 processor generations.
-
 
 Operation ¶
 
@@ -238,7 +232,6 @@ VCMPSS (VEX.128 encoded version) ¶
     DEST[127:32] ←SRC1[127:32]
     DEST[MAXVL-1:128] ←0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     VCMPSS __mmask8 _mm_cmp_ss_mask( __m128 a, __m128 b, int imm);
@@ -251,12 +244,10 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     (V)CMPSS __m128 _mm_cmp_ss(__m128 a, __m128 b, const int imm)
 
-
 SIMD Floating-Point Exceptions ¶
 
 Invalid if SNaN operand, Invalid if QNaN and predicate as listed in
 Table 3-1, Denormal.
-
 
 Other Exceptions ¶
 

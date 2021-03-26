@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-SQRTPD — SQUARE ROOT OF DOUBLE-PRECISION FLOATING-POINT VALUES
-
+SQRTPD — Square Root of Double-Precision Floating-Point Values
 
   Opcode/Instruction                                                    Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ SQRTPD — SQUARE ROOT OF DOUBLE-PRECISION FLOATING-POINT VALUES
   EVEX.128.66.0F.W1 51 /r VSQRTPD xmm1 {k1}{z}, xmm2/m128/m64bcst       B       V/V                      AVX512VL AVX512F     Computes Square Roots of the packed double-precision floating-point values in xmm2/m128/m64bcst and stores the result in xmm1 subject to writemask k1.
   EVEX.256.66.0F.W1 51 /r VSQRTPD ymm1 {k1}{z}, ymm2/m256/m64bcst       B       V/V                      AVX512VL AVX512F     Computes Square Roots of the packed double-precision floating-point values in ymm2/m256/m64bcst and stores the result in ymm1 subject to writemask k1.
   EVEX.512.66.0F.W1 51 /r VSQRTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{er}   B       V/V                      AVX512F              Computes Square Roots of the packed double-precision floating-point values in zmm2/m512/m64bcst and stores the result in zmm1 subject to writemask k1.
-
 
 Instruction Operand Encoding ¶
 

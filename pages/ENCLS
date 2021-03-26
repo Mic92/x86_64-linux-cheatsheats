@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-ENCLS — EXECUTE AN ENCLAVE SYSTEM FUNCTION OF SPECIFIED LEAF NUMBER
-
+ENCLS — Execute an Enclave System Function of Specified Leaf Number
 
   Opcode/Instruction   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   -------------------- ------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------
   NP 0F 01 CF ENCLS    NP      V/V                      NA                   This instruction is used to execute privileged Intel SGX leaf functions that are used for managing and debugging the enclaves.
-
 
 Instruction Operand Encoding ¶
 
@@ -84,27 +80,17 @@ See individual leaf functions
 
 Protected Mode Exceptions ¶
 
-#UD
-
-If any of the LOCK/OSIZE/REP/VEX prefix is used.
-
-If current privilege level is not 0.
-
-If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
-
-If logical processor is in SMM.
-
-#GP(0)
-
-If IA32_FEATURE_CONTROL.LOCK = 0.
-
-If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
-
-If input value in EAX encodes an unsupported leaf.
-
-If data segment expand down.
-
-If CR0.PG=0.
+  -------- ----------------------------------------------------
+  #UD      If any of the LOCK/OSIZE/REP/VEX prefix is used.
+           If current privilege level is not 0.
+           If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
+           If logical processor is in SMM.
+  #GP(0)   If IA32_FEATURE_CONTROL.LOCK = 0.
+           If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
+           If input value in EAX encodes an unsupported leaf.
+           If data segment expand down.
+           If CR0.PG=0.
+  -------- ----------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -124,23 +110,15 @@ Same exceptions as in protected mode.
 
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If any of the LOCK/OSIZE/REP/VEX prefix is used.
-
-If current privilege level is not 0.
-
-If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
-
-If logical processor is in SMM.
-
-#GP(0)
-
-If IA32_FEATURE_CONTROL.LOCK = 0.
-
-If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
-
-If input value in EAX encodes an unsupported leaf.
+  -------- ----------------------------------------------------
+  #UD      If any of the LOCK/OSIZE/REP/VEX prefix is used.
+           If current privilege level is not 0.
+           If CPUID.(EAX=12H,ECX=0):EAX.SGX1 [bit 0] = 0.
+           If logical processor is in SMM.
+  #GP(0)   If IA32_FEATURE_CONTROL.LOCK = 0.
+           If IA32_FEATURE_CONTROL.SGX_ENABLE = 0.
+           If input value in EAX encodes an unsupported leaf.
+  -------- ----------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

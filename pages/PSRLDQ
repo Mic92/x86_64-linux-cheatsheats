@@ -1,20 +1,16 @@
 -   Index
 -   May 2019
 
-
-
-PSRLDQ — SHIFT DOUBLE QUADWORD RIGHT LOGICAL
-
+PSRLDQ — Shift Double Quadword Right Logical
 
   Opcode/Instruction                                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------
-  66 0F 73 /3 ib PSRLDQ _xmm1_, _imm8_                        A       V/V                      SSE2                 Shift _xmm1_ right by _imm8_ while shifting in 0s.
-  VEX.128.66.0F.WIG 73 /3 ib VPSRLDQ _xmm1, xmm2, imm8_       B       V/V                      AVX                  Shift _xmm2_ right by _imm8_ bytes while shifting in 0s.
-  VEX.256.66.0F.WIG 73 /3 ib VPSRLDQ _ymm1, ymm2, imm8_       B       V/V                      AVX2                 Shift _ymm1_ right by _imm8_ bytes while shifting in 0s.
+  66 0F 73 /3 ib PSRLDQ xmm1, imm8                            A       V/V                      SSE2                 Shift xmm1 right by imm8 while shifting in 0s.
+  VEX.128.66.0F.WIG 73 /3 ib VPSRLDQ xmm1, xmm2, imm8         B       V/V                      AVX                  Shift xmm2 right by imm8 bytes while shifting in 0s.
+  VEX.256.66.0F.WIG 73 /3 ib VPSRLDQ ymm1, ymm2, imm8         B       V/V                      AVX2                 Shift ymm1 right by imm8 bytes while shifting in 0s.
   EVEX.128.66.0F.WIG 73 /3 ib VPSRLDQ xmm1, xmm2/m128, imm8   C       V/V                      AVX512VL AVX512BW    Shift xmm2/m128 right by imm8 bytes while shifting in 0s and store result in xmm1.
   EVEX.256.66.0F.WIG 73 /3 ib VPSRLDQ ymm1, ymm2/m256, imm8   C       V/V                      AVX512VL AVX512BW    Shift ymm2/m256 right by imm8 bytes while shifting in 0s and store result in ymm1.
   EVEX.512.66.0F.WIG 73 /3 ib VPSRLDQ zmm1, zmm2/m512, imm8   C       V/V                      AVX512BW             Shift zmm2/m512 right by imm8 bytes while shifting in 0s and store result in zmm1.
-
 
 Instruction Operand Encoding ¶
 
@@ -24,7 +20,6 @@ Instruction Operand Encoding ¶
   B       NA           VEX.vvvv (w)       ModRM:r/m (r)   imm8        NA
   C       Full Mem     EVEX.vvvv (w)      ModRM:r/m (R)   Imm8        NA
   ------- ------------ ------------------ --------------- ----------- -----------
-
 
 Description ¶
 
@@ -61,7 +56,6 @@ ZMM/YMM/XMM register. The count operand applies to each 128-bit lanes.
 
 Note: VEX.vvvv/EVEX.vvvv encodes the destination register.
 
-
 Operation ¶
 
 VPSRLDQ (EVEX.512 encoded version) ¶
@@ -96,7 +90,6 @@ PSRLDQ(128-bit Legacy SSE version) ¶
     DEST←DEST >> (TEMP * 8)
     DEST[MAXVL-1:128] (Unmodified)
 
-
 Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     (V)PSRLDQ __m128i _mm_srli_si128 ( __m128i a, int imm)
@@ -105,11 +98,9 @@ Intel C/C++ Compiler Intrinsic Equivalents ¶
 
     VPSRLDQ __m512i _mm512_bsrli_epi128 ( __m512i, int)
 
-
 Flags Affected ¶
 
 None.
-
 
 Numeric Exceptions ¶
 

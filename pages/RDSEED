@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-RDSEED — READ RANDOM SEED
-
+RDSEED — Read Random SEED
 
   Opcode/Instruction                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------- ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------
@@ -12,14 +9,12 @@ RDSEED — READ RANDOM SEED
   NFx 0F C7 /7 RDSEED r32           M       V/V                      RDSEED               Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.
   NFx REX.W + 0F C7 /7 RDSEED r64   M       V/I                      RDSEED               Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- ----------- ----------- -----------
   Op/En   Operand 1       Operand 2   Operand 3   Operand 4
   M       ModRM:r/m (w)   NA          NA          NA
   ------- --------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -47,7 +42,6 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bit operands. See the summary chart at the beginning of
 this section for encoding data and limits.
 
-
 Operation ¶
 
     IF HW_NRND_GEN.ready = 1
@@ -68,12 +62,10 @@ Operation ¶
     FI;
     OF, SF, ZF, AF, PF ← 0;
 
-
 Flags Affected ¶
 
 The CF flag is set according to the result (see the "Operation" section
 above). The OF, SF, ZF, AF, and PF flags are set to 0.
-
 
 C/C++ Compiler Intrinsic Equivalent ¶
 
@@ -83,50 +75,40 @@ C/C++ Compiler Intrinsic Equivalent ¶
 
     RDSEED int _rdseed64_step( unsigned __int64 *);
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
-
+  ----- ----------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
+  ----- ----------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
-
+  ----- ----------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
+  ----- ----------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
-
+  ----- ----------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
+  ----- ----------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
-
+  ----- ----------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
+  ----- ----------------------------------------------------
 
 64-Bit Mode Exceptions ¶
 
-#UD
-
-If the LOCK prefix is used.
-
-If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
+  ----- ----------------------------------------------------
+  #UD   If the LOCK prefix is used.
+        If CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 0.
+  ----- ----------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

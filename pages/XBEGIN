@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
-
-
-XBEGIN — TRANSACTIONAL BEGIN
-
+XBEGIN — Transactional Begin
 
   Opcode/Instruction   Op/En   64/32bit Mode Support   CPUID Feature Flag   Description
   -------------------- ------- ----------------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   C7 F8 XBEGIN rel16   A       V/V                     RTM                  Specifies the start of an RTM region. Provides a 16-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.
   C7 F8 XBEGIN rel32   A       V/V                     RTM                  Specifies the start of an RTM region. Provides a 32-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.
-
 
 Instruction Operand Encoding ¶
 
@@ -18,7 +14,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand2   Operand3   Operand4
   A       Offset      NA         NA         NA
   ------- ----------- ---------- ---------- ----------
-
 
 Description ¶
 
@@ -36,7 +31,6 @@ register and memory updates performed during the RTM execution and
 restores architectural state to that corresponding to the outermost
 XBEGIN instruction. The fallback address following an abort is computed
 from the outermost XBEGIN instruction.
-
 
 Operation ¶
 
@@ -83,77 +77,53 @@ XBEGIN ¶
         FI;
     END
 
-
 Flags Affected ¶
 
 None
-
 
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     XBEGIN: unsigned int _xbegin( void );
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#UD
-
-CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
-
-If LOCK prefix is used.
-
-#GP(0)
-
-If the fallback address is outside the CS segment.
-
+  -------- ----------------------------------------------------
+  #UD      CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
+           If LOCK prefix is used.
+  #GP(0)   If the fallback address is outside the CS segment.
+  -------- ----------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
-#GP(0)
-
-If the fallback address is outside the address space 0000H and FFFFH.
-
-#UD
-
-CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
-
-If LOCK prefix is used.
-
+  -------- -----------------------------------------------------------------------
+  #GP(0)   If the fallback address is outside the address space 0000H and FFFFH.
+  #UD      CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
+           If LOCK prefix is used.
+  -------- -----------------------------------------------------------------------
 
 Virtual-8086 Mode Exceptions ¶
 
-#GP(0)
-
-If the fallback address is outside the address space 0000H and FFFFH.
-
-#UD
-
-CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
-
-If LOCK prefix is used.
-
+  -------- -----------------------------------------------------------------------
+  #GP(0)   If the fallback address is outside the address space 0000H and FFFFH.
+  #UD      CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11]=0.
+           If LOCK prefix is used.
+  -------- -----------------------------------------------------------------------
 
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-bit Mode Exceptions ¶
 
-#UD
-
-CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11] = 0.
-
-If LOCK prefix is used.
-
-#GP(0)
-
-If the fallback address is non-canonical.
+  -------- -------------------------------------------
+  #UD      CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11] = 0.
+           If LOCK prefix is used.
+  #GP(0)   If the fallback address is non-canonical.
+  -------- -------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

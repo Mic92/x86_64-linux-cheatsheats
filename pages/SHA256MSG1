@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-SHA256MSG1 — PERFORM AN INTERMEDIATE CALCULATION FOR THE NEXT FOUR SHA256 MESSAGE DWORDS
-
+SHA256MSG1 — Perform an Intermediate Calculation for the Next Four SHA256 Message Dwords
 
   Opcode/Instruction                          Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------- ------- ------------------------ -------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------
   NP 0F 38 CC /r SHA256MSG1 xmm1, xmm2/m128   RM      V/V                      SHA                  Performs an intermediate calculation for the next four SHA256 message dwords using previous message dwords from xmm1 and xmm2/m128, storing the result in xmm1.
-
 
 Instruction Operand Encoding ¶
 

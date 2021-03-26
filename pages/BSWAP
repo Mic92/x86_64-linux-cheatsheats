@@ -1,18 +1,14 @@
 -   Index
 -   May 2019
 
+BSWAP — Byte Swap
 
-
-BSWAP — BYTE SWAP
-
-
-  Opcode               Instruction   Op/En   64-bit Mode   Compat/Leg Mode   Description
-  -------------------- ------------- ------- ------------- ----------------- -----------------------------------------------
-  0F C8+_rd_           BSWAP _r32_   O       Valid*        Valid             Reverses the byte order of a 32-bit register.
-  REX.W + 0F C8+_rd_   BSWAP _r64_   O       Valid         N.E.              Reverses the byte order of a 64-bit register.
+  Opcode             Instruction   Op/En   64-bit Mode   Compat/Leg Mode   Description
+  ------------------ ------------- ------- ------------- ----------------- -----------------------------------------------
+  0F C8+rd           BSWAP r32     O       Valid*        Valid             Reverses the byte order of a 32-bit register.
+  REX.W + 0F C8+rd   BSWAP r64     O       Valid         N.E.              Reverses the byte order of a 64-bit register.
 
   * SeeIA-32ArchitectureCompatibilitysectionbelow.
-
 
 Instruction Operand Encoding ¶
 
@@ -20,7 +16,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1            Operand 2   Operand 3   Operand 4
   O       opcode + rd (r, w)   NA          NA          NA
   ------- -------------------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -36,7 +31,6 @@ registers (R8-R15). Using a REX prefix in the form of REX.W promotes
 operation to 64 bits. See the summary chart at the beginning of this
 section for encoding data and limits.
 
-
 IA-32 Architecture Legacy Compatibility ¶
 
 The BSWAP instruction is not supported on IA-32 processors earlier than
@@ -44,7 +38,6 @@ the Intel486TM processor family. For compatibility with this
 instruction, software should include functionally equivalent code for
 execution on Intel processors earlier than the Intel486 processor
 family.
-
 
 Operation ¶
 
@@ -66,11 +59,9 @@ Operation ¶
             DEST[31:24] ← TEMP[7:0];
     FI;
 
-
 Flags Affected ¶
 
 None.
-
 
 Exceptions (All Operating Modes) ¶
 

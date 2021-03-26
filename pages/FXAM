@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-FXAM — EXAMINE FLOATING-POINT
-
+FXAM — Examine Floating-Point
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- ------------------------------------
   D9 E5    FXAM          Valid         Valid             Classify value or number in ST(0).
-
 
 Description ¶
 
@@ -35,7 +31,6 @@ whether the register is empty or full.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     C1 ← sign bit of ST; (* 0 for positive, 1 for negative *)
@@ -55,7 +50,6 @@ Operation ¶
             C3, C2, C0 ← 110;
     ESAC;
 
-
 FPU Flags Affected ¶
 
   ------------ -------------------------
@@ -63,11 +57,9 @@ FPU Flags Affected ¶
   C0, C2, C3   See Table 3-42.
   ------------ -------------------------
 
-
 Floating-Point Exceptions ¶
 
 None
-
 
 Protected Mode Exceptions ¶
 
@@ -77,21 +69,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

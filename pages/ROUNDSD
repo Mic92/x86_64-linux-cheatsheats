@@ -1,16 +1,12 @@
 -   Index
 -   May 2019
 
+ROUNDSD — Round Scalar Double Precision Floating-Point Values
 
-
-ROUNDSD — ROUND SCALAR DOUBLE PRECISION FLOATING-POINT VALUES
-
-
-  Opcode*/Instruction                                                  Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
-  -------------------------------------------------------------------- ------- ------------------------ -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  66 0F 3A 0B /r ib ROUNDSD _xmm1, xmm2/m64, imm8_                     RMI     V/V                      SSE4_1               Round the low packed double precision floating-point value in _xmm2/m64_ and place the result in _xmm1._ The rounding mode is determined by _imm8_.
-  VEX.LIG.66.0F3A.WIG 0B /r ib VROUNDSD _xmm1, xmm2, xmm3/m64, imm8_   RVMI    V/V                      AVX                  Round the low packed double precision floating-point value in _xmm3/m64_ and place the result in _xmm1_. The rounding mode is determined by _imm8_. Upper packed double precision floating-point value (bits[127:64]) from _xmm2_ is copied to _xmm1_[127:64].
-
+  Opcode*/Instruction                                                Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
+  ------------------------------------------------------------------ ------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  66 0F 3A 0B /r ib ROUNDSD xmm1, xmm2/m64, imm8                     RMI     V/V                      SSE4_1               Round the low packed double precision floating-point value in xmm2/m64 and place the result in xmm1. The rounding mode is determined by imm8.
+  VEX.LIG.66.0F3A.WIG 0B /r ib VROUNDSD xmm1, xmm2, xmm3/m64, imm8   RVMI    V/V                      AVX                  Round the low packed double precision floating-point value in xmm3/m64 and place the result in xmm1. The rounding mode is determined by imm8. Upper packed double precision floating-point value (bits[127:64]) from xmm2 is copied to xmm1[127:64].
 
 Instruction Operand Encoding ¶
 
@@ -19,7 +15,6 @@ Instruction Operand Encoding ¶
   RMI     ModRM:reg (w)   ModRM:r/m (r)   imm8            NA
   RVMI    ModRM:reg (w)   VEX.vvvv (r)    ModRM:r/m (r)   imm8
   ------- --------------- --------------- --------------- -----------
-
 
 Description ¶
 
@@ -50,7 +45,6 @@ destination register remain unchanged.
 VEX.128 encoded version: Bits (MAXVL-1:128) of the destination YMM
 register are zeroed.
 
-
 Operation ¶
 
     IF (imm[2] = ‘1)
@@ -72,7 +66,6 @@ VROUNDSD (VEX.128 encoded version) ¶
     DEST[127:64] ← SRC1[127:64]
     DEST[MAXVL-1:128] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     ROUNDSD: __m128d mm_round_sd(__m128d dst, __m128d s1, int iRoundMode);
@@ -80,7 +73,6 @@ Intel C/C++ Compiler Intrinsic Equivalent ¶
     __m128d mm_floor_sd(__m128d dst, __m128d s1);
 
     __m128d mm_ceil_sd(__m128d dst, __m128d s1);
-
 
 SIMD Floating-Point Exceptions ¶
 
@@ -91,7 +83,6 @@ Precision Mask in the MXSCSR is ignored and precision exception is not
 signaled.)
 
 Note that Denormal is not signaled by ROUNDSD.
-
 
 Other Exceptions ¶
 

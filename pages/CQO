@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-CWD/CDQ/CQO — CONVERT WORD TO DOUBLEWORD/CONVERT DOUBLEWORD TO QUADWORD
-
+CWD/CDQ/CQO — Convert Word to Doubleword/Convert Doubleword to Quadword
 
   Opcode       Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   ------------ ------------- ------- ------------- ----------------- -------------------------------
@@ -12,14 +9,12 @@ CWD/CDQ/CQO — CONVERT WORD TO DOUBLEWORD/CONVERT DOUBLEWORD TO QUADWORD
   99           CDQ           ZO      Valid         Valid             EDX:EAX ← sign-extend of EAX.
   REX.W + 99   CQO           ZO      Valid         N.E.              RDX:RAX← sign-extend of RAX.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -51,7 +46,6 @@ In 64-bit mode, use of the REX.W prefix promotes operation to 64 bits.
 The CQO mnemonics reference the same opcode as CWD/CDQ. See the summary
 chart at the beginning of this section for encoding data and limits.
 
-
 Operation ¶
 
     IF OperandSize = 16 (* CWD instruction *)
@@ -63,11 +57,9 @@ Operation ¶
             RDX ← SignExtend(RAX); FI;
     FI;
 
-
 Flags Affected ¶
 
 None
-
 
 Exceptions (All Operating Modes) ¶
 

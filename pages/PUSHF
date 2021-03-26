@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-PUSHF/PUSHFD/PUSHFQ — PUSH EFLAGS REGISTER ONTO THE STACK
-
+PUSHF/PUSHFD/PUSHFQ — Push EFLAGS Register onto the Stack
 
   Opcode*   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
   --------- ------------- ------- ------------- ----------------- -------------------------------
@@ -12,14 +9,12 @@ PUSHF/PUSHFD/PUSHFQ — PUSH EFLAGS REGISTER ONTO THE STACK
   9C        PUSHFD        ZO      N.E.          Valid             Push EFLAGS.
   9C        PUSHFQ        ZO      Valid         N.E.              Push RFLAGS.
 
-
 Instruction Operand Encoding ¶
 
   ------- ----------- ----------- ----------- -----------
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -33,8 +28,8 @@ the operation of the POPF/POPFD instructions.
 When copying the entire EFLAGS register to the stack, the VM and RF
 flags (bits 16 and 17) are not copied; instead, the values for these
 flags are cleared in the EFLAGS image stored on the stack. See Chapter 3
-of the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 1_, for more information about the EFLAGS register.
+of the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 1, for more information about the EFLAGS register.
 
 The PUSHF (push flags) and PUSHFD (push flags double) mnemonics
 reference the same opcode. The PUSHF instruction is intended for use
@@ -69,9 +64,8 @@ In the real-address mode, if the ESP or SP register is 1 when
 PUSHF/PUSHFD instruction executes: an #SS exception is generated but not
 delivered (the stack error reported prevents #SS delivery). Next, the
 processor generates a #DF exception and enters a shutdown state as
-described in the #DF discussion in Chapter 6 of the _Intel® 64 and IA-32
-Architectures Software Developer’s Manual, Volume 3A_.
-
+described in the #DF discussion in Chapter 6 of the Intel® 64 and IA-32
+Architectures Software Developer’s Manual, Volume 3A.
 
 Operation ¶
 
@@ -104,11 +98,9 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 None.
-
 
 Protected Mode Exceptions ¶
 
@@ -119,13 +111,11 @@ Protected Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
   ----- -----------------------------
   #UD   If the LOCK prefix is used.
   ----- -----------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -136,11 +126,9 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- -------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-GF2P8MULB — GALOIS FIELD MULTIPLY BYTES
-
+GF2P8MULB — Galois Field Multiply Bytes
 
   Opcode/Instruction                        Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ----------------------------------------- ------- ------------------------ -------------------- --------------------------------------------------
   66 0F38 CF /r GF2P8MULB xmm1, xmm2/m128   A       V/V                      GFNI                 Multiplies elements in the finite field GF(2^8).
-
 
 Instruction Operand Encoding ¶
 

@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-VCVTPS2PH — CONVERT SINGLE-PRECISION FP VALUE TO 16-BIT FP VALUE
-
+VCVTPS2PH — Convert Single-Precision FP value to 16-bit FP value
 
   Opcode/Instruction                                                          Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   --------------------------------------------------------------------------- --------- ------------------------ -------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -13,7 +10,6 @@ VCVTPS2PH — CONVERT SINGLE-PRECISION FP VALUE TO 16-BIT FP VALUE
   EVEX.128.66.0F3A.W0 1D /r ib VCVTPS2PH xmm1/m64 {k1}{z}, xmm2, imm8         B         V/V                      AVX512VL AVX512F     Convert four packed single-precision floating-point values in xmm2 to packed half-precision (16-bit) floating-point values in xmm1/m64. Imm8 provides rounding controls.
   EVEX.256.66.0F3A.W0 1D /r ib VCVTPS2PH xmm1/m128 {k1}{z}, ymm2, imm8        B         V/V                      AVX512VL AVX512F     Convert eight packed single-precision floating-point values in ymm2 to packed half-precision (16-bit) floating-point values in xmm1/m128. Imm8 provides rounding controls.
   EVEX.512.66.0F3A.W0 1D /r ib VCVTPS2PH ymm1/m256 {k1}{z}, zmm2{sae}, imm8   B         V/V                      AVX512F              Convert sixteen packed single-precision floating-point values in zmm2 to packed half-precision (16-bit) floating-point values in ymm1/m256. Imm8 provides rounding controls.
-
 
 Instruction Operand Encoding ¶
 
@@ -35,9 +31,7 @@ MXCSR.FTZ is ignored. If a source element is denormal relative to the
 input format with DM masked and at least one of PM or UM unmasked; a
 SIMD exception will be raised with DE, UE and PE set.
 
-VCVTPS2PHxmm1/mem64,xmm2, imm8 127 96 95 64 63 32 31 0 VS3 VS2 VS1 VS0
-xmm2 convert convert convert convert 127 96 95 64 63 48 47 32 31 16 15 0
-VH3 VH2 VH1 VH0 xmm1/mem64
+[]
 
 Figure 5-7. VCVTPS2PH (128-bit Version)
 
@@ -45,51 +39,15 @@ The immediate byte defines several bit fields that control rounding
 operation. The effect and encoding of the RC field are listed in Table
 5-12.
 
-Bits
-
-Field Name/value
-
-Description
-
-Comment
-
-Imm[1:0]
-
-RC=00B
-
-Round to nearest even
-
-If Imm[2] = 0
-
-RC=01B
-
-Round down
-
-RC=10B
-
-Round up
-
-RC=11B
-
-Truncate
-
-Imm[2]
-
-MS1=0
-
-Use imm[1:0] for rounding
-
-Ignore MXCSR.RC
-
-MS1=1
-
-Use MXCSR.RC for rounding
-
-Imm[7:3]
-
-Ignored
-
-Ignored by processor
+  Bits       Field Name/value   Description                 Comment
+  ---------- ------------------ --------------------------- -----------------
+  Imm[1:0]   RC=00B             Round to nearest even       If Imm[2] = 0
+             RC=01B                                         Round down
+             RC=10B                                         Round up
+             RC=11B                                         Truncate
+  Imm[2]     MS1=0              Use imm[1:0] for rounding   Ignore MXCSR.RC
+             MS1=1              Use MXCSR.RC for rounding   
+  Imm[7:3]   Ignored            Ignored by processor        
 
 Table 5-12. Immediate Byte Encoding for 16-bit Floating-Point Conversion
 Instructions

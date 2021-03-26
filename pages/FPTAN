@@ -1,15 +1,11 @@
 -   Index
 -   May 2019
 
-
-
-FPTAN — PARTIAL TANGENT
-
+FPTAN — Partial Tangent
 
   Opcode   Instruction   64-Bit Mode   Compat/Leg Mode   Description
   -------- ------------- ------------- ----------------- ---------------------------------------------------------------------------
   D9 F2    FPTAN         Valid         Valid             Replace ST(0) with its approximate tangent and push 1 onto the FPU stack.
-
 
 Description ¶
 
@@ -48,8 +44,8 @@ of π used internally for argument reduction is not sufficient in all
 cases. Therefore, for accurate results it is safe to apply FPTAN only to
 arguments reduced accurately in software, to a value smaller in absolute
 value than 3π/8. See the sections titled “Approximation of Pi” and
-“Transcendental Instruction Accuracy” in Chapter 8 of the _Intel® 64 and
-IA-32 Architectures Software Developer’s Manual, Volume 1_, for a
+“Transcendental Instruction Accuracy” in Chapter 8 of the Intel® 64 and
+IA-32 Architectures Software Developer’s Manual, Volume 1, for a
 discussion of the proper value to use for π in performing such
 reductions.
 
@@ -63,7 +59,6 @@ instruction after the FPTAN instruction.
 This instruction’s operation is the same in non-64-bit modes and 64-bit
 mode.
 
-
 Operation ¶
 
     IF ST(0) < 263
@@ -76,25 +71,15 @@ Operation ¶
             C2 ← 1;
     FI;
 
-
 FPU Flags Affected ¶
 
-C1
-
-Set to 0 if stack underflow occurred; set to 1 if stack overflow
-occurred.
-
-Set if result was rounded up; cleared otherwise.
-
-Set to 1 if outside range (−263 < source operand < +263); otherwise, set
-to 0.
-
-C2
-
-C0, C3
-
-Undefined.
-
+  -------- --------------------------------------------------------------------------------
+  C1       Set to 0 if stack underflow occurred; set to 1 if stack overflow occurred.
+           Set if result was rounded up; cleared otherwise.
+           Set to 1 if outside range (−263 < source operand < +263); otherwise, set to 0.
+  C2       
+  C0, C3   Undefined.
+  -------- --------------------------------------------------------------------------------
 
 Floating-Point Exceptions ¶
 
@@ -106,7 +91,6 @@ Floating-Point Exceptions ¶
   #P    Value cannot be represented exactly in destination format.
   ----- ------------------------------------------------------------
 
-
 Protected Mode Exceptions ¶
 
   ----- ------------------------------------------
@@ -115,21 +99,17 @@ Protected Mode Exceptions ¶
   #UD   If the LOCK prefix is used.
   ----- ------------------------------------------
 
-
 Real-Address Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 Virtual-8086 Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
-
 
 64-Bit Mode Exceptions ¶
 

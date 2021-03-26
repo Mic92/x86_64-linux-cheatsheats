@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-PMULDQ — MULTIPLY PACKED DOUBLEWORD INTEGERS
-
+PMULDQ — Multiply Packed Doubleword Integers
 
   Opcode/Instruction                                                        Op / En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------------------------------------------- --------- ------------------------ -------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +11,6 @@ PMULDQ — MULTIPLY PACKED DOUBLEWORD INTEGERS
   EVEX.128.66.0F38.W1 28 /r VPMULDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst   C         V/V                      AVX512VL AVX512F     Multiply packed signed doubleword integers in xmm2 by packed signed doubleword integers in xmm3/m128/m64bcst, and store the quadword results in xmm1 using writemask k1.
   EVEX.256.66.0F38.W1 28 /r VPMULDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst   C         V/V                      AVX512VL AVX512F     Multiply packed signed doubleword integers in ymm2 by packed signed doubleword integers in ymm3/m256/m64bcst, and store the quadword results in ymm1 using writemask k1.
   EVEX.512.66.0F38.W1 28 /r VPMULDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst   C         V/V                      AVX512F              Multiply packed signed doubleword integers in zmm2 by packed signed doubleword integers in zmm3/m512/m64bcst, and store the quadword results in zmm1 using writemask k1.
-
 
 Instruction Operand Encoding ¶
 

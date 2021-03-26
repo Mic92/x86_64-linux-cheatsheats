@@ -1,24 +1,20 @@
 -   Index
 -   May 2019
 
+INS/INSB/INSW/INSD — Input from Port to String
 
-
-INS/INSB/INSW/INSD — INPUT FROM PORT TO STRING
-
-
-  Opcode   Instruction     Op/En   64-Bit Mode   Compat/Leg Mode   Description
-  -------- --------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------------------
-  6C       INS _m8_, DX    ZO      Valid         Valid             Input byte from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.*
-  6D       INS _m16_, DX   ZO      Valid         Valid             Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
-  6D       INS _m32_, DX   ZO      Valid         Valid             Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
-  6C       INSB            ZO      Valid         Valid             Input byte from I/O port specified in DX into memory location specified with ES:(E)DI or RDI.¹
-  6D       INSW            ZO      Valid         Valid             Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
-  6D       INSD            ZO      Valid         Valid             Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
+  Opcode   Instruction   Op/En   64-Bit Mode   Compat/Leg Mode   Description
+  -------- ------------- ------- ------------- ----------------- ----------------------------------------------------------------------------------------------------
+  6C       INS m8, DX    ZO      Valid         Valid             Input byte from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.*
+  6D       INS m16, DX   ZO      Valid         Valid             Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
+  6D       INS m32, DX   ZO      Valid         Valid             Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
+  6C       INSB          ZO      Valid         Valid             Input byte from I/O port specified in DX into memory location specified with ES:(E)DI or RDI.¹
+  6D       INSW          ZO      Valid         Valid             Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
+  6D       INSD          ZO      Valid         Valid             Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.¹
 
   *
   In64-bitmode,only64-bit(RDI)and32-bit(EDI)addresssizesaresupported.Innon-64-bitmode,only32-bit(EDI)and16-bit(DI)
   address sizes are supported.
-
 
 Instruction Operand Encoding ¶
 
@@ -26,7 +22,6 @@ Instruction Operand Encoding ¶
   Op/En   Operand 1   Operand 2   Operand 3   Operand 4
   ZO      NA          NA          NA          NA
   ------- ----------- ----------- ----------- -----------
-
 
 Description ¶
 
@@ -51,8 +46,8 @@ symbol that indicates the size of the I/O port and the destination
 address. This explicit-operands form is provided to allow documentation;
 however, note that the documentation provided by this form can be
 misleading. That is, the destination operand symbol must specify the
-correct TYPE (size) of the operand (byte, word, or doubleword), but it
-does not have to specify the correct LOCATION. The location is always
+correct type (size) of the operand (byte, word, or doubleword), but it
+does not have to specify the correct location. The location is always
 specified by the ES:(E)DI registers, which must be loaded correctly
 before the INS instruction is executed.
 
@@ -73,14 +68,14 @@ operations, or by 4 for doubleword operations.
 The INS, INSB, INSW, and INSD instructions can be preceded by the REP
 prefix for block input of ECX bytes, words, or doublewords. See
 “REP/REPE/REPZ /REPNE/REPNZ—Repeat String Operation Prefix” in Chapter 4
-of the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 2B_, for a description of the REP prefix.
+of the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 2B, for a description of the REP prefix.
 
 These instructions are only useful for accessing I/O ports located in
 the processor’s I/O address space. See Chapter 18, “Input/Output,” in
-the _Intel® 64 and IA-32 Architectures Software Developer’s Manual,
-Volume 1_, for more information on accessing I/O ports in the I/O
-address space.
+the Intel® 64 and IA-32 Architectures Software Developer’s Manual,
+Volume 1, for more information on accessing I/O ports in the I/O address
+space.
 
 In 64-bit mode, default address size is 64 bits, 32 bit address size is
 supported using the prefix 67H. The address of the memory destination is
@@ -92,7 +87,6 @@ memory location if an exception or VM exit occurs due to the write (e.g.
 #PF). If this would be problematic, for example because the I/O port
 read has side-effects, software should ensure the write to the memory
 location does not cause an exception or VM exit.
-
 
 Operation ¶
 
@@ -138,38 +132,20 @@ Operation ¶
             FI;
     FI;
 
-
 Flags Affected ¶
 
 None
 
-
 Protected Mode Exceptions ¶
 
-#GP(0)
-
-If the CPL is greater than (has less privilege) the I/O privilege level
-(IOPL) and any of the corresponding I/O permission bits in TSS for the
-I/O port being accessed is 1.
-
-If the destination is located in a non-writable segment.
-
-If an illegal memory operand effective address in the ES segments is
-given.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
-
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #GP(0)            If the CPL is greater than (has less privilege) the I/O privilege level (IOPL) and any of the corresponding I/O permission bits in TSS for the I/O port being accessed is 1.
+                    If the destination is located in a non-writable segment.
+                    If an illegal memory operand effective address in the ES segments is given.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Real-Address Mode Exceptions ¶
 
@@ -178,7 +154,6 @@ Real-Address Mode Exceptions ¶
   #SS   If a memory operand effective address is outside the SS segment limit.
   #UD   If the LOCK prefix is used.
   ----- -------------------------------------------------------------------------------------------
-
 
 Virtual-8086 Mode Exceptions ¶
 
@@ -189,39 +164,20 @@ Virtual-8086 Mode Exceptions ¶
   #UD               If the LOCK prefix is used.
   ----------------- ------------------------------------------------------------------------------------
 
-
 Compatibility Mode Exceptions ¶
 
 Same exceptions as in protected mode.
 
-
 64-Bit Mode Exceptions ¶
 
-#SS(0)
-
-If a memory address referencing the SS segment is in a non-canonical
-form.
-
-#GP(0)
-
-If the CPL is greater than (has less privilege) the I/O privilege level
-(IOPL) and any of the corresponding I/O permission bits in TSS for the
-I/O port being accessed is 1.
-
-If the memory address is in a non-canonical form.
-
-#PF(fault-code)
-
-If a page fault occurs.
-
-#AC(0)
-
-If alignment checking is enabled and an unaligned memory reference is
-made while the current privilege level is 3.
-
-#UD
-
-If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #SS(0)            If a memory address referencing the SS segment is in a non-canonical form.
+  #GP(0)            If the CPL is greater than (has less privilege) the I/O privilege level (IOPL) and any of the corresponding I/O permission bits in TSS for the I/O port being accessed is 1.
+                    If the memory address is in a non-canonical form.
+  #PF(fault-code)   If a page fault occurs.
+  #AC(0)            If alignment checking is enabled and an unaligned memory reference is made while the current privilege level is 3.
+  #UD               If the LOCK prefix is used.
+  ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This UNOFFICIAL, mechanically-separated, non-verified reference is
 provided for convenience, but it may be incomplete or b_(r)oke_(n) in

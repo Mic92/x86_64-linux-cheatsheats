@@ -1,10 +1,7 @@
 -   Index
 -   May 2019
 
-
-
-KNOTW/KNOTB/KNOTQ/KNOTD — NOT MASK REGISTER
-
+KNOTW/KNOTB/KNOTQ/KNOTD — NOT Mask Register
 
   Opcode/Instruction                   Op/En   64/32 bit Mode Support   CPUID Feature Flag   Description
   ------------------------------------ ------- ------------------------ -------------------- ---------------------------------
@@ -13,7 +10,6 @@ KNOTW/KNOTB/KNOTQ/KNOTD — NOT MASK REGISTER
   VEX.L0.0F.W1 44 /r KNOTQ k1, k2      RR      V/V                      AVX512BW             Bitwise NOT of 64 bits mask k2.
   VEX.L0.66.0F.W1 44 /r KNOTD k1, k2   RR      V/V                      AVX512BW             Bitwise NOT of 32 bits mask k2.
 
-
 Instruction Operand Encoding ¶
 
   ------- --------------- ----------------------------------------
@@ -21,12 +17,10 @@ Instruction Operand Encoding ¶
   RR      ModRM:reg (w)   ModRM:r/m (r, ModRM:[7:6] must be 11b)
   ------- --------------- ----------------------------------------
 
-
 Description ¶
 
 Performs a bitwise NOT of vector mask k2 and writes the result into
 vector mask k1.
-
 
 Operation ¶
 
@@ -50,21 +44,17 @@ KNOTD ¶
     DEST[31:0]←BITWISE NOT SRC[31:0]
     DEST[MAX_KL-1:32] ← 0
 
-
 Intel C/C++ Compiler Intrinsic Equivalent ¶
 
     KNOTW __mmask16 _mm512_knot(__mmask16 a);
-
 
 Flags Affected ¶
 
 None
 
-
 SIMD Floating-Point Exceptions ¶
 
 None
-
 
 Other Exceptions ¶
 
