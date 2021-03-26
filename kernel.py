@@ -21,15 +21,17 @@ MODULE_LICENSE("gpl");
 
 def usage():
     print(
-        "USAGE: %s repl|size|print|all|symbols|offset|members" % sys.argv[0],
-        file=sys.stderr)
+        "USAGE: %s repl|size|print|offset" % sys.argv[0],
+        file=sys.stderr,
+    )
     return 0
+
 
 KERNEL_DIR = os.environ.get("KERNEL_DIR", f"/lib/modules/{platform.release()}/build")
 ROOT = Path(__file__).parent
 
 
-class KernelModule():
+class KernelModule:
     def __init__(self, content: str) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.build_directory = Path(self.temp.name)
@@ -67,9 +69,46 @@ def parse(arg):
     return tuple(shlex.split(arg))
 
 
+def get_size(symbol: str) -> str:
+    content = KERNEL_HEADER + f"size_t size = sizeof({symbol});"
+    with KernelModule(content) as module:
+        p = subprocess.run(
+            ["gdb", module, "-batch", "-ex", "p size", "-ex", "quit"],
+            check=True,
+            stdout=subprocess.PIPE,
+            text=True,
+        )
+        return p.stdout
+
+
+def eval_expression(expr: str) -> str:
+    content = KERNEL_HEADER + f"typeof({expr}) VAL = {expr};"
+    with KernelModule(content) as module:
+        p = subprocess.run(
+            ["gdb", module, "-batch", "-ex", "p VAL", "-ex", "quit"],
+            check=True,
+            stdout=subprocess.PIPE,
+            text=True,
+        )
+        return p.stdout
+
+def get_offset(struct: str, member: str) -> str:
+        content = (
+            KERNEL_HEADER
+            + f"size_t OFFSET = __builtin_offsetof({struct}, {member});"
+        )
+        with KernelModule(content) as module:
+            p = subprocess.run(
+                ["gdb", module, "-batch", "-ex", "p OFFSET", "-ex", "quit"],
+                check=True,
+                stdout=subprocess.PIPE,
+                text=True
+            )
+            return p.stdout
+
 class Shell(cmd.Cmd):
-    intro = 'Type help or ? to list commands.\n'
-    prompt = '> '
+    intro = "Type help or ? to list commands.\n"
+    prompt = "> "
 
     def precmd(self, line):
         self.args = parse(line)
@@ -84,22 +123,15 @@ class Shell(cmd.Cmd):
         if len(self.args) < 1:
             print("USAGE: %s print-size expr" % sys.argv[0], file=sys.stderr)
             return 1
-        content = (KERNEL_HEADER + f"size_t size = sizeof({self.args[0]});")
-        with KernelModule(content) as module:
-            subprocess.check_call(["gdb", module, "-batch", "-ex", "p size", "-ex", "quit"])
+        print(get_size(self.args[0]))
 
     do_s = do_size
 
     def do_print(self, _):
         if len(self.args) < 1:
-            print(
-                "USAGE: %s print constant" % sys.argv[0],
-                file=sys.stderr)
+            print("USAGE: %s print constant" % sys.argv[0], file=sys.stderr)
             return 1
-        content = (KERNEL_HEADER +
-                   f"typeof({self.args[0]}) VAL = {self.args[0]};")
-        with KernelModule(content) as module:
-            subprocess.check_call(["gdb", module, "-batch", "-ex", "p VAL", "-ex", "quit"])
+        print(eval_expression(self.args[0]))
 
     do_p = do_print
 
@@ -108,14 +140,9 @@ class Shell(cmd.Cmd):
         print offsetof(struct, member)
         """
         if len(self.args) < 2:
-            print(
-                "USAGE: %s offset struct member" % sys.argv[0],
-                file=sys.stderr)
+            print("USAGE: %s offset struct member" % sys.argv[0], file=sys.stderr)
             return 1
-        content = (KERNEL_HEADER +
-                   f"size_t OFFSET = __builtin_offsetof({self.args[0]}, {self.args[1]});")
-        with KernelModule(content) as module:
-            subprocess.check_call(["gdb", module, "-batch", "-ex", "p OFFSET", "-ex", "quit"])
+        print(get_offset(self.args[0], self.args[1]))
 
     do_o = do_offset
 
