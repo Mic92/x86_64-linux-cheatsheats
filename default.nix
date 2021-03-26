@@ -2,21 +2,14 @@ with import <nixpkgs> {};
 
 let
   # Replace this with your kernel version!
-  kernel = linux_latest;
+  kernel = linux;
+  #kernel_i686 = pkgsi686Linux.linux;
 
-  gems = bundlerEnv {
-    name = "x86-cheatsheets";
-    inherit ruby;
-    gemdir = ./.;
-  };
 in stdenv.mkDerivation {
   name = "env";
   buildInputs = [
     bashInteractive
-    # when updating bundle
-    #ruby.devEnv
-    ruby
-    gems
+    (ruby.withPackages (ps: with ps; [ nokogiri pry ]))
     libxml2
     pandoc
     python3
@@ -27,4 +20,5 @@ in stdenv.mkDerivation {
   hardeningDisable=["all"];
 
   KERNEL_DIR = "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build";
+  #KERNEL_I686_DIR = "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build";
 }
