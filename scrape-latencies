@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+curl cheat.sh/latencies | sed 's/\x1b\[[0-9;]*m//g' > pages/latencies
